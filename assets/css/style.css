@@ -1217,3 +1217,166 @@ section {
     padding-right: 20px 15px;
   }
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-content, #printable-content * {
+    visibility: visible;
+  }
+  #printable-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .section-title h2 {
+    color: #000 !important;
+  }
+  .about .content img {
+    display: none !important;
+  }
+  .about .col-lg-4 {
+    display: none !important;
+  }
+  .skills .progress {
+    border: none;
+    height: auto;
+    margin-bottom: 8px;
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+  }
+  .skills .progress-bar {
+    display: none;
+  }
+  .skills .progress .skill {
+    position: relative;
+    width: 50%;
+    height: auto;
+    display: block;
+    padding: 0;
+    color: #000;
+    font-weight: normal;
+    z-index: 1;
+  }
+  .skills .progress .skill:after {
+    display: none;
+  }
+  .skills .progress .skill .val {
+    position: relative;
+    right: 0;
+    margin-left: 0;
+    background-color: transparent;
+    padding-left: 0;
+    text-align: right;
+    width: 50%;
+    float: right;
+  }
+  .skills .progress-bar-wrap {
+    display: none;
+  }
+  .skills h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  a[href]:after {
+    content: none !important;
+  }
+  .section-bg {
+    background-color: transparent !important;
+  }
+  #certifications {
+    page-break-before: always;
+  }
+  #resume {
+    page-break-before: always;
+  }
+  .resume-item {
+    page-break-inside: avoid;
+  }
+  #education {
+    page-break-before: always;
+  }
+  .education-item {
+    page-break-inside: avoid;
+  }
+  #posts {
+    page-break-before: always;
+  }
+  #hobbies {
+    page-break-before: always;
+  }
+  .portfolio-wrap {
+    page-break-inside: avoid;
+  }
+  @page {
+    margin: 2cm;
+  }
+}
+.resume .resume-item {
+  padding: 0 0 20px 0;
+  position: relative;
+  border-left: none;
+}
+.resume .resume-item:before {
+  display: none;
+}
+.resume .resume-item:last-child {
+  padding-bottom: 0;
+}
+.resume .resume-item h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.resume .resume-item h5 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.resume .resume-item p {
+  margin-bottom: 10px;
+}
+.resume .resume-item ul {
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+.resume .resume-item ul li {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.education .education-item {
+  padding: 0 0 20px 0;
+  position: relative;
+  border-left: none;
+}
+.education .education-item:before {
+  display: none;
+}
+.education .education-item:last-child {
+  padding-bottom: 0;
+}
+.education .education-item h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.education .education-item h5 {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+.education .education-item p {
+  margin-bottom: 10px;
+}
