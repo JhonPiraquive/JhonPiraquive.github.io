@@ -1220,110 +1220,405 @@ section {
   }
 }
 
+/* Hide print-only elements on screen */
+.no-screen { display: none !important; }
+
 @media print {
-  body * {
-    visibility: hidden;
+  /* ===================================================
+     Page setup
+  =================================================== */
+  @page {
+    size: A4;
+    margin: 1.8cm 2cm;
   }
-  #printable-content, #printable-content * {
-    visibility: visible;
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
+
+  /* Hide everything, then reveal only the CV content */
+  body * { visibility: hidden; }
+  #printable-content,
+  #printable-content * { visibility: visible; }
+
+  body {
+    background: #fff !important;
+    font-family: "Open Sans", sans-serif;
+    font-size: 10pt;
+    color: #1a1a1a;
+    line-height: 1.5;
+  }
+
   #printable-content {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
+    padding: 0;
   }
-  .no-print {
-    display: none !important;
+
+  /* ===================================================
+     Print header — name + contact (hidden on screen)
+  =================================================== */
+  .no-screen {
+    display: block !important;
+    visibility: visible !important;
   }
+
+  #print-header {
+    text-align: center;
+    padding-bottom: 14pt;
+    margin-bottom: 12pt;
+    border-bottom: 2pt solid #149ddd;
+  }
+
+  #print-header h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #040b14;
+    font-family: "Poppins", sans-serif;
+    margin: 0 0 3pt 0;
+    letter-spacing: -0.3pt;
+  }
+
+  #print-header .print-title {
+    font-size: 11pt;
+    color: #149ddd;
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
+    margin: 0 0 8pt 0;
+  }
+
+  #print-header .print-contact {
+    font-size: 8.5pt;
+    color: #555;
+    margin: 0;
+  }
+
+  #print-header .print-contact span {
+    margin: 0 6pt;
+  }
+
+  #print-header .print-contact span::before {
+    content: "·";
+    margin-right: 6pt;
+    color: #149ddd;
+  }
+
+  #print-header .print-contact span:first-child::before {
+    content: "";
+    margin-right: 0;
+  }
+
+  /* ===================================================
+     Hide elements not relevant for a CV
+  =================================================== */
+  .no-print,
+  #header,
+  #hero,
+  #certifications,
+  #hobbies,
+  .back-to-top,
+  .mobile-nav-toggle           { display: none !important; }
+
+  /* ===================================================
+     Sections — reset padding and backgrounds
+  =================================================== */
+  section {
+    padding: 10pt 0 !important;
+    overflow: visible !important;
+    background: none !important;
+  }
+
+  .section-bg { background: none !important; }
+  .container  { padding: 0 !important; }
+
+  /* ===================================================
+     Section titles
+  =================================================== */
+  .section-title {
+    padding-bottom: 4pt !important;
+    margin-bottom: 6pt !important;
+  }
+
   .section-title h2 {
-    color: #000 !important;
+    font-size: 13pt !important;
+    font-weight: 700 !important;
+    color: #040b14 !important;
+    padding-bottom: 4pt !important;
+    margin-bottom: 6pt !important;
+    border-bottom: 1.5pt solid #149ddd !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
   }
-  .about .content img {
-    display: none !important;
+
+  /* Remove the CSS underline bar (we're using border-bottom instead) */
+  .section-title h2::after { display: none !important; }
+
+  /* Hide the section intro descriptions to save space */
+  .section-title > p { display: none !important; }
+
+  /* ===================================================
+     About section
+  =================================================== */
+  .about .col-lg-4 { display: none !important; }
+
+  .about .col-lg-8 {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    padding: 0 !important;
   }
-  .about .col-lg-4 {
-    display: none !important;
+
+  .about .content h3 {
+    font-size: 11pt !important;
+    color: #149ddd !important;
+    margin-bottom: 3pt !important;
+    font-weight: 600 !important;
   }
-  .skills .progress {
-    border: none;
-    height: auto;
-    margin-bottom: 8px;
-    background-color: transparent;
-    position: relative;
+
+  .about .content .fst-italic {
+    font-size: 9.5pt !important;
+    margin-bottom: 6pt !important;
+    color: #444 !important;
+  }
+
+  .about .content ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin-bottom: 4pt !important;
+    columns: 2;
+  }
+
+  .about .content ul li {
+    font-size: 9pt !important;
+    margin-bottom: 2pt !important;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0;
-    width: 100%;
   }
-  .skills .progress-bar {
-    display: none;
+
+  .about .content ul li i {
+    color: #149ddd !important;
+    margin-right: 4pt !important;
   }
+
+  .about .content ul strong { font-weight: 600 !important; }
+
+  .about .content > p {
+    font-size: 9.5pt !important;
+    margin-bottom: 5pt !important;
+  }
+
+  /* Languages list after body paragraph */
+  .about .content > ul + p,
+  .about .content > p + p { font-size: 9.5pt !important; }
+
+  /* ===================================================
+     Skills section
+  =================================================== */
+  .skills .progress-bar,
+  .skills .progress-bar-wrap { display: none !important; }
+
+  .skills .progress {
+    background: none !important;
+    height: auto !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 !important;
+    margin-bottom: 2pt !important;
+    border-bottom: 0.3pt solid #eee;
+  }
+
   .skills .progress .skill {
-    position: relative;
-    width: 50%;
-    height: auto;
-    display: block;
-    padding: 0;
-    color: #000;
-    font-weight: normal;
-    z-index: 1;
+    font-size: 9pt !important;
+    text-transform: none !important;
+    font-weight: 400 !important;
+    color: #1a1a1a !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 1pt 0 !important;
   }
-  .skills .progress .skill:after {
-    display: none;
-  }
+
   .skills .progress .skill .val {
-    position: relative;
-    right: 0;
-    margin-left: 0;
-    background-color: transparent;
-    padding-left: 0;
-    text-align: right;
-    width: 50%;
-    float: right;
+    float: none !important;
+    font-weight: 600 !important;
+    color: #149ddd !important;
+    font-style: normal !important;
+    font-size: 8.5pt !important;
   }
-  .skills .progress-bar-wrap {
-    display: none;
-  }
+
+  .skills-content h3,
+  .skills .skills-content h3,
   .skills h3 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #040b14 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.4pt !important;
+    margin: 8pt 0 3pt 0 !important;
+    padding-bottom: 2pt !important;
+    border-bottom: 0.5pt solid #ddd !important;
   }
-  a[href]:after {
-    content: none !important;
+
+  /* ===================================================
+     Experience section
+  =================================================== */
+  .resume .resume-item {
+    background: none !important;
+    box-shadow: none !important;
+    border-left: 2pt solid #149ddd !important;
+    border-radius: 0 !important;
+    padding: 4pt 0 4pt 10pt !important;
+    margin-bottom: 8pt !important;
+    page-break-inside: avoid;
+    position: relative !important;
   }
-  .section-bg {
-    background-color: transparent !important;
+
+  .resume .resume-item::before { display: none !important; }
+
+  .resume .resume-item h4 {
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    color: #040b14 !important;
+    margin-bottom: 1pt !important;
+    text-transform: none !important;
   }
-  #certifications {
-    page-break-before: always;
+
+  .resume .resume-item h5 {
+    font-size: 8.5pt !important;
+    background: none !important;
+    padding: 0 !important;
+    color: #149ddd !important;
+    font-weight: 600 !important;
+    margin-bottom: 3pt !important;
+    display: block !important;
   }
-  #resume {
-    page-break-before: always;
+
+  .resume .resume-item em {
+    font-size: 8.5pt !important;
+    color: #666 !important;
   }
-  .resume-item {
+
+  .resume .resume-item > p {
+    font-size: 9pt !important;
+    margin-bottom: 3pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .resume .resume-item ul {
+    padding-left: 12pt !important;
+    margin-bottom: 3pt !important;
+  }
+
+  .resume .resume-item ul li {
+    font-size: 8.5pt !important;
+    padding-bottom: 1pt !important;
+    line-height: 1.4 !important;
+  }
+
+  .resume-title {
+    font-size: 13pt !important;
+    color: #040b14 !important;
+    margin: 10pt 0 6pt 0 !important;
+    font-weight: 700 !important;
+  }
+
+  /* ===================================================
+     Education section
+  =================================================== */
+  .education .education-item {
+    background: none !important;
+    box-shadow: none !important;
+    border-left: 2pt solid #149ddd !important;
+    border-radius: 0 !important;
+    padding: 3pt 0 3pt 10pt !important;
+    margin-bottom: 5pt !important;
     page-break-inside: avoid;
   }
-  #education {
-    page-break-before: always;
+
+  .education .education-item::before { display: none !important; }
+
+  .education .education-item h4 {
+    font-size: 10pt !important;
+    font-weight: 700 !important;
+    color: #040b14 !important;
+    margin-bottom: 1pt !important;
+    text-transform: none !important;
   }
-  .education-item {
-    page-break-inside: avoid;
+
+  .education .education-item h5 {
+    font-size: 8.5pt !important;
+    background: none !important;
+    padding: 0 !important;
+    color: #149ddd !important;
+    font-weight: 600 !important;
+    margin-bottom: 1pt !important;
+    display: block !important;
   }
-  #posts {
-    page-break-before: always;
+
+  .education .education-item p {
+    font-size: 8.5pt !important;
+    color: #666 !important;
+    margin-bottom: 0 !important;
   }
-  #hobbies {
-    page-break-before: always;
+
+  .education-title {
+    font-size: 13pt !important;
+    color: #040b14 !important;
+    margin: 10pt 0 6pt 0 !important;
+    font-weight: 700 !important;
   }
-  .portfolio-wrap {
-    page-break-inside: avoid;
+
+  /* ===================================================
+     Publications section
+  =================================================== */
+  #posts ul {
+    padding-left: 0 !important;
+    list-style: none !important;
   }
-  @page {
-    margin: 2cm;
+
+  #posts ul li p {
+    font-size: 9pt !important;
+    line-height: 1.5 !important;
+    margin-bottom: 4pt !important;
   }
+
+  #posts ul li p a {
+    background: none !important;
+    color: #149ddd !important;
+    padding: 0 !important;
+    font-size: 9pt !important;
+    font-weight: 600 !important;
+    border-radius: 0 !important;
+  }
+
+  /* ===================================================
+     Typography and misc
+  =================================================== */
+  h1, h2, h3, h4, h5, h6 { page-break-after: avoid; }
+
+  a[href]:after { content: none !important; }
+
+  /* Remove the left sidebar margin */
+  #main { margin-left: 0 !important; }
+
+  /* Bootstrap grid — allow 2-column layout in skills */
+  .col-lg-6 { width: 50% !important; float: left !important; box-sizing: border-box !important; }
+  .col-lg-6:nth-child(odd)  { padding-right: 8pt !important; }
+  .col-lg-6:nth-child(even) { padding-left:  8pt !important; }
+
+  /* Full-width columns for experience and education */
+  #resume  .col-lg-6,
+  #education .col-lg-6 {
+    width: 100% !important;
+    float: none !important;
+    padding: 0 !important;
+  }
+
+  .row::after { content: ""; display: table; clear: both; }
 }
 .resume .resume-item {
   padding: 0 0 20px 0;
