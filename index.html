@@ -1,9 +1,18 @@
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alejandro Piraquive</title>
+</head>
+<body>
 <script>
-    window.onload = function () {
-        let lang = window.navigator.language || navigator.browserLanguage;
-        lang = lang.split('-');
-        console.log(lang);
-        window.location.href = `pages/index-${lang[0]}.html`;
-    }
+  (function () {
+    var lang = (navigator.language || navigator.browserLanguage || 'en').split('-')[0].toLowerCase();
+    var supported = ['en', 'es'];
+    var target = supported.indexOf(lang) !== -1 ? lang : 'en';
+    window.location.replace('pages/index-' + target + '.html');
+  })();
 </script>
+</body>
+</html>

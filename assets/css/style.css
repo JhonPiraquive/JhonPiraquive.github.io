@@ -87,7 +87,9 @@ h6 {
   margin: 15px auto;
   display: block;
   width: 120px;
-  border: 8px solid #2c2f3f;
+  border: 3px solid #149ddd;
+  box-shadow: 0 0 0 5px rgba(20, 157, 221, 0.15), 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
 #header .profile h1 {
@@ -482,7 +484,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Akills
+# Skills
 --------------------------------------------------------------*/
 .skills .progress {
   height: 60px;
@@ -1214,7 +1216,7 @@ section {
   #footer {
     position: static;
     width: auto;
-    padding-right: 20px 15px;
+    padding: 20px 15px;
   }
 }
 
@@ -1379,4 +1381,114 @@ section {
 }
 .education .education-item p {
   margin-bottom: 10px;
+}
+
+/*--------------------------------------------------------------
+# Visual Enhancements (Screen only)
+--------------------------------------------------------------*/
+@media screen {
+  /* About section image - soft rounded */
+  .about .col-lg-4 img {
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    width: 100%;
+  }
+
+  /* Certification & Hobby image containers - rounded, no sharp squares */
+  .certifications .portfolio-wrap,
+  .hobbies .portfolio-wrap {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .certifications .portfolio-wrap:hover,
+  .hobbies .portfolio-wrap:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Resume & Education items - card style with left accent */
+  .resume .resume-item,
+  .education .education-item {
+    background: #f8fbff;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border-left: 3px solid #149ddd !important;
+    position: relative;
+  }
+
+  .resume .resume-item h4,
+  .education .education-item h4 {
+    color: #173b6c;
+  }
+
+  /* Skills progress bar - gradient */
+  .skills .progress-bar {
+    background: linear-gradient(90deg, #149ddd, #37b3ed);
+    border-radius: 4px;
+  }
+
+  .skills .progress-bar-wrap {
+    border-radius: 4px;
+  }
+
+  /* Section title underline - gradient & slightly wider */
+  .section-title h2::after {
+    width: 60px;
+    background: linear-gradient(90deg, #149ddd, #37b3ed);
+    border-radius: 2px;
+    height: 4px;
+  }
+
+  /* Skill category headings */
+  .skills-content h3 {
+    font-size: 14px;
+    color: #149ddd;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 14px;
+    margin-top: 28px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dce8f8;
+  }
+
+  /* Nav link hover - subtle highlight */
+  .nav-menu a:hover,
+  .nav-menu .active,
+  .nav-menu .active:focus,
+  .nav-menu li:hover > a {
+    background: rgba(20, 157, 221, 0.08);
+    border-radius: 6px;
+  }
+
+  /* Publication links */
+  #posts ul li p a {
+    display: inline-block;
+    background: #149ddd;
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+
+  #posts ul li p a:hover {
+    background: #0e7ab8;
+  }
+
+  /* Hobbies text paragraph */
+  #hobbies > .container > p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #444;
+    max-width: 800px;
+    margin-bottom: 28px;
+  }
 }
