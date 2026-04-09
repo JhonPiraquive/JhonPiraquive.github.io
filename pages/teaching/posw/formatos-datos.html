@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formatos de Datos: XML y JSON | POSW</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<style>
+:root{--bg:#0d0d0d;--surface:#141414;--accent:#00d4ff;--accent2:#7b5ea7;--text:#e0e0e0;--muted:#888}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;line-height:1.7}
+h1,h2,h3{font-family:'Raleway',sans-serif}
+a{color:var(--accent);text-decoration:none}
+.site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--accent);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent)}
+.logo span{color:var(--muted);font-size:.85rem;font-weight:400;margin-left:10px;font-family:'Poppins',sans-serif}
+.site-nav a{color:var(--muted);font-size:.85rem;margin-left:18px;transition:color .2s}
+.site-nav a:hover{color:var(--accent)}
+#hero{min-height:60vh;background:linear-gradient(135deg,var(--bg),var(--surface));display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px}
+.hero-inner{max-width:700px}
+.badge-tema{background:var(--accent2);color:#fff;padding:4px 14px;border-radius:999px;font-size:.8rem;display:inline-block;margin-bottom:20px}
+.hero-title{font-size:3.5rem;color:var(--accent);animation:fadeInUp .6s ease both}
+.hero-sub{color:var(--muted);max-width:600px;margin:16px auto 28px}
+.btn-primary-custom{background:var(--accent);color:var(--bg);border:none;border-radius:999px;padding:12px 32px;font-weight:600;cursor:pointer;transition:transform .2s}
+.btn-primary-custom:hover{transform:scale(1.04)}
+section{padding:80px 0}
+.section-alt{background:var(--surface)}
+.section-title{font-size:1.8rem;color:var(--text);border-left:4px solid var(--accent);padding-left:16px;margin-bottom:32px}
+.feature-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.feature-item i{color:var(--accent);margin-top:4px;flex-shrink:0}
+.feature-item2 i{color:var(--accent2)}
+.analogy-card{background:var(--surface);border-left:4px solid var(--accent2);padding:20px;border-radius:8px;margin:24px 0}
+.info-card{background:var(--surface);border-left:4px solid var(--accent2);padding:20px;border-radius:8px;margin-top:16px}
+.posw-table{border-collapse:collapse;width:100%;background:var(--surface)}
+.posw-table th{background:var(--accent2);color:#fff;padding:12px 16px;text-align:left}
+.posw-table td{padding:12px 16px;border-bottom:1px solid #2a2a2a}
+.posw-table tr:nth-child(even) td{background:#1a1a1a}
+.table-wrap{overflow-x:auto}
+.bytes-note{font-family:monospace;color:var(--accent);background:#0d1117;padding:14px 20px;border-radius:8px;margin-top:16px;font-size:.95rem}
+.nav-card{background:var(--surface);border:1px solid #333;border-radius:8px;padding:16px 24px;display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text);transition:border-color .2s;margin-bottom:12px}
+.nav-card:hover{border-color:var(--accent);color:var(--text)}
+.nav-card i{font-size:1.4rem;color:var(--accent)}
+.note-card{background:var(--surface);border-left:4px solid var(--accent);padding:20px;border-radius:8px;margin-top:24px;color:var(--text)}
+.card-anim{opacity:0;transform:translateY(30px);transition:opacity .5s ease,transform .5s ease}
+.card-anim.visible{opacity:1;transform:translateY(0)}
+.site-footer{background:var(--surface);border-top:1px solid #222;padding:24px;text-align:center;color:var(--muted);font-size:.85rem}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+pre code.hljs{border-radius:8px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div style="display:flex;align-items:center">
+    <span class="logo"><a href="servicios-web.html">POSW</a> <span>Programación Orientada a Sitios Web</span></span>
+  </div>
+  <nav class="site-nav">
+    <a href="#xml">XML</a>
+    <a href="#json">JSON</a>
+    <a href="#comparativa">Comparativa</a>
+    <a href="#casos">Casos de Uso</a>
+  </nav>
+</header>
+
+<section id="hero">
+  <div class="hero-inner">
+    <span class="badge-tema">Tema 2</span>
+    <h1 class="hero-title">Formatos de Datos</h1>
+    <p class="hero-sub">XML y JSON: cómo estructurar, intercambiar y validar información entre sistemas.</p>
+    <a href="#xml" class="btn-primary-custom">Explorar</a>
+  </div>
+</section>
+
+<section id="xml">
+  <div class="container">
+    <h2 class="section-title">XML — eXtensible Markup Language</h2>
+    <p>XML es un lenguaje de marcado diseñado para almacenar y transportar datos de forma legible tanto por humanos como por máquinas. Fue creado por el W3C en 1996 y se convirtió en el estándar dominante para el intercambio de datos antes de la popularización de JSON.</p>
+    <h5 class="mt-4 mb-3">Características</h5>
+    <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Autodescriptivo: las etiquetas describen el significado de los datos.</span></div>
+    <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Estrictamente jerárquico: los datos se organizan en un árbol de elementos.</span></div>
+    <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Validable mediante DTD o XML Schema (XSD).</span></div>
+    <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Soporta namespaces para evitar conflictos de nombres.</span></div>
+    <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Verboso: más bytes que JSON para la misma información.</span></div>
+    <div class="feature-item"><i class="bi bi-check-circle-fill"></i><span>Ampliamente soportado en sistemas empresariales (SOAP, WSDL, configuración de servidores).</span></div>
+    <h6 class="mt-4 mb-2" style="color:var(--muted)">Ejemplo: Datos de un pedido en XML</h6>
+    <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;pedido id="1042"&gt;
+  &lt;cliente&gt;
+    &lt;nombre&gt;Ana García&lt;/nombre&gt;
+    &lt;email&gt;ana@ejemplo.com&lt;/email&gt;
+  &lt;/cliente&gt;
+  &lt;items&gt;
+    &lt;item&gt;
+      &lt;producto&gt;Laptop Pro 15&lt;/producto&gt;
+      &lt;cantidad&gt;1&lt;/cantidad&gt;
+      &lt;precio moneda="COP"&gt;4500000&lt;/precio&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;producto&gt;Mouse inalámbrico&lt;/producto&gt;
+      &lt;cantidad&gt;2&lt;/cantidad&gt;
+      &lt;precio moneda="COP"&gt;85000&lt;/precio&gt;
+    &lt;/item&gt;
+  &lt;/items&gt;
+  &lt;total moneda="COP"&gt;4670000&lt;/total&gt;
+&lt;/pedido&gt;</code></pre>
+    <div class="info-card">Un documento XML tiene: declaración (<code>&lt;?xml?&gt;</code>), un elemento raíz único, elementos anidados y atributos dentro de las etiquetas de apertura.</div>
+  </div>
+</section>
+
+<section id="json" class="section-alt">
+  <div class="container">
+    <h2 class="section-title">JSON — JavaScript Object Notation</h2>
+    <p>JSON es un formato de intercambio de datos ligero basado en la sintaxis de objetos de JavaScript. Fue formalizado por Douglas Crockford a principios de los 2000. Hoy es el formato predeterminado de la mayoría de las APIs REST modernas.</p>
+    <h5 class="mt-4 mb-3">Características</h5>
+    <div class="feature-item feature-item2"><i class="bi bi-check-circle-fill"></i><span>Sintaxis compacta: menos bytes que XML para los mismos datos.</span></div>
+    <div class="feature-item feature-item2"><i class="bi bi-check-circle-fill"></i><span>Tipos de datos nativos: string, number, boolean, null, array, object.</span></div>
+    <div class="feature-item feature-item2"><i class="bi bi-check-circle-fill"></i><span>Directamente parseable en JavaScript (<code>JSON.parse()</code>).</span></div>
+    <div class="feature-item feature-item2"><i class="bi bi-check-circle-fill"></i><span>No soporta comentarios en la especificación estándar.</span></div>
+    <div class="feature-item feature-item2"><i class="bi bi-check-circle-fill"></i><span>No soporta atributos ni namespaces (a diferencia de XML).</span></div>
+    <div class="feature-item feature-item2"><i class="bi bi-check-circle-fill"></i><span>Esquema de validación opcional mediante JSON Schema.</span></div>
+    <h6 class="mt-4 mb-2" style="color:var(--muted)">Mismo pedido en JSON</h6>
+    <pre><code class="language-json">{
+  "pedido": {
+    "id": 1042,
+    "cliente": {
+      "nombre": "Ana García",
+      "email": "ana@ejemplo.com"
+    },
+    "items": [
+      {
+        "producto": "Laptop Pro 15",
+        "cantidad": 1,
+        "precio": { "valor": 4500000, "moneda": "COP" }
+      },
+      {
+        "producto": "Mouse inalámbrico",
+        "cantidad": 2,
+        "precio": { "valor": 85000, "moneda": "COP" }
+      }
+    ],
+    "total": { "valor": 4670000, "moneda": "COP" }
+  }
+}</code></pre>
+    <div class="bytes-note">XML: ~520 bytes &nbsp;|&nbsp; JSON: ~320 bytes &mdash; JSON es ~38% más compacto en este ejemplo.</div>
+  </div>
+</section>
+
+<section id="comparativa">
+  <div class="container">
+    <h2 class="section-title">Comparativa XML vs JSON</h2>
+    <div class="table-wrap">
+      <table class="posw-table">
+        <thead><tr><th>Característica</th><th>XML</th><th>JSON</th></tr></thead>
+        <tbody>
+          <tr><td>Creado en</td><td>1996 (W3C)</td><td>2001 (Crockford)</td></tr>
+          <tr><td>Basado en</td><td>SGML</td><td>Sintaxis de objetos JS</td></tr>
+          <tr><td>Legibilidad</td><td>Media (verboso)</td><td>Alta (compacto)</td></tr>
+          <tr><td>Tipos de datos</td><td>Solo texto (todo es string)</td><td>String, Number, Boolean, Null, Array, Object</td></tr>
+          <tr><td>Atributos</td><td>Sí</td><td>No</td></tr>
+          <tr><td>Comentarios</td><td>Sí (<code>&lt;!-- --&gt;</code>)</td><td>No (especificación estándar)</td></tr>
+          <tr><td>Validación</td><td>DTD / XSD</td><td>JSON Schema</td></tr>
+          <tr><td>Uso principal</td><td>SOAP, configs, documentos</td><td>REST APIs, configuración moderna</td></tr>
+          <tr><td>Parsing en JS</td><td><code>DOMParser</code></td><td><code>JSON.parse()</code> nativo</td></tr>
+          <tr><td>Soporte binario</td><td>No nativo</td><td>No nativo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="casos" class="section-alt">
+  <div class="container">
+    <h2 class="section-title">Casos de Uso Reales</h2>
+    <div class="row g-4">
+      <div class="col-12 col-md-6 card-anim">
+        <h5 style="color:var(--accent)" class="mb-3">XML</h5>
+        <div class="feature-item"><i class="bi bi-building"></i><span>Servicios SOAP en bancos y sistemas legados</span></div>
+        <div class="feature-item"><i class="bi bi-building"></i><span>Archivos de configuración de Maven (<code>pom.xml</code>) y Spring</span></div>
+        <div class="feature-item"><i class="bi bi-building"></i><span>Documentos de Word/Excel (formato OOXML)</span></div>
+        <div class="feature-item"><i class="bi bi-building"></i><span>RSS y Atom feeds</span></div>
+        <div class="feature-item"><i class="bi bi-building"></i><span>WSDL (descripción de servicios web)</span></div>
+      </div>
+      <div class="col-12 col-md-6 card-anim">
+        <h5 style="color:var(--accent2)" class="mb-3">JSON</h5>
+        <div class="feature-item"><i class="bi bi-lightning-charge" style="color:var(--accent2)"></i><span>APIs REST (GitHub, Stripe, Twitter/X)</span></div>
+        <div class="feature-item"><i class="bi bi-lightning-charge" style="color:var(--accent2)"></i><span>Archivos de configuración de Node.js (<code>package.json</code>)</span></div>
+        <div class="feature-item"><i class="bi bi-lightning-charge" style="color:var(--accent2)"></i><span>Almacenamiento en bases de datos NoSQL (MongoDB)</span></div>
+        <div class="feature-item"><i class="bi bi-lightning-charge" style="color:var(--accent2)"></i><span>Comunicación en tiempo real con WebSockets</span></div>
+        <div class="feature-item"><i class="bi bi-lightning-charge" style="color:var(--accent2)"></i><span>Configuración de herramientas modernas (VS Code <code>settings.json</code>)</span></div>
+      </div>
+    </div>
+    <div class="note-card mt-4">
+      <strong>Regla práctica:</strong> usa JSON por defecto en nuevas APIs REST. Usa XML si debes integrarte con sistemas legados SOAP, si necesitas atributos de metadatos, o si el estándar del dominio lo exige (ej. facturación electrónica DIAN en Colombia).
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <a href="protocolos-seguridad.html" class="nav-card"><i class="bi bi-shield-lock"></i><span style="flex:1">Siguiente: Protocolos HTTP/HTTPS</span><i class="bi bi-arrow-right-circle"></i></a>
+    <h2 class="section-title">Recursos</h2>
+    <a href="servicios-web.html" class="nav-card"><i class="bi bi-globe2"></i><span style="flex:1">Qué es un Servicio Web</span><i class="bi bi-arrow-right-circle"></i></a>
+    <a href="http-metodos-status.html" class="nav-card"><i class="bi bi-diagram-3"></i><span style="flex:1">Métodos HTTP</span><i class="bi bi-arrow-right-circle"></i></a>
+    <a href="tipos-servicios-web.html" class="nav-card"><i class="bi bi-layers"></i><span style="flex:1">SOAP/REST/GraphQL</span><i class="bi bi-arrow-right-circle"></i></a>
+  </div>
+</section>
+
+<footer class="site-footer">Programación Orientada a Sitios Web &middot; Material académico &middot; 2025</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+hljs.highlightAll();
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}});
+});
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:0.1});
+document.querySelectorAll('.card-anim').forEach(c=>obs.observe(c));
+</script>
+</body>
+</html>
