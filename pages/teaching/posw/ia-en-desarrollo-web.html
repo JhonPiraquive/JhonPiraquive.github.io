@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IA en el Desarrollo Web | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .risk-card {
+        background: #1a0a0a;
+        border: 1px solid #ff4757;
+        border-radius: 12px;
+        padding: 24px;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .risk-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      .risk-card:hover {
+        border-color: #ff6b7a;
+      }
+      .risk-icon {
+        font-size: 2rem;
+        color: #ff4757;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .check-list li {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 8px;
+        align-items: flex-start;
+      }
+      .check-list li::before {
+        content: "✓";
+        color: #2ed573;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .flow-step {
+        display: flex;
+        gap: 16px;
+        padding: 16px;
+        border: 1px solid #222;
+        background: var(--bg);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .flow-step.visible {
+        opacity: 1;
+        transform: translateX(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      .flow-num {
+        background: var(--accent2);
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-size: 0.9rem;
+      }
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 24px 0;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#usos">Usos</a>
+        <a href="#riesgos">Riesgos</a>
+        <a href="#verificacion">Verificación</a>
+        <a href="#estructura">Estructura con IA</a>
+        <a href="#flujo">Flujo de trabajo</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 22</span>
+        <h1 class="hero-title">IA en el Desarrollo Web</h1>
+        <p class="hero-sub">
+          Cómo usar herramientas de IA para programar de forma responsable,
+          eficiente y verificable.
+        </p>
+        <a href="#usos" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="usos">
+      <div class="container">
+        <h2 class="section-title">Usos de la IA en Desarrollo</h2>
+        <p>
+          Las herramientas de IA generativa (GitHub Copilot, Claude, ChatGPT,
+          Gemini, Cursor) han cambiado la forma en que los desarrolladores
+          trabajan. No reemplazan el pensamiento crítico; amplifican la
+          productividad cuando se usan correctamente.
+        </p>
+        <div class="row g-4 mt-2">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-lightning-charge card-icon"></i>
+              <h5>Generación de código boilerplate</h5>
+              <p class="text-secondary">
+                Crear estructuras repetitivas (CRUD, DTOs, tests unitarios) en
+                segundos.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-search card-icon"></i>
+              <h5>Depuración</h5>
+              <p class="text-secondary">
+                Explicar errores, proponer soluciones, analizar stack traces.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-translate card-icon"></i>
+              <h5>Traducción entre lenguajes</h5>
+              <p class="text-secondary">
+                Convertir código de JavaScript a TypeScript, de Python a Go,
+                etc.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-book card-icon"></i>
+              <h5>Documentación</h5>
+              <p class="text-secondary">
+                Generar JSDoc, README, comentarios de código.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-lightbulb card-icon"></i>
+              <h5>Refactoring</h5>
+              <p class="text-secondary">
+                Sugerir mejoras de estructura, aplicar patrones de diseño.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-question-circle card-icon"></i>
+              <h5>Aprendizaje acelerado</h5>
+              <p class="text-secondary">
+                Explicar conceptos, generar ejemplos, resolver dudas en
+                contexto.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-shield-check card-icon"></i>
+              <h5>Revisión de seguridad</h5>
+              <p class="text-secondary">
+                Identificar vulnerabilidades comunes (SQL injection, XSS, CORS
+                mal configurado).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-diagram-3 card-icon"></i>
+              <h5>Diseño de arquitectura</h5>
+              <p class="text-secondary">
+                Proponer estructuras de proyectos, diagramas de flujo.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-file-earmark-text card-icon"></i>
+              <h5>Generación de tests</h5>
+              <p class="text-secondary">
+                Crear casos de prueba unitarios e integración.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="table-wrap mt-5">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Herramienta</th>
+                <th>Tipo</th>
+                <th>Integración</th>
+                <th>Fortaleza principal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GitHub Copilot</td>
+                <td>Autocompletado IDE</td>
+                <td>VS Code, JetBrains, Neovim</td>
+                <td>Código inline, sugerencias en contexto</td>
+              </tr>
+              <tr>
+                <td>Claude (Anthropic)</td>
+                <td>Chat + Agente</td>
+                <td>Web, API, Claude Code</td>
+                <td>Razonamiento, arquitectura, código largo</td>
+              </tr>
+              <tr>
+                <td>ChatGPT (OpenAI)</td>
+                <td>Chat</td>
+                <td>Web, API, plugins</td>
+                <td>Versatilidad, explicaciones</td>
+              </tr>
+              <tr>
+                <td>Cursor</td>
+                <td>IDE con IA</td>
+                <td>Propio (fork VS Code)</td>
+                <td>Chat + edición directa del codebase</td>
+              </tr>
+              <tr>
+                <td>Gemini</td>
+                <td>Chat + IDE</td>
+                <td>Google Cloud, VS Code</td>
+                <td>Integración Google, proyectos GCP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="riesgos" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Riesgos y Limitaciones</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6">
+            <div class="risk-card h-100">
+              <i class="bi bi-exclamation-triangle risk-icon"></i>
+              <h5 style="color: #ff4757">Alucinaciones (Hallucinations)</h5>
+              <p class="text-secondary">
+                La IA puede generar código plausible pero incorrecto, inventar
+                APIs que no existen, o citar documentación ficticia. Todo output
+                debe verificarse.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="risk-card h-100">
+              <i class="bi bi-eye-slash risk-icon"></i>
+              <h5 style="color: #ff4757">Código sin comprensión</h5>
+              <p class="text-secondary">
+                Copiar código generado sin entenderlo es la forma más rápida de
+                acumular deuda técnica y bugs imposibles de depurar.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="risk-card h-100">
+              <i class="bi bi-lock risk-icon"></i>
+              <h5 style="color: #ff4757">Privacidad de datos</h5>
+              <p class="text-secondary">
+                Enviar código propietario, credenciales o datos de usuarios a
+                APIs de IA puede violar acuerdos de confidencialidad y
+                regulaciones (GDPR, Habeas Data).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="risk-card h-100">
+              <i class="bi bi-cpu risk-icon"></i>
+              <h5 style="color: #ff4757">Dependencia excesiva</h5>
+              <p class="text-secondary">
+                Desarrolladores que no practican sin IA pierden la capacidad de
+                razonar independientemente sobre problemas.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="risk-card h-100">
+              <i class="bi bi-calendar-x risk-icon"></i>
+              <h5 style="color: #ff4757">Conocimiento desactualizado</h5>
+              <p class="text-secondary">
+                Los modelos tienen una fecha de corte de conocimiento.
+                Librerías, APIs y mejores prácticas cambian rápido.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="risk-card h-100">
+              <i class="bi bi-bug risk-icon"></i>
+              <h5 style="color: #ff4757">Vulnerabilidades de seguridad</h5>
+              <p class="text-secondary">
+                El código generado puede incluir patrones inseguros si el prompt
+                no especifica requisitos de seguridad.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="analogy-card mt-4">
+          La IA es como un desarrollador junior muy rápido: produce mucho en
+          poco tiempo, pero necesita revisión de un senior antes de llegar a
+          producción.
+        </div>
+      </div>
+    </section>
+
+    <section id="verificacion">
+      <div class="container">
+        <h2 class="section-title">Cómo Verificar el Código Generado</h2>
+        <ul class="check-list mt-3" style="list-style: none; padding: 0">
+          <li>
+            Leerlo línea por línea: si no puedes explicar qué hace cada línea,
+            no lo uses.
+          </li>
+          <li>
+            Correrlo en local: probarlo con casos normales, casos borde y casos
+            de error.
+          </li>
+          <li>
+            Escribir tests: si el código pasa los tests que describes, tienes
+            mayor confianza.
+          </li>
+          <li>
+            Revisar con herramientas: ESLint, TypeScript compiler, SonarQube,
+            OWASP ZAP.
+          </li>
+          <li>
+            Buscar las dependencias: verificar que las librerías mencionadas
+            existen y están activas en npm/PyPI.
+          </li>
+          <li>
+            Contrastar con documentación oficial: MDN, docs.angular.io,
+            react.dev, etc.
+          </li>
+          <li>
+            Code review con el equipo: otro par de ojos humanos antes de
+            mergear.
+          </li>
+        </ul>
+        <div class="ascii-block mt-4">
+          Prompt a la IA │ ▼ Código generado │ ▼ ¿Lo entiendes completamente?
+          ├── No → Pedir explicación a la IA / buscar en docs └── Sí │ ▼
+          Ejecutar tests locales │ ├── Fallan → Corregir (no aceptar el output
+          ciegamente) └── Pasan │ ▼ Lint + Type check │ ▼ Code Review humano │ ▼
+          Merge/Deploy
+        </div>
+      </div>
+    </section>
+
+    <section id="estructura" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">
+          Estructura de Proyecto con IA: <code>.claude/</code> y
+          <code>CLAUDE.md</code>
+        </h2>
+        <p>
+          Claude Code (y otros agentes de IA) pueden operar sobre un codebase de
+          forma más efectiva cuando el proyecto incluye documentación explícita
+          de contexto, reglas y agentes especializados. La convención es crear
+          una carpeta <code>.claude/</code> en la raíz del proyecto.
+        </p>
+        <pre class="mt-3"><code class="language-plaintext">mi-proyecto/
+├── .claude/
+│   ├── agents/              ← Agentes especializados (sub-agentes)
+│   │   ├── frontend-developer.md
+│   │   ├── backend-developer.md
+│   │   ├── code-reviewer.md
+│   │   └── test-writer.md
+│   ├── rules/               ← Reglas y restricciones del proyecto
+│   │   ├── typescript.md    (reglas de TS del equipo)
+│   │   └── security.md      (checklist de seguridad)
+│   └── kb/                  ← Knowledge Base
+│       ├── arquitectura.md  (decisiones de arquitectura)
+│       ├── api-contratos.md (formato esperado de APIs)
+│       └── glosario.md      (términos del dominio)
+├── CLAUDE.md                ← Instrucciones principales para el agente
+├── src/
+└── package.json</code></pre>
+        <p class="mt-3">
+          <strong>Qué va en <code>CLAUDE.md</code>:</strong> Este archivo le
+          dice al agente qué es el proyecto, cómo está organizado, qué
+          tecnologías usa, convenciones de código, comandos importantes y qué NO
+          debe hacer.
+        </p>
+        <pre class="mt-3"><code class="language-markdown"># Mi Proyecto
+
+## Stack
+- Frontend: React + TypeScript + Vite
+- Backend: NestJS + PostgreSQL
+- Deploy: Docker + GitHub Actions
+
+## Convenciones
+- Naming: camelCase para variables, PascalCase para clases/componentes
+- Archivos: kebab-case (tarjeta-producto.tsx)
+- Tests: Jest, un archivo .spec.ts por cada servicio
+- Commits: Conventional Commits (feat:, fix:, docs:, etc.)
+
+## Comandos importantes
+- `npm run dev` — servidor de desarrollo
+- `npm run test` — correr tests
+- `npm run build` — build de producción
+- `docker compose up` — levantar entorno completo
+
+## NO hacer
+- No modificar archivos en `dist/`
+- No hardcodear secrets (usar variables de entorno)
+- No hacer push directo a main</code></pre>
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Ejemplo de agente en <code>.claude/agents/code-reviewer.md</code>
+        </h3>
+        <pre><code class="language-markdown">---
+name: code-reviewer
+description: Revisa PRs para detectar bugs, vulnerabilidades y violaciones de convenciones.
+---
+
+Eres un revisor de código experto. Para cada PR:
+1. Verificar que no hay secrets hardcodeados.
+2. Confirmar que hay tests para el nuevo código.
+3. Detectar posibles vulnerabilidades (inyección, XSS, CSRF).
+4. Verificar que se siguen las convenciones del CLAUDE.md.
+5. Proponer mejoras de rendimiento si aplica.</code></pre>
+      </div>
+    </section>
+
+    <section id="flujo">
+      <div class="container">
+        <h2 class="section-title">Flujo de Trabajo Recomendado con IA</h2>
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div>
+            <p class="mb-0">
+              Define el problema claramente tú mismo antes de preguntarle a la
+              IA.
+            </p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div>
+            <p class="mb-0">
+              Escribe un prompt específico con contexto: lenguaje, framework,
+              restricciones, lo que ya intentaste.
+            </p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div><p class="mb-0">La IA genera una propuesta de solución.</p></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div>
+            <p class="mb-0">
+              Leerla, entenderla, adaptarla al contexto real del proyecto.
+            </p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">5</div>
+          <div>
+            <p class="mb-0">
+              Correr tests y verificación estática (lint, typecheck).
+            </p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">6</div>
+          <div>
+            <p class="mb-0">
+              Si hay errores, iterar con la IA: pegar el error exacto y pedir
+              análisis.
+            </p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">7</div>
+          <div><p class="mb-0">Code review humano antes de integrar.</p></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">8</div>
+          <div>
+            <p class="mb-0">
+              Documenta la decisión tomada (en comentarios o CLAUDE.md) para que
+              el equipo entienda el porqué.
+            </p>
+          </div>
+        </div>
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Prompt efectivo de ejemplo
+        </h3>
+        <pre><code class="language-plaintext">Contexto: proyecto NestJS + TypeScript + PostgreSQL.
+Convención: inyección de dependencias mediante interfaces (DIP de SOLID).
+
+Tarea: crear un servicio ProductosService que:
+- Inyecte IProductoRepository (no MySQLProductoRepository directamente)
+- Tenga métodos: findAll(), findById(id), create(dto), update(id, dto), delete(id)
+- Use async/await
+- Lance NotFoundException si el producto no existe en findById, update y delete
+- Sea completamente tipado en TypeScript
+
+Restricciones:
+- No usar any
+- No importar directamente clases de infraestructura
+- Incluir JSDoc en cada método público</code></pre>
+        <div class="analogy-card mt-4" style="border-left-color: #ff4757">
+          <strong>Contraste con prompt inefectivo:</strong> "hazme un servicio
+          para productos en nest" — sin contexto, sin restricciones, genera
+          código genérico que no encaja en el proyecto.
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="naming-conventions.html" class="nav-card"
+          ><i class="bi bi-fonts"></i
+          ><span style="flex: 1">Convenciones de Nomenclatura</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="principios-solid.html" class="nav-card"
+          ><i class="bi bi-layers"></i
+          ><span style="flex: 1">Principios SOLID</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="herramientas-desarrollo.html" class="nav-card"
+          ><i class="bi bi-tools"></i
+          ><span style="flex: 1">Herramientas de Desarrollo</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="typescript.html" class="nav-card"
+          ><i class="bi bi-code-slash"></i
+          ><span style="flex: 1">TypeScript</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo,.risk-card,.flow-step")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bases de Datos | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .sql-family-card {
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 12px;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .sql-family-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#sql">SQL Básico</a>
+        <a href="#ddl">DDL/DML/DCL/TCL</a>
+        <a href="#sqlvsnosql">SQL vs NoSQL</a>
+        <a href="#keys">Keys</a>
+        <a href="#columnar">Columnar</a>
+        <a href="#grafos">Grafos</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 19</span>
+        <h1 class="hero-title">Bases de Datos</h1>
+        <p class="hero-sub">
+          SQL, NoSQL, claves, bases columnares, de grafos y los comandos que las
+          gobiernan.
+        </p>
+        <a href="#sql" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="sql">
+      <div class="container">
+        <h2 class="section-title">SQL — Structured Query Language</h2>
+        <p>
+          SQL es el lenguaje estándar para gestionar bases de datos
+          relacionales. Se divide en cuatro sub-lenguajes según el tipo de
+          operación que realizan.
+        </p>
+        <div class="row g-4 mt-2">
+          <div class="col-12 col-md-6">
+            <div
+              class="sql-family-card h-100"
+              style="background: #0a1e24; border: 1px solid var(--accent)"
+            >
+              <h5 style="color: var(--accent)">
+                DDL — Data Definition Language
+              </h5>
+              <p class="text-secondary mb-1">
+                Define y modifica la estructura de la base de datos.
+              </p>
+              <p>
+                <code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>,
+                <code>TRUNCATE</code>
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div
+              class="sql-family-card h-100"
+              style="background: #0a1e12; border: 1px solid #2ed573"
+            >
+              <h5 style="color: #2ed573">DML — Data Manipulation Language</h5>
+              <p class="text-secondary mb-1">Manipula los datos almacenados.</p>
+              <p>
+                <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>,
+                <code>DELETE</code>
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div
+              class="sql-family-card h-100"
+              style="background: #201a00; border: 1px solid #ffa502"
+            >
+              <h5 style="color: #ffa502">DCL — Data Control Language</h5>
+              <p class="text-secondary mb-1">
+                Controla los permisos de acceso.
+              </p>
+              <p><code>GRANT</code>, <code>REVOKE</code></p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div
+              class="sql-family-card h-100"
+              style="background: #150d22; border: 1px solid var(--accent2)"
+            >
+              <h5 style="color: var(--accent2)">
+                TCL — Transaction Control Language
+              </h5>
+              <p class="text-secondary mb-1">Gestiona transacciones.</p>
+              <p>
+                <code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code>,
+                <code>SAVEPOINT</code>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ddl" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">DDL — Data Definition Language</h2>
+        <pre><code class="language-sql">-- Crear tabla
+CREATE TABLE productos (
+  id          SERIAL PRIMARY KEY,
+  nombre      VARCHAR(200) NOT NULL,
+  precio      DECIMAL(12, 2) NOT NULL CHECK (precio &gt; 0),
+  stock       INTEGER DEFAULT 0,
+  categoria_id INTEGER REFERENCES categorias(id),
+  creado_en   TIMESTAMP DEFAULT NOW()
+);
+
+-- Agregar columna
+ALTER TABLE productos ADD COLUMN descripcion TEXT;
+
+-- Modificar columna
+ALTER TABLE productos ALTER COLUMN nombre TYPE VARCHAR(300);
+
+-- Eliminar columna
+ALTER TABLE productos DROP COLUMN descripcion;
+
+-- Eliminar tabla (con todos sus datos)
+DROP TABLE IF EXISTS productos;
+
+-- Vaciar tabla sin eliminarla (más rápido que DELETE sin WHERE)
+TRUNCATE TABLE productos RESTART IDENTITY;</code></pre>
+      </div>
+    </section>
+
+    <section id="dml">
+      <div class="container">
+        <h2 class="section-title">DML — Data Manipulation Language</h2>
+        <pre><code class="language-sql">-- INSERT
+INSERT INTO productos (nombre, precio, stock, categoria_id)
+VALUES ('Laptop Pro 15', 4500000.00, 10, 1);
+
+-- INSERT múltiple
+INSERT INTO productos (nombre, precio, stock) VALUES
+  ('Mouse inalámbrico', 85000.00, 50),
+  ('Teclado mecánico', 320000.00, 25);
+
+-- SELECT con filtros, orden y límite
+SELECT p.id, p.nombre, p.precio, c.nombre AS categoria
+FROM productos p
+INNER JOIN categorias c ON p.categoria_id = c.id
+WHERE p.precio BETWEEN 100000 AND 1000000
+  AND p.stock &gt; 0
+ORDER BY p.precio ASC
+LIMIT 10 OFFSET 0;
+
+-- UPDATE
+UPDATE productos
+SET precio = precio * 0.9, -- 10% de descuento
+    stock = stock - 1
+WHERE id = 42;
+
+-- DELETE
+DELETE FROM productos WHERE stock = 0;
+
+-- Funciones de agregación
+SELECT
+  c.nombre AS categoria,
+  COUNT(p.id) AS total_productos,
+  AVG(p.precio) AS precio_promedio,
+  MAX(p.precio) AS mas_caro,
+  MIN(p.precio) AS mas_barato
+FROM productos p
+JOIN categorias c ON p.categoria_id = c.id
+GROUP BY c.nombre
+HAVING COUNT(p.id) &gt; 5
+ORDER BY precio_promedio DESC;</code></pre>
+      </div>
+    </section>
+
+    <section id="dcl-tcl" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">DCL y TCL</h2>
+        <h3 class="mb-3" style="color: var(--accent); font-size: 1.1rem">
+          DCL
+        </h3>
+        <pre><code class="language-sql">-- Dar permisos de SELECT al usuario de la app
+GRANT SELECT, INSERT, UPDATE ON productos TO usuario_app;
+
+-- Revocar permiso de DELETE
+REVOKE DELETE ON productos FROM usuario_app;</code></pre>
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          TCL
+        </h3>
+        <pre><code class="language-sql">-- Transacción: transferencia de saldo (debe ser atómica)
+BEGIN;
+
+UPDATE cuentas SET saldo = saldo - 500000 WHERE id = 1;
+UPDATE cuentas SET saldo = saldo + 500000 WHERE id = 2;
+
+-- Si todo está bien:
+COMMIT;
+
+-- Si algo falló (en el bloque de manejo de errores):
+ROLLBACK;</code></pre>
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Propiedades ACID
+        </h3>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Propiedad</th>
+                <th>Significado</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Atomicidad</td>
+                <td>
+                  Todas las operaciones de una transacción ocurren o ninguna
+                </td>
+                <td>La transferencia descuenta Y acredita, o no hace nada</td>
+              </tr>
+              <tr>
+                <td>Consistencia</td>
+                <td>La DB pasa de un estado válido a otro válido</td>
+                <td>No puede quedar saldo negativo si hay CHECK CONSTRAINT</td>
+              </tr>
+              <tr>
+                <td>Aislamiento</td>
+                <td>Las transacciones concurrentes no se interfieren</td>
+                <td>Dos usuarios comprando el último stock no lo oversell</td>
+              </tr>
+              <tr>
+                <td>Durabilidad</td>
+                <td>Un COMMIT es permanente, incluso ante fallos</td>
+                <td>Un corte de luz no revierte el COMMIT</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sqlvsnosql">
+      <div class="container">
+        <h2 class="section-title">SQL vs NoSQL</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>SQL (Relacional)</th>
+                <th>NoSQL (No relacional)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Estructura</td>
+                <td>Tablas con filas y columnas</td>
+                <td>Documentos, pares clave-valor, grafos, columnar</td>
+              </tr>
+              <tr>
+                <td>Esquema</td>
+                <td>Rígido (definido antes)</td>
+                <td>Flexible (puede variar por documento)</td>
+              </tr>
+              <tr>
+                <td>Escalabilidad</td>
+                <td>Vertical (más CPU/RAM)</td>
+                <td>Horizontal (más nodos)</td>
+              </tr>
+              <tr>
+                <td>Relaciones</td>
+                <td>JOINs entre tablas</td>
+                <td>Embedding o referencias manuales</td>
+              </tr>
+              <tr>
+                <td>ACID</td>
+                <td>Garantizado nativamente</td>
+                <td>Varía por motor (eventual consistency)</td>
+              </tr>
+              <tr>
+                <td>Consultas</td>
+                <td>SQL estándar</td>
+                <td>APIs propias o variantes de SQL</td>
+              </tr>
+              <tr>
+                <td>Ejemplos</td>
+                <td>PostgreSQL, MySQL, SQLite, SQL Server</td>
+                <td>MongoDB, Redis, Cassandra, Neo4j</td>
+              </tr>
+              <tr>
+                <td>Ideal para</td>
+                <td>Datos estructurados, transacciones</td>
+                <td>Datos variables, alta escala, tiempo real</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="analogy-card mt-4" style="border-left-color: var(--accent)">
+          <p>
+            <strong>Regla de selección:</strong> ¿Tienes relaciones complejas y
+            necesitas consistencia fuerte? → SQL. ¿Datos variables por
+            documento, escala masiva o tiempo real? → NoSQL. En proyectos
+            reales, se usan ambos: PostgreSQL para datos transaccionales + Redis
+            para caché + MongoDB para logs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="keys" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Tipos de Claves en Bases de Datos</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Definición</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Primary Key (PK)</td>
+                <td>
+                  Identifica de forma única cada fila de una tabla. No puede ser
+                  NULL ni duplicada
+                </td>
+                <td><code>id SERIAL PRIMARY KEY</code></td>
+              </tr>
+              <tr>
+                <td>Foreign Key (FK)</td>
+                <td>
+                  Referencia la PK de otra tabla. Establece la relación.
+                  Garantiza integridad referencial
+                </td>
+                <td><code>categoria_id REFERENCES categorias(id)</code></td>
+              </tr>
+              <tr>
+                <td>Unique Key</td>
+                <td>
+                  Los valores en la columna no se pueden repetir (pero puede ser
+                  NULL)
+                </td>
+                <td><code>email VARCHAR UNIQUE</code></td>
+              </tr>
+              <tr>
+                <td>Candidate Key</td>
+                <td>Columna o combinación de columnas que podría ser PK</td>
+                <td>email, dni, username</td>
+              </tr>
+              <tr>
+                <td>Composite Key</td>
+                <td>PK formada por dos o más columnas</td>
+                <td><code>PRIMARY KEY (usuario_id, producto_id)</code></td>
+              </tr>
+              <tr>
+                <td>Surrogate Key</td>
+                <td>
+                  Clave artificial generada (UUID, SERIAL). No tiene significado
+                  de negocio
+                </td>
+                <td><code>id UUID DEFAULT gen_random_uuid()</code></td>
+              </tr>
+              <tr>
+                <td>Natural Key</td>
+                <td>Clave con significado de negocio real</td>
+                <td>NIT de una empresa, ISBN de un libro</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="columnar">
+      <div class="container">
+        <h2 class="section-title">Bases de Datos Columnares</h2>
+        <p>
+          Las bases relacionales tradicionales almacenan los datos fila por
+          fila. Las bases columnares los almacenan columna por columna. Esto las
+          hace extremadamente eficientes para consultas analíticas que agregan
+          grandes volúmenes de datos en pocas columnas.
+        </p>
+        <div class="ascii-block">
+          ROW-BASED (PostgreSQL): COLUMN-BASED (BigQuery):
+          ┌────┬──────────┬───────┐ Col id: [1, 2, 3, 4, ...] │ id │ nombre
+          │precio │ Col nombre: ["Laptop", "Mouse", ...]
+          ├────┼──────────┼───────┤ Col precio: [4500000, 85000, ...] │ 1 │
+          Laptop │4500000│ │ 2 │ Mouse │ 85000│ ✅ SELECT AVG(precio) → leer
+          solo col precio │ 3 │ Teclado │ 320000│ ❌ No eficiente para cargar
+          filas completas └────┴──────────┴───────┘ ✅ Ideal para OLTP
+          (transacciones) ✅ Ideal para OLAP (analítica)
+        </div>
+        <p class="mt-3">
+          <strong>Ejemplos de bases columnares:</strong> Apache Cassandra
+          (distribuida), Google BigQuery (cloud), Amazon Redshift, ClickHouse
+          (open-source, extremadamente rápida).
+        </p>
+      </div>
+    </section>
+
+    <section id="grafos" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Bases de Datos de Grafos</h2>
+        <p>
+          Las bases de grafos modelan datos como nodos (entidades) y aristas
+          (relaciones). Son ideales cuando las relaciones entre los datos son
+          tan importantes como los datos mismos.
+        </p>
+        <p class="mt-3">
+          <strong>Casos de uso:</strong> redes sociales (amigos de amigos),
+          sistemas de recomendación, detección de fraude (redes de
+          transacciones), mapas y rutas, knowledge graphs.
+        </p>
+        <pre class="mt-3"><code class="language-cypher">// Crear nodos
+CREATE (ana:Persona {nombre: "Ana", edad: 28})
+CREATE (luis:Persona {nombre: "Luis", edad: 32})
+CREATE (laptop:Producto {nombre: "Laptop Pro 15"})
+
+// Crear relaciones
+CREATE (ana)-[:CONOCE {desde: 2020}]->(luis)
+CREATE (ana)-[:COMPRO {fecha: "2025-01-15"}]->(laptop)
+
+// Consultar: amigos de amigos de Ana que compraron el mismo producto
+MATCH (ana:Persona {nombre: "Ana"})-[:CONOCE*2]->(conocido)
+MATCH (conocido)-[:COMPRO]->(p:Producto)
+WHERE (ana)-[:COMPRO]->(p)
+RETURN conocido.nombre, p.nombre</code></pre>
+        <p class="mt-3">
+          <strong>Motor más popular:</strong> Neo4j. Alternativas: Amazon
+          Neptune, ArangoDB.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <a href="principios-solid.html" class="nav-card"
+          ><i class="bi bi-server"></i
+          ><span style="flex: 1">Siguiente: Principios SOLID</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="backend.html" class="nav-card"
+          ><i class="bi bi-server"></i
+          ><span style="flex: 1">Backend: Tecnologías y Frameworks</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="cache.html" class="nav-card"
+          ><i class="bi bi-lightning-charge"></i
+          ><span style="flex: 1">Caché en Aplicaciones Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="herramientas-desarrollo.html" class="nav-card"
+          ><i class="bi bi-tools"></i
+          ><span style="flex: 1">Herramientas de Desarrollo</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo,.sql-family-card")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

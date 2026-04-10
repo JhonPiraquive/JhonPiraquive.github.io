@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTTP Headers | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .cat-card {
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin-bottom: 12px;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .cat-card.visible {
+        opacity: 1;
+        transform: translateX(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#que-son">¿Qué son?</a>
+        <a href="#request">Request</a>
+        <a href="#response">Response</a>
+        <a href="#cors">CORS</a>
+        <a href="#seguridad">Seguridad</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 11</span>
+        <h1 class="hero-title">HTTP Headers</h1>
+        <p class="hero-sub">
+          Metadatos que acompañan cada petición y respuesta HTTP.
+        </p>
+        <a href="#que-son" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="que-son">
+      <div class="container">
+        <h2 class="section-title">¿Qué son los HTTP Headers?</h2>
+        <p>
+          Los headers HTTP son pares clave-valor que acompañan cada petición y
+          respuesta HTTP. Transportan metadatos: qué formato tienen los datos,
+          quién hace la petición, qué tipo de respuesta se acepta, información
+          de autenticación, instrucciones de caché, políticas de seguridad y
+          mucho más. El cuerpo (body) lleva los datos; los headers llevan las
+          instrucciones sobre esos datos.
+        </p>
+        <div class="ascii-block">
+          GET /api/productos/42 HTTP/1.1 ← Línea de inicio (método + URI +
+          versión) Host: api.ejemplo.com ← Headers Accept: application/json ←
+          Authorization: Bearer eyJhb... ← Accept-Encoding: gzip, deflate, br ←
+          User-Agent: Mozilla/5.0 (Linux) ← ← Línea en blanco (separa headers de
+          body) (sin body en GET)
+        </div>
+        <div class="row g-3 mt-2">
+          <div class="col-12 col-md-6">
+            <div
+              class="cat-card h-100"
+              style="background: #0d2030; border: 1px solid var(--accent)"
+            >
+              <strong style="color: var(--accent)">Request Headers</strong>
+              <p class="text-secondary mt-1 mb-0">
+                Enviados por el cliente para describir la petición y el cliente.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div
+              class="cat-card h-100"
+              style="background: #0d2018; border: 1px solid #2ed573"
+            >
+              <strong style="color: #2ed573">Response Headers</strong>
+              <p class="text-secondary mt-1 mb-0">
+                Enviados por el servidor para describir la respuesta y el
+                servidor.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div
+              class="cat-card h-100"
+              style="background: #201a00; border: 1px solid #ffa502"
+            >
+              <strong style="color: #ffa502">General Headers</strong>
+              <p class="text-secondary mt-1 mb-0">
+                Aplicables tanto a request como a response.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div
+              class="cat-card h-100"
+              style="background: #150d22; border: 1px solid var(--accent2)"
+            >
+              <strong style="color: var(--accent2)">Entity Headers</strong>
+              <p class="text-secondary mt-1 mb-0">
+                Describen el cuerpo del mensaje (Content-Type, Content-Length).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="request" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Request Headers — Cabeceras de Petición</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Header</th>
+                <th>Propósito</th>
+                <th>Ejemplo real</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Host</code></td>
+                <td>Dominio del servidor destino (obligatorio en HTTP/1.1)</td>
+                <td><code>Host: api.github.com</code></td>
+              </tr>
+              <tr>
+                <td><code>Authorization</code></td>
+                <td>Credenciales de autenticación</td>
+                <td><code>Authorization: Bearer eyJhbGci...</code></td>
+              </tr>
+              <tr>
+                <td><code>Accept</code></td>
+                <td>Tipos de media que el cliente acepta</td>
+                <td><code>Accept: application/json, text/html</code></td>
+              </tr>
+              <tr>
+                <td><code>Accept-Language</code></td>
+                <td>Idiomas preferidos del cliente</td>
+                <td><code>Accept-Language: es-CO, es;q=0.9, en;q=0.8</code></td>
+              </tr>
+              <tr>
+                <td><code>Accept-Encoding</code></td>
+                <td>Algoritmos de compresión soportados</td>
+                <td><code>Accept-Encoding: gzip, deflate, br</code></td>
+              </tr>
+              <tr>
+                <td><code>Content-Type</code></td>
+                <td>Tipo de media del cuerpo enviado</td>
+                <td><code>Content-Type: application/json</code></td>
+              </tr>
+              <tr>
+                <td><code>Content-Length</code></td>
+                <td>Tamaño del cuerpo en bytes</td>
+                <td><code>Content-Length: 234</code></td>
+              </tr>
+              <tr>
+                <td><code>User-Agent</code></td>
+                <td>Identificador del cliente/navegador</td>
+                <td>
+                  <code
+                    >User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>Cookie</code></td>
+                <td>Cookies almacenadas por el navegador</td>
+                <td><code>Cookie: session=abc123; theme=dark</code></td>
+              </tr>
+              <tr>
+                <td><code>Origin</code></td>
+                <td>Origen de la petición (CORS)</td>
+                <td><code>Origin: https://app.ejemplo.com</code></td>
+              </tr>
+              <tr>
+                <td><code>Referer</code></td>
+                <td>URL de la página que originó la petición</td>
+                <td><code>Referer: https://ejemplo.com/productos</code></td>
+              </tr>
+              <tr>
+                <td><code>If-None-Match</code></td>
+                <td>ETag previo para revalidación condicional</td>
+                <td><code>If-None-Match: "abc123xyz"</code></td>
+              </tr>
+              <tr>
+                <td><code>X-Forwarded-For</code></td>
+                <td>IP del cliente original (proxies/balanceadores)</td>
+                <td><code>X-Forwarded-For: 190.25.15.42</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="response">
+      <div class="container">
+        <h2 class="section-title">Response Headers — Cabeceras de Respuesta</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Header</th>
+                <th>Propósito</th>
+                <th>Ejemplo real</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Content-Type</code></td>
+                <td>Tipo de media del cuerpo de la respuesta</td>
+                <td>
+                  <code>Content-Type: application/json; charset=utf-8</code>
+                </td>
+              </tr>
+              <tr>
+                <td><code>Content-Length</code></td>
+                <td>Tamaño del cuerpo en bytes</td>
+                <td><code>Content-Length: 1842</code></td>
+              </tr>
+              <tr>
+                <td><code>Content-Encoding</code></td>
+                <td>Compresión aplicada</td>
+                <td><code>Content-Encoding: gzip</code></td>
+              </tr>
+              <tr>
+                <td><code>Cache-Control</code></td>
+                <td>Instrucciones de caché</td>
+                <td><code>Cache-Control: max-age=3600, public</code></td>
+              </tr>
+              <tr>
+                <td><code>ETag</code></td>
+                <td>Versión del recurso (para caché condicional)</td>
+                <td><code>ETag: "v3-a3f9b2c1"</code></td>
+              </tr>
+              <tr>
+                <td><code>Last-Modified</code></td>
+                <td>Última modificación del recurso</td>
+                <td>
+                  <code>Last-Modified: Mon, 06 Jan 2025 10:00:00 GMT</code>
+                </td>
+              </tr>
+              <tr>
+                <td><code>Location</code></td>
+                <td>URI del recurso creado (en 201) o redirección</td>
+                <td><code>Location: /api/productos/99</code></td>
+              </tr>
+              <tr>
+                <td><code>Set-Cookie</code></td>
+                <td>Establece cookies en el cliente</td>
+                <td>
+                  <code
+                    >Set-Cookie: session=abc; HttpOnly; Secure;
+                    SameSite=Strict</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>Access-Control-Allow-Origin</code></td>
+                <td>Orígenes permitidos (CORS)</td>
+                <td>
+                  <code
+                    >Access-Control-Allow-Origin: https://app.ejemplo.com</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>WWW-Authenticate</code></td>
+                <td>Esquema de autenticación requerido (en 401)</td>
+                <td><code>WWW-Authenticate: Bearer realm="api"</code></td>
+              </tr>
+              <tr>
+                <td><code>Retry-After</code></td>
+                <td>Cuánto esperar antes de reintentar (en 429/503)</td>
+                <td><code>Retry-After: 60</code></td>
+              </tr>
+              <tr>
+                <td><code>X-RateLimit-Remaining</code></td>
+                <td>Requests restantes en la ventana actual</td>
+                <td><code>X-RateLimit-Remaining: 42</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="cors" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">CORS — Cross-Origin Resource Sharing</h2>
+        <p>
+          CORS es un mecanismo de seguridad del navegador que bloquea peticiones
+          HTTP de un origen (dominio) a otro diferente, a menos que el servidor
+          de destino lo permita explícitamente mediante headers específicos. Las
+          peticiones "simple" (GET/POST con Content-Type básico) no requieren
+          preflight. Las peticiones "complejas" (con headers custom, PUT,
+          DELETE, Authorization) disparan una petición OPTIONS preflight.
+        </p>
+        <div class="ascii-block">
+          NAVEGADOR (app.frontend.com) SERVIDOR (api.backend.com) │ │ │──
+          OPTIONS /api/datos ─────────────►│ │ Origin: https://app.frontend.com
+          │ │ Access-Control-Request-Method: PUT│ │ │ │◄── 204 No Content
+          ─────────────────│ │ Access-Control-Allow-Origin: * │ │
+          Access-Control-Allow-Methods: │ │ GET, POST, PUT, DELETE │ │
+          Access-Control-Max-Age: 86400 │ │ │ │── PUT /api/datos
+          ─────────────────►│ (request real) │◄── 200 OK {datos}
+          ─────────────────│
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Header</th>
+                <th>Dirección</th>
+                <th>Propósito</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Origin</code></td>
+                <td>Request</td>
+                <td>Indica el origen del cliente</td>
+              </tr>
+              <tr>
+                <td><code>Access-Control-Allow-Origin</code></td>
+                <td>Response</td>
+                <td>Orígenes permitidos (<code>*</code> o específico)</td>
+              </tr>
+              <tr>
+                <td><code>Access-Control-Allow-Methods</code></td>
+                <td>Response</td>
+                <td>Métodos HTTP permitidos</td>
+              </tr>
+              <tr>
+                <td><code>Access-Control-Allow-Headers</code></td>
+                <td>Response</td>
+                <td>Headers personalizados permitidos</td>
+              </tr>
+              <tr>
+                <td><code>Access-Control-Allow-Credentials</code></td>
+                <td>Response</td>
+                <td>Si se permiten cookies/credenciales</td>
+              </tr>
+              <tr>
+                <td><code>Access-Control-Max-Age</code></td>
+                <td>Response</td>
+                <td>Segundos que el preflight es cacheado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguridad">
+      <div class="container">
+        <h2 class="section-title">Headers de Seguridad</h2>
+        <p>
+          Estos headers no son obligatorios por HTTP, pero son esenciales para
+          proteger aplicaciones web en producción. Definen políticas que el
+          navegador aplica para mitigar ataques comunes.
+        </p>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Header</th>
+                <th>Ataque que mitiga</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Strict-Transport-Security (HSTS)</code></td>
+                <td>Downgrade a HTTP</td>
+                <td><code>max-age=31536000; includeSubDomains</code></td>
+              </tr>
+              <tr>
+                <td><code>Content-Security-Policy (CSP)</code></td>
+                <td>XSS, clickjacking</td>
+                <td>
+                  <code
+                    >default-src 'self'; script-src 'self' cdn.ejemplo.com</code
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td><code>X-Frame-Options</code></td>
+                <td>Clickjacking</td>
+                <td><code>DENY</code> o <code>SAMEORIGIN</code></td>
+              </tr>
+              <tr>
+                <td><code>X-Content-Type-Options</code></td>
+                <td>MIME sniffing</td>
+                <td><code>nosniff</code></td>
+              </tr>
+              <tr>
+                <td><code>Referrer-Policy</code></td>
+                <td>Fuga de URL en Referer</td>
+                <td><code>strict-origin-when-cross-origin</code></td>
+              </tr>
+              <tr>
+                <td><code>Permissions-Policy</code></td>
+                <td>Acceso a APIs del navegador</td>
+                <td><code>camera=(), microphone=(), geolocation=()</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pre
+          class="mt-4"
+        ><code class="language-javascript">const helmet = require('helmet');
+app.use(helmet());
+
+// Equivale a configurar automáticamente:
+// - HSTS
+// - X-Content-Type-Options: nosniff
+// - X-Frame-Options: SAMEORIGIN
+// - Content-Security-Policy (básico)
+// - Referrer-Policy</code></pre>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <a href="arquitectura-api.html" class="nav-card"
+          ><i class="bi bi-shield-lock"></i
+          ><span style="flex: 1">Siguiente: Arquitectura de APIs</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="protocolos-seguridad.html" class="nav-card"
+          ><i class="bi bi-shield-lock"></i
+          ><span style="flex: 1">Protocolos de Seguridad</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="cache.html" class="nav-card"
+          ><i class="bi bi-lightning-charge"></i
+          ><span style="flex: 1">Caché en Aplicaciones Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="tokens.html" class="nav-card"
+          ><i class="bi bi-key"></i
+          ><span style="flex: 1">Tokens de Autenticación</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="rest-principios.html" class="nav-card"
+          ><i class="bi bi-diagram-3"></i
+          ><span style="flex: 1">Principios REST</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo,.cat-card")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

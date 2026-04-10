@@ -1,237 +1,729 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Servicios Web | Programación Orientada a Sitios Web</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-<style>
-:root{--bg:#0d0d0d;--surface:#141414;--accent:#00d4ff;--accent2:#7b5ea7;--text:#e0e0e0;--muted:#888}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;line-height:1.7}
-h1,h2,h3{font-family:'Raleway',sans-serif}
-a{color:var(--accent);text-decoration:none}
-a:hover{color:#fff}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Servicios Web | Programación Orientada a Sitios Web</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
 
-/* Header */
-.site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--accent);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent)}
-.logo span{color:var(--muted);font-size:.85rem;font-weight:400;margin-left:10px;font-family:'Poppins',sans-serif}
-.site-nav a{color:var(--muted);font-size:.85rem;margin-left:18px;transition:color .2s}
-.site-nav a:hover{color:var(--accent)}
+      /* Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
 
-/* Hero */
-#hero{min-height:60vh;background:linear-gradient(135deg,var(--bg),var(--surface));display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px}
-.hero-inner{max-width:700px}
-.badge-tema{background:var(--accent2);color:#fff;padding:4px 14px;border-radius:999px;font-size:.8rem;display:inline-block;margin-bottom:20px}
-.hero-title{font-size:3.5rem;color:var(--accent);animation:fadeInUp .6s ease both}
-.hero-sub{color:var(--muted);max-width:600px;margin:16px auto 28px}
-.btn-primary-custom{background:var(--accent);color:var(--bg);border:none;border-radius:999px;padding:12px 32px;font-weight:600;cursor:pointer;transition:transform .2s,opacity .2s}
-.btn-primary-custom:hover{transform:scale(1.04);opacity:.9}
+      /* Hero */
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+      }
 
-/* Sections */
-section{padding:80px 0}
-.section-alt{background:var(--surface)}
-.section-title{font-size:1.8rem;color:var(--text);border-left:4px solid var(--accent);padding-left:16px;margin-bottom:32px}
+      /* Sections */
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
 
-/* Cards */
-.card-objetivo{background:var(--surface);border:1px solid #222;border-radius:12px;padding:28px;transition:transform .25s,border-color .25s;opacity:0;transform:translateY(40px)}
-.card-objetivo.visible{opacity:1;transform:translateY(0);transition:opacity .5s ease,transform .5s ease,border-color .25s,box-shadow .25s}
-.card-objetivo:hover{transform:translateY(-6px)!important;border-color:var(--accent)}
-.card-icon{font-size:2rem;color:var(--accent);margin-bottom:12px;display:block}
+      /* Cards */
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
 
-/* Analogy card */
-.analogy-card{background:var(--surface);border-left:4px solid var(--accent2);padding:20px;border-radius:8px;margin:24px 0}
+      /* Analogy card */
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 24px 0;
+      }
 
-/* ASCII block */
-.ascii-block{background:#1a1a2e;padding:20px;border-radius:8px;font-family:monospace;color:var(--accent);overflow-x:auto;white-space:pre;font-size:.9rem;margin:20px 0}
+      /* ASCII block */
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
 
-/* Table */
-.posw-table{border-collapse:collapse;width:100%;background:var(--surface)}
-.posw-table th{background:var(--accent2);color:#fff;padding:12px 16px;text-align:left}
-.posw-table td{padding:12px 16px;border-bottom:1px solid #2a2a2a}
-.posw-table tr:nth-child(even) td{background:#1a1a1a}
-.posw-table tr:hover td{background:#222}
-.table-wrap{overflow-x:auto}
+      /* Table */
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
 
-/* Nav cards */
-.nav-card{background:var(--surface);border:1px solid #333;border-radius:8px;padding:16px 24px;display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text);transition:border-color .2s;margin-bottom:12px}
-.nav-card:hover{border-color:var(--accent);color:var(--text)}
-.nav-card i{font-size:1.4rem;color:var(--accent)}
+      /* Nav cards */
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
 
-/* Footer */
-.site-footer{background:var(--surface);border-top:1px solid #222;padding:24px;text-align:center;color:var(--muted);font-size:.85rem}
+      /* Footer */
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
 
-/* Animations */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-/* Responsive */
-@media(max-width:768px){
-  .hero-title{font-size:2.4rem}
-  .table-wrap{overflow-x:auto}
-}
-</style>
-</head>
-<body>
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+        .table-wrap {
+          overflow-x: auto;
+        }
+      }
 
-<header class="site-header">
-  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-    <span class="logo"><a href="servicios-web.html">POSW</a> <span>Programación Orientada a Sitios Web</span></span>
-  </div>
-  <nav class="site-nav">
-    <a href="#que-es">¿Qué es?</a>
-    <a href="#objetivos">Objetivos</a>
-    <a href="#solid">SOLID</a>
-    <a href="#recursos">Recursos</a>
-  </nav>
-</header>
+      /* ===== ARCH DIAGRAM ===== */
+      .arch-container {
+        position: relative;
+        height: 420px;
+        white-space: normal !important;
+        font-family: inherit;
+      }
 
-<section id="hero">
-  <div class="hero-inner">
-    <span class="badge-tema">Tema 1</span>
-    <h1 class="hero-title">Servicios Web</h1>
-    <p class="hero-sub">Fundamentos de interoperabilidad, arquitectura distribuida y principios de diseño de software.</p>
-    <a href="#que-es" class="btn-primary-custom">Comenzar a aprender</a>
-  </div>
-</section>
+      .arch-node {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        font-size: 22px;
+        text-align: center;
+        color: var(--accent);
+      }
 
-<section id="que-es">
-  <div class="container">
-    <h2 class="section-title">¿Qué es un Servicio Web?</h2>
-    <p>Un servicio web es un sistema de software diseñado para soportar interacción máquina-a-máquina a través de una red. Expone funcionalidades mediante interfaces estandarizadas (generalmente HTTP) que permiten que aplicaciones heterogéneas —desarrolladas en distintos lenguajes y plataformas— se comuniquen entre sí sin intervención humana directa.</p>
-    <div class="analogy-card mt-4">
-      <strong>Analogia:</strong> Piensa en un servicio web como un cajero automatico (ATM). No importa si usas una tarjeta Visa o Mastercard, ni si el banco emisor usa Java o Python internamente. El ATM expone una interfaz estandarizada que cualquier tarjeta puede usar para retirar dinero.
-    </div>
-    <div class="ascii-block">Cliente A (React)  ──┐
-Cliente B (Android)──┼──► [ Servicio Web ] ──► Base de Datos
-Cliente C (Python) ──┘         │
-                               └──► Otro Servicio</div>
-  </div>
-</section>
+      .arch-node span {
+        display: block;
+        font-size: 11px;
+        color: var(--muted);
+      }
 
-<section id="objetivos" class="section-alt">
-  <div class="container">
-    <h2 class="section-title">Objetivos de los Servicios Web</h2>
-    <div class="row g-4">
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card-objetivo h-100">
-          <i class="bi bi-globe2 card-icon"></i>
-          <h5>Interoperabilidad</h5>
-          <p class="text-secondary">Permite que sistemas desarrollados en distintos lenguajes (Java, Python, Go, C#) y plataformas (Windows, Linux, cloud) se comuniquen mediante estándares abiertos como HTTP y JSON.</p>
+      #svg-arch {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      #svg-arch path {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 2;
+        opacity: 0.4;
+        stroke-dasharray: 6 4;
+        animation: dash 2s linear infinite;
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -20;
+        }
+      }
+
+      .arch-packet {
+        position: absolute;
+        font-size: 14px;
+        pointer-events: none;
+        filter: drop-shadow(0 0 6px var(--accent));
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#que-es">¿Qué es?</a>
+        <a href="#objetivos">Objetivos</a>
+        <a href="#solid">SOLID</a>
+        <a href="#recursos">Recursos</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 1</span>
+        <h1 class="hero-title">Servicios Web</h1>
+        <p class="hero-sub">
+          Fundamentos de interoperabilidad, arquitectura distribuida y
+          principios de diseño de software.
+        </p>
+        <a href="#que-es" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="que-es">
+      <div class="container">
+        <h2 class="section-title">¿Qué es un Servicio Web?</h2>
+        <p>
+          Un servicio web es un sistema de software diseñado para soportar
+          interacción máquina-a-máquina a través de una red. Expone
+          funcionalidades mediante interfaces estandarizadas (generalmente HTTP)
+          que permiten que aplicaciones heterogéneas —desarrolladas en distintos
+          lenguajes y plataformas— se comuniquen entre sí sin intervención
+          humana directa.
+        </p>
+        <div class="analogy-card mt-4">
+          <strong>Analogia:</strong> Piensa en un servicio web como un cajero
+          automatico (ATM). No importa si usas una tarjeta Visa o Mastercard, ni
+          si el banco emisor usa Java o Python internamente. El ATM expone una
+          interfaz estandarizada que cualquier tarjeta puede usar para retirar
+          dinero.
+        </div>
+        <div class="ascii-block arch-container">
+          <svg id="svg-arch"></svg>
+
+          <div class="arch-node" id="react">⚛️<span>Web App (React)</span></div>
+          <div class="arch-node" id="android">🤖<span>Mobile App (Android)</span></div>
+          <div class="arch-node" id="python">🐍<span>Data Analytics (Python)</span></div>
+
+          <div class="arch-node" id="service">⚡<span>Web Service</span></div>
+
+          <div class="arch-node" id="db">🗄️<span>DB</span></div>
+          <div class="arch-node" id="other">🔗<span>Other Service</span></div>
         </div>
       </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card-objetivo h-100">
-          <i class="bi bi-share card-icon"></i>
-          <h5>Compartir Datos</h5>
-          <p class="text-secondary">Expone datos y funcionalidades como recursos consumibles por múltiples clientes sin duplicar la lógica de negocio.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card-objetivo h-100">
-          <i class="bi bi-arrows-fullscreen card-icon"></i>
-          <h5>Escalabilidad</h5>
-          <p class="text-secondary">Los servicios pueden escalar de forma independiente. Si el servicio de pagos recibe más carga, se escala solo ese componente sin tocar el resto del sistema.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card-objetivo h-100">
-          <i class="bi bi-puzzle card-icon"></i>
-          <h5>Modularidad</h5>
-          <p class="text-secondary">Cada servicio encapsula una responsabilidad específica. El sistema completo se construye componiendo servicios independientes (microservicios).</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card-objetivo h-100">
-          <i class="bi bi-file-earmark-check card-icon"></i>
-          <h5>Estandarización</h5>
-          <p class="text-secondary">Usa protocolos y formatos ampliamente adoptados: HTTP/HTTPS, JSON, XML, REST, SOAP. Esto reduce la curva de integración entre equipos.</p>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card-objetivo h-100">
-          <i class="bi bi-cloud-arrow-up card-icon"></i>
-          <h5>Acceso Remoto</h5>
-          <p class="text-secondary">Los servicios son accesibles desde cualquier lugar con conexión a internet, habilitando arquitecturas distribuidas y trabajo colaborativo entre organizaciones.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="solid">
-  <div class="container">
-    <h2 class="section-title">Introducción a SOLID</h2>
-    <p class="mb-4">SOLID es un acrónimo que reúne cinco principios de diseño de software orientado a objetos. Fueron popularizados por Robert C. Martin ("Uncle Bob"). Aplicarlos produce código más mantenible, extensible y testeable. Son especialmente relevantes al diseñar servicios web porque determinan cómo se estructura, expone y evoluciona la lógica de negocio.</p>
-    <div class="table-wrap">
-      <table class="posw-table">
-        <thead>
-          <tr><th>Letra</th><th>Principio</th><th>Idea central</th><th>Ejemplo en servicio web</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>S</td><td>Single Responsibility Principle</td><td>Cada clase/módulo tiene una sola razón para cambiar</td><td>Un endpoint <code>/usuarios</code> solo gestiona usuarios; no mezcla lógica de pagos</td></tr>
-          <tr><td>O</td><td>Open/Closed Principle</td><td>Abierto para extensión, cerrado para modificación</td><td>Agregar nuevo tipo de autenticación sin modificar el controlador existente</td></tr>
-          <tr><td>L</td><td>Liskov Substitution Principle</td><td>Las subclases deben poder sustituir a sus clases base</td><td>Un <code>RepositorioSQL</code> y un <code>RepositorioMongo</code> son intercambiables si implementan la misma interfaz</td></tr>
-          <tr><td>I</td><td>Interface Segregation Principle</td><td>Muchas interfaces específicas son mejores que una general</td><td>Separar <code>ILector</code> de <code>IEscritor</code> en lugar de una interfaz <code>IRepositorio</code> con todo</td></tr>
-          <tr><td>D</td><td>Dependency Inversion Principle</td><td>Depender de abstracciones, no de concreciones</td><td>El servicio depende de <code>IRepositorio</code>, no de <code>MySQLRepositorio</code> directamente</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="mt-3" style="color:var(--muted);font-size:.9rem">Ver la página completa de SOLID: <a href="principios-solid.html">principios-solid.html</a></p>
-  </div>
-</section>
+    <section id="objetivos" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Objetivos de los Servicios Web</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-globe2 card-icon"></i>
+              <h5>Interoperabilidad</h5>
+              <p class="text-secondary">
+                Permite que sistemas desarrollados en distintos lenguajes (Java,
+                Python, Go, C#) y plataformas (Windows, Linux, cloud) se
+                comuniquen mediante estándares abiertos como HTTP y JSON.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-share card-icon"></i>
+              <h5>Compartir Datos</h5>
+              <p class="text-secondary">
+                Expone datos y funcionalidades como recursos consumibles por
+                múltiples clientes sin duplicar la lógica de negocio.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-arrows-fullscreen card-icon"></i>
+              <h5>Escalabilidad</h5>
+              <p class="text-secondary">
+                Los servicios pueden escalar de forma independiente. Si el
+                servicio de pagos recibe más carga, se escala solo ese
+                componente sin tocar el resto del sistema.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-puzzle card-icon"></i>
+              <h5>Modularidad</h5>
+              <p class="text-secondary">
+                Cada servicio encapsula una responsabilidad específica. El
+                sistema completo se construye componiendo servicios
+                independientes (microservicios).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-file-earmark-check card-icon"></i>
+              <h5>Estandarización</h5>
+              <p class="text-secondary">
+                Usa protocolos y formatos ampliamente adoptados: HTTP/HTTPS,
+                JSON, XML, REST, SOAP. Esto reduce la curva de integración entre
+                equipos.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-cloud-arrow-up card-icon"></i>
+              <h5>Acceso Remoto</h5>
+              <p class="text-secondary">
+                Los servicios son accesibles desde cualquier lugar con conexión
+                a internet, habilitando arquitecturas distribuidas y trabajo
+                colaborativo entre organizaciones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="recursos" class="section-alt">
-  <div class="container">
-    <a href="formatos-datos.html" class="nav-card">
-      <i class="bi bi-file-code"></i>
-      <span style="flex:1">Siguiente:  Formatos de Datos (XML y JSON)</span>
-      <i class="bi bi-arrow-right-circle"></i>
-    </a>
-    <h2 class="section-title">Recursos y Temas Relacionados</h2>
-    <a href="protocolos-seguridad.html" class="nav-card">
-      <i class="bi bi-shield-lock"></i>
-      <span style="flex:1">Protocolos de Seguridad (SSL/TLS/HTTPS)</span>
-      <i class="bi bi-arrow-right-circle"></i>
-    </a>
-    <a href="tipos-servicios-web.html" class="nav-card">
-      <i class="bi bi-diagram-3"></i>
-      <span style="flex:1">Tipos de Servicios Web</span>
-      <i class="bi bi-arrow-right-circle"></i>
-    </a>
-    <a href="principios-solid.html" class="nav-card">
-      <i class="bi bi-layers"></i>
-      <span style="flex:1">Principios SOLID (detalle completo)</span>
-      <i class="bi bi-arrow-right-circle"></i>
-    </a>
-  </div>
-</section>
+    <section id="solid">
+      <div class="container">
+        <h2 class="section-title">Introducción a SOLID</h2>
+        <p class="mb-4">
+          SOLID es un acrónimo que reúne cinco principios de diseño de software
+          orientado a objetos. Fueron popularizados por Robert C. Martin ("Uncle
+          Bob"). Aplicarlos produce código más mantenible, extensible y
+          testeable. Son especialmente relevantes al diseñar servicios web
+          porque determinan cómo se estructura, expone y evoluciona la lógica de
+          negocio.
+        </p>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Letra</th>
+                <th>Principio</th>
+                <th>Idea central</th>
+                <th>Ejemplo en servicio web</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>S</td>
+                <td>Single Responsibility Principle</td>
+                <td>Cada clase/módulo tiene una sola razón para cambiar</td>
+                <td>
+                  Un endpoint <code>/usuarios</code> solo gestiona usuarios; no
+                  mezcla lógica de pagos
+                </td>
+              </tr>
+              <tr>
+                <td>O</td>
+                <td>Open/Closed Principle</td>
+                <td>Abierto para extensión, cerrado para modificación</td>
+                <td>
+                  Agregar nuevo tipo de autenticación sin modificar el
+                  controlador existente
+                </td>
+              </tr>
+              <tr>
+                <td>L</td>
+                <td>Liskov Substitution Principle</td>
+                <td>Las subclases deben poder sustituir a sus clases base</td>
+                <td>
+                  Un <code>RepositorioSQL</code> y un
+                  <code>RepositorioMongo</code> son intercambiables si
+                  implementan la misma interfaz
+                </td>
+              </tr>
+              <tr>
+                <td>I</td>
+                <td>Interface Segregation Principle</td>
+                <td>
+                  Muchas interfaces específicas son mejores que una general
+                </td>
+                <td>
+                  Separar <code>ILector</code> de <code>IEscritor</code> en
+                  lugar de una interfaz <code>IRepositorio</code> con todo
+                </td>
+              </tr>
+              <tr>
+                <td>D</td>
+                <td>Dependency Inversion Principle</td>
+                <td>Depender de abstracciones, no de concreciones</td>
+                <td>
+                  El servicio depende de <code>IRepositorio</code>, no de
+                  <code>MySQLRepositorio</code> directamente
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3" style="color: var(--muted); font-size: 0.9rem">
+          Ver la página completa de SOLID:
+          <a href="principios-solid.html">principios-solid.html</a>
+        </p>
+      </div>
+    </section>
 
-<footer class="site-footer">
-  Programación Orientada a Sitios Web &middot; Material académico &middot; 2025
-</footer>
+    <section id="recursos" class="section-alt">
+      <div class="container">
+        <a href="formatos-datos.html" class="nav-card">
+          <i class="bi bi-file-code"></i>
+          <span style="flex: 1">Siguiente: Formatos de Datos (XML y JSON)</span>
+          <i class="bi bi-arrow-right-circle"></i>
+        </a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="protocolos-seguridad.html" class="nav-card">
+          <i class="bi bi-shield-lock"></i>
+          <span style="flex: 1">Protocolos de Seguridad (SSL/TLS/HTTPS)</span>
+          <i class="bi bi-arrow-right-circle"></i>
+        </a>
+        <a href="tipos-servicios-web.html" class="nav-card">
+          <i class="bi bi-diagram-3"></i>
+          <span style="flex: 1">Tipos de Servicios Web</span>
+          <i class="bi bi-arrow-right-circle"></i>
+        </a>
+        <a href="principios-solid.html" class="nav-card">
+          <i class="bi bi-layers"></i>
+          <span style="flex: 1">Principios SOLID (detalle completo)</span>
+          <i class="bi bi-arrow-right-circle"></i>
+        </a>
+      </div>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script>
-hljs.highlightAll();
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
-  });
-});
-// Intersection Observer for cards
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting) entry.target.classList.add('visible');
-  });
-},{threshold:0.1});
-document.querySelectorAll('.card-objetivo').forEach(c=>observer.observe(c));
-</script>
-</body>
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      // Intersection Observer for cards
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo")
+        .forEach((c) => observer.observe(c));
+
+      // ===== ARCH ANIMATION =====
+      (function () {
+        const container = document.querySelector(".arch-container");
+        const svg = document.getElementById("svg-arch");
+
+        const nodes = {
+          react: { x: 10, y: 20 },
+          android: { x: 10, y: 50 },
+          python: { x: 10, y: 80 },
+
+          service: { x: 50, y: 50 },
+
+          db: { x: 90, y: 25 },
+          other: { x: 90, y: 75 },
+        };
+
+        const connections = [
+          ["react", "service"],
+          ["android", "service"],
+          ["python", "service"],
+          ["service", "db"],
+          ["service", "other"],
+        ];
+
+        function getCoords(n) {
+          const rect = container.getBoundingClientRect();
+          return {
+            x: (n.x / 100) * rect.width,
+            y: (n.y / 100) * rect.height,
+          };
+        }
+
+        function draw() {
+          svg.innerHTML = "";
+
+          Object.keys(nodes).forEach((id) => {
+            const el = document.getElementById(id);
+            const p = getCoords(nodes[id]);
+            el.style.left = p.x + "px";
+            el.style.top = p.y + "px";
+          });
+
+          connections.forEach(([a, b]) => {
+            const p1 = getCoords(nodes[a]);
+            const p2 = getCoords(nodes[b]);
+
+            const mx = (p1.x + p2.x) / 2;
+
+            const path = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "path",
+            );
+
+            path.setAttribute(
+              "d",
+              `M${p1.x},${p1.y} C${mx},${p1.y} ${mx},${p2.y} ${p2.x},${p2.y}`,
+            );
+
+            svg.appendChild(path);
+          });
+        }
+
+        function sendPacket() {
+          const conn =
+            connections[Math.floor(Math.random() * connections.length)];
+          const [a, b] = conn;
+
+          const p1 = getCoords(nodes[a]);
+          const p2 = getCoords(nodes[b]);
+
+          const el = document.createElement("div");
+          el.className = "arch-packet";
+          el.textContent = Math.random() > 0.5 ? "📤" : "📥";
+          container.appendChild(el);
+
+          const duration = 1200;
+          const start = performance.now();
+          const mx = (p1.x + p2.x) / 2;
+
+          function anim(t) {
+            let p = (t - start) / duration;
+            if (p > 1) p = 1;
+
+            const x =
+              (1 - p) * (1 - p) * (1 - p) * p1.x +
+              3 * (1 - p) * (1 - p) * p * mx +
+              3 * (1 - p) * p * p * mx +
+              p * p * p * p2.x;
+
+            const y =
+              (1 - p) * (1 - p) * (1 - p) * p1.y +
+              3 * (1 - p) * (1 - p) * p * p1.y +
+              3 * (1 - p) * p * p * p2.y +
+              p * p * p * p2.y;
+
+            el.style.left = x + "px";
+            el.style.top = y + "px";
+
+            if (p < 1) requestAnimationFrame(anim);
+            else el.remove();
+          }
+
+          requestAnimationFrame(anim);
+        }
+
+        draw();
+        window.addEventListener("resize", draw);
+        setInterval(sendPacket, 700);
+      })();
+    </script>
+  </body>
 </html>

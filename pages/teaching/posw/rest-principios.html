@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Principios REST | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 24px 0;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .intro-panel {
+        background: var(--surface);
+        padding: 40px 0;
+      }
+      .rule-card {
+        background: var(--bg);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 16px;
+      }
+      .rule-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .pyramid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        margin: 30px auto;
+        max-width: 500px;
+      }
+      .pyramid-level {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-align: center;
+        transition: transform 0.2s;
+      }
+      .pyramid-level:hover {
+        transform: scale(1.03);
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#stateless">Stateless</a>
+        <a href="#client-server">Client-Server</a>
+        <a href="#cacheable">Cacheable</a>
+        <a href="#layered">Layered</a>
+        <a href="#uniform">Uniform Interface</a>
+        <a href="#code-on-demand">Code on Demand</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 13</span>
+        <h1 class="hero-title">Principios REST</h1>
+        <p class="hero-sub">
+          Los seis constraints de Roy Fielding que definen una arquitectura REST
+          verdadera.
+        </p>
+        <a href="#stateless" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <div class="intro-panel">
+      <div class="container">
+        <h2 class="section-title">¿Qué es REST realmente?</h2>
+        <p>
+          REST (Representational State Transfer) no es un protocolo ni un
+          estándar; es un estilo arquitectónico definido por Roy Fielding en su
+          tesis doctoral del año 2000 en la Universidad de California. Un
+          sistema es RESTful solo si cumple los seis constraints (restricciones)
+          definidos por Fielding. En la práctica, muchas APIs llamadas "REST" no
+          cumplen todos los constraints; en particular, la mayoría omite HATEOAS
+          (parte de Uniform Interface).
+        </p>
+        <p class="mt-3" style="color: var(--muted); font-size: 0.9rem">
+          Tesis original: "Architectural Styles and the Design of Network-based
+          Software Architectures" — Roy Fielding, 2000.
+        </p>
+      </div>
+    </div>
+
+    <section id="stateless">
+      <div class="container">
+        <h2 class="section-title">1. Stateless (Sin Estado)</h2>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> Cada petición del cliente al servidor debe
+            contener toda la información necesaria para ser comprendida. El
+            servidor no debe almacenar contexto de sesión del cliente entre
+            peticiones.
+          </p>
+        </div>
+        <div class="analogy-card">
+          <strong>Analogía:</strong> Cada vez que llamas a un restaurante para
+          hacer un pedido, debes decir quién eres, qué quieres y dónde
+          entregarlo. El restaurante no recuerda tu llamada anterior. Si olvidas
+          decir tu nombre, el pedido no llega.
+        </div>
+        <div class="ascii-block">
+          ✅ STATELESS (REST) Request 1: GET /pedidos → Headers: {
+          Authorization: Bearer TOKEN } Request 2: POST /pedidos → Headers: {
+          Authorization: Bearer TOKEN } Cada request es autosuficiente. ❌
+          STATEFUL (NO RESTful) Request 1: POST /login → El servidor guarda:
+          "usuario 42 está logueado" Request 2: GET /pedidos → El servidor
+          busca: "¿quién está logueado?" (sesión) El servidor depende de estado
+          previo.
+        </div>
+        <p class="mt-3">
+          <strong>Beneficios:</strong> escalabilidad horizontal (cualquier
+          servidor puede atender cualquier request), simplicidad de caching,
+          resiliencia ante fallos.
+        </p>
+        <p class="mt-1" style="color: var(--muted)">
+          <strong>Costo:</strong> más datos por request (el token viaja en cada
+          petición).
+        </p>
+      </div>
+    </section>
+
+    <section id="client-server" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">2. Client-Server (Cliente-Servidor)</h2>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> El cliente y el servidor son componentes
+            separados con responsabilidades distintas, conectados mediante una
+            interfaz uniforme. El cliente maneja la interfaz de usuario; el
+            servidor maneja el almacenamiento de datos y la lógica de negocio.
+          </p>
+        </div>
+        <div class="ascii-block">
+          ┌────────────────────────┐ ┌────────────────────────┐ │ CLIENTE │ │
+          SERVIDOR │ │ - UI / UX │ │ - Lógica de negocio │ │ - Estado de
+          pantalla │◄──────► │ - Persistencia datos │ │ - Rutas del cliente │
+          HTTP │ - Autenticación │ │ - React / Angular │ │ - Integraciones │
+          └────────────────────────┘ └────────────────────────┘ Pueden
+          evolucionar independientemente
+        </div>
+        <p>
+          <strong>Beneficio clave:</strong> el frontend puede cambiar
+          completamente (de web a mobile) sin modificar el backend, y viceversa.
+          Desacoplamiento total.
+        </p>
+      </div>
+    </section>
+
+    <section id="cacheable">
+      <div class="container">
+        <h2 class="section-title">3. Cacheable (Cacheabilidad)</h2>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> Las respuestas del servidor deben indicar
+            explícitamente si pueden ser cacheadas o no. Si una respuesta es
+            cacheable, el cliente (o un proxy) puede reutilizarla para
+            peticiones equivalentes futuras.
+          </p>
+        </div>
+        <p class="mt-3">
+          Mediante el header <code>Cache-Control</code>, el servidor declara
+          <code>max-age</code>, <code>no-cache</code>, <code>no-store</code>,
+          <code>public</code>, <code>private</code>.
+        </p>
+        <pre
+          class="mt-3"
+        ><code class="language-http"># Respuesta cacheable 1 hora
+HTTP/1.1 200 OK
+Cache-Control: max-age=3600, public
+ETag: "productos-v42"
+
+# Respuesta NO cacheable (dato sensible)
+HTTP/1.1 200 OK
+Cache-Control: no-store, no-cache</code></pre>
+        <p class="mt-3" style="color: var(--muted)">
+          Ver detalle completo: <a href="cache.html">cache.html</a> y
+          <a href="http-headers.html">http-headers.html</a>.
+        </p>
+      </div>
+    </section>
+
+    <section id="layered" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">4. Layered System (Sistema en Capas)</h2>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> El cliente no necesita saber si está
+            hablando directamente con el servidor final o con un intermediario
+            (proxy, gateway, load balancer, CDN). Cada capa solo conoce la capa
+            inmediatamente adyacente.
+          </p>
+        </div>
+        <div class="ascii-block">
+          CLIENTE │ ▼ CDN (Cloudflare) ← Capa 1: caché y protección DDoS │ ▼ API
+          Gateway ← Capa 2: auth, rate limiting, routing │ ▼ Load Balancer ←
+          Capa 3: distribución de carga │ ├──► Servidor A ├──► Servidor B └──►
+          Servidor C
+        </div>
+        <p>
+          El cliente solo habla con <code>api.ejemplo.com</code>. Ignora
+          completamente la existencia del CDN, del gateway y de los tres
+          servidores.
+        </p>
+      </div>
+    </section>
+
+    <section id="uniform">
+      <div class="container">
+        <h2 class="section-title">5. Uniform Interface (Interfaz Uniforme)</h2>
+        <p>
+          Es el constraint central de REST. Simplifica y desacopla la
+          arquitectura al imponer una interfaz estandarizada entre componentes.
+          Se compone de cuatro sub-constraints:
+        </p>
+        <div class="row g-4 mt-2">
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-fingerprint card-icon"></i>
+              <h5>Identificación de recursos</h5>
+              <p class="text-secondary">
+                Cada recurso tiene un URI único.
+                <code>/productos/42</code> identifica el producto con ID 42, no
+                la acción de obtenerlo.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-file-earmark-text card-icon"></i>
+              <h5>Manipulación mediante representaciones</h5>
+              <p class="text-secondary">
+                El cliente no accede al recurso directamente, sino a una
+                representación (JSON, XML). Para modificarlo, envía la
+                representación deseada.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-chat-text card-icon"></i>
+              <h5>Mensajes autodescriptivos</h5>
+              <p class="text-secondary">
+                Cada mensaje contiene información suficiente para ser procesado.
+                El <code>Content-Type</code> indica cómo parsear el body; el
+                método HTTP indica la intención.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-link-45deg card-icon"></i>
+              <h5>HATEOAS</h5>
+              <p class="text-secondary">
+                Hypermedia As The Engine Of Application State: las respuestas
+                incluyen links que describen qué acciones son posibles desde el
+                estado actual. El cliente navega la API siguiendo links, no URLs
+                hardcodeadas.
+              </p>
+            </div>
+          </div>
+        </div>
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Ejemplo de HATEOAS en respuesta JSON
+        </h3>
+        <pre><code class="language-json">{
+  "id": 42,
+  "nombre": "Laptop Pro 15",
+  "precio": 4500000,
+  "estado": "en_stock",
+  "_links": {
+    "self": { "href": "/api/v1/productos/42", "method": "GET" },
+    "actualizar": { "href": "/api/v1/productos/42", "method": "PUT" },
+    "eliminar": { "href": "/api/v1/productos/42", "method": "DELETE" },
+    "categoria": { "href": "/api/v1/categorias/3", "method": "GET" },
+    "agregar_al_carrito": { "href": "/api/v1/carrito/items", "method": "POST" }
+  }
+}</code></pre>
+        <p class="mt-3" style="color: var(--muted); font-size: 0.9rem">
+          HATEOAS es el constraint menos implementado en APIs "REST" del mundo
+          real. Muchos equipos lo omiten por la complejidad, resultando en APIs
+          que Fielding llama "HTTP APIs" pero no verdaderamente RESTful.
+        </p>
+      </div>
+    </section>
+
+    <section id="code-on-demand" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">6. Code on Demand (Opcional)</h2>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> El servidor puede extender la funcionalidad
+            del cliente enviando código ejecutable (JavaScript, applets). Es el
+            único constraint opcional de REST.
+          </p>
+        </div>
+        <p class="mt-3">
+          Ejemplo: una respuesta que incluye un fragmento de JavaScript para
+          renderizar un widget, o una respuesta que devuelve instrucciones de
+          validación dinámicas.
+        </p>
+        <p class="mt-2" style="color: var(--muted)">
+          <em
+            >En la práctica moderna, este constraint se implementa
+            implícitamente: toda aplicación SPA descarga código (JS) desde el
+            servidor al inicio.</em
+          >
+        </p>
+      </div>
+    </section>
+
+    <section id="niveles">
+      <div class="container">
+        <h2 class="section-title">Modelo de Madurez de Richardson</h2>
+        <p>
+          Leonard Richardson propuso un modelo para medir qué tan "RESTful" es
+          una API, con cuatro niveles:
+        </p>
+        <div class="pyramid mt-4">
+          <div
+            class="pyramid-level"
+            style="
+              width: 80%;
+              height: 70px;
+              background: linear-gradient(135deg, #00b09b, #00d4ff);
+            "
+          >
+            Nivel 3: HATEOAS — REST verdadero
+          </div>
+          <div
+            class="pyramid-level"
+            style="
+              width: 88%;
+              height: 65px;
+              background: linear-gradient(135deg, #4776e6, #8e54e9);
+            "
+          >
+            Nivel 2: Verbos HTTP correctos + Status Codes
+          </div>
+          <div
+            class="pyramid-level"
+            style="
+              width: 94%;
+              height: 65px;
+              background: linear-gradient(135deg, #f7971e, #ffd200);
+            "
+          >
+            Nivel 1: Recursos con URIs
+          </div>
+          <div
+            class="pyramid-level"
+            style="
+              width: 100%;
+              height: 65px;
+              background: linear-gradient(135deg, #cb2d3e, #ef473a);
+            "
+          >
+            Nivel 0: The Swamp of POX — un URI, todo POST
+          </div>
+        </div>
+        <div class="row g-4 mt-4">
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo">
+              <h5 style="color: #ef473a">Nivel 0 — The Swamp of POX</h5>
+              <p class="text-secondary">
+                Un único URI, un único método HTTP (generalmente POST). Todo es
+                una llamada a procedimiento remoto sobre HTTP. (Ej: SOAP
+                básico).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo">
+              <h5 style="color: #ffd200">Nivel 1 — Recursos</h5>
+              <p class="text-secondary">
+                Múltiples URIs que identifican recursos.
+                <code>GET /productos/42</code> ya tiene semántica.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo">
+              <h5 style="color: #8e54e9">Nivel 2 — Verbos HTTP</h5>
+              <p class="text-secondary">
+                Uso correcto de GET, POST, PUT, DELETE y códigos de estado. La
+                mayoría de APIs "REST" están aquí.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo">
+              <h5 style="color: #00d4ff">Nivel 3 — HATEOAS</h5>
+              <p class="text-secondary">
+                Las respuestas incluyen hypermedia links. REST verdadero según
+                Fielding.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <a href="typescript.html" class="nav-card"
+          ><i class="bi bi-diagram-3"></i
+          ><span style="flex: 1">Siguiente: Tipos de Servicios Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="tipos-servicios-web.html" class="nav-card"
+          ><i class="bi bi-diagram-3"></i
+          ><span style="flex: 1">Tipos de Servicios Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="arquitectura-api.html" class="nav-card"
+          ><i class="bi bi-layers"></i
+          ><span style="flex: 1">Arquitectura de APIs</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="http-metodos-status.html" class="nav-card"
+          ><i class="bi bi-send"></i
+          ><span style="flex: 1">HTTP Métodos y Status</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="http-headers.html" class="nav-card"
+          ><i class="bi bi-list-ul"></i><span style="flex: 1">HTTP Headers</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="cache.html" class="nav-card"
+          ><i class="bi bi-lightning-charge"></i
+          ><span style="flex: 1">Caché</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

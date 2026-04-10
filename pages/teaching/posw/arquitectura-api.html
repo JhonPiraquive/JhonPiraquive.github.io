@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arquitectura de APIs | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .layer-desc {
+        background: var(--bg);
+        border-left: 3px solid var(--accent);
+        padding: 12px 16px;
+        margin: 8px 0;
+        border-radius: 0 6px 6px 0;
+      }
+      .layer-desc h6 {
+        color: var(--accent);
+        margin-bottom: 4px;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#rest">REST</a>
+        <a href="#soap-arch">SOAP</a>
+        <a href="#graphql-arch">GraphQL</a>
+        <a href="#grpc-arch">gRPC</a>
+        <a href="#patrones">Patrones</a>
+        <a href="#comparativa">Comparativa</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 12</span>
+        <h1 class="hero-title">Arquitectura de APIs</h1>
+        <p class="hero-sub">
+          Cómo se estructura internamente cada tipo de API: componentes, flujos
+          y patrones.
+        </p>
+        <a href="#rest" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="rest">
+      <div class="container">
+        <h2 class="section-title">Arquitectura REST</h2>
+        <div class="ascii-block">
+          ┌──────────────────────────────────────────────┐ │ CLIENTE (SPA /
+          Mobile) │ └────────────────────┬─────────────────────────┘ │ HTTP
+          Request ▼ ┌──────────────────────────────────────────────┐ │ API
+          GATEWAY │ │ (Autenticación, Rate Limiting, Logging) │
+          └────────────────────┬─────────────────────────┘ │
+          ┌────────────────────▼─────────────────────────┐ │ ROUTER /
+          CONTROLADOR │ │ GET /productos → ProductosController │ │ POST /pedidos
+          → PedidosController │ └────────────────────┬─────────────────────────┘
+          │ ┌────────────────────▼─────────────────────────┐ │ CAPA DE SERVICIO
+          │ │ ProductosService: lógica de negocio │
+          └────────────────────┬─────────────────────────┘ │
+          ┌────────────────────▼─────────────────────────┐ │ REPOSITORIO / ORM │
+          │ ProductoRepository ↔ PostgreSQL │
+          └──────────────────────────────────────────────┘
+        </div>
+        <div class="mt-4">
+          <div class="layer-desc">
+            <h6>API Gateway</h6>
+            <p class="text-secondary mb-0">
+              Punto de entrada único. Autentica tokens, aplica rate limiting,
+              loguea requests, enruta al microservicio correcto.
+            </p>
+          </div>
+          <div class="layer-desc">
+            <h6>Controlador</h6>
+            <p class="text-secondary mb-0">
+              Recibe la petición HTTP, extrae parámetros, llama al servicio,
+              devuelve la respuesta.
+            </p>
+          </div>
+          <div class="layer-desc">
+            <h6>Servicio</h6>
+            <p class="text-secondary mb-0">
+              Contiene la lógica de negocio. Sin dependencia de HTTP (testeable
+              unitariamente).
+            </p>
+          </div>
+          <div class="layer-desc">
+            <h6>Repositorio</h6>
+            <p class="text-secondary mb-0">
+              Abstrae el acceso a datos. Patrón Repository permite cambiar la BD
+              sin tocar servicios.
+            </p>
+          </div>
+        </div>
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Estructura de directorios típica
+        </h3>
+        <pre><code class="language-plaintext">src/
+├── controllers/
+│   ├── productos.controller.ts
+│   └── pedidos.controller.ts
+├── services/
+│   ├── productos.service.ts
+│   └── pedidos.service.ts
+├── repositories/
+│   └── producto.repository.ts
+├── models/
+│   └── producto.model.ts
+├── middlewares/
+│   ├── auth.middleware.ts
+│   └── rateLimit.middleware.ts
+└── routes/
+    └── index.ts</code></pre>
+      </div>
+    </section>
+
+    <section id="soap-arch" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Arquitectura SOAP</h2>
+        <div class="ascii-block">
+          ┌──────────────┐ WSDL ┌──────────────────┐ │ CLIENTE │ ◄──────────────
+          │ SOAP SERVICE │ │ │ │ │ │ SOAP Request │ ──────────────► │ Web
+          Service │ │ (XML/HTTP) │ │ Container │ │ │ ◄────────────── │ (JAX-WS,
+          .NET) │ │ SOAP Response│ │ │ └──────────────┘ └────────┬─────────┘ │
+          ┌──────▼──────┐ │ Business │ │ Logic │ └──────┬──────┘ │
+          ┌──────▼──────┐ │ Database │ └─────────────┘
+        </div>
+        <p class="mt-3">
+          <strong>WSDL:</strong> El contrato WSDL (Web Services Description
+          Language) es un documento XML que describe: los tipos de datos (usando
+          XSD), las operaciones disponibles, los mensajes de entrada/salida y la
+          ubicación del endpoint. Los clientes generan código automáticamente
+          desde el WSDL.
+        </p>
+        <p class="mt-3"><strong>WS-* Stack:</strong></p>
+        <ul style="color: var(--muted)" class="mt-2">
+          <li>WS-Security (firma y cifrado)</li>
+          <li>WS-ReliableMessaging (entrega garantizada)</li>
+          <li>WS-AtomicTransaction (transacciones distribuidas)</li>
+          <li>WS-Addressing (headers de enrutamiento)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="graphql-arch">
+      <div class="container">
+        <h2 class="section-title">Arquitectura GraphQL</h2>
+        <div class="ascii-block">
+          ┌─────────────┐ │ Cliente │ │ (query) │ └──────┬──────┘ │ POST
+          /graphql ▼ ┌─────────────────────────────────────────┐ │ GraphQL
+          Engine │ │ ┌──────────┐ ┌──────────┐ │ │ │ Schema │ │ Resolver │ │ │ │
+          (tipos, │ │ (lógica │ │ │ │ queries, │ │ por cada │ │ │ │mutations)│ │
+          campo) │ │ │ └──────────┘ └────┬─────┘ │
+          └───────────────────┬─┘─────────────────┘ │
+          ┌─────────────┼──────────────┐ ▼ ▼ ▼ [ REST API ] [ PostgreSQL ] [
+          Redis Cache ]
+        </div>
+        <h3 class="mt-4 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Schema Definition Language (SDL)
+        </h3>
+        <pre><code class="language-graphql">type Producto {
+  id: ID!
+  nombre: String!
+  precio: Float!
+  categoria: Categoria!
+  reviews: [Review!]!
+}
+
+type Query {
+  producto(id: ID!): Producto
+  productos(filtro: ProductoFiltro): [Producto!]!
+}
+
+type Mutation {
+  crearProducto(input: CreateProductoInput!): Producto!
+  actualizarProducto(id: ID!, input: UpdateProductoInput!): Producto!
+}
+
+type Subscription {
+  productoActualizado(id: ID!): Producto!
+}</code></pre>
+        <p class="mt-4">
+          <strong>DataLoader pattern:</strong> Los resolvers de GraphQL pueden
+          generar el problema N+1 (N queries para N items). DataLoader lo
+          resuelve agrupando y deduplicando las consultas en una sola batch.
+        </p>
+      </div>
+    </section>
+
+    <section id="grpc-arch" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Arquitectura gRPC</h2>
+        <div class="ascii-block">
+          ┌─────────────────┐ ┌─────────────────┐ │ gRPC Cliente │ │ gRPC
+          Servidor │ │ (stub generado)│ │ (implementación)│ │ │ │ │ │ productos
+          │ │ ProductoService│ │ .getProducto() │ │ .ObtenerProd() │
+          └────────┬────────┘ └────────┬────────┘ │ HTTP/2 + Protobuf binary │
+          └─────────────────────────────────────┘
+        </div>
+        <h3 class="mt-4 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Tipos de streaming
+        </h3>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Ejemplo de uso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Unary</td>
+                <td>Un request, una respuesta</td>
+                <td>Obtener un producto por ID</td>
+              </tr>
+              <tr>
+                <td>Server Streaming</td>
+                <td>Un request, múltiples respuestas</td>
+                <td>Listar productos (paginado en stream)</td>
+              </tr>
+              <tr>
+                <td>Client Streaming</td>
+                <td>Múltiples requests, una respuesta</td>
+                <td>Subir archivo en chunks</td>
+              </tr>
+              <tr>
+                <td>Bidirectional Streaming</td>
+                <td>Múltiples requests y respuestas</td>
+                <td>Chat en tiempo real</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="patrones">
+      <div class="container">
+        <h2 class="section-title">Patrones de Arquitectura de APIs</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-door-open card-icon"></i>
+              <h5>API Gateway</h5>
+              <p class="text-secondary">
+                Punto de entrada único que centraliza auth, rate limiting,
+                logging y routing a microservicios.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-people card-icon"></i>
+              <h5>BFF (Backend for Frontend)</h5>
+              <p class="text-secondary">
+                Una API específica por tipo de cliente (BFF Mobile, BFF Web).
+                Evita que el frontend cargue datos innecesarios.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-tree card-icon"></i>
+              <h5>Strangler Fig</h5>
+              <p class="text-secondary">
+                Patrón de migración donde se reemplaza gradualmente un monolito
+                añadiendo nuevos endpoints en microservicios, mientras los
+                viejos siguen funcionando.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-arrow-left-right card-icon"></i>
+              <h5>CQRS</h5>
+              <p class="text-secondary">
+                Command Query Responsibility Segregation: separar las
+                operaciones de lectura (Queries) de las de escritura (Commands)
+                en modelos y bases de datos distintos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="comparativa" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Comparativa Arquitectural</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>REST</th>
+                <th>SOAP</th>
+                <th>GraphQL</th>
+                <th>gRPC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Punto de entrada</td>
+                <td>Múltiples URIs</td>
+                <td>Generalmente uno</td>
+                <td>Uno (<code>/graphql</code>)</td>
+                <td>Por servicio (proto)</td>
+              </tr>
+              <tr>
+                <td>Contrato</td>
+                <td>OpenAPI (opcional)</td>
+                <td>WSDL (obligatorio)</td>
+                <td>SDL (obligatorio)</td>
+                <td>.proto (obligatorio)</td>
+              </tr>
+              <tr>
+                <td>Tipado</td>
+                <td>Débil (JSON)</td>
+                <td>Fuerte (XSD)</td>
+                <td>Fuerte (SDL)</td>
+                <td>Fuerte (Protobuf)</td>
+              </tr>
+              <tr>
+                <td>Versionado</td>
+                <td>URL (<code>/v1/</code>, <code>/v2/</code>)</td>
+                <td>WSDL nuevo</td>
+                <td>Schema evolution</td>
+                <td>Proto evolution</td>
+              </tr>
+              <tr>
+                <td>Overhead</td>
+                <td>Bajo</td>
+                <td>Alto</td>
+                <td>Medio</td>
+                <td>Muy bajo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <a href="rest-principios.html" class="nav-card"
+          ><i class="bi bi-list-check"></i
+          ><span style="flex: 1">Siguiente: Principios REST</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="tipos-servicios-web.html" class="nav-card"
+          ><i class="bi bi-diagram-3"></i
+          ><span style="flex: 1">Tipos de Servicios Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="http-metodos-status.html" class="nav-card"
+          ><i class="bi bi-send"></i
+          ><span style="flex: 1">HTTP Métodos y Status</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="apis.html" class="nav-card"
+          ><i class="bi bi-plug"></i><span style="flex: 1">APIs</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

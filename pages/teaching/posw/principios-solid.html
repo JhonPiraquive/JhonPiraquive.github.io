@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Principios SOLID | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .intro-panel {
+        background: var(--surface);
+        padding: 40px 0;
+      }
+      .rule-card {
+        background: var(--bg);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 16px;
+      }
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 16px 0;
+      }
+      .code-compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 16px 0;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+        .code-compare {
+          grid-template-columns: 1fr;
+        }
+      }
+      .code-wrong {
+        border: 1px solid #ff4757;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .code-wrong .code-label {
+        background: #ff4757;
+        color: #fff;
+        padding: 4px 12px;
+        font-size: 0.8rem;
+      }
+      .code-right {
+        border: 1px solid #2ed573;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .code-right .code-label {
+        background: #2ed573;
+        color: #000;
+        padding: 4px 12px;
+        font-size: 0.8rem;
+      }
+      .cons-list {
+        border-left: 3px solid #ff4757;
+        padding-left: 16px;
+        margin: 12px 0;
+      }
+      .cons-list li {
+        color: #ff6b7a;
+        margin-bottom: 4px;
+      }
+      .pros-list {
+        border-left: 3px solid #2ed573;
+        padding-left: 16px;
+        margin: 12px 0;
+      }
+      .pros-list li {
+        color: #5effa1;
+        margin-bottom: 4px;
+      }
+      .principle-header {
+        font-size: 2rem;
+        color: var(--accent);
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#srp">SRP</a>
+        <a href="#ocp">OCP</a>
+        <a href="#lsp">LSP</a>
+        <a href="#isp">ISP</a>
+        <a href="#dip">DIP</a>
+        <a href="#resumen">Resumen</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 20</span>
+        <h1 class="hero-title">Principios SOLID</h1>
+        <p class="hero-sub">
+          Los cinco principios de diseño orientado a objetos de Robert C. Martin
+          para código mantenible y extensible.
+        </p>
+        <a href="#srp" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <div class="intro-panel">
+      <div class="container">
+        <p>
+          SOLID es un acrónimo mnemotécnico para cinco principios de diseño de
+          software orientado a objetos formulados por Robert C. Martin ("Uncle
+          Bob") y popularizados en su libro "Clean Architecture" (2017).
+          Aplicarlos reduce el acoplamiento, aumenta la cohesión y hace el
+          código más fácil de testear, mantener y extender.
+        </p>
+      </div>
+    </div>
+
+    <!-- SRP -->
+    <section id="srp">
+      <div class="container">
+        <div class="principle-header">S — Single Responsibility Principle</div>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> Una clase debe tener una, y solo una, razón
+            para cambiar. Cada clase debe encargarse de una única
+            responsabilidad dentro del sistema.
+          </p>
+        </div>
+        <div class="analogy-card">
+          <strong>Analogía:</strong> Un médico se encarga de diagnosticar y
+          recetar. La farmacia dispensa los medicamentos. El hospital gestiona
+          las citas. Si el médico también gestionara el inventario de la
+          farmacia, tendría dos razones para cambiar.
+        </div>
+        <div class="code-compare">
+          <div class="code-wrong">
+            <div class="code-label">Incorrecto</div>
+            <pre><code class="language-typescript">// ❌ Violación SRP: la clase hace demasiado
+class Usuario {
+  nombre: string;
+  email: string;
+
+  constructor(nombre: string, email: string) {
+    this.nombre = nombre;
+    this.email = email;
+  }
+
+  // Responsabilidad 1: lógica de negocio
+  validarEmail(): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+  }
+
+  // Responsabilidad 2: persistencia
+  guardarEnBaseDeDatos(): void {
+    console.log('Guardando usuario en BD');
+  }
+
+  // Responsabilidad 3: notificación
+  enviarEmailBienvenida(): void {
+    console.log('Enviando email de bienvenida');
+  }
+}</code></pre>
+          </div>
+          <div class="code-right">
+            <div class="code-label">Correcto</div>
+            <pre><code class="language-typescript">// ✅ Aplicando SRP
+class Usuario {
+  constructor(
+    public readonly nombre: string,
+    public readonly email: string
+  ) {}
+
+  validarEmail(): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+  }
+}
+
+class UsuarioRepository {
+  guardar(usuario: Usuario): void {
+    console.log(`Guardando ${usuario.nombre} en BD`);
+  }
+}
+
+class EmailService {
+  enviarBienvenida(usuario: Usuario): void {
+    console.log(`Enviando email a ${usuario.email}`);
+  }
+}</code></pre>
+          </div>
+        </div>
+        <ul class="cons-list">
+          <li>La clase se modifica por múltiples motivos distintos.</li>
+          <li>Difícil de testear de forma aislada.</li>
+        </ul>
+        <ul class="pros-list">
+          <li>Cada clase tiene una sola razón para cambiar.</li>
+          <li>Más fácil de testear y reutilizar.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- OCP -->
+    <section id="ocp" class="section-alt">
+      <div class="container">
+        <div class="principle-header">O — Open/Closed Principle</div>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> Las entidades de software deben estar
+            abiertas para extensión, pero cerradas para modificación. Para
+            agregar nueva funcionalidad, extiende; no modifiques el código
+            existente.
+          </p>
+        </div>
+        <div class="analogy-card">
+          <strong>Analogía:</strong> Un enchufe eléctrico está "cerrado" a
+          modificación (no modificas el tomacorriente de la pared), pero
+          "abierto" para extensión (conectas cualquier dispositivo nuevo que
+          cumpla el estándar del enchufe).
+        </div>
+        <div class="code-compare">
+          <div class="code-wrong">
+            <div class="code-label">Incorrecto</div>
+            <pre><code class="language-typescript">// ❌ Cada vez que se agrega un método de pago, se modifica
+class ProcesadorPago {
+  procesar(tipo: string, monto: number): void {
+    if (tipo === 'tarjeta') {
+      console.log(`Cobrar $${monto} con tarjeta de crédito`);
+    } else if (tipo === 'paypal') {
+      console.log(`Cobrar $${monto} con PayPal`);
+    } else if (tipo === 'nequi') {
+      console.log(`Cobrar $${monto} con Nequi`);
+      // ← Modificación constante: viola OCP
+    }
+  }
+}</code></pre>
+          </div>
+          <div class="code-right">
+            <div class="code-label">Correcto</div>
+            <pre><code class="language-typescript">// ✅ Extender sin modificar
+interface MetodoPago {
+  procesar(monto: number): void;
+}
+
+class PagoTarjeta implements MetodoPago {
+  procesar(monto: number): void {
+    console.log(`Cobrar $${monto} con tarjeta`);
+  }
+}
+
+class PagoPayPal implements MetodoPago {
+  procesar(monto: number): void {
+    console.log(`Cobrar $${monto} con PayPal`);
+  }
+}
+
+// Agregar Nequi sin tocar nada existente
+class PagoNequi implements MetodoPago {
+  procesar(monto: number): void {
+    console.log(`Cobrar $${monto} con Nequi`);
+  }
+}
+
+class ProcesadorPago {
+  constructor(private metodo: MetodoPago) {}
+  procesar(monto: number): void {
+    this.metodo.procesar(monto);
+  }
+}</code></pre>
+          </div>
+        </div>
+        <ul class="cons-list">
+          <li>Cada nueva funcionalidad requiere editar código existente.</li>
+        </ul>
+        <ul class="pros-list">
+          <li>Nuevas funcionalidades no rompen código existente.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LSP -->
+    <section id="lsp">
+      <div class="container">
+        <div class="principle-header">L — Liskov Substitution Principle</div>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> Los objetos de una subclase deben poder
+            sustituir a objetos de la clase padre sin alterar la corrección del
+            programa. Si S es subtipo de T, los objetos de tipo T pueden ser
+            reemplazados por objetos de tipo S.
+          </p>
+        </div>
+        <div class="analogy-card">
+          <strong>Analogía:</strong> Si un vehículo de alquiler puede ser un
+          auto, debes poder alquilar cualquier auto de la flota sin sorpresas.
+          Si un "auto especial" no tiene volante (viola el contrato del auto),
+          no es realmente un auto.
+        </div>
+        <div class="code-compare">
+          <div class="code-wrong">
+            <div class="code-label">Incorrecto</div>
+            <pre><code class="language-typescript">// ❌ Violación LSP
+class Pato {
+  volar(): void { console.log('Volando...'); }
+  graznar(): void { console.log('Cuac!'); }
+}
+
+class PatoDeGoma extends Pato {
+  volar(): void {
+    throw new Error('Los patos de goma no vuelan'); // ← viola LSP
+  }
+}</code></pre>
+          </div>
+          <div class="code-right">
+            <div class="code-label">Correcto</div>
+            <pre><code class="language-typescript">// ✅ Separar lo que no todos comparten
+interface Pato { graznar(): void; }
+
+interface PatoVolador extends Pato {
+  volar(): void;
+}
+
+class PatoReal implements PatoVolador {
+  graznar(): void { console.log('Cuac!'); }
+  volar(): void { console.log('Volando...'); }
+}
+
+class PatoDeGoma implements Pato {
+  graznar(): void { console.log('Cuac de goma!'); }
+  // No implementa volar: no rompe ningún contrato
+}</code></pre>
+          </div>
+        </div>
+        <ul class="cons-list">
+          <li>Una subclase lanza excepciones en métodos heredados.</li>
+        </ul>
+        <ul class="pros-list">
+          <li>
+            Cualquier instancia de una subclase puede usarse donde se espera la
+            base.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ISP -->
+    <section id="isp" class="section-alt">
+      <div class="container">
+        <div class="principle-header">I — Interface Segregation Principle</div>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> Los clientes no deben ser forzados a
+            depender de métodos que no usan. Es mejor tener muchas interfaces
+            específicas que una sola interfaz general.
+          </p>
+        </div>
+        <div class="analogy-card">
+          <strong>Analogía:</strong> Una impresora básica no tiene fax. Si
+          obligas a todas las impresoras a implementar una interfaz con
+          <code>imprimir()</code>, <code>escanear()</code>,
+          <code>enviarFax()</code> y <code>copiar()</code>, la impresora básica
+          tendría que implementar métodos vacíos o lanzar excepciones.
+        </div>
+        <div class="code-compare">
+          <div class="code-wrong">
+            <div class="code-label">Incorrecto</div>
+            <pre><code class="language-typescript">// ❌ Interfaz demasiado grande (fat interface)
+interface Trabajador {
+  trabajar(): void;
+  comer(): void;
+  dormir(): void;
+}
+
+// Robot que no necesita comer ni dormir
+class Robot implements Trabajador {
+  trabajar(): void { console.log('Trabajando...'); }
+  comer(): void { throw new Error('Los robots no comen'); }
+  dormir(): void { throw new Error('Los robots no duermen'); }
+}</code></pre>
+          </div>
+          <div class="code-right">
+            <div class="code-label">Correcto</div>
+            <pre><code class="language-typescript">// ✅ Interfaces específicas
+interface Trabajable { trabajar(): void; }
+
+interface Humano extends Trabajable {
+  comer(): void;
+  dormir(): void;
+}
+
+class Persona implements Humano {
+  trabajar(): void { console.log('Trabajando...'); }
+  comer(): void { console.log('Comiendo...'); }
+  dormir(): void { console.log('Durmiendo...'); }
+}
+
+class Robot implements Trabajable {
+  trabajar(): void { console.log('Procesando...'); }
+}</code></pre>
+          </div>
+        </div>
+        <ul class="cons-list">
+          <li>Las clases implementan métodos que no usan.</li>
+        </ul>
+        <ul class="pros-list">
+          <li>Cada clase solo implementa lo que necesita.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DIP -->
+    <section id="dip">
+      <div class="container">
+        <div class="principle-header">D — Dependency Inversion Principle</div>
+        <div class="rule-card">
+          <p>
+            <strong>Regla:</strong> Los módulos de alto nivel no deben depender
+            de módulos de bajo nivel. Ambos deben depender de abstracciones. Las
+            abstracciones no deben depender de detalles; los detalles deben
+            depender de abstracciones.
+          </p>
+        </div>
+        <div class="analogy-card">
+          <strong>Analogía:</strong> Tu laptop no depende de un modelo
+          específico de enchufe de pared; depende del estándar eléctrico
+          (abstracción). Puedes conectarla en Colombia, España o Japón (usando
+          adaptador) sin modificar la laptop.
+        </div>
+        <div class="code-compare">
+          <div class="code-wrong">
+            <div class="code-label">Incorrecto</div>
+            <pre><code class="language-typescript">// ❌ Alto nivel depende de bajo nivel
+class MySQLRepository {
+  guardar(producto: Producto): void {
+    console.log('Guardando en MySQL:', producto);
+  }
+}
+
+class ProductoService {
+  private repo = new MySQLRepository(); // ← acoplamiento duro
+
+  crearProducto(datos: Producto): void {
+    this.repo.guardar(datos);
+    // Si cambiamos a MongoDB, debemos modificar ProductoService
+  }
+}</code></pre>
+          </div>
+          <div class="code-right">
+            <div class="code-label">Correcto</div>
+            <pre><code class="language-typescript">// ✅ Ambos dependen de la abstracción
+interface IProductoRepository {
+  guardar(producto: Producto): Promise&lt;void&gt;;
+  buscarPorId(id: number): Promise&lt;Producto | null&gt;;
+}
+
+class MySQLProductoRepository implements IProductoRepository {
+  async guardar(producto: Producto): Promise&lt;void&gt; {
+    console.log('MySQL: guardando', producto);
+  }
+  async buscarPorId(id: number): Promise&lt;Producto | null&gt; { return null; }
+}
+
+class MongoProductoRepository implements IProductoRepository {
+  async guardar(producto: Producto): Promise&lt;void&gt; {
+    console.log('MongoDB: guardando', producto);
+  }
+  async buscarPorId(id: number): Promise&lt;Producto | null&gt; { return null; }
+}
+
+class ProductoService {
+  constructor(private repo: IProductoRepository) {}
+
+  async crearProducto(datos: Producto): Promise&lt;void&gt; {
+    await this.repo.guardar(datos);
+  }
+}
+
+const service = new ProductoService(new MySQLProductoRepository());
+// o:
+const service2 = new ProductoService(new MongoProductoRepository());</code></pre>
+          </div>
+        </div>
+        <ul class="cons-list">
+          <li>
+            <code>new ConcreteClass()</code> dentro de clases de alto nivel.
+          </li>
+        </ul>
+        <ul class="pros-list">
+          <li>Cambiar la implementación no requiere modificar el servicio.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="resumen" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Resumen Visual</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Principio</th>
+                <th>Letra</th>
+                <th>Regla en una frase</th>
+                <th>Señal de violación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Single Responsibility</td>
+                <td style="color: var(--accent); font-weight: 700">S</td>
+                <td>Una clase, una razón para cambiar</td>
+                <td>La clase se modifica por múltiples motivos distintos</td>
+              </tr>
+              <tr>
+                <td>Open/Closed</td>
+                <td style="color: var(--accent); font-weight: 700">O</td>
+                <td>Extiende sin modificar</td>
+                <td>
+                  Cada nueva funcionalidad requiere editar código existente
+                </td>
+              </tr>
+              <tr>
+                <td>Liskov Substitution</td>
+                <td style="color: var(--accent); font-weight: 700">L</td>
+                <td>Sustituye hijos por padres sin sorpresas</td>
+                <td>Una subclase lanza excepciones en métodos heredados</td>
+              </tr>
+              <tr>
+                <td>Interface Segregation</td>
+                <td style="color: var(--accent); font-weight: 700">I</td>
+                <td>Interfaces pequeñas y específicas</td>
+                <td>Las clases implementan métodos que no usan</td>
+              </tr>
+              <tr>
+                <td>Dependency Inversion</td>
+                <td style="color: var(--accent); font-weight: 700">D</td>
+                <td>Depende de abstracciones, no de concreciones</td>
+                <td>
+                  <code>new ConcreteClass()</code> dentro de clases de alto
+                  nivel
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="analogy-card mt-4" style="border-left-color: var(--accent)">
+          <p>
+            <strong>Nota final:</strong> SOLID no es una regla rígida. Es una
+            guía. Aplicarlo dogmáticamente puede llevar a sobre-ingeniería.
+            Aplícalo donde la complejidad y el cambio frecuente lo justifiquen.
+          </p>
+        </div>
+        <p class="mt-3" style="color: var(--muted)">
+          Ver introducción a SOLID aplicada a servicios web:
+          <a href="servicios-web.html">servicios-web.html</a>
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <a href="naming-conventions.html" class="nav-card"
+          ><i class="bi bi-fonts"></i
+          ><span style="flex: 1">Siguiente: Convenciones de Nomenclatura</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="servicios-web.html" class="nav-card"
+          ><i class="bi bi-globe2"></i><span style="flex: 1">Servicios Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="typescript.html" class="nav-card"
+          ><i class="bi bi-code-slash"></i
+          ><span style="flex: 1">TypeScript</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

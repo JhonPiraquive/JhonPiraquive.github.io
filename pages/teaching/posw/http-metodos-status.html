@@ -1,115 +1,560 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Métodos HTTP y Códigos de Estado | POSW</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-<style>
-:root{--bg:#0d0d0d;--surface:#141414;--accent:#00d4ff;--accent2:#7b5ea7;--text:#e0e0e0;--muted:#888}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;line-height:1.7}
-h1,h2,h3{font-family:'Raleway',sans-serif}
-a{color:var(--accent);text-decoration:none}
-.site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--accent);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent)}
-.logo span{color:var(--muted);font-size:.85rem;font-weight:400;margin-left:10px;font-family:'Poppins',sans-serif}
-.site-nav a{color:var(--muted);font-size:.85rem;margin-left:18px;transition:color .2s}
-.site-nav a:hover{color:var(--accent)}
-#hero{min-height:60vh;background:linear-gradient(135deg,var(--bg),var(--surface));display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px}
-.hero-inner{max-width:700px}
-.badge-tema{background:var(--accent2);color:#fff;padding:4px 14px;border-radius:999px;font-size:.8rem;display:inline-block;margin-bottom:20px}
-.hero-title{font-size:3.5rem;color:var(--accent);animation:fadeInUp .6s ease both}
-.hero-sub{color:var(--muted);max-width:600px;margin:16px auto 28px}
-.btn-cta{background:var(--accent);color:var(--bg);border:none;border-radius:999px;padding:12px 32px;font-weight:600;cursor:pointer;transition:transform .2s;display:inline-block}
-.btn-cta:hover{transform:scale(1.04);color:var(--bg)}
-section{padding:80px 0}
-.section-alt{background:var(--surface)}
-.section-title{font-size:1.8rem;color:var(--text);border-left:4px solid var(--accent);padding-left:16px;margin-bottom:32px}
-.method-card{background:var(--surface);border:1px solid #222;border-radius:10px;padding:20px;transition:transform .2s,border-color .2s;opacity:0;transform:translateY(30px)}
-.method-card.visible{opacity:1;transform:translateY(0)}
-.method-card:hover{transform:translateY(-5px)!important}
-.method-name{font-family:monospace;font-size:1.6rem;font-weight:700;display:block;margin-bottom:8px}
-.badge-prop{font-size:.75rem;padding:2px 8px;border-radius:999px;margin-right:4px}
-.posw-table{border-collapse:collapse;width:100%;background:var(--surface)}
-.posw-table th{background:var(--accent2);color:#fff;padding:12px 16px;text-align:left}
-.posw-table td{padding:12px 16px;border-bottom:1px solid #2a2a2a}
-.posw-table tr:nth-child(even) td{background:#1a1a1a}
-.table-wrap{overflow-x:auto}
-.muted-note{background:var(--surface);border-left:4px solid var(--muted);padding:14px;border-radius:6px;color:var(--muted);font-size:.9rem;margin-top:16px}
-.accordion-button{background:var(--surface)!important;color:var(--text)!important;font-weight:600}
-.accordion-button:not(.collapsed){background:#1e1e1e!important;color:var(--accent)!important}
-.accordion-item{background:var(--surface);border:1px solid #2a2a2a}
-.accordion-body{background:var(--bg)}
-.nav-card{background:var(--surface);border:1px solid #333;border-radius:8px;padding:16px 24px;display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text);transition:border-color .2s;margin-bottom:12px}
-.nav-card:hover{border-color:var(--accent);color:var(--text)}
-.nav-card i{font-size:1.4rem;color:var(--accent)}
-.site-footer{background:var(--surface);border-top:1px solid #222;padding:24px;text-align:center;color:var(--muted);font-size:.85rem}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.hero-title{font-size:2.4rem}}
-</style>
-</head>
-<body>
-<header class="site-header">
-  <span class="logo"><a href="servicios-web.html">POSW</a> <span>Programación Orientada a Sitios Web</span></span>
-  <nav class="site-nav">
-    <a href="#metodos">Métodos</a>
-    <a href="#crud">CRUD vs HTTP</a>
-    <a href="#status">Status Codes</a>
-    <a href="#ejemplos">Ejemplos</a>
-  </nav>
-</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Métodos HTTP y Códigos de Estado | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: white;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-cta {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+        display: inline-block;
+      }
+      .btn-cta:hover {
+        transform: scale(1.04);
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .method-card {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 10px;
+        padding: 20px;
+        transition:
+          transform 0.2s,
+          border-color 0.2s;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .method-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .method-card:hover {
+        transform: translateY(-5px) !important;
+      }
+      .method-name {
+        font-family: monospace;
+        font-size: 1.6rem;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .badge-prop {
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-right: 4px;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .muted-note {
+        background: var(--surface);
+        border-left: 4px solid var(--muted);
+        padding: 14px;
+        border-radius: 6px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-top: 16px;
+      }
+      .accordion-button {
+        background: var(--surface) !important;
+        color: var(--text) !important;
+        font-weight: 600;
+      }
+      .accordion-button:not(.collapsed) {
+        background: #1e1e1e !important;
+        color: var(--accent) !important;
+      }
+      .accordion-item {
+        background: var(--surface);
+        border: 1px solid #2a2a2a;
+      }
+      .accordion-body {
+        background: var(--bg);
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+      /* Tabs normales */
+      .nav-tabs .nav-link {
+        color: var(--text);
+        transition: color 0.2s;
+      }
 
-<section id="hero">
-  <div class="hero-inner">
-    <span class="badge-tema">Tema 4</span>
-    <h1 class="hero-title">Métodos HTTP y Códigos de Estado</h1>
-    <p class="hero-sub">El vocabulario de la web: cómo los clientes indican su intención y los servidores responden.</p>
-    <a href="#metodos" class="btn-cta">Explorar</a>
-  </div>
-</section>
+      /* Tab activo */
+      .nav-tabs .nav-link.active {
+        color: #000 !important; /* negro */
+        background-color: var(--accent); /* opcional para contraste */
+        border-color: var(--accent) var(--accent) transparent;
+      }
 
-<section id="metodos">
-  <div class="container">
-    <h2 class="section-title">Métodos HTTP</h2>
-    <p class="mb-4">Los métodos HTTP (también llamados verbos) indican la acción que el cliente quiere realizar sobre un recurso. Cada método tiene semántica precisa definida por el RFC 9110.</p>
-    <div class="row g-3">
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#00d4ff">GET</span><p style="color:var(--muted);font-size:.9rem">Solicita la representación de un recurso. Solo lee, nunca modifica estado en el servidor.</p><span class="badge-prop" style="background:#1a3a3a;color:#00d4ff">Safe: Sí</span><span class="badge-prop" style="background:#1a3a3a;color:#00d4ff">Idempotente: Sí</span></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#2ed573">POST</span><p style="color:var(--muted);font-size:.9rem">Envía datos al servidor para crear un recurso o procesar información. El URI no identifica el nuevo recurso de antemano.</p><span class="badge-prop" style="background:#1a3a1a;color:#2ed573">Safe: No</span><span class="badge-prop" style="background:#1a3a1a;color:#2ed573">Idempotente: No</span></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#ffa502">PUT</span><p style="color:var(--muted);font-size:.9rem">Reemplaza completamente el recurso en el URI indicado. Si no existe, puede crearlo.</p><span class="badge-prop" style="background:#2a1a00;color:#ffa502">Safe: No</span><span class="badge-prop" style="background:#2a1a00;color:#ffa502">Idempotente: Sí</span></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#ff6b81">PATCH</span><p style="color:var(--muted);font-size:.9rem">Aplica modificaciones parciales al recurso. Solo los campos enviados son actualizados.</p><span class="badge-prop" style="background:#2a0a0a;color:#ff6b81">Safe: No</span><span class="badge-prop" style="background:#2a0a0a;color:#ff6b81">Idempotente: No</span></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#ff4757">DELETE</span><p style="color:var(--muted);font-size:.9rem">Elimina el recurso identificado por el URI.</p><span class="badge-prop" style="background:#2a0000;color:#ff4757">Safe: No</span><span class="badge-prop" style="background:#2a0000;color:#ff4757">Idempotente: Sí</span></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#7b5ea7">HEAD</span><p style="color:var(--muted);font-size:.9rem">Igual que GET pero sin cuerpo de respuesta. Útil para verificar existencia o headers.</p><span class="badge-prop" style="background:#1a1030;color:#7b5ea7">Safe: Sí</span><span class="badge-prop" style="background:#1a1030;color:#7b5ea7">Idempotente: Sí</span></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#eccc68">OPTIONS</span><p style="color:var(--muted);font-size:.9rem">Retorna los métodos HTTP soportados por el recurso. Usado en preflight CORS.</p><span class="badge-prop" style="background:#2a2000;color:#eccc68">Safe: Sí</span><span class="badge-prop" style="background:#2a2000;color:#eccc68">Idempotente: Sí</span></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#888">CONNECT</span><p style="color:var(--muted);font-size:.9rem">Establece un túnel TCP al servidor (usado por proxies HTTPS).</p><span class="badge-prop" style="background:#222;color:#888">Safe: No</span><span class="badge-prop" style="background:#222;color:#888">Idempotente: No</span></div></div>
-      <div class="col-12 col-md-6 col-lg-4"><div class="method-card h-100"><span class="method-name" style="color:#888">TRACE</span><p style="color:var(--muted);font-size:.9rem">Realiza un loop-back de prueba para diagnóstico. Raramente habilitado en producción.</p><span class="badge-prop" style="background:#222;color:#888">Safe: Sí</span><span class="badge-prop" style="background:#222;color:#888">Idempotente: Sí</span></div></div>
-    </div>
-    <div class="muted-note mt-4">Safe = no modifica estado en el servidor. Idempotente = múltiples requests idénticos tienen el mismo efecto que uno solo.</div>
-  </div>
-</section>
+      /* Hover opcional */
+      .nav-tabs .nav-link:hover {
+        color: var(--accent);
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+        color: #eaeaea;
+      }
 
-<section id="crud" class="section-alt">
-  <div class="container">
-    <h2 class="section-title">Mapping CRUD ↔ HTTP</h2>
-    <p class="mb-4">Al diseñar APIs REST, las operaciones CRUD se mapean a métodos HTTP sobre recursos identificados por URIs.</p>
-    <div class="table-wrap">
-      <table class="posw-table">
-        <thead><tr><th>Operación CRUD</th><th>Método HTTP</th><th>URI ejemplo</th><th>Descripción</th></tr></thead>
-        <tbody>
-          <tr><td>Create</td><td><span style="color:#2ed573">POST</span></td><td><code>POST /api/productos</code></td><td>Crear nuevo producto</td></tr>
-          <tr><td>Read (colección)</td><td><span style="color:#00d4ff">GET</span></td><td><code>GET /api/productos</code></td><td>Listar todos los productos</td></tr>
-          <tr><td>Read (ítem)</td><td><span style="color:#00d4ff">GET</span></td><td><code>GET /api/productos/42</code></td><td>Obtener producto con id 42</td></tr>
-          <tr><td>Update (total)</td><td><span style="color:#ffa502">PUT</span></td><td><code>PUT /api/productos/42</code></td><td>Reemplazar producto 42 completo</td></tr>
-          <tr><td>Update (parcial)</td><td><span style="color:#ff6b81">PATCH</span></td><td><code>PATCH /api/productos/42</code></td><td>Modificar solo campos enviados</td></tr>
-          <tr><td>Delete</td><td><span style="color:#ff4757">DELETE</span></td><td><code>DELETE /api/productos/42</code></td><td>Eliminar producto 42</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h6 class="mt-4 mb-2" style="color:var(--muted)">Ciclo CRUD completo en HTTP</h6>
-    <pre><code class="language-http"># Crear
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+        color: #eaeaea;
+      }
+
+      .posw-table tr:hover td {
+        background: #222; /* efecto hover */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <span class="logo"
+        ><a href="servicios-web.html">POSW</a>
+        <span>Programación Orientada a Sitios Web</span></span
+      >
+      <nav class="site-nav">
+        <a href="#metodos">Métodos</a>
+        <a href="#crud">CRUD vs HTTP</a>
+        <a href="#status">Status Codes</a>
+        <a href="#ejemplos">Ejemplos</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 4</span>
+        <h1 class="hero-title">Métodos HTTP y Códigos de Estado</h1>
+        <p class="hero-sub">
+          El vocabulario de la web: cómo los clientes indican su intención y los
+          servidores responden.
+        </p>
+        <a href="#metodos" class="btn-cta">Explorar</a>
+      </div>
+    </section>
+
+    <section id="metodos">
+      <div class="container">
+        <h2 class="section-title">Métodos HTTP</h2>
+        <p class="mb-4">
+          Los métodos HTTP (también llamados verbos) indican la acción que el
+          cliente quiere realizar sobre un recurso. Cada método tiene semántica
+          precisa definida por el RFC 9110.
+        </p>
+        <div class="row g-3">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #00d4ff">GET</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Solicita la representación de un recurso. Solo lee, nunca
+                modifica estado en el servidor.
+              </p>
+              <span
+                class="badge-prop"
+                style="background: #1a3a3a; color: #00d4ff"
+                >Safe: Sí</span
+              ><span
+                class="badge-prop"
+                style="background: #1a3a3a; color: #00d4ff"
+                >Idempotente: Sí</span
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #2ed573">POST</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Envía datos al servidor para crear un recurso o procesar
+                información. El URI no identifica el nuevo recurso de antemano.
+              </p>
+              <span
+                class="badge-prop"
+                style="background: #1a3a1a; color: #2ed573"
+                >Safe: No</span
+              ><span
+                class="badge-prop"
+                style="background: #1a3a1a; color: #2ed573"
+                >Idempotente: No</span
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #ffa502">PUT</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Reemplaza completamente el recurso en el URI indicado. Si no
+                existe, puede crearlo.
+              </p>
+              <span
+                class="badge-prop"
+                style="background: #2a1a00; color: #ffa502"
+                >Safe: No</span
+              ><span
+                class="badge-prop"
+                style="background: #2a1a00; color: #ffa502"
+                >Idempotente: Sí</span
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #ff6b81">PATCH</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Aplica modificaciones parciales al recurso. Solo los campos
+                enviados son actualizados.
+              </p>
+              <span
+                class="badge-prop"
+                style="background: #2a0a0a; color: #ff6b81"
+                >Safe: No</span
+              ><span
+                class="badge-prop"
+                style="background: #2a0a0a; color: #ff6b81"
+                >Idempotente: No</span
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #ff4757">DELETE</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Elimina el recurso identificado por el URI.
+              </p>
+              <span
+                class="badge-prop"
+                style="background: #2a0000; color: #ff4757"
+                >Safe: No</span
+              ><span
+                class="badge-prop"
+                style="background: #2a0000; color: #ff4757"
+                >Idempotente: Sí</span
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #7b5ea7">HEAD</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Igual que GET pero sin cuerpo de respuesta. Útil para verificar
+                existencia o headers.
+              </p>
+              <span
+                class="badge-prop"
+                style="background: #1a1030; color: #7b5ea7"
+                >Safe: Sí</span
+              ><span
+                class="badge-prop"
+                style="background: #1a1030; color: #7b5ea7"
+                >Idempotente: Sí</span
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #eccc68">OPTIONS</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Retorna los métodos HTTP soportados por el recurso. Usado en
+                preflight CORS.
+              </p>
+              <span
+                class="badge-prop"
+                style="background: #2a2000; color: #eccc68"
+                >Safe: Sí</span
+              ><span
+                class="badge-prop"
+                style="background: #2a2000; color: #eccc68"
+                >Idempotente: Sí</span
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #888">CONNECT</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Establece un túnel TCP al servidor (usado por proxies HTTPS).
+              </p>
+              <span class="badge-prop" style="background: #222; color: #888"
+                >Safe: No</span
+              ><span class="badge-prop" style="background: #222; color: #888"
+                >Idempotente: No</span
+              >
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="method-card h-100">
+              <span class="method-name" style="color: #888">TRACE</span>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Realiza un loop-back de prueba para diagnóstico. Raramente
+                habilitado en producción.
+              </p>
+              <span class="badge-prop" style="background: #222; color: #888"
+                >Safe: Sí</span
+              ><span class="badge-prop" style="background: #222; color: #888"
+                >Idempotente: Sí</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="muted-note mt-4">
+          Safe = no modifica estado en el servidor. Idempotente = múltiples
+          requests idénticos tienen el mismo efecto que uno solo.
+        </div>
+      </div>
+    </section>
+
+    <section id="crud" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Mapping CRUD ↔ HTTP</h2>
+        <p class="mb-4">
+          Al diseñar APIs REST, las operaciones CRUD se mapean a métodos HTTP
+          sobre recursos identificados por URIs.
+        </p>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Operación CRUD</th>
+                <th>Método HTTP</th>
+                <th>URI ejemplo</th>
+                <th>Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Create</td>
+                <td><span style="color: #2ed573">POST</span></td>
+                <td><code>POST /api/productos</code></td>
+                <td>Crear nuevo producto</td>
+              </tr>
+              <tr>
+                <td>Read (colección)</td>
+                <td><span style="color: #00d4ff">GET</span></td>
+                <td><code>GET /api/productos</code></td>
+                <td>Listar todos los productos</td>
+              </tr>
+              <tr>
+                <td>Read (ítem)</td>
+                <td><span style="color: #00d4ff">GET</span></td>
+                <td><code>GET /api/productos/42</code></td>
+                <td>Obtener producto con id 42</td>
+              </tr>
+              <tr>
+                <td>Update (total)</td>
+                <td><span style="color: #ffa502">PUT</span></td>
+                <td><code>PUT /api/productos/42</code></td>
+                <td>Reemplazar producto 42 completo</td>
+              </tr>
+              <tr>
+                <td>Update (parcial)</td>
+                <td><span style="color: #ff6b81">PATCH</span></td>
+                <td><code>PATCH /api/productos/42</code></td>
+                <td>Modificar solo campos enviados</td>
+              </tr>
+              <tr>
+                <td>Delete</td>
+                <td><span style="color: #ff4757">DELETE</span></td>
+                <td><code>DELETE /api/productos/42</code></td>
+                <td>Eliminar producto 42</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h6 class="mt-4 mb-2" style="color: var(--muted)">
+          Ciclo CRUD completo en HTTP
+        </h6>
+        <pre><code class="language-http"># Crear
 POST /api/productos HTTP/1.1
 Content-Type: application/json
 {"nombre": "Teclado mecánico", "precio": 320000}
@@ -124,59 +569,367 @@ Content-Type: application/json
 
 # Eliminar
 DELETE /api/productos/7 HTTP/1.1</code></pre>
-  </div>
-</section>
+      </div>
+    </section>
 
-<section id="status">
-  <div class="container">
-    <h2 class="section-title">Códigos de Estado HTTP</h2>
-    <p class="mb-4">Los códigos de estado son números de 3 dígitos que el servidor incluye en cada respuesta para indicar el resultado de la petición. Se agrupan en cinco familias según el primer dígito.</p>
-    <div class="accordion" id="statusAccordion">
-      <div class="accordion-item mb-2">
-        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#s1xx">1xx <span class="badge ms-2" style="background:#555">Informativos</span></button></h2>
-        <div id="s1xx" class="accordion-collapse collapse" data-bs-parent="#statusAccordion">
-          <div class="accordion-body"><div class="table-wrap"><table class="posw-table"><thead><tr><th>Código</th><th>Nombre</th><th>Cuándo usarlo</th></tr></thead><tbody><tr><td>100</td><td>Continue</td><td>El servidor recibió los headers y el cliente puede continuar enviando el cuerpo</td></tr><tr><td>101</td><td>Switching Protocols</td><td>Usado al hacer upgrade a WebSockets</td></tr></tbody></table></div></div>
+    <section id="status">
+      <div class="container">
+        <h2 class="section-title">Códigos de Estado HTTP</h2>
+        <p class="mb-4">
+          Los códigos de estado son números de 3 dígitos que el servidor incluye
+          en cada respuesta para indicar el resultado de la petición. Se agrupan
+          en cinco familias según el primer dígito.
+        </p>
+        <div class="accordion" id="statusAccordion">
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#s1xx"
+              >
+                1xx
+                <span class="badge ms-2" style="background: #555"
+                  >Informativos</span
+                >
+              </button>
+            </h2>
+            <div
+              id="s1xx"
+              class="accordion-collapse collapse"
+              data-bs-parent="#statusAccordion"
+            >
+              <div class="accordion-body">
+                <div class="table-wrap">
+                  <table class="posw-table">
+                    <thead>
+                      <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Cuándo usarlo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>100</td>
+                        <td>Continue</td>
+                        <td>
+                          El servidor recibió los headers y el cliente puede
+                          continuar enviando el cuerpo
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>101</td>
+                        <td>Switching Protocols</td>
+                        <td>Usado al hacer upgrade a WebSockets</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#s2xx"
+              >
+                2xx
+                <span
+                  class="badge ms-2"
+                  style="background: #2ed573; color: #000"
+                  >Éxito</span
+                >
+              </button>
+            </h2>
+            <div
+              id="s2xx"
+              class="accordion-collapse collapse"
+              data-bs-parent="#statusAccordion"
+            >
+              <div class="accordion-body">
+                <div class="table-wrap">
+                  <table class="posw-table">
+                    <thead>
+                      <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Cuándo usarlo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>200</td>
+                        <td>OK</td>
+                        <td>Request exitosa (GET, PUT, PATCH exitosos)</td>
+                      </tr>
+                      <tr>
+                        <td>201</td>
+                        <td>Created</td>
+                        <td>Recurso creado exitosamente (POST exitoso)</td>
+                      </tr>
+                      <tr>
+                        <td>204</td>
+                        <td>No Content</td>
+                        <td>
+                          Éxito pero sin cuerpo de respuesta (DELETE exitoso)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>206</td>
+                        <td>Partial Content</td>
+                        <td>Respuesta parcial (streaming, rangos)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#s3xx"
+              >
+                3xx
+                <span
+                  class="badge ms-2"
+                  style="background: #ffa502; color: #000"
+                  >Redirecciones</span
+                >
+              </button>
+            </h2>
+            <div
+              id="s3xx"
+              class="accordion-collapse collapse"
+              data-bs-parent="#statusAccordion"
+            >
+              <div class="accordion-body">
+                <div class="table-wrap">
+                  <table class="posw-table">
+                    <thead>
+                      <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Cuándo usarlo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>301</td>
+                        <td>Moved Permanently</td>
+                        <td>
+                          El recurso se movió de forma permanente (SEO
+                          relevante)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>302</td>
+                        <td>Found</td>
+                        <td>Redirección temporal</td>
+                      </tr>
+                      <tr>
+                        <td>304</td>
+                        <td>Not Modified</td>
+                        <td>Cache del cliente aún es válido</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#s4xx"
+              >
+                4xx
+                <span class="badge ms-2" style="background: #ff4757"
+                  >Errores del Cliente</span
+                >
+              </button>
+            </h2>
+            <div
+              id="s4xx"
+              class="accordion-collapse collapse"
+              data-bs-parent="#statusAccordion"
+            >
+              <div class="accordion-body">
+                <div class="table-wrap">
+                  <table class="posw-table">
+                    <thead>
+                      <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Cuándo usarlo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>400</td>
+                        <td>Bad Request</td>
+                        <td>
+                          La petición está malformada o tiene datos inválidos
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>401</td>
+                        <td>Unauthorized</td>
+                        <td>Requiere autenticación (no enviaste token)</td>
+                      </tr>
+                      <tr>
+                        <td>403</td>
+                        <td>Forbidden</td>
+                        <td>Autenticado pero sin permiso para este recurso</td>
+                      </tr>
+                      <tr>
+                        <td>404</td>
+                        <td>Not Found</td>
+                        <td>El recurso no existe en esa URI</td>
+                      </tr>
+                      <tr>
+                        <td>405</td>
+                        <td>Method Not Allowed</td>
+                        <td>Método HTTP no soportado por ese endpoint</td>
+                      </tr>
+                      <tr>
+                        <td>409</td>
+                        <td>Conflict</td>
+                        <td>Conflicto de estado (ej. email duplicado)</td>
+                      </tr>
+                      <tr>
+                        <td>422</td>
+                        <td>Unprocessable Entity</td>
+                        <td>
+                          Datos válidos sintácticamente pero semánticamente
+                          incorrectos
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>429</td>
+                        <td>Too Many Requests</td>
+                        <td>Rate limiting: demasiadas peticiones</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                data-bs-toggle="collapse"
+                data-bs-target="#s5xx"
+              >
+                5xx
+                <span class="badge ms-2" style="background: #c0392b"
+                  >Errores del Servidor</span
+                >
+              </button>
+            </h2>
+            <div
+              id="s5xx"
+              class="accordion-collapse collapse"
+              data-bs-parent="#statusAccordion"
+            >
+              <div class="accordion-body">
+                <div class="table-wrap">
+                  <table class="posw-table">
+                    <thead>
+                      <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Cuándo usarlo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>500</td>
+                        <td>Internal Server Error</td>
+                        <td>Error genérico del servidor (bug no controlado)</td>
+                      </tr>
+                      <tr>
+                        <td>501</td>
+                        <td>Not Implemented</td>
+                        <td>
+                          El servidor no soporta la funcionalidad requerida
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>502</td>
+                        <td>Bad Gateway</td>
+                        <td>
+                          El servidor proxy recibió respuesta inválida del
+                          upstream
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>503</td>
+                        <td>Service Unavailable</td>
+                        <td>
+                          El servidor no puede atender (sobrecarga o
+                          mantenimiento)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>504</td>
+                        <td>Gateway Timeout</td>
+                        <td>El upstream no respondió a tiempo</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="accordion-item mb-2">
-        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#s2xx">2xx <span class="badge ms-2" style="background:#2ed573;color:#000">Éxito</span></button></h2>
-        <div id="s2xx" class="accordion-collapse collapse" data-bs-parent="#statusAccordion">
-          <div class="accordion-body"><div class="table-wrap"><table class="posw-table"><thead><tr><th>Código</th><th>Nombre</th><th>Cuándo usarlo</th></tr></thead><tbody><tr><td>200</td><td>OK</td><td>Request exitosa (GET, PUT, PATCH exitosos)</td></tr><tr><td>201</td><td>Created</td><td>Recurso creado exitosamente (POST exitoso)</td></tr><tr><td>204</td><td>No Content</td><td>Éxito pero sin cuerpo de respuesta (DELETE exitoso)</td></tr><tr><td>206</td><td>Partial Content</td><td>Respuesta parcial (streaming, rangos)</td></tr></tbody></table></div></div>
-        </div>
-      </div>
-      <div class="accordion-item mb-2">
-        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#s3xx">3xx <span class="badge ms-2" style="background:#ffa502;color:#000">Redirecciones</span></button></h2>
-        <div id="s3xx" class="accordion-collapse collapse" data-bs-parent="#statusAccordion">
-          <div class="accordion-body"><div class="table-wrap"><table class="posw-table"><thead><tr><th>Código</th><th>Nombre</th><th>Cuándo usarlo</th></tr></thead><tbody><tr><td>301</td><td>Moved Permanently</td><td>El recurso se movió de forma permanente (SEO relevante)</td></tr><tr><td>302</td><td>Found</td><td>Redirección temporal</td></tr><tr><td>304</td><td>Not Modified</td><td>Cache del cliente aún es válido</td></tr></tbody></table></div></div>
-        </div>
-      </div>
-      <div class="accordion-item mb-2">
-        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#s4xx">4xx <span class="badge ms-2" style="background:#ff4757">Errores del Cliente</span></button></h2>
-        <div id="s4xx" class="accordion-collapse collapse" data-bs-parent="#statusAccordion">
-          <div class="accordion-body"><div class="table-wrap"><table class="posw-table"><thead><tr><th>Código</th><th>Nombre</th><th>Cuándo usarlo</th></tr></thead><tbody><tr><td>400</td><td>Bad Request</td><td>La petición está malformada o tiene datos inválidos</td></tr><tr><td>401</td><td>Unauthorized</td><td>Requiere autenticación (no enviaste token)</td></tr><tr><td>403</td><td>Forbidden</td><td>Autenticado pero sin permiso para este recurso</td></tr><tr><td>404</td><td>Not Found</td><td>El recurso no existe en esa URI</td></tr><tr><td>405</td><td>Method Not Allowed</td><td>Método HTTP no soportado por ese endpoint</td></tr><tr><td>409</td><td>Conflict</td><td>Conflicto de estado (ej. email duplicado)</td></tr><tr><td>422</td><td>Unprocessable Entity</td><td>Datos válidos sintácticamente pero semánticamente incorrectos</td></tr><tr><td>429</td><td>Too Many Requests</td><td>Rate limiting: demasiadas peticiones</td></tr></tbody></table></div></div>
-        </div>
-      </div>
-      <div class="accordion-item mb-2">
-        <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#s5xx">5xx <span class="badge ms-2" style="background:#c0392b">Errores del Servidor</span></button></h2>
-        <div id="s5xx" class="accordion-collapse collapse" data-bs-parent="#statusAccordion">
-          <div class="accordion-body"><div class="table-wrap"><table class="posw-table"><thead><tr><th>Código</th><th>Nombre</th><th>Cuándo usarlo</th></tr></thead><tbody><tr><td>500</td><td>Internal Server Error</td><td>Error genérico del servidor (bug no controlado)</td></tr><tr><td>501</td><td>Not Implemented</td><td>El servidor no soporta la funcionalidad requerida</td></tr><tr><td>502</td><td>Bad Gateway</td><td>El servidor proxy recibió respuesta inválida del upstream</td></tr><tr><td>503</td><td>Service Unavailable</td><td>El servidor no puede atender (sobrecarga o mantenimiento)</td></tr><tr><td>504</td><td>Gateway Timeout</td><td>El upstream no respondió a tiempo</td></tr></tbody></table></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="ejemplos" class="section-alt">
-  <div class="container">
-    <h2 class="section-title">Respuestas HTTP completas — Ejemplos</h2>
-    <ul class="nav nav-tabs mb-3" id="respTabs">
-      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab201" style="color:var(--text)">201 Created</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab404" style="color:var(--text)">404 Not Found</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab422" style="color:var(--text)">422 Unprocessable Entity</button></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="tab201">
-        <pre><code class="language-http">HTTP/1.1 201 Created
+    <section id="ejemplos" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Respuestas HTTP completas — Ejemplos</h2>
+        <ul class="nav nav-tabs mb-3" id="respTabs">
+          <li class="nav-item">
+            <button
+              class="nav-link active"
+              data-bs-toggle="tab"
+              data-bs-target="#tab201"
+            >
+              201 Created
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              class="nav-link"
+              data-bs-toggle="tab"
+              data-bs-target="#tab404"
+            >
+              404 Not Found
+            </button>
+          </li>
+          <li class="nav-item">
+            <button
+              class="nav-link"
+              data-bs-toggle="tab"
+              data-bs-target="#tab422"
+            >
+              422 Unprocessable Entity
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="tab201">
+            <pre><code class="language-http">HTTP/1.1 201 Created
 Content-Type: application/json
 Location: /api/usuarios/99
 
@@ -186,9 +939,9 @@ Location: /api/usuarios/99
   "email": "carlos@ejemplo.com",
   "creado_en": "2025-09-01T10:30:00Z"
 }</code></pre>
-      </div>
-      <div class="tab-pane fade" id="tab404">
-        <pre><code class="language-http">HTTP/1.1 404 Not Found
+          </div>
+          <div class="tab-pane fade" id="tab404">
+            <pre><code class="language-http">HTTP/1.1 404 Not Found
 Content-Type: application/json
 
 {
@@ -196,9 +949,9 @@ Content-Type: application/json
   "mensaje": "El producto con id 999 no existe.",
   "timestamp": "2025-09-01T10:31:00Z"
 }</code></pre>
-      </div>
-      <div class="tab-pane fade" id="tab422">
-        <pre><code class="language-http">HTTP/1.1 422 Unprocessable Entity
+          </div>
+          <div class="tab-pane fade" id="tab422">
+            <pre><code class="language-http">HTTP/1.1 422 Unprocessable Entity
 Content-Type: application/json
 
 {
@@ -208,32 +961,66 @@ Content-Type: application/json
     "precio": "El precio debe ser mayor a 0."
   }
 }</code></pre>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section>
-  <div class="container">
-    <a href="tipos-servicios-web.html" class="nav-card"><i class="bi bi-shield-lock"></i><span style="flex:1">Siguiente: Tipos de Servicios Web</span><i class="bi bi-arrow-right-circle"></i></a>
-    <h2 class="section-title">Recursos</h2>
-    <a href="protocolos-seguridad.html" class="nav-card"><i class="bi bi-shield-lock"></i><span style="flex:1">Protocolos de Seguridad</span><i class="bi bi-arrow-right-circle"></i></a>
-    <a href="http-headers.html" class="nav-card"><i class="bi bi-code-square"></i><span style="flex:1">Headers HTTP</span><i class="bi bi-arrow-right-circle"></i></a>
-    <a href="apis.html" class="nav-card"><i class="bi bi-plug"></i><span style="flex:1">APIs</span><i class="bi bi-arrow-right-circle"></i></a>
-    <a href="rest-principios.html" class="nav-card"><i class="bi bi-layers"></i><span style="flex:1">Principios REST</span><i class="bi bi-arrow-right-circle"></i></a>
-  </div>
-</section>
+    <section>
+      <div class="container">
+        <a href="tipos-servicios-web.html" class="nav-card"
+          ><i class="bi bi-shield-lock"></i
+          ><span style="flex: 1">Siguiente: Tipos de Servicios Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos</h2>
+        <a href="protocolos-seguridad.html" class="nav-card"
+          ><i class="bi bi-shield-lock"></i
+          ><span style="flex: 1">Protocolos de Seguridad</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="http-headers.html" class="nav-card"
+          ><i class="bi bi-code-square"></i
+          ><span style="flex: 1">Headers HTTP</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="apis.html" class="nav-card"
+          ><i class="bi bi-plug"></i><span style="flex: 1">APIs</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="rest-principios.html" class="nav-card"
+          ><i class="bi bi-layers"></i
+          ><span style="flex: 1">Principios REST</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
 
-<footer class="site-footer">Programación Orientada a Sitios Web &middot; Material académico &middot; 2025</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script>
-hljs.highlightAll();
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}});
-});
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:0.1});
-document.querySelectorAll('.method-card').forEach(c=>obs.observe(c));
-</script>
-</body>
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const obs = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          }),
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".method-card").forEach((c) => obs.observe(c));
+    </script>
+  </body>
 </html>

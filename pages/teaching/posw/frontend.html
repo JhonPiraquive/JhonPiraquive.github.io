@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend: Tecnologías y Frameworks | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 24px 0;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .tech-card {
+        background: var(--bg);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 24px;
+        height: 100%;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .tech-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .tech-card:hover {
+        border-color: var(--accent);
+      }
+      .icon-orange {
+        color: #ff6b35;
+      }
+      .icon-blue {
+        color: #4fc3f7;
+      }
+      .icon-yellow {
+        color: #ffd54f;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#que-es">¿Qué es?</a>
+        <a href="#base">Tecnologías base</a>
+        <a href="#frameworks">Frameworks</a>
+        <a href="#elegir">Cómo elegir</a>
+        <a href="#ejemplos">Ejemplos</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 8</span>
+        <h1 class="hero-title">Frontend</h1>
+        <p class="hero-sub">
+          Todo lo que el usuario ve y con lo que interactúa: tecnologías,
+          frameworks y criterios de elección.
+        </p>
+        <a href="#que-es" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="que-es">
+      <div class="container">
+        <h2 class="section-title">¿Qué es el Frontend?</h2>
+        <p>
+          El frontend (también llamado client-side) es la capa de una aplicación
+          web que el usuario ve y con la que interactúa directamente en su
+          navegador. Incluye la estructura visual (HTML), el estilo (CSS) y el
+          comportamiento interactivo (JavaScript). El código frontend se ejecuta
+          en el dispositivo del usuario, no en el servidor.
+        </p>
+        <div class="ascii-block">
+          [ NAVEGADOR DEL USUARIO ] [ SERVIDOR ] ┌─────────────────────────┐
+          ┌──────────────────┐ │ HTML → Estructura │ │ Base de datos │ │ CSS →
+          Estilos │ ◄──── ► │ Lógica negocio │ │ JS → Interacción │ HTTP │
+          Archivos │ │ (React, Angular, Vue) │ │ (Node, Java...) │
+          └─────────────────────────┘ └──────────────────┘ FRONTEND BACKEND
+        </div>
+        <p class="mt-3"><strong>Responsabilidades del frontend:</strong></p>
+        <ul class="mt-2" style="color: var(--muted)">
+          <li>Renderizar la interfaz de usuario.</li>
+          <li>Consumir APIs del backend (fetch, axios).</li>
+          <li>
+            Manejar estado de la aplicación (formularios, sesión, carrito).
+          </li>
+          <li>Gestionar rutas del cliente (SPA routing).</li>
+          <li>Optimizar experiencia: rendimiento, accesibilidad, SEO.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="base" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Tecnologías Base</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <div class="tech-card h-100">
+              <i
+                class="bi bi-filetype-html icon-orange"
+                style="font-size: 2.5rem"
+              ></i>
+              <h5 class="mt-3">HTML5: el esqueleto</h5>
+              <p class="text-secondary">
+                Define la estructura semántica del contenido. Elementos clave:
+                <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>,
+                <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>,
+                <code>&lt;nav&gt;</code>, <code>&lt;figure&gt;</code>,
+                formularios, tablas. La semántica correcta impacta accesibilidad
+                y SEO.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="tech-card h-100">
+              <i
+                class="bi bi-filetype-css icon-blue"
+                style="font-size: 2.5rem"
+              ></i>
+              <h5 class="mt-3">CSS3: la apariencia</h5>
+              <p class="text-secondary">
+                Controla colores, tipografías, layouts (Flexbox, Grid),
+                animaciones y responsividad. Metodologías: BEM, SMACSS.
+                Preprocesadores: SASS/SCSS. CSS-in-JS: styled-components.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="tech-card h-100">
+              <i
+                class="bi bi-filetype-js icon-yellow"
+                style="font-size: 2.5rem"
+              ></i>
+              <h5 class="mt-3">JavaScript (ES2020+): el comportamiento</h5>
+              <p class="text-secondary">
+                Manipulación del DOM, eventos, fetch de datos, lógica de UI.
+                Tipado estático opcional con TypeScript. Ejecutado por el motor
+                V8 (Chrome) o SpiderMonkey (Firefox).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="frameworks">
+      <div class="container">
+        <h2 class="section-title">Frameworks y Librerías Populares</h2>
+        <div class="row g-4 mb-5">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-braces card-icon"></i>
+              <h5>React</h5>
+              <p style="color: var(--muted); font-size: 0.85rem">Meta, 2013</p>
+              <p class="text-secondary">
+                Librería para construir UIs mediante componentes reutilizables.
+                Usa JSX (HTML en JS). Virtual DOM para actualizaciones
+                eficientes. El más demandado en el mercado laboral. Ecosistema:
+                Next.js, Redux, React Query.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-hexagon card-icon"></i>
+              <h5>Angular</h5>
+              <p style="color: var(--muted); font-size: 0.85rem">
+                Google, 2016
+              </p>
+              <p class="text-secondary">
+                Framework completo con opiniones. TypeScript por defecto.
+                Arquitectura MVC con decoradores, módulos, servicios e inyección
+                de dependencias. Ideal para aplicaciones empresariales grandes.
+                Curva de aprendizaje alta.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-triangle card-icon"></i>
+              <h5>Vue.js</h5>
+              <p style="color: var(--muted); font-size: 0.85rem">
+                Evan You, 2014
+              </p>
+              <p class="text-secondary">
+                Framework progresivo: se puede adoptar incrementalmente.
+                Sintaxis de plantillas intuitiva. Composition API en Vue 3.
+                Menor curva de aprendizaje que Angular. Ecosistema: Nuxt.js,
+                Pinia.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-lightning card-icon"></i>
+              <h5>Svelte</h5>
+              <p style="color: var(--muted); font-size: 0.85rem">
+                Rich Harris, 2016
+              </p>
+              <p class="text-secondary">
+                Compila los componentes a JavaScript puro en build time (sin
+                runtime virtual DOM). Código más conciso. Rendimiento superior
+                en aplicaciones pequeñas/medianas. Ecosistema: SvelteKit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <h3 class="mb-3" style="color: var(--accent); font-size: 1.2rem">
+          Comparativa de popularidad (Stack Overflow Survey 2024)
+        </h3>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Framework</th>
+                <th>% Uso</th>
+                <th>Empresa origen</th>
+                <th>Mejor para</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>React</td>
+                <td>40.6%</td>
+                <td>Meta</td>
+                <td>SPAs, startups, apps complejas</td>
+              </tr>
+              <tr>
+                <td>Angular</td>
+                <td>17.1%</td>
+                <td>Google</td>
+                <td>Enterprise, proyectos corporativos</td>
+              </tr>
+              <tr>
+                <td>Vue.js</td>
+                <td>15.4%</td>
+                <td>Comunidad</td>
+                <td>Proyectos medianos, curva baja</td>
+              </tr>
+              <tr>
+                <td>Svelte</td>
+                <td>6.5%</td>
+                <td>Comunidad</td>
+                <td>Apps de alto rendimiento</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="elegir" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">¿Cómo elegir un Framework?</h2>
+        <div class="ascii-block">
+          ¿Proyecto grande con equipo grande? ├── Sí → ¿Experiencia previa en
+          TS/Java? │ ├── Sí → Angular │ └── No → React (+ TypeScript) └── No →
+          ¿Quieres aprender rápido? ├── Sí → Vue.js o Svelte └── No → React
+          (mayor demanda laboral) ¿Necesitas SSR / SEO? ├── React → Next.js ├──
+          Vue → Nuxt.js └── Svelte → SvelteKit
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>Peso</th>
+                <th>React</th>
+                <th>Angular</th>
+                <th>Vue</th>
+                <th>Svelte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Demanda laboral</td>
+                <td>Alta</td>
+                <td>★★★★★</td>
+                <td>★★★★</td>
+                <td>★★★</td>
+                <td>★★</td>
+              </tr>
+              <tr>
+                <td>Curva aprendizaje</td>
+                <td>Media</td>
+                <td>Baja</td>
+                <td>Alta</td>
+                <td>Muy baja</td>
+                <td>Baja</td>
+              </tr>
+              <tr>
+                <td>Rendimiento</td>
+                <td>Media</td>
+                <td>Bueno</td>
+                <td>Bueno</td>
+                <td>Bueno</td>
+                <td>Excelente</td>
+              </tr>
+              <tr>
+                <td>Ecosistema</td>
+                <td>Alta</td>
+                <td>Enorme</td>
+                <td>Grande</td>
+                <td>Sólido</td>
+                <td>Creciente</td>
+              </tr>
+              <tr>
+                <td>TypeScript</td>
+                <td>Alta</td>
+                <td>Opcional</td>
+                <td>Nativo</td>
+                <td>Opcional</td>
+                <td>Opcional</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="ejemplos">
+      <div class="container">
+        <h2 class="section-title">
+          Ejemplo: Componente de Tarjeta de Producto
+        </h2>
+        <ul class="nav nav-tabs mb-4" id="frameworkTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="react-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#react-pane"
+              type="button"
+              role="tab"
+              style="color: var(--muted)"
+            >
+              React (JSX)
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="angular-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#angular-pane"
+              type="button"
+              role="tab"
+              style="color: var(--muted)"
+            >
+              Angular
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="vue-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#vue-pane"
+              type="button"
+              role="tab"
+              style="color: var(--muted)"
+            >
+              Vue 3
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div
+            class="tab-pane fade show active"
+            id="react-pane"
+            role="tabpanel"
+          >
+            <pre><code class="language-jsx">function TarjetaProducto({ nombre, precio, imagen }) {
+  return (
+    &lt;div className="tarjeta"&gt;
+      &lt;img src={imagen} alt={nombre} /&gt;
+      &lt;h3&gt;{nombre}&lt;/h3&gt;
+      &lt;p className="precio"&gt;${precio.toLocaleString('es-CO')}&lt;/p&gt;
+      &lt;button onClick={() =&gt; agregarAlCarrito(nombre)}&gt;
+        Agregar al carrito
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+          </div>
+          <div class="tab-pane fade" id="angular-pane" role="tabpanel">
+            <pre><code class="language-typescript">@Component({
+  selector: 'app-tarjeta-producto',
+  template: `
+    &lt;div class="tarjeta"&gt;
+      &lt;img [src]="imagen" [alt]="nombre"&gt;
+      &lt;h3&gt;{{ nombre }}&lt;/h3&gt;
+      &lt;p class="precio"&gt;{{ precio | currency:'COP' }}&lt;/p&gt;
+      &lt;button (click)="agregarAlCarrito()"&gt;Agregar al carrito&lt;/button&gt;
+    &lt;/div&gt;
+  `
+})
+export class TarjetaProductoComponent {
+  @Input() nombre: string = '';
+  @Input() precio: number = 0;
+  @Input() imagen: string = '';
+
+  agregarAlCarrito() {
+    console.log(`Agregando ${this.nombre}`);
+  }
+}</code></pre>
+          </div>
+          <div class="tab-pane fade" id="vue-pane" role="tabpanel">
+            <pre><code class="language-html">&lt;template&gt;
+  &lt;div class="tarjeta"&gt;
+    &lt;img :src="imagen" :alt="nombre" /&gt;
+    &lt;h3&gt;{{ nombre }}&lt;/h3&gt;
+    &lt;p class="precio"&gt;{{ formatPrecio(precio) }}&lt;/p&gt;
+    &lt;button @click="agregarAlCarrito"&gt;Agregar al carrito&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+const props = defineProps({ nombre: String, precio: Number, imagen: String });
+const formatPrecio = (p) =&gt; p.toLocaleString('es-CO');
+const agregarAlCarrito = () =&gt; console.log(`Agregando ${props.nombre}`);
+&lt;/script&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <a href="backend.html" class="nav-card"
+          ><i class="bi bi-server"></i
+          ><span style="flex: 1">Siguiente: Backend: Tecnologías y Frameworks</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="angular.html" class="nav-card"
+          ><i class="bi bi-hexagon"></i
+          ><span style="flex: 1">Angular: Fundamentos</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="react.html" class="nav-card"
+          ><i class="bi bi-braces"></i
+          ><span style="flex: 1">React: Fundamentos</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="typescript.html" class="nav-card"
+          ><i class="bi bi-code-slash"></i
+          ><span style="flex: 1">TypeScript</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="modelo-cliente-servidor.html" class="nav-card"
+          ><i class="bi bi-diagram-2"></i
+          ><span style="flex: 1">Modelo Cliente-Servidor</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo,.tech-card")
+        .forEach((c) => observer.observe(c));
+      document.querySelectorAll(".nav-link").forEach((btn) => {
+        btn.addEventListener("shown.bs.tab", () => {
+          hljs.highlightAll();
+        });
+      });
+    </script>
+  </body>
+</html>

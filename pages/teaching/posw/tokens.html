@@ -1,186 +1,709 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tokens de Autenticación | POSW</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-<style>
-:root{--bg:#0d0d0d;--surface:#141414;--accent:#00d4ff;--accent2:#7b5ea7;--text:#e0e0e0;--muted:#888}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;line-height:1.7}
-h1,h2,h3,h4,h5{font-family:'Raleway',sans-serif}
-a{color:var(--accent);text-decoration:none}a:hover{color:#fff}
-.site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--accent);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent)}
-.logo span{color:var(--muted);font-size:.85rem;font-weight:400;margin-left:10px;font-family:'Poppins',sans-serif}
-.site-nav a{color:var(--muted);font-size:.85rem;margin-left:18px;transition:color .2s}.site-nav a:hover{color:var(--accent)}
-#hero{min-height:60vh;background:linear-gradient(135deg,var(--bg),var(--surface));display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px}
-.hero-inner{max-width:700px}
-.badge-tema{background:var(--accent2);color:#fff;padding:4px 14px;border-radius:999px;font-size:.8rem;display:inline-block;margin-bottom:20px}
-.hero-title{font-size:3.5rem;color:var(--accent);animation:fadeInUp .6s ease both}
-.hero-sub{color:var(--muted);max-width:600px;margin:16px auto 28px}
-.btn-cta{background:var(--accent);color:var(--bg)!important;border:none;border-radius:999px;padding:12px 32px;font-weight:600;cursor:pointer;transition:transform .2s;display:inline-block}.btn-cta:hover{transform:scale(1.04)}
-section{padding:80px 0}.section-alt{background:var(--surface)}
-.section-title{font-size:1.8rem;color:var(--text);border-left:4px solid var(--accent);padding-left:16px;margin-bottom:32px}
-.card-g{background:var(--surface);border:1px solid #222;border-radius:12px;padding:24px;transition:transform .25s,border-color .25s}.card-g:hover{transform:translateY(-5px);border-color:var(--accent)}
-.card-anim{opacity:0;transform:translateY(30px);transition:opacity .5s ease,transform .5s ease}.card-anim.visible{opacity:1;transform:translateY(0)}
-.posw-table{border-collapse:collapse;width:100%;background:var(--surface)}.posw-table th{background:var(--accent2);color:#fff;padding:12px 16px;text-align:left}.posw-table td{padding:12px 16px;border-bottom:1px solid #2a2a2a}.posw-table tr:nth-child(even) td{background:#1a1a1a}
-.table-wrap{overflow-x:auto;margin:16px 0}
-.ascii-block{background:#0d1117;padding:20px;border-radius:8px;font-family:monospace;color:var(--accent);overflow-x:auto;white-space:pre;font-size:.85rem;margin:20px 0;line-height:1.5}
-.info-card{background:var(--surface);border-left:4px solid var(--accent2);padding:20px;border-radius:8px;margin:16px 0}
-.danger-card{background:#1a0a0a;border-left:4px solid #ff4757;padding:16px;border-radius:8px;margin:12px 0}
-.feat-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}.feat-item i{margin-top:4px;flex-shrink:0}
-.nav-card{background:var(--surface);border:1px solid #333;border-radius:8px;padding:16px 24px;display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text);transition:border-color .2s;margin-bottom:12px}.nav-card:hover{border-color:var(--accent);color:var(--text)}.nav-card i{font-size:1.4rem;color:var(--accent)}
-.code-label{color:var(--muted);font-size:.85rem;margin-bottom:6px;margin-top:16px}
-/* JWT visual */
-.jwt-block{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-.jwt-part{padding:16px;border-radius:8px;font-family:monospace;font-size:.85rem;flex:1;min-width:200px}
-.jwt-header{background:#2d0000;border:1px solid #ff4757}
-.jwt-payload{background:#1a0030;border:1px solid var(--accent2)}
-.jwt-sig{background:#001a2d;border:1px solid var(--accent)}
-.jwt-label{font-weight:700;margin-bottom:8px;font-size:.8rem}
-.site-footer{background:var(--surface);border-top:1px solid #222;padding:24px;text-align:center;color:var(--muted);font-size:.85rem}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.hero-title{font-size:2.4rem}}
-</style>
-</head>
-<body>
-<header class="site-header">
-  <span class="logo"><a href="servicios-web.html">POSW</a> <span>Programación Orientada a Sitios Web</span></span>
-  <nav class="site-nav"><a href="#jwt">JWT</a><a href="#oauth">OAuth 2.0</a><a href="#apikey">API Key</a><a href="#sesiones">Sesiones</a><a href="#comparativa">Comparativa</a></nav>
-</header>
-<section id="hero"><div class="hero-inner">
-  <span class="badge-tema">Tema 7</span>
-  <h1 class="hero-title">Tokens y Autenticación</h1>
-  <p class="hero-sub">JWT, OAuth 2.0, API Keys y sesiones: cómo los servicios web verifican identidades.</p>
-  <a href="#jwt" class="btn-cta">Explorar</a>
-</div></section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tokens de Autenticación | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-cta {
+        background: var(--accent);
+        color: var(--bg) !important;
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+        display: inline-block;
+      }
+      .btn-cta:hover {
+        transform: scale(1.04);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-g {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 24px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+      }
+      .card-g:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+      }
+      .card-anim {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .card-anim.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 16px 0;
+      }
+      .ascii-block {
+        background: #0d1117;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.85rem;
+        margin: 20px 0;
+        line-height: 1.5;
+      }
+      .info-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 16px 0;
+      }
+      .danger-card {
+        background: #1a0a0a;
+        border-left: 4px solid #ff4757;
+        padding: 16px;
+        border-radius: 8px;
+        margin: 12px 0;
+      }
+      .feat-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .feat-item i {
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .code-label {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+        margin-top: 16px;
+      }
+      /* JWT visual */
+      .jwt-block {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 20px 0;
+      }
+      .jwt-part {
+        padding: 16px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 0.85rem;
+        flex: 1;
+        min-width: 200px;
+      }
+      .jwt-header {
+        background: #2d0000;
+        border: 1px solid #ff4757;
+      }
+      .jwt-payload {
+        background: #1a0030;
+        border: 1px solid var(--accent2);
+      }
+      .jwt-sig {
+        background: #001a2d;
+        border: 1px solid var(--accent);
+      }
+      .jwt-label {
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-size: 0.8rem;
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <span class="logo"
+        ><a href="servicios-web.html">POSW</a>
+        <span>Programación Orientada a Sitios Web</span></span
+      >
+      <nav class="site-nav">
+        <a href="#jwt">JWT</a><a href="#oauth">OAuth 2.0</a
+        ><a href="#apikey">API Key</a><a href="#sesiones">Sesiones</a
+        ><a href="#comparativa">Comparativa</a>
+      </nav>
+    </header>
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 7</span>
+        <h1 class="hero-title">Tokens y Autenticación</h1>
+        <p class="hero-sub">
+          JWT, OAuth 2.0, API Keys y sesiones: cómo los servicios web verifican
+          identidades.
+        </p>
+        <a href="#jwt" class="btn-cta">Explorar</a>
+      </div>
+    </section>
 
-<section id="jwt"><div class="container">
-<h2 class="section-title">JWT — JSON Web Token</h2>
-<p>JWT (RFC 7519) es un estándar para transmitir afirmaciones (claims) entre dos partes de forma segura y compacta. Un JWT es una cadena codificada en Base64URL dividida en tres partes por puntos: <code>header.payload.signature</code>. No requiere almacenamiento en el servidor (stateless).</p>
-<div class="jwt-block">
-  <div class="jwt-part jwt-header">
-    <div class="jwt-label" style="color:#ff4757">HEADER</div>
-    <pre style="background:transparent;padding:0;color:#e0e0e0;font-size:.82rem">{"alg": "HS256","typ": "JWT"}</pre>
-  </div>
-  <div class="jwt-part jwt-payload">
-    <div class="jwt-label" style="color:var(--accent2)">PAYLOAD</div>
-    <pre style="background:transparent;padding:0;color:#e0e0e0;font-size:.82rem">{"sub": "99","nombre": "Ana García","rol": "admin","iat": 1725177600,"exp": 1725264000}</pre>
-  </div>
-  <div class="jwt-part jwt-sig">
-    <div class="jwt-label" style="color:var(--accent)">SIGNATURE</div>
-    <pre style="background:transparent;padding:0;color:#e0e0e0;font-size:.82rem">HMACSHA256(
+    <section id="jwt">
+      <div class="container">
+        <h2 class="section-title">JWT — JSON Web Token</h2>
+        <p>
+          JWT (RFC 7519) es un estándar para transmitir afirmaciones (claims)
+          entre dos partes de forma segura y compacta. Un JWT es una cadena
+          codificada en Base64URL dividida en tres partes por puntos:
+          <code>header.payload.signature</code>. No requiere almacenamiento en
+          el servidor (stateless).
+        </p>
+        <div class="jwt-block">
+          <div class="jwt-part jwt-header">
+            <div class="jwt-label" style="color: #ff4757">HEADER</div>
+            <pre
+              style="
+                background: transparent;
+                padding: 0;
+                color: #e0e0e0;
+                font-size: 0.82rem;
+              "
+            >
+{"alg": "HS256","typ": "JWT"}</pre
+            >
+          </div>
+          <div class="jwt-part jwt-payload">
+            <div class="jwt-label" style="color: var(--accent2)">PAYLOAD</div>
+            <pre
+              style="
+                background: transparent;
+                padding: 0;
+                color: #e0e0e0;
+                font-size: 0.82rem;
+              "
+            >
+{"sub": "99","nombre": "Ana García","rol": "admin","iat": 1725177600,"exp": 1725264000}</pre
+            >
+          </div>
+          <div class="jwt-part jwt-sig">
+            <div class="jwt-label" style="color: var(--accent)">SIGNATURE</div>
+            <pre
+              style="
+                background: transparent;
+                padding: 0;
+                color: #e0e0e0;
+                font-size: 0.82rem;
+              "
+            >
+HMACSHA256(
   base64UrlEncode(header) + "." +
   base64UrlEncode(payload),
   SECRET_KEY
-)</pre>
-  </div>
-</div>
-<div class="code-label">Token JWT real (truncado)</div>
-<pre><code class="language-text">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+)</pre
+            >
+          </div>
+        </div>
+        <div class="code-label">Token JWT real (truncado)</div>
+        <pre><code class="language-text">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 .eyJzdWIiOiI5OSIsIm5vbWJyZSI6IkFuYSBHYXJjw61hIiwicm9sIjoiYWRtaW4ifQ
 .dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk</code></pre>
-<div class="ascii-block">[Cliente]                    [Servidor]
-   │                              │
-   │── POST /login ───────────────►│
-   │   {email, password}          │
-   │                              │ Valida credenciales
-   │◄── 200 OK {token: "eyJ..."} ──│ Firma JWT
-   │                              │
-   │── GET /api/perfil ───────────►│
-   │   Authorization: Bearer eyJ. │
-   │                              │ Verifica firma
-   │◄── 200 OK {datos usuario} ───│ Sin consulta a DB</div>
-<p class="mt-3">Claims importantes: <code>sub</code> (subject/usuario), <code>iat</code> (issued at), <code>exp</code> (expiration), <code>iss</code> (issuer), <code>aud</code> (audience).</p>
-<div class="danger-card mt-3"><i class="bi bi-exclamation-triangle-fill" style="color:#ff4757"></i> <strong>Advertencia:</strong> El payload de un JWT NO está cifrado, solo codificado en Base64URL. Cualquier persona puede decodificarlo. Nunca almacenes datos sensibles (contraseñas, datos de tarjeta) en el payload.</div>
-<p class="mt-3" style="color:var(--muted)">El <code>access_token</code> expira rápido (15min-1h). El <code>refresh_token</code> dura más (7-30 días) y permite obtener un nuevo access token sin re-loguearse.</p>
-</div></section>
+        <div class="ascii-block">
+          [Cliente] [Servidor] │ │ │── POST /login ───────────────►│ │ {email,
+          password} │ │ │ Valida credenciales │◄── 200 OK {token: "eyJ..."} ──│
+          Firma JWT │ │ │── GET /api/perfil ───────────►│ │ Authorization:
+          Bearer eyJ. │ │ │ Verifica firma │◄── 200 OK {datos usuario} ───│ Sin
+          consulta a DB
+        </div>
+        <p class="mt-3">
+          Claims importantes: <code>sub</code> (subject/usuario),
+          <code>iat</code> (issued at), <code>exp</code> (expiration),
+          <code>iss</code> (issuer), <code>aud</code> (audience).
+        </p>
+        <div class="danger-card mt-3">
+          <i class="bi bi-exclamation-triangle-fill" style="color: #ff4757"></i>
+          <strong>Advertencia:</strong> El payload de un JWT NO está cifrado,
+          solo codificado en Base64URL. Cualquier persona puede decodificarlo.
+          Nunca almacenes datos sensibles (contraseñas, datos de tarjeta) en el
+          payload.
+        </div>
+        <p class="mt-3" style="color: var(--muted)">
+          El <code>access_token</code> expira rápido (15min-1h). El
+          <code>refresh_token</code> dura más (7-30 días) y permite obtener un
+          nuevo access token sin re-loguearse.
+        </p>
+      </div>
+    </section>
 
-<section id="oauth" class="section-alt"><div class="container">
-<h2 class="section-title">OAuth 2.0</h2>
-<p>OAuth 2.0 (RFC 6749) es un framework de autorización (no autenticación) que permite que una aplicación de terceros acceda a recursos de un usuario en otro servicio, sin que el usuario comparta sus credenciales con el tercero.</p>
-<div class="info-card"><strong>Analogía:</strong> Es como darle a un aparcacoches la llave de valet de tu coche. Puede mover el coche (acceso limitado), pero no puede abrir la guantera (acceso restringido). Y tú decides cuándo revocar esa llave.</div>
-<div class="row g-3 mt-3 mb-4">
-<div class="col-6 col-md-3 card-anim"><div class="card-g text-center h-100"><i class="bi bi-person" style="color:var(--accent);font-size:1.5rem"></i><h6 class="mt-2">Resource Owner</h6><p style="color:var(--muted);font-size:.85rem">El usuario dueño de los datos.</p></div></div>
-<div class="col-6 col-md-3 card-anim"><div class="card-g text-center h-100"><i class="bi bi-app" style="color:var(--accent);font-size:1.5rem"></i><h6 class="mt-2">Client</h6><p style="color:var(--muted);font-size:.85rem">La aplicación que quiere acceder.</p></div></div>
-<div class="col-6 col-md-3 card-anim"><div class="card-g text-center h-100"><i class="bi bi-server" style="color:var(--accent2);font-size:1.5rem"></i><h6 class="mt-2">Authorization Server</h6><p style="color:var(--muted);font-size:.85rem">Emite tokens (ej. Google, GitHub).</p></div></div>
-<div class="col-6 col-md-3 card-anim"><div class="card-g text-center h-100"><i class="bi bi-database" style="color:#2ed573;font-size:1.5rem"></i><h6 class="mt-2">Resource Server</h6><p style="color:var(--muted);font-size:.85rem">Protege y sirve los recursos.</p></div></div>
-</div>
-<p>Scopes: los scopes limitan qué puede hacer el token. Ejemplo: <code>read:email</code>, <code>write:repos</code>, <code>openid</code>.</p>
-<p class="mt-2">OpenID Connect (OIDC): capa de identidad sobre OAuth 2.0 que agrega el <code>id_token</code> y el endpoint <code>/userinfo</code>.</p>
-</div></section>
+    <section id="oauth" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">OAuth 2.0</h2>
+        <p>
+          OAuth 2.0 (RFC 6749) es un framework de autorización (no
+          autenticación) que permite que una aplicación de terceros acceda a
+          recursos de un usuario en otro servicio, sin que el usuario comparta
+          sus credenciales con el tercero.
+        </p>
+        <div class="info-card">
+          <strong>Analogía:</strong> Es como darle a un aparcacoches la llave de
+          valet de tu coche. Puede mover el coche (acceso limitado), pero no
+          puede abrir la guantera (acceso restringido). Y tú decides cuándo
+          revocar esa llave.
+        </div>
+        <div class="row g-3 mt-3 mb-4">
+          <div class="col-6 col-md-3 card-anim">
+            <div class="card-g text-center h-100">
+              <i
+                class="bi bi-person"
+                style="color: var(--accent); font-size: 1.5rem"
+              ></i>
+              <h6 class="mt-2">Resource Owner</h6>
+              <p style="color: var(--muted); font-size: 0.85rem">
+                El usuario dueño de los datos.
+              </p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 card-anim">
+            <div class="card-g text-center h-100">
+              <i
+                class="bi bi-app"
+                style="color: var(--accent); font-size: 1.5rem"
+              ></i>
+              <h6 class="mt-2">Client</h6>
+              <p style="color: var(--muted); font-size: 0.85rem">
+                La aplicación que quiere acceder.
+              </p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 card-anim">
+            <div class="card-g text-center h-100">
+              <i
+                class="bi bi-server"
+                style="color: var(--accent2); font-size: 1.5rem"
+              ></i>
+              <h6 class="mt-2">Authorization Server</h6>
+              <p style="color: var(--muted); font-size: 0.85rem">
+                Emite tokens (ej. Google, GitHub).
+              </p>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 card-anim">
+            <div class="card-g text-center h-100">
+              <i
+                class="bi bi-database"
+                style="color: #2ed573; font-size: 1.5rem"
+              ></i>
+              <h6 class="mt-2">Resource Server</h6>
+              <p style="color: var(--muted); font-size: 0.85rem">
+                Protege y sirve los recursos.
+              </p>
+            </div>
+          </div>
+        </div>
+        <p>
+          Scopes: los scopes limitan qué puede hacer el token. Ejemplo:
+          <code>read:email</code>, <code>write:repos</code>,
+          <code>openid</code>.
+        </p>
+        <p class="mt-2">
+          OpenID Connect (OIDC): capa de identidad sobre OAuth 2.0 que agrega el
+          <code>id_token</code> y el endpoint <code>/userinfo</code>.
+        </p>
+      </div>
+    </section>
 
-<section id="apikey"><div class="container">
-<h2 class="section-title">API Key</h2>
-<p>Una API Key es una cadena de caracteres única que identifica a una aplicación (no a un usuario). Se genera en el portal del proveedor y se envía en cada request como header o query param.</p>
-<div class="code-label">Formas de envío</div>
-<pre><code class="language-bash"># Como header (recomendado)
+    <section id="apikey">
+      <div class="container">
+        <h2 class="section-title">API Key</h2>
+        <p>
+          Una API Key es una cadena de caracteres única que identifica a una
+          aplicación (no a un usuario). Se genera en el portal del proveedor y
+          se envía en cada request como header o query param.
+        </p>
+        <div class="code-label">Formas de envío</div>
+        <pre><code class="language-bash"># Como header (recomendado)
 curl -H "X-API-Key: sk_live_abc123XYZ" \
      https://api.ejemplo.com/datos
 
 # Como query parameter (menos seguro, queda en logs)
 curl "https://api.ejemplo.com/datos?api_key=sk_live_abc123XYZ"</code></pre>
-<p class="mt-3">Casos de uso: acceso de servidor a servidor, acceso a APIs públicas con cuota (OpenWeatherMap, Google Maps).</p>
-<div class="feat-item mt-3"><i class="bi bi-x-circle" style="color:#ff4757"></i><span>No identifica al usuario, solo a la aplicación.</span></div>
-<div class="feat-item"><i class="bi bi-x-circle" style="color:#ff4757"></i><span>Sin expiración nativa (hay que rotar manualmente).</span></div>
-<div class="feat-item"><i class="bi bi-x-circle" style="color:#ff4757"></i><span>Si se filtra, hay que revocar y regenerar.</span></div>
-<div class="info-card mt-3">Recomendación: prefijar por entorno (<code>sk_live_</code> para producción, <code>sk_test_</code> para desarrollo), como hace Stripe.</div>
-</div></section>
+        <p class="mt-3">
+          Casos de uso: acceso de servidor a servidor, acceso a APIs públicas
+          con cuota (OpenWeatherMap, Google Maps).
+        </p>
+        <div class="feat-item mt-3">
+          <i class="bi bi-x-circle" style="color: #ff4757"></i
+          ><span>No identifica al usuario, solo a la aplicación.</span>
+        </div>
+        <div class="feat-item">
+          <i class="bi bi-x-circle" style="color: #ff4757"></i
+          ><span>Sin expiración nativa (hay que rotar manualmente).</span>
+        </div>
+        <div class="feat-item">
+          <i class="bi bi-x-circle" style="color: #ff4757"></i
+          ><span>Si se filtra, hay que revocar y regenerar.</span>
+        </div>
+        <div class="info-card mt-3">
+          Recomendación: prefijar por entorno (<code>sk_live_</code> para
+          producción, <code>sk_test_</code> para desarrollo), como hace Stripe.
+        </div>
+      </div>
+    </section>
 
-<section id="sesiones" class="section-alt"><div class="container">
-<h2 class="section-title">Autenticación por Sesión (Cookies)</h2>
-<p>El modelo de sesión es el mecanismo tradicional de la web. El servidor crea un registro de sesión en memoria o base de datos, genera un <code>session_id</code> y lo envía al cliente en una cookie. En cada request, el navegador envía la cookie automáticamente.</p>
-<div class="ascii-block">[Navegador]                   [Servidor]              [Session Store]
-     │                             │                        │
-     │── POST /login ─────────────►│                        │
-     │   {email, password}         │                        │
-     │                             │── Guardar sesión ─────►│
-     │                             │   session_id: "abc123" │
-     │◄── Set-Cookie: sid=abc123 ──│                        │
-     │                             │                        │
-     │── GET /perfil ─────────────►│                        │
-     │   Cookie: sid=abc123        │── Buscar sesión ──────►│
-     │                             │◄── {userId: 99} ───────│
-     │◄── 200 OK {datos} ──────────│                        │</div>
-<div class="table-wrap mt-3">
-<table class="posw-table"><thead><tr><th>Aspecto</th><th>Sesión</th><th>JWT</th></tr></thead>
-<tbody>
-<tr><td>Estado en servidor</td><td>Sí (stateful)</td><td>No (stateless)</td></tr>
-<tr><td>Escalabilidad</td><td>Requiere sesión compartida</td><td>Escala fácilmente</td></tr>
-<tr><td>Revocación</td><td>Inmediata (borra la sesión)</td><td>Difícil antes de expirar</td></tr>
-<tr><td>Tamaño</td><td>Solo el session_id (pequeño)</td><td>El token completo (mayor)</td></tr>
-<tr><td>Uso típico</td><td>Apps web tradicionales</td><td>APIs, mobile, microservicios</td></tr>
-</tbody></table>
-</div>
-</div></section>
+    <section id="sesiones" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Autenticación por Sesión (Cookies)</h2>
+        <p>
+          El modelo de sesión es el mecanismo tradicional de la web. El servidor
+          crea un registro de sesión en memoria o base de datos, genera un
+          <code>session_id</code> y lo envía al cliente en una cookie. En cada
+          request, el navegador envía la cookie automáticamente.
+        </p>
+        <div class="ascii-block">
+          [Navegador] [Servidor] [Session Store] │ │ │ │── POST /login
+          ─────────────►│ │ │ {email, password} │ │ │ │── Guardar sesión ─────►│
+          │ │ session_id: "abc123" │ │◄── Set-Cookie: sid=abc123 ──│ │ │ │ │ │──
+          GET /perfil ─────────────►│ │ │ Cookie: sid=abc123 │── Buscar sesión
+          ──────►│ │ │◄── {userId: 99} ───────│ │◄── 200 OK {datos} ──────────│
+          │
+        </div>
+        <div class="table-wrap mt-3">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>Sesión</th>
+                <th>JWT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Estado en servidor</td>
+                <td>Sí (stateful)</td>
+                <td>No (stateless)</td>
+              </tr>
+              <tr>
+                <td>Escalabilidad</td>
+                <td>Requiere sesión compartida</td>
+                <td>Escala fácilmente</td>
+              </tr>
+              <tr>
+                <td>Revocación</td>
+                <td>Inmediata (borra la sesión)</td>
+                <td>Difícil antes de expirar</td>
+              </tr>
+              <tr>
+                <td>Tamaño</td>
+                <td>Solo el session_id (pequeño)</td>
+                <td>El token completo (mayor)</td>
+              </tr>
+              <tr>
+                <td>Uso típico</td>
+                <td>Apps web tradicionales</td>
+                <td>APIs, mobile, microservicios</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-<section id="comparativa"><div class="container">
-<h2 class="section-title">¿Cuándo usar cada mecanismo?</h2>
-<div class="table-wrap">
-<table class="posw-table"><thead><tr><th>Mecanismo</th><th>Identifica</th><th>Stateless</th><th>Revocación</th><th>Mejor para</th></tr></thead>
-<tbody>
-<tr><td>JWT</td><td>Usuario</td><td>Sí</td><td>Difícil</td><td>APIs REST, microservicios, mobile</td></tr>
-<tr><td>OAuth 2.0</td><td>App + Usuario</td><td>Sí</td><td>Moderada</td><td>Login social, acceso delegado</td></tr>
-<tr><td>API Key</td><td>Aplicación</td><td>Sí</td><td>Manual</td><td>APIs públicas, server-to-server</td></tr>
-<tr><td>Sesión</td><td>Usuario</td><td>No</td><td>Inmediata</td><td>Apps web tradicionales con SSR</td></tr>
-</tbody></table>
-</div>
-<div class="info-card mt-4"><strong>Regla de decisión:</strong> ¿Construyes una API consumida por mobile/SPA? → JWT. ¿Necesitas 'Login con Google/GitHub'? → OAuth 2.0 + OIDC. ¿API de servidor a servidor con cuota? → API Key. ¿App web clásica con servidor que renderiza HTML? → Sesión + cookie.</div>
-</div></section>
+    <section id="comparativa">
+      <div class="container">
+        <h2 class="section-title">¿Cuándo usar cada mecanismo?</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Mecanismo</th>
+                <th>Identifica</th>
+                <th>Stateless</th>
+                <th>Revocación</th>
+                <th>Mejor para</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>JWT</td>
+                <td>Usuario</td>
+                <td>Sí</td>
+                <td>Difícil</td>
+                <td>APIs REST, microservicios, mobile</td>
+              </tr>
+              <tr>
+                <td>OAuth 2.0</td>
+                <td>App + Usuario</td>
+                <td>Sí</td>
+                <td>Moderada</td>
+                <td>Login social, acceso delegado</td>
+              </tr>
+              <tr>
+                <td>API Key</td>
+                <td>Aplicación</td>
+                <td>Sí</td>
+                <td>Manual</td>
+                <td>APIs públicas, server-to-server</td>
+              </tr>
+              <tr>
+                <td>Sesión</td>
+                <td>Usuario</td>
+                <td>No</td>
+                <td>Inmediata</td>
+                <td>Apps web tradicionales con SSR</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-card mt-4">
+          <strong>Regla de decisión:</strong> ¿Construyes una API consumida por
+          mobile/SPA? → JWT. ¿Necesitas 'Login con Google/GitHub'? → OAuth 2.0 +
+          OIDC. ¿API de servidor a servidor con cuota? → API Key. ¿App web
+          clásica con servidor que renderiza HTML? → Sesión + cookie.
+        </div>
+      </div>
+    </section>
 
-<section class="section-alt" style="padding:60px 0"><div class="container">
-  <h2 class="section-title">Recursos</h2><a href="protocolos-seguridad.html" class="nav-card"><i class="bi bi-arrow-right-circle-fill"></i><span style="flex:1">Protocolos de Seguridad</span><i class="bi bi-arrow-right-circle"></i></a><a href="apis.html" class="nav-card"><i class="bi bi-arrow-right-circle-fill"></i><span style="flex:1">APIs</span><i class="bi bi-arrow-right-circle"></i></a><a href="http-headers.html" class="nav-card"><i class="bi bi-arrow-right-circle-fill"></i><span style="flex:1">Headers HTTP</span><i class="bi bi-arrow-right-circle"></i></a><a href="rest-principios.html" class="nav-card"><i class="bi bi-arrow-right-circle-fill"></i><span style="flex:1">Principios REST</span><i class="bi bi-arrow-right-circle"></i></a>
-</div></section>
-<footer class="site-footer">Programación Orientada a Sitios Web &middot; Material académico &middot; 2025</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script>hljs.highlightAll();
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}});});
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:0.1});
-document.querySelectorAll('.card-anim,.card-g').forEach(c=>obs.observe(c));
-</script>
-</body></html>
+    <section class="section-alt" style="padding: 60px 0">
+      <div class="container">
+        <a href="frontend.html" class="nav-card"
+          ><i class="bi bi-arrow-right-circle-fill"></i
+          ><span style="flex: 1">Siguiente: Frontend</span
+          ><i class="bi bi-arrow-right-circle"></i></a
+        <h2 class="section-title">Recursos</h2>
+        <a href="protocolos-seguridad.html" class="nav-card"
+          ><i class="bi bi-arrow-right-circle-fill"></i
+          ><span style="flex: 1">Protocolos de Seguridad</span
+          ><i class="bi bi-arrow-right-circle"></i></a
+        ><a href="apis.html" class="nav-card"
+          ><i class="bi bi-arrow-right-circle-fill"></i
+          ><span style="flex: 1">APIs</span
+          ><i class="bi bi-arrow-right-circle"></i></a
+        ><a href="http-headers.html" class="nav-card"
+          ><i class="bi bi-arrow-right-circle-fill"></i
+          ><span style="flex: 1">Headers HTTP</span
+          ><i class="bi bi-arrow-right-circle"></i></a
+        ><a href="rest-principios.html" class="nav-card"
+          ><i class="bi bi-arrow-right-circle-fill"></i
+          ><span style="flex: 1">Principios REST</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const obs = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          }),
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-anim,.card-g")
+        .forEach((c) => obs.observe(c));
+    </script>
+  </body>
+</html>

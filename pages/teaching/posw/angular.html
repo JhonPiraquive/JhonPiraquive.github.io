@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Angular: Fundamentos | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .intro-panel {
+        background: var(--surface);
+        padding: 40px 0;
+      }
+      .lifecycle-item {
+        display: flex;
+        gap: 16px;
+        padding: 16px;
+        border-left: 3px solid var(--accent2);
+        margin-bottom: 8px;
+        background: var(--bg);
+        border-radius: 0 8px 8px 0;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .lifecycle-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      .lifecycle-item .hook-name {
+        color: var(--accent);
+        font-family: monospace;
+        font-size: 0.95rem;
+        white-space: nowrap;
+        min-width: 200px;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+        .lifecycle-item .hook-name {
+          min-width: auto;
+          white-space: normal;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#componentes">Componentes</a>
+        <a href="#ciclo-vida">Ciclo de vida</a>
+        <a href="#directivas">Directivas</a>
+        <a href="#bindings">Bindings</a>
+        <a href="#pipes">Pipes</a>
+        <a href="#modulos">Módulos</a>
+        <a href="#servicios">Servicios</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 15</span>
+        <h1 class="hero-title">Angular</h1>
+        <p class="hero-sub">
+          El framework completo de Google: componentes, servicios, inyección de
+          dependencias y arquitectura modular.
+        </p>
+        <a href="#componentes" class="btn-primary-custom"
+          >Comenzar a aprender</a
+        >
+      </div>
+    </section>
+
+    <div class="intro-panel">
+      <div class="container">
+        <p>
+          Angular es un framework de desarrollo frontend desarrollado por
+          Google. Está escrito en TypeScript y sigue una arquitectura de
+          componentes con inyección de dependencias (DI), módulos, servicios y
+          un sistema de plantillas declarativas. Es opinionado: define cómo
+          estructurar, testear y desplegar una aplicación.
+        </p>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Versión</th>
+                <th>Año</th>
+                <th>Paradigma</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AngularJS</td>
+                <td>2010</td>
+                <td>MVC, directivas, two-way binding</td>
+                <td style="color: #ff4757">Deprecado</td>
+              </tr>
+              <tr>
+                <td>Angular 2+</td>
+                <td>2016</td>
+                <td>Componentizado, TypeScript, DI</td>
+                <td style="color: #2ed573">Actual</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <section id="componentes">
+      <div class="container">
+        <h2 class="section-title">Componentes</h2>
+        <p>
+          Un componente es la unidad básica de una aplicación Angular. Cada
+          componente encapsula: una clase TypeScript (lógica), una plantilla
+          HTML (vista) y estilos CSS opcionales.
+        </p>
+        <pre
+          class="mt-3"
+        ><code class="language-typescript">import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-tarjeta-producto',
+  templateUrl: './tarjeta-producto.component.html',
+  styleUrls: ['./tarjeta-producto.component.scss']
+})
+export class TarjetaProductoComponent implements OnInit {
+  @Input() nombre: string = '';
+  @Input() precio: number = 0;
+  @Output() agregarAlCarrito = new EventEmitter&lt;string&gt;();
+
+  descuento: number = 0;
+
+  ngOnInit(): void {
+    this.descuento = this.precio &gt; 1000000 ? 0.1 : 0;
+  }
+
+  onAgregarClick(): void {
+    this.agregarAlCarrito.emit(this.nombre);
+  }
+
+  get precioConDescuento(): number {
+    return this.precio * (1 - this.descuento);
+  }
+}</code></pre>
+        <pre
+          class="mt-4"
+        ><code class="language-html">&lt;!-- tarjeta-producto.component.html --&gt;
+&lt;div class="tarjeta"&gt;
+  &lt;h3&gt;{{ nombre }}&lt;/h3&gt;
+  &lt;p class="precio"&gt;{{ precioConDescuento | currency:'COP':'symbol':'1.0-0' }}&lt;/p&gt;
+  &lt;span *ngIf="descuento &gt; 0" class="badge"&gt;
+    {{ descuento * 100 }}% descuento
+  &lt;/span&gt;
+  &lt;button (click)="onAgregarClick()"&gt;Agregar al carrito&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Árbol de componentes
+        </h3>
+        <div class="ascii-block">
+          AppComponent ├── NavbarComponent ├── CatalogoComponent │ ├──
+          TarjetaProductoComponent │ ├── TarjetaProductoComponent │ └──
+          TarjetaProductoComponent └── CarritoComponent └── ItemCarritoComponent
+        </div>
+      </div>
+    </section>
+
+    <section id="ciclo-vida" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Ciclo de Vida de un Componente</h2>
+        <div class="lifecycle-item">
+          <span class="hook-name">ngOnChanges()</span>
+          <div>
+            <p class="mb-1">
+              <strong>Cuándo:</strong> Antes y cada vez que cambia un
+              <code>@Input()</code>
+            </p>
+            <p class="text-secondary mb-0">
+              Reaccionar a cambios de datos del padre
+            </p>
+          </div>
+        </div>
+        <div class="lifecycle-item">
+          <span class="hook-name">ngOnInit()</span>
+          <div>
+            <p class="mb-1">
+              <strong>Cuándo:</strong> Una vez, después del primer
+              <code>ngOnChanges</code>
+            </p>
+            <p class="text-secondary mb-0">Inicializar datos, llamar APIs</p>
+          </div>
+        </div>
+        <div class="lifecycle-item">
+          <span class="hook-name">ngDoCheck()</span>
+          <div>
+            <p class="mb-1">
+              <strong>Cuándo:</strong> En cada ciclo de detección de cambios
+            </p>
+            <p class="text-secondary mb-0">Detección manual de cambios</p>
+          </div>
+        </div>
+        <div class="lifecycle-item">
+          <span class="hook-name">ngAfterContentInit()</span>
+          <div>
+            <p class="mb-1">
+              <strong>Cuándo:</strong> Una vez, tras proyectar contenido con
+              <code>ng-content</code>
+            </p>
+            <p class="text-secondary mb-0">Acceder al contenido proyectado</p>
+          </div>
+        </div>
+        <div class="lifecycle-item">
+          <span class="hook-name">ngAfterContentChecked()</span>
+          <div>
+            <p class="mb-1">
+              <strong>Cuándo:</strong> Después de cada verificación del
+              contenido proyectado
+            </p>
+            <p class="text-secondary mb-0">Raro uso directo</p>
+          </div>
+        </div>
+        <div class="lifecycle-item">
+          <span class="hook-name">ngAfterViewInit()</span>
+          <div>
+            <p class="mb-1">
+              <strong>Cuándo:</strong> Una vez, tras renderizar la vista del
+              componente e hijos
+            </p>
+            <p class="text-secondary mb-0">Acceder al DOM (ViewChild)</p>
+          </div>
+        </div>
+        <div class="lifecycle-item">
+          <span class="hook-name">ngAfterViewChecked()</span>
+          <div>
+            <p class="mb-1">
+              <strong>Cuándo:</strong> Después de cada verificación de la vista
+            </p>
+            <p class="text-secondary mb-0">Raro uso directo</p>
+          </div>
+        </div>
+        <div class="lifecycle-item">
+          <span class="hook-name">ngOnDestroy()</span>
+          <div>
+            <p class="mb-1">
+              <strong>Cuándo:</strong> Justo antes de destruir el componente
+            </p>
+            <p class="text-secondary mb-0">
+              Cancelar suscripciones, limpiar timers
+            </p>
+          </div>
+        </div>
+        <pre
+          class="mt-4"
+        ><code class="language-typescript">export class ProductoDetalleComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+
+  ngOnInit(): void {
+    // Obtener datos al inicializar
+    this.subscription.add(
+      this.productosService.getProducto(this.id)
+        .subscribe(producto =&gt; this.producto = producto)
+    );
+  }
+
+  ngOnDestroy(): void {
+    // Evitar memory leaks
+    this.subscription.unsubscribe();
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <section id="directivas">
+      <div class="container">
+        <h2 class="section-title">Directivas</h2>
+        <p>
+          Las directivas son clases que agregan comportamiento a elementos del
+          DOM. Hay tres tipos:
+        </p>
+        <div class="row g-4 mb-4">
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-puzzle card-icon"></i>
+              <h5>Componentes</h5>
+              <p class="text-secondary">
+                Las directivas más comunes (tienen template).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-layout-split card-icon"></i>
+              <h5>Directivas Estructurales</h5>
+              <p class="text-secondary">
+                Modifican el DOM (agregan/eliminan elementos).
+                <code>*ngIf</code>, <code>*ngFor</code>, <code>*ngSwitch</code>.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-brush card-icon"></i>
+              <h5>Directivas de Atributo</h5>
+              <p class="text-secondary">
+                Modifican el aspecto o comportamiento de un elemento existente.
+                <code>ngClass</code>, <code>ngStyle</code>, directivas custom.
+              </p>
+            </div>
+          </div>
+        </div>
+        <pre><code class="language-html">&lt;!-- *ngIf --&gt;
+&lt;div *ngIf="producto; else sinProducto"&gt;
+  &lt;h2&gt;{{ producto.nombre }}&lt;/h2&gt;
+&lt;/div&gt;
+&lt;ng-template #sinProducto&gt;
+  &lt;p&gt;No se encontró el producto.&lt;/p&gt;
+&lt;/ng-template&gt;
+
+&lt;!-- *ngFor con index e incluso/impar --&gt;
+&lt;div *ngFor="let item of items; let i = index; let par = even"
+     [class.fila-par]="par"&gt;
+  {{ i + 1 }}. {{ item.nombre }}
+&lt;/div&gt;
+
+&lt;!-- ngClass y ngStyle --&gt;
+&lt;span [ngClass]="{ 'activo': producto.activo, 'agotado': !producto.activo }"&gt;
+  Estado
+&lt;/span&gt;
+&lt;p [ngStyle]="{ 'color': producto.precio &gt; 1000000 ? 'gold' : 'white' }"&gt;
+  {{ producto.precio }}
+&lt;/p&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="bindings" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Data Bindings</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Sintaxis</th>
+                <th>Dirección</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Interpolación</td>
+                <td><code>&#123;&#123; expresion &#125;&#125;</code></td>
+                <td>Component → Template</td>
+                <td><code>&#123;&#123; usuario.nombre &#125;&#125;</code></td>
+              </tr>
+              <tr>
+                <td>Property Binding</td>
+                <td><code>[propiedad]="expresion"</code></td>
+                <td>Component → Template</td>
+                <td><code>[src]="imagenUrl"</code></td>
+              </tr>
+              <tr>
+                <td>Event Binding</td>
+                <td><code>(evento)="manejador()"</code></td>
+                <td>Template → Component</td>
+                <td><code>(click)="guardar()"</code></td>
+              </tr>
+              <tr>
+                <td>Two-way Binding</td>
+                <td><code>[(ngModel)]="propiedad"</code></td>
+                <td>Bidireccional</td>
+                <td><code>[(ngModel)]="nombre"</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pre
+          class="mt-4"
+        ><code class="language-html">&lt;input [(ngModel)]="busqueda" placeholder="Buscar productos..."&gt;
+&lt;p&gt;Buscando: {{ busqueda }}&lt;/p&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="pipes">
+      <div class="container">
+        <h2 class="section-title">Pipes (Transformaciones)</h2>
+        <p>
+          Los pipes transforman datos en las plantillas sin modificar el valor
+          original. Se encadenan con <code>|</code>.
+        </p>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Pipe</th>
+                <th>Propósito</th>
+                <th>Ejemplo</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>date</code></td>
+                <td>Formatear fechas</td>
+                <td>
+                  <code
+                    >&#123;&#123; fecha | date:'dd/MM/yyyy' &#125;&#125;</code
+                  >
+                </td>
+                <td>01/09/2025</td>
+              </tr>
+              <tr>
+                <td><code>currency</code></td>
+                <td>Formatear moneda</td>
+                <td>
+                  <code
+                    >&#123;&#123; 4500000 | currency:'COP':'symbol':'1.0-0'
+                    &#125;&#125;</code
+                  >
+                </td>
+                <td>$4.500.000</td>
+              </tr>
+              <tr>
+                <td><code>uppercase</code></td>
+                <td>Convertir a mayúsculas</td>
+                <td>
+                  <code>&#123;&#123; 'hola' | uppercase &#125;&#125;</code>
+                </td>
+                <td>HOLA</td>
+              </tr>
+              <tr>
+                <td><code>lowercase</code></td>
+                <td>Convertir a minúsculas</td>
+                <td>
+                  <code>&#123;&#123; 'HOLA' | lowercase &#125;&#125;</code>
+                </td>
+                <td>hola</td>
+              </tr>
+              <tr>
+                <td><code>json</code></td>
+                <td>Serializar a JSON (debug)</td>
+                <td><code>&#123;&#123; objeto | json &#125;&#125;</code></td>
+                <td><code>{"id": 1, ...}</code></td>
+              </tr>
+              <tr>
+                <td><code>async</code></td>
+                <td>Suscribirse a Observable</td>
+                <td>
+                  <code>&#123;&#123; observable$ | async &#125;&#125;</code>
+                </td>
+                <td>valor cuando emite</td>
+              </tr>
+              <tr>
+                <td><code>slice</code></td>
+                <td>Subarray/substring</td>
+                <td>
+                  <code>&#123;&#123; items | slice:0:3 &#125;&#125;</code>
+                </td>
+                <td>primeros 3 items</td>
+              </tr>
+              <tr>
+                <td><code>decimal</code></td>
+                <td>Formatear número</td>
+                <td>
+                  <code
+                    >&#123;&#123; 3.14159 | number:'1.2-2' &#125;&#125;</code
+                  >
+                </td>
+                <td>3.14</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="modulos" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Módulos (NgModule)</h2>
+        <p>
+          Los módulos agrupan componentes, directivas, pipes y servicios
+          relacionados. Toda aplicación Angular tiene al menos un módulo raíz:
+          <code>AppModule</code>. En Angular 15+, los standalone components
+          reducen la necesidad de módulos.
+        </p>
+        <pre class="mt-3"><code class="language-typescript">@NgModule({
+  declarations: [
+    ProductosComponent,
+    TarjetaProductoComponent,
+    FiltroPrecioPipe
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forChild(productosRoutes)
+  ],
+  exports: [
+    TarjetaProductoComponent
+  ],
+  providers: [
+    ProductosService
+  ]
+})
+export class ProductosModule { }</code></pre>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <h2 class="section-title">Servicios e Inyección de Dependencias</h2>
+        <p>
+          Un servicio es una clase con lógica de negocio o acceso a datos,
+          reutilizable entre componentes. Angular provee un sistema de inyección
+          de dependencias (DI) que crea y gestiona instancias de servicios
+          automáticamente.
+        </p>
+        <pre class="mt-3"><code class="language-typescript">@Injectable({
+  providedIn: 'root'  // singleton en toda la app
+})
+export class ProductosService {
+  private readonly apiUrl = 'https://api.ejemplo.com/v1/productos';
+
+  constructor(private http: HttpClient) {}
+
+  getProductos(): Observable&lt;Producto[]&gt; {
+    return this.http.get&lt;Producto[]&gt;(this.apiUrl);
+  }
+
+  getProducto(id: number): Observable&lt;Producto&gt; {
+    return this.http.get&lt;Producto&gt;(`${this.apiUrl}/${id}`);
+  }
+
+  crearProducto(dto: CreateProductoDto): Observable&lt;Producto&gt; {
+    return this.http.post&lt;Producto&gt;(this.apiUrl, dto);
+  }
+}</code></pre>
+        <pre class="mt-4"><code class="language-typescript">@Component({ ... })
+export class CatalogoComponent implements OnInit {
+  productos: Producto[] = [];
+
+  constructor(private productosService: ProductosService) {}
+
+  ngOnInit(): void {
+    this.productosService.getProductos()
+      .pipe(takeUntilDestroyed())
+      .subscribe({
+        next: (datos) =&gt; this.productos = datos,
+        error: (err) =&gt; console.error(err)
+      });
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <a href="react.html" class="nav-card"
+          ><i class="bi bi-braces"></i
+          ><span style="flex: 1">Siguiente: React: Fundamentos</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="typescript.html" class="nav-card"
+          ><i class="bi bi-code-slash"></i
+          ><span style="flex: 1">TypeScript</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="frontend.html" class="nav-card"
+          ><i class="bi bi-window"></i
+          ><span style="flex: 1">Frontend: Tecnologías y Frameworks</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="principios-solid.html" class="nav-card"
+          ><i class="bi bi-layers"></i
+          ><span style="flex: 1">Principios SOLID</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo,.lifecycle-item")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

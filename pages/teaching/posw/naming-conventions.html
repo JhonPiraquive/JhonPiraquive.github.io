@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convenciones de Nomenclatura | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .name-display {
+        font-family: monospace;
+        font-size: 1.8rem;
+        color: var(--accent);
+        background: var(--bg);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: inline-block;
+        margin: 16px 0;
+        letter-spacing: 2px;
+      }
+      .quote-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 24px 0;
+        font-style: italic;
+        color: var(--muted);
+      }
+      .antipattern-item {
+        display: flex;
+        gap: 12px;
+        padding: 12px;
+        border-left: 3px solid #ff4757;
+        background: var(--bg);
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 8px;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#camel">camelCase</a>
+        <a href="#pascal">PascalCase</a>
+        <a href="#snake">snake_case</a>
+        <a href="#kebab">kebab-case</a>
+        <a href="#upper">UPPER_SNAKE_CASE</a>
+        <a href="#contexto">Por contexto</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 21</span>
+        <h1 class="hero-title">Convenciones de Nomenclatura</h1>
+        <p class="hero-sub">
+          Nombrar correctamente: la habilidad que separa el código legible del
+          código confuso.
+        </p>
+        <a href="#intro" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="intro">
+      <div class="container">
+        <h2 class="section-title">¿Por qué importa el naming?</h2>
+        <p>
+          El código se lee muchas más veces de las que se escribe. Un nombre
+          descriptivo y consistente comunica intención, reduce la necesidad de
+          comentarios y hace que el código sea autoexplicativo. Las convenciones
+          de nomenclatura son acuerdos del equipo (o del lenguaje) sobre cómo
+          escribir identificadores: variables, funciones, clases, archivos,
+          endpoints, etc.
+        </p>
+        <div class="quote-card">
+          "There are only two hard things in Computer Science: cache
+          invalidation and naming things." — Phil Karlton
+        </div>
+        <pre><code class="language-javascript">// ❌ Nombres sin convención ni significado
+let x = 4500000;
+function fn1(a, b) { return a * b; }
+
+// ✅ Nombres expresivos con convención
+const precioProductoBase = 4500000;
+function calcularSubtotal(precio: number, cantidad: number): number {
+  return precio * cantidad;
+}</code></pre>
+      </div>
+    </section>
+
+    <section id="camel" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">camelCase</h2>
+        <p>
+          <strong>Regla:</strong> La primera palabra en minúsculas; cada palabra
+          siguiente comienza con mayúscula. Sin espacios ni separadores.
+        </p>
+        <div class="name-display">
+          miVariable &nbsp; calcularTotal &nbsp; obtenerUsuarioPorId
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Lenguaje/Contexto</th>
+                <th>Aplica a</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>JavaScript / TypeScript</td>
+                <td>
+                  Variables, parámetros, funciones, métodos, propiedades de
+                  objeto
+                </td>
+              </tr>
+              <tr>
+                <td>Java</td>
+                <td>Variables, parámetros, métodos</td>
+              </tr>
+              <tr>
+                <td>Swift</td>
+                <td>Variables, constantes, funciones, parámetros</td>
+              </tr>
+              <tr>
+                <td>JSON</td>
+                <td>Claves de propiedades (convención más común)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pre class="mt-4"><code class="language-typescript">// Variables
+let nombreCompleto = "Ana García";
+let precioConIva = 5355000;
+let estaActivo = true;
+
+// Funciones y métodos
+function calcularDescuento(precio: number, porcentaje: number): number {
+  return precio * (porcentaje / 100);
+}
+
+// Propiedades de clase
+class Producto {
+  nombreProducto: string;
+  precioBase: number;
+  fechaCreacion: Date;
+}
+
+// JSON
+{
+  "nombreCompleto": "Ana García",
+  "fechaNacimiento": "1997-03-15",
+  "estaActivo": true
+}</code></pre>
+      </div>
+    </section>
+
+    <section id="pascal">
+      <div class="container">
+        <h2 class="section-title">PascalCase (UpperCamelCase)</h2>
+        <p>
+          <strong>Regla:</strong> Cada palabra comienza con mayúscula, incluida
+          la primera. También llamado UpperCamelCase.
+        </p>
+        <div class="name-display">
+          MiClase &nbsp; TarjetaProducto &nbsp; ApiResponse
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Lenguaje/Contexto</th>
+                <th>Aplica a</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TypeScript / JavaScript</td>
+                <td>Clases, interfaces, tipos, enums, componentes React</td>
+              </tr>
+              <tr>
+                <td>C#</td>
+                <td>Clases, métodos, propiedades, interfaces</td>
+              </tr>
+              <tr>
+                <td>Angular</td>
+                <td>Componentes, servicios, módulos, pipes</td>
+              </tr>
+              <tr>
+                <td>React</td>
+                <td>Nombres de componentes funcionales</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pre class="mt-4"><code class="language-typescript">// Clases
+class RepositorioProductos { }
+class ServicioAutenticacion { }
+
+// Interfaces y Types
+interface ProductoResponse {
+  id: number;
+  nombre: string;
+  precio: number;
+}
+type EstadoPedido = 'PENDIENTE' | 'ENVIADO' | 'ENTREGADO';
+
+// Enums
+enum RolUsuario {
+  Admin = 'ADMIN',
+  Vendedor = 'VENDEDOR',
+  Cliente = 'CLIENTE'
+}
+
+// Componentes React
+function TarjetaProducto() { return &lt;div&gt;...&lt;/div&gt;; }
+function ListaCarrito() { return &lt;ul&gt;...&lt;/ul&gt;; }</code></pre>
+      </div>
+    </section>
+
+    <section id="snake" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">snake_case</h2>
+        <p>
+          <strong>Regla:</strong> Todas las palabras en minúsculas, separadas
+          por guiones bajos <code>_</code>.
+        </p>
+        <div class="name-display">
+          mi_variable &nbsp; calcular_total &nbsp; nombre_completo
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Lenguaje/Contexto</th>
+                <th>Aplica a</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Python</td>
+                <td>
+                  Variables, funciones, métodos, parámetros, nombres de archivo
+                </td>
+              </tr>
+              <tr>
+                <td>Ruby</td>
+                <td>Variables, métodos</td>
+              </tr>
+              <tr>
+                <td>SQL</td>
+                <td>Nombres de tablas y columnas (convención más extendida)</td>
+              </tr>
+              <tr>
+                <td>JSON en Python/Ruby</td>
+                <td>Claves de propiedades</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pre class="mt-4"><code class="language-python"># Python
+nombre_completo = "Ana García"
+precio_con_iva = 5355000
+
+def calcular_descuento(precio, porcentaje):
+    return precio * (porcentaje / 100)
+
+class RepositorioProductos:
+    def buscar_por_id(self, producto_id: int):
+        pass</code></pre>
+        <pre class="mt-3"><code class="language-sql">-- SQL
+CREATE TABLE pedidos_detalle (
+  pedido_id       INTEGER REFERENCES pedidos(id),
+  producto_id     INTEGER REFERENCES productos(id),
+  cantidad        INTEGER NOT NULL,
+  precio_unitario DECIMAL(12,2) NOT NULL,
+  PRIMARY KEY (pedido_id, producto_id)
+);</code></pre>
+      </div>
+    </section>
+
+    <section id="kebab">
+      <div class="container">
+        <h2 class="section-title">kebab-case</h2>
+        <p>
+          <strong>Regla:</strong> Todas las palabras en minúsculas, separadas
+          por guiones medios <code>-</code>. También llamado dash-case o
+          lisp-case.
+        </p>
+        <div class="name-display">
+          mi-componente &nbsp; tarjeta-producto &nbsp; api-gateway
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Contexto</th>
+                <th>Aplica a</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>HTML</td>
+                <td>
+                  Atributos personalizados <code>data-</code>, nombres de
+                  eventos web components
+                </td>
+              </tr>
+              <tr>
+                <td>CSS / SCSS</td>
+                <td>Nombres de clases e IDs</td>
+              </tr>
+              <tr>
+                <td>URLs y rutas</td>
+                <td>Segmentos de URL (SEO friendly)</td>
+              </tr>
+              <tr>
+                <td>Nombres de archivos</td>
+                <td>HTML, CSS, imágenes, componentes en Vue/Svelte</td>
+              </tr>
+              <tr>
+                <td>Paquetes npm</td>
+                <td>Nombres de paquetes publicados</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pre class="mt-4"><code class="language-css">/* CSS */
+.tarjeta-producto { }
+.boton-agregar-carrito { }
+#formulario-contacto { }</code></pre>
+        <pre class="mt-3"><code class="language-plaintext">&lt;!-- URLs --&gt;
+/api/v1/tipos-de-usuario
+/productos/laptop-pro-15
+/blog/principios-solid-en-typescript
+
+&lt;!-- Nombres de archivos --&gt;
+tarjeta-producto.component.html
+mis-productos.page.html
+hero-banner.css</code></pre>
+      </div>
+    </section>
+
+    <section id="upper" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">UPPER_SNAKE_CASE</h2>
+        <p>
+          <strong>Regla:</strong> Todas las palabras en MAYÚSCULAS, separadas
+          por guiones bajos. También llamado SCREAMING_SNAKE_CASE.
+        </p>
+        <div class="name-display">
+          MAX_REINTENTOS &nbsp; URL_BASE_API &nbsp; TIEMPO_SESION_SEGUNDOS
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Contexto</th>
+                <th>Aplica a</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Todos los lenguajes</td>
+                <td>Constantes globales</td>
+              </tr>
+              <tr>
+                <td>Python</td>
+                <td>Variables de entorno y constantes de módulo</td>
+              </tr>
+              <tr>
+                <td>JavaScript/TypeScript</td>
+                <td>
+                  Constantes inmutables, valores de enum (algunos estilos)
+                </td>
+              </tr>
+              <tr>
+                <td>Variables de entorno</td>
+                <td>Archivos <code>.env</code>, Docker, CI/CD</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <pre
+          class="mt-4"
+        ><code class="language-typescript">// Constantes de configuración
+const MAX_INTENTOS_LOGIN = 5;
+const TIEMPO_EXPIRACION_TOKEN = 3600; // segundos
+const URL_BASE_API = 'https://api.ejemplo.com/v1';
+const ROLES_PERMITIDOS = ['ADMIN', 'SUPERVISOR'] as const;</code></pre>
+        <pre
+          class="mt-3"
+        ><code class="language-bash"># Variables de entorno (.env)
+DATABASE_URL=postgresql://user:pass@localhost:5432/mi_db
+JWT_SECRET_KEY=super_secret_key_cambiar_en_produccion
+MAX_POOL_SIZE=10
+NODE_ENV=production</code></pre>
+      </div>
+    </section>
+
+    <section id="contexto">
+      <div class="container">
+        <h2 class="section-title">Resumen: Qué usar en cada contexto</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Contexto</th>
+                <th>Convención</th>
+                <th>Ejemplo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Variable JS/TS</td>
+                <td>camelCase</td>
+                <td><code>precioTotal</code></td>
+              </tr>
+              <tr>
+                <td>Función/Método JS/TS</td>
+                <td>camelCase</td>
+                <td><code>calcularIva()</code></td>
+              </tr>
+              <tr>
+                <td>Clase/Interfaz/Type TS</td>
+                <td>PascalCase</td>
+                <td><code>ProductoService</code></td>
+              </tr>
+              <tr>
+                <td>Componente React</td>
+                <td>PascalCase</td>
+                <td><code>TarjetaProducto</code></td>
+              </tr>
+              <tr>
+                <td>Componente Angular</td>
+                <td>PascalCase (clase) + kebab (selector)</td>
+                <td>
+                  <code>class NavbarComponent</code> / <code>app-navbar</code>
+                </td>
+              </tr>
+              <tr>
+                <td>Variable Python</td>
+                <td>snake_case</td>
+                <td><code>precio_total</code></td>
+              </tr>
+              <tr>
+                <td>Función Python</td>
+                <td>snake_case</td>
+                <td><code>calcular_iva()</code></td>
+              </tr>
+              <tr>
+                <td>Clase Python</td>
+                <td>PascalCase</td>
+                <td><code>ProductoService</code></td>
+              </tr>
+              <tr>
+                <td>Tabla SQL</td>
+                <td>snake_case</td>
+                <td><code>pedidos_detalle</code></td>
+              </tr>
+              <tr>
+                <td>Columna SQL</td>
+                <td>snake_case</td>
+                <td><code>precio_unitario</code></td>
+              </tr>
+              <tr>
+                <td>Clase CSS</td>
+                <td>kebab-case</td>
+                <td><code>.tarjeta-producto</code></td>
+              </tr>
+              <tr>
+                <td>URL/Ruta</td>
+                <td>kebab-case</td>
+                <td><code>/api/tipos-de-usuario</code></td>
+              </tr>
+              <tr>
+                <td>Archivo HTML/CSS</td>
+                <td>kebab-case</td>
+                <td><code>tarjeta-producto.html</code></td>
+              </tr>
+              <tr>
+                <td>Archivo TS/JS</td>
+                <td>kebab-case o camelCase</td>
+                <td><code>producto.service.ts</code></td>
+              </tr>
+              <tr>
+                <td>Constante global</td>
+                <td>UPPER_SNAKE_CASE</td>
+                <td><code>MAX_REINTENTOS</code></td>
+              </tr>
+              <tr>
+                <td>Variable de entorno</td>
+                <td>UPPER_SNAKE_CASE</td>
+                <td><code>DATABASE_URL</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="mt-5 mb-3" style="color: #ff4757; font-size: 1.1rem">
+          Anti-patrones a evitar
+        </h3>
+        <div class="antipattern-item">
+          <i
+            class="bi bi-x-circle"
+            style="color: #ff4757; font-size: 1.2rem; flex-shrink: 0"
+          ></i>
+          <div>
+            Abreviaciones ambiguas: <code>usrMgr</code>, <code>getPr</code>.
+            Escribir <code>usuarioManager</code>, <code>getProducto</code>.
+          </div>
+        </div>
+        <div class="antipattern-item">
+          <i
+            class="bi bi-x-circle"
+            style="color: #ff4757; font-size: 1.2rem; flex-shrink: 0"
+          ></i>
+          <div>
+            Nombres de un solo carácter (excepto en loops/lambdas cortas):
+            <code>x</code>, <code>a</code>, <code>tmp</code>.
+          </div>
+        </div>
+        <div class="antipattern-item">
+          <i
+            class="bi bi-x-circle"
+            style="color: #ff4757; font-size: 1.2rem; flex-shrink: 0"
+          ></i>
+          <div>Mezclar convenciones en el mismo codebase.</div>
+        </div>
+        <div class="antipattern-item">
+          <i
+            class="bi bi-x-circle"
+            style="color: #ff4757; font-size: 1.2rem; flex-shrink: 0"
+          ></i>
+          <div>
+            Nombres técnicos sin significado: <code>Clase1</code>,
+            <code>Helper</code>, <code>Manager</code>, <code>Utils</code> (sin
+            contexto).
+          </div>
+        </div>
+        <div class="antipattern-item">
+          <i
+            class="bi bi-x-circle"
+            style="color: #ff4757; font-size: 1.2rem; flex-shrink: 0"
+          ></i>
+          <div>
+            Nombres que mienten: <code>obtenerUsuario()</code> que también
+            elimina el usuario.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <a href="ia-en-desarrollo-web.html" class="nav-card"
+          ><i class="bi bi-robot"></i
+          ><span style="flex: 1">Siguiente: IA en el Desarrollo Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="principios-solid.html" class="nav-card"
+          ><i class="bi bi-layers"></i
+          ><span style="flex: 1">Principios SOLID</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="typescript.html" class="nav-card"
+          ><i class="bi bi-code-slash"></i
+          ><span style="flex: 1">TypeScript</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="angular.html" class="nav-card"
+          ><i class="bi bi-hexagon"></i
+          ><span style="flex: 1">Angular: Fundamentos</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

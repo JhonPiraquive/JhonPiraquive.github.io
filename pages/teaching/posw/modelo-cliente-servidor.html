@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modelo Cliente-Servidor | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 24px 0;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .step-item {
+        display: flex;
+        gap: 16px;
+        padding: 14px 16px;
+        margin-bottom: 8px;
+        background: var(--bg);
+        border-radius: 8px;
+        border: 1px solid #222;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .step-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      .step-num {
+        background: var(--accent2);
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .curiosity-card {
+        background: #0d1a20;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .curiosity-card p {
+        color: var(--accent);
+        margin: 0;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#que-es">¿Qué es?</a>
+        <a href="#funcionamiento">Funcionamiento</a>
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#variantes">Variantes</a>
+        <a href="#ejemplos">Ejemplos reales</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 17</span>
+        <h1 class="hero-title">Modelo Cliente-Servidor</h1>
+        <p class="hero-sub">
+          El paradigma fundamental de la comunicación en redes: cómo la web
+          funciona en su base.
+        </p>
+        <a href="#que-es" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="que-es">
+      <div class="container">
+        <h2 class="section-title">¿Qué es el Modelo Cliente-Servidor?</h2>
+        <p>
+          El modelo cliente-servidor es un paradigma de arquitectura de red
+          donde los roles están claramente separados: el cliente solicita
+          servicios o recursos, y el servidor los provee. Es la base sobre la
+          que opera la World Wide Web, el correo electrónico, las bases de datos
+          en red y la mayoría de aplicaciones modernas.
+        </p>
+        <div class="analogy-card">
+          <strong>Analogía:</strong> El modelo cliente-servidor es como un
+          cliente en un banco. Tú (cliente) te acercas a la ventanilla
+          (servidor) y haces una solicitud (request): "quiero retirar $200.000".
+          El cajero (servidor) verifica tu identidad, consulta la base de datos,
+          y te da la respuesta (response): los billetes o un error.
+        </div>
+        <div class="ascii-block">
+          ┌─────────────────┐ Request ┌─────────────────┐ │ │
+          ─────────────────────► │ │ │ CLIENTE │ │ SERVIDOR │ │ │
+          ◄───────────────────── │ │ └─────────────────┘ Response
+          └─────────────────┘ Ejemplos: navegador, HTTP/TCP Ejemplos: Apache,
+          app móvil, curl, Nginx, Node.js, Postman Spring Boot
+        </div>
+      </div>
+    </section>
+
+    <section id="funcionamiento" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">¿Cómo Funciona?</h2>
+        <p class="mb-4">
+          Flujo paso a paso al abrir <code>https://ejemplo.com/productos</code>:
+        </p>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div>
+            <p class="mb-0">El usuario escribe la URL en el navegador.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div>
+            <p class="mb-0">
+              El navegador consulta un servidor DNS para resolver
+              <code>ejemplo.com</code> a una IP: <code>190.25.80.42</code>.
+            </p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div>
+            <p class="mb-0">
+              El navegador establece una conexión TCP con el servidor en el
+              puerto 443 (HTTPS).
+            </p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div>
+            <p class="mb-0">
+              Se realiza el handshake TLS para cifrar la conexión.
+            </p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div>
+            <p class="mb-0">
+              El navegador envía la petición HTTP:
+              <code>GET /productos HTTP/1.1</code>.
+            </p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div>
+            <p class="mb-0">
+              El servidor recibe la petición, la procesa (consulta DB, aplica
+              lógica de negocio).
+            </p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">7</div>
+          <div>
+            <p class="mb-0">
+              El servidor envía la respuesta: <code>HTTP/1.1 200 OK</code> con
+              el cuerpo HTML o JSON.
+            </p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">8</div>
+          <div>
+            <p class="mb-0">
+              El navegador recibe la respuesta y renderiza la página.
+            </p>
+          </div>
+        </div>
+        <div class="ascii-block mt-4">
+          Navegador DNS Servidor Base de Datos │ │ │ │ │ Resolver DNS │ │ │ │
+          ────────────► │ │ │ │ ◄──── IP ─────│ │ │ │ │ │ │ │ TCP Handshake
+          (SYN/SYN-ACK/ACK) │ │ │ ─────────────────────────────── ►│ │ │ TLS
+          Handshake │ │ │ ─────────────────────────────── ►│ │ │ │ │ │ GET
+          /productos HTTP/1.1 │ │ │ ─────────────────────────────── ►│ │ │ │──
+          SELECT * FROM ─►│ │ │◄── [resultados] ──│ │ HTTP/1.1 200 OK + JSON │ │
+          │ ◄────────────────────────────────│ │
+        </div>
+      </div>
+    </section>
+
+    <section id="arquitectura">
+      <div class="container">
+        <h2 class="section-title">Arquitecturas Derivadas</h2>
+        <h3 class="mb-3" style="color: var(--accent); font-size: 1.1rem">
+          2 Capas (2-Tier)
+        </h3>
+        <div class="ascii-block">Cliente ↔ Servidor (con BD integrada)</div>
+        <p>Ejemplo: aplicación de escritorio con acceso directo a MySQL.</p>
+        <p style="color: var(--muted)">
+          <strong>Ventaja:</strong> sencillo. <strong>Desventaja:</strong> el
+          cliente tiene acceso directo a la BD (inseguro), difícil de escalar.
+        </p>
+
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          3 Capas (3-Tier) — la más común en la web
+        </h3>
+        <div class="ascii-block">
+          Capa 1: Presentación → Navegador / App móvil Capa 2: Lógica (API) →
+          Servidor backend (Node.js, Spring) Capa 3: Datos → PostgreSQL,
+          MongoDB, Redis
+        </div>
+        <p style="color: var(--muted)">
+          <strong>Ventaja:</strong> separación de responsabilidades,
+          escalabilidad por capa, seguridad (la BD nunca está expuesta al
+          cliente).
+        </p>
+
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          N Capas / Microservicios
+        </h3>
+        <div class="ascii-block">
+          Cliente │ ▼ API Gateway │ ├──► Servicio Usuarios ↔ BD Usuarios ├──►
+          Servicio Productos ↔ BD Productos └──► Servicio Pagos ↔ BD Pagos
+        </div>
+        <p style="color: var(--muted)">
+          <strong>Ventaja:</strong> cada servicio escala independientemente.
+          <strong>Desventaja:</strong> mayor complejidad operacional.
+        </p>
+      </div>
+    </section>
+
+    <section id="variantes" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Variantes del Modelo</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-share card-icon"></i>
+              <h5>Peer-to-Peer (P2P)</h5>
+              <p class="text-secondary">
+                Cada nodo actúa como cliente y servidor simultáneamente.
+                Ejemplos: BitTorrent, blockchain. No hay un servidor central.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-shuffle card-icon"></i>
+              <h5>Híbrido (Cliente-Servidor + P2P)</h5>
+              <p class="text-secondary">
+                Un servidor central coordina, pero los clientes comparten datos
+                entre sí. Ejemplo: Skype, Spotify (metadatos en servidor,
+                streaming P2P).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-cloud card-icon"></i>
+              <h5>Serverless</h5>
+              <p class="text-secondary">
+                El código se ejecuta en funciones efímeras en la nube (AWS
+                Lambda, Cloudflare Workers). El desarrollador no gestiona
+                servidores; la nube escala automáticamente.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ejemplos">
+      <div class="container">
+        <h2 class="section-title">Ejemplos Reales</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Aplicación</th>
+                <th>Tipo de cliente</th>
+                <th>Servidor</th>
+                <th>Protocolo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google Search</td>
+                <td>Navegador web</td>
+                <td>Cluster Google</td>
+                <td>HTTPS</td>
+              </tr>
+              <tr>
+                <td>Gmail</td>
+                <td>Navegador / App</td>
+                <td>Servidores Google</td>
+                <td>HTTPS + WebSockets</td>
+              </tr>
+              <tr>
+                <td>WhatsApp</td>
+                <td>App móvil</td>
+                <td>Servidores Meta</td>
+                <td>HTTPS + WebSockets</td>
+              </tr>
+              <tr>
+                <td>Netflix</td>
+                <td>Smart TV / App / Web</td>
+                <td>CDN + API servers</td>
+                <td>HTTPS + WebRTC</td>
+              </tr>
+              <tr>
+                <td>Videojuego online</td>
+                <td>Cliente del juego</td>
+                <td>Game server</td>
+                <td>UDP / WebSockets</td>
+              </tr>
+              <tr>
+                <td>Cajero automático (ATM)</td>
+                <td>Terminal ATM</td>
+                <td>Servidor bancario</td>
+                <td>ISO 8583 / HTTPS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="curiosity-card">
+          <p>
+            <i class="bi bi-info-circle me-2"></i> Tu navegador hace en promedio
+            50–100 requests HTTP para cargar una sola página web moderna: HTML,
+            CSS, JS, fuentes, imágenes, APIs de tracking, analytics, anuncios,
+            etc.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <a href="herramientas-desarrollo.html" class="nav-card"
+          ><i class="bi bi-shield-lock"></i
+          ><span style="flex: 1">Siguiente: XAMPP y Docker</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="protocolos-seguridad.html" class="nav-card"
+          ><i class="bi bi-shield-lock"></i
+          ><span style="flex: 1">Protocolos de Seguridad</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="http-metodos-status.html" class="nav-card"
+          ><i class="bi bi-send"></i
+          ><span style="flex: 1">HTTP Métodos y Status</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="frontend.html" class="nav-card"
+          ><i class="bi bi-window"></i
+          ><span style="flex: 1">Frontend: Tecnologías</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="backend.html" class="nav-card"
+          ><i class="bi bi-server"></i
+          ><span style="flex: 1">Backend: Tecnologías</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo,.step-item")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

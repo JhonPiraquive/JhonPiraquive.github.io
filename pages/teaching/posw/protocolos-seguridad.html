@@ -1,266 +1,1333 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SSL, TLS, HTTP y HTTPS | POSW</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-<style>
-:root{--bg:#0d0d0d;--surface:#141414;--accent:#00d4ff;--accent2:#7b5ea7;--text:#e0e0e0;--muted:#888}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;line-height:1.7}
-h1,h2,h3{font-family:'Raleway',sans-serif}
-a{color:var(--accent);text-decoration:none}
-.site-header{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--accent);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.logo{font-family:'Raleway',sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent)}
-.logo span{color:var(--muted);font-size:.85rem;font-weight:400;margin-left:10px;font-family:'Poppins',sans-serif}
-.site-nav a{color:var(--muted);font-size:.85rem;margin-left:18px;transition:color .2s}
-.site-nav a:hover{color:var(--accent)}
-#hero{min-height:60vh;background:linear-gradient(135deg,var(--bg),var(--surface));display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px}
-.hero-inner{max-width:700px}
-.badge-tema{background:var(--accent2);color:#fff;padding:4px 14px;border-radius:999px;font-size:.8rem;display:inline-block;margin-bottom:20px}
-.hero-title{font-size:3.5rem;color:var(--accent);animation:fadeInUp .6s ease both}
-.hero-sub{color:var(--muted);max-width:600px;margin:16px auto 28px}
-.btn-primary-custom{background:var(--accent);color:var(--bg);border:none;border-radius:999px;padding:12px 32px;font-weight:600;cursor:pointer;transition:transform .2s;display:inline-block}
-.btn-primary-custom:hover{transform:scale(1.04);color:var(--bg)}
-section{padding:80px 0}
-.section-alt{background:var(--surface)}
-.section-title{font-size:1.8rem;color:var(--text);border-left:4px solid var(--accent);padding-left:16px;margin-bottom:32px}
-.feature-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
-.feature-item i{margin-top:4px;flex-shrink:0}
-.danger-card{background:#1a0a0a;border-left:4px solid #ff4757;padding:20px;border-radius:8px;margin:20px 0}
-.benefit-card{background:var(--surface);border:1px solid #2ed573;border-radius:10px;padding:20px;margin-bottom:16px;transition:transform .2s}
-.benefit-card:hover{transform:translateY(-4px)}
-.ascii-block{background:#0d1117;padding:20px;border-radius:8px;font-family:monospace;color:var(--accent);overflow-x:auto;white-space:pre;font-size:.85rem;margin:20px 0;line-height:1.5}
-.posw-table{border-collapse:collapse;width:100%;background:var(--surface)}
-.posw-table th{background:var(--accent2);color:#fff;padding:12px 16px;text-align:left}
-.posw-table td{padding:12px 16px;border-bottom:1px solid #2a2a2a}
-.posw-table tr:nth-child(even) td{background:#1a1a1a}
-.table-wrap{overflow-x:auto}
-/* Timeline */
-.timeline{display:flex;gap:16px;overflow-x:auto;padding:20px 0}
-.timeline-item{flex:0 0 180px;background:var(--surface);border:1px solid #333;border-radius:10px;padding:16px;text-align:center;transition:border-color .2s,transform .2s}
-.timeline-item:hover{border-color:var(--accent);transform:translateY(-4px)}
-.timeline-year{font-family:'Raleway',sans-serif;font-size:1.2rem;color:var(--accent);font-weight:700}
-.timeline-name{font-weight:600;margin:4px 0}
-.timeline-desc{font-size:.8rem;color:var(--muted)}
-.timeline-item.obsolete{border-color:#ff4757;opacity:.7}
-.note-warn{background:#1a1000;border-left:4px solid #ffa502;padding:16px;border-radius:8px;margin:16px 0}
-.info-card{background:var(--surface);border-left:4px solid var(--accent);padding:20px;border-radius:8px;margin-top:16px}
-.nav-card{background:var(--surface);border:1px solid #333;border-radius:8px;padding:16px 24px;display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text);transition:border-color .2s;margin-bottom:12px}
-.nav-card:hover{border-color:var(--accent);color:var(--text)}
-.nav-card i{font-size:1.4rem;color:var(--accent)}
-.card-anim{opacity:0;transform:translateY(30px);transition:opacity .5s ease,transform .5s ease}
-.card-anim.visible{opacity:1;transform:translateY(0)}
-.site-footer{background:var(--surface);border-top:1px solid #222;padding:24px;text-align:center;color:var(--muted);font-size:.85rem}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.hero-title{font-size:2.4rem}.timeline{flex-direction:column}}
-</style>
-</head>
-<body>
-<header class="site-header">
-  <span class="logo"><a href="servicios-web.html">POSW</a> <span>Programación Orientada a Sitios Web</span></span>
-  <nav class="site-nav">
-    <a href="#http">HTTP</a>
-    <a href="#https">HTTPS</a>
-    <a href="#ssltls">SSL/TLS</a>
-    <a href="#flujo">Flujo TLS</a>
-    <a href="#comparativa">Comparativa</a>
-  </nav>
-</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSL, TLS, HTTP y HTTPS | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .feature-item i {
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+      .danger-card {
+        background: #1a0a0a;
+        border-left: 4px solid #ff4757;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+      .benefit-card {
+        background: var(--surface);
+        border: 1px solid #2ed573;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 16px;
+        transition: transform 0.2s;
+      }
+      .benefit-card:hover {
+        transform: translateY(-4px);
+      }
+      .ascii-block {
+        background: #0d1117;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.85rem;
+        margin: 20px 0;
+        line-height: 1.5;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      /* Timeline */
+      .timeline {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        padding: 20px 0;
+      }
+      .timeline-item {
+        flex: 0 0 180px;
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 16px;
+        text-align: center;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .timeline-item:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+      }
+      .timeline-year {
+        font-family: "Raleway", sans-serif;
+        font-size: 1.2rem;
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .timeline-name {
+        font-weight: 600;
+        margin: 4px 0;
+      }
+      .timeline-desc {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .timeline-item.obsolete {
+        border-color: #ff4757;
+        opacity: 0.7;
+      }
+      .note-warn {
+        background: #1a1000;
+        border-left: 4px solid #ffa502;
+        padding: 16px;
+        border-radius: 8px;
+        margin: 16px 0;
+      }
+      .info-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent);
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 16px;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .card-anim {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .card-anim.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+        .timeline {
+          flex-direction: column;
+        }
+      }
 
-<section id="hero">
-  <div class="hero-inner">
-    <span class="badge-tema">Tema 3</span>
-    <h1 class="hero-title">Protocolos de Seguridad Web</h1>
-    <p class="hero-sub">Cómo HTTP, HTTPS, SSL y TLS protegen la comunicación en internet.</p>
-    <a href="#http" class="btn-primary-custom">Explorar</a>
-  </div>
-</section>
+      #app {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
 
-<section id="http">
-  <div class="container">
-    <h2 class="section-title">HTTP — HyperText Transfer Protocol</h2>
-    <p>HTTP es el protocolo de transferencia de hipertexto que define cómo los mensajes son formateados y transmitidos entre clientes (navegadores) y servidores web. Opera en la capa de aplicación del modelo OSI. Es un protocolo sin estado (stateless): cada petición es independiente, el servidor no retiene información del cliente entre requests.</p>
-    <h5 class="mt-4 mb-3">Características</h5>
-    <div class="feature-item"><i class="bi bi-dot" style="color:var(--accent);font-size:1.4rem"></i><span>Puerto por defecto: 80.</span></div>
-    <div class="feature-item"><i class="bi bi-dot" style="color:var(--accent);font-size:1.4rem"></i><span>Texto plano: los datos viajan sin cifrado.</span></div>
-    <div class="feature-item"><i class="bi bi-dot" style="color:var(--accent);font-size:1.4rem"></i><span>Stateless: no hay memoria entre peticiones.</span></div>
-    <div class="feature-item"><i class="bi bi-dot" style="color:var(--accent);font-size:1.4rem"></i><span>Creado por Tim Berners-Lee en 1989 en el CERN.</span></div>
-    <div class="feature-item"><i class="bi bi-dot" style="color:var(--accent);font-size:1.4rem"></i><span>Versiones: HTTP/1.0, HTTP/1.1, HTTP/2, HTTP/3 (QUIC).</span></div>
-    <h6 class="mt-4 mb-2" style="color:var(--muted)">Ejemplo de mensaje HTTP crudo</h6>
-    <pre><code class="language-http">GET /api/usuarios/42 HTTP/1.1
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+
+      .diagram-container {
+        flex: 1;
+        padding: 40px 24px;
+        max-width: 1000px;
+        margin: 0 auto;
+        width: 100%;
+        overflow-y: auto;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+      }
+
+      .btn-control {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 6px;
+        padding: 10px 20px;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .btn-control:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+      }
+
+      .btn-control.secondary {
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid #333;
+      }
+
+      .progress-section {
+        margin-bottom: 24px;
+      }
+
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: #222;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-radius: 3px;
+        transition: width 0.5s ease;
+      }
+
+      .column-headers {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+        padding: 0 20px;
+      }
+
+      .column-header {
+        text-align: center;
+        padding: 12px 20px;
+        background: rgba(0, 212, 255, 0.08);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: 6px;
+        flex: 0 1 40%;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .column-header.server {
+        background: rgba(123, 94, 167, 0.08);
+        border-color: rgba(123, 94, 167, 0.2);
+      }
+
+      .steps-container {
+        position: relative;
+        min-height: 400px;
+      }
+
+      .timeline-vertical {
+        position: absolute;
+        width: 2px;
+        height: 100%;
+        background: rgba(0, 212, 255, 0.1);
+      }
+
+      .timeline-vertical.server {
+        background: rgba(123, 94, 167, 0.1);
+        right: 22%;
+      }
+
+      .timeline-vertical.client {
+        left: 22%;
+      }
+
+      .step-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 48px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+
+      .step-row.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .step-row.both {
+        justify-content: center;
+        margin: 60px 0;
+      }
+
+      .step-content {
+        flex: 1;
+        text-align: center;
+      }
+
+      .step-label {
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: 1px solid;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: inline-block;
+      }
+
+      .step-label:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .step-label.client {
+        background: rgba(0, 212, 255, 0.1);
+        border-color: rgba(0, 212, 255, 0.3);
+        color: var(--accent);
+      }
+
+      .step-label.server {
+        background: rgba(123, 94, 167, 0.1);
+        border-color: rgba(123, 94, 167, 0.3);
+        color: #a78bfa;
+      }
+
+      .step-label.both {
+        background: rgba(46, 213, 115, 0.1);
+        border-color: rgba(46, 213, 115, 0.3);
+        color: #2ed573;
+      }
+
+      .arrow-container {
+        flex: 0 1 25%;
+        height: 3px;
+        display: flex;
+        align-items: center;
+      }
+
+      .arrow-line {
+        width: 100%;
+        height: 3px;
+        background: currentColor;
+        position: relative;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .arrow-line.animated {
+        transform: scaleX(1);
+      }
+
+      .arrow-line.reverse {
+        transform-origin: right;
+      }
+
+      .arrow-line::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .arrow-line::after {
+        right: -8px;
+        border-width: 5px 0 5px 8px;
+        border-color: transparent transparent transparent currentColor;
+      }
+
+      .arrow-line.reverse::after {
+        right: auto;
+        left: -8px;
+        border-width: 5px 8px 5px 0;
+        border-color: transparent currentColor transparent transparent;
+      }
+
+      .detail-panel {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          margin 0.4s ease;
+        margin-top: 0;
+      }
+
+      .detail-panel.open {
+        max-height: 200px;
+        margin-top: 12px;
+      }
+
+      .detail-content {
+        background: rgba(0, 212, 255, 0.08);
+        border: 1px solid rgba(0, 212, 255, 0.15);
+        border-radius: 6px;
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .detail-content.server {
+        background: rgba(123, 94, 167, 0.08);
+        border-color: rgba(123, 94, 167, 0.15);
+      }
+
+      .detail-content.both {
+        background: rgba(46, 213, 115, 0.08);
+        border-color: rgba(46, 213, 115, 0.15);
+      }
+
+      .detail-summary {
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .encrypted-indicator {
+        display: inline-block;
+        animation: shimmer-pulse 2s infinite;
+        font-size: 1.2rem;
+        margin-right: 6px;
+      }
+
+      @keyframes shimmer-pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .column-headers {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .column-header {
+          flex: 1;
+        }
+        .step-row {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .arrow-container {
+          width: 100%;
+          height: 30px;
+          flex: 1;
+        }
+        .arrow-line {
+          width: 3px;
+          height: 100%;
+          transform: scaleY(0);
+        }
+        .arrow-line.animated {
+          transform: scaleY(1);
+        }
+        .arrow-line::after {
+          bottom: -8px;
+          right: auto;
+          top: auto;
+          left: 50%;
+          transform: translateX(-50%);
+          border-width: 0 5px 8px 5px;
+          border-color: transparent transparent currentColor transparent;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <span class="logo"
+        ><a href="servicios-web.html">POSW</a>
+        <span>Programación Orientada a Sitios Web</span></span
+      >
+      <nav class="site-nav">
+        <a href="#http">HTTP</a>
+        <a href="#https">HTTPS</a>
+        <a href="#ssltls">SSL/TLS</a>
+        <a href="#flujo">Flujo TLS</a>
+        <a href="#comparativa">Comparativa</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 3</span>
+        <h1 class="hero-title">Protocolos de Seguridad Web</h1>
+        <p class="hero-sub">
+          Cómo HTTP, HTTPS, SSL y TLS protegen la comunicación en internet.
+        </p>
+        <a href="#http" class="btn-primary-custom">Explorar</a>
+      </div>
+    </section>
+
+    <section id="http">
+      <div class="container">
+        <h2 class="section-title">HTTP — HyperText Transfer Protocol</h2>
+        <p>
+          HTTP es el protocolo de transferencia de hipertexto que define cómo
+          los mensajes son formateados y transmitidos entre clientes
+          (navegadores) y servidores web. Opera en la capa de aplicación del
+          modelo OSI. Es un protocolo sin estado (stateless): cada petición es
+          independiente, el servidor no retiene información del cliente entre
+          requests.
+        </p>
+        <h5 class="mt-4 mb-3">Características</h5>
+        <div class="feature-item">
+          <i
+            class="bi bi-dot"
+            style="color: var(--accent); font-size: 1.4rem"
+          ></i
+          ><span>Puerto por defecto: 80.</span>
+        </div>
+        <div class="feature-item">
+          <i
+            class="bi bi-dot"
+            style="color: var(--accent); font-size: 1.4rem"
+          ></i
+          ><span>Texto plano: los datos viajan sin cifrado.</span>
+        </div>
+        <div class="feature-item">
+          <i
+            class="bi bi-dot"
+            style="color: var(--accent); font-size: 1.4rem"
+          ></i
+          ><span>Stateless: no hay memoria entre peticiones.</span>
+        </div>
+        <div class="feature-item">
+          <i
+            class="bi bi-dot"
+            style="color: var(--accent); font-size: 1.4rem"
+          ></i
+          ><span>Creado por Tim Berners-Lee en 1989 en el CERN.</span>
+        </div>
+        <div class="feature-item">
+          <i
+            class="bi bi-dot"
+            style="color: var(--accent); font-size: 1.4rem"
+          ></i
+          ><span>Versiones: HTTP/1.0, HTTP/1.1, HTTP/2, HTTP/3 (QUIC).</span>
+        </div>
+        <h6 class="mt-4 mb-2" style="color: var(--muted)">
+          Ejemplo de mensaje HTTP crudo
+        </h6>
+        <pre><code class="language-http">GET /api/usuarios/42 HTTP/1.1
 Host: api.ejemplo.com
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
 
 (sin cuerpo en GET)</code></pre>
-    <div class="danger-card mt-3">
-      <i class="bi bi-exclamation-triangle-fill" style="color:#ff4757"></i> <strong>Problema crítico:</strong> cualquier persona en la misma red puede interceptar y leer este mensaje tal como viaja. En una red Wi-Fi pública, esto expone contraseñas, tokens y datos personales.
-    </div>
-  </div>
-</section>
-
-<section id="https" class="section-alt">
-  <div class="container">
-    <h2 class="section-title">HTTPS — HTTP Secure</h2>
-    <p>HTTPS es HTTP con una capa de cifrado TLS por debajo. El servidor presenta un certificado digital emitido por una Autoridad Certificadora (CA) de confianza. El navegador valida el certificado y negocia una clave de sesión simétrica. A partir de ese punto, todo el tráfico viaja cifrado.</p>
-    <div class="row g-3 mt-3">
-      <div class="col-12 col-md-4 card-anim">
-        <div class="benefit-card h-100">
-          <i class="bi bi-shield-check" style="color:#2ed573;font-size:1.8rem"></i>
-          <h6 class="mt-2">Confidencialidad</h6>
-          <p style="color:var(--muted);font-size:.9rem">Los datos no pueden ser leídos por terceros interceptores.</p>
+        <div class="danger-card mt-3">
+          <i class="bi bi-exclamation-triangle-fill" style="color: #ff4757"></i>
+          <strong>Problema crítico:</strong> cualquier persona en la misma red
+          puede interceptar y leer este mensaje tal como viaja. En una red Wi-Fi
+          pública, esto expone contraseñas, tokens y datos personales.
         </div>
       </div>
-      <div class="col-12 col-md-4 card-anim">
-        <div class="benefit-card h-100">
-          <i class="bi bi-shield-check" style="color:#2ed573;font-size:1.8rem"></i>
-          <h6 class="mt-2">Integridad</h6>
-          <p style="color:var(--muted);font-size:.9rem">Garantiza que el mensaje no fue alterado en tránsito (ataques MITM).</p>
+    </section>
+
+    <section id="https" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">HTTPS — HTTP Secure</h2>
+        <p>
+          HTTPS es HTTP con una capa de cifrado TLS por debajo. El servidor
+          presenta un certificado digital emitido por una Autoridad
+          Certificadora (CA) de confianza. El navegador valida el certificado y
+          negocia una clave de sesión simétrica. A partir de ese punto, todo el
+          tráfico viaja cifrado.
+        </p>
+        <div class="row g-3 mt-3">
+          <div class="col-12 col-md-4 card-anim">
+            <div class="benefit-card h-100">
+              <i
+                class="bi bi-shield-check"
+                style="color: #2ed573; font-size: 1.8rem"
+              ></i>
+              <h6 class="mt-2">Confidencialidad</h6>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Los datos no pueden ser leídos por terceros interceptores.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 card-anim">
+            <div class="benefit-card h-100">
+              <i
+                class="bi bi-shield-check"
+                style="color: #2ed573; font-size: 1.8rem"
+              ></i>
+              <h6 class="mt-2">Integridad</h6>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Garantiza que el mensaje no fue alterado en tránsito (ataques
+                MITM).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 card-anim">
+            <div class="benefit-card h-100">
+              <i
+                class="bi bi-shield-check"
+                style="color: #2ed573; font-size: 1.8rem"
+              ></i>
+              <h6 class="mt-2">Autenticación</h6>
+              <p style="color: var(--muted); font-size: 0.9rem">
+                Confirma que el servidor es quien dice ser (no un impostador).
+              </p>
+            </div>
+          </div>
+        </div>
+        <p class="mt-3">
+          <i class="bi bi-lock-fill" style="color: var(--accent)"></i> Puerto
+          por defecto: <strong>443</strong>.
+        </p>
+        <p class="mt-2" style="color: var(--muted)">
+          Google penaliza en rankings a sitios sin HTTPS desde 2014.
+        </p>
+      </div>
+    </section>
+
+    <section id="ssltls">
+      <div class="container">
+        <h2 class="section-title">SSL y TLS: historia y diferencias</h2>
+        <div class="timeline">
+          <div class="timeline-item obsolete card-anim">
+            <div class="timeline-year">1995</div>
+            <div class="timeline-name">SSL 2.0</div>
+            <div class="timeline-desc">
+              Netscape. Primera versión pública. Retirada por vulnerabilidades.
+            </div>
+          </div>
+          <div class="timeline-item obsolete card-anim">
+            <div class="timeline-year">1996</div>
+            <div class="timeline-name">SSL 3.0</div>
+            <div class="timeline-desc">
+              Netscape. Mejorada pero también vulnerable (POODLE, 2014).
+            </div>
+          </div>
+          <div class="timeline-item obsolete card-anim">
+            <div class="timeline-year">1999</div>
+            <div class="timeline-name">TLS 1.0</div>
+            <div class="timeline-desc">
+              IETF. Sucesor estandarizado de SSL. Obsoleto desde 2020.
+            </div>
+          </div>
+          <div class="timeline-item obsolete card-anim">
+            <div class="timeline-year">2006</div>
+            <div class="timeline-name">TLS 1.1</div>
+            <div class="timeline-desc">
+              IETF. Mejoras contra ataques CBC. Obsoleto desde 2020.
+            </div>
+          </div>
+          <div class="timeline-item card-anim">
+            <div class="timeline-year">2008</div>
+            <div class="timeline-name">TLS 1.2</div>
+            <div class="timeline-desc">
+              IETF. Estándar actual en muchos sistemas.
+            </div>
+          </div>
+          <div
+            class="timeline-item card-anim"
+            style="border-color: var(--accent)"
+          >
+            <div class="timeline-year">2018</div>
+            <div class="timeline-name">TLS 1.3</div>
+            <div class="timeline-desc">
+              IETF. El más moderno: handshake más rápido, menos criptografía
+              obsoleta.
+            </div>
+          </div>
+        </div>
+        <div class="note-warn">
+          SSL ya no debe usarse. TLS 1.2 y 1.3 son los únicos aceptables en
+          2025.
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>SSL 3.0</th>
+                <th>TLS 1.2</th>
+                <th>TLS 1.3</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Estado</td>
+                <td style="color: #ff4757">Obsoleto (RFC 7568)</td>
+                <td style="color: #ffa502">Aceptable</td>
+                <td style="color: #2ed573">Recomendado</td>
+              </tr>
+              <tr>
+                <td>Cifrados débiles</td>
+                <td>Sí</td>
+                <td>Algunos</td>
+                <td>No (eliminados)</td>
+              </tr>
+              <tr>
+                <td>Perfect Forward Secrecy</td>
+                <td>No</td>
+                <td>Opcional</td>
+                <td>Obligatorio</td>
+              </tr>
+              <tr>
+                <td>Velocidad handshake</td>
+                <td>Lenta</td>
+                <td>2-RTT</td>
+                <td>1-RTT (más rápido)</td>
+              </tr>
+              <tr>
+                <td>Algoritmos hash</td>
+                <td>MD5, SHA-1</td>
+                <td>SHA-256</td>
+                <td>SHA-256, SHA-384</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div class="col-12 col-md-4 card-anim">
-        <div class="benefit-card h-100">
-          <i class="bi bi-shield-check" style="color:#2ed573;font-size:1.8rem"></i>
-          <h6 class="mt-2">Autenticación</h6>
-          <p style="color:var(--muted);font-size:.9rem">Confirma que el servidor es quien dice ser (no un impostador).</p>
+    </section>
+
+    <section id="flujo" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Flujo del Handshake TLS 1.3</h2>
+        <div id="app">
+          <div class="diagram-container">
+            <div class="progress-section">
+              <div class="progress-label">
+                <span class="mono" style="font-size: 0.8rem">Progreso</span>
+                <span
+                  id="progress-text"
+                  class="mono"
+                  style="font-size: 0.8rem; color: var(--accent)"
+                  >0 / 7</span
+                >
+              </div>
+              <div class="progress-bar">
+                <div
+                  id="progress-bar"
+                  class="progress-fill"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="controls">
+              <button class="btn-control" onclick="playAll()">
+                ▶ Reproducir
+              </button>
+              <button class="btn-control secondary" onclick="nextStep()">
+                ⟶ Siguiente
+              </button>
+              <button class="btn-control secondary" onclick="resetAll()">
+                ↻ Reiniciar
+              </button>
+            </div>
+            <div class="column-headers">
+              <div class="column-header" style="color: var(--accent)">
+                🖥️ CLIENTE
+              </div>
+              <div class="column-header server" style="color: #a78bfa">
+                🗄️ SERVIDOR
+              </div>
+            </div>
+            <div id="steps-container" class="steps-container">
+              <div class="timeline-vertical client"></div>
+              <div class="timeline-vertical server"></div>
+            </div>
+          </div>
+        </div>
+        <ol class="mt-4" style="line-height: 2">
+          <li>
+            <strong>ClientHello:</strong> el cliente anuncia las versiones de
+            TLS que soporta, los algoritmos de cifrado preferidos y su clave
+            pública efímera (Diffie-Hellman).
+          </li>
+          <li>
+            <strong>ServerHello + Certificate:</strong> el servidor elige el
+            cipher suite, envía su clave pública DH y su certificado digital
+            firmado por una CA.
+          </li>
+          <li>
+            <strong>CertificateVerify:</strong> el servidor firma un hash de los
+            mensajes del handshake con su clave privada, probando que posee el
+            certificado.
+          </li>
+          <li>
+            <strong>Finished (servidor):</strong> el servidor envía un MAC sobre
+            todos los mensajes del handshake usando la clave de sesión derivada.
+          </li>
+          <li>
+            <strong>Finished (cliente):</strong> el cliente verifica el MAC,
+            genera su propio Finished y el canal queda cifrado con claves
+            simétricas derivadas del intercambio DH.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="comparativa">
+      <div class="container">
+        <h2 class="section-title">HTTP vs HTTPS — Comparativa</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th>HTTP</th>
+                <th>HTTPS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Puerto</td>
+                <td>80</td>
+                <td>443</td>
+              </tr>
+              <tr>
+                <td>Cifrado</td>
+                <td style="color: #ff4757">No</td>
+                <td style="color: #2ed573">Sí (TLS)</td>
+              </tr>
+              <tr>
+                <td>Certificado requerido</td>
+                <td>No</td>
+                <td>Sí (CA o auto-firmado)</td>
+              </tr>
+              <tr>
+                <td>Velocidad raw</td>
+                <td>Levemente más rápido</td>
+                <td>Overhead mínimo (~1ms moderno)</td>
+              </tr>
+              <tr>
+                <td>SEO</td>
+                <td style="color: #ff4757">Penalizado</td>
+                <td style="color: #2ed573">Favorecido por Google</td>
+              </tr>
+              <tr>
+                <td>Indicador navegador</td>
+                <td>"No seguro"</td>
+                <td>Candado verde</td>
+              </tr>
+              <tr>
+                <td>Recomendado en 2025</td>
+                <td style="color: #ff4757">No</td>
+                <td style="color: #2ed573">Sí, siempre</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="info-card mt-4">
+          <strong>Consejo:</strong> Para desarrollo local puedes usar
+          certificados auto-firmados (<code>mkcert</code>) o HTTP sin problema.
+          En producción, HTTPS con certificados de Let's Encrypt (gratuitos) es
+          obligatorio.
         </div>
       </div>
-    </div>
-    <p class="mt-3"><i class="bi bi-lock-fill" style="color:var(--accent)"></i> Puerto por defecto: <strong>443</strong>.</p>
-    <p class="mt-2" style="color:var(--muted)">Google penaliza en rankings a sitios sin HTTPS desde 2014.</p>
-  </div>
-</section>
+    </section>
 
-<section id="ssltls">
-  <div class="container">
-    <h2 class="section-title">SSL y TLS: historia y diferencias</h2>
-    <div class="timeline">
-      <div class="timeline-item obsolete card-anim">
-        <div class="timeline-year">1995</div>
-        <div class="timeline-name">SSL 2.0</div>
-        <div class="timeline-desc">Netscape. Primera versión pública. Retirada por vulnerabilidades.</div>
+    <section class="section-alt">
+      <div class="container">
+        <a href="http-metodos-status.html" class="nav-card"
+          ><i class="bi bi-list-check"></i
+          ><span style="flex: 1">Siguiente: Métodos HTTP</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos</h2>
+        <a href="http-headers.html" class="nav-card"
+          ><i class="bi bi-code-square"></i
+          ><span style="flex: 1">Headers HTTP</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="tokens.html" class="nav-card"
+          ><i class="bi bi-key"></i
+          ><span style="flex: 1">Tokens y autenticación</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
       </div>
-      <div class="timeline-item obsolete card-anim">
-        <div class="timeline-year">1996</div>
-        <div class="timeline-name">SSL 3.0</div>
-        <div class="timeline-desc">Netscape. Mejorada pero también vulnerable (POODLE, 2014).</div>
-      </div>
-      <div class="timeline-item obsolete card-anim">
-        <div class="timeline-year">1999</div>
-        <div class="timeline-name">TLS 1.0</div>
-        <div class="timeline-desc">IETF. Sucesor estandarizado de SSL. Obsoleto desde 2020.</div>
-      </div>
-      <div class="timeline-item obsolete card-anim">
-        <div class="timeline-year">2006</div>
-        <div class="timeline-name">TLS 1.1</div>
-        <div class="timeline-desc">IETF. Mejoras contra ataques CBC. Obsoleto desde 2020.</div>
-      </div>
-      <div class="timeline-item card-anim">
-        <div class="timeline-year">2008</div>
-        <div class="timeline-name">TLS 1.2</div>
-        <div class="timeline-desc">IETF. Estándar actual en muchos sistemas.</div>
-      </div>
-      <div class="timeline-item card-anim" style="border-color:var(--accent)">
-        <div class="timeline-year">2018</div>
-        <div class="timeline-name">TLS 1.3</div>
-        <div class="timeline-desc">IETF. El más moderno: handshake más rápido, menos criptografía obsoleta.</div>
-      </div>
-    </div>
-    <div class="note-warn">SSL ya no debe usarse. TLS 1.2 y 1.3 son los únicos aceptables en 2025.</div>
-    <div class="table-wrap mt-4">
-      <table class="posw-table">
-        <thead><tr><th>Característica</th><th>SSL 3.0</th><th>TLS 1.2</th><th>TLS 1.3</th></tr></thead>
-        <tbody>
-          <tr><td>Estado</td><td style="color:#ff4757">Obsoleto (RFC 7568)</td><td style="color:#ffa502">Aceptable</td><td style="color:#2ed573">Recomendado</td></tr>
-          <tr><td>Cifrados débiles</td><td>Sí</td><td>Algunos</td><td>No (eliminados)</td></tr>
-          <tr><td>Perfect Forward Secrecy</td><td>No</td><td>Opcional</td><td>Obligatorio</td></tr>
-          <tr><td>Velocidad handshake</td><td>Lenta</td><td>2-RTT</td><td>1-RTT (más rápido)</td></tr>
-          <tr><td>Algoritmos hash</td><td>MD5, SHA-1</td><td>SHA-256</td><td>SHA-256, SHA-384</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="flujo" class="section-alt">
-  <div class="container">
-    <h2 class="section-title">Flujo del Handshake TLS 1.3</h2>
-    <div class="ascii-block">CLIENTE                              SERVIDOR
-   |                                    |
-   |── ClientHello ─────────────────────►|
-   |   (versiones TLS, cipher suites,    |
-   |    key_share: clave pública DH)      |
-   |                                    |
-   |◄──── ServerHello ──────────────────|
-   |      (cipher elegido, key_share)    |
-   |◄──── Certificate ──────────────────|
-   |      (certificado X.509 del server) |
-   |◄──── CertificateVerify ────────────|
-   |◄──── Finished ─────────────────────|
-   |                                    |
-   |──── Finished ───────────────────── ►|
-   |                                    |
-   |═══ CANAL CIFRADO ESTABLECIDO ══════|
-   |                                    |
-   |── GET /api/datos HTTP/1.1 ──────── ►|  (cifrado)
-   |◄── HTTP/1.1 200 OK ────────────────|  (cifrado)</div>
-    <ol class="mt-4" style="line-height:2">
-      <li><strong>ClientHello:</strong> el cliente anuncia las versiones de TLS que soporta, los algoritmos de cifrado preferidos y su clave pública efímera (Diffie-Hellman).</li>
-      <li><strong>ServerHello + Certificate:</strong> el servidor elige el cipher suite, envía su clave pública DH y su certificado digital firmado por una CA.</li>
-      <li><strong>CertificateVerify:</strong> el servidor firma un hash de los mensajes del handshake con su clave privada, probando que posee el certificado.</li>
-      <li><strong>Finished (servidor):</strong> el servidor envía un MAC sobre todos los mensajes del handshake usando la clave de sesión derivada.</li>
-      <li><strong>Finished (cliente):</strong> el cliente verifica el MAC, genera su propio Finished y el canal queda cifrado con claves simétricas derivadas del intercambio DH.</li>
-    </ol>
-  </div>
-</section>
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const obs = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          }),
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".card-anim").forEach((c) => obs.observe(c));
 
-<section id="comparativa">
-  <div class="container">
-    <h2 class="section-title">HTTP vs HTTPS — Comparativa</h2>
-    <div class="table-wrap">
-      <table class="posw-table">
-        <thead><tr><th>Aspecto</th><th>HTTP</th><th>HTTPS</th></tr></thead>
-        <tbody>
-          <tr><td>Puerto</td><td>80</td><td>443</td></tr>
-          <tr><td>Cifrado</td><td style="color:#ff4757">No</td><td style="color:#2ed573">Sí (TLS)</td></tr>
-          <tr><td>Certificado requerido</td><td>No</td><td>Sí (CA o auto-firmado)</td></tr>
-          <tr><td>Velocidad raw</td><td>Levemente más rápido</td><td>Overhead mínimo (~1ms moderno)</td></tr>
-          <tr><td>SEO</td><td style="color:#ff4757">Penalizado</td><td style="color:#2ed573">Favorecido por Google</td></tr>
-          <tr><td>Indicador navegador</td><td>"No seguro"</td><td>Candado verde</td></tr>
-          <tr><td>Recomendado en 2025</td><td style="color:#ff4757">No</td><td style="color:#2ed573">Sí, siempre</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="info-card mt-4">
-      <strong>Consejo:</strong> Para desarrollo local puedes usar certificados auto-firmados (<code>mkcert</code>) o HTTP sin problema. En producción, HTTPS con certificados de Let's Encrypt (gratuitos) es obligatorio.
-    </div>
-  </div>
-</section>
+      const steps = [
+        {
+          id: 1,
+          dir: "right",
+          label: "ClientHello",
+          color: "#00d4ff",
+          summary: "El cliente inicia la conexión",
+          detail:
+            "Envía versiones TLS, cipher suites y clave pública DH (key_share) para intercambio de claves.",
+        },
+        {
+          id: 2,
+          dir: "left",
+          label: "ServerHello",
+          color: "#7b5ea7",
+          summary: "El servidor responde",
+          detail:
+            "Selecciona cipher suite y envía su clave pública DH. Ambas partes pueden calcular el secreto compartido.",
+        },
+        {
+          id: 3,
+          dir: "left",
+          label: "Certificate",
+          color: "#7b5ea7",
+          summary: "Certificado X.509 del servidor",
+          detail:
+            "El servidor envía su certificado digital firmado por una Autoridad Certificadora (CA) para verificar su identidad.",
+        },
+        {
+          id: 4,
+          dir: "left",
+          label: "CertificateVerify",
+          color: "#7b5ea7",
+          summary: "Firma digital del servidor",
+          detail:
+            "El servidor firma el historial del handshake con su clave privada, probando que posee el certificado.",
+        },
+        {
+          id: 5,
+          dir: "left",
+          label: "Finished",
+          color: "#7b5ea7",
+          summary: "Servidor confirma handshake",
+          detail:
+            "Envía un MAC sobre todo el handshake, verificando la integridad de los mensajes intercambiados.",
+        },
+        {
+          id: 6,
+          dir: "right",
+          label: "Finished",
+          color: "#00d4ff",
+          summary: "Cliente confirma handshake",
+          detail:
+            "El cliente envía su propio MAC verificando integridad. El canal cifrado queda completamente establecido.",
+        },
+        {
+          id: 7,
+          dir: "both",
+          label: "Canal Cifrado",
+          color: "#2ed573",
+          summary: "🔒 Comunicación segura establecida",
+          detail:
+            "Todo el tráfico HTTP viaja cifrado. GET /api/datos → HTTP/1.1 200 OK. Nadie puede leer los datos.",
+        },
+      ];
 
-<section class="section-alt">
-  <div class="container">
-    <a href="http-metodos-status.html" class="nav-card"><i class="bi bi-list-check"></i><span style="flex:1">Siguiente: Métodos HTTP</span><i class="bi bi-arrow-right-circle"></i></a>
-    <h2 class="section-title">Recursos</h2>
-    <a href="http-headers.html" class="nav-card"><i class="bi bi-code-square"></i><span style="flex:1">Headers HTTP</span><i class="bi bi-arrow-right-circle"></i></a>
-    <a href="tokens.html" class="nav-card"><i class="bi bi-key"></i><span style="flex:1">Tokens y autenticación</span><i class="bi bi-arrow-right-circle"></i></a>
-  </div>
-</section>
+      let currentStep = 0;
+      let isPlaying = false;
 
-<footer class="site-footer">Programación Orientada a Sitios Web &middot; Material académico &middot; 2025</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script>
-hljs.highlightAll();
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}});
-});
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:0.1});
-document.querySelectorAll('.card-anim').forEach(c=>obs.observe(c));
-</script>
-</body>
+      function buildSteps() {
+        const container = document.getElementById("steps-container");
+
+        steps.forEach((s, i) => {
+          const row = document.createElement("div");
+          row.className = `step-row ${s.dir === "both" ? "both" : ""}`;
+          row.id = `step-${i}`;
+          row.dataset.stepIdx = i;
+
+          if (s.dir === "both") {
+            row.innerHTML = `
+        <div style="width: 100%; text-align: center;">
+          <div class="step-label both" onclick="toggleDetail(${i})">
+            <span class="encrypted-indicator">🔒</span>
+            <span>${s.label}</span>
+          </div>
+          <div class="detail-panel" id="detail-${i}">
+            <div class="detail-content both">
+              <div class="detail-summary" style="color: ${s.color};">${s.summary}</div>
+              <p>${s.detail}</p>
+            </div>
+          </div>
+        </div>
+      `;
+          } else {
+            const isRight = s.dir === "right";
+            row.innerHTML = `
+        <div class="step-content" style="${isRight ? "text-align: right;" : "text-align: left;"}">
+          <div class="step-label ${s.dir}" onclick="toggleDetail(${i})" style="color: ${s.color}; border-color: ${s.color}40;">
+            ${s.label}
+          </div>
+          <div class="detail-panel" id="detail-${i}">
+            <div class="detail-content ${s.dir}">
+              <div class="detail-summary" style="color: ${s.color};">${s.summary}</div>
+              <p>${s.detail}</p>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-container">
+          <div class="arrow-line ${isRight ? "" : "reverse"}" style="color: ${s.color};" id="arrow-${i}"></div>
+        </div>
+        <div class="step-content" style="${!isRight ? "text-align: right;" : "text-align: left;"}"></div>
+      `;
+          }
+
+          container.appendChild(row);
+        });
+      }
+
+      function toggleDetail(idx) {
+        const el = document.getElementById(`detail-${idx}`);
+        if (el) el.classList.toggle("open");
+      }
+
+      function showStep(idx) {
+        if (idx >= steps.length) return;
+        const row = document.getElementById(`step-${idx}`);
+        row.classList.add("visible");
+
+        setTimeout(() => {
+          const arrow = document.getElementById(`arrow-${idx}`);
+          if (arrow) arrow.classList.add("animated");
+        }, 300);
+
+        currentStep = idx + 1;
+        updateProgress();
+      }
+
+      function nextStep() {
+        if (currentStep < steps.length) showStep(currentStep);
+      }
+
+      function playAll() {
+        if (isPlaying) return;
+        isPlaying = true;
+        const start = currentStep;
+        for (let i = start; i < steps.length; i++) {
+          setTimeout(
+            () => {
+              showStep(i);
+              if (i === steps.length - 1) isPlaying = false;
+            },
+            (i - start) * 800,
+          );
+        }
+      }
+
+      function resetAll() {
+        isPlaying = false;
+        currentStep = 0;
+        steps.forEach((_, i) => {
+          const row = document.getElementById(`step-${i}`);
+          row.classList.remove("visible");
+          const arrow = document.getElementById(`arrow-${i}`);
+          if (arrow) arrow.classList.remove("animated");
+          const detail = document.getElementById(`detail-${i}`);
+          if (detail) detail.classList.remove("open");
+        });
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const pct = (currentStep / steps.length) * 100;
+        document.getElementById("progress-bar").style.width = pct + "%";
+        document.getElementById("progress-text").textContent =
+          `${currentStep} / ${steps.length}`;
+      }
+
+      // Element SDK Configuration
+      const defaultConfig = {
+        section_title: "Flujo del Handshake TLS 1.3",
+      };
+
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (config) => {
+            const title = config.section_title || defaultConfig.section_title;
+            document.getElementById("section-title").textContent = title;
+          },
+          mapToCapabilities: (config) => ({
+            recolorables: [],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined,
+          }),
+          mapToEditPanelValues: (config) =>
+            new Map([
+              [
+                "section_title",
+                config.section_title || defaultConfig.section_title,
+              ],
+            ]),
+        });
+      }
+
+      // Initialize on page load
+      buildSteps();
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9e9f7cf88465be99',t:'MTc3NTgwMDM3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
 </html>

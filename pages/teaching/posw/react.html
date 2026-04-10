@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React: Fundamentos | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .note-card {
+        background: #0d2018;
+        border: 1px solid #2ed573;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-top: 16px;
+      }
+      .note-card p {
+        color: #5effa1;
+        margin: 0;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#que-es">¿Qué es?</a>
+        <a href="#jsx">JSX</a>
+        <a href="#componentes">Componentes</a>
+        <a href="#props">Props</a>
+        <a href="#estado">Estado</a>
+        <a href="#hooks">Hooks</a>
+        <a href="#efectos">Efectos</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 16</span>
+        <h1 class="hero-title">React</h1>
+        <p class="hero-sub">
+          La librería de Meta para construir interfaces de usuario mediante
+          componentes reutilizables.
+        </p>
+        <a href="#que-es" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="que-es">
+      <div class="container">
+        <h2 class="section-title">¿Qué es React?</h2>
+        <p>
+          React es una librería JavaScript (no un framework completo) creada por
+          Meta (Facebook) en 2013. Su propósito es construir interfaces de
+          usuario mediante componentes reutilizables. React gestiona
+          eficientemente el DOM usando un Virtual DOM: cuando el estado cambia,
+          React calcula las diferencias mínimas y solo actualiza las partes del
+          DOM real que cambiaron.
+        </p>
+        <div class="row g-4 mt-2">
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-puzzle card-icon"></i>
+              <h5>Componentes</h5>
+              <p class="text-secondary">
+                La UI se divide en piezas pequeñas e independientes, cada una
+                con su propia lógica y presentación.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-lightning card-icon"></i>
+              <h5>Virtual DOM</h5>
+              <p class="text-secondary">
+                React crea una representación en memoria del DOM y aplica solo
+                los cambios mínimos necesarios.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-arrow-repeat card-icon"></i>
+              <h5>Flujo unidireccional</h5>
+              <p class="text-secondary">
+                Los datos fluyen del padre al hijo. El estado es la única fuente
+                de verdad.
+              </p>
+            </div>
+          </div>
+        </div>
+        <pre
+          class="mt-4"
+        ><code class="language-bash"># Crear proyecto React con Vite (recomendado en 2025)
+npm create vite@latest mi-app -- --template react-ts
+cd mi-app
+npm install
+npm run dev</code></pre>
+      </div>
+    </section>
+
+    <section id="jsx" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">JSX — JavaScript XML</h2>
+        <p>
+          JSX es una extensión de sintaxis de JavaScript que permite escribir
+          HTML dentro de código JS. No es obligatorio (se puede usar
+          <code>React.createElement</code>), pero es la forma estándar y
+          recomendada.
+        </p>
+        <pre
+          class="mt-3"
+        ><code class="language-javascript">// Sin JSX (verbose y difícil de leer)
+const elemento = React.createElement(
+  'div',
+  { className: 'tarjeta' },
+  React.createElement('h2', null, 'Laptop Pro 15'),
+  React.createElement('p', { className: 'precio' }, '$4.500.000')
+);
+
+// Con JSX (intuitivo)
+const elemento = (
+  &lt;div className="tarjeta"&gt;
+    &lt;h2&gt;Laptop Pro 15&lt;/h2&gt;
+    &lt;p className="precio"&gt;$4.500.000&lt;/p&gt;
+  &lt;/div&gt;
+);</code></pre>
+        <p class="mt-4"><strong>Reglas de JSX:</strong></p>
+        <ul class="mt-2" style="color: var(--muted)">
+          <li>
+            Un solo elemento raíz (o Fragment
+            <code>&lt;&gt;...&lt;/&gt;</code>).
+          </li>
+          <li>
+            <code>class</code> → <code>className</code>; <code>for</code> →
+            <code>htmlFor</code>.
+          </li>
+          <li>Las expresiones JS van entre <code>&#123;&#125;</code>.</li>
+          <li>Los componentes comienzan con letra mayúscula.</li>
+          <li>
+            Etiquetas sin hijos se auto-cierran: <code>&lt;Input /&gt;</code>.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="componentes">
+      <div class="container">
+        <h2 class="section-title">Componentes Funcionales</h2>
+        <p>
+          En React moderno (desde Hooks en 2019), los componentes se escriben
+          como funciones. Los componentes de clase aún existen pero son legacy.
+        </p>
+        <pre
+          class="mt-3"
+        ><code class="language-tsx">interface TarjetaProductoProps {
+  nombre: string;
+  precio: number;
+  imagen: string;
+  onAgregar: (nombre: string) =&gt; void;
+}
+
+function TarjetaProducto({ nombre, precio, imagen, onAgregar }: TarjetaProductoProps) {
+  const precioFormateado = precio.toLocaleString('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    maximumFractionDigits: 0
+  });
+
+  return (
+    &lt;article className="tarjeta-producto"&gt;
+      &lt;img src={imagen} alt={`Foto de ${nombre}`} loading="lazy" /&gt;
+      &lt;div className="tarjeta-cuerpo"&gt;
+        &lt;h3&gt;{nombre}&lt;/h3&gt;
+        &lt;p className="precio"&gt;{precioFormateado}&lt;/p&gt;
+        &lt;button
+          onClick={() =&gt; onAgregar(nombre)}
+          aria-label={`Agregar ${nombre} al carrito`}
+        &gt;
+          Agregar al carrito
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  );
+}
+
+export default TarjetaProducto;</code></pre>
+      </div>
+    </section>
+
+    <section id="props" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Props</h2>
+        <p>
+          Las props (propiedades) son la forma en que los componentes padre
+          pasan datos a sus hijos. Son de solo lectura: un componente nunca debe
+          modificar sus propias props.
+        </p>
+        <pre class="mt-3"><code class="language-tsx">// Componente padre
+function Catalogo() {
+  const productos = [
+    { id: 1, nombre: "Laptop Pro 15", precio: 4500000, imagen: "/img/laptop.jpg" },
+    { id: 2, nombre: "Mouse inalámbrico", precio: 85000, imagen: "/img/mouse.jpg" },
+  ];
+
+  const handleAgregar = (nombre: string) =&gt; {
+    alert(`${nombre} agregado al carrito`);
+  };
+
+  return (
+    &lt;section className="catalogo"&gt;
+      {productos.map(p =&gt; (
+        &lt;TarjetaProducto
+          key={p.id}
+          nombre={p.nombre}
+          precio={p.precio}
+          imagen={p.imagen}
+          onAgregar={handleAgregar}
+        /&gt;
+      ))}
+    &lt;/section&gt;
+  );
+}</code></pre>
+        <div class="note-card">
+          <p>
+            <strong>Nota sobre <code>key</code>:</strong> La prop
+            <code>key</code> es obligatoria en listas. Ayuda a React a
+            identificar qué elementos cambiaron. Usa un ID único, nunca el
+            índice del array (excepto en listas estáticas).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="estado">
+      <div class="container">
+        <h2 class="section-title">Estado con useState</h2>
+        <p>
+          El estado es información que puede cambiar con el tiempo y que al
+          cambiar debe actualizar la UI. En React, el estado se gestiona con el
+          hook <code>useState</code>.
+        </p>
+        <pre
+          class="mt-3"
+        ><code class="language-tsx">import { useState } from 'react';
+
+function Contador() {
+  const [cuenta, setCuenta] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Cuenta: {cuenta}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCuenta(c =&gt; c + 1)}&gt;+1&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCuenta(c =&gt; c - 1)}&gt;-1&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCuenta(0)}&gt;Resetear&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Estado con objeto
+function FormularioContacto() {
+  const [form, setForm] = useState({ nombre: '', email: '', mensaje: '' });
+
+  const handleChange = (e: React.ChangeEvent&lt;HTMLInputElement | HTMLTextAreaElement&gt;) =&gt; {
+    setForm(prev =&gt; ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  return (
+    &lt;form&gt;
+      &lt;input name="nombre" value={form.nombre} onChange={handleChange} /&gt;
+      &lt;input name="email" value={form.email} onChange={handleChange} /&gt;
+      &lt;textarea name="mensaje" value={form.mensaje} onChange={handleChange} /&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+      </div>
+    </section>
+
+    <section id="hooks" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Hooks Principales</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Hook</th>
+                <th>Propósito</th>
+                <th>Ejemplo de uso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>useState</code></td>
+                <td>Estado local del componente</td>
+                <td>Formularios, toggles, contadores</td>
+              </tr>
+              <tr>
+                <td><code>useEffect</code></td>
+                <td>Efectos secundarios (APIs, suscripciones)</td>
+                <td>Fetch al montar, limpiar timers</td>
+              </tr>
+              <tr>
+                <td><code>useContext</code></td>
+                <td>Consumir contexto global</td>
+                <td>Tema, usuario autenticado, idioma</td>
+              </tr>
+              <tr>
+                <td><code>useReducer</code></td>
+                <td>Estado complejo con lógica (como Redux local)</td>
+                <td>Carrito de compras, formularios multi-paso</td>
+              </tr>
+              <tr>
+                <td><code>useMemo</code></td>
+                <td>Memoizar cálculo costoso</td>
+                <td>Filtrar/ordenar grandes listas</td>
+              </tr>
+              <tr>
+                <td><code>useCallback</code></td>
+                <td>Memoizar función (evitar re-renders hijos)</td>
+                <td>Handlers pasados como props</td>
+              </tr>
+              <tr>
+                <td><code>useRef</code></td>
+                <td>Referencia mutable sin re-render</td>
+                <td>Acceder al DOM, timers, valores previos</td>
+              </tr>
+              <tr>
+                <td><code>useId</code></td>
+                <td>IDs únicos para accesibilidad</td>
+                <td>Labels e inputs en formularios</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="efectos">
+      <div class="container">
+        <h2 class="section-title">useEffect: Efectos Secundarios</h2>
+        <pre><code class="language-tsx">import { useState, useEffect } from 'react';
+
+function ProductoDetalle({ id }: { id: number }) {
+  const [producto, setProducto] = useState&lt;Producto | null&gt;(null);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState&lt;string | null&gt;(null);
+
+  // 1. Efecto con dependencia (re-ejecuta cuando cambia `id`)
+  useEffect(() =&gt; {
+    let cancelado = false;
+    setCargando(true);
+
+    fetch(`/api/productos/${id}`)
+      .then(r =&gt; r.json())
+      .then(datos =&gt; {
+        if (!cancelado) {
+          setProducto(datos);
+          setCargando(false);
+        }
+      })
+      .catch(err =&gt; {
+        if (!cancelado) setError(err.message);
+      });
+
+    // Función de limpieza (se ejecuta antes del próximo efecto o al desmontar)
+    return () =&gt; { cancelado = true; };
+  }, [id]);
+
+  // 2. Efecto sin dependencias (solo al montar y desmontar)
+  useEffect(() =&gt; {
+    document.title = `Producto ${id}`;
+    return () =&gt; { document.title = 'POSW App'; };
+  }, []);
+
+  if (cargando) return &lt;div&gt;Cargando...&lt;/div&gt;;
+  if (error) return &lt;div&gt;Error: {error}&lt;/div&gt;;
+  if (!producto) return null;
+
+  return &lt;h1&gt;{producto.nombre}&lt;/h1&gt;;
+}</code></pre>
+        <div class="ascii-block mt-4">
+          Montaje → useEffect ejecuta (dependencias iniciales) Re-render → Si
+          dependencias cambiaron: limpieza anterior → efecto nuevo Desmontaje →
+          Función de limpieza final
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <a href="modelo-cliente-servidor.html" class="nav-card"
+          ><i class="bi bi-code-slash"></i
+          ><span style="flex: 1">Siguiente: Cliente-Servidor</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="typescript.html" class="nav-card"
+          ><i class="bi bi-code-slash"></i
+          ><span style="flex: 1">TypeScript</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="angular.html" class="nav-card"
+          ><i class="bi bi-hexagon"></i
+          ><span style="flex: 1">Angular: Fundamentos</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="frontend.html" class="nav-card"
+          ><i class="bi bi-window"></i
+          ><span style="flex: 1">Frontend: Tecnologías y Frameworks</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="herramientas-desarrollo.html" class="nav-card"
+          ><i class="bi bi-tools"></i
+          ><span style="flex: 1">Herramientas de Desarrollo</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

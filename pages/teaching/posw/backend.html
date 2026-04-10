@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backend: Tecnologías y Frameworks | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 24px 0;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .lang-group {
+        background: var(--bg);
+        border: 1px solid #222;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .lang-group h4 {
+        color: var(--accent);
+        margin-bottom: 12px;
+        font-size: 1rem;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#que-es">¿Qué es?</a>
+        <a href="#responsabilidades">Responsabilidades</a>
+        <a href="#tecnologias">Tecnologías</a>
+        <a href="#elegir">Cómo elegir</a>
+        <a href="#ejemplos">Ejemplos</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 9</span>
+        <h1 class="hero-title">Backend</h1>
+        <p class="hero-sub">
+          El motor invisible: lógica de negocio, bases de datos, autenticación y
+          APIs.
+        </p>
+        <a href="#que-es" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="que-es">
+      <div class="container">
+        <h2 class="section-title">¿Qué es el Backend?</h2>
+        <p>
+          El backend (server-side) es la parte de una aplicación que se ejecuta
+          en el servidor, invisible para el usuario final. Gestiona la lógica de
+          negocio, el acceso a bases de datos, la autenticación, las
+          integraciones con servicios externos y expone APIs que el frontend
+          consume.
+        </p>
+        <div class="analogy-card">
+          <strong>Analogía:</strong> Si el frontend es la fachada y el salón de
+          un restaurante, el backend es la cocina. El cliente no la ve, pero es
+          donde se prepara realmente todo lo que se sirve. Los chefs (servicios)
+          siguen recetas (lógica de negocio) y usan ingredientes del almacén
+          (base de datos).
+        </div>
+        <div class="ascii-block">
+          ┌────────────────────────────────────────────────┐ │ CLIENTE
+          (Navegador / App) │ ← Frontend
+          └─────────────────────────┬──────────────────────┘ │ HTTP / WebSocket
+          ┌─────────────────────────▼──────────────────────┐ │ API Gateway /
+          Load Balancer │ └─────────────────────────┬──────────────────────┘ │
+          ┌─────────────────────────▼──────────────────────┐ │ BACKEND (Servidor
+          de Aplicación) │ ← Backend │ Rutas → Controladores → Servicios →
+          Modelos │ └──────────┬──────────────┬─────────────┬────────┘ │ │ │
+          ┌─────▼────┐ ┌──────▼───┐ ┌─────▼────────┐ │ DB │ │ Cache │ │
+          Servicios │ │(Postgres)│ │ (Redis) │ │ externos │ └──────────┘
+          └──────────┘ └──────────────┘
+        </div>
+      </div>
+    </section>
+
+    <section id="responsabilidades" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Responsabilidades del Backend</h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-database card-icon"></i>
+              <h5>Persistencia de datos</h5>
+              <p class="text-secondary">
+                Diseñar el modelo de datos, ejecutar consultas, gestionar
+                transacciones.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-shield-check card-icon"></i>
+              <h5>Autenticación y autorización</h5>
+              <p class="text-secondary">
+                Verificar identidad (JWT, OAuth), controlar permisos por rol.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-diagram-2 card-icon"></i>
+              <h5>Lógica de negocio</h5>
+              <p class="text-secondary">
+                Implementar las reglas del dominio (cálculo de precios,
+                validaciones complejas, flujos de estado).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-arrow-left-right card-icon"></i>
+              <h5>Exposición de APIs</h5>
+              <p class="text-secondary">
+                Definir y servir endpoints REST, GraphQL o gRPC que el frontend
+                consume.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-cpu card-icon"></i>
+              <h5>Procesamiento en background</h5>
+              <p class="text-secondary">
+                Colas de trabajos, emails, reportes, procesamiento de imágenes.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-envelope-at card-icon"></i>
+              <h5>Integraciones externas</h5>
+              <p class="text-secondary">
+                Pasarelas de pago, servicios de email, SMS, mapas, IA.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tecnologias">
+      <div class="container">
+        <h2 class="section-title">Tecnologías y Frameworks Populares</h2>
+        <h3 class="mb-4" style="color: var(--accent); font-size: 1.1rem">
+          Por lenguaje
+        </h3>
+        <div class="lang-group">
+          <h4>JavaScript / TypeScript</h4>
+          <ul style="color: var(--muted)">
+            <li>
+              <strong>Node.js + Express:</strong> minimalista, enorme
+              ecosistema, ideal para APIs REST.
+            </li>
+            <li>
+              <strong>Node.js + NestJS:</strong> framework opinionado con
+              decoradores y arquitectura modular. Muy usado en enterprise.
+            </li>
+            <li>
+              <strong>Bun:</strong> runtime alternativo más rápido, compatible
+              con Node.js.
+            </li>
+          </ul>
+        </div>
+        <div class="lang-group">
+          <h4>Python</h4>
+          <ul style="color: var(--muted)">
+            <li>
+              <strong>Django:</strong> framework full-stack con ORM, admin panel
+              y autenticación incluidos.
+            </li>
+            <li>
+              <strong>FastAPI:</strong> moderno, async, documentación automática
+              con OpenAPI. El más rápido en Python.
+            </li>
+            <li>
+              <strong>Flask:</strong> microframework minimalista para APIs
+              simples.
+            </li>
+          </ul>
+        </div>
+        <div class="lang-group">
+          <h4>Java / Kotlin</h4>
+          <ul style="color: var(--muted)">
+            <li>
+              <strong>Spring Boot:</strong> el estándar en entornos
+              empresariales. Inyección de dependencias, seguridad, ORM.
+            </li>
+            <li>
+              <strong>Quarkus:</strong> optimizado para contenedores (GraalVM,
+              startup &lt; 1s).
+            </li>
+          </ul>
+        </div>
+        <div class="lang-group">
+          <h4>PHP</h4>
+          <ul style="color: var(--muted)">
+            <li>
+              <strong>Laravel:</strong> el framework PHP más popular. Eloquent
+              ORM, Artisan CLI, ecosistema maduro.
+            </li>
+          </ul>
+        </div>
+        <div class="lang-group">
+          <h4>Go</h4>
+          <ul style="color: var(--muted)">
+            <li>
+              <strong>Gin / Fiber:</strong> microframeworks de alto rendimiento.
+              Muy usados en microservicios.
+            </li>
+          </ul>
+        </div>
+        <div class="lang-group">
+          <h4>C# / .NET</h4>
+          <ul style="color: var(--muted)">
+            <li>
+              <strong>ASP.NET Core:</strong> framework cross-platform de
+              Microsoft. Altamente performante.
+            </li>
+          </ul>
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Framework</th>
+                <th>Lenguaje</th>
+                <th>Velocidad</th>
+                <th>Curva</th>
+                <th>Uso típico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Express.js</td>
+                <td>Node.js</td>
+                <td>Alta</td>
+                <td>Baja</td>
+                <td>APIs REST, startups</td>
+              </tr>
+              <tr>
+                <td>NestJS</td>
+                <td>TypeScript</td>
+                <td>Alta</td>
+                <td>Media</td>
+                <td>Enterprise, microservicios</td>
+              </tr>
+              <tr>
+                <td>FastAPI</td>
+                <td>Python</td>
+                <td>Muy alta</td>
+                <td>Baja</td>
+                <td>APIs ML/AI, modernización</td>
+              </tr>
+              <tr>
+                <td>Django</td>
+                <td>Python</td>
+                <td>Media</td>
+                <td>Media</td>
+                <td>Apps completas, admin panels</td>
+              </tr>
+              <tr>
+                <td>Spring Boot</td>
+                <td>Java</td>
+                <td>Alta</td>
+                <td>Alta</td>
+                <td>Banca, gobierno, enterprise</td>
+              </tr>
+              <tr>
+                <td>Laravel</td>
+                <td>PHP</td>
+                <td>Media</td>
+                <td>Baja</td>
+                <td>Apps web, CMS, e-commerce</td>
+              </tr>
+              <tr>
+                <td>ASP.NET Core</td>
+                <td>C#</td>
+                <td>Muy alta</td>
+                <td>Media</td>
+                <td>Enterprise Microsoft</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="elegir" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">¿Cómo elegir tecnología Backend?</h2>
+        <div class="ascii-block">
+          ¿El equipo ya tiene experiencia en algún lenguaje? ├── Sí → Usar ese
+          lenguaje (productividad > velocidad teórica) └── No → Evaluar:
+          ¿Proyecto de IA/ML? → Python + FastAPI ¿Sistema bancario/enterprise? →
+          Java Spring Boot o C# ASP.NET ¿Startup/API rápida? → Node.js NestJS o
+          Go ¿CMS/e-commerce? → PHP Laravel
+        </div>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rendimiento</td>
+                <td>
+                  ¿Cuántas requests/segundo necesitas? Go/Rust lideran; Node.js
+                  y Python son suficientes para la mayoría.
+                </td>
+              </tr>
+              <tr>
+                <td>Ecosistema</td>
+                <td>
+                  ¿Hay librerías para tus integraciones? Node.js y Java tienen
+                  los ecosistemas más amplios.
+                </td>
+              </tr>
+              <tr>
+                <td>Equipo</td>
+                <td>
+                  El lenguaje que el equipo ya conoce siempre gana en velocidad
+                  de entrega.
+                </td>
+              </tr>
+              <tr>
+                <td>Mercado laboral</td>
+                <td>
+                  Node.js, Python y Java tienen la mayor demanda en Colombia.
+                </td>
+              </tr>
+              <tr>
+                <td>Escalabilidad</td>
+                <td>
+                  Todos los frameworks modernos escalan bien con diseño
+                  correcto.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="ejemplos">
+      <div class="container">
+        <h2 class="section-title">Ejemplo: API de Productos</h2>
+        <ul class="nav nav-tabs mb-4" id="backendTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="express-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#express-pane"
+              type="button"
+              role="tab"
+              style="color: var(--muted)"
+            >
+              Express.js
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="nest-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nest-pane"
+              type="button"
+              role="tab"
+              style="color: var(--muted)"
+            >
+              NestJS
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="fastapi-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#fastapi-pane"
+              type="button"
+              role="tab"
+              style="color: var(--muted)"
+            >
+              FastAPI
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div
+            class="tab-pane fade show active"
+            id="express-pane"
+            role="tabpanel"
+          >
+            <pre><code class="language-javascript">const express = require('express');
+const router = express.Router();
+
+// GET /api/v1/productos
+router.get('/', async (req, res) =&gt; {
+  try {
+    const productos = await ProductoService.findAll();
+    res.json(productos);
+  } catch (error) {
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+
+// GET /api/v1/productos/:id
+router.get('/:id', async (req, res) =&gt; {
+  const producto = await ProductoService.findById(req.params.id);
+  if (!producto) return res.status(404).json({ error: 'No encontrado' });
+  res.json(producto);
+});
+
+module.exports = router;</code></pre>
+          </div>
+          <div class="tab-pane fade" id="nest-pane" role="tabpanel">
+            <pre><code class="language-typescript">@Controller('productos')
+export class ProductosController {
+  constructor(private readonly productosService: ProductosService) {}
+
+  @Get()
+  findAll(): Promise&lt;Producto[]&gt; {
+    return this.productosService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise&lt;Producto&gt; {
+    return this.productosService.findOne(+id);
+  }
+
+  @Post()
+  @HttpCode(201)
+  create(@Body() createProductoDto: CreateProductoDto): Promise&lt;Producto&gt; {
+    return this.productosService.create(createProductoDto);
+  }
+}</code></pre>
+          </div>
+          <div class="tab-pane fade" id="fastapi-pane" role="tabpanel">
+            <pre><code class="language-python">from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Producto(BaseModel):
+    id: int
+    nombre: str
+    precio: float
+
+@app.get("/api/v1/productos", response_model=list[Producto])
+async def listar_productos():
+    return await ProductoService.find_all()
+
+@app.get("/api/v1/productos/{id}", response_model=Producto)
+async def obtener_producto(id: int):
+    producto = await ProductoService.find_by_id(id)
+    if not producto:
+        raise HTTPException(status_code=404, detail="No encontrado")
+    return producto</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <a href="cache.html" class="nav-card"
+          ><i class="bi bi-lightning-charge"></i
+          ><span style="flex: 1">Siguiente: Caché en Aplicaciones Web</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="frontend.html" class="nav-card"
+          ><i class="bi bi-window"></i
+          ><span style="flex: 1">Frontend: Tecnologías y Frameworks</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="bases-de-datos.html" class="nav-card"
+          ><i class="bi bi-database"></i
+          ><span style="flex: 1">Bases de Datos</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="herramientas-desarrollo.html" class="nav-card"
+          ><i class="bi bi-tools"></i
+          ><span style="flex: 1">Herramientas de Desarrollo</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="modelo-cliente-servidor.html" class="nav-card"
+          ><i class="bi bi-diagram-2"></i
+          ><span style="flex: 1">Modelo Cliente-Servidor</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>

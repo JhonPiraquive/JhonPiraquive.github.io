@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XAMPP y Docker | POSW</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --accent: #00d4ff;
+        --accent2: #7b5ea7;
+        --text: #e0e0e0;
+        --muted: #888;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Poppins", sans-serif;
+        line-height: 1.7;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", sans-serif;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        color: #fff;
+      }
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--accent);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .logo span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-weight: 400;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+      }
+      .site-nav a {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-left: 18px;
+        transition: color 0.2s;
+      }
+      .site-nav a:hover {
+        color: var(--accent);
+      }
+      #hero {
+        min-height: 60vh;
+        background: linear-gradient(135deg, var(--bg), var(--surface));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 24px;
+      }
+      .hero-inner {
+        max-width: 700px;
+      }
+      .badge-tema {
+        background: var(--accent2);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .hero-title {
+        font-size: 3.5rem;
+        color: var(--accent);
+        animation: fadeInUp 0.6s ease both;
+      }
+      .hero-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin: 16px auto 28px;
+      }
+      .btn-primary-custom {
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+        display: inline-block;
+      }
+      .btn-primary-custom:hover {
+        transform: scale(1.04);
+        opacity: 0.9;
+        color: var(--bg);
+      }
+      section {
+        padding: 80px 0;
+      }
+      .section-alt {
+        background: var(--surface);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: var(--text);
+        border-left: 4px solid var(--accent);
+        padding-left: 16px;
+        margin-bottom: 32px;
+      }
+      .card-objetivo {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .card-objetivo.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease,
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .card-objetivo:hover {
+        transform: translateY(-6px) !important;
+        border-color: var(--accent);
+      }
+      .card-icon {
+        font-size: 2rem;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: block;
+      }
+      .ascii-block {
+        background: #1a1a2e;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.9rem;
+        margin: 20px 0;
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .step-block {
+        background: var(--bg);
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 16px;
+      }
+      .step-block h5 {
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div
+        style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"
+      >
+        <span class="logo"
+          ><a href="servicios-web.html">POSW</a>
+          <span>Programación Orientada a Sitios Web</span></span
+        >
+      </div>
+      <nav class="site-nav">
+        <a href="#xampp">XAMPP</a>
+        <a href="#docker">Docker</a>
+        <a href="#comparativa">Comparativa</a>
+        <a href="#hello-react">Hello World React en Docker</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-inner">
+        <span class="badge-tema">Tema 18</span>
+        <h1 class="hero-title">Herramientas de Desarrollo</h1>
+        <p class="hero-sub">
+          XAMPP y Docker: entornos de desarrollo locales para aplicaciones web.
+        </p>
+        <a href="#xampp" class="btn-primary-custom">Comenzar a aprender</a>
+      </div>
+    </section>
+
+    <section id="xampp">
+      <div class="container">
+        <h2 class="section-title">XAMPP</h2>
+        <p>
+          XAMPP es un paquete de software libre que instala en un solo paso un
+          entorno de servidor web completo. El nombre es un acrónimo: X
+          (cross-platform), Apache, MariaDB, PHP, Perl.
+        </p>
+        <div class="table-wrap mt-4">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Componente</th>
+                <th>Función</th>
+                <th>Puerto por defecto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apache</td>
+                <td>Servidor web HTTP</td>
+                <td>80 / 443</td>
+              </tr>
+              <tr>
+                <td>MariaDB (MySQL)</td>
+                <td>Base de datos relacional</td>
+                <td>3306</td>
+              </tr>
+              <tr>
+                <td>PHP</td>
+                <td>Lenguaje de servidor para generar HTML dinámico</td>
+                <td>— (ejecutado por Apache)</td>
+              </tr>
+              <tr>
+                <td>phpMyAdmin</td>
+                <td>Interfaz web para gestionar la BD</td>
+                <td>80/phpmyadmin</td>
+              </tr>
+              <tr>
+                <td>Perl</td>
+                <td>Lenguaje de scripting adicional</td>
+                <td>— (menos usado)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Instalación
+        </h3>
+        <div class="step-block">
+          <h5>Paso 1</h5>
+          <p>
+            Descargar el instalador de
+            <code>https://apachefriends.org</code> según el SO.
+          </p>
+        </div>
+        <div class="step-block">
+          <h5>Paso 2 — Linux</h5>
+          <pre><code class="language-bash">chmod +x xampp-linux-x64-*.run
+sudo ./xampp-linux-x64-*.run
+sudo /opt/lampp/lampp start</code></pre>
+        </div>
+        <div class="step-block">
+          <h5>Paso 3</h5>
+          <p>
+            Verificar acceso en <code>http://localhost</code> y
+            <code>http://localhost/phpmyadmin</code>.
+          </p>
+        </div>
+        <div class="ascii-block">
+          /opt/lampp/ (Linux) o C:\xampp\ (Windows) ├── htdocs/ ← Aquí van tus
+          archivos web (Document Root) │ └── mi-proyecto/ │ └── index.php ├──
+          etc/ │ └── httpd.conf ← Configuración Apache └── mysql/ └── data/ ←
+          Datos de la BD
+        </div>
+        <h3 class="mt-4 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Hello World en PHP
+        </h3>
+        <pre><code class="language-php">&lt;?php
+// /opt/lampp/htdocs/hola/index.php
+$nombre = $_GET['nombre'] ?? 'Mundo';
+echo "&lt;h1&gt;Hola, {$nombre}!&lt;/h1&gt;";
+echo "&lt;p&gt;Servidor: " . $_SERVER['SERVER_SOFTWARE'] . "&lt;/p&gt;";
+?&gt;</code></pre>
+        <p class="mt-3">
+          URL de acceso: <code>http://localhost/hola/?nombre=Angular</code>
+        </p>
+        <p class="mt-3" style="color: var(--muted)">
+          <strong>Cuándo usar XAMPP:</strong> desarrollo con PHP (Laravel,
+          WordPress), proyectos académicos que requieren un entorno local rápido
+          sin aprender DevOps.
+        </p>
+      </div>
+    </section>
+
+    <section id="docker" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Docker</h2>
+        <p>
+          Docker es una plataforma de contenedores que permite empaquetar una
+          aplicación con todas sus dependencias en una unidad portátil y
+          reproducible llamada contenedor. A diferencia de las máquinas
+          virtuales, los contenedores comparten el kernel del SO y son mucho más
+          ligeros.
+        </p>
+        <div class="row g-4 mb-4">
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-image card-icon"></i>
+              <h5>Imagen (Image)</h5>
+              <p class="text-secondary">
+                Plantilla de solo lectura con todo lo necesario para ejecutar la
+                app. Se construye desde un <code>Dockerfile</code>.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-box card-icon"></i>
+              <h5>Contenedor (Container)</h5>
+              <p class="text-secondary">
+                Instancia en ejecución de una imagen. Es efímero: si se elimina,
+                los datos internos se pierden (a menos que uses volúmenes).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-file-code card-icon"></i>
+              <h5>Dockerfile</h5>
+              <p class="text-secondary">
+                Archivo de instrucciones para construir una imagen
+                personalizada.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-diagram-2 card-icon"></i>
+              <h5>Docker Compose</h5>
+              <p class="text-secondary">
+                Herramienta para definir y ejecutar aplicaciones
+                multi-contenedor (ej: app + base de datos + cache).
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card-objetivo h-100">
+              <i class="bi bi-cloud-upload card-icon"></i>
+              <h5>Registro (Registry)</h5>
+              <p class="text-secondary">
+                Repositorio de imágenes. Docker Hub es el público más popular.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="ascii-block">
+          MÁQUINA VIRTUAL CONTENEDOR DOCKER ┌──────────────────┐
+          ┌──────────────────┐ │ App A │ App B │ │ App A │ App B │ │ Libs │ Libs
+          │ │ Libs │ Libs │ │ OS A │ OS B │ ├─────────────────-┤ │ (4GB) │ (4GB)
+          │ │ Docker Engine │ ├─────────────────-┤ │ (kernel del host)│ │
+          Hypervisor │ ├──────────────────┤ ├──────────────────┤ │ SO Host │ │
+          SO Host │ └──────────────────┘ └──────────────────┘ Pesado: 8+ GB,
+          arranque lento Ligero: MBs, arranque &lt; 1s
+        </div>
+        <p class="mt-3">
+          <strong>Instalación:</strong> Descargar Docker Desktop desde
+          <code>https://docker.com/products/docker-desktop</code> para Windows y
+          Mac. En Linux: <code>curl -fsSL https://get.docker.com | sh</code>.
+        </p>
+        <h3 class="mt-4 mb-3" style="color: var(--accent); font-size: 1.1rem">
+          Comandos esenciales
+        </h3>
+        <pre><code class="language-bash"># Descargar imagen
+docker pull nginx:alpine
+
+# Ejecutar contenedor
+docker run -d -p 8080:80 --name mi-nginx nginx:alpine
+
+# Ver contenedores en ejecución
+docker ps
+
+# Ver logs
+docker logs mi-nginx
+
+# Entrar al contenedor
+docker exec -it mi-nginx sh
+
+# Detener y eliminar
+docker stop mi-nginx && docker rm mi-nginx
+
+# Construir imagen desde Dockerfile
+docker build -t mi-app:1.0 .
+
+# Listar imágenes locales
+docker images</code></pre>
+      </div>
+    </section>
+
+    <section id="comparativa">
+      <div class="container">
+        <h2 class="section-title">XAMPP vs Docker</h2>
+        <div class="table-wrap">
+          <table class="posw-table">
+            <thead>
+              <tr>
+                <th>Criterio</th>
+                <th>XAMPP</th>
+                <th>Docker</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Instalación</td>
+                <td>Simple (instalador gráfico)</td>
+                <td>Moderada (línea de comandos)</td>
+              </tr>
+              <tr>
+                <td>Reproducibilidad</td>
+                <td>Baja (depende del SO)</td>
+                <td>Alta (idéntico en cualquier máquina)</td>
+              </tr>
+              <tr>
+                <td>Portabilidad</td>
+                <td>Baja</td>
+                <td>Muy alta (imagen portable)</td>
+              </tr>
+              <tr>
+                <td>Uso en producción</td>
+                <td>No recomendado</td>
+                <td>Estándar industrial</td>
+              </tr>
+              <tr>
+                <td>Múltiples versiones</td>
+                <td>Difícil</td>
+                <td>Trivial (una imagen por versión)</td>
+              </tr>
+              <tr>
+                <td>Curva de aprendizaje</td>
+                <td>Baja</td>
+                <td>Media</td>
+              </tr>
+              <tr>
+                <td>Ideal para</td>
+                <td>PHP académico, WordPress, inicio rápido</td>
+                <td>Proyectos reales, microservicios, CI/CD</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="hello-react" class="section-alt">
+      <div class="container">
+        <h2 class="section-title">Hello World: React en Docker</h2>
+        <div class="step-block">
+          <h5>Paso 1: Crear proyecto React con Vite</h5>
+          <pre><code class="language-bash">npm create vite@latest hola-react -- --template react
+cd hola-react</code></pre>
+        </div>
+        <div class="step-block">
+          <h5>Paso 2: Crear el Dockerfile en la raíz del proyecto</h5>
+          <pre><code class="language-dockerfile"># Etapa 1: Build
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Etapa 2: Servir con Nginx
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]</code></pre>
+        </div>
+        <div class="step-block">
+          <h5>Paso 3: Crear .dockerignore</h5>
+          <pre><code class="language-plaintext">node_modules
+dist
+.git
+*.md</code></pre>
+        </div>
+        <div class="step-block">
+          <h5>Paso 4: Construir la imagen</h5>
+          <pre><code class="language-bash">docker build -t hola-react:1.0 .</code></pre>
+        </div>
+        <div class="step-block">
+          <h5>Paso 5: Ejecutar el contenedor</h5>
+          <pre><code class="language-bash">docker run -d -p 3000:80 --name hola-react hola-react:1.0</code></pre>
+        </div>
+        <div class="step-block">
+          <h5>Paso 6</h5>
+          <p>Abrir <code>http://localhost:3000</code> en el navegador.</p>
+        </div>
+        <div class="step-block">
+          <h5>
+            Paso 7 (bonus): docker-compose.yml para desarrollo con hot reload
+          </h5>
+          <pre><code class="language-yaml">version: '3.8'
+services:
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev -- --host"</code></pre>
+          <p class="mt-2">Ejecutar con: <code>docker compose up</code></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <a href="bases-de-datos.html" class="nav-card"
+          ><i class="bi bi-database"></i
+          ><span style="flex: 1">Siguiente: Bases de Datos</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <h2 class="section-title">Recursos y Temas Relacionados</h2>
+        <a href="frontend.html" class="nav-card"
+          ><i class="bi bi-window"></i
+          ><span style="flex: 1">Frontend: Tecnologías y Frameworks</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="backend.html" class="nav-card"
+          ><i class="bi bi-server"></i
+          ><span style="flex: 1">Backend: Tecnologías y Frameworks</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+        <a href="react.html" class="nav-card"
+          ><i class="bi bi-braces"></i
+          ><span style="flex: 1">React: Fundamentos</span
+          ><i class="bi bi-arrow-right-circle"></i
+        ></a>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Programación Orientada a Sitios Web &middot; Material académico &middot;
+      2025
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".card-objetivo")
+        .forEach((c) => observer.observe(c));
+    </script>
+  </body>
+</html>
