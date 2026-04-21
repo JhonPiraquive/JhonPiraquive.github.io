@@ -1,0 +1,26 @@
+---
+description: In Plan mode, output step plans that name the agent
+alwaysApply: true
+---
+
+# Plan mode: steps must name the agent
+
+When you are in **Plan mode**, your plan output must be a short list of **steps**, and **every step must explicitly state which agent performs it**.
+
+## Required format
+
+- Write plans as 3–8 short bullets (avoid long prose).
+- Each bullet must start with an agent label:
+  - `Assistant:` (you)
+  - `Subagent (explore):`
+  - `Subagent (shell):`
+  - `Subagent (generalPurpose):`
+  - `Subagent (content-creator):`
+  - `Subagent (html-expert):`
+
+## Example
+
+- `Subagent (explore):` Scan repo to find the relevant files and entry points.
+- `Assistant:` Decide approach and outline changes.
+- `Subagent (shell):` Run tests/build and report failures.
+- `Assistant:` Apply fixes, re-run checks, and summarize.

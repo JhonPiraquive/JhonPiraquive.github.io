@@ -295,6 +295,59 @@
         height: 420px;
         white-space: normal !important;
         font-family: inherit;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 212, 255, 0.22);
+        background:
+          radial-gradient(
+              1200px 420px at 20% 20%,
+              rgba(0, 212, 255, 0.12),
+              transparent 55%
+            ),
+          radial-gradient(
+              900px 380px at 90% 70%,
+              rgba(123, 94, 167, 0.18),
+              transparent 55%
+            ),
+          linear-gradient(180deg, rgba(20, 20, 20, 0.85), rgba(13, 13, 13, 0.85));
+        box-shadow:
+          0 18px 60px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(123, 94, 167, 0.1) inset;
+        overflow: hidden;
+      }
+
+      .arch-container::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.06), transparent 45%),
+          radial-gradient(circle at 80% 75%, rgba(255, 255, 255, 0.04), transparent 50%);
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      .arch-container::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.05) 0px,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px,
+            transparent 14px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.035) 0px,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px,
+            transparent 14px
+          );
+        opacity: 0.08;
+        mix-blend-mode: overlay;
+        pointer-events: none;
       }
 
       .arch-node {
@@ -303,6 +356,26 @@
         font-size: 22px;
         text-align: center;
         color: var(--accent);
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(20, 20, 20, 0.55);
+        border: 1px solid rgba(0, 212, 255, 0.18);
+        box-shadow:
+          0 10px 22px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(0, 212, 255, 0.08) inset;
+        backdrop-filter: blur(6px);
+        transition:
+          transform 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      .arch-node:hover {
+        transform: translate(-50%, -50%) translateY(-2px) scale(1.02);
+        border-color: rgba(0, 212, 255, 0.45);
+        box-shadow:
+          0 16px 30px rgba(0, 0, 0, 0.45),
+          0 0 18px rgba(0, 212, 255, 0.14);
       }
 
       .arch-node span {
@@ -318,18 +391,56 @@
         height: 100%;
       }
 
-      #svg-arch path {
-        fill: none;
-        stroke: var(--accent);
-        stroke-width: 2;
-        opacity: 0.4;
-        stroke-dasharray: 6 4;
-        animation: dash 2s linear infinite;
+      #svg-arch .arch-grid line {
+        stroke: rgba(123, 94, 167, 0.15);
+        stroke-width: 1;
       }
 
-      @keyframes dash {
+      #svg-arch .arch-link {
+        fill: none;
+        stroke: url(#archLinkStroke);
+        stroke-width: 2.6;
+        opacity: 0.95;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: url(#archGlow);
+      }
+
+      #svg-arch .arch-link.arch-link--bg {
+        stroke: rgba(0, 212, 255, 0.18);
+        stroke-width: 6.5;
+        opacity: 0.52;
+        filter: blur(0.4px);
+      }
+
+      /* draw-on animation (JS sets dash values) */
+      #svg-arch .arch-link.arch-link--anim {
+        transition: stroke-dashoffset 900ms ease;
+      }
+
+      #svg-arch .arch-link.arch-link--anim.is-drawn {
+        stroke-dashoffset: 0;
+      }
+
+      /* subtle moving highlight */
+      #svg-arch .arch-link.arch-link--pulse {
+        stroke-dasharray: 12 12;
+        animation: archPulse 2.6s linear infinite;
+      }
+
+      @keyframes archPulse {
         to {
-          stroke-dashoffset: -20;
+          stroke-dashoffset: -40;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #svg-arch .arch-link.arch-link--anim {
+          transition: none;
+        }
+        #svg-arch .arch-link.arch-link--pulse {
+          animation: none;
+          stroke-dasharray: none;
         }
       }
 
@@ -619,6 +730,9 @@
       (function () {
         const container = document.querySelector(".arch-container");
         const svg = document.getElementById("svg-arch");
+        const prefersReducedMotion = window.matchMedia?.(
+          "(prefers-reduced-motion: reduce)",
+        )?.matches;
 
         const nodes = {
           react: { x: 10, y: 20 },
@@ -650,6 +764,64 @@
         function draw() {
           svg.innerHTML = "";
 
+          // defs (gradient + glow) and subtle grid
+          const defs = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "defs",
+          );
+          defs.innerHTML = `
+            <linearGradient id="archLinkStroke" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(0,212,255,0.95)"/>
+              <stop offset="45%" stop-color="rgba(0,212,255,0.65)"/>
+              <stop offset="100%" stop-color="rgba(123,94,167,0.95)"/>
+            </linearGradient>
+            <filter id="archGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="1.25" result="blur"/>
+              <feColorMatrix in="blur" type="matrix"
+                values="
+                  1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 0.9 0" result="glow"/>
+              <feMerge>
+                <feMergeNode in="glow"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          `;
+          svg.appendChild(defs);
+
+          const rect = container.getBoundingClientRect();
+          const grid = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "g",
+          );
+          grid.setAttribute("class", "arch-grid");
+          const step = Math.max(48, Math.min(72, rect.width / 10));
+          for (let x = step; x < rect.width; x += step) {
+            const l = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "line",
+            );
+            l.setAttribute("x1", `${x}`);
+            l.setAttribute("y1", "0");
+            l.setAttribute("x2", `${x}`);
+            l.setAttribute("y2", `${rect.height}`);
+            grid.appendChild(l);
+          }
+          for (let y = step; y < rect.height; y += step) {
+            const l = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "line",
+            );
+            l.setAttribute("x1", "0");
+            l.setAttribute("y1", `${y}`);
+            l.setAttribute("x2", `${rect.width}`);
+            l.setAttribute("y2", `${y}`);
+            grid.appendChild(l);
+          }
+          svg.appendChild(grid);
+
           Object.keys(nodes).forEach((id) => {
             const el = document.getElementById(id);
             const p = getCoords(nodes[id]);
@@ -663,17 +835,42 @@
 
             const mx = (p1.x + p2.x) / 2;
 
+            const bg = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "path",
+            );
             const path = document.createElementNS(
               "http://www.w3.org/2000/svg",
               "path",
             );
 
+            const d = `M${p1.x},${p1.y} C${mx},${p1.y} ${mx},${p2.y} ${p2.x},${p2.y}`;
+
+            bg.setAttribute("d", d);
+            bg.setAttribute("class", "arch-link arch-link--bg");
+
             path.setAttribute(
               "d",
-              `M${p1.x},${p1.y} C${mx},${p1.y} ${mx},${p2.y} ${p2.x},${p2.y}`,
+              d,
+            );
+            path.setAttribute(
+              "class",
+              `arch-link${prefersReducedMotion ? "" : " arch-link--pulse"}`,
             );
 
+            svg.appendChild(bg);
             svg.appendChild(path);
+
+            if (!prefersReducedMotion) {
+              const len = Math.max(1, path.getTotalLength());
+              path.classList.add("arch-link--anim");
+              path.style.strokeDasharray = `${len}`;
+              path.style.strokeDashoffset = `${len}`;
+              // allow initial styles to apply before transitioning
+              requestAnimationFrame(() => {
+                path.classList.add("is-drawn");
+              });
+            }
           });
         }
 

@@ -1,0 +1,84 @@
+---
+description: Backend clean code, SOLID, best practices, and comment standards
+globs: "{backend,server,api,src/server,src/api}/**/*.{ts,tsx,js,jsx,py,php}"
+alwaysApply: false
+---
+
+# Backend engineering standards (Clean Code + SOLID)
+
+## Priorities
+
+- **Correctness first**: Explicit inputs/outputs, handle errors deliberately, write defensive code at boundaries.
+- **Readability over cleverness**: Prefer simple control flow, clear naming, and small units.
+- **Maintainability**: Optimize for change. Keep coupling low and cohesion high.
+
+## SOLID (practical)
+
+- **Single Responsibility**: One module/function = one reason to change. Split orchestration vs domain logic vs I/O.
+- **Open/Closed**: Extend behavior via composition/configuration rather than editing many callers.
+- **Liskov Substitution**: Don’t weaken contracts in subtypes (inputs/outputs/throws).
+- **Interface Segregation**: Prefer narrow interfaces per use-case over “god” services.
+- **Dependency Inversion**: Depend on abstractions; pass dependencies in (DI). Keep framework code at the edges.
+
+## Backend best practices
+
+### API design
+
+- **Consistency**: Stable resource naming, predictable status codes, error format, pagination, filtering.
+- **Validation at the boundary**: Validate request params/body early; normalize types; reject unknown fields when possible.
+- **Idempotency**: Ensure safe retries for create/payment-like operations (idempotency keys).
+- **Versioning**: Prefer explicit versioning strategy when breaking changes are possible.
+
+### Data & persistence
+
+- **Transactions**: Use transactions for multi-step writes; keep them short; avoid holding locks while calling external services.
+- **N+1 avoidance**: Batch reads, prefetch, or change queries to avoid per-item DB calls.
+- **Migrations**: Backward-compatible migrations (expand/contract) for zero-downtime changes.
+
+### Security
+
+- **AuthN/AuthZ**: Authenticate first; authorize per action/resource. Don’t mix auth checks inside low-level repositories.
+- **Least privilege**: Minimal DB roles, scoped tokens, and restricted secrets access.
+- **Input safety**: Parameterized queries; safe deserialization; avoid shelling out with untrusted input.
+- **Secrets**: Never log secrets; never commit credentials; rotate if exposed.
+
+### Reliability & operations
+
+- **Time bounds**: Always set timeouts for network/DB calls; add retries with backoff only for safe/idempotent ops.
+- **Observability**: Structured logs, correlation IDs, meaningful metrics, and actionable errors.
+- **Graceful degradation**: Handle downstream failure (circuit breakers, fallbacks) when appropriate.
+
+## Clean coding rules
+
+- **Naming**: Use domain terms; avoid abbreviations; name booleans as predicates (`is*`, `has*`, `can*`).
+- **Function size**: Keep functions small; avoid deep nesting; use early returns.
+- **No hidden side effects**: Make mutation explicit; avoid surprising global state changes.
+- **Boundaries**: Keep I/O at the edges (HTTP, DB, filesystem). Keep business logic pure/testable.
+- **Errors**: Don’t swallow exceptions. Either handle with a user-safe response or rethrow with context.
+
+## Comments (minimal, high-signal)
+
+### When to comment
+
+- **Explain intent**: Why this exists, what invariant must hold, what trade-off was chosen.
+- **Explain constraints**: External API quirks, performance constraints, compatibility requirements.
+- **Explain non-obvious logic**: Complex edge cases, tricky algorithms, or counterintuitive decisions.
+
+### When NOT to comment
+
+- **No narration**: Don’t restate what the code clearly says.
+- **No duplication**: Don’t repeat types, names, or obvious control flow.
+- **Avoid “TODO noise”**: Use TODO only with an owner or clear next action.
+
+### Examples
+
+```text
+// ❌ Bad: narrates the code
+// Increment i by 1
+i += 1
+
+// ✅ Good: explains intent/tradeoff
+// We cap retries to avoid thundering herd during partial outages.
+maxRetries = 2
+```
+

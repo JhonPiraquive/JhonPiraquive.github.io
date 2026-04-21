@@ -208,6 +208,337 @@
         margin: 20px 0;
         line-height: 1.5;
       }
+      .ws-anim {
+        background: #0d1117;
+        border-radius: 10px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        color: var(--accent);
+        margin: 20px 0;
+        overflow: hidden;
+        border: 1px solid #1f2937;
+      }
+      .ws-anim__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid #1f2937;
+      }
+      .ws-anim__title {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        user-select: none;
+      }
+      .ws-anim__title-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #ff5f56;
+        box-shadow:
+          16px 0 0 #ffbd2e,
+          32px 0 0 #27c93f;
+      }
+      .ws-anim__controls {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .ws-anim__btn {
+        appearance: none;
+        border: 1px solid #223046;
+        background: rgba(59, 130, 246, 0.12);
+        color: #cfe3ff;
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease,
+          border-color 0.15s ease;
+      }
+      .ws-anim__btn:hover {
+        transform: translateY(-1px);
+        border-color: rgba(96, 165, 250, 0.7);
+      }
+      .ws-anim__btn:active {
+        transform: translateY(0);
+      }
+      .ws-anim__btn[disabled] {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+      .ws-anim__step-label {
+        color: var(--muted);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        padding: 0 2px;
+        white-space: nowrap;
+      }
+      .ws-anim__body {
+        display: grid;
+        grid-template-columns: 1fr minmax(160px, 240px) 1fr;
+        gap: 12px;
+        padding: 12px;
+      }
+      .ws-anim__col {
+        border: 1px solid #1f2937;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.02);
+        min-height: 220px;
+        overflow: hidden;
+      }
+      .ws-anim__col-title {
+        padding: 10px 10px 8px;
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #cbd5e1;
+        border-bottom: 1px solid #1f2937;
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .ws-anim__col-content {
+        padding: 10px;
+        display: grid;
+        gap: 10px;
+      }
+      .ws-anim__kvs {
+        display: grid;
+        gap: 6px;
+        color: #cbd5e1;
+        font-size: 0.82rem;
+      }
+      .ws-anim__kv strong {
+        color: #e5e7eb;
+      }
+      .ws-anim__badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid #1f2937;
+        background: rgba(46, 213, 115, 0.12);
+        color: #7bed9f;
+        font-weight: 900;
+        font-size: 0.78rem;
+        letter-spacing: 0.02em;
+      }
+      .ws-anim__state {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid #1f2937;
+        background: rgba(255, 255, 255, 0.03);
+        color: #cbd5e1;
+        font-weight: 900;
+        font-size: 0.78rem;
+        letter-spacing: 0.02em;
+      }
+      .ws-anim__state-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: #64748b;
+      }
+      .ws-anim__state[data-state="OPEN"] .ws-anim__state-dot {
+        background: #2ed573;
+      }
+      .ws-anim__state[data-state="CLOSED"] .ws-anim__state-dot {
+        background: #ff4757;
+      }
+      .ws-anim__text {
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+      .ws-anim__channel {
+        border: 1px dashed rgba(148, 163, 184, 0.35);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.015);
+        min-height: 220px;
+        position: relative;
+        overflow: hidden;
+      }
+      .ws-anim__channel-title {
+        padding: 10px 10px 8px;
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #cbd5e1;
+        border-bottom: 1px dashed rgba(148, 163, 184, 0.35);
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .ws-anim__msgs {
+        padding: 10px;
+        display: grid;
+        gap: 10px;
+      }
+      .ws-msg {
+        position: relative;
+        border: 1px solid #1f2937;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 10px;
+        padding: 10px 10px 9px;
+        color: #cbd5e1;
+        font-size: 0.82rem;
+        line-height: 1.35;
+        transform: translateY(8px);
+        opacity: 0;
+      }
+      .ws-msg__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+      .ws-msg__tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid #223046;
+        background: rgba(59, 130, 246, 0.14);
+        color: #cfe3ff;
+        font-weight: 900;
+        letter-spacing: 0.03em;
+      }
+      .ws-msg__dir {
+        font-variant-numeric: tabular-nums;
+      }
+      .ws-msg__payload {
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: #e5e7eb;
+      }
+      .ws-msg.is-in {
+        border-color: rgba(46, 213, 115, 0.35);
+      }
+      .ws-msg.is-out {
+        border-color: rgba(96, 165, 250, 0.35);
+      }
+      .ws-msg.is-ping {
+        border-color: rgba(255, 189, 46, 0.5);
+      }
+      .ws-msg.is-close {
+        border-color: rgba(255, 71, 87, 0.5);
+      }
+      .ws-anim.is-ready .ws-msg.is-enter {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.22s ease-out,
+          transform 0.22s ease-out;
+      }
+      .ws-anim.is-ready .ws-msg.is-travel-lr {
+        animation: wsTravelLR 0.58s ease-out both;
+      }
+      .ws-anim.is-ready .ws-msg.is-travel-rl {
+        animation: wsTravelRL 0.58s ease-out both;
+      }
+      @keyframes wsTravelLR {
+        0% {
+          opacity: 0;
+          transform: translateX(-12px) translateY(8px);
+        }
+        35% {
+          opacity: 1;
+          transform: translateX(-6px) translateY(0);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(12px) translateY(0);
+        }
+      }
+      @keyframes wsTravelRL {
+        0% {
+          opacity: 0;
+          transform: translateX(12px) translateY(8px);
+        }
+        35% {
+          opacity: 1;
+          transform: translateX(6px) translateY(0);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(-12px) translateY(0);
+        }
+      }
+      .ws-anim__footer {
+        padding: 10px 12px 12px;
+        border-top: 1px solid #1f2937;
+        background: rgba(255, 255, 255, 0.015);
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .ws-anim__details summary {
+        cursor: pointer;
+        user-select: none;
+        font-weight: 800;
+        color: #cbd5e1;
+      }
+      .ws-anim__details .ascii-block {
+        margin: 10px 0 0;
+        font-size: 0.82rem;
+      }
+      .sr-only {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+      @media (max-width: 768px) {
+        .ws-anim__body {
+          grid-template-columns: 1fr;
+        }
+        .ws-anim__channel {
+          order: 2;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ws-anim__btn {
+          transition: none;
+        }
+        .ws-anim.is-ready .ws-msg.is-enter {
+          transition:
+            opacity 0.12s ease-out,
+            transform 0.12s ease-out;
+        }
+        .ws-anim.is-ready .ws-msg.is-travel-lr,
+        .ws-anim.is-ready .ws-msg.is-travel-rl {
+          animation-duration: 0.12s;
+        }
+      }
       .info-card {
         background: var(--surface);
         border-left: 4px solid var(--accent2);
@@ -272,6 +603,90 @@
         font-size: 0.85rem;
         margin-bottom: 6px;
         margin-top: 16px;
+      }
+      .endpoint-card {
+        background: #0d1117;
+        border: 1px solid #222;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 12px 0 20px;
+      }
+      .endpoint-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+      }
+      .endpoint-table th {
+        text-align: left;
+        padding: 12px 14px;
+        color: #cbd5e1;
+        background: rgba(255, 255, 255, 0.04);
+        border-bottom: 1px solid #222;
+        font-size: 0.82rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .endpoint-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid #1f2937;
+        vertical-align: middle;
+      }
+      .endpoint-table tr:last-child td {
+        border-bottom: none;
+      }
+      .endpoint-table tr:hover td {
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .http-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 58px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        border: 1px solid #222;
+      }
+      .http-get {
+        background: rgba(46, 213, 115, 0.12);
+        color: #7bed9f;
+      }
+      .http-post {
+        background: rgba(55, 66, 250, 0.14);
+        color: #a4b0ff;
+      }
+      .http-put {
+        background: rgba(255, 165, 2, 0.14);
+        color: #ffd36f;
+      }
+      .http-patch {
+        background: rgba(255, 99, 72, 0.14);
+        color: #ffb3a7;
+      }
+      .http-delete {
+        background: rgba(255, 71, 87, 0.14);
+        color: #ff8a96;
+      }
+      .endpoint-path {
+        color: #e5e7eb;
+        white-space: nowrap;
+      }
+      .endpoint-desc {
+        color: var(--muted);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+          "Apple Color Emoji", "Segoe UI Emoji";
+      }
+      @media (max-width: 576px) {
+        .endpoint-table th:nth-child(3),
+        .endpoint-table td:nth-child(3) {
+          display: none;
+        }
+        .endpoint-path {
+          white-space: normal;
+        }
       }
       .accordion-button {
         background: var(--surface) !important;
@@ -676,13 +1091,54 @@
           </div>
         </div>
         <div class="code-label">Endpoints REST</div>
-        <pre><code class="language-text">GET    /api/v1/productos        → Lista productos
-GET    /api/v1/productos/42     → Obtener producto 42
-POST   /api/v1/productos        → Crear producto
-PUT    /api/v1/productos/42     → Reemplazar producto 42
-PATCH  /api/v1/productos/42     → Actualizar parcialmente
-DELETE /api/v1/productos/42     → Eliminar producto 42</code></pre>
-        <div class="code-label">Respuesta JSON con HATEOAS</div>
+        <div class="endpoint-card" role="region" aria-label="Endpoints REST">
+          <div class="table-wrap" style="margin: 0">
+            <table class="endpoint-table">
+              <thead>
+                <tr>
+                  <th style="width: 110px">Método</th>
+                  <th>Endpoint</th>
+                  <th style="width: 38%">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="http-badge http-get">GET</span></td>
+                  <td><span class="endpoint-path">/api/v1/productos</span></td>
+                  <td><span class="endpoint-desc">Lista productos</span></td>
+                </tr>
+                <tr>
+                  <td><span class="http-badge http-get">GET</span></td>
+                  <td><span class="endpoint-path">/api/v1/productos/42</span></td>
+                  <td><span class="endpoint-desc">Obtener producto 42</span></td>
+                </tr>
+                <tr>
+                  <td><span class="http-badge http-post">POST</span></td>
+                  <td><span class="endpoint-path">/api/v1/productos</span></td>
+                  <td><span class="endpoint-desc">Crear producto</span></td>
+                </tr>
+                <tr>
+                  <td><span class="http-badge http-put">PUT</span></td>
+                  <td><span class="endpoint-path">/api/v1/productos/42</span></td>
+                  <td><span class="endpoint-desc">Reemplazar producto 42</span></td>
+                </tr>
+                <tr>
+                  <td><span class="http-badge http-patch">PATCH</span></td>
+                  <td><span class="endpoint-path">/api/v1/productos/42</span></td>
+                  <td>
+                    <span class="endpoint-desc">Actualizar parcialmente</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="http-badge http-delete">DELETE</span></td>
+                  <td><span class="endpoint-path">/api/v1/productos/42</span></td>
+                  <td><span class="endpoint-desc">Eliminar producto 42</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="code-label">Respuesta JSON</div>
         <pre><code class="language-json">{
   "id": 42,
   "nombre": "Laptop Pro 15",
@@ -847,14 +1303,92 @@ message ProductoResponse {
           cliente como servidor pueden enviar mensajes en cualquier momento sin
           necesidad de nuevas peticiones.
         </p>
-        <div class="ascii-block">
-          CLIENTE SERVIDOR |── GET /ws (Upgrade: websocket) ──►| |◄── 101
-          Switching Protocols ───────| | | | CONEXIÓN PERSISTENTE ABIERTA | | |
-          |── {"tipo":"mensaje","texto":"Hola"}►| |◄──
-          {"tipo":"respuesta","texto":"!"} | |── {"tipo":"ping"}
-          ───────────────►| |◄── {"tipo":"pong"} ───────────────| | | |── close
-          ──────────────────────────►|
-        </div>
+        <section
+          class="ws-anim"
+          data-ws-anim
+          aria-label="Terminal: Flujo WebSocket"
+        >
+          <div class="ws-anim__header">
+            <div class="ws-anim__title">
+              <span class="ws-anim__title-dot" aria-hidden="true"></span>
+              <span>Terminal • Flujo WebSocket</span>
+            </div>
+            <div class="ws-anim__controls" role="group" aria-label="Controles">
+              <button
+                type="button"
+                class="ws-anim__btn"
+                data-ws-play
+                aria-pressed="false"
+              >
+                Reproducir
+              </button>
+              <button type="button" class="ws-anim__btn" data-ws-reset>
+                Reiniciar
+              </button>
+              <button type="button" class="ws-anim__btn" data-ws-step>
+                Paso
+              </button>
+              <span class="ws-anim__step-label" data-ws-step-label>
+                Paso 1 de 6 — Handshake (Upgrade HTTP → WebSocket)
+              </span>
+            </div>
+          </div>
+
+          <div class="sr-only" aria-live="polite" data-ws-live>
+            Paso 1 de 6: Handshake (Upgrade HTTP → WebSocket). Cliente → Servidor:
+            GET /chat HTTP/1.1, Upgrade: websocket, Connection: Upgrade,
+            Sec-WebSocket-Key: …, Sec-WebSocket-Version: 13.
+          </div>
+
+          <div class="ws-anim__body">
+            <div class="ws-anim__col">
+              <div class="ws-anim__col-title">Cliente (navegador)</div>
+              <div class="ws-anim__col-content">
+                <div class="ws-anim__kvs" data-ws-left></div>
+              </div>
+            </div>
+
+            <div class="ws-anim__channel" aria-label="Canal (mensajes)">
+              <div class="ws-anim__channel-title">Channel</div>
+              <div class="ws-anim__msgs" data-ws-msgs>
+                <div class="ws-msg is-enter is-travel-lr is-out">
+                  <div class="ws-msg__meta">
+                    <span class="ws-msg__tag">GET</span>
+                    <span class="ws-msg__dir">Cliente → Servidor</span>
+                  </div>
+                  <div class="ws-msg__payload">
+                    GET /chat HTTP/1.1\nUpgrade: websocket\nConnection: Upgrade\nSec-WebSocket-Key: …\nSec-WebSocket-Version: 13
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ws-anim__col">
+              <div class="ws-anim__col-title">Servidor (endpoint WS)</div>
+              <div class="ws-anim__col-content">
+                <div class="ws-anim__kvs" data-ws-right></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ws-anim__footer">
+            <details class="ws-anim__details">
+              <summary>Versión ASCII (estática)</summary>
+              <div class="ascii-block">
+CLIENTE                          SERVIDOR
+|── GET /chat (Upgrade: websocket) ──►|
+|◄── 101 Switching Protocols ─────────|
+|── TEXT "Hola" ────────────────────►|
+|◄── TEXT "¡Recibido!" ─────────────|
+|── JSON {"tipo":"evento","valor":42}►|
+|◄── PING ───────────────────────────|
+|── PONG ───────────────────────────►|
+|── CLOSE 1000 (Normal Closure) ────►|
+|◄── CLOSE 1000 (OK) ───────────────|
+              </div>
+            </details>
+          </div>
+        </section>
         <p class="mb-3" style="color: var(--muted)">
           Casos de uso: chat en tiempo real, notificaciones push, dashboards
           live, juegos multijugador, trading en tiempo real.
@@ -1015,6 +1549,406 @@ ws.onclose = () => console.log('Conexión cerrada');</code></pre>
       document
         .querySelectorAll(".card-anim,.card-g")
         .forEach((c) => obs.observe(c));
+
+      const prefersReduced = window.matchMedia?.(
+        "(prefers-reduced-motion: reduce)",
+      )?.matches;
+
+      const wsAnim = document.querySelector("[data-ws-anim]");
+      if (wsAnim) {
+        const readyObs = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting) wsAnim.classList.add("is-ready");
+            }),
+          { threshold: 0.2 },
+        );
+        readyObs.observe(wsAnim);
+
+        const ui = {
+          play: wsAnim.querySelector("[data-ws-play]"),
+          reset: wsAnim.querySelector("[data-ws-reset]"),
+          step: wsAnim.querySelector("[data-ws-step]"),
+          label: wsAnim.querySelector("[data-ws-step-label]"),
+          live: wsAnim.querySelector("[data-ws-live]"),
+          left: wsAnim.querySelector("[data-ws-left]"),
+          right: wsAnim.querySelector("[data-ws-right]"),
+          msgs: wsAnim.querySelector("[data-ws-msgs]"),
+        };
+
+        const steps = [
+          {
+            title: "Handshake (Upgrade HTTP → WebSocket)",
+            a11y:
+              'Handshake (Upgrade HTTP → WebSocket). Cliente → Servidor: GET /chat HTTP/1.1, Upgrade: websocket, Connection: Upgrade, Sec-WebSocket-Key: …, Sec-WebSocket-Version: 13.',
+            left: [
+              "<span class='ws-anim__kv'><strong>Cliente → Servidor</strong></span>",
+            ],
+            right: [],
+            badge: null,
+            state: null,
+            text: null,
+            events: [
+              {
+                dir: "Cliente → Servidor",
+                tag: "GET",
+                payload:
+                  "GET /chat HTTP/1.1\nUpgrade: websocket\nConnection: Upgrade\nSec-WebSocket-Key: …\nSec-WebSocket-Version: 13",
+                travel: "lr",
+                kind: "out",
+              },
+            ],
+          },
+          {
+            title: "Aceptación del servidor (101 Switching Protocols)",
+            a11y:
+              "Aceptación del servidor (101 Switching Protocols). Servidor → Cliente: HTTP/1.1 101 Switching Protocols, Upgrade: websocket, Connection: Upgrade, Sec-WebSocket-Accept: …. Conexión WebSocket abierta.",
+            left: [],
+            right: [
+              "<span class='ws-anim__kv'><strong>Servidor → Cliente</strong></span>",
+              "<span class='ws-anim__badge'>Conexión WebSocket abierta</span>",
+            ],
+            badge: "Conexión WebSocket abierta",
+            state: { value: "OPEN" },
+            text: null,
+            events: [
+              {
+                dir: "Servidor → Cliente",
+                tag: "101",
+                payload:
+                  "HTTP/1.1 101 Switching Protocols\nUpgrade: websocket\nConnection: Upgrade\nSec-WebSocket-Accept: …",
+                travel: "rl",
+                kind: "in",
+              },
+            ],
+          },
+          {
+            title: "Canal persistente (conexión abierta)",
+            a11y:
+              "Canal persistente (conexión abierta). Estado: OPEN. La conexión queda abierta para enviar y recibir mensajes sin crear nuevas peticiones HTTP.",
+            left: [],
+            right: [],
+            badge: null,
+            state: { value: "OPEN" },
+            text:
+              "La conexión queda abierta para enviar y recibir mensajes sin crear nuevas peticiones HTTP.",
+            events: [],
+          },
+          {
+            title: "Mensajes (frames) en ambos sentidos",
+            a11y:
+              'Mensajes (frames) en ambos sentidos. Cliente → Servidor: TEXT "Hola". Servidor → Cliente: TEXT "¡Recibido!". Cliente → Servidor: JSON {"tipo":"evento","valor":42}. 3 mensajes mostrados.',
+            left: [],
+            right: [],
+            badge: null,
+            state: { value: "OPEN" },
+            text: null,
+            footerCount: "3 mensajes mostrados",
+            events: [
+              {
+                dir: "Cliente → Servidor",
+                tag: "TEXT",
+                payload: '"Hola"',
+                travel: "lr",
+                kind: "out",
+              },
+              {
+                dir: "Servidor → Cliente",
+                tag: "TEXT",
+                payload: '"¡Recibido!"',
+                travel: "rl",
+                kind: "in",
+              },
+              {
+                dir: "Cliente → Servidor",
+                tag: "JSON",
+                payload: '{"tipo":"evento","valor":42}',
+                travel: "lr",
+                kind: "out",
+              },
+            ],
+          },
+          {
+            title: "Ping / Pong (keep-alive)",
+            a11y:
+              "Ping / Pong (keep-alive). Servidor → Cliente: PING. Cliente → Servidor: PONG. Ayuda a detectar desconexiones y mantener viva la sesión.",
+            left: [],
+            right: [],
+            badge: null,
+            state: { value: "OPEN" },
+            text:
+              "Ayuda a detectar desconexiones y mantener viva la sesión.",
+            events: [
+              {
+                dir: "Servidor → Cliente",
+                tag: "PING",
+                payload: "",
+                travel: "rl",
+                kind: "ping",
+              },
+              {
+                dir: "Cliente → Servidor",
+                tag: "PONG",
+                payload: "",
+                travel: "lr",
+                kind: "ping",
+              },
+            ],
+          },
+          {
+            title: "Cierre de la conexión (Close)",
+            a11y:
+              "Cierre de la conexión (Close). Cliente → Servidor: CLOSE 1000 (Normal Closure). Servidor → Cliente: CLOSE 1000 (OK). Estado: CLOSED. La conexión termina y se liberan recursos.",
+            left: [],
+            right: [],
+            badge: null,
+            state: { value: "CLOSED" },
+            text: "La conexión termina y se liberan recursos.",
+            events: [
+              {
+                dir: "Cliente → Servidor",
+                tag: "CLOSE",
+                payload: "1000 (Normal Closure)",
+                travel: "lr",
+                kind: "close",
+              },
+              {
+                dir: "Servidor → Cliente",
+                tag: "CLOSE",
+                payload: "1000 (OK)",
+                travel: "rl",
+                kind: "close",
+              },
+            ],
+          },
+        ];
+
+        let stepIdx = 0;
+        let isPlaying = false;
+        let timers = [];
+
+        const clearTimers = () => {
+          timers.forEach((t) => clearTimeout(t));
+          timers = [];
+        };
+
+        const escapeHtml = (s) =>
+          String(s)
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
+
+        const renderKvs = (el, items) => {
+          if (!el) return;
+          el.innerHTML = "";
+          (items || []).forEach((html) => {
+            const div = document.createElement("div");
+            div.className = "ws-anim__kv";
+            div.innerHTML = html;
+            el.appendChild(div);
+          });
+        };
+
+        const renderStateBlock = (target, state) => {
+          if (!target) return;
+          const existing = target.querySelector("[data-ws-state]");
+          if (existing) existing.remove();
+          if (!state?.value) return;
+          const wrap = document.createElement("div");
+          wrap.setAttribute("data-ws-state", "1");
+          wrap.innerHTML = `<span class="ws-anim__state" data-state="${escapeHtml(
+            state.value,
+          )}"><span class="ws-anim__state-dot" aria-hidden="true"></span>Estado: ${escapeHtml(
+            state.value,
+          )}</span>`;
+          target.prepend(wrap);
+        };
+
+        const renderText = (target, text) => {
+          if (!target) return;
+          const existing = target.querySelector("[data-ws-text]");
+          if (existing) existing.remove();
+          if (!text) return;
+          const p = document.createElement("div");
+          p.className = "ws-anim__text";
+          p.setAttribute("data-ws-text", "1");
+          p.textContent = text;
+          target.appendChild(p);
+        };
+
+        const renderStepLabel = () => {
+          const s = steps[stepIdx];
+          if (ui.label) {
+            ui.label.textContent = `Paso ${stepIdx + 1} de 6 — ${s.title}`;
+          }
+        };
+
+        const announce = () => {
+          const s = steps[stepIdx];
+          if (ui.live) {
+            ui.live.textContent = `Paso ${stepIdx + 1} de 6: ${s.a11y}`;
+          }
+        };
+
+        const clearChannel = () => {
+          if (!ui.msgs) return;
+          ui.msgs.innerHTML = "";
+        };
+
+        const mkMsgEl = (evt) => {
+          const el = document.createElement("div");
+          el.className = "ws-msg is-enter";
+          const travel = evt.travel === "rl" ? "is-travel-rl" : "is-travel-lr";
+          el.classList.add(travel);
+          if (evt.kind === "in") el.classList.add("is-in");
+          else if (evt.kind === "out") el.classList.add("is-out");
+          else if (evt.kind === "ping") el.classList.add("is-ping");
+          else if (evt.kind === "close") el.classList.add("is-close");
+
+          const payload = evt.payload ? String(evt.payload) : "";
+          el.innerHTML = `
+            <div class="ws-msg__meta">
+              <span class="ws-msg__tag">${escapeHtml(evt.tag || "")}</span>
+              <span class="ws-msg__dir">${escapeHtml(evt.dir || "")}</span>
+            </div>
+            <div class="ws-msg__payload">${escapeHtml(payload)}</div>
+          `;
+          return el;
+        };
+
+        const renderStepStatic = () => {
+          const s = steps[stepIdx];
+          renderStepLabel();
+          announce();
+
+          renderKvs(ui.left, s.left || []);
+          renderKvs(ui.right, s.right || []);
+
+          renderStateBlock(ui.left, s.state);
+          renderStateBlock(ui.right, s.state);
+
+          renderText(ui.left, null);
+          renderText(ui.right, null);
+          if (s.text) {
+            renderText(ui.left, s.text);
+            renderText(ui.right, s.text);
+          }
+
+          clearChannel();
+          // No-JS fallback already shows a static event in markup; with JS we render step content explicitly.
+          (s.events || []).forEach((evt) => {
+            ui.msgs?.appendChild(mkMsgEl(evt));
+          });
+
+          const footerExisting = wsAnim.querySelector("[data-ws-counter]");
+          if (footerExisting) footerExisting.remove();
+          if (s.footerCount) {
+            const counter = document.createElement("div");
+            counter.setAttribute("data-ws-counter", "1");
+            counter.className = "ws-anim__text";
+            counter.textContent = s.footerCount;
+            wsAnim.querySelector(".ws-anim__footer")?.prepend(counter);
+          }
+        };
+
+        const playCurrentStep = () => {
+          if (prefersReduced) return;
+          const s = steps[stepIdx];
+          clearChannel();
+          renderStepLabel();
+          announce();
+
+          renderKvs(ui.left, s.left || []);
+          renderKvs(ui.right, s.right || []);
+          renderStateBlock(ui.left, s.state);
+          renderStateBlock(ui.right, s.state);
+          renderText(ui.left, null);
+          renderText(ui.right, null);
+          if (s.text) {
+            renderText(ui.left, s.text);
+            renderText(ui.right, s.text);
+          }
+
+          const footerExisting = wsAnim.querySelector("[data-ws-counter]");
+          if (footerExisting) footerExisting.remove();
+          if (s.footerCount) {
+            const counter = document.createElement("div");
+            counter.setAttribute("data-ws-counter", "1");
+            counter.className = "ws-anim__text";
+            counter.textContent = s.footerCount;
+            wsAnim.querySelector(".ws-anim__footer")?.prepend(counter);
+          }
+
+          let t = 0;
+          const enterMs = 210;
+          const travelMs = 580;
+          const betweenMs = 380;
+          (s.events || []).forEach((evt) => {
+            timers.push(
+              setTimeout(() => {
+                if (!isPlaying) return;
+                ui.msgs?.appendChild(mkMsgEl(evt));
+              }, t),
+            );
+            t += enterMs + travelMs + betweenMs;
+          });
+
+          timers.push(
+            setTimeout(() => {
+              if (!isPlaying) return;
+              if (stepIdx < steps.length - 1) {
+                stepIdx += 1;
+                playCurrentStep();
+              } else {
+                isPlaying = false;
+                if (ui.play) {
+                  ui.play.textContent = "Reproducir";
+                  ui.play.setAttribute("aria-pressed", "false");
+                }
+              }
+            }, Math.max(450, t)),
+          );
+        };
+
+        const setPlayingUi = () => {
+          if (!ui.play) return;
+          ui.play.textContent = isPlaying ? "Pausar" : "Reproducir";
+          ui.play.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+        };
+
+        ui.play?.addEventListener("click", () => {
+          if (prefersReduced) {
+            isPlaying = false;
+            setPlayingUi();
+            return;
+          }
+          isPlaying = !isPlaying;
+          setPlayingUi();
+          clearTimers();
+          if (isPlaying) playCurrentStep();
+        });
+
+        ui.reset?.addEventListener("click", () => {
+          clearTimers();
+          isPlaying = false;
+          stepIdx = 0;
+          setPlayingUi();
+          renderStepStatic();
+        });
+
+        ui.step?.addEventListener("click", () => {
+          clearTimers();
+          isPlaying = false;
+          setPlayingUi();
+          stepIdx = Math.min(stepIdx + 1, steps.length - 1);
+          renderStepStatic();
+        });
+
+        // Initial render for progressive enhancement: always show content, no autoplay.
+        renderStepStatic();
+      }
     </script>
   </body>
 </html>
