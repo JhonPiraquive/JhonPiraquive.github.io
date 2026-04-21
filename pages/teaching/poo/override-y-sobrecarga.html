@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Override y Sobrecarga (Overload) | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 7</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#1-override-sobrescritura">1) Override (sobrescritura)</a>
+      <a href="#2-overload-sobrecarga">2) Overload (sobrecarga)</a>
+      <a href="#3-overload-vs-override-comparacion-practica">3) Overload vs Override (comparación práct…</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 7</span>
+      <h1 class="hero-title">Override y Sobrecarga (Overload)</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="1-override-sobrescritura">1) Override (sobrescritura)</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li>Override cambia el comportamiento de un método heredado.</li>
+<li>Requiere herencia + método <code>virtual/abstract</code> en la base.</li>
+<li>Se decide en runtime (despacho dinámico) cuando usas referencia base.</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p><code>override</code> es cuando una clase derivada reemplaza la implementación de un método definido en la clase base (marcado como <code>virtual</code> o <code>abstract</code>).</p>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li>Especializar comportamiento manteniendo un contrato común.</li>
+<li>Implementar variaciones dentro de una familia de tipos.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<p>Buen uso:</p>
+<ul>
+<li>La derivada respeta el significado del método (no sorprende).</li>
+<li>Mantiene reglas y expectativas del cliente.</li>
+</ul>
+<p>Mal uso:</p>
+<ul>
+<li>La derivada rompe el contrato (ej. “CalcularTotal” devuelve valores raros o lanza errores inesperados).</li>
+<li>Usas override para “apagar” comportamiento (por ejemplo, una derivada que no soporta algo que la base prometía).</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>“Notificación” base: preparar → enviar.  <br>
+Email y SMS envían distinto, pero el flujo “enviar notificación” se conserva.</p>
+<h3 id="ejemplo-c-minimo-variante">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+public class Mensaje
+{
+    public virtual void Enviar(string texto)
+    {
+        Console.WriteLine($&quot;Enviando mensaje genérico: {texto}&quot;);
+    }
+}
+
+public class MensajeEmail : Mensaje
+{
+    public override void Enviar(string texto)
+    {
+        Console.WriteLine($&quot;Enviando EMAIL: {texto}&quot;);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Mensaje m = new MensajeEmail();
+        m.Enviar(&quot;Hola&quot;); // EMAIL
+    }
+}</code></pre>
+<p>Variante: agrega <code>MensajeSms</code> con su propio override.</p>
+<h3 id="diagrama-tabla">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  Mensaje &lt;|-- MensajeEmail
+  class Mensaje {
+    +Enviar(string texto)
+  }
+  class MensajeEmail {
+    +Enviar(string texto)
+  }</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>Crea <code>MensajeSms : Mensaje</code>.</li>
+<li>Pon ambos en <code>List&lt;Mensaje&gt;</code> y llama <code>Enviar()</code> en un <code>foreach</code> (el <code>using System.Collections.Generic;</code> ya está en el snippet).</li>
+</ol>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>V/F: <code>override</code> funciona sin herencia.</li>
+<li>V/F: Para poder sobrescribir, la base debe permitirlo (<code>virtual</code>/<code>abstract</code>).</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) F, (2) V</p>
+<hr>
+<h2 id="2-overload-sobrecarga">2) Overload (sobrecarga)</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>Overload = mismo nombre, distinta firma (parámetros).</li>
+<li>No depende de herencia.</li>
+<li>Se decide en compile time (resolución por firma).</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>Sobrecarga (overload) es definir varios métodos con el mismo nombre, pero con distinto número o tipo de parámetros.</p>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Ofrecer formas cómodas de usar una misma operación.</li>
+<li>Evitar que el usuario tenga que pasar valores “dummy” o nulos.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-1">Señales de buen/mal uso</h3>
+<p>Buen uso:</p>
+<ul>
+<li>Las sobrecargas representan la misma intención (misma acción).</li>
+<li>No generan ambigüedad.</li>
+</ul>
+<p>Mal uso:</p>
+<ul>
+<li>Sobrecargas que hacen cosas diferentes (confunden).</li>
+<li>Muchas sobrecargas sin necesidad (API difícil de aprender).</li>
+</ul>
+<h3 id="ejemplo-vida-real-1">Ejemplo vida real</h3>
+<p>“Buscar” con diferentes datos: buscar por id, por nombre, por filtro.</p>
+<h3 id="ejemplo-c-minimo-variante-1">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class Calculadora
+{
+    public int Sumar(int a, int b) =&gt; a + b;
+    public int Sumar(int a, int b, int c) =&gt; a + b + c;
+    public decimal Sumar(decimal a, decimal b) =&gt; a + b;
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var calc = new Calculadora();
+        Console.WriteLine(calc.Sumar(1, 2));       // 3
+        Console.WriteLine(calc.Sumar(1, 2, 3));    // 6
+        Console.WriteLine(calc.Sumar(1.5m, 2.0m)); // 3.5
+    }
+}</code></pre>
+<p>Variante: agrega <code>Sumar(params int[] valores)</code> y discute cuándo conviene.</p>
+<h3 id="diagrama-tabla-1">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart TD
+  Call1[&quot;Sumar(1,2)&quot;] --&gt; PickA[&quot;Sumar(int,int)&quot;]
+  Call2[&quot;Sumar(1,2,3)&quot;] --&gt; PickB[&quot;Sumar(int,int,int)&quot;]
+  Call3[&quot;Sumar(1.5m,2.0m)&quot;] --&gt; PickC[&quot;Sumar(decimal,decimal)&quot;]</div></div>
+<h3 id="reto-interactivo-1">Reto interactivo</h3>
+<ol>
+<li>Agrega <code>Sumar(params int[] valores)</code>.</li>
+<li>Llama <code>Sumar(1,2,3,4)</code> y predice qué versión se elige.</li>
+<li>Si hay ambigüedad, ajusta nombres o firmas.</li>
+</ol>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>V/F: Sobrecarga se resuelve por nombre + parámetros.</li>
+<li>V/F: Sobrecarga necesita <code>virtual</code>.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) V, (2) F</p>
+<hr>
+<h2 id="3-overload-vs-override-comparacion-practica">3) Overload vs Override (comparación práctica)</h2>
+<h3 id="mapa-mental-2">Mapa mental</h3>
+<ul>
+<li>Overload: mismo nombre, distintas firmas, mismo tipo (o en la misma clase).</li>
+<li>Override: mismo nombre y firma, pero en clase derivada reemplazando base.</li>
+</ul>
+<h3 id="comparacion-lo-que-debes-recordar">Comparación (lo que debes recordar)</h3>
+<ul>
+<li><strong>Herencia</strong>:</li>
+<li>Overload: no requerida.</li>
+<li>Override: requerida.</li>
+<li><strong>Firma</strong>:</li>
+<li>Overload: cambia firma.</li>
+<li>Override: misma firma (debe coincidir).</li>
+<li><strong>Elección</strong>:</li>
+<li>Overload: compile time.</li>
+<li>Override: runtime (si se invoca por referencia base).</li>
+</ul>
+<h3 id="ejemplo-c-dos-conceptos-en-uno">Ejemplo C# (dos conceptos en uno)</h3>
+<pre><code class="language-csharp">using System;
+
+public class Animal
+{
+    public virtual void Hablar() =&gt; Console.WriteLine(&quot;Sonido genérico&quot;);
+
+    // Overload: misma clase, distinta firma
+    public void Comer(string comida) =&gt; Console.WriteLine($&quot;Come {comida}&quot;);
+    public void Comer(string comida, int cantidad) =&gt; Console.WriteLine($&quot;Come {cantidad} de {comida}&quot;);
+}
+
+public class Perro : Animal
+{
+    // Override: misma firma que la base
+    public override void Hablar() =&gt; Console.WriteLine(&quot;Guau!&quot;);
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Animal a = new Perro();
+        a.Hablar();               // Guau! (override)
+        a.Comer(&quot;croquetas&quot;);     // overload 1
+        a.Comer(&quot;croquetas&quot;, 2);  // overload 2
+    }
+}</code></pre>
+<h3 id="diagrama-tabla-2">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  Animal &lt;|-- Perro
+  class Animal {
+    +Hablar()
+    +Comer(string comida)
+    +Comer(string comida, int cantidad)
+  }
+  class Perro {
+    +Hablar()
+  }</div></div>
+<h3 id="reto-de-prediccion-3-10-min">Reto de predicción (3–10 min)</h3>
+<ol>
+<li>Cambia <code>Animal a = new Perro();</code> por <code>Perro a = new Perro();</code>.</li>
+<li>¿Cambia la salida de <code>Hablar()</code>? ¿Por qué?</li>
+<li>Agrega un método <code>public new void Hablar()</code> en <code>Perro</code> (no <code>override</code>) y observa qué pasa.</li>
+</ol>
+<p>Resultado esperado: entender la diferencia entre sobrescritura real (<code>override</code>) y ocultamiento (<code>new</code>).</p>
+<h3 id="mini-quiz-2">Mini-quiz</h3>
+<ol>
+<li>¿Qué keyword se usa para sobrescribir?</li>
+</ol>
+<ul>
+<li>A) <code>override</code></li>
+<li>B) <code>overload</code></li>
+</ul>
+<ol>
+<li>V/F: Overload puede existir en una clase sin herencia.</li>
+<li>V/F: Override cambia la firma del método.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) A, (2) V, (3) F</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="polimorfismo.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Polimorfismo</span><i class="bi bi-chevron-left"></i></a>
+        <a href="diagramas-de-clases.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Diagramas de clases (UML básico + Mermaid)</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

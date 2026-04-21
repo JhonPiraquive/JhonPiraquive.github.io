@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encapsulamiento | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 2</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#1-encapsulamiento-que-es-y-para-que-sirve">1) Encapsulamiento: qué es y para qué sirv…</a>
+      <a href="#2-invariantes-reglas-que-el-objeto-protege">2) Invariantes (reglas que el objeto prote…</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 2</span>
+      <h1 class="hero-title">Encapsulamiento</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="1-encapsulamiento-que-es-y-para-que-sirve">1) Encapsulamiento: qué es y para qué sirve</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li><strong>Ocultar</strong> detalles internos.</li>
+<li><strong>Exponer</strong> una forma segura de usar el objeto.</li>
+<li>Proteger <strong>invariantes</strong> (reglas que siempre deben cumplirse).</li>
+<li>Reducir acoplamiento: cambias por dentro sin romper a los demás.</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p>Encapsulamiento es el principio de <strong>controlar el acceso</strong> al estado interno de un objeto, exponiendo solo lo necesario mediante métodos/propiedades.  <br>
+La idea central: <strong>nadie debería poder poner al objeto en un estado inválido</strong> desde afuera.</p>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li>Evitar estados imposibles (ej. saldo negativo sin permitir sobregiro).</li>
+<li>Centralizar reglas (validación en un solo lugar).</li>
+<li>Permitir cambios internos sin cambiar el “contrato” público.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<ul>
+<li><strong>Aplica cuando</strong>: hay reglas sobre cómo cambia el estado (casi siempre en dominio).</li>
+<li><strong>No aplica cuando</strong>: el objeto es un DTO (solo transporte de datos) y no hay reglas.</li>
+</ul>
+<p>Buen uso (señales):</p>
+<ul>
+<li><code>private set</code> y métodos con nombres del dominio (<code>Retirar</code>, <code>Depositar</code>).</li>
+<li>Validación cerca del dato (no en 10 lugares).</li>
+</ul>
+<p>Mal uso (señales):</p>
+<ul>
+<li>“Setters públicos” para todo.</li>
+<li>Validación afuera (“si saldo &gt;= monto” repetido en cada llamada).</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>Un <strong>cajero automático</strong>: tú no cambias el saldo “a mano”.  <br>
+Solo puedes pedir operaciones permitidas (retirar, consultar), y el sistema valida.</p>
+<h3 id="ejemplo-c-minimo-variante">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class CuentaBancaria
+{
+    public decimal Saldo { get; private set; }
+
+    public CuentaBancaria(decimal saldoInicial)
+    {
+        if (saldoInicial &lt; 0) throw new ArgumentException(&quot;Saldo inicial inválido&quot;);
+        Saldo = saldoInicial;
+    }
+
+    public void Depositar(decimal monto)
+    {
+        if (monto &lt;= 0) throw new ArgumentException(&quot;Monto inválido&quot;);
+        Saldo += monto;
+    }
+
+    public void Retirar(decimal monto)
+    {
+        if (monto &lt;= 0) throw new ArgumentException(&quot;Monto inválido&quot;);
+        if (monto &gt; Saldo) throw new InvalidOperationException(&quot;Fondos insuficientes&quot;);
+        Saldo -= monto;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var cuenta = new CuentaBancaria(100);
+        cuenta.Retirar(30);
+        Console.WriteLine(cuenta.Saldo); // 70
+    }
+}</code></pre>
+<p>Variante (anti-ejemplo): cambia <code>Saldo { get; private set; }</code> por <code>Saldo { get; set; }</code> y crea <code>cuenta.Saldo = -999;</code>.</p>
+<h3 id="diagrama-tabla">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class CuentaBancaria {
+    +decimal Saldo
+    +CuentaBancaria(decimal saldoInicial)
+    +Depositar(decimal monto)
+    +Retirar(decimal monto)
+  }</div></div>
+<h3 id="reto-interactivo-3-10-min">Reto interactivo (3–10 min)</h3>
+<ol>
+<li>Implementa un límite diario: <code>LimiteDiario = 200</code>.</li>
+<li>Cada retiro suma a <code>RetiradoHoy</code>.</li>
+<li>Si excede el límite, lanza excepción.</li>
+</ol>
+<p>Resultado esperado: el objeto debe impedir la operación sin que el “usuario” del objeto tenga que acordarse.</p>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>V/F: Encapsular es esconder todo, sin exponer nada.</li>
+<li>¿Cuál es una señal de buen encapsulamiento?</li>
+</ol>
+<ul>
+<li>A) Setters públicos para todo</li>
+<li>B) Métodos que expresan intención y validan</li>
+</ul>
+<ol>
+<li>V/F: El encapsulamiento ayuda a cambiar el interior sin romper a los consumidores.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) F, (2) B, (3) V</p>
+<hr>
+<h2 id="2-invariantes-reglas-que-el-objeto-protege">2) Invariantes (reglas que el objeto protege)</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>Invariante = regla que <strong>siempre</strong> debe cumplirse.</li>
+<li>Se valida en el punto donde el estado cambia.</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>Una invariante es una condición que debe ser verdadera para que el objeto esté “bien”.  <br>
+Ejemplos:</p>
+<ul>
+<li><code>Saldo &gt;= 0</code></li>
+<li><code>Cantidad &gt;= 0</code></li>
+<li><code>Estado</code> sigue un flujo válido (no saltos ilegales).</li>
+</ul>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Evitar bugs por estados inválidos.</li>
+<li>Hacer el dominio más confiable.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-1">Señales de buen/mal uso</h3>
+<ul>
+<li><strong>Bien</strong>: invariantes se aplican en constructor y métodos mutadores.</li>
+<li><strong>Mal</strong>: invariantes se “asumen” (y se rompen silenciosamente).</li>
+</ul>
+<h3 id="ejemplo-vida-real-1">Ejemplo vida real</h3>
+<p>Una <strong>reserva</strong>: no existe una reserva con “fecha de fin antes de la fecha de inicio”.</p>
+<h3 id="ejemplo-c-minimo-variante-1">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class Reserva
+{
+    public DateTime Inicio { get; }
+    public DateTime Fin { get; }
+
+    public Reserva(DateTime inicio, DateTime fin)
+    {
+        if (fin &lt;= inicio) throw new ArgumentException(&quot;Fin debe ser posterior a Inicio&quot;);
+        Inicio = inicio;
+        Fin = fin;
+    }
+}</code></pre>
+<p>Variante: agrega una regla “no más de 30 días” y valida en el constructor.</p>
+<h3 id="diagrama-tabla-1">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart TD
+  Input[Datos de entrada] --&gt; Validate{Invariantes OK?}
+  Validate --&gt;|No| Error[Excepción / error claro]
+  Validate --&gt;|Sí| Create[Objeto válido]</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>Crea una reserva con fechas invertidas.</li>
+<li>Cambia el mensaje de error para que incluya ambos valores.</li>
+</ol>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>¿Dónde conviene validar invariantes?</li>
+</ol>
+<ul>
+<li>A) En cualquier lugar, si te acuerdas</li>
+<li>B) En el constructor y métodos que cambian el estado</li>
+</ul>
+<ol>
+<li>V/F: Una invariante puede ser “Saldo no negativo”.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) B, (2) V</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="fundamentos.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Fundamentos de POO</span><i class="bi bi-chevron-left"></i></a>
+        <a href="herencia.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Herencia</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

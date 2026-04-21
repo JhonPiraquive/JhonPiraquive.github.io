@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introducción a normas ISO: qué es una ISO, ISO/IEC 27001 y 27002 | SEA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="sea-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">SEA</a>
+      <span>Seguridad en aplicaciones · Tema 3</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a>
+      <a href="#prerrequisitos">Prerrequisitos</a>
+      <a href="#que-es-una-iso">Qué es una ISO</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 3</span>
+      <h1 class="hero-title">Introducción a normas ISO: qué es una ISO, ISO/IEC 27001 y 27002</h1>
+      <p class="hero-sub">Casos reales, Mermaid y retos prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="sea-content section-alt" id="articulo">
+    <h2 id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h2>
+<ul>
+<li>Explicar qué es una norma ISO en términos sencillos y para qué sirve.</li>
+<li>Diferenciar ISO/IEC 27001 (sistema de gestión) vs 27002 (controles) en 2 frases.</li>
+<li>Nombrar 6 temas típicos de controles (acceso, incidentes, criptografía, etc.).</li>
+<li>Relacionar “cumplimiento” con “reducción de riesgo” sin confundirlos.</li>
+<li>Proponer 3 evidencias que demostrarían madurez de seguridad en un equipo.</li>
+</ul>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<p>Conocer qué es una política, un proceso y un control (en sentido general).</p>
+<h2 id="que-es-una-iso">Qué es una ISO</h2>
+<p>Una ISO es una norma publicada por la Organización Internacional de Normalización. En la práctica, una norma define “qué se espera” y “cómo demostrarlo” para lograr consistencia, calidad y confianza entre organizaciones. No es un software ni un firewall: es una guía/estándar para organizar trabajo y evidencias.</p>
+<h2 id="iso-iec-27001-vs-iso-iec-27002">ISO/IEC 27001 vs ISO/IEC 27002</h2>
+<h3 id="iso-iec-27001-el-sistema">ISO/IEC 27001 (el sistema)</h3>
+<p>27001 se enfoca en el Sistema de Gestión de Seguridad de la Información (SGSI): políticas, roles, evaluación de riesgos, mejora continua y auditoría. Es “cómo gestionas la seguridad” como proceso organizacional.</p>
+<h3 id="iso-iec-27002-los-controles">ISO/IEC 27002 (los controles)</h3>
+<p>27002 es un catálogo de controles y buenas prácticas. Es “qué controles puedes aplicar” para tratar riesgos: acceso, criptografía, operaciones, proveedores, incidentes, etc.</p>
+<h3 id="idea-clave">Idea clave</h3>
+<p>27001 te pide gobernar; 27002 te sugiere controles. Puedes usar controles sin certificarte, y puedes “cumplir” papeles sin reducir riesgo si no los ejecutas bien.</p>
+<h2 id="ejemplo-real-historia">Ejemplo real (historia)</h2>
+<p>Historia: “La auditoría que sí ayudó”. Una empresa tuvo incidentes repetidos por accesos compartidos. En vez de comprar otra herramienta, definió roles, revisiones periódicas y un proceso de baja de usuarios. Usó controles tipo 27002 (gestión de acceso) y lo integró al ciclo de trabajo (estilo 27001). El resultado fue simple: menos cuentas huérfanas, menos sorpresas, y evidencia clara cuando algo pasaba.</p>
+<h2 id="ejemplo-tecnico-que-evidencias-pedirias">Ejemplo técnico (qué evidencias pedirías)</h2>
+<p>Si tuvieras que evaluar seguridad con lente ISO, pedirías evidencias: inventario de activos, matriz de riesgos, política de contraseñas, bitácora de accesos, procedimientos de incidentes, y registros de cambios. La evidencia importa porque convierte “yo creo” en “yo demuestro”.</p>
+<pre><code class="language-json">{
+  &quot;control_id&quot;: &quot;AC-01&quot;,
+  &quot;objetivo&quot;: &quot;Asegurar que los accesos sean autorizados y revisados.&quot;,
+  &quot;evidencia&quot;: &quot;Reporte mensual de usuarios y roles + registro de aprobaciones.&quot;,
+  &quot;frecuencia&quot;: &quot;mensual&quot;,
+  &quot;dueno&quot;: &quot;security_lead&quot;,
+  &quot;ultimo_resultado&quot;: &quot;ok&quot;
+}</code></pre>
+<h2 id="diagrama-mermaid">Diagrama (Mermaid)</h2>
+<h3 id="relacion-27001-27002">Relación 27001–27002</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart LR
+  subgraph sgsi[&quot;27001_SGSI_(ciclo)&quot;]
+    P[Planificar] --&gt; H[Hacer]
+    H --&gt; V[Verificar]
+    V --&gt; A[Actuar]
+    A --&gt; P
+  end
+
+  lib[&quot;27002_Biblioteca_de_controles&quot;] --&gt;|&quot;Seleccionar_controles&quot;| H
+  V --&gt;|&quot;Auditoria_y_evidencia&quot;| sgsi</div></div>
+<h2 id="reto-interactivo-sin-codigo">Reto interactivo (sin código)</h2>
+<p>Escribe 3 controles que implementarías en un equipo pequeño (menos de 5 personas) y para cada uno define: “qué evidencia quedará” y “cada cuánto se revisa”.</p>
+<h2 id="mini-quiz-5-preguntas">Mini-quiz (5 preguntas)</h2>
+<ol>
+<li>V/F: Una norma ISO es una herramienta de software que se instala.</li>
+<li>V/F: ISO/IEC 27001 se centra en gestionar seguridad como un sistema.</li>
+<li>27002 es principalmente:</li>
+<li>“Evidencia” en un control significa:</li>
+<li>En 1 frase, di la diferencia entre “cumplir” y “reducir riesgo”.</li>
+</ol>
+<ul>
+<li>A) Catálogo de controles</li>
+<li>B) Lenguaje de programación</li>
+<li>C) Certificado de servidor</li>
+</ul>
+<ul>
+<li>A) Opinión del equipo</li>
+<li>B) Prueba verificable</li>
+<li>C) Un enlace a una noticia</li>
+</ul>
+<p>Respuestas: (1) F, (2) V, (3) A, (4) B, (5) Respuesta esperada: cumplimiento puede ser documental; reducir riesgo es que los controles funcionen y bajen probabilidad/impacto.</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="hackers-canales-y-proteccion.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Qué es un hacker, canales del ciberdelincuente y cómo protegerme</span><i class="bi bi-chevron-left"></i></a>
+        <a href="principios-cia-y-autenticidad.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Principios de seguridad: CIA + Autenticidad</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Seguridad en aplicaciones · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="sea-common.js"></script>
+</body>
+</html>

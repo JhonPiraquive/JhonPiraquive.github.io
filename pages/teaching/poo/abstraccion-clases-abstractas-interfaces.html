@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abstracción, Clases abstractas e Interfaces | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 5</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#1-abstraccion">1) Abstracción</a>
+      <a href="#2-clase-abstracta-abstract-class">2) Clase abstracta (Abstract Class)</a>
+      <a href="#3-interfaces">3) Interfaces</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 5</span>
+      <h1 class="hero-title">Abstracción, Clases abstractas e Interfaces</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="1-abstraccion">1) Abstracción</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li>Abstraer = quedarte con lo <strong>esencial</strong> y ocultar lo accidental.</li>
+<li>Definir un <strong>contrato</strong>: “qué se puede hacer”, no “cómo”.</li>
+<li>Ayuda a cambiar implementaciones sin romper al cliente.</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p>Abstracción es enfocarte en las características importantes de un concepto y <strong>omitir detalles</strong> que no importan para el nivel de decisión actual.  <br>
+En software, suele verse como “programar contra un contrato” (interfaz o clase base) en vez de depender de una implementación concreta.</p>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li><strong>Reducir complejidad</strong>: piensas en “pagar” sin pensar aún en “tarjeta vs transferencia”.</li>
+<li><strong>Diseñar para extender</strong>: agregas implementaciones nuevas con cambios mínimos.</li>
+<li><strong>Aislar cambios</strong>: si cambia un proveedor, no cambias todo el sistema.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<p>Aplica cuando:</p>
+<ul>
+<li>Hay variaciones reales (múltiples formas válidas de hacer algo).</li>
+<li>El cliente necesita una capacidad, no una clase específica.</li>
+</ul>
+<p>No aplica cuando:</p>
+<ul>
+<li>Solo hay una implementación y no hay señales de variación (abstracción prematura).</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>“Enchufe” vs “electrodoméstico”: el enchufe define el contrato (conectar/energía).  <br>
+No te importa si el dispositivo por dentro es tostadora o cargador.</p>
+<h3 id="ejemplo-c-minimo-variante">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public interface IPago
+{
+    void Pagar(decimal monto);
+}
+
+public class PagoTarjeta : IPago
+{
+    public void Pagar(decimal monto) =&gt; Console.WriteLine($&quot;Pagando {monto} con tarjeta&quot;);
+}
+
+public class Caja
+{
+    private readonly IPago _pago;
+
+    public Caja(IPago pago)
+    {
+        _pago = pago;
+    }
+
+    public void Cobrar(decimal monto)
+    {
+        _pago.Pagar(monto);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var caja = new Caja(new PagoTarjeta());
+        caja.Cobrar(50);
+    }
+}</code></pre>
+<p>Variante: crea <code>PagoTransferencia</code> sin tocar <code>Caja</code>.</p>
+<h3 id="diagrama-tabla">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class IPago {
+    &lt;&lt;interface&gt;&gt;
+    +Pagar(decimal monto)
+  }
+  class Caja {
+    -IPago _pago
+    +Cobrar(decimal monto)
+  }
+  Caja --&gt; IPago : depende_de
+  IPago &lt;|.. PagoTarjeta</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>Implementa <code>PagoTransferencia : IPago</code>.</li>
+<li>Crea <code>var caja = new Caja(new PagoTransferencia());</code>.</li>
+<li>Verifica que <strong>no editaste</strong> la clase <code>Caja</code>.</li>
+</ol>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>V/F: Abstraer es agregar más detalles.</li>
+<li>¿Qué es un buen motivo para abstraer?</li>
+</ol>
+<ul>
+<li>A) “Por si acaso”</li>
+<li>B) Hay variaciones reales de implementación</li>
+</ul>
+<ol>
+<li>V/F: Programar contra interfaces reduce acoplamiento.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) F, (2) B, (3) V</p>
+<hr>
+<h2 id="2-clase-abstracta-abstract-class">2) Clase abstracta (Abstract Class)</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>No se instancia con <code>new</code>.</li>
+<li>Puede tener <strong>implementación parcial</strong>.</li>
+<li>Puede definir métodos abstractos (obligatorios) y virtuales (opcionales).</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>Una clase abstracta es una clase que sirve como base para otras clases, y puede:</p>
+<ul>
+<li>Tener código compartido.</li>
+<li>Forzar a las derivadas a implementar partes (<code>abstract</code>).</li>
+</ul>
+<h3 id="caracteristicas">Características</h3>
+<ul>
+<li>No se puede crear instancia directa: <code>new Animal()</code> (si <code>Animal</code> es abstract) no compila.</li>
+<li>Puede tener estado y constructores.</li>
+<li>Puede tener métodos <code>abstract</code> (sin cuerpo) y <code>virtual</code> (con cuerpo sobrescribible).</li>
+</ul>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Compartir comportamiento común sin duplicarlo.</li>
+<li>Definir un flujo común (“plantilla”) y dejar variaciones en derivadas.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-1">Señales de buen/mal uso</h3>
+<p>Aplica cuando:</p>
+<ul>
+<li>Hay código base real que quieres compartir.</li>
+<li>Quieres imponer un “esqueleto” (Template Method).</li>
+</ul>
+<p>No aplica cuando:</p>
+<ul>
+<li>Solo quieres un contrato sin estado/implementación compartida (mejor interfaz).</li>
+<li>La jerarquía empieza a crecer sin sentido.</li>
+</ul>
+<h3 id="ejemplo-vida-real-1">Ejemplo vida real</h3>
+<p>“Formulario” abstracto: todos los formularios validan y guardan, pero cada uno valida campos específicos.</p>
+<h3 id="ejemplo-c-minimo-variante-1">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public abstract class Notificacion
+{
+    public string Destino { get; }
+
+    protected Notificacion(string destino)
+    {
+        if (string.IsNullOrWhiteSpace(destino)) throw new ArgumentException(&quot;Destino requerido&quot;);
+        Destino = destino;
+    }
+
+    public void Enviar(string mensaje)
+    {
+        if (string.IsNullOrWhiteSpace(mensaje)) throw new ArgumentException(&quot;Mensaje requerido&quot;);
+        // Flujo común
+        Console.WriteLine($&quot;Preparando notificación para {Destino}...&quot;);
+        EnviarCore(mensaje);
+        Console.WriteLine(&quot;Notificación enviada.&quot;);
+    }
+
+    protected abstract void EnviarCore(string mensaje);
+}
+
+public class NotificacionEmail : Notificacion
+{
+    public NotificacionEmail(string destino) : base(destino) { }
+
+    protected override void EnviarCore(string mensaje)
+    {
+        Console.WriteLine($&quot;Email a {Destino}: {mensaje}&quot;);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Notificacion n = new NotificacionEmail(&quot;ana@correo.com&quot;);
+        n.Enviar(&quot;Hola&quot;);
+    }
+}</code></pre>
+<p>Variante: agrega <code>NotificacionSms</code> (solo implementa <code>EnviarCore</code>).</p>
+<h3 id="diagrama-tabla-1">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  Notificacion &lt;|-- NotificacionEmail
+  class Notificacion {
+    &lt;&lt;abstract&gt;&gt;
+    +string Destino
+    +Enviar(string mensaje)
+    #EnviarCore(string mensaje)
+  }</div></div>
+<h3 id="reto-interactivo-1">Reto interactivo</h3>
+<ol>
+<li>Crea <code>NotificacionSms</code> y úsala en <code>Main</code>.</li>
+<li>Haz que <code>Destino</code> del SMS tenga un formato mínimo (ej. que empiece con <code>+</code>).</li>
+</ol>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>V/F: Una clase abstracta puede tener métodos con implementación.</li>
+<li>¿Qué keyword obliga a implementar en derivadas?</li>
+</ol>
+<ul>
+<li>A) <code>virtual</code></li>
+<li>B) <code>abstract</code></li>
+</ul>
+<ol>
+<li>V/F: Puedes crear <code>new Notificacion(...)</code> si es abstract.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) V, (2) B, (3) F</p>
+<hr>
+<h2 id="3-interfaces">3) Interfaces</h2>
+<h3 id="mapa-mental-2">Mapa mental</h3>
+<ul>
+<li>Interfaz = <strong>contrato</strong> (capacidad).</li>
+<li>No define “qué es”, sino “qué puede hacer”.</li>
+<li>Permite múltiples implementaciones.</li>
+</ul>
+<h3 id="que-es-2">Qué es</h3>
+<p>Una interfaz describe un conjunto de miembros (métodos/propiedades) que una clase promete implementar.</p>
+<h3 id="para-que-sirve-2">Para qué sirve</h3>
+<ul>
+<li>Desacoplar: el consumidor depende del contrato, no de la clase concreta.</li>
+<li>Facilitar pruebas: puedes reemplazar implementaciones (mock/fake).</li>
+<li>Permitir múltiples roles: una misma clase puede implementar varias interfaces.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-2">Señales de buen/mal uso</h3>
+<p>Aplica cuando:</p>
+<ul>
+<li>Quieres expresar capacidades (ej. “se puede pagar”, “se puede notificar”).</li>
+<li>Esperas más de una implementación.</li>
+</ul>
+<p>No aplica cuando:</p>
+<ul>
+<li>Creas interfaces gigantes (“IManagerDeTodo”) que nadie usa completas.</li>
+</ul>
+<h3 id="ejemplo-vida-real-2">Ejemplo vida real</h3>
+<p>“Control remoto” es un contrato: encender/apagar.  <br>
+Sirve para TV, aire, parlante… distintas implementaciones, mismo contrato.</p>
+<h3 id="ejemplo-c-minimo-variante-2">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public interface ILogger
+{
+    void Info(string mensaje);
+}
+
+public class LoggerConsola : ILogger
+{
+    public void Info(string mensaje) =&gt; Console.WriteLine($&quot;INFO: {mensaje}&quot;);
+}
+
+public class Servicio
+{
+    private readonly ILogger _logger;
+
+    public Servicio(ILogger logger) =&gt; _logger = logger;
+
+    public void Ejecutar()
+    {
+        _logger.Info(&quot;Ejecutando...&quot;);
+    }
+}</code></pre>
+<p>Variante: crea <code>LoggerSilencioso : ILogger</code> que no imprime nada y úsalo.</p>
+<h3 id="diagrama-tabla-2">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class ILogger {
+    &lt;&lt;interface&gt;&gt;
+    +Info(string mensaje)
+  }
+  ILogger &lt;|.. LoggerConsola
+  Servicio --&gt; ILogger : usa</div></div>
+<h3 id="reto-interactivo-2">Reto interactivo</h3>
+<ol>
+<li>Crea <code>LoggerArchivo : ILogger</code> (solo simula: imprime “escribiendo en archivo”).</li>
+<li>Usa <code>Servicio</code> con <code>LoggerArchivo</code> sin cambiar <code>Servicio</code>.</li>
+</ol>
+<h3 id="mini-quiz-2">Mini-quiz</h3>
+<ol>
+<li>V/F: Una clase puede implementar varias interfaces.</li>
+<li>¿Qué define una interfaz?</li>
+</ol>
+<ul>
+<li>A) Implementación completa</li>
+<li>B) Contrato/capacidad</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) V, (2) B</p>
+<hr>
+<h2 id="4-clase-abstracta-vs-interfaz">4) Clase abstracta vs Interfaz</h2>
+<h3 id="mapa-mental-3">Mapa mental</h3>
+<ul>
+<li>Abstracta: “comparto base + obligo”.</li>
+<li>Interfaz: “contrato de capacidad”.</li>
+<li>Elige según: <strong>reuso de implementación</strong>, <strong>estado</strong>, <strong>evolución</strong>, <strong>multiplicidad</strong>.</li>
+</ul>
+<h3 id="que-es-comparacion">Qué es (comparación)</h3>
+<ul>
+<li><strong>Clase abstracta</strong>: útil cuando hay <strong>código y estado compartido</strong>.</li>
+<li><strong>Interfaz</strong>: útil cuando quieres un <strong>contrato</strong> y múltiples implementaciones sin herencia.</li>
+</ul>
+<h3 id="para-que-sirve-criterios-de-eleccion">Para qué sirve (criterios de elección)</h3>
+<p>Usa <strong>clase abstracta</strong> si:</p>
+<ul>
+<li>Hay implementación común importante.</li>
+<li>Necesitas estado/protección base.</li>
+</ul>
+<p>Usa <strong>interfaz</strong> si:</p>
+<ul>
+<li>Solo necesitas un contrato.</li>
+<li>Quieres que una clase “tenga varios roles” (implementa varias interfaces).</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-3">Señales de buen/mal uso</h3>
+<ul>
+<li><strong>Mal</strong>: crear abstractas sin comportamiento compartido (solo para “forzar”).</li>
+<li><strong>Mal</strong>: interfaces enormes (rompen segregación).</li>
+</ul>
+<h3 id="ejemplo-vida-real-3">Ejemplo vida real</h3>
+<ul>
+<li>Abstracta: “Documento” con flujo común (validar → firmar → archivar).</li>
+<li>Interfaz: “Firmable” (cualquier cosa que se pueda firmar).</li>
+</ul>
+<h3 id="diagrama-tabla-3">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class IFirmable {
+    &lt;&lt;interface&gt;&gt;
+    +Firmar()
+  }
+  class Documento {
+    &lt;&lt;abstract&gt;&gt;
+    +Validar()
+    +Archivar()
+  }
+  Documento &lt;|-- Contrato
+  IFirmable &lt;|.. Contrato</div></div>
+<h3 id="reto-interactivo-3">Reto interactivo</h3>
+<ol>
+<li>Piensa un caso: “Reporte”, “Factura”, “Contrato”.</li>
+<li>Decide: ¿abstracta, interfaz o ambas? Justifica en 3 bullets.</li>
+</ol>
+<h3 id="mini-quiz-3">Mini-quiz</h3>
+<ol>
+<li>V/F: Una interfaz es mejor cuando necesitas compartir estado.</li>
+<li>¿Cuándo conviene una clase abstracta?</li>
+</ol>
+<ul>
+<li>A) Hay código compartido real</li>
+<li>B) Nunca</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) A</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="asociacion-agregacion-composicion.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Asociación, Agregación y Composición</span><i class="bi bi-chevron-left"></i></a>
+        <a href="polimorfismo.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Polimorfismo</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

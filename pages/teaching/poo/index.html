@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POO · Índice del curso</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#estructura-del-curso-mapa">Mapa del curso</a>
+      <a href="#prerrequisitos">Prerrequisitos</a>
+      <a href="#convenciones-del-curso">Convenciones</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Curso</span>
+      <h1 class="hero-title">Programación Orientada a Objetos</h1>
+      <p class="hero-sub">Curso práctico con C#, Mermaid y retos.</p>
+      <a href="#estructura-del-curso-mapa" class="btn-primary-custom">Ver temas</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="como-usar-esta-carpeta">Cómo usar esta carpeta</h2>
+<ul>
+<li><strong>Objetivo</strong>: aprender POO con explicaciones claras + ejemplos reales + snippets en C# + diagramas Mermaid + retos rápidos.</li>
+<li><strong>Orden recomendado</strong>: sigue los archivos en orden numérico (<code>01</code> → <code>10</code>).</li>
+<li><strong>Tiempo estimado</strong>: 6–10 horas (depende de cuántos retos hagas).</li>
+</ul>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<ul>
+<li>C# básico: variables, <code>if</code>, <code>foreach</code>, métodos, <code>List&lt;T&gt;</code>.</li>
+<li>Saber compilar/ejecutar consola o usar un editor online.</li>
+</ul>
+<h2 id="convenciones-del-curso">Convenciones del curso</h2>
+<h3 id="estilo-de-c-consistente-en-todos-los-modulos">Estilo de C# (consistente en todos los módulos)</h3>
+<ul>
+<li><strong>Consola</strong>: ejemplos pensados para <code>dotnet new console</code>.</li>
+<li><strong>Namespace</strong>: se omite para mantener snippets cortos.</li>
+<li><strong>Nombres</strong>: clases en <code>PascalCase</code>; métodos en <code>PascalCase</code>; variables en <code>camelCase</code>.</li>
+<li><strong>Salida</strong>: cuando sea útil, se muestra lo esperado en comentarios o en una sección “Resultado esperado”.</li>
+</ul>
+<h3 id="como-ejecutar-los-ejemplos">Cómo ejecutar los ejemplos</h3>
+<p>Opción A (local):</p>
+<ol>
+<li>Crea un proyecto:</li>
+</ol>
+<ul>
+<li><code>dotnet new console -n PooCurso</code></li>
+</ul>
+<ol>
+<li>Copia el snippet en <code>Program.cs</code>.</li>
+<li>Ejecuta:</li>
+</ol>
+<ul>
+<li><code>dotnet run</code></li>
+</ul>
+<p>Opción B (online):</p>
+<ul>
+<li>Usa un editor online tipo “.NET Fiddle” (pega el snippet y ejecuta).</li>
+<li>Si el reto dice “cambia una línea”, cambia solo esa parte y vuelve a ejecutar.</li>
+</ul>
+<h3 id="diagramas-mermaid">Diagramas (Mermaid)</h3>
+<ul>
+<li>Los bloques <code>mermaid</code> se renderizan en GitHub y en muchos visores de Markdown.</li>
+<li>Si tu visor no los renderiza, igual puedes leer el texto: es una representación del diagrama.</li>
+</ul>
+<h2 id="estructura-del-curso-mapa">Estructura del curso (mapa)</h2>
+<ol>
+<li><a href="fundamentos.html">Fundamentos</a></li>
+<li><a href="encapsulamiento.html">Encapsulamiento</a></li>
+<li><a href="herencia.html">Herencia</a></li>
+<li><a href="asociacion-agregacion-composicion.html">Asociación, Agregación y Composición</a></li>
+<li><a href="abstraccion-clases-abstractas-interfaces.html">Abstracción, Clases abstractas e Interfaces</a></li>
+<li><a href="polimorfismo.html">Polimorfismo</a></li>
+<li><a href="override-y-sobrecarga.html">Override y Sobrecarga (Overload)</a></li>
+<li><a href="diagramas-de-clases.html">Diagramas de clases</a></li>
+<li><a href="solid-principios.html">Principios SOLID</a></li>
+<li><a href="modularidad-cohesion-acoplamiento.html">Modularidad, Cohesión y Acoplamiento</a></li>
+</ol>
+<h2 id="plantilla-que-se-repite-en-todos-los-temas">Plantilla que se repite en todos los temas</h2>
+<p>Cada tema importante dentro de un módulo sigue este orden:</p>
+<ol>
+<li><strong>Mapa mental</strong>: 2–6 bullets con lo que debes recordar.</li>
+<li><strong>Qué es</strong>: definición clara.</li>
+<li><strong>Para qué sirve</strong>: beneficio y problema típico que resuelve.</li>
+<li><strong>Señales de buen/mal uso</strong>: cuándo aplica y cuándo no.</li>
+<li><strong>Ejemplo vida real</strong>: analogía corta.</li>
+<li><strong>Ejemplo C#</strong>: snippet mínimo + variante (mejora o anti-ejemplo).</li>
+<li><strong>Diagrama/tabla</strong>: Mermaid o tabla comparativa (según convenga).</li>
+<li><strong>Reto interactivo</strong>: 3–10 min con pasos + resultado esperado.</li>
+<li><strong>Mini-quiz</strong>: 3–5 preguntas + respuestas al final del archivo.</li>
+</ol>
+<h2 id="glosario-rapido-para-no-perderse">Glosario rápido (para no perderse)</h2>
+<ul>
+<li><strong>Objeto</strong>: “cosa” con estado (datos) y comportamiento (acciones).</li>
+<li><strong>Clase</strong>: molde/plantilla para crear objetos.</li>
+<li><strong>Instancia</strong>: un objeto creado a partir de una clase.</li>
+<li><strong>Constructor</strong>: método especial que prepara el objeto al crearlo.</li>
+</ul>
+  </article>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

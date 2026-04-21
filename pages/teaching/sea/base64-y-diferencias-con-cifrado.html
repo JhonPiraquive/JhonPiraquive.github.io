@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Base64: codificación/decodificación y malentendidos frecuentes | SEA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="sea-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">SEA</a>
+      <span>Seguridad en aplicaciones · Tema 8</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a>
+      <a href="#prerrequisitos">Prerrequisitos</a>
+      <a href="#que-es-base64">Qué es Base64</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 8</span>
+      <h1 class="hero-title">Base64: codificación/decodificación y malentendidos frecuentes</h1>
+      <p class="hero-sub">Casos reales, Mermaid y retos prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="sea-content section-alt" id="articulo">
+    <h2 id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h2>
+<ul>
+<li>Definir Base64 como codificación, no como seguridad.</li>
+<li>Describir 3 casos válidos de uso (transporte, compatibilidad, blobs).</li>
+<li>Detectar 3 errores comunes (usar Base64 como “cifrado”).</li>
+<li>Explicar la diferencia entre codificación, cifrado y hash con 1 ejemplo cada uno.</li>
+<li>Proponer una regla para manejo de secretos: “si está en Base64, no está protegido”.</li>
+</ul>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<p>Entender que datos pueden representarse como texto para enviarse por red.</p>
+<h2 id="que-es-base64">Qué es Base64</h2>
+<p>Base64 es una codificación: transforma bytes en caracteres imprimibles para poder transportar datos en sistemas que esperan texto. No agrega confidencialidad. Si alguien obtiene el Base64, puede decodificarlo.</p>
+<h2 id="cuando-si-usar-base64">Cuándo sí usar Base64</h2>
+<ul>
+<li>Enviar datos binarios en JSON o texto (ej. pequeños adjuntos).</li>
+<li>Evitar problemas de compatibilidad con caracteres.</li>
+<li>Representar tokens o blobs de forma transportable (sin prometer seguridad).</li>
+</ul>
+<h2 id="cuando-no-usar-base64">Cuándo NO usar Base64</h2>
+<ul>
+<li>Para “ocultar” contraseñas o secretos.</li>
+<li>Para “cifrar” información sensible.</li>
+<li>Para cumplir seguridad o privacidad.</li>
+<li>Como sustituto de TLS/HTTPS.</li>
+</ul>
+<h2 id="ejemplo-real-historia">Ejemplo real (historia)</h2>
+<p>Historia: “La contraseña ‘protegida’”. Un equipo guarda contraseñas en Base64 en un archivo porque “no se ven”. Un día el archivo se filtra. Un atacante decodifica en segundos. El problema no fue Base64: fue confundir codificación con protección.</p>
+<h2 id="ejemplo-tecnico-demostracion-conceptual">Ejemplo técnico (demostración conceptual)</h2>
+<p>La demostración debe mostrar un texto original, su representación en Base64 y la decodificación de vuelta al original, para que quede claro que no hay seguridad. Luego debe contrastar con un ejemplo de hash (irreversible) y cifrado (reversible con clave), sin implementar algoritmos, solo con la idea.</p>
+<pre><code class="language-bash"># Base64 codifica/decodifica (ejemplo conceptual)
+echo -n &quot;hola&quot; | base64
+echo -n &quot;aG9sYQ==&quot; | base64 -d</code></pre>
+<pre><code class="language-json">{
+  &quot;config_insegura&quot;: {
+    &quot;db_password_base64&quot;: &quot;c2VjcmV0MTIz&quot;
+  },
+  &quot;config_mejor&quot;: {
+    &quot;db_password_env&quot;: &quot;DB_PASSWORD&quot;
+  }
+}</code></pre>
+<h2 id="diagrama-mermaid">Diagrama (Mermaid)</h2>
+<h3 id="codificacion-vs-cifrado-vs-hash">Codificación vs cifrado vs hash</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart LR
+  subgraph cod[&quot;Codificacion_(Base64)&quot;]
+    A[bytes] --&gt; B[text]
+    B --&gt; A
+    note1[&quot;Reversible_sin_clave&quot;]
+  end
+
+  subgraph cif[&quot;Cifrado&quot;]
+    C[texto] --&gt;|clave| D[cifrado]
+    D --&gt;|clave| C
+    note2[&quot;Reversible_con_clave&quot;]
+  end
+
+  subgraph hsh[&quot;Hash_(SHA-256)&quot;]
+    E[mensaje] --&gt; F[huella]
+    note3[&quot;No_reversible&quot;]
+  end</div></div>
+<h2 id="reto-interactivo-sin-codigo">Reto interactivo (sin código)</h2>
+<p>Escribe 3 frases: una para explicar Base64 a alguien no técnico, otra para corregir el error “Base64 = cifrado”, y otra para proponer qué hacer con secretos en vez de Base64.</p>
+<h2 id="mini-quiz-5-preguntas">Mini-quiz (5 preguntas)</h2>
+<ol>
+<li>V/F: Base64 agrega confidencialidad a los datos.</li>
+<li>V/F: Base64 sirve para transportar bytes como texto.</li>
+<li>Base64 es:</li>
+<li>Guardar secretos en Base64 es:</li>
+<li>En 1 frase, explica por qué Base64 no es seguridad.</li>
+</ol>
+<ul>
+<li>A) Hash</li>
+<li>B) Cifrado</li>
+<li>C) Codificación</li>
+</ul>
+<ul>
+<li>A) Seguro</li>
+<li>B) Inseguro</li>
+<li>C) Recomendado por ISO</li>
+</ul>
+<p>Respuestas: (1) F, (2) V, (3) C, (4) B, (5) Respuesta esperada: es reversible sin clave; cualquiera que lo obtenga puede decodificar.</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="ataques-web-sqli-y-mitigacion.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Ataques comunes a aplicaciones web: SQL Injection y mitigación</span><i class="bi bi-chevron-left"></i></a>
+        <a href="criptografia-hash-sha256-y-buenas-practicas.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Cifrado vs “encriptación”, funciones criptográficas y SHA‑256</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Seguridad en aplicaciones · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="sea-common.js"></script>
+</body>
+</html>

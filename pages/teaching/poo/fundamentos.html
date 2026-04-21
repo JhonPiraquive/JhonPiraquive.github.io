@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamentos de POO | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 1</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#1-que-es-la-programacion-orientada-a-objetos-poo">1) ¿Qué es la Programación Orientada a Obj…</a>
+      <a href="#2-que-es-un-objeto">2) ¿Qué es un Objeto?</a>
+      <a href="#3-que-es-una-clase">3) ¿Qué es una Clase?</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 1</span>
+      <h1 class="hero-title">Fundamentos de POO</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="1-que-es-la-programacion-orientada-a-objetos-poo">1) ¿Qué es la Programación Orientada a Objetos (POO)?</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li><strong>Modelar</strong> el mundo (o el negocio) como “cosas” con datos + acciones.</li>
+<li><strong>Agrupar</strong> datos y comportamiento en la misma unidad: el objeto.</li>
+<li><strong>Reutilizar</strong> y <strong>extender</strong> comportamiento sin copiar y pegar.</li>
+<li>Mejorar <strong>mantenibilidad</strong>: cambios más localizados.</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p>La POO es un estilo de programación donde organizas el software alrededor de <strong>objetos</strong>.  <br>
+Un objeto suele representar una entidad del dominio (ej. “Pedido”, “Usuario”, “Carrito”) y contiene:</p>
+<ul>
+<li><strong>Estado</strong>: sus datos internos.</li>
+<li><strong>Comportamiento</strong>: lo que puede hacer (métodos).</li>
+</ul>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li><strong>Reducir caos</strong>: en vez de funciones sueltas por todo lado, tienes unidades con responsabilidades claras.</li>
+<li><strong>Evitar inconsistencias</strong>: el objeto protege sus reglas (invariantes).</li>
+<li><strong>Diseñar para el cambio</strong>: agregar variantes (ej. nuevos métodos de pago) sin tocar todo el sistema.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<ul>
+<li><strong>Aplica cuando</strong>: hay reglas de negocio, estados válidos/invalidos, entidades que “hacen” cosas.</li>
+<li><strong>No aplica cuando</strong>: el problema es pura transformación de datos (pipeline) y una estructura funcional simple es suficiente.</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>Piensa en un <strong>carro</strong>: tiene estado (velocidad, combustible) y comportamientos (acelerar, frenar).  <br>
+No tiene sentido “sumar velocidad” desde cualquier parte sin reglas: el carro controla cómo cambia.</p>
+<h3 id="ejemplo-c-minimo-variante">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class Carro
+{
+    public int Velocidad { get; private set; }
+
+    public void Acelerar(int delta)
+    {
+        if (delta &lt;= 0) throw new ArgumentException(&quot;delta debe ser positivo&quot;);
+        Velocidad += delta;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var carro = new Carro();
+        carro.Acelerar(10);
+        Console.WriteLine(carro.Velocidad); // 10
+    }
+}</code></pre>
+<p>Variante (anti-ejemplo): permitir <code>set;</code> público rompe el control del objeto (cualquiera podría poner velocidad negativa).</p>
+<h3 id="diagrama-tabla">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Carro {
+    +int Velocidad
+    +Acelerar(int delta)
+  }</div></div>
+<h3 id="reto-interactivo-3-10-min">Reto interactivo (3–10 min)</h3>
+<ol>
+<li>Cambia <code>carro.Acelerar(10)</code> por <code>carro.Acelerar(-5)</code>.</li>
+<li>Ejecuta y observa el error.</li>
+<li>Ajusta el mensaje o el tipo de excepción para que sea más claro.</li>
+</ol>
+<p>Resultado esperado: el programa debe <strong>fallar</strong> con un mensaje que explique la regla.</p>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>V/F: En POO, un objeto siempre debe exponer todos sus datos con <code>public set</code>.</li>
+<li>¿Qué define mejor a un objeto?</li>
+</ol>
+<ul>
+<li>A) Solo datos</li>
+<li>B) Datos + comportamiento</li>
+<li>C) Solo funciones</li>
+</ul>
+<ol>
+<li>¿Cuál es un beneficio típico de POO?</li>
+</ol>
+<ul>
+<li>A) Menos reglas</li>
+<li>B) Menos responsabilidades</li>
+<li>C) Cambios más localizados</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) B, (3) C</p>
+<hr>
+<h2 id="2-que-es-un-objeto">2) ¿Qué es un Objeto?</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>Tiene <strong>identidad</strong> (es “ese” objeto).</li>
+<li>Tiene <strong>estado</strong> (datos actuales).</li>
+<li>Tiene <strong>comportamiento</strong> (métodos).</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>Un objeto es una <strong>instancia</strong> que vive en memoria y representa algo del dominio.  <br>
+No es “solo un paquete de datos”: también sabe hacer operaciones válidas sobre sí mismo.</p>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Encapsular reglas: “solo se puede retirar si hay saldo”.</li>
+<li>Evitar estados inválidos: “un pedido no puede enviarse si no está pagado”.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-1">Señales de buen/mal uso</h3>
+<ul>
+<li><strong>Bien</strong>: métodos que expresan intención (<code>Pagar()</code>, <code>Enviar()</code>), no “setters” masivos.</li>
+<li><strong>Mal</strong>: objetos anémicos (solo propiedades) + reglas dispersas en servicios gigantes.</li>
+</ul>
+<h3 id="ejemplo-vida-real-1">Ejemplo vida real</h3>
+<p>Una <strong>tarjeta de acceso</strong>: no cualquiera decide que “ahora es válida”. Hay reglas (fecha, permisos, bloqueo).</p>
+<h3 id="ejemplo-c-minimo-variante-1">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class CuentaBancaria
+{
+    public decimal Saldo { get; private set; }
+
+    public CuentaBancaria(decimal saldoInicial)
+    {
+        if (saldoInicial &lt; 0) throw new ArgumentException(&quot;Saldo inicial inválido&quot;);
+        Saldo = saldoInicial;
+    }
+
+    public void Retirar(decimal monto)
+    {
+        if (monto &lt;= 0) throw new ArgumentException(&quot;Monto inválido&quot;);
+        if (monto &gt; Saldo) throw new InvalidOperationException(&quot;Fondos insuficientes&quot;);
+        Saldo -= monto;
+    }
+}</code></pre>
+<p>Variante: agrega <code>Depositar(decimal monto)</code> y evita montos negativos.</p>
+<h3 id="diagrama-tabla-1">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class CuentaBancaria {
+    +decimal Saldo
+    +CuentaBancaria(decimal saldoInicial)
+    +Retirar(decimal monto)
+  }</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>Crea <code>var cuenta = new CuentaBancaria(50);</code></li>
+<li>Llama <code>cuenta.Retirar(80);</code></li>
+<li>Ajusta el mensaje de error para que explique “saldo actual” y “monto solicitado”.</li>
+</ol>
+<p>Resultado esperado: excepción por fondos insuficientes.</p>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>¿Cuál es un ejemplo de comportamiento del objeto?</li>
+</ol>
+<ul>
+<li>A) <code>Saldo</code></li>
+<li>B) <code>Retirar()</code></li>
+</ul>
+<ol>
+<li>V/F: Un objeto puede proteger reglas de negocio.</li>
+<li>¿Qué es “objeto anémico”?</li>
+</ol>
+<ul>
+<li>A) Objeto con muchos métodos</li>
+<li>B) Objeto con solo datos y sin reglas</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) B, (2) V, (3) B</p>
+<hr>
+<h2 id="3-que-es-una-clase">3) ¿Qué es una Clase?</h2>
+<h3 id="mapa-mental-2">Mapa mental</h3>
+<ul>
+<li>Es el <strong>molde</strong>: define estructura + comportamiento.</li>
+<li>No es el objeto: es la definición.</li>
+<li>Permite crear muchas instancias con <code>new</code>.</li>
+</ul>
+<h3 id="que-es-2">Qué es</h3>
+<p>Una clase es una definición (tipo) que especifica:</p>
+<ul>
+<li>Qué datos tendrá el objeto (campos/propiedades).</li>
+<li>Qué acciones podrá hacer (métodos).</li>
+</ul>
+<h3 id="para-que-sirve-2">Para qué sirve</h3>
+<ul>
+<li>Reutilizar una misma definición para múltiples objetos.</li>
+<li>Mantener reglas en un solo lugar.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-2">Señales de buen/mal uso</h3>
+<ul>
+<li><strong>Bien</strong>: clase con una responsabilidad clara (cohesión alta).</li>
+<li><strong>Mal</strong>: clase “Dios” (hace de todo: reglas, I/O, UI, DB, etc.).</li>
+</ul>
+<h3 id="ejemplo-vida-real-2">Ejemplo vida real</h3>
+<p>“Receta” vs “galleta”: la receta es la clase; cada galleta horneada es una instancia.</p>
+<h3 id="ejemplo-c-minimo-variante-2">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class Producto
+{
+    public string Nombre { get; }
+    public decimal Precio { get; }
+
+    public Producto(string nombre, decimal precio)
+    {
+        if (string.IsNullOrWhiteSpace(nombre)) throw new ArgumentException(&quot;Nombre requerido&quot;);
+        if (precio &lt; 0) throw new ArgumentException(&quot;Precio inválido&quot;);
+        Nombre = nombre;
+        Precio = precio;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var cafe = new Producto(&quot;Café&quot;, 5.5m);
+        var te = new Producto(&quot;Té&quot;, 4.0m);
+        Console.WriteLine($&quot;{cafe.Nombre} - {cafe.Precio}&quot;);
+        Console.WriteLine($&quot;{te.Nombre} - {te.Precio}&quot;);
+    }
+}</code></pre>
+<p>Variante: agrega un método <code>AplicarDescuento(decimal porcentaje)</code> que devuelva un nuevo precio (sin mutar).</p>
+<h3 id="diagrama-tabla-2">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Producto {
+    +string Nombre
+    +decimal Precio
+    +Producto(string nombre, decimal precio)
+  }</div></div>
+<h3 id="reto-interactivo-1">Reto interactivo</h3>
+<ol>
+<li>Crea un <code>Producto</code> con precio negativo.</li>
+<li>Ajusta la validación para que el mensaje diga: “Precio debe ser &gt;= 0”.</li>
+</ol>
+<h3 id="mini-quiz-2">Mini-quiz</h3>
+<ol>
+<li>V/F: Una clase es lo mismo que un objeto.</li>
+<li>¿Qué keyword crea una instancia en C#?</li>
+</ol>
+<ul>
+<li>A) <code>class</code></li>
+<li>B) <code>new</code></li>
+<li>C) <code>using</code></li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) B</p>
+<hr>
+<h2 id="4-que-es-una-instancia">4) ¿Qué es una Instancia?</h2>
+<h3 id="mapa-mental-3">Mapa mental</h3>
+<ul>
+<li>Instancia = <strong>objeto concreto</strong> creado desde una clase.</li>
+<li>Dos instancias pueden tener <strong>estados distintos</strong>.</li>
+</ul>
+<h3 id="que-es-3">Qué es</h3>
+<p>Una instancia es un objeto específico creado a partir de una clase, por ejemplo:</p>
+<pre><code class="language-csharp">var p1 = new Producto(&quot;Café&quot;, 5.5m);
+var p2 = new Producto(&quot;Té&quot;, 4.0m);</code></pre>
+<p><code>p1</code> y <code>p2</code> son instancias diferentes.</p>
+<h3 id="para-que-sirve-3">Para qué sirve</h3>
+<ul>
+<li>Representar múltiples elementos del mismo tipo en el sistema.</li>
+<li>Guardarlos en colecciones, procesarlos, compararlos, etc.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-3">Señales de buen/mal uso</h3>
+<ul>
+<li><strong>Bien</strong>: crear instancias cuando realmente necesitas identidad/estado.</li>
+<li><strong>Mal</strong>: crear instancias solo para “agrupar funciones” (si no hay estado, quizá sea un helper estático).</li>
+</ul>
+<h3 id="ejemplo-vida-real-3">Ejemplo vida real</h3>
+<p>“Usuario” (clase) vs “Ana” y “Juan” (instancias).</p>
+<h3 id="diagrama-tabla-3">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart LR
+  Clase[Clase Producto] --&gt;|new| p1[Instancia p1: Café]
+  Clase --&gt;|new| p2[Instancia p2: Té]</div></div>
+<h3 id="reto-interactivo-2">Reto interactivo</h3>
+<ol>
+<li>Crea una <code>List&lt;Producto&gt;</code> con 3 instancias.</li>
+<li>Imprime los nombres en un <code>foreach</code>.</li>
+</ol>
+<h3 id="mini-quiz-3">Mini-quiz</h3>
+<ol>
+<li>V/F: Dos instancias de la misma clase comparten el mismo estado automáticamente.</li>
+<li>¿Qué relación describe mejor “clase → instancia”?</li>
+</ol>
+<ul>
+<li>A) Molde → objeto</li>
+<li>B) Objeto → molde</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) A</p>
+<hr>
+<h2 id="5-que-es-un-constructor-y-para-que-se-usa">5) ¿Qué es un Constructor y para qué se usa?</h2>
+<h3 id="mapa-mental-4">Mapa mental</h3>
+<ul>
+<li>Se ejecuta <strong>al crear</strong> el objeto (<code>new</code>).</li>
+<li>Deja el objeto en un <strong>estado válido</strong>.</li>
+<li>Puede validar y asignar valores iniciales.</li>
+</ul>
+<h3 id="que-es-4">Qué es</h3>
+<p>Un constructor es un método especial con el mismo nombre de la clase (en C#) y sin tipo de retorno, que se ejecuta cuando creas una instancia.</p>
+<h3 id="para-que-sirve-4">Para qué sirve</h3>
+<ul>
+<li>Asegurar invariantes (“un pedido nace con estado <code>Creado</code>”).</li>
+<li>Validar entradas (“precio no negativo”).</li>
+<li>Inyectar dependencias (más adelante: interfaces).</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-4">Señales de buen/mal uso</h3>
+<ul>
+<li><strong>Bien</strong>: constructor valida lo esencial y deja el objeto listo para usar.</li>
+<li><strong>Mal</strong>: constructor hace I/O (leer archivos, DB, HTTP) o lógica pesada que vuelve lenta/fragil la creación.</li>
+</ul>
+<h3 id="ejemplo-vida-real-4">Ejemplo vida real</h3>
+<p>“Encender” un dispositivo: al encender, se inicializa a un estado listo (no “a medias”).</p>
+<h3 id="ejemplo-c-minimo-variante-3">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class Pedido
+{
+    public string Id { get; }
+    public string Estado { get; private set; }
+
+    public Pedido(string id)
+    {
+        if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException(&quot;Id requerido&quot;);
+        Id = id;
+        Estado = &quot;Creado&quot;;
+    }
+
+    public void Pagar()
+    {
+        if (Estado != &quot;Creado&quot;) throw new InvalidOperationException(&quot;Solo se paga un pedido creado&quot;);
+        Estado = &quot;Pagado&quot;;
+    }
+}</code></pre>
+<p>Variante: cambia <code>Estado</code> a un <code>enum</code> para evitar strings inválidos.</p>
+<h3 id="diagrama-tabla-4">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart TD
+  New[&quot;new Pedido(id)&quot;] --&gt; Ctor[&quot;Constructor valida + inicializa&quot;]
+  Ctor --&gt; Ready[&quot;Objeto listo (Estado=Creado)&quot;]</div></div>
+<h3 id="reto-interactivo-3">Reto interactivo</h3>
+<ol>
+<li>Crea <code>var p = new Pedido(&quot;&quot;);</code></li>
+<li>Mejora el mensaje de error: debe decir qué campo falló y por qué.</li>
+<li>Crea <code>var p2 = new Pedido(&quot;P-1&quot;);</code> y llama <code>p2.Pagar();</code> dos veces.</li>
+</ol>
+<p>Resultado esperado: la segunda llamada debe fallar con una excepción clara.</p>
+<h3 id="mini-quiz-4">Mini-quiz</h3>
+<ol>
+<li>¿Cuándo se ejecuta el constructor?</li>
+</ol>
+<ul>
+<li>A) Al compilar</li>
+<li>B) Al crear el objeto con <code>new</code></li>
+</ul>
+<ol>
+<li>V/F: Es buena práctica que un constructor haga una llamada HTTP.</li>
+<li>¿Cuál es un objetivo principal del constructor?</li>
+</ol>
+<ul>
+<li>A) Dejar el objeto en estado válido</li>
+<li>B) Imprimir logs siempre</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) B, (2) F, (3) A</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        
+        <a href="encapsulamiento.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Encapsulamiento</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

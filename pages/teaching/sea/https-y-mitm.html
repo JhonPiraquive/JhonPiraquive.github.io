@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTTPS y ataques MITM: qué protege y qué no | SEA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="sea-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">SEA</a>
+      <span>Seguridad en aplicaciones · Tema 6</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a>
+      <a href="#prerrequisitos">Prerrequisitos</a>
+      <a href="#que-es-https">Qué es HTTPS</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 6</span>
+      <h1 class="hero-title">HTTPS y ataques MITM: qué protege y qué no</h1>
+      <p class="hero-sub">Casos reales, Mermaid y retos prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="sea-content section-alt" id="articulo">
+    <h2 id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h2>
+<ul>
+<li>Explicar en términos simples qué aporta HTTPS a CIA + Autenticidad.</li>
+<li>Describir un escenario MITM y cómo HTTPS lo dificulta.</li>
+<li>Identificar 4 errores comunes al “usar HTTPS” sin estar realmente seguro.</li>
+<li>Reconocer qué HTTPS NO soluciona (ej. SQLi, credenciales débiles).</li>
+<li>Proponer prácticas de configuración y verificación (sin entrar a comandos avanzados).</li>
+</ul>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<p>Saber qué es un navegador, un dominio y una red Wi‑Fi.</p>
+<h2 id="que-es-https">Qué es HTTPS</h2>
+<p>HTTPS es HTTP sobre una conexión cifrada y autenticada (TLS). En práctica: evita que terceros lean o modifiquen el tráfico en tránsito, y ayuda a comprobar que hablas con el servidor correcto (según certificados).</p>
+<h2 id="mitm-man-in-the-middle-explicado">MITM (Man‑in‑the‑Middle) explicado</h2>
+<p>En un MITM, un tercero se ubica entre tu navegador y el servidor. Intenta espiar o alterar el tráfico: robar credenciales, cambiar contenido o redirigir pagos. Sin HTTPS, el atacante “ve” todo. Con HTTPS bien configurado, el atacante no puede leer ni modificar sin ser detectado.</p>
+<h2 id="que-no-soluciona-https">Qué no soluciona HTTPS</h2>
+<ul>
+<li>No arregla vulnerabilidades del servidor (SQLi, XSS, lógica).</li>
+<li>No evita que uses contraseñas débiles o repetidas.</li>
+<li>No evita que un atacante entre con credenciales reales robadas.</li>
+<li>No impide que tu app registre secretos en logs.</li>
+<li>No sustituye autorización: HTTPS no decide permisos.</li>
+</ul>
+<h2 id="ejemplo-real-historia">Ejemplo real (historia)</h2>
+<p>Historia: “El Wi‑Fi del aeropuerto”. Una persona abre un portal de viajes en Wi‑Fi público. Una red falsa con nombre similar captura tráfico. Si el sitio no fuerza HTTPS, el atacante ve credenciales. Si el sitio usa HTTPS correctamente, el atacante solo ve “ruido” cifrado y el navegador advierte si el certificado no coincide.</p>
+<h2 id="ejemplo-tecnico-que-revisarias">Ejemplo técnico (qué revisarías)</h2>
+<p>A nivel de app, revisas que todo el sitio cargue por HTTPS, que no haya recursos mixtos (HTTP dentro de HTTPS), que las cookies de sesión tengan bandera Secure, y que el servidor redirija HTTP→HTTPS. También revisas que el usuario reciba errores genéricos y no pistas internas.</p>
+<pre><code class="language-http">GET / HTTP/1.1
+Host: ejemplo.com
+
+HTTP/1.1 301 Moved Permanently
+Location: https://ejemplo.com/
+
+GET / HTTP/1.1
+Host: ejemplo.com
+
+HTTP/1.1 200 OK
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Content-Type: text/html; charset=utf-8</code></pre>
+<h2 id="diagrama-mermaid">Diagrama (Mermaid)</h2>
+<h3 id="trafico-sin-https-vs-con-https">Tráfico sin HTTPS vs con HTTPS</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart LR
+  subgraph sinHttps[&quot;Sin_HTTPS&quot;]
+    C1[Cliente] --&gt; A1[Atacante]
+    A1 --&gt; S1[Servidor]
+    A1 --&gt;|&quot;lee_modifica&quot;| A1
+  end
+
+  subgraph conHttps[&quot;Con_HTTPS_(TLS)&quot;]
+    C2[Cliente] --&gt;|&quot;cifrado&quot;| S2[Servidor]
+    A2[Atacante] -.-&gt;|&quot;intercepta_sin_leer&quot;| C2
+    A2 -.-&gt;|&quot;intercepta_sin_leer&quot;| S2
+    C2 --&gt;|&quot;alerta_si_cert_invalido&quot;| C2
+  end</div></div>
+<h2 id="reto-interactivo-sin-codigo">Reto interactivo (sin código)</h2>
+<p>Escribe 3 cosas que HTTPS protege y 3 cosas que no protege. Debes incluir al menos una de: integridad, confidencialidad, autenticidad.</p>
+<h2 id="mini-quiz-5-preguntas">Mini-quiz (5 preguntas)</h2>
+<ol>
+<li>V/F: HTTPS evita que un atacante lea el tráfico en tránsito.</li>
+<li>V/F: HTTPS por sí solo evita SQL Injection.</li>
+<li>MITM significa:</li>
+<li>Un error común es:</li>
+<li>En 1 frase, di qué aporta HTTPS a “autenticidad”.</li>
+</ol>
+<ul>
+<li>A) Ataque al servidor con fuerza bruta</li>
+<li>B) Intermediario entre cliente y servidor</li>
+<li>C) Copiar base de datos</li>
+</ul>
+<ul>
+<li>A) Forzar redirección a HTTPS</li>
+<li>B) Permitir recursos HTTP mixtos</li>
+<li>C) Usar cookies Secure</li>
+</ul>
+<p>Respuestas: (1) V, (2) F, (3) B, (4) B, (5) Respuesta esperada: valida (por certificados) que hablas con el servidor esperado y reduce suplantación en tránsito.</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="ingenieria-social-y-phishing.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Ingeniería social y phishing: señales, prevención y respuesta</span><i class="bi bi-chevron-left"></i></a>
+        <a href="ataques-web-sqli-y-mitigacion.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Ataques comunes a aplicaciones web: SQL Injection y mitigación</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Seguridad en aplicaciones · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="sea-common.js"></script>
+</body>
+</html>

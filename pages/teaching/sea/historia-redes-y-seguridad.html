@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historia de redes y seguridad informática: evolución e importancia | SEA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="sea-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">SEA</a>
+      <span>Seguridad en aplicaciones · Tema 1</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a>
+      <a href="#prerrequisitos">Prerrequisitos</a>
+      <a href="#mapa-mental-vista-rapida">Mapa mental (vista rápida)</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 1</span>
+      <h1 class="hero-title">Historia de redes y seguridad informática: evolución e importancia</h1>
+      <p class="hero-sub">Casos reales, Mermaid y retos prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="sea-content section-alt" id="articulo">
+    <h2 id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h2>
+<ul>
+<li>Narrar 4 hitos históricos que cambiaron la forma de atacar/defender sistemas.</li>
+<li>Diferenciar “seguridad por oscuridad” vs “seguridad por diseño” con un ejemplo.</li>
+<li>Explicar por qué la seguridad es un proceso (no un producto) en 3 frases.</li>
+<li>Reconocer 5 señales de que una app creció sin considerar seguridad.</li>
+<li>Relacionar un incidente famoso (sin nombres) con CIA + Autenticidad (qué se rompió).</li>
+</ul>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<p>Saber qué es un servidor, un cliente, una red y una aplicación web. No necesitas experiencia previa en hacking.</p>
+<h2 id="mapa-mental-vista-rapida">Mapa mental (vista rápida)</h2>
+<p>Piensa en la historia como una carrera: primero conectamos computadores “para compartir”, luego aparecieron atacantes “por curiosidad”, después el delito “por dinero”, y finalmente la defensa “por diseño y regulación”. Cada salto de conectividad creó un salto de riesgo.</p>
+<h2 id="que-es-y-por-que-importa">Qué es y por qué importa</h2>
+<p>La seguridad informática nació cuando los sistemas dejaron de estar aislados. Al conectar redes, cualquier error se volvió reproducible a escala. En aplicaciones, eso significa que un fallo pequeño puede convertirse en fuga masiva de datos, fraude o interrupción del servicio. Entender la evolución te ayuda a no repetir errores: la mayoría de incidentes actuales son “viejos problemas” en “nuevos contextos”.</p>
+<h2 id="evolucion-en-4-etapas-muy-resumida">Evolución en 4 etapas (muy resumida)</h2>
+<h3 id="etapa-1-conectar-para-compartir">Etapa 1 — Conectar para compartir</h3>
+<p>El objetivo era disponibilidad: que el sistema “funcione” y que la información viaje. La seguridad era secundaria porque el entorno era pequeño y de confianza.</p>
+<h3 id="etapa-2-curiosidad-y-primeras-intrusiones">Etapa 2 — Curiosidad y primeras intrusiones</h3>
+<p>Cuando más personas obtuvieron acceso, aparecieron intrusiones por exploración. Se hizo evidente que “tener acceso” no es lo mismo que “tener permiso”.</p>
+<h3 id="etapa-3-industrializacion-del-ataque">Etapa 3 — Industrialización del ataque</h3>
+<p>El ataque se volvió negocio. Se automatizó: campañas masivas, explotación repetible, robo de credenciales y monetización. Aquí nace la necesidad de controles sistemáticos.</p>
+<h3 id="etapa-4-seguridad-por-diseno-y-gobernanza">Etapa 4 — Seguridad por diseño y gobernanza</h3>
+<p>Las organizaciones empezaron a definir procesos: políticas, gestión de riesgos, controles y auditoría. La pregunta cambió de “¿me hackearon?” a “¿qué tan preparado estoy y cómo lo demuestro?”.</p>
+<h2 id="senales-de-una-aplicacion-que-crecio-sin-seguridad">Señales de una aplicación que creció sin seguridad</h2>
+<ul>
+<li>Credenciales “quemadas” dentro del código o archivos compartidos.</li>
+<li>Errores que muestran detalles internos (rutas, consultas, stack traces) al usuario.</li>
+<li>Logs inexistentes o, peor, logs con datos sensibles completos.</li>
+<li>Cambios directos en producción sin revisión ni pruebas.</li>
+<li>Autenticación “a medias”: sesiones inconsistentes, tokens sin expiración o cookies sin banderas de seguridad.</li>
+</ul>
+<h2 id="ejemplo-real-historia">Ejemplo real (historia)</h2>
+<p>Historia: “La app que creció demasiado rápido”. Un equipo lanza una plataforma de reservas. Al principio eran 200 usuarios y un solo servidor. Se prioriza velocidad: contraseñas simples, un panel admin sin segundo factor, y mensajes de error detallados “para depurar”. Dos años después llegan 50.000 usuarios y proveedores. Un atacante no necesita romper nada sofisticado: aprovecha una contraseña reutilizada en el panel admin, extrae la base de datos y publica capturas. El daño no fue solo técnico: soporte colapsa, hay pérdida de confianza, y la empresa debe explicar por qué no tenía controles básicos.</p>
+<h2 id="ejemplo-tecnico-que-observarias">Ejemplo técnico (qué observarías)</h2>
+<p>En un incidente así, verías accesos administrativos en horarios inusuales, exportaciones masivas, cambios rápidos de permisos y picos de consultas. La lección: si no registras eventos críticos y no limitas impacto, te enteras tarde y con poca evidencia.</p>
+<pre><code class="language-bash"># Buscar accesos a rutas administrativas y picos por IP (ejemplo conceptual).
+# Ajusta rutas/archivos según tu servidor (nginx/apache/app).
+grep -E &quot;/admin|/login&quot; /var/log/nginx/access.log | tail -n 50
+awk &#x27;{print $1}&#x27; /var/log/nginx/access.log | sort | uniq -c | sort -nr | head -n 10</code></pre>
+<pre><code class="language-http"># Patrón de requests repetitivas a un endpoint sensible (ejemplo conceptual)
+GET /admin/export?format=csv HTTP/1.1
+Host: ejemplo.com
+User-Agent: Mozilla/5.0
+
+GET /admin/export?format=csv HTTP/1.1
+Host: ejemplo.com
+User-Agent: Mozilla/5.0</code></pre>
+<h2 id="diagrama-mermaid">Diagrama (Mermaid)</h2>
+<h3 id="de-conectividad-a-riesgo">De conectividad a riesgo</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart TD
+  conectar[Conectar] --&gt; masUsuarios[Más_usuarios]
+  masUsuarios --&gt; masSuperficie[Más_superficie]
+  masSuperficie --&gt; masControles[Necesidad_de_controles]
+
+  conectar --&gt; obj1[&quot;Objetivo: disponibilidad&quot;]
+  masUsuarios --&gt; obj2[&quot;Objetivo: permisos&quot;]
+  masSuperficie --&gt; obj3[&quot;Objetivo: reducir_monetización_del_ataque&quot;]
+  masControles --&gt; obj4[&quot;Objetivo: gobernanza_y_evidencia&quot;]</div></div>
+<h2 id="reto-interactivo-sin-codigo">Reto interactivo (sin código)</h2>
+<p>Escribe 6 líneas: (1) cuál es el activo principal de una app que uses a diario, (2) qué podría pasar si se filtra, (3) qué podría pasar si se cae 1 día, (4) qué evidencia te gustaría tener en logs si ocurre un fraude, (5) qué control “barato” aplicarías hoy, (6) qué control “caro” planearías para después.</p>
+<h2 id="mini-quiz-5-preguntas">Mini-quiz (5 preguntas)</h2>
+<ol>
+<li>V/F: La seguridad es un estado final que se alcanza cuando ya no hay vulnerabilidades.</li>
+<li>V/F: Al aumentar usuarios y conexiones, aumenta la superficie de ataque.</li>
+<li>¿Cuál es una señal típica de una app sin seguridad por diseño?</li>
+<li>La “industrialización del ataque” se caracteriza principalmente por:</li>
+<li>En 1 frase, explica por qué la seguridad es un proceso y no un producto.</li>
+</ol>
+<ul>
+<li>A) Errores genéricos al usuario</li>
+<li>B) Credenciales en el repositorio</li>
+<li>C) Revisiones de cambios antes de producción</li>
+</ul>
+<ul>
+<li>A) Ataques manuales aislados</li>
+<li>B) Automatización y escala</li>
+<li>C) Redes desconectadas</li>
+</ul>
+<p>Respuestas: (1) F, (2) V, (3) B, (4) B, (5) Respuesta esperada: debe mencionar mejora continua o ciclo constante (cambios, nuevas amenazas, mantenimiento), no un “checklist único”.</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        
+        <a href="hackers-canales-y-proteccion.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Qué es un hacker, canales del ciberdelincuente y cómo protegerme</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Seguridad en aplicaciones · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="sea-common.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Principios de seguridad: CIA + Autenticidad | SEA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="sea-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">SEA</a>
+      <span>Seguridad en aplicaciones · Tema 4</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a>
+      <a href="#prerrequisitos">Prerrequisitos</a>
+      <a href="#que-es-cia-autenticidad">Qué es CIA + Autenticidad</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 4</span>
+      <h1 class="hero-title">Principios de seguridad: CIA + Autenticidad</h1>
+      <p class="hero-sub">Casos reales, Mermaid y retos prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="sea-content section-alt" id="articulo">
+    <h2 id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h2>
+<ul>
+<li>Definir confidencialidad, integridad, disponibilidad y autenticidad con ejemplos.</li>
+<li>Clasificar 8 incidentes simples según qué principio se rompió.</li>
+<li>Identificar 3 trade‑offs reales entre disponibilidad y seguridad.</li>
+<li>Explicar por qué autenticidad no es lo mismo que confidencialidad.</li>
+<li>Redactar una regla de diseño usando CIA+A para un endpoint de login.</li>
+</ul>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<p>Entender usuario/contraseña, sesión y errores comunes de aplicaciones.</p>
+<h2 id="que-es-cia-autenticidad">Qué es CIA + Autenticidad</h2>
+<p>CIA resume tres objetivos de seguridad: Confidencialidad (solo ve quien debe), Integridad (no se altera sin permiso) y Disponibilidad (está accesible cuando se necesita). A esto se suma Autenticidad: poder confiar en “quién es quién” y en que un mensaje/acción realmente proviene de quien dice ser.</p>
+<h2 id="ejemplos-rapidos-por-principio">Ejemplos rápidos por principio</h2>
+<h3 id="confidencialidad">Confidencialidad</h3>
+<p>Se rompe si alguien accede a datos que no le pertenecen: listas de clientes, correos, números de documento, tokens o secretos.</p>
+<h3 id="integridad">Integridad</h3>
+<p>Se rompe si un dato cambia sin autorización: saldo, rol de usuario, precio de producto, estado de una orden.</p>
+<h3 id="disponibilidad">Disponibilidad</h3>
+<p>Se rompe si el sistema no está disponible o es muy lento: caídas, saturación, errores masivos o dependencia crítica caída.</p>
+<h3 id="autenticidad">Autenticidad</h3>
+<p>Se rompe si no puedes confiar en el origen: suplantación de identidad, sesión robada, tokens falsificados, requests manipuladas o MITM que “parece” tu servidor.</p>
+<h2 id="ejemplo-real-historia">Ejemplo real (historia)</h2>
+<p>Historia: “El descuento infinito”. Una tienda online envía al cliente el precio final y el porcentaje de descuento en el request de compra. Un usuario descubre que puede modificar el descuento en el navegador y compra por $0. Aquí la disponibilidad está bien (la app funciona), pero la integridad está rota (la orden fue alterada) y la autenticidad es dudosa (el sistema confió en datos del cliente).</p>
+<h2 id="ejemplo-tecnico-regla-de-diseno">Ejemplo técnico (regla de diseño)</h2>
+<p>Regla: el servidor debe calcular y validar todo lo que afecte dinero, permisos o identidad. El cliente solo “solicita”; el servidor “decide”. Además, los eventos críticos deben quedar registrados con un identificador de usuario confiable y contexto de seguridad.</p>
+<pre><code class="language-http"># Cliente intenta enviar descuento manipulable (ejemplo conceptual)
+POST /api/checkout HTTP/1.1
+Host: tienda.ejemplo
+Content-Type: application/json
+
+{&quot;cart_id&quot;:&quot;c_9&quot;,&quot;discount&quot;:90}
+
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{&quot;error&quot;:&quot;No fue posible procesar la solicitud.&quot;}</code></pre>
+<h2 id="diagrama-mermaid">Diagrama (Mermaid)</h2>
+<h3 id="cia-a-aplicado-a-una-compra">CIA+A aplicado a una compra</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart TD
+  U[Usuario] --&gt;|Login| Auth[Autenticacion_(A)]
+  Auth --&gt;|Token_sesion| Req[Request_compra]
+  Req --&gt;|Autorizacion| Perm[Autorizacion_(A)]
+  Perm --&gt;|Validacion_calculo| Val[Validacion_(I)]
+  Val --&gt;|Procesar| Core[Logica_negocio]
+  Core --&gt;|Guardar| DB[(BD)]
+  Core --&gt;|Logging| Log[Logs_(A_I)]
+  Core --&gt;|Rate_limit| RL[Limites_(D)]
+  DB --&gt;|Respuesta| Res[Respuesta]</div></div>
+<h2 id="reto-interactivo-sin-codigo">Reto interactivo (sin código)</h2>
+<p>Clasifica estos 8 eventos (escribe la letra y el principio): A) fuga de correos B) cambio de rol a admin C) caída del servidor D) sesión robada E) precio alterado F) endpoint lento G) token falsificado H) lectura de historial de otro usuario.</p>
+<h2 id="mini-quiz-5-preguntas">Mini-quiz (5 preguntas)</h2>
+<ol>
+<li>V/F: Integridad significa que los datos no cambian nunca.</li>
+<li>V/F: Autenticidad se relaciona con poder verificar el origen/identidad.</li>
+<li>Un ataque que altera precios afecta principalmente:</li>
+<li>Si alguien ve datos de otro usuario, afecta:</li>
+<li>Escribe una regla (1 frase) para proteger integridad en operaciones de pago.</li>
+</ol>
+<ul>
+<li>A) Disponibilidad</li>
+<li>B) Integridad</li>
+<li>C) Confidencialidad</li>
+</ul>
+<ul>
+<li>A) Confidencialidad</li>
+<li>B) Integridad</li>
+<li>C) Disponibilidad</li>
+</ul>
+<p>Respuestas: (1) F, (2) V, (3) B, (4) A, (5) Respuesta esperada: el servidor valida/calcula y no confía en valores críticos del cliente.</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="iso-y-normas-27001-27002.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Introducción a normas ISO: qué es una ISO, ISO/IEC 27001 y 27002</span><i class="bi bi-chevron-left"></i></a>
+        <a href="ingenieria-social-y-phishing.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Ingeniería social y phishing: señales, prevención y respuesta</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Seguridad en aplicaciones · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="sea-common.js"></script>
+</body>
+</html>

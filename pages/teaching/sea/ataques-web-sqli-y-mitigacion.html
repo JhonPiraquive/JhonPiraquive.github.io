@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ataques comunes a aplicaciones web: SQL Injection y mitigación | SEA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="sea-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">SEA</a>
+      <span>Seguridad en aplicaciones · Tema 7</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a>
+      <a href="#prerrequisitos">Prerrequisitos</a>
+      <a href="#que-es-sql-injection">Qué es SQL Injection</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 7</span>
+      <h1 class="hero-title">Ataques comunes a aplicaciones web: SQL Injection y mitigación</h1>
+      <p class="hero-sub">Casos reales, Mermaid y retos prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="sea-content section-alt" id="articulo">
+    <h2 id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h2>
+<ul>
+<li>Explicar qué es SQL Injection (SQLi) y por qué ocurre.</li>
+<li>Reconocer 4 patrones de entrada sospechosa en campos/URLs.</li>
+<li>Describir el impacto de SQLi en CIA (qué se puede romper).</li>
+<li>Enumerar 5 mitigaciones concretas (priorizando server-side).</li>
+<li>Distinguir “validación” vs “parametrización” con claridad.</li>
+<li>Proponer un plan de pruebas básico para detectar SQLi en un endpoint.</li>
+</ul>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<p>Conocer qué es una base de datos y una consulta SQL a nivel conceptual.</p>
+<h2 id="que-es-sql-injection">Qué es SQL Injection</h2>
+<p>SQL Injection ocurre cuando una aplicación construye consultas SQL mezclando texto fijo con datos del usuario sin control adecuado. El atacante inyecta fragmentos de SQL para cambiar el significado de la consulta: leer datos ajenos, modificar registros o incluso afectar disponibilidad.</p>
+<h2 id="senales-de-riesgo">Señales de riesgo</h2>
+<ul>
+<li>Concatenación de strings para armar consultas.</li>
+<li>Errores de base de datos visibles al usuario.</li>
+<li>Filtros “mágicos” basados solo en bloquear palabras.</li>
+<li>Campos de búsqueda que aceptan cualquier cosa sin límites.</li>
+<li>Endpoints que devuelven demasiada información por un solo parámetro.</li>
+<li>Falta de logs/alertas ante patrones anómalos.</li>
+</ul>
+<h2 id="mitigacion-lo-que-si-funciona">Mitigación (lo que sí funciona)</h2>
+<ul>
+<li>Consultas parametrizadas / prepared statements (primera línea de defensa).</li>
+<li>Validación de entrada por tipo, longitud y formato (defensa adicional).</li>
+<li>Mínimo privilegio en la cuenta de BD (limita impacto).</li>
+<li>Manejo seguro de errores (no filtrar detalles).</li>
+<li>Monitoreo y alertas (patrones de intentos).</li>
+<li>Pruebas y revisión de código en rutas críticas.</li>
+</ul>
+<h2 id="ejemplo-real-historia">Ejemplo real (historia)</h2>
+<p>Historia: “El buscador ‘inofensivo’”. Una app agrega un buscador por nombre. El equipo lo lanza rápido concatenando el texto del usuario en la consulta. Un atacante prueba entradas raras y nota que el sistema responde diferente ante comillas. En minutos extrae datos de usuarios. El fallo no fue “la base de datos”: fue confiar en entrada sin separar datos de instrucciones.</p>
+<h2 id="ejemplo-tecnico-demostracion-conceptual">Ejemplo técnico (demostración conceptual)</h2>
+<p>La demostración debe mostrar dos versiones: una consulta vulnerable construida por concatenación (para evidenciar el riesgo) y una versión segura con parámetros (para evidenciar la mitigación). También debe mostrar la diferencia de manejo de errores: el usuario recibe mensaje genérico, mientras el log interno guarda el detalle.</p>
+<pre><code class="language-sql">-- Consulta vulnerable (ejemplo conceptual: NO copiar a producción)
+SELECT * FROM users WHERE name = &#x27;&lt;&lt;input_usuario&gt;&gt;&#x27;;
+
+-- Si input_usuario = &#x27;a&#x27; OR &#x27;1&#x27;=&#x27;1
+-- La condición cambia y puede devolver demasiados resultados.</code></pre>
+<pre><code class="language-php">&lt;?php
+// Ejemplo conceptual: prepared statement con parámetros (mitigación)
+// - Separar SQL (instrucción) de los valores (datos).
+// - Enlazar el input como parámetro, no concatenarlo.
+// (El código exacto depende de PDO/mysqli y tu framework.)
+?&gt;</code></pre>
+<pre><code class="language-json">{
+  &quot;event&quot;: &quot;sqli_attempt&quot;,
+  &quot;user_id&quot;: null,
+  &quot;ip&quot;: &quot;198.51.100.10&quot;,
+  &quot;endpoint&quot;: &quot;/buscar&quot;,
+  &quot;payload_truncado&quot;: &quot;&#x27; OR &#x27;1&#x27;=&#x27;1&quot;,
+  &quot;resultado&quot;: &quot;blocked&quot;,
+  &quot;request_id&quot;: &quot;req_13f5c1&quot;
+}</code></pre>
+<h2 id="diagrama-mermaid">Diagrama (Mermaid)</h2>
+<h3 id="separar-datos-de-instrucciones">Separar datos de instrucciones</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart LR
+  in[Entrada_usuario] --&gt; val[Validacion_formato]
+  val --&gt; param[Consulta_parametrizada]
+  param --&gt; bd[(BD)]
+
+  in -.-&gt; vuln[SQL_concatenado_(vulnerable)]
+  vuln -.-&gt; bd</div></div>
+<h2 id="reto-interactivo-sin-codigo">Reto interactivo (sin código)</h2>
+<p>Dado un endpoint “/buscar?nombre=…”, escribe 5 casos de prueba de entrada (solo texto) que intentarías para detectar SQLi. Luego marca cuáles deberían ser bloqueados por validación de formato y cuáles deberían ser neutralizados por parametrización.</p>
+<h2 id="mini-quiz-5-preguntas">Mini-quiz (5 preguntas)</h2>
+<ol>
+<li>V/F: SQLi ocurre cuando datos del usuario se interpretan como parte de la instrucción SQL.</li>
+<li>V/F: Bloquear palabras (blacklist) es suficiente como defensa principal.</li>
+<li>La mitigación más importante es:</li>
+<li>Mínimo privilegio en BD sirve para:</li>
+<li>En 1 frase, explica “separar datos de instrucciones”.</li>
+</ol>
+<ul>
+<li>A) Mensajes bonitos</li>
+<li>B) Consultas parametrizadas</li>
+<li>C) Cambiar el nombre de tablas</li>
+</ul>
+<ul>
+<li>A) Evitar todo ataque</li>
+<li>B) Limitar el impacto</li>
+<li>C) Acelerar consultas</li>
+</ul>
+<p>Respuestas: (1) V, (2) F, (3) B, (4) B, (5) Respuesta esperada: el input se trata como dato, no como parte del SQL; el motor no lo ejecuta como instrucción.</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="https-y-mitm.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: HTTPS y ataques MITM: qué protege y qué no</span><i class="bi bi-chevron-left"></i></a>
+        <a href="base64-y-diferencias-con-cifrado.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Base64: codificación/decodificación y malentendidos frecuentes</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Seguridad en aplicaciones · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="sea-common.js"></script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diagramas de clases (UML básico + Mermaid) | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 8</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#1-para-que-sirven-los-diagramas-de-clases">1) ¿Para qué sirven los diagramas de clase…</a>
+      <a href="#2-elementos-basicos-clase-atributos-metodos">2) Elementos básicos: clase, atributos, mé…</a>
+      <a href="#3-herencia-e-interfaces-en-diagramas">3) Herencia e Interfaces en diagramas</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 8</span>
+      <h1 class="hero-title">Diagramas de clases (UML básico + Mermaid)</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="1-para-que-sirven-los-diagramas-de-clases">1) ¿Para qué sirven los diagramas de clases?</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li>Te muestran <strong>estructura</strong>: clases y relaciones.</li>
+<li>Sirven para <strong>comunicar</strong> diseño sin meterse en código.</li>
+<li>Ayudan a detectar acoplamiento, responsabilidades raras y relaciones mal modeladas.</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p>Un diagrama de clases (UML) es una representación de:</p>
+<ul>
+<li>Clases (nombre, atributos, métodos).</li>
+<li>Relaciones: herencia, implementación de interfaces, asociación/agregación/composición.</li>
+</ul>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li>Alinear equipo (todos entienden lo mismo).</li>
+<li>Revisar diseño antes de programar.</li>
+<li>Documentar el modelo del dominio.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<p>Buen uso:</p>
+<ul>
+<li>Diagramas pequeños por módulo.</li>
+<li>Explican decisiones importantes (relaciones y responsabilidades).</li>
+</ul>
+<p>Mal uso:</p>
+<ul>
+<li>Diagramas gigantes “para todo el sistema” sin foco.</li>
+<li>Diagramar al final solo para cumplir: no ayuda a pensar.</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>Plano de una casa: no es la casa, pero te permite entender cómo se conecta todo.</p>
+<h3 id="diagrama-tabla-mermaid">Diagrama/tabla (Mermaid)</h3>
+<p>En este curso usamos <code>mermaid</code> con <code>classDiagram</code>.</p>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Producto {
+    +string Nombre
+    +decimal Precio
+  }</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>Dibuja en Mermaid 3 clases: <code>Usuario</code>, <code>Carrito</code>, <code>Producto</code>.</li>
+<li>Conecta <code>Carrito</code> con muchos <code>Producto</code>.</li>
+<li>Decide: ¿agregación o composición? Justifica.</li>
+</ol>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>V/F: Un diagrama de clases muestra principalmente el comportamiento (algoritmos).</li>
+<li>¿Qué muestra mejor un diagrama de clases?</li>
+</ol>
+<ul>
+<li>A) Estructura y relaciones</li>
+<li>B) Logs de ejecución</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) A</p>
+<hr>
+<h2 id="2-elementos-basicos-clase-atributos-metodos">2) Elementos básicos: clase, atributos, métodos</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>Clase: caja con nombre.</li>
+<li>Atributos: datos (propiedades/campos).</li>
+<li>Métodos: acciones.</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>En UML, una clase suele mostrarse con 1–3 compartimentos:</p>
+<ul>
+<li>Nombre</li>
+<li>Atributos</li>
+<li>Métodos</li>
+</ul>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Visualizar qué “tiene” y qué “hace” una clase.</li>
+<li>Ver si una clase está acumulando demasiadas cosas.</li>
+</ul>
+<h3 id="ejemplo-tienda-producto">Ejemplo (tienda: Producto)</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Producto {
+    +string Nombre
+    +decimal Precio
+    +Producto(string nombre, decimal precio)
+  }</div></div>
+<h3 id="reto-interactivo-1">Reto interactivo</h3>
+<ol>
+<li>Agrega a <code>Producto</code> el método <code>AplicarDescuento(decimal porcentaje)</code>.</li>
+<li>Dibuja el método en el diagrama.</li>
+</ol>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>V/F: En UML, atributos y métodos pueden representarse dentro de la clase.</li>
+<li>V/F: Si un diagrama tiene demasiados miembros, puede indicar falta de cohesión.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) V, (2) V</p>
+<hr>
+<h2 id="3-herencia-e-interfaces-en-diagramas">3) Herencia e Interfaces en diagramas</h2>
+<h3 id="mapa-mental-2">Mapa mental</h3>
+<ul>
+<li>Herencia: “triángulo” hacia la base (en Mermaid: <code>&lt;|--</code>).</li>
+<li>Interfaz: contrato (en Mermaid: <code>&lt;&lt;interface&gt;&gt;</code> + <code>&lt;|..</code>).</li>
+</ul>
+<h3 id="que-es-2">Qué es</h3>
+<ul>
+<li><strong>Herencia</strong>: <code>Base &lt;|-- Derivada</code></li>
+<li><strong>Interfaz</strong>: <code>Interface &lt;|.. ClaseImplementa</code></li>
+</ul>
+<h3 id="para-que-sirve-2">Para qué sirve</h3>
+<ul>
+<li>Ver jerarquías y contratos de un vistazo.</li>
+<li>Detectar jerarquías profundas (posible problema).</li>
+</ul>
+<h3 id="ejemplo">Ejemplo</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class IPasarelaPago {
+    &lt;&lt;interface&gt;&gt;
+    +Cobrar(decimal monto)
+  }
+  IPasarelaPago &lt;|.. PasarelaTarjeta
+  IPasarelaPago &lt;|.. PasarelaTransferencia</div></div>
+<h3 id="reto-interactivo-2">Reto interactivo</h3>
+<ol>
+<li>Dibuja una abstracta <code>Notificacion</code> y dos derivadas <code>NotificacionEmail</code>, <code>NotificacionSms</code>.</li>
+<li>Marca la abstracta como <code>&lt;&lt;abstract&gt;&gt;</code>.</li>
+</ol>
+<h3 id="mini-quiz-2">Mini-quiz</h3>
+<ol>
+<li>V/F: Una interfaz se dibuja igual que una clase sin marcas.</li>
+<li>¿Qué relación describe implementación de interfaz en Mermaid?</li>
+</ol>
+<ul>
+<li>A) <code>&lt;|--</code></li>
+<li>B) <code>&lt;|..</code></li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) B</p>
+<hr>
+<h2 id="4-asociacion-agregacion-composicion-recordatorio-visual">4) Asociación / Agregación / Composición (recordatorio visual)</h2>
+<h3 id="mapa-mental-3">Mapa mental</h3>
+<ul>
+<li>Asociación: flecha simple.</li>
+<li>Agregación: rombo vacío <code>o--</code>.</li>
+<li>Composición: rombo lleno <code>*--</code>.</li>
+</ul>
+<h3 id="que-es-3">Qué es</h3>
+<p>Son relaciones entre clases. La diferencia principal suele ser <strong>ciclo de vida</strong> y <strong>propiedad</strong> (del modelo).</p>
+<h3 id="ejemplo-pedido-y-lineas">Ejemplo (pedido y líneas)</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  Pedido *-- &quot;1..*&quot; LineaPedido : compone
+  class Pedido
+  class LineaPedido</div></div>
+<h3 id="reto-interactivo-3">Reto interactivo</h3>
+<p>Para cada caso, dibuja la relación correcta:</p>
+<ol>
+<li><code>Equipo</code> y <code>Jugador</code></li>
+<li><code>Factura</code> y <code>LineaFactura</code></li>
+<li><code>Doctor</code> y <code>Paciente</code> (en una consulta)</li>
+</ol>
+<h3 id="mini-quiz-3">Mini-quiz</h3>
+<ol>
+<li>¿Cuál relación suele indicar ciclo de vida compartido?</li>
+</ol>
+<ul>
+<li>A) Agregación</li>
+<li>B) Composición</li>
+</ul>
+<ol>
+<li>V/F: Asociación implica necesariamente que uno crea al otro.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) B, (2) F</p>
+<hr>
+<h2 id="5-caso-integrado-tienda-pedidos-diagrama-completo">5) Caso integrado: tienda / pedidos (diagrama completo)</h2>
+<h3 id="mapa-mental-4">Mapa mental</h3>
+<ul>
+<li><code>Pedido</code> compone <code>LineaPedido</code>.</li>
+<li><code>Pedido</code> se asocia con <code>Cliente</code>.</li>
+<li><code>LineaPedido</code> referencia <code>Producto</code> (agregación o asociación, según modelo).</li>
+</ul>
+<h3 id="que-es-4">Qué es</h3>
+<p>Este mini-modelo resume conceptos del curso y se puede mapear directo a código.</p>
+<h3 id="diagrama-mermaid">Diagrama (Mermaid)</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Cliente {
+    +string Id
+    +string Nombre
+  }
+
+  class Producto {
+    +string Id
+    +string Nombre
+    +decimal Precio
+  }
+
+  class LineaPedido {
+    +string ProductoId
+    +int Cantidad
+    +decimal PrecioUnitario
+    +Subtotal() decimal
+  }
+
+  class Pedido {
+    +string Id
+    +Total() decimal
+    +AgregarLinea(string productoId, int cantidad)
+  }
+
+  Cliente &quot;1&quot; --&gt; &quot;0..*&quot; Pedido : realiza
+  Pedido *-- &quot;1..*&quot; LineaPedido : compone
+  LineaPedido --&gt; Producto : referencia</div></div>
+<h3 id="reto-interactivo-3-10-min">Reto interactivo (3–10 min)</h3>
+<ol>
+<li>Agrega a <code>Pedido</code> un estado (<code>Creado</code>, <code>Pagado</code>, <code>Enviado</code>).</li>
+<li>Dibuja el atributo <code>Estado</code>.</li>
+<li>Decide: ¿vale la pena hacer una clase <code>EstadoPedido</code> o un <code>enum</code>? Justifica.</li>
+</ol>
+<h3 id="mini-quiz-4">Mini-quiz</h3>
+<ol>
+<li>V/F: Un mismo modelo puede representarse en UML y en C#.</li>
+<li>¿Qué relación usarías para <code>Pedido</code> → <code>LineaPedido</code> típicamente?</li>
+</ol>
+<ul>
+<li>A) Composición</li>
+<li>B) Asociación</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) V, (2) A</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="override-y-sobrecarga.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Override y Sobrecarga (Overload)</span><i class="bi bi-chevron-left"></i></a>
+        <a href="solid-principios.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Principios SOLID</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

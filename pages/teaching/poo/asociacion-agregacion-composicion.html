@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asociación, Agregación y Composición | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 4</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#0-antes-de-empezar-idea-clave">0) Antes de empezar: idea clave</a>
+      <a href="#1-asociacion">1) Asociación</a>
+      <a href="#2-agregacion">2) Agregación</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 4</span>
+      <h1 class="hero-title">Asociación, Agregación y Composición</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="0-antes-de-empezar-idea-clave">0) Antes de empezar: idea clave</h2>
+<p>En POO, muchas veces el diseño no es “heredar”, sino <strong>relacionar</strong> objetos.  <br>
+Estas relaciones responden a preguntas como:</p>
+<ul>
+<li>¿Un objeto <strong>usa</strong> a otro?</li>
+<li>¿Un objeto <strong>tiene</strong> a otro?</li>
+<li>¿Ese “tener” implica <strong>propiedad</strong> y <strong>ciclo de vida</strong>?</li>
+</ul>
+<hr>
+<h2 id="1-asociacion">1) Asociación</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li>Asociación = “A se relaciona con B”.</li>
+<li>No implica propiedad fuerte.</li>
+<li>Puede ser temporal (solo para una operación).</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p>Una asociación es una relación general donde un objeto <strong>conoce</strong> o <strong>usa</strong> a otro objeto.  <br>
+Ejemplo típico: <code>Profesor</code> se asocia con <code>Curso</code> porque lo dicta, pero ninguno “vive dentro” del otro necesariamente.</p>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li>Modelar colaboración entre objetos.</li>
+<li>Mantener responsabilidades separadas: cada uno hace lo suyo, pero trabajan juntos.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<p>Aplica cuando:</p>
+<ul>
+<li>El vínculo no define propiedad ni ciclo de vida.</li>
+<li>El objeto B puede existir sin A.</li>
+</ul>
+<p>Mal uso cuando:</p>
+<ul>
+<li>Usas asociación para todo y terminas pasando 10 objetos a cada método (acoplamiento accidental).</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>“Doctor” y “Paciente”: se relacionan en una consulta, pero ninguno “contiene” al otro.</p>
+<h3 id="ejemplo-c-minimo-variante">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class Paciente
+{
+    public string Nombre { get; }
+    public Paciente(string nombre) =&gt; Nombre = nombre;
+}
+
+public class Doctor
+{
+    public string Nombre { get; }
+    public Doctor(string nombre) =&gt; Nombre = nombre;
+
+    // Asociación: el doctor usa un paciente para una operación
+    public void Atender(Paciente paciente)
+    {
+        Console.WriteLine($&quot;{Nombre} atiende a {paciente.Nombre}&quot;);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var doctor = new Doctor(&quot;Dra. Ruiz&quot;);
+        var paciente = new Paciente(&quot;Ana&quot;);
+        doctor.Atender(paciente);
+    }
+}</code></pre>
+<p>Variante: agrega una clase <code>Cita</code> para formalizar la relación (fecha, motivo).</p>
+<h3 id="diagrama-tabla">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Doctor
+  class Paciente
+  Doctor --&gt; Paciente : atiende</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>Crea <code>Cita</code> con <code>Doctor</code>, <code>Paciente</code> y <code>DateTime Fecha</code>.</li>
+<li>Cambia <code>Atender(Paciente)</code> por <code>Atender(Cita)</code>.</li>
+<li>Imprime: “Doctor atiende a Paciente el Fecha”.</li>
+</ol>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>V/F: Asociación siempre significa propiedad fuerte.</li>
+<li>¿Qué describe mejor asociación?</li>
+</ol>
+<ul>
+<li>A) Colaboración/uso</li>
+<li>B) “Parte de” con ciclo de vida compartido</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) A</p>
+<hr>
+<h2 id="2-agregacion">2) Agregación</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>Agregación = “A tiene B”, pero B puede vivir sin A.</li>
+<li>Propiedad “débil”: relación parte-todo sin dependencia total.</li>
+<li>A suele mantener referencias a B.</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>La agregación es una forma de relación “todo–parte” donde el “todo” <strong>agrupa</strong> partes, pero las partes pueden existir por sí solas.</p>
+<p>Ejemplo: <code>Equipo</code> agrega <code>Jugador</code>. Un jugador puede existir sin un equipo (cambia de equipo).</p>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Modelar colecciones de elementos dentro de un contexto.</li>
+<li>Representar pertenencia sin adueñarse del ciclo de vida.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-1">Señales de buen/mal uso</h3>
+<p>Aplica cuando:</p>
+<ul>
+<li>El “todo” organiza/gestiona, pero no crea ni destruye la parte como su responsabilidad principal.</li>
+</ul>
+<p>Mal uso cuando:</p>
+<ul>
+<li>El “todo” asume que nadie más puede usar esas partes (cuando en realidad sí).</li>
+</ul>
+<h3 id="ejemplo-vida-real-1">Ejemplo vida real</h3>
+<p>“Biblioteca” y “Libro”: la biblioteca agrupa libros, pero el libro existe como entidad independiente.</p>
+<h3 id="ejemplo-c-minimo-variante-1">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+
+public class Libro
+{
+    public string Titulo { get; }
+    public Libro(string titulo) =&gt; Titulo = titulo;
+}
+
+public class Biblioteca
+{
+    private readonly List&lt;Libro&gt; _libros = new();
+
+    // Agregación: la biblioteca mantiene referencias a libros que existen por sí mismos
+    public void Agregar(Libro libro) =&gt; _libros.Add(libro);
+
+    public void Listar()
+    {
+        foreach (var libro in _libros)
+            Console.WriteLine(libro.Titulo);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var libro1 = new Libro(&quot;Clean Code&quot;);
+        var libro2 = new Libro(&quot;POO para humanos&quot;);
+
+        var biblioteca = new Biblioteca();
+        biblioteca.Agregar(libro1);
+        biblioteca.Agregar(libro2);
+        biblioteca.Listar();
+    }
+}</code></pre>
+<p>Variante: permite quitar un libro (<code>Quitar</code>) sin “destruir” el libro.</p>
+<h3 id="diagrama-tabla-1">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Biblioteca
+  class Libro
+  Biblioteca o-- &quot;0..*&quot; Libro : agrega</div></div>
+<h3 id="reto-interactivo-1">Reto interactivo</h3>
+<ol>
+<li>Implementa <code>Quitar(string titulo)</code> en <code>Biblioteca</code>.</li>
+<li>Quita un libro y vuelve a listar.</li>
+</ol>
+<p>Resultado esperado: el libro deja de estar en la biblioteca, pero el objeto <code>Libro</code> podría seguir existiendo en memoria si hay referencias.</p>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>V/F: En agregación, la “parte” no puede existir sin el “todo”.</li>
+<li>¿Cuál ejemplo encaja mejor con agregación?</li>
+</ol>
+<ul>
+<li>A) Casa–Habitación (si la casa se destruye, la habitación deja de existir)</li>
+<li>B) Equipo–Jugador (un jugador puede cambiar de equipo)</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) B</p>
+<hr>
+<h2 id="3-composicion">3) Composición</h2>
+<h3 id="mapa-mental-2">Mapa mental</h3>
+<ul>
+<li>Composición = “A está hecho de B”.</li>
+<li>Propiedad “fuerte”: B depende del ciclo de vida de A.</li>
+<li>Usualmente A crea y controla a B.</li>
+</ul>
+<h3 id="que-es-2">Qué es</h3>
+<p>Composición es una relación parte–todo donde la parte <strong>no tiene sentido</strong> (o no existe) sin el todo.  <br>
+Ejemplo: <code>Pedido</code> y <code>LineaPedido</code>. Una línea de pedido pertenece a un pedido específico.</p>
+<h3 id="para-que-sirve-2">Para qué sirve</h3>
+<ul>
+<li>Garantizar consistencia del modelo: las partes existen solo dentro del todo.</li>
+<li>Simplificar reglas de ciclo de vida (crear/Eliminar junto al todo).</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-2">Señales de buen/mal uso</h3>
+<p>Aplica cuando:</p>
+<ul>
+<li>Las partes no deberían compartirse entre “todos”.</li>
+<li>El ciclo de vida va junto.</li>
+</ul>
+<p>Mal uso cuando:</p>
+<ul>
+<li>Las partes realmente deberían poder vivir solas o compartirse (eso sería agregación/asociación).</li>
+</ul>
+<h3 id="ejemplo-vida-real-2">Ejemplo vida real</h3>
+<p>“Casa” y “Habitación”: una habitación es parte de una casa específica (en el modelo común).</p>
+<h3 id="ejemplo-c-minimo-variante-2">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class LineaPedido
+{
+    public string Producto { get; }
+    public int Cantidad { get; }
+    public decimal PrecioUnitario { get; }
+
+    public LineaPedido(string producto, int cantidad, decimal precioUnitario)
+    {
+        if (string.IsNullOrWhiteSpace(producto)) throw new ArgumentException(&quot;Producto requerido&quot;);
+        if (cantidad &lt;= 0) throw new ArgumentException(&quot;Cantidad inválida&quot;);
+        if (precioUnitario &lt; 0) throw new ArgumentException(&quot;Precio inválido&quot;);
+        Producto = producto;
+        Cantidad = cantidad;
+        PrecioUnitario = precioUnitario;
+    }
+
+    public decimal Subtotal() =&gt; Cantidad * PrecioUnitario;
+}
+
+public class Pedido
+{
+    private readonly List&lt;LineaPedido&gt; _lineas = new();
+
+    public void AgregarLinea(string producto, int cantidad, decimal precioUnitario)
+    {
+        // Composición: el Pedido crea y controla sus LineaPedido
+        _lineas.Add(new LineaPedido(producto, cantidad, precioUnitario));
+    }
+
+    public decimal Total() =&gt; _lineas.Sum(l =&gt; l.Subtotal());
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var pedido = new Pedido();
+        pedido.AgregarLinea(&quot;Café&quot;, 2, 5.5m);
+        pedido.AgregarLinea(&quot;Pan&quot;, 1, 2.0m);
+        Console.WriteLine(pedido.Total()); // 13.0
+    }
+}</code></pre>
+<p>Variante (anti-ejemplo): exponer <code>List&lt;LineaPedido&gt;</code> pública y permitir modificarla desde afuera rompe el control del <code>Pedido</code>.</p>
+<h3 id="diagrama-tabla-2">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Pedido
+  class LineaPedido
+  Pedido *-- &quot;1..*&quot; LineaPedido : compone</div></div>
+<h3 id="reto-interactivo-2">Reto interactivo</h3>
+<ol>
+<li>Agrega un método <code>QuitarProducto(string producto)</code> en <code>Pedido</code>.</li>
+<li>Si el producto no existe, no debe fallar (solo no hace nada).</li>
+<li>Muestra el total antes y después.</li>
+</ol>
+<h3 id="mini-quiz-2">Mini-quiz</h3>
+<ol>
+<li>V/F: En composición, las partes suelen depender del ciclo de vida del todo.</li>
+<li>¿Cuál ejemplo encaja mejor con composición?</li>
+</ol>
+<ul>
+<li>A) Biblioteca–Libro</li>
+<li>B) Pedido–LineaPedido</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) V, (2) B</p>
+<hr>
+<h2 id="4-comparacion-rapida-asociacion-vs-agregacion-vs-composi">4) Comparación rápida (asociación vs agregación vs composición)</h2>
+<ul>
+<li><strong>Asociación</strong>: uso/colaboración (“te llamo para algo”).</li>
+<li><strong>Agregación</strong>: todo–parte débil (“te agrupo, pero puedes vivir sin mí”).</li>
+<li><strong>Composición</strong>: todo–parte fuerte (“si yo no existo, tú tampoco en este modelo”).</li>
+</ul>
+<h3 id="reto-final-elige-el-tipo-y-justifica">Reto final (elige el tipo y justifica)</h3>
+<p>Para cada caso, escribe cuál relación usarías y por qué:</p>
+<ol>
+<li><code>Universidad</code> y <code>Departamento</code></li>
+<li><code>CarritoDeCompras</code> y <code>Producto</code></li>
+<li><code>Factura</code> y <code>LineaFactura</code></li>
+<li><code>Usuario</code> y <code>Sesion</code></li>
+</ol>
+<p>Resultado esperado: tu justificación debe mencionar <strong>ciclo de vida</strong> y <strong>propiedad</strong> cuando aplique.</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="herencia.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Herencia</span><i class="bi bi-chevron-left"></i></a>
+        <a href="abstraccion-clases-abstractas-interfaces.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Abstracción, Clases abstractas e Interfaces</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

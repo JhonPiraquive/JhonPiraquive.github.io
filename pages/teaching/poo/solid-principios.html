@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Principios SOLID | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 9</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#1-s-single-responsibility-principle-srp">1) S — Single Responsibility Principle (SR…</a>
+      <a href="#2-o-open-closed-principle-ocp">2) O — Open/Closed Principle (OCP)</a>
+      <a href="#3-l-liskov-substitution-principle-lsp">3) L — Liskov Substitution Principle (LSP)</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 9</span>
+      <h1 class="hero-title">Principios SOLID</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <blockquote><p>Objetivo: entender SOLID como reglas prácticas para reducir acoplamiento, aumentar cohesión y hacer el código más fácil de cambiar.</p></blockquote>
+<h2 id="1-s-single-responsibility-principle-srp">1) S — Single Responsibility Principle (SRP)</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li>1 clase/módulo = 1 motivo de cambio.</li>
+<li>Separar “orquestación” de “reglas de dominio” y de “I/O”.</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p>SRP dice que una clase debe tener una sola responsabilidad principal; si cambia el motivo, cambia la clase.</p>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li>Cambios más pequeños y seguros.</li>
+<li>Mejor testabilidad.</li>
+<li>Menos efectos colaterales.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<p>Bien:</p>
+<ul>
+<li><code>CalculadoraImpuestos</code> no envía emails.</li>
+</ul>
+<p>Mal:</p>
+<ul>
+<li><code>PedidoService</code> valida, calcula, guarda en DB, envía email, genera PDF, etc.</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>En un restaurante: cocina cocina, caja cobra, mesero atiende. Si una persona hace todo, se vuelve frágil.</p>
+<h3 id="ejemplo-c-anti-ejemplo-refactor">Ejemplo C# (anti-ejemplo → refactor)</h3>
+<p>Anti-ejemplo (mezcla reglas + notificación):</p>
+<pre><code class="language-csharp">using System;
+
+public class PedidoService
+{
+    public void CrearYNotificar(string emailCliente, decimal total)
+    {
+        if (total &lt;= 0) throw new ArgumentException(&quot;Total inválido&quot;);
+        Console.WriteLine(&quot;Guardando pedido...&quot;);
+        Console.WriteLine($&quot;Enviando email a {emailCliente}...&quot;);
+    }
+}</code></pre>
+<p>Refactor (separar responsabilidades):</p>
+<pre><code class="language-csharp">using System;
+
+public class CreadorPedido
+{
+    public void Crear(decimal total)
+    {
+        if (total &lt;= 0) throw new ArgumentException(&quot;Total inválido&quot;);
+        Console.WriteLine(&quot;Guardando pedido...&quot;);
+    }
+}
+
+public interface INotificador
+{
+    void Enviar(string destino, string mensaje);
+}
+
+public class NotificadorEmail : INotificador
+{
+    public void Enviar(string destino, string mensaje)
+        =&gt; Console.WriteLine($&quot;Email a {destino}: {mensaje}&quot;);
+}</code></pre>
+<h3 id="diagrama-tabla">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart LR
+  PedidoServiceMalo[PedidoService\n(hace todo)] --&gt; Problemas[Muchos motivos de cambio]
+  Creador[CreadorPedido] --&gt; SoloCrear[Crear pedido]
+  Notif[INotificador] --&gt; SoloNotif[Notificar]</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>En el refactor, crea una clase <code>OrquestadorPedido</code> que use <code>CreadorPedido</code> + <code>INotificador</code>.</li>
+<li>Asegúrate de que <code>CreadorPedido</code> no dependa de email.</li>
+</ol>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>V/F: SRP significa “una clase = un método”.</li>
+<li>V/F: Si una clase cambia por motivos distintos, suele violar SRP.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) F, (2) V</p>
+<hr>
+<h2 id="2-o-open-closed-principle-ocp">2) O — Open/Closed Principle (OCP)</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>Abierto a extensión, cerrado a modificación.</li>
+<li>Agregar comportamiento nuevo sin editar el cliente.</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>OCP recomienda diseñar para poder añadir nuevas variantes sin modificar código existente (especialmente el cliente).</p>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Menos riesgo al agregar features.</li>
+<li>Menos conflictos en equipo (menos archivos tocados).</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-1">Señales de buen/mal uso</h3>
+<p>Mal:</p>
+<ul>
+<li><code>switch</code> por tipo en 10 lugares.</li>
+</ul>
+<p>Bien:</p>
+<ul>
+<li>Interfaz + nuevas clases implementan comportamiento.</li>
+</ul>
+<h3 id="ejemplo-vida-real-1">Ejemplo vida real</h3>
+<p>Un tomacorriente: agregas un dispositivo nuevo y no modificas la pared.</p>
+<h3 id="ejemplo-c-anti-ejemplo-refactor-1">Ejemplo C# (anti-ejemplo → refactor)</h3>
+<p>Anti-ejemplo:</p>
+<pre><code class="language-csharp">using System;
+
+public class CalculadoraEnvio
+{
+    public decimal Calcular(string tipo, decimal peso)
+    {
+        return tipo switch
+        {
+            &quot;express&quot; =&gt; peso * 10,
+            &quot;normal&quot; =&gt; peso * 5,
+            _ =&gt; throw new ArgumentException(&quot;Tipo inválido&quot;)
+        };
+    }
+}</code></pre>
+<p>Refactor:</p>
+<pre><code class="language-csharp">using System;
+
+public interface IEnvio
+{
+    decimal Calcular(decimal peso);
+}
+
+public class EnvioExpress : IEnvio
+{
+    public decimal Calcular(decimal peso) =&gt; peso * 10;
+}
+
+public class EnvioNormal : IEnvio
+{
+    public decimal Calcular(decimal peso) =&gt; peso * 5;
+}</code></pre>
+<h3 id="diagrama-tabla-1">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class IEnvio {
+    &lt;&lt;interface&gt;&gt;
+    +Calcular(decimal peso) decimal
+  }
+  IEnvio &lt;|.. EnvioExpress
+  IEnvio &lt;|.. EnvioNormal</div></div>
+<h3 id="reto-interactivo-1">Reto interactivo</h3>
+<ol>
+<li>Implementa <code>EnvioGratis</code> (si <code>peso &lt;= 1</code>, cuesta 0; si no, cuesta 3).</li>
+<li>Agrégalo sin tocar las clases existentes.</li>
+</ol>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>V/F: OCP prohíbe modificar cualquier archivo.</li>
+<li>¿Qué suele ayudar a OCP?</li>
+</ol>
+<ul>
+<li>A) <code>switch</code> por tipo</li>
+<li>B) Contratos (interfaces) + implementaciones</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) B</p>
+<hr>
+<h2 id="3-l-liskov-substitution-principle-lsp">3) L — Liskov Substitution Principle (LSP)</h2>
+<h3 id="mapa-mental-2">Mapa mental</h3>
+<ul>
+<li>Una derivada debe poder reemplazar a la base sin “sorpresas”.</li>
+<li>No debilitar precondiciones, no romper postcondiciones.</li>
+</ul>
+<h3 id="que-es-2">Qué es</h3>
+<p>LSP dice que si tu código funciona con una clase base, debe seguir funcionando igual con cualquier subclase, sin comportamientos inesperados.</p>
+<h3 id="para-que-sirve-2">Para qué sirve</h3>
+<ul>
+<li>Evitar jerarquías peligrosas.</li>
+<li>Mantener polimorfismo real.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-2">Señales de buen/mal uso</h3>
+<p>Mal:</p>
+<ul>
+<li>Derivada lanza excepción en un método que la base promete.</li>
+<li>Derivada cambia el significado del método.</li>
+</ul>
+<p>Bien:</p>
+<ul>
+<li>Derivadas cumplen el contrato y no sorprenden.</li>
+</ul>
+<h3 id="ejemplo-vida-real-2">Ejemplo vida real</h3>
+<p>Si un “vehículo” promete “arrancar”, no debería existir un subtipo “vehículo” que no pueda arrancar.</p>
+<h3 id="ejemplo-c-anti-ejemplo">Ejemplo C# (anti-ejemplo)</h3>
+<pre><code class="language-csharp">using System;
+
+public class Ave
+{
+    public virtual void Volar() =&gt; Console.WriteLine(&quot;Volando&quot;);
+}
+
+public class Pinguino : Ave
+{
+    public override void Volar()
+        =&gt; throw new InvalidOperationException(&quot;No puedo volar&quot;);
+}</code></pre>
+<p>Mejor diseño: extraer una interfaz <code>IVolador</code> para aves que vuelan, en vez de forzar herencia.</p>
+<h3 id="diagrama-tabla-2">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart TD
+  Base[Ave.Volar()] --&gt; Expect[Cliente espera que siempre funcione]
+  Sub[Pinguino.Volar()] --&gt; Break[Rompe expectativa]</div></div>
+<h3 id="reto-interactivo-2">Reto interactivo</h3>
+<ol>
+<li>Rediseña: crea <code>IAve</code> y <code>IVolador</code> (o clases separadas).</li>
+<li>Haz que <code>Pinguino</code> no implemente “volar”.</li>
+</ol>
+<h3 id="mini-quiz-2">Mini-quiz</h3>
+<ol>
+<li>V/F: Si una subclase lanza excepciones nuevas “porque sí”, puede violar LSP.</li>
+<li>V/F: LSP trata de mantener contratos consistentes en herencia.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) V, (2) V</p>
+<hr>
+<h2 id="4-i-interface-segregation-principle-isp">4) I — Interface Segregation Principle (ISP)</h2>
+<h3 id="mapa-mental-3">Mapa mental</h3>
+<ul>
+<li>Interfaces pequeñas y específicas.</li>
+<li>No obligar a implementar métodos que no se usan.</li>
+</ul>
+<h3 id="que-es-3">Qué es</h3>
+<p>ISP dice que es mejor tener varias interfaces pequeñas que una interfaz grande que fuerza implementaciones innecesarias.</p>
+<h3 id="para-que-sirve-3">Para qué sirve</h3>
+<ul>
+<li>Menos código “vacío”.</li>
+<li>Menos dependencias innecesarias.</li>
+<li>Contratos más claros.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-3">Señales de buen/mal uso</h3>
+<p>Mal:</p>
+<ul>
+<li><code>IWorker</code> con <code>Trabajar()</code>, <code>Cocinar()</code>, <code>Conducir()</code>, <code>Programar()</code>.</li>
+</ul>
+<p>Bien:</p>
+<ul>
+<li><code>ICocinero</code>, <code>IConductor</code>, <code>IProgramador</code> separados.</li>
+</ul>
+<h3 id="ejemplo-vida-real-3">Ejemplo vida real</h3>
+<p>No todos los empleados deben tener “licencia de conducir” solo porque algunos la necesitan.</p>
+<h3 id="ejemplo-c-anti-ejemplo-refactor-2">Ejemplo C# (anti-ejemplo → refactor)</h3>
+<p>Anti-ejemplo:</p>
+<pre><code class="language-csharp">public interface IImpresoraMultiuso
+{
+    void Imprimir(string texto);
+    void Escanear();
+    void Faxear();
+}</code></pre>
+<p>Refactor:</p>
+<pre><code class="language-csharp">public interface IImpresora
+{
+    void Imprimir(string texto);
+}
+
+public interface IEscaner
+{
+    void Escanear();
+}</code></pre>
+<h3 id="diagrama-tabla-3">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class IImpresora {
+    &lt;&lt;interface&gt;&gt;
+    +Imprimir(string texto)
+  }
+  class IEscaner {
+    &lt;&lt;interface&gt;&gt;
+    +Escanear()
+  }</div></div>
+<h3 id="reto-interactivo-3">Reto interactivo</h3>
+<ol>
+<li>Crea una clase <code>ImpresoraBasica</code> que solo imprima.</li>
+<li>Crea <code>ImpresoraTodoEnUno</code> que implemente ambas interfaces.</li>
+</ol>
+<h3 id="mini-quiz-3">Mini-quiz</h3>
+<ol>
+<li>V/F: ISP sugiere interfaces grandes para “futuro”.</li>
+<li>¿Qué es mejor según ISP?</li>
+</ol>
+<ul>
+<li>A) Una interfaz gigante</li>
+<li>B) Varias interfaces por rol</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) B</p>
+<hr>
+<h2 id="5-d-dependency-inversion-principle-dip">5) D — Dependency Inversion Principle (DIP)</h2>
+<h3 id="mapa-mental-4">Mapa mental</h3>
+<ul>
+<li>Alto nivel no depende de bajo nivel.</li>
+<li>Ambos dependen de abstracciones.</li>
+<li>Inyección de dependencias (constructor) es una forma común.</li>
+</ul>
+<h3 id="que-es-4">Qué es</h3>
+<p>DIP dice que los módulos importantes (alto nivel) no deberían depender de detalles concretos, sino de contratos (interfaces).  <br>
+Los detalles implementan esos contratos.</p>
+<h3 id="para-que-sirve-4">Para qué sirve</h3>
+<ul>
+<li>Cambiar implementación (DB, proveedor, API) sin reescribir lógica de negocio.</li>
+<li>Facilitar pruebas.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-4">Señales de buen/mal uso</h3>
+<p>Mal:</p>
+<ul>
+<li><code>new SqlRepositorio()</code> dentro de la lógica de negocio.</li>
+</ul>
+<p>Bien:</p>
+<ul>
+<li><code>IRepositorio</code> inyectado, implementación concreta al borde.</li>
+</ul>
+<h3 id="ejemplo-vida-real-4">Ejemplo vida real</h3>
+<p>Una empresa no cambia su proceso interno por cada marca de impresora; define un estándar (contrato).</p>
+<h3 id="ejemplo-c-anti-ejemplo-refactor-3">Ejemplo C# (anti-ejemplo → refactor)</h3>
+<p>Anti-ejemplo:</p>
+<pre><code class="language-csharp">using System;
+
+public class ServicioUsuarios
+{
+    private readonly RepositorioSql _repo = new RepositorioSql();
+
+    public void Crear(string nombre)
+    {
+        _repo.Guardar(nombre);
+        Console.WriteLine(&quot;Usuario creado&quot;);
+    }
+}
+
+public class RepositorioSql
+{
+    public void Guardar(string nombre) { /* simulado */ }
+}</code></pre>
+<p>Refactor:</p>
+<pre><code class="language-csharp">using System;
+
+public interface IRepositorioUsuarios
+{
+    void Guardar(string nombre);
+}
+
+public class RepositorioSql : IRepositorioUsuarios
+{
+    public void Guardar(string nombre) { /* simulado */ }
+}
+
+public class ServicioUsuarios
+{
+    private readonly IRepositorioUsuarios _repo;
+
+    public ServicioUsuarios(IRepositorioUsuarios repo)
+    {
+        _repo = repo;
+    }
+
+    public void Crear(string nombre)
+    {
+        _repo.Guardar(nombre);
+        Console.WriteLine(&quot;Usuario creado&quot;);
+    }
+}</code></pre>
+<h3 id="diagrama-tabla-4">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class IRepositorioUsuarios {
+    &lt;&lt;interface&gt;&gt;
+    +Guardar(string nombre)
+  }
+  class ServicioUsuarios
+  class RepositorioSql
+
+  ServicioUsuarios --&gt; IRepositorioUsuarios : depende_de
+  IRepositorioUsuarios &lt;|.. RepositorioSql</div></div>
+<h3 id="reto-interactivo-4">Reto interactivo</h3>
+<ol>
+<li>Crea <code>RepositorioMemoria : IRepositorioUsuarios</code> que guarde en una lista.</li>
+<li>Usa <code>ServicioUsuarios</code> con <code>RepositorioMemoria</code>.</li>
+</ol>
+<h3 id="mini-quiz-4">Mini-quiz</h3>
+<ol>
+<li>V/F: DIP recomienda depender de clases concretas para “simplicidad”.</li>
+<li>V/F: Inyectar interfaces suele ayudar a probar.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) F, (2) V</p>
+<hr>
+<h2 id="mini-quiz-final-repaso-solid">Mini-quiz final (repaso SOLID)</h2>
+<ol>
+<li>¿Qué principio se rompe más cuando hay una clase que “hace de todo”?</li>
+<li>¿Qué principio te ayuda a agregar un nuevo método de envío sin tocar 10 archivos?</li>
+<li>V/F: ISP prefiere interfaces pequeñas.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) SRP, (2) OCP, (3) V</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="diagramas-de-clases.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Diagramas de clases (UML básico + Mermaid)</span><i class="bi bi-chevron-left"></i></a>
+        <a href="modularidad-cohesion-acoplamiento.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Modularidad, Cohesión y Acoplamiento</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

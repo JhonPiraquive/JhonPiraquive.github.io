@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modularidad, Cohesión y Acoplamiento | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 10</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#1-modularidad">1) Modularidad</a>
+      <a href="#2-cohesion">2) Cohesión</a>
+      <a href="#3-acoplamiento-coupling">3) Acoplamiento (Coupling)</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 10</span>
+      <h1 class="hero-title">Modularidad, Cohesión y Acoplamiento</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="1-modularidad">1) Modularidad</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li>Módulo = parte del sistema con un propósito claro.</li>
+<li>Define límites: “qué entra” y “qué sale” (API).</li>
+<li>Cambiar un módulo debería impactar poco en otros.</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p>Modularidad es organizar el sistema en piezas (módulos) con responsabilidades claras y límites bien definidos.</p>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li>Trabajar en paralelo (equipo).</li>
+<li>Reducir impactos de cambios.</li>
+<li>Reusar componentes.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<p>Bien:</p>
+<ul>
+<li>Módulos con API clara y dependencias mínimas.</li>
+</ul>
+<p>Mal:</p>
+<ul>
+<li>Todo importa todo (“spaghetti”).</li>
+<li>“Módulos” que en realidad son carpetas sin límites.</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>En una ciudad: agua, energía, transporte son sistemas (módulos) con interfaces claras (conexiones).</p>
+<h3 id="ejemplo-c-minimo-variante">Ejemplo C# (mínimo) + variante</h3>
+<p>Ejemplo conceptual: separar dominio de infraestructura mediante interfaces.</p>
+<pre><code class="language-csharp">public interface IRepositorioPedidos
+{
+    void Guardar(string pedidoId);
+}
+
+public class ServicioPedidos
+{
+    private readonly IRepositorioPedidos _repo;
+    public ServicioPedidos(IRepositorioPedidos repo) =&gt; _repo = repo;
+
+    public void Crear(string pedidoId)
+    {
+        _repo.Guardar(pedidoId);
+    }
+}</code></pre>
+<p>Variante: implementa <code>RepositorioPedidosMemoria</code> sin cambiar <code>ServicioPedidos</code>.</p>
+<h3 id="diagrama-tabla">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart LR
+  Dominio[ModuloDominio] --&gt;|contrato| Repo[&quot;IRepositorioPedidos&quot;]
+  Infra[ModuloInfraestructura] --&gt;|implementa| Repo</div></div>
+<h3 id="reto-interactivo-3-10-min">Reto interactivo (3–10 min)</h3>
+<ol>
+<li>Crea <code>RepositorioPedidosMemoria</code> y úsalo con <code>ServicioPedidos</code>.</li>
+<li>Luego crea <code>RepositorioPedidosSql</code> (simulado) y cámbialo sin tocar <code>ServicioPedidos</code>.</li>
+</ol>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>V/F: Modularidad significa “muchas carpetas”.</li>
+<li>¿Qué ayuda a modularidad?</li>
+</ol>
+<ul>
+<li>A) Interfaces y límites claros</li>
+<li>B) Importar cualquier cosa desde cualquier parte</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) F, (2) A</p>
+<hr>
+<h2 id="2-cohesion">2) Cohesión</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>Cohesión = qué tan relacionadas están las responsabilidades dentro de un módulo/clase.</li>
+<li>Alta cohesión: todo apunta al mismo objetivo.</li>
+<li>Baja cohesión: mezcla de temas.</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>Cohesión mide si lo que está dentro de una clase/módulo “pertenece” junto.  <br>
+Una clase con alta cohesión es más fácil de entender y cambiar.</p>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Menos bugs por efectos colaterales.</li>
+<li>Mejor mantenimiento.</li>
+<li>Mejor diseño del dominio (nombres y responsabilidades más claros).</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-1">Señales de buen/mal uso</h3>
+<p>Alta cohesión:</p>
+<ul>
+<li>Métodos y datos trabajan sobre la misma idea (ej. <code>Pedido</code>: total, líneas, estado).</li>
+</ul>
+<p>Baja cohesión:</p>
+<ul>
+<li>Clase con métodos de “usuarios”, “pagos”, “reportes”, “logs”.</li>
+</ul>
+<h3 id="ejemplo-vida-real-1">Ejemplo vida real</h3>
+<p>Una caja de herramientas: si metes comida, cables, papeles y tornillos en la misma caja, nadie encuentra nada.</p>
+<h3 id="ejemplo-c-anti-ejemplo-mejora">Ejemplo C# (anti-ejemplo → mejora)</h3>
+<p>Anti-ejemplo:</p>
+<pre><code class="language-csharp">public class Utilidades
+{
+    public string FormatearNombre(string nombre) =&gt; nombre.Trim().ToUpperInvariant();
+    public decimal CalcularImpuesto(decimal valor) =&gt; valor * 0.19m;
+    public void EnviarEmail(string destino) { }
+}</code></pre>
+<p>Mejora: separar por responsabilidad (<code>FormateoTexto</code>, <code>CalculadoraImpuestos</code>, <code>NotificadorEmail</code>).</p>
+<h3 id="diagrama-tabla-1">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart TD
+  Baja[BajaCohesion\n(Utilidades)] --&gt; Mezcla[Mezcla de responsabilidades]
+  Alta1[FormateoTexto] --&gt; SoloTexto[Texto]
+  Alta2[CalculadoraImpuestos] --&gt; SoloImpuestos[Impuestos]
+  Alta3[NotificadorEmail] --&gt; SoloNotif[Notificación]</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>Identifica 3 responsabilidades en <code>Utilidades</code>.</li>
+<li>Divide en 3 clases y nómbralas.</li>
+</ol>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>V/F: Alta cohesión suele mejorar legibilidad.</li>
+<li>V/F: Una “clase dios” suele tener baja cohesión.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) V, (2) V</p>
+<hr>
+<h2 id="3-acoplamiento-coupling">3) Acoplamiento (Coupling)</h2>
+<h3 id="mapa-mental-2">Mapa mental</h3>
+<ul>
+<li>Acoplamiento = cuánto depende una parte de otra.</li>
+<li>Bajo acoplamiento: cambios no se propagan.</li>
+<li>Alto acoplamiento: tocar algo rompe muchas cosas.</li>
+</ul>
+<h3 id="que-es-2">Qué es</h3>
+<p>Acoplamiento mide la fuerza de dependencia entre módulos/clases.  <br>
+En general: queremos <strong>bajo acoplamiento</strong> para poder cambiar piezas sin reescribir el sistema.</p>
+<h3 id="para-que-sirve-2">Para qué sirve</h3>
+<ul>
+<li>Facilitar cambios y migraciones.</li>
+<li>Mejor testabilidad.</li>
+<li>Menos errores por dependencia oculta.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-2">Señales de buen/mal uso</h3>
+<p>Alto acoplamiento:</p>
+<ul>
+<li><code>new</code> de concretos por todas partes.</li>
+<li>Uso directo de detalles (DB, HTTP) dentro de reglas de negocio.</li>
+</ul>
+<p>Bajo acoplamiento:</p>
+<ul>
+<li>Dependencias por contratos.</li>
+<li>Separación de capas (dominio no conoce infraestructura).</li>
+</ul>
+<h3 id="ejemplo-vida-real-2">Ejemplo vida real</h3>
+<p>Si tu casa depende de una sola marca de tornillos “especiales”, cada reparación es un problema.</p>
+<h3 id="ejemplo-c-alto-bajo-acoplamiento">Ejemplo C# (alto → bajo acoplamiento)</h3>
+<p>Alto acoplamiento:</p>
+<pre><code class="language-csharp">public class ReporteService
+{
+    private readonly PdfGenerator _pdf = new PdfGenerator();
+    public void Generar() =&gt; _pdf.CrearPdf();
+}
+
+public class PdfGenerator
+{
+    public void CrearPdf() { }
+}</code></pre>
+<p>Bajo acoplamiento:</p>
+<pre><code class="language-csharp">public interface IReporteRenderer
+{
+    void Render();
+}
+
+public class PdfRenderer : IReporteRenderer
+{
+    public void Render() { }
+}
+
+public class ReporteService
+{
+    private readonly IReporteRenderer _renderer;
+    public ReporteService(IReporteRenderer renderer) =&gt; _renderer = renderer;
+    public void Generar() =&gt; _renderer.Render();
+}</code></pre>
+<h3 id="diagrama-tabla-2">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class IReporteRenderer {
+    &lt;&lt;interface&gt;&gt;
+    +Render()
+  }
+  class ReporteService
+  class PdfRenderer
+  ReporteService --&gt; IReporteRenderer : depende_de
+  IReporteRenderer &lt;|.. PdfRenderer</div></div>
+<h3 id="reto-interactivo-1">Reto interactivo</h3>
+<ol>
+<li>Crea <code>HtmlRenderer : IReporteRenderer</code>.</li>
+<li>Cambia la instancia inyectada y verifica que <code>ReporteService</code> no cambia.</li>
+</ol>
+<h3 id="mini-quiz-2">Mini-quiz</h3>
+<ol>
+<li>V/F: “new Concreto()” en la lógica de negocio suele aumentar acoplamiento.</li>
+<li>¿Qué suele reducir acoplamiento?</li>
+</ol>
+<ul>
+<li>A) Depender de interfaces</li>
+<li>B) Depender de clases concretas</li>
+</ul>
+<p><strong>Respuestas</strong>: (1) V, (2) A</p>
+<hr>
+<h2 id="4-checklist-rapido-practico">4) Checklist rápido (práctico)</h2>
+<ul>
+<li>¿Esta clase tiene <strong>un</strong> motivo principal de cambio?</li>
+<li>¿Puedo agregar una variante sin editar el cliente (OCP)?</li>
+<li>¿Estoy dependiendo de <strong>detalles</strong> o de <strong>contratos</strong> (DIP)?</li>
+<li>¿Mi interfaz es pequeña y útil (ISP)?</li>
+<li>¿Mis clases están enfocadas (cohesión) y con pocas dependencias (acoplamiento)?</li>
+</ul>
+<h3 id="reto-final-reorganiza-un-mini-sistema">Reto final (reorganiza un mini-sistema)</h3>
+<p>Tienes estas responsabilidades mezcladas en un solo archivo:</p>
+<ul>
+<li>Calcular total de compra</li>
+<li>Aplicar descuento</li>
+<li>Guardar pedido</li>
+<li>Enviar notificación</li>
+<li>Generar reporte</li>
+</ul>
+<p>Actividad:</p>
+<ol>
+<li>Propón 4–6 clases/módulos con nombres claros.</li>
+<li>Define 2–3 interfaces.</li>
+<li>Dibuja el diagrama de dependencias (Mermaid) con flechas.</li>
+</ol>
+<p>Resultado esperado: el “dominio” (cálculos/reglas) no depende de “infra” (guardar, notificar, reportar).</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="solid-principios.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Principios SOLID</span><i class="bi bi-chevron-left"></i></a>
+        
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programación segura: excepciones, logs y configuración sensible con JSON (PHP) | SEA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="sea-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">SEA</a>
+      <span>Seguridad en aplicaciones · Tema 11</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#objetivos-de-aprendizaje">Objetivos de aprendizaje</a>
+      <a href="#prerrequisitos">Prerrequisitos</a>
+      <a href="#programacion-segura-reglas-practicas">Programación segura (reglas prácticas)</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 11</span>
+      <h1 class="hero-title">Programación segura: excepciones, logs y configuración sensible con JSON (PHP)</h1>
+      <p class="hero-sub">Casos reales, Mermaid y retos prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="sea-content section-alt" id="articulo">
+    <h2 id="objetivos-de-aprendizaje">Objetivos de aprendizaje</h2>
+<ul>
+<li>Aplicar 6 reglas de programación segura en endpoints y lógica de negocio.</li>
+<li>Diseñar manejo de excepciones por capas (presentación vs dominio vs infraestructura).</li>
+<li>Redactar mensajes de error seguros: usuario vs log interno.</li>
+<li>Definir qué registrar en logs (y qué nunca) con 8 ejemplos.</li>
+<li>Proponer una estructura JSON de configuración sin secretos embebidos.</li>
+<li>Explicar por qué “más logs” no siempre es mejor sin disciplina.</li>
+</ul>
+<h2 id="prerrequisitos">Prerrequisitos</h2>
+<p>Conocer conceptos básicos de backend y tener noción de PHP como tecnología (sin requerir escribir código aquí).</p>
+<h2 id="programacion-segura-reglas-practicas">Programación segura (reglas prácticas)</h2>
+<p>Programar seguro es reducir sorpresa. Tu código debe ser predecible ante entradas malas, fallos de red, errores de base de datos y abuso. No es paranoia: es diseño para el mundo real.</p>
+<ul>
+<li>Validar entradas por tipo/longitud/formato en servidor.</li>
+<li>Aplicar autorización en cada acción, no solo en “pantallas”.</li>
+<li>No confiar en el cliente para decisiones críticas.</li>
+<li>Usar dependencias actualizadas y evitar “copiar y pegar” código de origen dudoso.</li>
+<li>Tratar errores como eventos esperables: manejar y registrar.</li>
+<li>Limitar intentos y velocidad en acciones sensibles (rate limiting).</li>
+<li>Separar ambientes (dev/test/prod) y no mezclar configuraciones.</li>
+<li>Revisar secretos: nunca en repositorio, nunca en logs.</li>
+</ul>
+<h2 id="manejo-de-excepciones-por-capa-php">Manejo de excepciones por capa (PHP)</h2>
+<p>Una excepción no debería “reventar” al usuario con detalles internos. La app debe capturar errores, devolver mensajes seguros y mantener un identificador para rastreo. En capas: la capa de aplicación traduce errores a respuestas; la capa de dominio expresa reglas; la infraestructura captura fallos técnicos (BD/red).</p>
+<pre><code class="language-php">&lt;?php
+// Ejemplo conceptual: controlador captura excepción y responde seguro.
+// - El usuario recibe un mensaje genérico.
+// - El log interno guarda el detalle con request_id.
+// (Ajusta a tu framework: Laravel/Symfony/plain PHP.)
+?&gt;</code></pre>
+<h2 id="logs-de-aplicacion-php-utiles-minimos-seguros">Logs de aplicación (PHP): útiles, mínimos, seguros</h2>
+<p>Un log es evidencia. Debe permitir responder: qué pasó, cuándo, a quién afectó, desde dónde, y con qué resultado. Pero un log también puede ser una fuga si guarda contraseñas, tokens, números completos de tarjeta o datos sensibles sin necesidad.</p>
+<h3 id="que-si-registrar">Qué sí registrar</h3>
+<ul>
+<li>request_id</li>
+<li>user_id (si aplica)</li>
+<li>endpoint</li>
+<li>método</li>
+<li>ip</li>
+<li>resultado</li>
+<li>tiempo de respuesta</li>
+<li>evento de seguridad (login, cambio de contraseña, permisos)</li>
+</ul>
+<h3 id="que-nunca-registrar">Qué nunca registrar</h3>
+<ul>
+<li>contraseñas</li>
+<li>tokens completos</li>
+<li>códigos 2FA</li>
+<li>secret keys</li>
+<li>datos sensibles completos (documento, tarjeta)</li>
+<li>payloads completos sin enmascarar</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;log_correcto&quot;: {
+    &quot;event&quot;: &quot;login_failed&quot;,
+    &quot;request_id&quot;: &quot;req_91b6c8&quot;,
+    &quot;user_id&quot;: null,
+    &quot;ip&quot;: &quot;203.0.113.9&quot;,
+    &quot;result&quot;: &quot;denied&quot;,
+    &quot;reason&quot;: &quot;invalid_credentials&quot;,
+    &quot;email_masked&quot;: &quot;j***@example.com&quot;
+  },
+  &quot;log_incorrecto&quot;: {
+    &quot;event&quot;: &quot;login_failed&quot;,
+    &quot;password&quot;: &quot;PlainTextPassword123!&quot;,
+    &quot;token&quot;: &quot;FULL_JWT_OR_SESSION_TOKEN&quot;
+  },
+  &quot;por_que_es_incorrecto&quot;: &quot;Guarda secretos/credenciales y puede convertirse en fuga de datos.&quot;
+}</code></pre>
+<h2 id="configuracion-y-almacenamiento-de-info-sensible-con-json">Configuración y almacenamiento de info sensible con JSON</h2>
+<p>JSON sirve para configuración, no para secretos. Buenas prácticas: separar configuración pública (features, endpoints, flags) de secretos (claves, passwords) que deben venir de un gestor de secretos o variables de entorno. Si debes usar JSON, usa referencias (nombres de variables) y evita valores sensibles reales.</p>
+<pre><code class="language-json">{
+  &quot;app&quot;: { &quot;env&quot;: &quot;production&quot; },
+  &quot;db&quot;: {
+    &quot;host&quot;: &quot;db.internal&quot;,
+    &quot;name&quot;: &quot;app&quot;,
+    &quot;user&quot;: &quot;app_user&quot;,
+    &quot;password_env&quot;: &quot;DB_PASSWORD&quot;
+  },
+  &quot;jwt&quot;: {
+    &quot;signing_key_env&quot;: &quot;JWT_SIGNING_KEY&quot;,
+    &quot;ttl_seconds&quot;: 3600
+  }
+}</code></pre>
+<h2 id="ejemplo-real-historia">Ejemplo real (historia)</h2>
+<p>Historia: “El error que filtró todo”. En producción, una app muestra un stack trace completo cuando falla una consulta. Ese error incluye rutas del servidor y fragmentos de la consulta. Un atacante aprende la estructura interna y acelera ataques. Con manejo correcto, el usuario vería “Ocurrió un problema, intenta más tarde”, y el equipo vería el detalle en logs internos con request_id.</p>
+<h2 id="diagrama-mermaid">Diagrama (Mermaid)</h2>
+<h3 id="errores-usuario-vs-observabilidad-interna">Errores: usuario vs observabilidad interna</h3>
+<div class="mermaid-wrap"><div class="mermaid">flowchart LR
+  ex[Excepcion] --&gt; h[Handler_de_errores]
+  h --&gt; u[Respuesta_segura_al_usuario]
+  h --&gt; l[Log_detallado_interno]
+  l --&gt; corr[&quot;request_id_(correlacion)&quot;]
+  u --&gt; corr</div></div>
+<h2 id="reto-interactivo-sin-codigo">Reto interactivo (sin código)</h2>
+<p>Escribe 6 mensajes de error seguros (para usuario) para: login fallido, permiso denegado, validación inválida, servidor caído, pago rechazado, archivo no permitido. Luego escribe qué se registraría internamente (sin secretos) para cada caso.</p>
+<h2 id="mini-quiz-5-preguntas">Mini-quiz (5 preguntas)</h2>
+<ol>
+<li>V/F: Es buena práctica mostrar stack traces en producción para depurar más rápido.</li>
+<li>V/F: Los logs pueden ser un riesgo si almacenan secretos.</li>
+<li>Un mensaje seguro al usuario debe ser:</li>
+<li>En JSON de config, lo recomendado para secretos es:</li>
+<li>En 1 frase, ¿por qué necesitas un request_id?</li>
+</ol>
+<ul>
+<li>A) Detallado con rutas internas</li>
+<li>B) Genérico y claro</li>
+<li>C) Con consulta SQL completa</li>
+</ul>
+<ul>
+<li>A) Guardarlos en Base64</li>
+<li>B) Guardarlos como texto plano</li>
+<li>C) Referenciarlos y obtenerlos de un sistema seguro</li>
+</ul>
+<p>Respuestas: (1) F, (2) V, (3) B, (4) C, (5) Respuesta esperada: para correlacionar error visible con evidencia interna sin filtrar detalles al usuario.</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="proteccion-datos-cookies-y-jwt.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Protección de datos del usuario: cookies seguras y autenticación con tokens (JWT)</span><i class="bi bi-chevron-left"></i></a>
+        <a href="matriz-de-riesgos.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Matriz de riesgos: cómo priorizar controles y justificar decisiones</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Seguridad en aplicaciones · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="sea-common.js"></script>
+</body>
+</html>

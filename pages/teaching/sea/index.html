@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SEA · Índice del curso</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="sea-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">SEA</a>
+      <span>Seguridad en aplicaciones</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#lecciones">Mapa del curso</a>
+      <a href="#resultados-de-aprendizaje-del-modulo">Resultados</a>
+      <a href="#como-usar-este-modulo">Cómo usar</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Curso</span>
+      <h1 class="hero-title">Seguridad en aplicaciones</h1>
+      <p class="hero-sub">Amenazas reales, controles prácticos y hábitos de programación segura.</p>
+      <a href="#lecciones" class="btn-primary-custom">Ver temas</a>
+    </div>
+  </section>
+
+  <article class="sea-content section-alt" id="articulo">
+    <p>Este módulo te da un mapa práctico para entender amenazas reales en aplicaciones web, aplicar controles de seguridad que sí reducen riesgo y comunicar decisiones con lenguaje de negocio. La meta no es “hacer magia”, es construir hábitos: pensar como atacante, diseñar como ingeniero y justificar como profesional.</p>
+<h2 id="como-usar-este-modulo">Cómo usar este módulo</h2>
+<p>Cada lección sigue la misma plantilla para que puedas estudiar rápido: primero conceptos, luego señales y ejemplos reales, después un ejemplo técnico y un diagrama, y cierras con un reto y un mini‑quiz. Si algo no lo puedes explicar con tus palabras en 2 minutos, repite la sección “Señales”.</p>
+<h2 id="resultados-de-aprendizaje-del-modulo">Resultados de aprendizaje del módulo</h2>
+<ul>
+<li>Identificar amenazas comunes a aplicaciones web (SQLi, MITM) y describir su impacto.</li>
+<li>Explicar ISO/IEC 27001 y 27002 con enfoque práctico (qué piden y para qué sirven).</li>
+<li>Aplicar CIA + Autenticidad para evaluar decisiones técnicas.</li>
+<li>Distinguir codificación (Base64), cifrado y hash (SHA‑256) y escoger la técnica correcta.</li>
+<li>Implementar criterios de protección de datos: cookies seguras, tokens (JWT) y manejo de secretos.</li>
+<li>Construir una matriz de riesgos simple y priorizar mitigaciones por impacto y probabilidad.</li>
+</ul>
+<h2 id="lecciones">Lecciones</h2>
+<ol>
+<li><a href="historia-redes-y-seguridad.html">Historia de redes y seguridad informática: evolución e importancia</a></li>
+<li><a href="hackers-canales-y-proteccion.html">Qué es un hacker, canales del ciberdelincuente y cómo protegerme</a></li>
+<li><a href="iso-y-normas-27001-27002.html">Introducción a normas ISO: qué es una ISO, ISO/IEC 27001 y 27002</a></li>
+<li><a href="principios-cia-y-autenticidad.html">Principios de seguridad: CIA + Autenticidad</a></li>
+<li><a href="ingenieria-social-y-phishing.html">Ingeniería social y phishing: señales, prevención y respuesta</a></li>
+<li><a href="https-y-mitm.html">HTTPS y ataques MITM: qué protege y qué no</a></li>
+<li><a href="ataques-web-sqli-y-mitigacion.html">Ataques comunes a aplicaciones web: SQL Injection y mitigación</a></li>
+<li><a href="base64-y-diferencias-con-cifrado.html">Base64: codificación/decodificación y malentendidos frecuentes</a></li>
+<li><a href="criptografia-hash-sha256-y-buenas-practicas.html">Cifrado vs “encriptación”, funciones criptográficas y SHA‑256</a></li>
+<li><a href="proteccion-datos-cookies-y-jwt.html">Protección de datos del usuario: cookies seguras y autenticación con tokens (JWT)</a></li>
+<li><a href="programacion-segura-excepciones-logs-y-config-json.html">Programación segura: excepciones, logs y configuración sensible con JSON (PHP)</a></li>
+<li><a href="matriz-de-riesgos.html">Matriz de riesgos: cómo priorizar controles y justificar decisiones</a></li>
+</ol>
+<h2 id="plantilla-que-se-repite-en-todas-las-lecciones">Plantilla que se repite en todas las lecciones</h2>
+<p>Cada lección sigue este orden (mismos labels, mismo orden):</p>
+<ol>
+<li><strong>Objetivos de aprendizaje</strong></li>
+<li><strong>Prerrequisitos</strong></li>
+<li><strong>Mapa mental (vista rápida)</strong></li>
+<li><strong>Qué es y para qué sirve</strong></li>
+<li><strong>Señales (checklist rápido)</strong></li>
+<li><strong>Ejemplo real (historia)</strong></li>
+<li><strong>Ejemplo técnico (qué debe demostrar)</strong></li>
+<li><strong>Diagrama (Mermaid)</strong></li>
+<li><strong>Reto interactivo (sin código)</strong></li>
+<li><strong>Mini‑quiz (5 preguntas)</strong> (interactivo)</li>
+</ol>
+  </article>
+
+  <footer class="site-footer">
+    Seguridad en aplicaciones · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="sea-common.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Herencia | POO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="poo-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">POO</a>
+      <span>Programación Orientada a Objetos · Tema 3</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#hero">Inicio</a>
+      <a href="#1-herencia-que-es-y-para-que-sirve">1) Herencia: qué es y para qué sirve</a>
+      <a href="#2-cuando-no-usar-herencia-composicion-como-alternativa">2) ¿Cuándo NO usar herencia? (composición …</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="badge-tema">Tema 3</span>
+      <h1 class="hero-title">Herencia</h1>
+      <p class="hero-sub">Ejemplos en C#, diagramas Mermaid y ejercicios prácticos.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer el tema</a>
+    </div>
+  </section>
+
+  <article class="poo-content section-alt" id="articulo">
+    <h2 id="1-herencia-que-es-y-para-que-sirve">1) Herencia: qué es y para qué sirve</h2>
+<h3 id="mapa-mental">Mapa mental</h3>
+<ul>
+<li>Herencia = relación <strong>“es un”</strong> (is-a).</li>
+<li>Reutiliza comportamiento común en una <strong>clase base</strong>.</li>
+<li>Permite especialización en <strong>subclases</strong>.</li>
+<li>Se usa con cuidado: puede aumentar acoplamiento.</li>
+</ul>
+<h3 id="que-es">Qué es</h3>
+<p>Herencia es un mecanismo donde una clase (derivada) <strong>hereda</strong> estado y comportamiento de otra clase (base).  <br>
+En C#, se expresa como:</p>
+<pre><code class="language-csharp">class Hija : Padre { }</code></pre>
+<h3 id="para-que-sirve">Para qué sirve</h3>
+<ul>
+<li>Compartir lógica común sin duplicar.</li>
+<li>Modelar jerarquías reales del dominio (cuando de verdad existe “es un”).</li>
+<li>Permitir polimorfismo (más adelante): tratar derivadas como base.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso">Señales de buen/mal uso</h3>
+<p>Aplica cuando:</p>
+<ul>
+<li>La derivada puede reemplazar a la base <strong>sin romper expectativas</strong> (idea de sustituibilidad).</li>
+<li>El “es un” es natural y estable.</li>
+</ul>
+<p>No aplica cuando:</p>
+<ul>
+<li>Solo quieres reutilizar código (mejor composición).</li>
+<li>La jerarquía se vuelve rara: “PatoElectricoConBluetoothConGPS…”.</li>
+</ul>
+<h3 id="ejemplo-vida-real">Ejemplo vida real</h3>
+<p>“Vehículo” → “Carro” / “Moto”.  <br>
+Ambos comparten “Arrancar”, pero tienen detalles distintos.</p>
+<h3 id="ejemplo-c-minimo-variante">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public class Vehiculo
+{
+    public string Placa { get; }
+
+    public Vehiculo(string placa)
+    {
+        if (string.IsNullOrWhiteSpace(placa)) throw new ArgumentException(&quot;Placa requerida&quot;);
+        Placa = placa;
+    }
+
+    public virtual void Arrancar()
+    {
+        Console.WriteLine(&quot;Vehículo arrancando...&quot;);
+    }
+}
+
+public class Carro : Vehiculo
+{
+    public Carro(string placa) : base(placa) { }
+
+    public override void Arrancar()
+    {
+        Console.WriteLine(&quot;Carro arrancando (inyección + encendido)...&quot;);
+    }
+}
+
+public class Moto : Vehiculo
+{
+    public Moto(string placa) : base(placa) { }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Vehiculo v1 = new Carro(&quot;ABC-123&quot;);
+        Vehiculo v2 = new Moto(&quot;XYZ-999&quot;);
+
+        v1.Arrancar();
+        v2.Arrancar();
+    }
+}</code></pre>
+<p>Variante: agrega un método común <code>Parar()</code> en la base, sin override.</p>
+<h3 id="diagrama-tabla">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  Vehiculo &lt;|-- Carro
+  Vehiculo &lt;|-- Moto
+
+  class Vehiculo {
+    +string Placa
+    +Vehiculo(string placa)
+    +Arrancar()
+  }
+  class Carro {
+    +Arrancar()
+  }
+  class Moto</div></div>
+<h3 id="reto-interactivo-3-10-min">Reto interactivo (3–10 min)</h3>
+<ol>
+<li>Crea una nueva clase <code>Camion : Vehiculo</code>.</li>
+<li>Sobrescribe <code>Arrancar()</code> con un mensaje propio.</li>
+<li>Crea una lista <code>List&lt;Vehiculo&gt;</code> con <code>Carro</code>, <code>Moto</code>, <code>Camion</code> y llama <code>Arrancar()</code> en un <code>foreach</code>.</li>
+</ol>
+<p>Resultado esperado: cada tipo imprime su propio comportamiento (si lo sobrescribe).</p>
+<h3 id="mini-quiz">Mini-quiz</h3>
+<ol>
+<li>¿Herencia representa mejor…?</li>
+</ol>
+<ul>
+<li>A) “tiene un”</li>
+<li>B) “es un”</li>
+</ul>
+<ol>
+<li>V/F: La herencia se usa solo para evitar duplicar código.</li>
+<li>V/F: Si una clase derivada rompe las expectativas de la base, hay un problema de diseño.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) B, (2) F, (3) V</p>
+<hr>
+<h2 id="2-cuando-no-usar-herencia-composicion-como-alternativa">2) ¿Cuándo NO usar herencia? (composición como alternativa)</h2>
+<h3 id="mapa-mental-1">Mapa mental</h3>
+<ul>
+<li>“Necesito reutilizar” ≠ “necesito heredar”.</li>
+<li>Composición = construir objetos con otros objetos (<strong>“tiene un”</strong>).</li>
+</ul>
+<h3 id="que-es-1">Qué es</h3>
+<p>Composición (en sentido general) significa que un objeto usa otro objeto como parte de su implementación, en vez de heredar.</p>
+<h3 id="para-que-sirve-1">Para qué sirve</h3>
+<ul>
+<li>Menos acoplamiento con jerarquías.</li>
+<li>Permite combinar comportamientos de forma flexible.</li>
+</ul>
+<h3 id="senales-de-buen-mal-uso-1">Señales de buen/mal uso</h3>
+<p>Usa composición cuando:</p>
+<ul>
+<li>Quieres <strong>variar</strong> un comportamiento (estrategia) sin multiplicar subclases.</li>
+<li>El “es un” no es claro.</li>
+</ul>
+<p>Herencia falla cuando:</p>
+<ul>
+<li>Cambiar la base rompe muchas derivadas.</li>
+<li>Necesitas “mezclar” capacidades (se vuelve explosión de clases).</li>
+</ul>
+<h3 id="ejemplo-vida-real-1">Ejemplo vida real</h3>
+<p>Un <strong>celular</strong> “tiene” cámara, GPS, batería. No “es” una cámara.</p>
+<h3 id="ejemplo-c-minimo-variante-1">Ejemplo C# (mínimo) + variante</h3>
+<pre><code class="language-csharp">using System;
+
+public interface INotificador
+{
+    void Enviar(string mensaje);
+}
+
+public class NotificadorEmail : INotificador
+{
+    public void Enviar(string mensaje) =&gt; Console.WriteLine($&quot;Email: {mensaje}&quot;);
+}
+
+public class NotificadorSms : INotificador
+{
+    public void Enviar(string mensaje) =&gt; Console.WriteLine($&quot;SMS: {mensaje}&quot;);
+}
+
+public class Alarma
+{
+    private readonly INotificador _notificador;
+
+    public Alarma(INotificador notificador)
+    {
+        _notificador = notificador;
+    }
+
+    public void Disparar()
+    {
+        _notificador.Enviar(&quot;Alerta!&quot;);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        var alarma1 = new Alarma(new NotificadorEmail());
+        var alarma2 = new Alarma(new NotificadorSms());
+        alarma1.Disparar();
+        alarma2.Disparar();
+    }
+}</code></pre>
+<p>Variante: crea <code>NotificadorWhatsApp</code> sin tocar <code>Alarma</code>.</p>
+<h3 id="diagrama-tabla-1">Diagrama/tabla</h3>
+<div class="mermaid-wrap"><div class="mermaid">classDiagram
+  class Alarma {
+    -INotificador _notificador
+    +Alarma(INotificador notificador)
+    +Disparar()
+  }
+  class INotificador {
+    &lt;&lt;interface&gt;&gt;
+    +Enviar(string mensaje)
+  }
+  Alarma --&gt; INotificador : usa
+  INotificador &lt;|.. NotificadorEmail
+  INotificador &lt;|.. NotificadorSms</div></div>
+<h3 id="reto-interactivo">Reto interactivo</h3>
+<ol>
+<li>Implementa <code>NotificadorWhatsApp</code>.</li>
+<li>Crea <code>new Alarma(new NotificadorWhatsApp())</code>.</li>
+<li>Verifica que no tocaste la clase <code>Alarma</code>.</li>
+</ol>
+<h3 id="mini-quiz-1">Mini-quiz</h3>
+<ol>
+<li>“Tiene un” describe mejor…</li>
+</ol>
+<ul>
+<li>A) Herencia</li>
+<li>B) Composición</li>
+</ul>
+<ol>
+<li>V/F: La composición suele reducir el acoplamiento frente a jerarquías profundas.</li>
+</ol>
+<p><strong>Respuestas</strong>: (1) B, (2) V</p>
+  </article>
+
+  <section class="section-alt" style="padding-top:0">
+    <div class="container py-4" style="max-width:880px;margin:0 auto;padding:0 20px">
+      <h2 class="section-title">Navegación</h2>
+      <a href="index.html" class="nav-card"><i class="bi bi-collection"></i><span style="flex:1">Índice del curso</span><i class="bi bi-house"></i></a>
+      <div class="nav-row">
+        <a href="encapsulamiento.html" class="nav-card"><i class="bi bi-arrow-left-circle"></i><span style="flex:1">Anterior: Encapsulamiento</span><i class="bi bi-chevron-left"></i></a>
+        <a href="asociacion-agregacion-composicion.html" class="nav-card"><i class="bi bi-arrow-right-circle"></i><span style="flex:1">Siguiente: Asociación, Agregación y Composición</span><i class="bi bi-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Programación Orientada a Objetos · Material académico · 2026
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/csharp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="poo-common.js"></script>
+</body>
+</html>
