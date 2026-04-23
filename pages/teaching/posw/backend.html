@@ -197,6 +197,177 @@
         font-size: 0.9rem;
         margin: 20px 0;
       }
+
+      /* ===== Animated architecture diagram ===== */
+      .arch-diagram {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 32px 20px;
+        margin: 24px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        overflow: hidden;
+        position: relative;
+      }
+      .arch-node {
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        padding: 14px 22px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 260px;
+        max-width: 100%;
+        position: relative;
+        transition:
+          border-color 0.3s,
+          transform 0.3s,
+          box-shadow 0.3s;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: archFadeIn 0.6s ease forwards;
+      }
+      .arch-node:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 212, 255, 0.15);
+      }
+      .arch-node i {
+        font-size: 1.8rem;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .arch-node.backend i {
+        color: var(--accent2);
+      }
+      .arch-node .arch-title {
+        font-family: "Raleway", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text);
+        line-height: 1.2;
+      }
+      .arch-node .arch-sub {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .arch-tag {
+        position: absolute;
+        right: -8px;
+        top: -10px;
+        background: var(--accent);
+        color: #0d0d0d;
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+      }
+      .arch-tag.backend-tag {
+        background: var(--accent2);
+        color: #fff;
+      }
+
+      /* Vertical connector with animated pulse */
+      .arch-connector {
+        position: relative;
+        width: 2px;
+        height: 48px;
+        background: linear-gradient(to bottom, #2a2a3e, var(--accent), #2a2a3e);
+        overflow: hidden;
+      }
+      .arch-connector::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--accent);
+        animation: archPulseDown 2.4s linear infinite;
+      }
+      .arch-connector .arch-label {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: monospace;
+        font-size: 0.72rem;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      /* Row for the 3 data services at the bottom */
+      .arch-branches {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+      }
+      .arch-branch-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .arch-connector.branch {
+        height: 36px;
+      }
+      .arch-node.small {
+        min-width: 170px;
+        padding: 12px 16px;
+      }
+      .arch-node.small i {
+        font-size: 1.4rem;
+      }
+      .arch-node.small .arch-title {
+        font-size: 0.85rem;
+      }
+
+      @keyframes archPulseDown {
+        0% {
+          top: -10px;
+          opacity: 0;
+        }
+        15% {
+          opacity: 1;
+        }
+        85% {
+          opacity: 1;
+        }
+        100% {
+          top: calc(100% + 2px);
+          opacity: 0;
+        }
+      }
+      @keyframes archFadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .arch-node {
+          min-width: unset;
+          width: 100%;
+        }
+        .arch-branches {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .arch-connector .arch-label {
+          display: none;
+        }
+      }
       .posw-table {
         border-collapse: collapse;
         width: 100%;
@@ -327,18 +498,88 @@
           siguen recetas (lógica de negocio) y usan ingredientes del almacén
           (base de datos).
         </div>
-        <div class="ascii-block">
-          ┌────────────────────────────────────────────────┐ │ CLIENTE
-          (Navegador / App) │ ← Frontend
-          └─────────────────────────┬──────────────────────┘ │ HTTP / WebSocket
-          ┌─────────────────────────▼──────────────────────┐ │ API Gateway /
-          Load Balancer │ └─────────────────────────┬──────────────────────┘ │
-          ┌─────────────────────────▼──────────────────────┐ │ BACKEND (Servidor
-          de Aplicación) │ ← Backend │ Rutas → Controladores → Servicios →
-          Modelos │ └──────────┬──────────────┬─────────────┬────────┘ │ │ │
-          ┌─────▼────┐ ┌──────▼───┐ ┌─────▼────────┐ │ DB │ │ Cache │ │
-          Servicios │ │(Postgres)│ │ (Redis) │ │ externos │ └──────────┘
-          └──────────┘ └──────────────┘
+        <div
+          class="arch-diagram"
+          role="img"
+          aria-label="Diagrama de arquitectura: cliente, API Gateway, backend, base de datos, caché y servicios externos"
+        >
+          <div class="arch-node" style="animation-delay: 0.05s">
+            <i class="bi bi-laptop"></i>
+            <div>
+              <div class="arch-title">Cliente</div>
+              <div class="arch-sub">Navegador / App móvil</div>
+            </div>
+            <span class="arch-tag">FRONTEND</span>
+          </div>
+
+          <div class="arch-connector" aria-hidden="true">
+            <span class="arch-label">HTTP / WebSocket</span>
+          </div>
+
+          <div class="arch-node" style="animation-delay: 0.2s">
+            <i class="bi bi-hdd-network"></i>
+            <div>
+              <div class="arch-title">API Gateway</div>
+              <div class="arch-sub">Load Balancer / Routing</div>
+            </div>
+          </div>
+
+          <div class="arch-connector" aria-hidden="true"></div>
+
+          <div class="arch-node backend" style="animation-delay: 0.35s">
+            <i class="bi bi-cpu-fill"></i>
+            <div>
+              <div class="arch-title">Servidor de Aplicación</div>
+              <div class="arch-sub">
+                Rutas → Controladores → Servicios → Modelos
+              </div>
+            </div>
+            <span class="arch-tag backend-tag">BACKEND</span>
+          </div>
+
+          <div class="arch-connector" aria-hidden="true"></div>
+
+          <div class="arch-branches">
+            <div class="arch-branch-wrap">
+              <div class="arch-connector branch" aria-hidden="true"></div>
+              <div
+                class="arch-node small"
+                style="animation-delay: 0.5s"
+              >
+                <i class="bi bi-database-fill"></i>
+                <div>
+                  <div class="arch-title">Base de datos</div>
+                  <div class="arch-sub">PostgreSQL</div>
+                </div>
+              </div>
+            </div>
+            <div class="arch-branch-wrap">
+              <div class="arch-connector branch" aria-hidden="true"></div>
+              <div
+                class="arch-node small"
+                style="animation-delay: 0.6s"
+              >
+                <i class="bi bi-lightning-charge-fill"></i>
+                <div>
+                  <div class="arch-title">Caché</div>
+                  <div class="arch-sub">Redis</div>
+                </div>
+              </div>
+            </div>
+            <div class="arch-branch-wrap">
+              <div class="arch-connector branch" aria-hidden="true"></div>
+              <div
+                class="arch-node small"
+                style="animation-delay: 0.7s"
+              >
+                <i class="bi bi-cloud-arrow-up-fill"></i>
+                <div>
+                  <div class="arch-title">Servicios externos</div>
+                  <div class="arch-sub">APIs de terceros</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
