@@ -190,6 +190,197 @@
         font-size: 0.9rem;
         margin: 20px 0;
       }
+
+      /* ===== TypeScript superset → compile diagram ===== */
+      .ts-diagram {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px 22px 26px;
+        margin: 24px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .ts-outer {
+        width: 100%;
+        max-width: 440px;
+        border: 2px solid rgba(49, 120, 198, 0.45);
+        border-radius: 12px;
+        padding: 18px 18px 16px;
+        background: rgba(49, 120, 198, 0.07);
+        opacity: 0;
+        transform: translateY(14px);
+        animation: tsDiagIn 0.55s ease forwards;
+      }
+      .ts-outer-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: #6ab8f0;
+        margin-bottom: 14px;
+      }
+      .ts-lang-badge {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-weight: 800;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        background: #3178c6;
+        color: #fff;
+        padding: 5px 8px;
+        border-radius: 6px;
+        line-height: 1;
+      }
+      .ts-js-core {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        background: var(--surface);
+        border: 1px solid rgba(247, 223, 30, 0.35);
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+      .ts-js-core i {
+        font-size: 1.35rem;
+        color: #f7df1e;
+      }
+      .ts-js-core span {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .ts-additions {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .ts-additions li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.82rem;
+        color: var(--text);
+        padding: 6px 10px;
+        background: rgba(20, 20, 20, 0.45);
+        border-radius: 6px;
+        border-left: 3px solid var(--accent);
+      }
+      .ts-additions li i {
+        color: var(--accent);
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+      .ts-pipeline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 14px 0 10px;
+        width: 100%;
+        max-width: 280px;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: tsDiagIn 0.55s ease 0.12s forwards;
+      }
+      .ts-connector {
+        position: relative;
+        width: 2px;
+        height: 36px;
+        background: linear-gradient(to bottom, #2a2a3e, var(--accent), #2a2a3e);
+        overflow: hidden;
+      }
+      .ts-connector::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--accent);
+        animation: tsPulseDown 2.2s linear infinite;
+      }
+      .ts-tsc-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 8px 0;
+        padding: 8px 14px;
+        background: rgba(123, 94, 167, 0.18);
+        border: 1px solid rgba(123, 94, 167, 0.45);
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #d4c4f0;
+      }
+      .ts-tsc-pill i {
+        color: var(--accent2);
+      }
+      .ts-output {
+        width: 100%;
+        max-width: 320px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        background: rgba(247, 223, 30, 0.06);
+        border: 1px dashed rgba(247, 223, 30, 0.4);
+        border-radius: 10px;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: tsDiagIn 0.55s ease 0.22s forwards;
+      }
+      .ts-output i {
+        font-size: 1.6rem;
+        color: #f7df1e;
+        flex-shrink: 0;
+      }
+      .ts-output div strong {
+        display: block;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.92rem;
+        color: var(--text);
+      }
+      .ts-output div span {
+        font-size: 0.76rem;
+        color: var(--muted);
+      }
+      @keyframes tsDiagIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes tsPulseDown {
+        0% {
+          top: -8px;
+          opacity: 0;
+        }
+        15% {
+          opacity: 1;
+        }
+        85% {
+          opacity: 1;
+        }
+        100% {
+          top: calc(100% + 2px);
+          opacity: 0;
+        }
+      }
       .posw-table {
         border-collapse: collapse;
         width: 100%;
@@ -303,12 +494,60 @@
           luego se transpila a JavaScript puro para ejecutarse en cualquier
           entorno.
         </p>
-        <div class="ascii-block">
-          ┌──────────────────────────────┐ │ TypeScript │ │
-          ┌────────────────────────┐ │ │ │ JavaScript (ES6+) │ │ │
-          └────────────────────────┘ │ │ + Tipos estáticos │ │ + Interfaces │ │
-          + Enums │ │ + Genéricos │ │ + Decoradores │
-          └──────────────┬───────────────┘ │ tsc (compilación) ▼ JavaScript puro
+        <div
+          class="ts-diagram"
+          role="img"
+          aria-label="TypeScript es JavaScript más tipos, interfaces, enums, genéricos y decoradores; tsc compila a JavaScript"
+        >
+          <div class="ts-outer">
+            <div class="ts-outer-title">
+              <span class="ts-lang-badge" aria-hidden="true">TS</span>
+              TypeScript
+            </div>
+            <div class="ts-js-core">
+              <i class="bi bi-filetype-js" aria-hidden="true"></i>
+              <span>JavaScript (ES6+)</span>
+            </div>
+            <ul class="ts-additions">
+              <li>
+                <i class="bi bi-check2" aria-hidden="true"></i>
+                Tipos estáticos
+              </li>
+              <li>
+                <i class="bi bi-check2" aria-hidden="true"></i>
+                Interfaces
+              </li>
+              <li>
+                <i class="bi bi-check2" aria-hidden="true"></i>
+                Enums
+              </li>
+              <li>
+                <i class="bi bi-check2" aria-hidden="true"></i>
+                Genéricos
+              </li>
+              <li>
+                <i class="bi bi-check2" aria-hidden="true"></i>
+                Decoradores
+              </li>
+            </ul>
+          </div>
+
+          <div class="ts-pipeline">
+            <div class="ts-connector" aria-hidden="true"></div>
+            <span class="ts-tsc-pill">
+              <i class="bi bi-gear-wide-connected" aria-hidden="true"></i>
+              tsc · compilación
+            </span>
+            <div class="ts-connector" aria-hidden="true"></div>
+          </div>
+
+          <div class="ts-output">
+            <i class="bi bi-filetype-js" aria-hidden="true"></i>
+            <div>
+              <strong>JavaScript puro</strong>
+              <span>Salida ejecutable en runtime</span>
+            </div>
+          </div>
         </div>
         <pre><code class="language-bash"># Instalar TypeScript globalmente
 npm install -g typescript

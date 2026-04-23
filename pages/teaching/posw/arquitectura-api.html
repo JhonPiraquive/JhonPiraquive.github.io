@@ -190,6 +190,552 @@
         font-size: 0.9rem;
         margin: 20px 0;
       }
+
+      /* ===== REST stack diagram (animated) ===== */
+      .arch-diagram {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 32px 20px;
+        margin: 24px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        overflow: hidden;
+        position: relative;
+      }
+      .arch-node {
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        padding: 14px 22px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 280px;
+        max-width: 100%;
+        width: 100%;
+        position: relative;
+        transition:
+          border-color 0.3s,
+          transform 0.3s,
+          box-shadow 0.3s;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: archFadeIn 0.6s ease forwards;
+      }
+      .arch-node:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 212, 255, 0.15);
+      }
+      .arch-node i {
+        font-size: 1.8rem;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .arch-node.layer-svc i {
+        color: var(--accent2);
+      }
+      .arch-node.layer-data i {
+        color: #2ed573;
+      }
+      .arch-node .arch-title {
+        font-family: "Raleway", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text);
+        line-height: 1.2;
+      }
+      .arch-node .arch-sub {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .arch-node.stack-node {
+        align-items: flex-start;
+      }
+      .arch-node.stack-node > i {
+        margin-top: 4px;
+      }
+      .arch-routes {
+        list-style: none;
+        margin: 8px 0 0;
+        padding: 0;
+      }
+      .arch-routes li {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.72rem;
+        line-height: 1.55;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .arch-routes li:last-child {
+        margin-bottom: 0;
+      }
+      .arch-method {
+        display: inline-block;
+        font-weight: 800;
+        font-size: 0.62rem;
+        letter-spacing: 0.04em;
+        color: #2ed573;
+        margin-right: 6px;
+      }
+      .arch-method-post {
+        color: #74b9ff;
+      }
+      .arch-connector {
+        position: relative;
+        width: 2px;
+        height: 48px;
+        background: linear-gradient(to bottom, #2a2a3e, var(--accent), #2a2a3e);
+        overflow: hidden;
+      }
+      .arch-connector::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--accent);
+        animation: archPulseDown 2.4s linear infinite;
+      }
+      .arch-connector .arch-label {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.72rem;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      @keyframes archPulseDown {
+        0% {
+          top: -10px;
+          opacity: 0;
+        }
+        15% {
+          opacity: 1;
+        }
+        85% {
+          opacity: 1;
+        }
+        100% {
+          top: calc(100% + 2px);
+          opacity: 0;
+        }
+      }
+      @keyframes archFadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 640px) {
+        .arch-connector .arch-label {
+          display: none;
+        }
+      }
+
+      /* ===== SOAP / GraphQL / gRPC diagrams ===== */
+      .proto-diagram {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px 20px;
+        margin: 24px 0;
+      }
+      .arch-connector.compact {
+        height: 36px;
+      }
+
+      /* SOAP */
+      .soap-peer-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 12px 16px;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+      .soap-card {
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        opacity: 0;
+        animation: archFadeIn 0.55s ease forwards;
+      }
+      .soap-card i {
+        font-size: 1.6rem;
+        color: var(--accent);
+      }
+      .soap-card-server i {
+        color: var(--accent2);
+      }
+      .soap-card strong {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.92rem;
+        color: var(--text);
+      }
+      .soap-card span {
+        font-size: 0.74rem;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+      .soap-wsdl-bridge {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        text-align: center;
+        opacity: 0;
+        animation: archFadeIn 0.55s ease 0.08s forwards;
+      }
+      .soap-wsdl-tag {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 10px 12px;
+        background: rgba(123, 94, 167, 0.15);
+        border: 1px solid rgba(123, 94, 167, 0.45);
+        border-radius: 10px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: #d4c4f0;
+      }
+      .soap-wsdl-tag i {
+        font-size: 1.2rem;
+        color: var(--accent2);
+      }
+      .soap-wsdl-tag small {
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: var(--muted);
+        font-size: 0.65rem;
+      }
+      .soap-messages {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .soap-msg {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        opacity: 0;
+        animation: archFadeIn 0.5s ease forwards;
+      }
+      .soap-msg i {
+        font-size: 1.15rem;
+        flex-shrink: 0;
+      }
+      .soap-msg-req {
+        background: rgba(0, 212, 255, 0.08);
+        border: 1px solid rgba(0, 212, 255, 0.25);
+        color: var(--text);
+      }
+      .soap-msg-req i {
+        color: var(--accent);
+      }
+      .soap-msg-res {
+        background: rgba(123, 94, 167, 0.1);
+        border: 1px solid rgba(123, 94, 167, 0.3);
+        color: var(--text);
+        animation-delay: 0.1s;
+      }
+      .soap-msg-res i {
+        color: var(--accent2);
+      }
+      .soap-msg span {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+      .soap-msg strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .soap-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .soap-layer {
+        width: 100%;
+        max-width: 360px;
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        opacity: 0;
+        animation: archFadeIn 0.55s ease 0.15s forwards;
+      }
+      .soap-layer i {
+        font-size: 1.5rem;
+        color: var(--accent2);
+      }
+      .soap-layer-db i {
+        color: #2ed573;
+      }
+      .soap-layer div strong {
+        display: block;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.88rem;
+        color: var(--text);
+      }
+      .soap-layer div span {
+        font-size: 0.74rem;
+        color: var(--muted);
+      }
+      .soap-stack .soap-layer-db {
+        animation-delay: 0.22s;
+      }
+
+      /* GraphQL */
+      .gql-engine {
+        width: 100%;
+        max-width: 440px;
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 12px;
+        padding: 16px 18px 18px;
+        opacity: 0;
+        animation: archFadeIn 0.55s ease 0.12s forwards;
+      }
+      .gql-engine-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Raleway", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--text);
+        margin-bottom: 14px;
+      }
+      .gql-engine-title i {
+        color: #e056fd;
+        font-size: 1.35rem;
+      }
+      .gql-engine-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .gql-mini {
+        background: rgba(20, 20, 20, 0.8);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 12px;
+      }
+      .gql-mini strong {
+        display: block;
+        font-size: 0.82rem;
+        color: var(--accent);
+        margin-bottom: 4px;
+      }
+      .gql-mini span {
+        font-size: 0.72rem;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .gql-mini-res strong {
+        color: var(--accent2);
+      }
+      .gql-data-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+        max-width: 440px;
+        opacity: 0;
+        animation: archFadeIn 0.55s ease 0.22s forwards;
+      }
+      .gql-data-chip {
+        flex: 1;
+        min-width: 130px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        background: rgba(20, 20, 20, 0.65);
+        border: 1px solid #2a2a3e;
+        border-radius: 8px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .gql-data-chip i {
+        color: var(--accent);
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .gql-data-chip:nth-child(2) i {
+        color: #2ed573;
+      }
+      .gql-data-chip:nth-child(3) i {
+        color: #ffa502;
+      }
+      .graphql-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      .graphql-stack .gql-engine {
+        width: 100%;
+      }
+
+      /* gRPC */
+      .grpc-diagram .grpc-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 14px 18px;
+        align-items: stretch;
+      }
+      .grpc-card {
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 12px;
+        padding: 16px 18px;
+        height: 100%;
+        opacity: 0;
+        animation: archFadeIn 0.55s ease forwards;
+      }
+      .grpc-card i {
+        font-size: 1.65rem;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 8px;
+      }
+      .grpc-card-srv i {
+        color: var(--accent2);
+      }
+      .grpc-card strong {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.92rem;
+        color: var(--text);
+      }
+      .grpc-card > span {
+        display: block;
+        font-size: 0.74rem;
+        color: var(--muted);
+        margin: 4px 0 10px;
+      }
+      .grpc-card code {
+        display: block;
+        font-size: 0.72rem;
+        color: var(--accent);
+        background: rgba(0, 212, 255, 0.06);
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: 6px;
+        padding: 8px 10px;
+        word-break: break-word;
+      }
+      .grpc-card-srv code {
+        color: #c4a8e8;
+        background: rgba(123, 94, 167, 0.12);
+        border-color: rgba(123, 94, 167, 0.25);
+      }
+      .grpc-transport {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 120px;
+        opacity: 0;
+        animation: archFadeIn 0.55s ease 0.1s forwards;
+      }
+      .grpc-transport-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 14px 12px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 212, 255, 0.1),
+          rgba(123, 94, 167, 0.12)
+        );
+        border: 1px solid rgba(0, 212, 255, 0.25);
+        border-radius: 10px;
+        position: relative;
+        overflow: hidden;
+      }
+      .grpc-transport-inner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 212, 255, 0.15),
+          transparent
+        );
+        animation: grpcShimmer 2.5s ease-in-out infinite;
+      }
+      @keyframes grpcShimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+      .grpc-transport-inner > * {
+        position: relative;
+        z-index: 1;
+      }
+      .grpc-transport-inner > i {
+        font-size: 1.4rem;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+      .grpc-h2-label {
+        font-weight: 800;
+        font-size: 0.78rem;
+        color: var(--text);
+        letter-spacing: 0.06em;
+      }
+      .grpc-proto {
+        font-size: 0.68rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      @media (max-width: 768px) {
+        .soap-peer-row {
+          grid-template-columns: 1fr;
+        }
+        .soap-wsdl-bridge {
+          order: -1;
+        }
+        .gql-engine-inner {
+          grid-template-columns: 1fr;
+        }
+        .grpc-diagram .grpc-row {
+          grid-template-columns: 1fr;
+        }
+        .grpc-transport {
+          order: 2;
+        }
+      }
       .posw-table {
         border-collapse: collapse;
         width: 100%;
@@ -306,21 +852,78 @@
     <section id="rest">
       <div class="container">
         <h2 class="section-title">Arquitectura REST</h2>
-        <div class="ascii-block">
-          ┌──────────────────────────────────────────────┐ │ CLIENTE (SPA /
-          Mobile) │ └────────────────────┬─────────────────────────┘ │ HTTP
-          Request ▼ ┌──────────────────────────────────────────────┐ │ API
-          GATEWAY │ │ (Autenticación, Rate Limiting, Logging) │
-          └────────────────────┬─────────────────────────┘ │
-          ┌────────────────────▼─────────────────────────┐ │ ROUTER /
-          CONTROLADOR │ │ GET /productos → ProductosController │ │ POST /pedidos
-          → PedidosController │ └────────────────────┬─────────────────────────┘
-          │ ┌────────────────────▼─────────────────────────┐ │ CAPA DE SERVICIO
-          │ │ ProductosService: lógica de negocio │
-          └────────────────────┬─────────────────────────┘ │
-          ┌────────────────────▼─────────────────────────┐ │ REPOSITORIO / ORM │
-          │ ProductoRepository ↔ PostgreSQL │
-          └──────────────────────────────────────────────┘
+        <div
+          class="arch-diagram"
+          role="img"
+          aria-label="Capas REST: cliente, API Gateway, controlador, servicio, repositorio y base de datos"
+        >
+          <div class="arch-node" style="animation-delay: 0.05s">
+            <i class="bi bi-window-stack" aria-hidden="true"></i>
+            <div>
+              <div class="arch-title">Cliente</div>
+              <div class="arch-sub">SPA / Mobile</div>
+            </div>
+          </div>
+
+          <div class="arch-connector" aria-hidden="true">
+            <span class="arch-label">HTTP Request</span>
+          </div>
+
+          <div class="arch-node" style="animation-delay: 0.1s">
+            <i class="bi bi-hdd-network" aria-hidden="true"></i>
+            <div>
+              <div class="arch-title">API Gateway</div>
+              <div class="arch-sub">
+                Autenticación · Rate limiting · Logging
+              </div>
+            </div>
+          </div>
+
+          <div class="arch-connector" aria-hidden="true"></div>
+
+          <div class="arch-node stack-node" style="animation-delay: 0.18s">
+            <i class="bi bi-signpost-split" aria-hidden="true"></i>
+            <div style="min-width: 0">
+              <div class="arch-title">Router / Controlador</div>
+              <ul class="arch-routes">
+                <li>
+                  <span class="arch-method">GET</span> /productos →
+                  ProductosController
+                </li>
+                <li>
+                  <span class="arch-method arch-method-post">POST</span>
+                  /pedidos → PedidosController
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="arch-connector" aria-hidden="true"></div>
+
+          <div
+            class="arch-node layer-svc stack-node"
+            style="animation-delay: 0.26s"
+          >
+            <i class="bi bi-boxes" aria-hidden="true"></i>
+            <div>
+              <div class="arch-title">Capa de servicio</div>
+              <div class="arch-sub">
+                ProductosService — lógica de negocio
+              </div>
+            </div>
+          </div>
+
+          <div class="arch-connector" aria-hidden="true"></div>
+
+          <div class="arch-node layer-data stack-node" style="animation-delay: 0.34s">
+            <i class="bi bi-database-fill" aria-hidden="true"></i>
+            <div>
+              <div class="arch-title">Repositorio / ORM</div>
+              <div class="arch-sub">
+                ProductoRepository ↔ PostgreSQL
+              </div>
+            </div>
+          </div>
         </div>
         <div class="mt-4">
           <div class="layer-desc">
@@ -377,13 +980,66 @@
     <section id="soap-arch" class="section-alt">
       <div class="container">
         <h2 class="section-title">Arquitectura SOAP</h2>
-        <div class="ascii-block">
-          ┌──────────────┐ WSDL ┌──────────────────┐ │ CLIENTE │ ◄──────────────
-          │ SOAP SERVICE │ │ │ │ │ │ SOAP Request │ ──────────────► │ Web
-          Service │ │ (XML/HTTP) │ │ Container │ │ │ ◄────────────── │ (JAX-WS,
-          .NET) │ │ SOAP Response│ │ │ └──────────────┘ └────────┬─────────┘ │
-          ┌──────▼──────┐ │ Business │ │ Logic │ └──────┬──────┘ │
-          ┌──────▼──────┐ │ Database │ └─────────────┘
+        <div
+          class="proto-diagram soap-diagram"
+          role="region"
+          aria-label="Arquitectura SOAP: cliente, WSDL, mensajes XML y capas en el servidor"
+        >
+          <div class="soap-peer-row">
+            <div class="soap-card">
+              <i class="bi bi-pc-display-horizontal" aria-hidden="true"></i>
+              <strong>Cliente</strong>
+              <span>Consumidor del servicio SOAP</span>
+            </div>
+            <div class="soap-wsdl-bridge">
+              <span class="soap-wsdl-tag">
+                <i class="bi bi-file-earmark-code" aria-hidden="true"></i>
+                WSDL
+                <small>Contrato · cliente/servidor</small>
+              </span>
+            </div>
+            <div class="soap-card soap-card-server">
+              <i class="bi bi-cloud-fill" aria-hidden="true"></i>
+              <strong>SOAP Service</strong>
+              <span>Web Service Container — JAX-WS, .NET, runtime del servidor</span>
+            </div>
+          </div>
+
+          <div class="soap-messages">
+            <div class="soap-msg soap-msg-req">
+              <i class="bi bi-arrow-right-circle-fill" aria-hidden="true"></i>
+              <div>
+                <strong>SOAP Request</strong>
+                <span>XML sobre HTTP hacia el endpoint publicado en el WSDL</span>
+              </div>
+            </div>
+            <div class="soap-msg soap-msg-res">
+              <i class="bi bi-arrow-left-circle-fill" aria-hidden="true"></i>
+              <div>
+                <strong>SOAP Response</strong>
+                <span>XML de vuelta al cliente</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="soap-stack">
+            <div class="arch-connector compact" aria-hidden="true"></div>
+            <div class="soap-layer">
+              <i class="bi bi-diagram-3-fill" aria-hidden="true"></i>
+              <div>
+                <strong>Lógica de negocio</strong>
+                <span>Reglas del dominio detrás del contrato</span>
+              </div>
+            </div>
+            <div class="arch-connector compact" aria-hidden="true"></div>
+            <div class="soap-layer soap-layer-db">
+              <i class="bi bi-database-fill" aria-hidden="true"></i>
+              <div>
+                <strong>Base de datos</strong>
+                <span>Persistencia consultada por la capa de servicio</span>
+              </div>
+            </div>
+          </div>
         </div>
         <p class="mt-3">
           <strong>WSDL:</strong> El contrato WSDL (Web Services Description
@@ -405,15 +1061,56 @@
     <section id="graphql-arch">
       <div class="container">
         <h2 class="section-title">Arquitectura GraphQL</h2>
-        <div class="ascii-block">
-          ┌─────────────┐ │ Cliente │ │ (query) │ └──────┬──────┘ │ POST
-          /graphql ▼ ┌─────────────────────────────────────────┐ │ GraphQL
-          Engine │ │ ┌──────────┐ ┌──────────┐ │ │ │ Schema │ │ Resolver │ │ │ │
-          (tipos, │ │ (lógica │ │ │ │ queries, │ │ por cada │ │ │ │mutations)│ │
-          campo) │ │ │ └──────────┘ └────┬─────┘ │
-          └───────────────────┬─┘─────────────────┘ │
-          ┌─────────────┼──────────────┐ ▼ ▼ ▼ [ REST API ] [ PostgreSQL ] [
-          Redis Cache ]
+        <div
+          class="proto-diagram graphql-stack"
+          role="region"
+          aria-label="Arquitectura GraphQL: cliente, motor con schema y resolvers, y fuentes de datos"
+        >
+          <div class="arch-node" style="animation-delay: 0.04s">
+            <i class="bi bi-code-slash" aria-hidden="true"></i>
+            <div>
+              <div class="arch-title">Cliente</div>
+              <div class="arch-sub">Envía queries / mutations</div>
+            </div>
+          </div>
+
+          <div class="arch-connector compact" aria-hidden="true">
+            <span class="arch-label">POST /graphql</span>
+          </div>
+
+          <div class="gql-engine">
+            <div class="gql-engine-title">
+              <i class="bi bi-share-fill" aria-hidden="true"></i>
+              GraphQL Engine
+            </div>
+            <div class="gql-engine-inner">
+              <div class="gql-mini">
+                <strong>Schema</strong>
+                <span>Tipos, queries, mutations (SDL)</span>
+              </div>
+              <div class="gql-mini gql-mini-res">
+                <strong>Resolvers</strong>
+                <span>Lógica por cada campo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="arch-connector compact" aria-hidden="true"></div>
+
+          <div class="gql-data-row">
+            <div class="gql-data-chip">
+              <i class="bi bi-cloud-arrow-up-fill" aria-hidden="true"></i>
+              REST API
+            </div>
+            <div class="gql-data-chip">
+              <i class="bi bi-database-fill" aria-hidden="true"></i>
+              PostgreSQL
+            </div>
+            <div class="gql-data-chip">
+              <i class="bi bi-lightning-charge-fill" aria-hidden="true"></i>
+              Redis Cache
+            </div>
+          </div>
         </div>
         <h3 class="mt-4 mb-3" style="color: var(--accent); font-size: 1.1rem">
           Schema Definition Language (SDL)
@@ -450,12 +1147,37 @@ type Subscription {
     <section id="grpc-arch" class="section-alt">
       <div class="container">
         <h2 class="section-title">Arquitectura gRPC</h2>
-        <div class="ascii-block">
-          ┌─────────────────┐ ┌─────────────────┐ │ gRPC Cliente │ │ gRPC
-          Servidor │ │ (stub generado)│ │ (implementación)│ │ │ │ │ │ productos
-          │ │ ProductoService│ │ .getProducto() │ │ .ObtenerProd() │
-          └────────┬────────┘ └────────┬────────┘ │ HTTP/2 + Protobuf binary │
-          └─────────────────────────────────────┘
+        <div
+          class="proto-diagram grpc-diagram"
+          role="region"
+          aria-label="Arquitectura gRPC: stub del cliente, transporte HTTP/2 y Protobuf, implementación en el servidor"
+        >
+          <div class="grpc-row">
+            <div class="grpc-card" style="animation-delay: 0.05s">
+              <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              <strong>gRPC Cliente</strong>
+              <span>Stub generado desde el .proto</span>
+              <code>productos.getProducto()</code>
+            </div>
+
+            <div class="grpc-transport" aria-hidden="true">
+              <div class="grpc-transport-inner">
+                <i class="bi bi-lightning-charge-fill"></i>
+                <span class="grpc-h2-label">HTTP/2</span>
+                <span class="grpc-proto">Protobuf · binario</span>
+              </div>
+            </div>
+
+            <div
+              class="grpc-card grpc-card-srv"
+              style="animation-delay: 0.1s"
+            >
+              <i class="bi bi-hdd-stack-fill" aria-hidden="true"></i>
+              <strong>gRPC Servidor</strong>
+              <span>Implementación del servicio</span>
+              <code>ProductoService.ObtenerProd()</code>
+            </div>
+          </div>
         </div>
         <h3 class="mt-4 mb-3" style="color: var(--accent); font-size: 1.1rem">
           Tipos de streaming

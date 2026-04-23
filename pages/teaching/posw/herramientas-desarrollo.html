@@ -190,6 +190,136 @@
         font-size: 0.9rem;
         margin: 20px 0;
       }
+
+      /* ===== XAMPP tree · VM vs Docker ===== */
+      .proto-diagram {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 22px 20px;
+        margin: 20px 0;
+      }
+      .xampp-root {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.85rem;
+        color: var(--accent);
+        margin-bottom: 14px;
+      }
+      .xampp-root i {
+        color: #ffa502;
+      }
+      .xampp-tree-ul {
+        list-style: none;
+        margin: 0;
+        padding: 0 0 0 1rem;
+        border-left: 2px solid rgba(0, 212, 255, 0.25);
+      }
+      .xampp-tree-ul ul {
+        margin-top: 8px;
+        padding-left: 1rem;
+        border-left: 2px solid rgba(123, 94, 167, 0.25);
+      }
+      .xampp-tree-ul li {
+        padding: 6px 0;
+        font-size: 0.82rem;
+        color: var(--text);
+      }
+      .xampp-tree-ul li i {
+        color: var(--accent);
+        margin-right: 6px;
+      }
+      .xampp-hint {
+        display: block;
+        font-size: 0.74rem;
+        color: var(--muted);
+        margin-top: 4px;
+        margin-left: 1.5rem;
+      }
+
+      .vm-docker-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .vm-docker-card {
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .vm-docker-card h4 {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.95rem;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .vm-docker-card h4 i {
+        font-size: 1.2rem;
+      }
+      .vm-heavy h4 {
+        color: #ff8c42;
+      }
+      .docker-light h4 {
+        color: #2496ed;
+      }
+      .vm-stack-visual {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 0.68rem;
+        text-align: center;
+      }
+      .vm-layer {
+        padding: 6px 8px;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: 600;
+      }
+      .vm-layer.apps {
+        background: #444;
+      }
+      .vm-layer.libs {
+        background: #555;
+      }
+      .vm-layer.guest {
+        background: #366092;
+      }
+      .vm-layer.hyper {
+        background: #7b5ea7;
+        font-size: 0.62rem;
+      }
+      .vm-layer.host {
+        background: #2a2a2a;
+      }
+      .docker-stack-visual .vm-layer.engine {
+        background: #2496ed;
+        font-size: 0.72rem;
+      }
+      .docker-stack-visual .vm-layer.host {
+        margin-top: 4px;
+      }
+      .vm-docker-foot {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin: 0;
+        padding-top: 8px;
+        border-top: 1px solid #333;
+      }
+      @media (max-width: 768px) {
+        .vm-docker-row {
+          grid-template-columns: 1fr;
+        }
+      }
       .posw-table {
         border-collapse: collapse;
         width: 100%;
@@ -369,11 +499,52 @@ sudo /opt/lampp/lampp start</code></pre>
             <code>http://localhost/phpmyadmin</code>.
           </p>
         </div>
-        <div class="ascii-block">
-          /opt/lampp/ (Linux) o C:\xampp\ (Windows) ├── htdocs/ ← Aquí van tus
-          archivos web (Document Root) │ └── mi-proyecto/ │ └── index.php ├──
-          etc/ │ └── httpd.conf ← Configuración Apache └── mysql/ └── data/ ←
-          Datos de la BD
+        <div
+          class="proto-diagram"
+          role="region"
+          aria-label="Estructura típica de carpetas XAMPP"
+        >
+          <div class="xampp-root">
+            <i class="bi bi-folder2-open" aria-hidden="true"></i>
+            <span>/opt/lampp/</span>
+            <span style="color: var(--muted); font-size: 0.78rem">(Linux)</span>
+            <span style="color: var(--muted)">o</span>
+            <code style="font-size: 0.8rem">C:\xampp\</code>
+            <span style="color: var(--muted); font-size: 0.78rem"
+              >(Windows)</span
+            >
+          </div>
+          <ul class="xampp-tree-ul">
+            <li>
+              <i class="bi bi-folder-fill" aria-hidden="true"></i>
+              <strong>htdocs/</strong>
+              <span class="xampp-hint"
+                >Document root — aquí van tus archivos web</span
+              >
+              <ul class="xampp-tree-ul">
+                <li>
+                  <i class="bi bi-folder2" aria-hidden="true"></i>
+                  mi-proyecto/
+                  <ul class="xampp-tree-ul">
+                    <li>
+                      <i class="bi bi-filetype-php" aria-hidden="true"></i>
+                      index.php
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <i class="bi bi-folder-fill" aria-hidden="true"></i>
+              <strong>etc/</strong>
+              <span class="xampp-hint">httpd.conf — configuración Apache</span>
+            </li>
+            <li>
+              <i class="bi bi-folder-fill" aria-hidden="true"></i>
+              <strong>mysql/data/</strong>
+              <span class="xampp-hint">Datos de la base MySQL/MariaDB</span>
+            </li>
+          </ul>
         </div>
         <h3 class="mt-4 mb-3" style="color: var(--accent); font-size: 1.1rem">
           Hello World en PHP
@@ -456,14 +627,45 @@ echo "&lt;p&gt;Servidor: " . $_SERVER['SERVER_SOFTWARE'] . "&lt;/p&gt;";
             </div>
           </div>
         </div>
-        <div class="ascii-block">
-          MÁQUINA VIRTUAL CONTENEDOR DOCKER ┌──────────────────┐
-          ┌──────────────────┐ │ App A │ App B │ │ App A │ App B │ │ Libs │ Libs
-          │ │ Libs │ Libs │ │ OS A │ OS B │ ├─────────────────-┤ │ (4GB) │ (4GB)
-          │ │ Docker Engine │ ├─────────────────-┤ │ (kernel del host)│ │
-          Hypervisor │ ├──────────────────┤ ├──────────────────┤ │ SO Host │ │
-          SO Host │ └──────────────────┘ └──────────────────┘ Pesado: 8+ GB,
-          arranque lento Ligero: MBs, arranque &lt; 1s
+        <div
+          class="proto-diagram vm-docker-row"
+          role="region"
+          aria-label="Comparación: máquina virtual frente a contenedor Docker"
+        >
+          <div class="vm-docker-card vm-heavy">
+            <h4>
+              <i class="bi bi-pc-display-horizontal" aria-hidden="true"></i>
+              Máquina virtual
+            </h4>
+            <div class="vm-stack-visual">
+              <div class="vm-layer apps">App A · App B</div>
+              <div class="vm-layer libs">Librerías por guest</div>
+              <div class="vm-layer guest">SO invitado (completo)</div>
+              <div class="vm-layer hyper">Hypervisor</div>
+              <div class="vm-layer host">SO host</div>
+            </div>
+            <p class="vm-docker-foot mb-0">
+              Pesado: muchos GB por VM, arranque lento.
+            </p>
+          </div>
+          <div class="vm-docker-card docker-light">
+            <h4>
+              <i class="bi bi-box-seam" aria-hidden="true"></i>
+              Contenedor Docker
+            </h4>
+            <div class="vm-stack-visual docker-stack-visual">
+              <div class="vm-layer apps">App A · App B</div>
+              <div class="vm-layer libs">Libs en la imagen</div>
+              <div class="vm-layer engine">Docker Engine</div>
+              <div class="vm-layer guest" style="background: #3d5a00">
+                Kernel del host (compartido)
+              </div>
+              <div class="vm-layer host">SO host</div>
+            </div>
+            <p class="vm-docker-foot mb-0">
+              Ligero: MB por contenedor, arranque típico &lt; 1 s.
+            </p>
+          </div>
         </div>
         <p class="mt-3">
           <strong>Instalación:</strong> Descargar Docker Desktop desde

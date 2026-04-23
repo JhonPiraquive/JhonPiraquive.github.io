@@ -190,6 +190,66 @@
         font-size: 0.9rem;
         margin: 20px 0;
       }
+
+      /* ===== Árbol de componentes Angular ===== */
+      .ng-tree-diagram {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 22px 20px 24px;
+        margin: 20px 0;
+        overflow-x: auto;
+      }
+      .ng-tree {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .ng-tree ul {
+        list-style: none;
+        margin: 0;
+        padding: 0 0 0 1.1rem;
+        border-left: 2px solid rgba(0, 212, 255, 0.25);
+        margin-left: 0.5rem;
+      }
+      .ng-tree li {
+        position: relative;
+        padding: 6px 0 6px 4px;
+      }
+      .ng-node {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 8px;
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.82rem;
+        color: var(--text);
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .ng-node:hover {
+        border-color: var(--accent);
+        transform: translateX(2px);
+      }
+      .ng-node i {
+        color: var(--accent);
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .ng-root {
+        border-color: rgba(221, 0, 49, 0.45);
+        background: rgba(221, 0, 49, 0.06);
+      }
+      .ng-root i {
+        color: #dd0031;
+      }
+      .ng-leaf {
+        font-size: 0.78rem;
+      }
       .posw-table {
         border-collapse: collapse;
         width: 100%;
@@ -416,10 +476,67 @@ export class TarjetaProductoComponent implements OnInit {
         <h3 class="mt-5 mb-3" style="color: var(--accent); font-size: 1.1rem">
           Árbol de componentes
         </h3>
-        <div class="ascii-block">
-          AppComponent ├── NavbarComponent ├── CatalogoComponent │ ├──
-          TarjetaProductoComponent │ ├── TarjetaProductoComponent │ └──
-          TarjetaProductoComponent └── CarritoComponent └── ItemCarritoComponent
+        <div
+          class="ng-tree-diagram"
+          role="tree"
+          aria-label="Jerarquía: AppComponent, hijos y nietos"
+        >
+          <ul class="ng-tree">
+            <li>
+              <span class="ng-node ng-root">
+                <i class="bi bi-house-fill" aria-hidden="true"></i>
+                AppComponent
+              </span>
+              <ul>
+                <li>
+                  <span class="ng-node">
+                    <i class="bi bi-menu-button-wide" aria-hidden="true"></i>
+                    NavbarComponent
+                  </span>
+                </li>
+                <li>
+                  <span class="ng-node">
+                    <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+                    CatalogoComponent
+                  </span>
+                  <ul>
+                    <li>
+                      <span class="ng-node ng-leaf">
+                        <i class="bi bi-card-heading" aria-hidden="true"></i>
+                        TarjetaProductoComponent
+                      </span>
+                    </li>
+                    <li>
+                      <span class="ng-node ng-leaf">
+                        <i class="bi bi-card-heading" aria-hidden="true"></i>
+                        TarjetaProductoComponent
+                      </span>
+                    </li>
+                    <li>
+                      <span class="ng-node ng-leaf">
+                        <i class="bi bi-card-heading" aria-hidden="true"></i>
+                        TarjetaProductoComponent
+                      </span>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="ng-node">
+                    <i class="bi bi-cart3" aria-hidden="true"></i>
+                    CarritoComponent
+                  </span>
+                  <ul>
+                    <li>
+                      <span class="ng-node ng-leaf">
+                        <i class="bi bi-box-seam" aria-hidden="true"></i>
+                        ItemCarritoComponent
+                      </span>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

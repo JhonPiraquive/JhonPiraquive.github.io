@@ -190,6 +190,83 @@
         font-size: 0.9rem;
         margin: 20px 0;
       }
+
+      /* ===== Row vs column storage comparison ===== */
+      .storage-compare-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        align-items: start;
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .storage-panel {
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        padding: 14px 16px;
+      }
+      .storage-panel h4 {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.88rem;
+        margin: 0 0 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #333;
+      }
+      .storage-panel.row-based h4 {
+        color: var(--accent);
+      }
+      .storage-panel.col-based h4 {
+        color: var(--accent2);
+      }
+      .mini-schema {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.72rem;
+        margin-bottom: 12px;
+      }
+      .mini-schema th,
+      .mini-schema td {
+        border: 1px solid #444;
+        padding: 6px 8px;
+        text-align: left;
+      }
+      .mini-schema th {
+        background: rgba(0, 212, 255, 0.12);
+        color: var(--accent);
+      }
+      .col-arrays {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.7rem;
+        line-height: 1.55;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+      .col-arrays div {
+        margin-bottom: 6px;
+        padding: 6px 8px;
+        background: rgba(123, 94, 167, 0.1);
+        border-radius: 6px;
+        border-left: 3px solid var(--accent2);
+      }
+      .storage-note {
+        font-size: 0.76rem;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.5;
+      }
+      .storage-note.ok {
+        color: #a8e6cf;
+      }
+      @media (max-width: 768px) {
+        .storage-compare-grid {
+          grid-template-columns: 1fr;
+        }
+      }
       .posw-table {
         border-collapse: collapse;
         width: 100%;
@@ -660,15 +737,65 @@ ROLLBACK;</code></pre>
           hace extremadamente eficientes para consultas analíticas que agregan
           grandes volúmenes de datos en pocas columnas.
         </p>
-        <div class="ascii-block">
-          ROW-BASED (PostgreSQL): COLUMN-BASED (BigQuery):
-          ┌────┬──────────┬───────┐ Col id: [1, 2, 3, 4, ...] │ id │ nombre
-          │precio │ Col nombre: ["Laptop", "Mouse", ...]
-          ├────┼──────────┼───────┤ Col precio: [4500000, 85000, ...] │ 1 │
-          Laptop │4500000│ │ 2 │ Mouse │ 85000│ ✅ SELECT AVG(precio) → leer
-          solo col precio │ 3 │ Teclado │ 320000│ ❌ No eficiente para cargar
-          filas completas └────┴──────────┴───────┘ ✅ Ideal para OLTP
-          (transacciones) ✅ Ideal para OLAP (analítica)
+        <div
+          class="storage-compare-grid"
+          role="region"
+          aria-label="Comparación almacenamiento por filas vs por columnas"
+        >
+          <div class="storage-panel row-based">
+            <h4>Row-based · PostgreSQL</h4>
+            <table class="mini-schema">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>nombre</th>
+                  <th>precio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Laptop</td>
+                  <td>4500000</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Mouse</td>
+                  <td>85000</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Teclado</td>
+                  <td>320000</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="storage-note ok">
+              Ideal para <strong>OLTP</strong> (transacciones, filas completas).
+            </p>
+            <p class="storage-note mt-2 mb-0">
+              Para <code>AVG(precio)</code> hay que leer muchas celdas no
+              necesarias si solo interesa una columna.
+            </p>
+          </div>
+          <div class="storage-panel col-based">
+            <h4>Column-based · BigQuery</h4>
+            <div class="col-arrays">
+              <div>Col <strong>id</strong>: [1, 2, 3, 4, …]</div>
+              <div>
+                Col <strong>nombre</strong>: [«Laptop», «Mouse», «Teclado», …]
+              </div>
+              <div>Col <strong>precio</strong>: [4500000, 85000, 320000, …]</div>
+            </div>
+            <p class="storage-note ok">
+              Ideal para <strong>OLAP</strong>: agregaciones leyendo solo las
+              columnas necesarias.
+            </p>
+            <p class="storage-note mt-2 mb-0">
+              Menos eficiente cuando el caso de uso pide reconstruir filas
+              completas una a una.
+            </p>
+          </div>
         </div>
         <p class="mt-3">
           <strong>Ejemplos de bases columnares:</strong> Apache Cassandra

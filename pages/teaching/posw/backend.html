@@ -368,6 +368,159 @@
           display: none;
         }
       }
+
+      /* ===== Decision tree (elegir tecnología) ===== */
+      .decision-tree {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 28px 22px 32px;
+        margin: 24px 0;
+      }
+      .decision-root {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        padding: 18px 20px;
+        margin-bottom: 24px;
+        position: relative;
+      }
+      .decision-root::after {
+        content: "";
+        position: absolute;
+        bottom: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 24px;
+        background: linear-gradient(to bottom, var(--accent), transparent);
+      }
+      .decision-root i {
+        font-size: 1.6rem;
+        color: var(--accent);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .decision-root p {
+        margin: 0;
+        font-family: "Raleway", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--text);
+        line-height: 1.45;
+      }
+      .decision-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 20px;
+        align-items: stretch;
+        padding-top: 8px;
+      }
+      .decision-branch {
+        background: rgba(20, 20, 20, 0.6);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        padding: 16px 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .decision-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        align-self: flex-start;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: 999px;
+      }
+      .decision-label.yes {
+        background: rgba(0, 212, 255, 0.12);
+        color: var(--accent);
+        border: 1px solid rgba(0, 212, 255, 0.35);
+      }
+      .decision-label.no {
+        background: rgba(123, 94, 167, 0.15);
+        color: #c4a8e8;
+        border: 1px solid rgba(123, 94, 167, 0.4);
+      }
+      .decision-outcome strong {
+        display: block;
+        font-family: "Raleway", sans-serif;
+        color: var(--text);
+        font-size: 1rem;
+        margin-bottom: 6px;
+      }
+      .decision-outcome span {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .decision-eval-title {
+        margin: 0 0 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--muted);
+      }
+      .decision-scenarios {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .decision-scenarios li {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px 14px;
+        align-items: center;
+        padding: 10px 12px;
+        background: var(--surface);
+        border-radius: 8px;
+        border-left: 3px solid var(--accent2);
+      }
+      .scenario-q {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: var(--text);
+      }
+      .scenario-q i {
+        color: var(--accent);
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .scenario-a {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-align: right;
+        white-space: nowrap;
+      }
+      @media (max-width: 768px) {
+        .decision-split {
+          grid-template-columns: 1fr;
+        }
+        .decision-root::after {
+          display: none;
+        }
+        .decision-scenarios li {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .scenario-a {
+          text-align: left;
+          white-space: normal;
+        }
+      }
       .posw-table {
         border-collapse: collapse;
         width: 100%;
@@ -799,12 +952,64 @@
     <section id="elegir" class="section-alt">
       <div class="container">
         <h2 class="section-title">¿Cómo elegir tecnología Backend?</h2>
-        <div class="ascii-block">
-          ¿El equipo ya tiene experiencia en algún lenguaje? ├── Sí → Usar ese
-          lenguaje (productividad > velocidad teórica) └── No → Evaluar:
-          ¿Proyecto de IA/ML? → Python + FastAPI ¿Sistema bancario/enterprise? →
-          Java Spring Boot o C# ASP.NET ¿Startup/API rápida? → Node.js NestJS o
-          Go ¿CMS/e-commerce? → PHP Laravel
+        <div
+          class="decision-tree"
+          role="region"
+          aria-label="Árbol de decisión: experiencia del equipo y tipo de proyecto"
+        >
+          <div class="decision-root">
+            <i class="bi bi-diagram-3" aria-hidden="true"></i>
+            <p>¿El equipo ya tiene experiencia en algún lenguaje?</p>
+          </div>
+          <div class="decision-split">
+            <div class="decision-branch">
+              <span class="decision-label yes">
+                <i class="bi bi-check-lg" aria-hidden="true"></i> Sí
+              </span>
+              <div class="decision-outcome">
+                <strong>Usar ese lenguaje</strong>
+                <span>Productividad del equipo &gt; velocidad teórica de otro stack.</span>
+              </div>
+            </div>
+            <div class="decision-branch">
+              <span class="decision-label no">
+                <i class="bi bi-x-lg" aria-hidden="true"></i> No
+              </span>
+              <div>
+                <p class="decision-eval-title">Evaluar según el proyecto:</p>
+                <ul class="decision-scenarios">
+                  <li>
+                    <span class="scenario-q">
+                      <i class="bi bi-stars" aria-hidden="true"></i>
+                      ¿Proyecto de IA / ML?
+                    </span>
+                    <span class="scenario-a">Python + FastAPI</span>
+                  </li>
+                  <li>
+                    <span class="scenario-q">
+                      <i class="bi bi-bank" aria-hidden="true"></i>
+                      ¿Sistema bancario / enterprise?
+                    </span>
+                    <span class="scenario-a">Java Spring Boot o C# ASP.NET</span>
+                  </li>
+                  <li>
+                    <span class="scenario-q">
+                      <i class="bi bi-lightning-charge" aria-hidden="true"></i>
+                      ¿Startup / API rápida?
+                    </span>
+                    <span class="scenario-a">Node.js NestJS o Go</span>
+                  </li>
+                  <li>
+                    <span class="scenario-q">
+                      <i class="bi bi-cart3" aria-hidden="true"></i>
+                      ¿CMS / e-commerce?
+                    </span>
+                    <span class="scenario-a">PHP Laravel</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="table-wrap mt-4">
           <table class="posw-table">
