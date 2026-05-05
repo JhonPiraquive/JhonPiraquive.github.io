@@ -1,0 +1,208 @@
+/* ===== XAMPP tree · VM vs Docker ===== */
+      .proto-diagram {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 22px 20px;
+        margin: 20px 0;
+      }
+      .xampp-root {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.85rem;
+        color: var(--accent);
+        margin-bottom: 14px;
+      }
+      .xampp-root i {
+        color: #ffa502;
+      }
+      .xampp-tree-ul {
+        list-style: none;
+        margin: 0;
+        padding: 0 0 0 1rem;
+        border-left: 2px solid rgba(0, 212, 255, 0.25);
+      }
+      .xampp-tree-ul ul {
+        margin-top: 8px;
+        padding-left: 1rem;
+        border-left: 2px solid rgba(123, 94, 167, 0.25);
+      }
+      .xampp-tree-ul li {
+        padding: 6px 0;
+        font-size: 0.82rem;
+        color: var(--text);
+      }
+      .xampp-tree-ul li i {
+        color: var(--accent);
+        margin-right: 6px;
+      }
+      .xampp-hint {
+        display: block;
+        font-size: 0.74rem;
+        color: var(--muted);
+        margin-top: 4px;
+        margin-left: 1.5rem;
+      }
+
+      .vm-docker-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        align-items: stretch;
+      }
+      .vm-docker-card {
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .vm-docker-card h4 {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.95rem;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .vm-docker-card h4 i {
+        font-size: 1.2rem;
+      }
+      .vm-heavy h4 {
+        color: #ff8c42;
+      }
+      .docker-light h4 {
+        color: #2496ed;
+      }
+      .vm-stack-visual {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 0.68rem;
+        text-align: center;
+      }
+      .vm-layer {
+        padding: 6px 8px;
+        border-radius: 4px;
+        color: #fff;
+        font-weight: 600;
+      }
+      .vm-layer.apps {
+        background: #444;
+      }
+      .vm-layer.libs {
+        background: #555;
+      }
+      .vm-layer.guest {
+        background: #366092;
+      }
+      .vm-layer.hyper {
+        background: #7b5ea7;
+        font-size: 0.62rem;
+      }
+      .vm-layer.host {
+        background: #2a2a2a;
+      }
+      .docker-stack-visual .vm-layer.engine {
+        background: #2496ed;
+        font-size: 0.72rem;
+      }
+      .docker-stack-visual .vm-layer.host {
+        margin-top: 4px;
+      }
+      .vm-docker-foot {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin: 0;
+        padding-top: 8px;
+        border-top: 1px solid #333;
+      }
+      @media (max-width: 768px) {
+        .vm-docker-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .step-block {
+        background: var(--bg);
+        border: 1px solid #222;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 16px;
+      }
+      .step-block h5 {
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema 06 · Funciones y callbacks | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+  <link rel="stylesheet" href="pbpew-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">PBPEW</a>
+      <span>Tema 06</span></span>
+    </div>
+    <nav class="site-nav"><a href="index.html">Índice</a></nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Tema 06</span>
+      <h1 class="hero-title">Funciones, return, parámetros y callbacks</h1>
+      <p class="hero-sub">Empaquetar lógica reutilizable y pasar funciones como valores.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer</a>
+    </div>
+  </section>
+
+  <article class="pbpew-content section-alt" id="articulo">
+    <h2 id="declaracion" class="reveal">Declaración de función</h2>
+<pre class="reveal"><code class="language-javascript">function saludar(nombre) {
+  return `Hola, ${nombre}`;
+}
+
+console.log(saludar("Patricia"));</code></pre>
+
+    <h2 id="expresion" class="reveal">Función como expresión (anónima)</h2>
+<pre class="reveal"><code class="language-javascript">const duplicar = function (x) {
+  return x * 2;
+};
+
+const triple = (x) => x * 3; // flecha, retorno implícito</code></pre>
+
+    <h2 id="param-arg" class="reveal">Parámetros y argumentos</h2>
+    <p class="reveal">Los <strong>parámetros</strong> son los nombres en la definición; los <strong>argumentos</strong> son los valores que pasas en la llamada.</p>
+<pre class="reveal"><code class="language-javascript">function sumar(a, b) {
+  return a + b;
+}
+
+sumar(2, 5); // argumentos 2 y 5</code></pre>
+
+    <h2 id="return" class="reveal"><code>return</code></h2>
+    <p class="reveal">Devuelve un valor al llamador y <strong>termina</strong> la función en ese punto.</p>
+
+    <h2 id="callbacks" class="reveal">Callbacks</h2>
+    <p class="reveal">Un <strong>callback</strong> es una función que pasas a otra función para que la ejecute más tarde (por ejemplo, cuando ocurre un evento).</p>
+<pre class="reveal"><code class="language-javascript">function repetir(n, fn) {
+  for (let i = 0; i &lt; n; i++) {
+    fn(i);
+  }
+}
+
+repetir(3, (i) => console.log("paso", i));</code></pre>
+
+    <h2 id="resumen" class="reveal">Resumen</h2>
+    <ul class="reveal">
+      <li>Las funciones agrupan lógica y permiten reutilización y pruebas aisladas.</li>
+      <li><code>return</code> envía el resultado hacia fuera.</li>
+      <li>Los callbacks conectan tu código con APIs que “llamarán de vuelta” (eventos, temporizadores, promesas).</li>
+    </ul>
+  </article>
+
+  <div class="nav-row">
+    <a class="nav-card" href="05-bucles-y-errores.html"><i class="bi bi-arrow-left"></i> Anterior</a>
+    <a class="nav-card" href="07-arrays-json-objetos.html">Siguiente <i class="bi bi-arrow-right"></i></a>
+  </div>
+
+  <footer class="site-footer">PBPEW · Tema 06</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="pbpew.js"></script>
+</body>
+</html>

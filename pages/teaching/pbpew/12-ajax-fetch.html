@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema 12 · AJAX y fetch | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+  <link rel="stylesheet" href="pbpew-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">PBPEW</a>
+      <span>Tema 12</span></span>
+    </div>
+    <nav class="site-nav"><a href="index.html">Índice</a></nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Tema 12</span>
+      <h1 class="hero-title">AJAX y la API <code>fetch</code></h1>
+      <p class="hero-sub">Pedir datos al servidor sin recargar la página completa; comparación breve con <code>XMLHttpRequest</code>.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer</a>
+    </div>
+  </section>
+
+  <article class="pbpew-content section-alt" id="articulo">
+    <h2 id="ajax" class="reveal">¿Qué es AJAX?</h2>
+    <p class="reveal"><strong>AJAX</strong> (Asynchronous JavaScript And XML) es un enfoque: usar JavaScript para enviar peticiones HTTP en segundo plano y actualizar parte de la página con la respuesta. Hoy las respuestas suelen ser JSON, no solo XML.</p>
+
+    <h2 id="xhr" class="reveal"><code>XMLHttpRequest</code> (legado)</h2>
+    <p class="reveal">API antigua pero aún presente; más verbosa. Ejemplo mínimo conceptual:</p>
+<pre class="reveal"><code class="language-javascript">const xhr = new XMLHttpRequest();
+xhr.open("GET", "https://jsonplaceholder.typicode.com/todos/1");
+xhr.onload = function () {
+  if (xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) {
+    console.log(JSON.parse(xhr.responseText));
+  }
+};
+xhr.send();</code></pre>
+
+    <h2 id="fetch" class="reveal"><code>fetch</code> moderno</h2>
+    <p class="reveal"><code>fetch</code> devuelve una Promise. Recuerda comprobar <code>response.ok</code> y parsear JSON si aplica.</p>
+<pre class="reveal"><code class="language-javascript">async function obtenerTodo() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  const data = await res.json();
+  console.log(data.title);
+}
+
+obtenerTodo().catch(console.error);</code></pre>
+
+    <div class="callout reveal">
+      <p><strong>CORS</strong>: desde una página en el navegador solo puedes llamar a otros orígenes si el servidor lo permite. Si abres el archivo como <code>file://</code>, algunas demos de red pueden fallar; usa un servidor estático local si hace falta.</p>
+    </div>
+
+    <h2 id="demo" class="reveal">Demo en vivo (API pública)</h2>
+    <p class="reveal">El botón siguiente pide un ejemplo real a jsonplaceholder (requiere conexión):</p>
+    <p class="reveal">
+      <button type="button" class="btn-primary-custom" id="btn-fetch">Cargar título de ejemplo</button>
+    </p>
+    <p id="fetch-out" class="reveal" style="min-height:1.5em;color:var(--muted)"></p>
+    <script>
+      document.getElementById("btn-fetch").addEventListener("click", async function () {
+        const out = document.getElementById("fetch-out");
+        out.textContent = "Cargando…";
+        try {
+          const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const data = await res.json();
+          out.textContent = "Título: " + data.title;
+        } catch (e) {
+          out.textContent = "Error (¿sin red o CORS?): " + e.message;
+        }
+      });
+    </script>
+
+    <h2 id="resumen" class="reveal">Resumen</h2>
+    <ul class="reveal">
+      <li>AJAX describió la revolución de las SPA; hoy usamos principalmente <code>fetch</code> o bibliotecas.</li>
+      <li>Siempre maneja errores de red y códigos HTTP no OK.</li>
+      <li>Este curso termina aquí: ya puedes combinar DOM, eventos y datos remotos.</li>
+    </ul>
+  </article>
+
+  <div class="nav-row">
+    <a class="nav-card" href="11-asincronia.html"><i class="bi bi-arrow-left"></i> Anterior</a>
+    <a class="nav-card" href="index.html">Índice del curso <i class="bi bi-house-door"></i></a>
+  </div>
+
+  <footer class="site-footer">PBPEW · Tema 12</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="pbpew.js"></script>
+</body>
+</html>

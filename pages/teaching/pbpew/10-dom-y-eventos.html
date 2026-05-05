@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema 10 · DOM y eventos | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+  <link rel="stylesheet" href="pbpew-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">PBPEW</a>
+      <span>Tema 10</span></span>
+    </div>
+    <nav class="site-nav"><a href="index.html">Índice</a></nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Tema 10</span>
+      <h1 class="hero-title">Manipulación del DOM y eventos</h1>
+      <p class="hero-sub"><code>querySelector</code>, cambiar contenido y escuchar clics, teclado y envío de formularios.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer</a>
+    </div>
+  </section>
+
+  <article class="pbpew-content section-alt" id="articulo">
+    <h2 id="selectores" class="reveal">Seleccionar nodos</h2>
+<pre class="reveal"><code class="language-javascript">const titulo = document.querySelector("h1");
+const botones = document.querySelectorAll("button.item");
+const porId = document.getElementById("app");
+const porClase = document.getElementsByClassName("card");</code></pre>
+
+    <h2 id="contenido" class="reveal">Cambiar contenido y estilos</h2>
+<pre class="reveal"><code class="language-javascript">const p = document.querySelector("#mensaje");
+p.textContent = "Nuevo texto";
+p.innerHTML = "&lt;strong&gt;Importante&lt;/strong&gt;";
+p.style.color = "#0f766e";</code></pre>
+
+    <h2 id="crear" class="reveal">Crear y eliminar nodos</h2>
+<pre class="reveal"><code class="language-javascript">const lista = document.querySelector("#lista");
+const li = document.createElement("li");
+li.textContent = "Elemento nuevo";
+lista.appendChild(li);
+lista.removeChild(li);</code></pre>
+
+    <h2 id="eventos" class="reveal">Eventos</h2>
+<pre class="reveal"><code class="language-javascript">const btn = document.querySelector("#ok");
+
+btn.addEventListener("click", (evento) => {
+  console.log("clic", evento.target);
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") console.log("Enter");
+});</code></pre>
+
+    <div class="mermaid-wrap reveal"><div class="mermaid">
+sequenceDiagram
+  participant U as Usuario
+  participant N as Navegador
+  participant L as Listener JS
+  U->>N: click en botón
+  N->>L: dispara evento
+  L->>N: actualiza DOM
+    </div></div>
+
+    <p class="reveal"><strong>Delegación de eventos</strong>: escucha en un contenedor y usa <code>event.target</code> para saber qué hijo originó el evento — útil con listas largas.</p>
+
+    <h2 id="demo" class="reveal">Demo mini en la página</h2>
+    <div class="callout reveal">
+      <button type="button" id="demo-btn" class="btn-primary-custom" style="margin-bottom:8px">Pulsar</button>
+      <p id="demo-out" style="margin:0;color:var(--muted)">Clics: 0</p>
+    </div>
+    <script>
+      (function () {
+        const btn = document.getElementById("demo-btn");
+        const out = document.getElementById("demo-out");
+        let c = 0;
+        btn.addEventListener("click", () => {
+          c += 1;
+          out.textContent = "Clics: " + c;
+        });
+      })();
+    </script>
+
+    <h2 id="resumen" class="reveal">Resumen</h2>
+    <ul class="reveal">
+      <li>El DOM es mutable: crear, leer, actualizar y borrar nodos.</li>
+      <li><code>addEventListener</code> separa HTML de comportamiento.</li>
+      <li>Los objetos de evento transportan detalles (tecla, botón, objetivo).</li>
+    </ul>
+  </article>
+
+  <div class="nav-row">
+    <a class="nav-card" href="09-estructuras-de-datos.html"><i class="bi bi-arrow-left"></i> Anterior</a>
+    <a class="nav-card" href="11-asincronia.html">Siguiente <i class="bi bi-arrow-right"></i></a>
+  </div>
+
+  <footer class="site-footer">PBPEW · Tema 10</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="pbpew.js"></script>
+</body>
+</html>

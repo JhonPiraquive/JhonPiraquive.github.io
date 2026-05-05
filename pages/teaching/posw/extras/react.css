@@ -1,0 +1,16 @@
+.note-card {
+        background: #0d2018;
+        border: 1px solid #2ed573;
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-top: 16px;
+      }
+      .note-card p {
+        color: #5effa1;
+        margin: 0;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }

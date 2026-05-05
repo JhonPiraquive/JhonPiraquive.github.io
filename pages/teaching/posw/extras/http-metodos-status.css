@@ -1,0 +1,93 @@
+.accordion-button {
+        background: var(--surface) !important;
+        color: var(--text) !important;
+        font-weight: 600;
+      }
+      .accordion-button:not(.collapsed) {
+        background: #1e1e1e !important;
+        color: var(--accent) !important;
+      }
+      .accordion-item {
+        background: var(--surface);
+        border: 1px solid #2a2a2a;
+      }
+      .accordion-body {
+        background: var(--bg);
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }
+      /* Tabs normales */
+      .nav-tabs .nav-link {
+        color: var(--text);
+        transition: color 0.2s;
+      }
+
+      /* Tab activo */
+      .nav-tabs .nav-link.active {
+        color: #000 !important; /* negro */
+        background-color: var(--accent); /* opcional para contraste */
+        border-color: var(--accent) var(--accent) transparent;
+      }
+
+      /* Hover opcional */
+      .nav-tabs .nav-link:hover {
+        color: var(--accent);
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+        color: #eaeaea;
+      }
+
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+        color: #eaeaea;
+      }
+
+      .posw-table tr:hover td {
+        background: #222; /* efecto hover */
+      }

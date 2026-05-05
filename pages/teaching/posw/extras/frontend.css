@@ -1,0 +1,33 @@
+.tech-card {
+        background: var(--bg);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 24px;
+        height: 100%;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .tech-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .tech-card:hover {
+        border-color: var(--accent);
+      }
+      .icon-orange {
+        color: #ff6b35;
+      }
+      .icon-blue {
+        color: #4fc3f7;
+      }
+      .icon-yellow {
+        color: #ffd54f;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }

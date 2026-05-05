@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto · Piedra, papel o tijera | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../pbpew-theme.css" />
+  <link rel="stylesheet" href="proyectos-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="../index.html">PBPEW</a>
+      <span>RPS</span></span>
+    </div>
+    <nav class="site-nav"><a href="../index.html">Índice del curso</a></nav>
+  </header>
+
+  <section id="hero" style="min-height:26vh">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Proyecto</span>
+      <h1 class="hero-title">Piedra, papel o tijera</h1>
+      <p class="hero-sub"><code>Math.random()</code>, <code>if/else</code>, DOM y contadores.</p>
+    </div>
+  </section>
+
+  <main class="pbpew-content section-alt" style="text-align:center">
+    <div class="project-wrap reveal" style="max-width:480px">
+      <p id="msg" style="font-size:1.1rem;margin-bottom:12px">Elige una opción.</p>
+      <div>
+        <button type="button" class="rps-btn" data-move="piedra" aria-label="Piedra">✊</button>
+        <button type="button" class="rps-btn" data-move="papel" aria-label="Papel">✋</button>
+        <button type="button" class="rps-btn" data-move="tijera" aria-label="Tijera">✌️</button>
+      </div>
+      <div class="score-board">
+        <span>Victorias: <strong id="w">0</strong></span>
+        <span>Empates: <strong id="d">0</strong></span>
+        <span>Derrotas: <strong id="l">0</strong></span>
+      </div>
+      <p style="margin-top:16px;font-size:0.9rem;color:var(--muted)">
+        Extra: la CPU usa selección aleatoria. Podrías ponderar según tu historial.
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">PBPEW · Proyecto RPS</footer>
+
+  <script>
+    (function () {
+      const opts = ["piedra", "papel", "tijera"];
+      const msg = document.getElementById("msg");
+      let w = 0,
+        d = 0,
+        l = 0;
+
+      function cpu() {
+        return opts[Math.floor(Math.random() * 3)];
+      }
+
+      function winner(a, b) {
+        if (a === b) return 0;
+        if (
+          (a === "piedra" && b === "tijera") ||
+          (a === "papel" && b === "piedra") ||
+          (a === "tijera" && b === "papel")
+        )
+          return 1;
+        return -1;
+      }
+
+      document.querySelectorAll(".rps-btn").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const user = btn.getAttribute("data-move");
+          const machine = cpu();
+          const r = winner(user, machine);
+          if (r === 0) {
+            d++;
+            msg.textContent = `Empate: ambos eligieron ${user}.`;
+          } else if (r === 1) {
+            w++;
+            msg.textContent = `Ganaste: ${user} vence a ${machine}.`;
+          } else {
+            l++;
+            msg.textContent = `Perdiste: ${machine} vence a ${user}.`;
+          }
+          document.getElementById("w").textContent = String(w);
+          document.getElementById("d").textContent = String(d);
+          document.getElementById("l").textContent = String(l);
+          btn.animate([{ transform: "scale(1)" }, { transform: "scale(1.15)" }, { transform: "scale(1)" }], {
+            duration: 280,
+          });
+        });
+      });
+    })();
+  </script>
+  <script src="../pbpew.js"></script>
+</body>
+</html>

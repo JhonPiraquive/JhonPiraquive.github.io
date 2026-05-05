@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto · Ajedrez | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../pbpew-theme.css" />
+  <link rel="stylesheet" href="proyectos-theme.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="../index.html">PBPEW</a>
+      <span>Ajedrez</span></span>
+    </div>
+    <nav class="site-nav"><a href="../index.html">Índice del curso</a></nav>
+  </header>
+
+  <section id="hero" style="min-height:24vh">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Proyecto avanzado</span>
+      <h1 class="hero-title">Ajedrez en el navegador</h1>
+      <p class="hero-sub">Motor de reglas con la biblioteca <strong>chess.js</strong>. Haz clic en origen y destino.</p>
+    </div>
+  </section>
+
+  <main class="pbpew-content section-alt">
+    <div class="project-wrap reveal" style="max-width:640px">
+      <div class="chess-toolbar">
+        <button type="button" id="btn-new">Nueva partida</button>
+        <button type="button" id="btn-undo">Deshacer</button>
+        <button type="button" id="btn-save">Guardar en LocalStorage</button>
+        <button type="button" id="btn-load">Cargar</button>
+      </div>
+      <p id="status" style="text-align:center;font-weight:600;color:var(--accent);min-height:1.5em"></p>
+      <div id="board" class="chess-board" aria-label="Tablero de ajedrez"></div>
+      <p style="font-size:0.88rem;color:var(--muted);margin-top:12px;text-align:center">
+        Promoción de peón: automática a dama. Jaques y fin de partida según chess.js.
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">PBPEW · Proyecto ajedrez</footer>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "pbpew-chess-fen";
+      let game = new Chess();
+      let selected = null;
+      let hintSquares = [];
+
+      const PIECES = {
+        w: { k: "♔", q: "♕", r: "♖", b: "♗", n: "♘", p: "♙" },
+        b: { k: "♚", q: "♛", r: "♜", b: "♝", n: "♞", p: "♟" },
+      };
+
+      const boardEl = document.getElementById("board");
+      const statusEl = document.getElementById("status");
+
+      function squareColor(file, row) {
+        const r = 8 - row;
+        return (file + r) % 2 === 0 ? "light" : "dark";
+      }
+
+      function squareName(file, row) {
+        const chessRank = 8 - row;
+        return "abcdefgh".charAt(file) + chessRank;
+      }
+
+      function render() {
+        boardEl.innerHTML = "";
+        const b = game.board();
+        for (let row = 0; row < 8; row++) {
+          for (let file = 0; file < 8; file++) {
+            const sq = squareName(file, row);
+            const piece = b[row][file];
+            const cell = document.createElement("div");
+            cell.className = "chess-square " + squareColor(file, row);
+            cell.dataset.square = sq;
+            if (piece) {
+              cell.textContent = PIECES[piece.color][piece.type];
+              cell.dataset.color = piece.color;
+            }
+            if (selected === sq) cell.classList.add("selected");
+            if (hintSquares.includes(sq)) cell.classList.add("hint");
+            cell.addEventListener("click", onSquareClick);
+            boardEl.appendChild(cell);
+          }
+        }
+        updateStatus();
+      }
+
+      function updateStatus() {
+        if (game.game_over()) {
+          if (game.in_draw()) statusEl.textContent = "Tablas.";
+          else statusEl.textContent = "Jaque mate. Ganador: " + (game.turn() === "w" ? "negras" : "blancas") + ".";
+        } else if (game.in_check()) {
+          statusEl.textContent = "Jaque a " + (game.turn() === "w" ? "blancas" : "negras") + ".";
+        } else {
+          statusEl.textContent = "Turno: " + (game.turn() === "w" ? "blancas" : "negras");
+        }
+      }
+
+      function legalMovesFrom(square) {
+        return game.moves({ square: square, verbose: true });
+      }
+
+      function onSquareClick(e) {
+        const sq = e.currentTarget.dataset.square;
+        const piece = game.get(sq);
+
+        if (selected) {
+          const moves = legalMovesFrom(selected);
+          const hit = moves.find((m) => m.to === sq);
+          if (hit) {
+            const opts = { from: selected, to: sq };
+            if (hit.promotion) opts.promotion = hit.promotion;
+            const mv = game.move(opts);
+            if (mv) {
+              selected = null;
+              hintSquares = [];
+              render();
+              return;
+            }
+          }
+        }
+
+        if (piece && piece.color === game.turn()) {
+          selected = sq;
+          hintSquares = legalMovesFrom(sq).map((m) => m.to);
+        } else {
+          selected = null;
+          hintSquares = [];
+        }
+        render();
+      }
+
+      document.getElementById("btn-new").addEventListener("click", function () {
+        game = new Chess();
+        selected = null;
+        hintSquares = [];
+        render();
+      });
+
+      document.getElementById("btn-undo").addEventListener("click", function () {
+        game.undo();
+        selected = null;
+        hintSquares = [];
+        render();
+      });
+
+      document.getElementById("btn-save").addEventListener("click", function () {
+        localStorage.setItem(STORAGE_KEY, game.fen());
+        statusEl.textContent = "Partida guardada.";
+      });
+
+      document.getElementById("btn-load").addEventListener("click", function () {
+        const fen = localStorage.getItem(STORAGE_KEY);
+        if (!fen) {
+          statusEl.textContent = "No hay partida guardada.";
+          return;
+        }
+        const g = new Chess(fen);
+        if (g) {
+          game = g;
+          selected = null;
+          hintSquares = [];
+          render();
+        }
+      });
+
+      render();
+    })();
+  </script>
+  <script src="../pbpew.js"></script>
+</body>
+</html>

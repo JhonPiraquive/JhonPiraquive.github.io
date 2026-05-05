@@ -1,0 +1,510 @@
+/* ===== HTTP request example (visual) ===== */
+      .http-request-preview {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 22px 20px 20px;
+        margin: 24px 0;
+        font-family: "Poppins", sans-serif;
+      }
+      .http-start-line {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 14px;
+        padding: 14px 16px;
+        background: rgba(0, 212, 255, 0.06);
+        border: 1px solid rgba(0, 212, 255, 0.25);
+        border-radius: 10px;
+        margin-bottom: 16px;
+        position: relative;
+        opacity: 0;
+        animation: httpFadeIn 0.45s ease forwards;
+      }
+      .http-start-line .http-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.88rem;
+        flex-wrap: wrap;
+      }
+      .http-method {
+        font-weight: 800;
+        color: #2ed573;
+        letter-spacing: 0.02em;
+      }
+      .http-uri {
+        color: var(--accent);
+        word-break: break-all;
+      }
+      .http-version {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .http-start-tag {
+        margin-left: auto;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent2);
+        background: rgba(123, 94, 167, 0.2);
+        border: 1px solid rgba(123, 94, 167, 0.45);
+        padding: 4px 10px;
+        border-radius: 999px;
+      }
+      .http-section-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .http-section-label i {
+        color: var(--accent);
+        font-size: 1rem;
+      }
+      .http-header-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .http-header-list li {
+        padding: 10px 12px;
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        opacity: 0;
+        animation: httpFadeIn 0.45s ease forwards;
+      }
+      .http-header-list li:nth-child(1) {
+        animation-delay: 0.08s;
+      }
+      .http-header-list li:nth-child(2) {
+        animation-delay: 0.14s;
+      }
+      .http-header-list li:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      .http-header-list li:nth-child(4) {
+        animation-delay: 0.26s;
+      }
+      .http-header-list li:nth-child(5) {
+        animation-delay: 0.32s;
+      }
+      .http-header-list .hi {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .http-header-list .hi > i {
+        color: var(--accent);
+        font-size: 1.15rem;
+        flex-shrink: 0;
+        margin-top: 3px;
+      }
+      .http-h-line {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 6px 10px;
+        min-width: 0;
+      }
+      .http-h-name {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        color: var(--accent2);
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .http-h-val {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        color: var(--text);
+        font-size: 0.8rem;
+        line-height: 1.45;
+        word-break: break-word;
+      }
+      .http-blank-sep {
+        margin: 14px 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        opacity: 0;
+        animation: httpFadeIn 0.45s ease 0.38s forwards;
+      }
+      .http-blank-sep::before,
+      .http-blank-sep::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #3a3a4e 20%,
+          #3a3a4e 80%,
+          transparent
+        );
+      }
+      .http-blank-sep span {
+        font-size: 0.72rem;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .http-body-note {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        background: rgba(46, 213, 115, 0.08);
+        border: 1px dashed rgba(46, 213, 115, 0.35);
+        border-radius: 8px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        opacity: 0;
+        animation: httpFadeIn 0.45s ease 0.44s forwards;
+      }
+      .http-body-note i {
+        color: #2ed573;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+      .http-body-note strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      @keyframes httpFadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+      @media (max-width: 576px) {
+        .http-start-tag {
+          margin-left: 0;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      /* ===== CORS preflight flow (visual) ===== */
+      .cors-flow {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 22px 20px 24px;
+        margin: 24px 0;
+      }
+      .cors-peers {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 22px;
+      }
+      .cors-peer {
+        flex: 1;
+        min-width: 140px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 14px;
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        opacity: 0;
+        animation: httpFadeIn 0.45s ease forwards;
+      }
+      .cors-peer:nth-child(2) {
+        animation-delay: 0.06s;
+      }
+      .cors-peer i {
+        font-size: 1.5rem;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .cors-peer.cors-peer-srv i {
+        color: var(--accent2);
+      }
+      .cors-peer strong {
+        display: block;
+        font-family: "Raleway", sans-serif;
+        font-size: 0.88rem;
+        color: var(--text);
+      }
+      .cors-peer span {
+        font-size: 0.78rem;
+        color: var(--muted);
+        word-break: break-all;
+      }
+      .cors-phase-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      .cors-phase-label i {
+        color: var(--accent);
+      }
+      .cors-step {
+        margin-bottom: 18px;
+      }
+      .cors-step:last-of-type {
+        margin-bottom: 0;
+      }
+      .cors-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+      .cors-meta .cors-dir-icon {
+        color: var(--accent);
+      }
+      .cors-meta em {
+        font-style: normal;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .cors-card {
+        padding: 12px 14px;
+        border-radius: 10px;
+        background: rgba(20, 20, 20, 0.65);
+        border: 1px solid #2a2a3e;
+        opacity: 0;
+        animation: httpFadeIn 0.5s ease forwards;
+      }
+      .cors-card-out {
+        border-left: 3px solid var(--accent);
+      }
+      .cors-card-in {
+        border-left: 3px solid var(--accent2);
+      }
+      .cors-req-line {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.82rem;
+        margin-bottom: 8px;
+      }
+      .cors-method-opt {
+        font-weight: 800;
+        color: #ffa502;
+        margin-right: 6px;
+      }
+      .cors-method-put {
+        font-weight: 800;
+        color: #74b9ff;
+        margin-right: 6px;
+      }
+      .cors-req-line code {
+        color: var(--accent);
+        background: none;
+        font-size: 0.88em;
+      }
+      .cors-hlist {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .cors-hlist li {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.76rem;
+        line-height: 1.45;
+        color: var(--text);
+      }
+      .cors-status-line {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.82rem;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+      .cors-code {
+        display: inline-block;
+        font-weight: 800;
+        color: #2ed573;
+        margin-right: 6px;
+      }
+      .cors-real-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 20px 0 18px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent2);
+      }
+      .cors-real-divider::before,
+      .cors-real-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(123, 94, 167, 0.6),
+          transparent
+        );
+      }
+      .cors-arrow-track {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+        font-size: 0.7rem;
+        color: var(--muted);
+      }
+      .cors-arrow-track i {
+        color: var(--accent);
+        animation: corsArrowPulse 1.8s ease-in-out infinite;
+      }
+      .cors-arrow-track.in i {
+        color: var(--accent2);
+        animation-delay: 0.35s;
+      }
+      @keyframes corsArrowPulse {
+        0%,
+        100% {
+          opacity: 0.45;
+          transform: translateX(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translateX(4px);
+        }
+      }
+      .cors-arrow-track.in {
+        flex-direction: row-reverse;
+      }
+      .cors-arrow-track.in i {
+        transform: scaleX(-1);
+        animation-name: corsArrowPulseIn;
+      }
+      @keyframes corsArrowPulseIn {
+        0%,
+        100% {
+          opacity: 0.45;
+          transform: scaleX(-1) translateX(0);
+        }
+        50% {
+          opacity: 1;
+          transform: scaleX(-1) translateX(-4px);
+        }
+      }
+      .cors-step.delay-a .cors-card {
+        animation-delay: 0.1s;
+      }
+      .cors-step.delay-b .cors-card {
+        animation-delay: 0.18s;
+      }
+      .cors-step.delay-c .cors-card {
+        animation-delay: 0.08s;
+      }
+      .cors-step.delay-d .cors-card {
+        animation-delay: 0.14s;
+      }
+      @media (max-width: 576px) {
+        .cors-peers {
+          flex-direction: column;
+        }
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .cat-card {
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin-bottom: 12px;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .cat-card.visible {
+        opacity: 1;
+        transform: translateX(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }

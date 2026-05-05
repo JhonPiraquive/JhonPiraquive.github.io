@@ -1,0 +1,158 @@
+/* ===== Row vs column storage comparison ===== */
+      .storage-compare-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        align-items: start;
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .storage-panel {
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 10px;
+        padding: 14px 16px;
+      }
+      .storage-panel h4 {
+        font-family: "Raleway", sans-serif;
+        font-size: 0.88rem;
+        margin: 0 0 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #333;
+      }
+      .storage-panel.row-based h4 {
+        color: var(--accent);
+      }
+      .storage-panel.col-based h4 {
+        color: var(--accent2);
+      }
+      .mini-schema {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.72rem;
+        margin-bottom: 12px;
+      }
+      .mini-schema th,
+      .mini-schema td {
+        border: 1px solid #444;
+        padding: 6px 8px;
+        text-align: left;
+      }
+      .mini-schema th {
+        background: rgba(0, 212, 255, 0.12);
+        color: var(--accent);
+      }
+      .col-arrays {
+        font-family: ui-monospace, "Cascadia Code", monospace;
+        font-size: 0.7rem;
+        line-height: 1.55;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+      .col-arrays div {
+        margin-bottom: 6px;
+        padding: 6px 8px;
+        background: rgba(123, 94, 167, 0.1);
+        border-radius: 6px;
+        border-left: 3px solid var(--accent2);
+      }
+      .storage-note {
+        font-size: 0.76rem;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.5;
+      }
+      .storage-note.ok {
+        color: #a8e6cf;
+      }
+      @media (max-width: 768px) {
+        .storage-compare-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .sql-family-card {
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 12px;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .sql-family-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }

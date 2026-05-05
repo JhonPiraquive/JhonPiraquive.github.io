@@ -1,0 +1,161 @@
+/* ===== ARCH DIAGRAM ===== */
+      .arch-container {
+        position: relative;
+        height: 420px;
+        white-space: normal !important;
+        font-family: inherit;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 212, 255, 0.22);
+        background:
+          radial-gradient(
+              1200px 420px at 20% 20%,
+              rgba(0, 212, 255, 0.12),
+              transparent 55%
+            ),
+          radial-gradient(
+              900px 380px at 90% 70%,
+              rgba(123, 94, 167, 0.18),
+              transparent 55%
+            ),
+          linear-gradient(180deg, rgba(20, 20, 20, 0.85), rgba(13, 13, 13, 0.85));
+        box-shadow:
+          0 18px 60px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(123, 94, 167, 0.1) inset;
+        overflow: hidden;
+      }
+
+      .arch-container::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.06), transparent 45%),
+          radial-gradient(circle at 80% 75%, rgba(255, 255, 255, 0.04), transparent 50%);
+        opacity: 0.35;
+        pointer-events: none;
+      }
+
+      .arch-container::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.05) 0px,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px,
+            transparent 14px
+          ),
+          repeating-linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.035) 0px,
+            rgba(255, 255, 255, 0.035) 1px,
+            transparent 1px,
+            transparent 14px
+          );
+        opacity: 0.08;
+        mix-blend-mode: overlay;
+        pointer-events: none;
+      }
+
+      .arch-node {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        font-size: 22px;
+        text-align: center;
+        color: var(--accent);
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(20, 20, 20, 0.55);
+        border: 1px solid rgba(0, 212, 255, 0.18);
+        box-shadow:
+          0 10px 22px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(0, 212, 255, 0.08) inset;
+        backdrop-filter: blur(6px);
+        transition:
+          transform 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      .arch-node:hover {
+        transform: translate(-50%, -50%) translateY(-2px) scale(1.02);
+        border-color: rgba(0, 212, 255, 0.45);
+        box-shadow:
+          0 16px 30px rgba(0, 0, 0, 0.45),
+          0 0 18px rgba(0, 212, 255, 0.14);
+      }
+
+      .arch-node span {
+        display: block;
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      #svg-arch {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      #svg-arch .arch-grid line {
+        stroke: rgba(123, 94, 167, 0.15);
+        stroke-width: 1;
+      }
+
+      #svg-arch .arch-link {
+        fill: none;
+        stroke: url(#archLinkStroke);
+        stroke-width: 2.6;
+        opacity: 0.95;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        filter: url(#archGlow);
+      }
+
+      #svg-arch .arch-link.arch-link--bg {
+        stroke: rgba(0, 212, 255, 0.18);
+        stroke-width: 6.5;
+        opacity: 0.52;
+        filter: blur(0.4px);
+      }
+
+      /* draw-on animation (JS sets dash values) */
+      #svg-arch .arch-link.arch-link--anim {
+        transition: stroke-dashoffset 900ms ease;
+      }
+
+      #svg-arch .arch-link.arch-link--anim.is-drawn {
+        stroke-dashoffset: 0;
+      }
+
+      /* subtle moving highlight */
+      #svg-arch .arch-link.arch-link--pulse {
+        stroke-dasharray: 12 12;
+        animation: archPulse 2.6s linear infinite;
+      }
+
+      @keyframes archPulse {
+        to {
+          stroke-dashoffset: -40;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #svg-arch .arch-link.arch-link--anim {
+          transition: none;
+        }
+        #svg-arch .arch-link.arch-link--pulse {
+          animation: none;
+          stroke-dasharray: none;
+        }
+      }
+
+      .arch-packet {
+        position: absolute;
+        font-size: 14px;
+        pointer-events: none;
+        filter: drop-shadow(0 0 6px var(--accent));
+      }

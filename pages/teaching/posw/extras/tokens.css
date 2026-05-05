@@ -1,0 +1,164 @@
+.card-g {
+        background: var(--surface);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 24px;
+        transition:
+          transform 0.25s,
+          border-color 0.25s;
+      }
+      .card-g:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+      }
+      .card-anim {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .card-anim.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin: 16px 0;
+      }
+      .ascii-block {
+        background: #0d1117;
+        padding: 20px;
+        border-radius: 8px;
+        font-family: monospace;
+        color: var(--accent);
+        overflow-x: auto;
+        white-space: pre;
+        font-size: 0.85rem;
+        margin: 20px 0;
+        line-height: 1.5;
+      }
+      .info-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 16px 0;
+      }
+      .danger-card {
+        background: #1a0a0a;
+        border-left: 4px solid #ff4757;
+        padding: 16px;
+        border-radius: 8px;
+        margin: 12px 0;
+      }
+      .feat-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .feat-item i {
+        margin-top: 4px;
+        flex-shrink: 0;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .code-label {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-bottom: 6px;
+        margin-top: 16px;
+      }
+      /* JWT visual */
+      .jwt-block {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 20px 0;
+      }
+      .jwt-part {
+        padding: 16px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 0.85rem;
+        flex: 1;
+        min-width: 200px;
+      }
+      .jwt-header {
+        background: #2d0000;
+        border: 1px solid #ff4757;
+      }
+      .jwt-payload {
+        background: #1a0030;
+        border: 1px solid var(--accent2);
+      }
+      .jwt-sig {
+        background: #001a2d;
+        border: 1px solid var(--accent);
+      }
+      .jwt-label {
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-size: 0.8rem;
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }

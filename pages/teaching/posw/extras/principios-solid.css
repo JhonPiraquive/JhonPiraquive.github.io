@@ -1,0 +1,79 @@
+.intro-panel {
+        background: var(--surface);
+        padding: 40px 0;
+      }
+      .rule-card {
+        background: var(--bg);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin-bottom: 16px;
+      }
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 16px 0;
+      }
+      .code-compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 16px 0;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+        .code-compare {
+          grid-template-columns: 1fr;
+        }
+      }
+      .code-wrong {
+        border: 1px solid #ff4757;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .code-wrong .code-label {
+        background: #ff4757;
+        color: #fff;
+        padding: 4px 12px;
+        font-size: 0.8rem;
+      }
+      .code-right {
+        border: 1px solid #2ed573;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .code-right .code-label {
+        background: #2ed573;
+        color: #000;
+        padding: 4px 12px;
+        font-size: 0.8rem;
+      }
+      .cons-list {
+        border-left: 3px solid #ff4757;
+        padding-left: 16px;
+        margin: 12px 0;
+      }
+      .cons-list li {
+        color: #ff6b7a;
+        margin-bottom: 4px;
+      }
+      .pros-list {
+        border-left: 3px solid #2ed573;
+        padding-left: 16px;
+        margin: 12px 0;
+      }
+      .pros-list li {
+        color: #5effa1;
+        margin-bottom: 4px;
+      }
+      .principle-header {
+        font-size: 2rem;
+        color: var(--accent);
+        font-family: "Raleway", sans-serif;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }

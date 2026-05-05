@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema 02 · JavaScript en HTML y consola | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+  <link rel="stylesheet" href="pbpew-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">PBPEW</a>
+      <span>Tema 02</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Tema 02</span>
+      <h1 class="hero-title">JavaScript en HTML, “Hola mundo” y consola</h1>
+      <p class="hero-sub">Dónde colocar scripts, archivos externos, comentarios y el uso de <code>console</code> para depurar.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer</a>
+    </div>
+  </section>
+
+  <article class="pbpew-content section-alt" id="articulo">
+    <h2 id="objetivos" class="reveal">Objetivos</h2>
+    <ul class="reveal">
+      <li>Diferenciar JavaScript inline y externo.</li>
+      <li>Saber colocar <code>&lt;script&gt;</code> en HTML sin romper el parseo del DOM.</li>
+      <li>Escribir “Hola mundo” y usar los métodos principales de <code>console</code>.</li>
+      <li>Usar comentarios para documentar el código.</li>
+    </ul>
+
+    <h2 id="inline-externo" class="reveal">JavaScript inline y externo</h2>
+    <p class="reveal"><strong>Inline</strong>: código dentro del mismo HTML, en un atributo (<code>onclick</code>, etc.) o entre etiquetas <code>&lt;script&gt;</code>.</p>
+    <p class="reveal"><strong>Externo</strong>: código en un archivo <code>.js</code> enlazado con <code>&lt;script src="..."&gt;&lt;/script&gt;</code>. Mejor para reutilizar y cachear.</p>
+
+    <h2 id="donde-script" class="reveal">¿Dónde poner el <code>&lt;script&gt;</code>?</h2>
+    <ul class="reveal">
+      <li><strong>Al final del <code>&lt;body&gt;</code></strong> (recomendado en páginas clásicas): cuando el script se ejecuta, el DOM ya está construido.</li>
+      <li><strong>En el <code>&lt;head&gt;</code></strong> con <code>defer</code>: el navegador descarga el script en paralelo y lo ejecuta tras parsear el HTML.</li>
+    </ul>
+<pre class="reveal"><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;title&gt;Ejemplo&lt;/title&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="msg"&gt;Hola&lt;/p&gt;
+  &lt;script&gt;
+    console.log("Script al final del body");
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h2 id="hola-mundo" class="reveal">Hola mundo con JavaScript</h2>
+<pre class="reveal"><code class="language-html">&lt;script&gt;
+  console.log("Hola mundo");
+&lt;/script&gt;</code></pre>
+    <p class="reveal">Si quieres modificar la página al cargar:</p>
+<pre class="reveal"><code class="language-javascript">document.body.innerHTML = "&lt;p&gt;Hola mundo desde JS&lt;/p&gt;";</code></pre>
+
+    <h2 id="consola" class="reveal">Consola del navegador y tipos de mensajes</h2>
+    <p class="reveal">La consola muestra salida y errores. Métodos habituales:</p>
+    <ul class="reveal">
+      <li><code>console.log</code>: mensaje general.</li>
+      <li><code>console.info</code>: informativo (apariencia puede variar según el navegador).</li>
+      <li><code>console.warn</code>: advertencias en amarillo.</li>
+      <li><code>console.error</code>: errores en rojo, con traza.</li>
+      <li><code>console.table</code>: tablas a partir de arrays u objetos.</li>
+      <li><code>console.time</code> / <code>console.timeEnd</code>: medir duración.</li>
+    </ul>
+<pre class="reveal"><code class="language-javascript">console.log("Paso 1");
+console.warn("Cuidado: valor límite");
+console.error("Algo falló");
+console.table([
+  { nombre: "Ana", nota: 5 },
+  { nombre: "Luis", nota: 4.5 },
+]);
+console.time("bucle");
+for (let i = 0; i &lt; 1e6; i++) {}
+console.timeEnd("bucle");</code></pre>
+
+    <h2 id="comentarios" class="reveal">Comentarios en el código</h2>
+<pre class="reveal"><code class="language-javascript">// Comentario de una línea
+
+/*
+  Comentario de
+  varias líneas
+*/
+const pi = 3.14; // explicar constantes poco obvias</code></pre>
+
+    <div class="callout reveal">
+      <p><strong>Buena práctica</strong>: comenta el “por qué”, no lo obvio. El código claro reduce la necesidad de comentarios largos.</p>
+    </div>
+
+    <h2 id="resumen" class="reveal">Resumen</h2>
+    <ul class="reveal">
+      <li>Prefiere JS externo + <code>defer</code> o script al final del <code>body</code>.</li>
+      <li>La consola es tu aliada con <code>log</code>, <code>warn</code>, <code>error</code> y <code>table</code>.</li>
+      <li>Los comentarios ayudan a futuros lectores (incluido tú dentro de un mes).</li>
+    </ul>
+  </article>
+
+  <div class="nav-row">
+    <a class="nav-card" href="01-intro-js-y-dom.html"><i class="bi bi-arrow-left"></i> Anterior</a>
+    <a class="nav-card" href="03-variables-y-tipos.html">Siguiente <i class="bi bi-arrow-right"></i></a>
+  </div>
+
+  <footer class="site-footer">PBPEW · Tema 02</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="pbpew.js"></script>
+</body>
+</html>

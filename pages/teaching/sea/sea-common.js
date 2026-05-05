@@ -1,4 +1,6 @@
 (function () {
+  "use strict";
+
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener("click", function (e) {
       var id = a.getAttribute("href");
@@ -11,29 +13,37 @@
     });
   });
 
-  if (typeof hljs !== "undefined") {
-    hljs.highlightAll();
-  }
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    },
+    { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+  );
 
-  var reduced =
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".reveal").forEach(function (el) {
+    observer.observe(el);
+  });
+
+  if (typeof hljs !== "undefined") {
+    document.querySelectorAll("pre code").forEach(function (block) {
+      hljs.highlightElement(block);
+    });
+  }
 
   if (typeof mermaid !== "undefined") {
     mermaid.initialize({
       startOnLoad: false,
-      theme: "dark",
+      theme: "neutral",
       securityLevel: "loose",
-      themeVariables: {
-        darkMode: true,
-      },
+      fontFamily: "Poppins, sans-serif",
     });
-    var nodes = document.querySelectorAll(".mermaid");
-    if (nodes.length) {
-      if (reduced) {
-        mermaid.initialize({ theme: "dark", startOnLoad: false });
-      }
-      mermaid.run({ nodes: nodes });
+    var diagrams = document.querySelectorAll(".mermaid");
+    if (diagrams.length) {
+      mermaid.run({ querySelector: ".mermaid" });
     }
   }
 

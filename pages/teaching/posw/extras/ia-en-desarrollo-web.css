@@ -1,0 +1,222 @@
+/* ===== Flujo de verificación código IA ===== */
+      .ai-verify-flow {
+        background: linear-gradient(145deg, #12121f, #1a1a2e);
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 22px 20px;
+        margin: 24px 0;
+        max-width: 520px;
+      }
+      .ai-flow-step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        background: var(--surface);
+        border: 1px solid #2a2a3e;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        color: var(--text);
+      }
+      .ai-flow-step i {
+        color: var(--accent);
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .ai-flow-arrow {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+        padding: 4px 0;
+      }
+      .ai-flow-split {
+        margin: 8px 0 12px;
+        padding: 12px;
+        background: rgba(123, 94, 167, 0.1);
+        border: 1px solid rgba(123, 94, 167, 0.35);
+        border-radius: 10px;
+      }
+      .ai-flow-split .ai-q {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #d4c4f0;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .ai-branch-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .ai-branch {
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 0.76rem;
+        line-height: 1.45;
+      }
+      .ai-branch.no {
+        background: rgba(255, 107, 107, 0.08);
+        border: 1px solid rgba(255, 107, 107, 0.35);
+      }
+      .ai-branch.yes {
+        background: rgba(46, 213, 115, 0.08);
+        border: 1px solid rgba(46, 213, 115, 0.3);
+      }
+      .ai-branch strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 0.72rem;
+      }
+      .ai-branch.no strong {
+        color: #ff8a8a;
+      }
+      .ai-branch.yes strong {
+        color: #2ed573;
+      }
+      @media (max-width: 576px) {
+        .ai-branch-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      .posw-table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--surface);
+      }
+      .posw-table th {
+        background: var(--accent2);
+        color: #fff;
+        padding: 12px 16px;
+        text-align: left;
+      }
+      .posw-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid #2a2a2a;
+      }
+      .posw-table tr:nth-child(even) td {
+        background: #1a1a1a;
+      }
+      .posw-table tr:hover td {
+        background: #222;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      .nav-card {
+        background: var(--surface);
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 16px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        color: var(--text);
+        transition: border-color 0.2s;
+        margin-bottom: 12px;
+      }
+      .nav-card:hover {
+        border-color: var(--accent);
+        color: var(--text);
+      }
+      .nav-card i {
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .risk-card {
+        background: #1a0a0a;
+        border: 1px solid #ff4757;
+        border-radius: 12px;
+        padding: 24px;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .risk-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      .risk-card:hover {
+        border-color: #ff6b7a;
+      }
+      .risk-icon {
+        font-size: 2rem;
+        color: #ff4757;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .check-list li {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 8px;
+        align-items: flex-start;
+      }
+      .check-list li::before {
+        content: "✓";
+        color: #2ed573;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .flow-step {
+        display: flex;
+        gap: 16px;
+        padding: 16px;
+        border: 1px solid #222;
+        background: var(--bg);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .flow-step.visible {
+        opacity: 1;
+        transform: translateX(0);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      .flow-num {
+        background: var(--accent2);
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-size: 0.9rem;
+      }
+      .analogy-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 24px 0;
+      }
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.4rem;
+        }
+      }

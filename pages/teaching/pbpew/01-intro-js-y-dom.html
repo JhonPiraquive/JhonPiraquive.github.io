@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema 01 · Introducción a JavaScript y el DOM | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+  <link rel="stylesheet" href="pbpew-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">PBPEW</a>
+      <span>Tema 01 · Introducción</span></span>
+    </div>
+    <nav class="site-nav">
+      <a href="#articulo">Contenido</a>
+      <a href="index.html">Índice</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Tema 01</span>
+      <h1 class="hero-title">¿Qué es JavaScript? · Historia · DOM</h1>
+      <p class="hero-sub">Contexto del lenguaje, para qué sirve hoy y cómo el navegador representa la página como árbol DOM.</p>
+      <a href="#articulo" class="btn-primary-custom">Empezar</a>
+    </div>
+  </section>
+
+  <article class="pbpew-content section-alt" id="articulo">
+    <h2 id="objetivos" class="reveal">Objetivos del tema</h2>
+    <ul class="reveal">
+      <li>Definir JavaScript y nombrar características clave.</li>
+      <li>Relacionar JS con desarrollo web, servidor (Node.js), móvil y videojuegos.</li>
+      <li>Explicar la cadena típica TS/JSX → JS → React Native → Kotlin/Swift.</li>
+      <li>Entender el DOM como puente entre HTML y JavaScript.</li>
+    </ul>
+
+    <h2 id="que-es-js" class="reveal">¿Qué es JavaScript?</h2>
+    <p class="reveal">JavaScript es un <strong>lenguaje de programación</strong> diseñado al principio para dar <strong>comportamiento</strong> a las páginas web en el navegador: validar formularios, reaccionar a clics, cambiar el contenido sin recargar toda la página, etc.</p>
+    <p class="reveal">Hoy también se usa fuera del navegador (servidores con Node.js, herramientas de desarrollo, scripts). El estándar que define el lenguaje se publica como <strong>ECMAScript</strong>; cuando leas “ES2015”, “ES6” o “ES2024”, se refieren a <strong>versiones</strong> de ese estándar.</p>
+
+    <h2 id="caracteristicas" class="reveal">Características principales</h2>
+    <ul class="reveal">
+      <li><strong>Interpretado</strong>: el motor (navegador u otro entorno) lee y ejecuta el código sin un paso de compilación obligatorio como en algunos lenguajes clásicos.</li>
+      <li><strong>Dinámico</strong>: el tipo de una variable puede cambiar según el valor que guardes (tipado dinámico).</li>
+      <li><strong>Multiparadigma</strong>: puedes programar con funciones, objetos y, desde ES6, también con <code>class</code> para orientación a objetos.</li>
+      <li><strong>Event-driven</strong> en el navegador: mucho código “reacciona” a eventos (clic, tecla, carga de página).</li>
+      <li><strong>Un solo hilo</strong> en el modelo clásico del navegador para tu página; la asincronía (más adelante en el curso) organiza tareas sin bloquear la interfaz.</li>
+    </ul>
+
+    <h2 id="usos" class="reveal">¿Para qué se usa JavaScript?</h2>
+    <h3 class="reveal">Desarrollo web (front-end)</h3>
+    <p class="reveal">JS manipula el DOM, valida datos, comunica con APIs y construye experiencias interactivas. Muchos sitios combinan HTML (estructura), CSS (presentación) y JavaScript (comportamiento).</p>
+
+    <h3 class="reveal">Aplicaciones en servidor (Node.js)</h3>
+    <p class="reveal"><strong>Node.js</strong> es un entorno que ejecuta JavaScript fuera del navegador. Sirve para APIs REST, herramientas de línea de comandos, automatización y servidores en tiempo real.</p>
+<pre class="reveal"><code class="language-javascript">// Ejemplo mínimo conceptual: un servidor Node escucha peticiones (no hace falta memorizarlo todavía)
+// const http = require('http');
+// http.createServer((req, res) => res.end('Hola')).listen(3000);</code></pre>
+
+    <h3 class="reveal">Aplicaciones móviles (TypeScript / JSX → React Native)</h3>
+    <p class="reveal">En ecosistemas como <strong>React Native</strong> sueles escribir en <strong>TypeScript</strong> o usar sintaxis <strong>JSX</strong> (HTML dentro de JavaScript). Un <strong>transpilador</strong> (por ejemplo Babel) convierte ese código a JavaScript estándar. El framework ejecuta la lógica y, mediante su <strong>puente nativo</strong>, traduce la interfaz y las llamadas a componentes que en Android terminan interactuando con <strong>Kotlin/Java</strong> y en iOS con <strong>Swift/Objective-C</strong>, produciendo el ejecutable de la app.</p>
+    <div class="mermaid-wrap reveal"><div class="mermaid">
+flowchart LR
+  subgraph dev [Código que escribes]
+    TS[TypeScript / JSX]
+  end
+  subgraph build [Herramientas]
+    TR[Transpilador Babel]
+    RN[React Native]
+  end
+  subgraph native [Plataforma]
+    A[Android Kotlin/Java]
+    I[iOS Swift]
+  end
+  TS --> TR
+  TR --> JS[Código JavaScript]
+  JS --> RN
+  RN --> A
+  RN --> I
+    </div></div>
+
+    <h3 class="reveal">Videojuegos</h3>
+    <p class="reveal">Existen motores y bibliotecas (Phaser, Three.js, engines web) que usan JavaScript o WebGL para juegos en navegador o empaquetados como aplicación.</p>
+
+    <h2 id="historia" class="reveal">Historia breve y vídeo</h2>
+    <p class="reveal">JavaScript nació en 1995 en Netscape, de la mano de Brendan Eich, con el nombre inicial “Mocha” y luego “LiveScript”. Se estandarizó bajo el nombre ECMAScript. La historia incluye la “guerra de los navegadores”, la evolución por versiones ES y el auge de Node.js y los frameworks modernos.</p>
+    <div class="video-wrap reveal">
+      <iframe src="https://www.youtube.com/embed/siOequzM1zM" title="Historia de JavaScript" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <h2 id="dom" class="reveal">¿Qué es el DOM?</h2>
+    <p class="reveal">Cuando el navegador lee un documento HTML, construye una representación en memoria: el <strong>Document Object Model (DOM)</strong>. Es un <strong>árbol de nodos</strong>: documento, elementos (<code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>), texto, atributos, etc.</p>
+    <p class="reveal">JavaScript puede <strong>recorrer y modificar</strong> ese árbol: crear nodos, cambiar texto, estilos o escuchar eventos. No confundas el DOM con el código fuente HTML en disco: el DOM es la <strong>estructura viva</strong> en memoria que puede cambiar sin volver a pedir el archivo al servidor.</p>
+    <div class="mermaid-wrap reveal"><div class="mermaid">
+flowchart TB
+  doc[document]
+  html[html]
+  head[head]
+  body[body]
+  doc --> html
+  html --> head
+  html --> body
+  body --> h1[h1 Texto del título]
+  body --> p[p párrafo]
+    </div></div>
+<pre class="reveal"><code class="language-javascript">// El objeto global document es la entrada al DOM
+console.log(document.documentElement.tagName); // "HTML"</code></pre>
+
+    <h2 id="practica" class="reveal">Comprueba tu comprensión</h2>
+    <ol class="reveal">
+      <li>Enumera tres ámbitos donde se usa JavaScript hoy.</li>
+      <li>Explica con tus palabras qué gana una página web al poder modificar el DOM.</li>
+      <li>¿Por qué TypeScript suele “convertirse” a JavaScript antes de ejecutarse en muchos proyectos?</li>
+    </ol>
+
+    <h2 id="resumen" class="reveal">Resumen</h2>
+    <ul class="reveal">
+      <li>JavaScript da comportamiento a la web y se ha extendido a servidor y otras plataformas.</li>
+      <li>El DOM es el árbol de objetos que representa la página; JS lo manipula en tiempo de ejecución.</li>
+      <li>En móvil con React Native, el código TS/JSX suele transpilarse a JS y el framework habla con capas nativas.</li>
+    </ul>
+  </article>
+
+  <div class="nav-row">
+    <a class="nav-card" href="index.html"><i class="bi bi-house-door"></i> Índice del curso</a>
+    <a class="nav-card" href="02-js-en-html.html">Siguiente: JS en HTML <i class="bi bi-arrow-right"></i></a>
+  </div>
+
+  <footer class="site-footer">
+    PBPEW · Tema 01 · Introducción a JavaScript y el DOM
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="pbpew.js"></script>
+</body>
+</html>

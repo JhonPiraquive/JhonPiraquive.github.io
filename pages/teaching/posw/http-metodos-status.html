@@ -4,300 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Métodos HTTP y Códigos de Estado | POSW</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
-    />
-    <style>
-      :root {
-        --bg: #0d0d0d;
-        --surface: #141414;
-        --accent: #00d4ff;
-        --accent2: #7b5ea7;
-        --text: white;
-        --muted: #888;
-      }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        background: var(--bg);
-        color: var(--text);
-        font-family: "Poppins", sans-serif;
-        line-height: 1.7;
-      }
-      h1,
-      h2,
-      h3 {
-        font-family: "Raleway", sans-serif;
-      }
-      a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: var(--surface);
-        border-bottom: 1px solid var(--accent);
-        padding: 12px 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-      .logo {
-        font-family: "Raleway", sans-serif;
-        font-weight: 800;
-        font-size: 1.4rem;
-        color: var(--accent);
-      }
-      .logo span {
-        color: var(--muted);
-        font-size: 0.85rem;
-        font-weight: 400;
-        margin-left: 10px;
-        font-family: "Poppins", sans-serif;
-      }
-      .site-nav a {
-        color: var(--muted);
-        font-size: 0.85rem;
-        margin-left: 18px;
-        transition: color 0.2s;
-      }
-      .site-nav a:hover {
-        color: var(--accent);
-      }
-      #hero {
-        min-height: 60vh;
-        background: linear-gradient(135deg, var(--bg), var(--surface));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 60px 24px;
-      }
-      .hero-inner {
-        max-width: 700px;
-      }
-      .badge-tema {
-        background: var(--accent2);
-        color: #fff;
-        padding: 4px 14px;
-        border-radius: 999px;
-        font-size: 0.8rem;
-        display: inline-block;
-        margin-bottom: 20px;
-      }
-      .hero-title {
-        font-size: 3.5rem;
-        color: var(--accent);
-        animation: fadeInUp 0.6s ease both;
-      }
-      .hero-sub {
-        color: var(--muted);
-        max-width: 600px;
-        margin: 16px auto 28px;
-      }
-      .btn-cta {
-        background: var(--accent);
-        color: var(--bg);
-        border: none;
-        border-radius: 999px;
-        padding: 12px 32px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: transform 0.2s;
-        display: inline-block;
-      }
-      .btn-cta:hover {
-        transform: scale(1.04);
-        color: var(--bg);
-      }
-      section {
-        padding: 80px 0;
-      }
-      .section-alt {
-        background: var(--surface);
-      }
-      .section-title {
-        font-size: 1.8rem;
-        color: var(--text);
-        border-left: 4px solid var(--accent);
-        padding-left: 16px;
-        margin-bottom: 32px;
-      }
-      .method-card {
-        background: var(--surface);
-        border: 1px solid #222;
-        border-radius: 10px;
-        padding: 20px;
-        transition:
-          transform 0.2s,
-          border-color 0.2s;
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      .method-card.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .method-card:hover {
-        transform: translateY(-5px) !important;
-      }
-      .method-name {
-        font-family: monospace;
-        font-size: 1.6rem;
-        font-weight: 700;
-        display: block;
-        margin-bottom: 8px;
-      }
-      .badge-prop {
-        font-size: 0.75rem;
-        padding: 2px 8px;
-        border-radius: 999px;
-        margin-right: 4px;
-      }
-      .posw-table {
-        border-collapse: collapse;
-        width: 100%;
-        background: var(--surface);
-      }
-      .posw-table th {
-        background: var(--accent2);
-        color: #fff;
-        padding: 12px 16px;
-        text-align: left;
-      }
-      .posw-table td {
-        padding: 12px 16px;
-        border-bottom: 1px solid #2a2a2a;
-      }
-      .posw-table tr:nth-child(even) td {
-        background: #1a1a1a;
-      }
-      .table-wrap {
-        overflow-x: auto;
-      }
-      .muted-note {
-        background: var(--surface);
-        border-left: 4px solid var(--muted);
-        padding: 14px;
-        border-radius: 6px;
-        color: var(--muted);
-        font-size: 0.9rem;
-        margin-top: 16px;
-      }
-      .accordion-button {
-        background: var(--surface) !important;
-        color: var(--text) !important;
-        font-weight: 600;
-      }
-      .accordion-button:not(.collapsed) {
-        background: #1e1e1e !important;
-        color: var(--accent) !important;
-      }
-      .accordion-item {
-        background: var(--surface);
-        border: 1px solid #2a2a2a;
-      }
-      .accordion-body {
-        background: var(--bg);
-      }
-      .nav-card {
-        background: var(--surface);
-        border: 1px solid #333;
-        border-radius: 8px;
-        padding: 16px 24px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        text-decoration: none;
-        color: var(--text);
-        transition: border-color 0.2s;
-        margin-bottom: 12px;
-      }
-      .nav-card:hover {
-        border-color: var(--accent);
-        color: var(--text);
-      }
-      .nav-card i {
-        font-size: 1.4rem;
-        color: var(--accent);
-      }
-      .site-footer {
-        background: var(--surface);
-        border-top: 1px solid #222;
-        padding: 24px;
-        text-align: center;
-        color: var(--muted);
-        font-size: 0.85rem;
-      }
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @media (max-width: 768px) {
-        .hero-title {
-          font-size: 2.4rem;
-        }
-      }
-      /* Tabs normales */
-      .nav-tabs .nav-link {
-        color: var(--text);
-        transition: color 0.2s;
-      }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+    <link rel="stylesheet" href="posw-theme.css" />
+    <link rel="stylesheet" href="extras/http-metodos-status.css" />
 
-      /* Tab activo */
-      .nav-tabs .nav-link.active {
-        color: #000 !important; /* negro */
-        background-color: var(--accent); /* opcional para contraste */
-        border-color: var(--accent) var(--accent) transparent;
-      }
-
-      /* Hover opcional */
-      .nav-tabs .nav-link:hover {
-        color: var(--accent);
-      }
-      .posw-table {
-        border-collapse: collapse;
-        width: 100%;
-        background: var(--surface);
-        color: #eaeaea;
-      }
-
-      .posw-table td {
-        padding: 12px 16px;
-        border-bottom: 1px solid #2a2a2a;
-        color: #eaeaea;
-      }
-
-      .posw-table tr:hover td {
-        background: #222; /* efecto hover */
-      }
-    </style>
+    
   </head>
   <body>
     <header class="site-header">
@@ -314,7 +28,7 @@
     </header>
 
     <section id="hero">
-      <div class="hero-inner">
+      <div class="hero-inner reveal">
         <span class="badge-tema">Tema 4</span>
         <h1 class="hero-title">Métodos HTTP y Códigos de Estado</h1>
         <p class="hero-sub">
@@ -1002,9 +716,7 @@ Content-Type: application/json
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script>
-      hljs.highlightAll();
-      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    <script>document.querySelectorAll('a[href^="#"]').forEach((a) => {
         a.addEventListener("click", (e) => {
           const t = document.querySelector(a.getAttribute("href"));
           if (t) {
@@ -1022,5 +734,6 @@ Content-Type: application/json
       );
       document.querySelectorAll(".method-card").forEach((c) => obs.observe(c));
     </script>
-  </body>
+      <script src="posw.js"></script>
+</body>
 </html>

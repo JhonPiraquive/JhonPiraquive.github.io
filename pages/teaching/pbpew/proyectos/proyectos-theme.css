@@ -1,0 +1,182 @@
+/* Extensión ligera para mini proyectos PBPEW (tema claro) — cargar junto a ../pbpew-theme.css */
+
+.project-wrap {
+  max-width: 560px;
+  margin: 24px auto;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(15, 118, 110, 0.08);
+}
+
+.project-wrap h2 {
+  margin-top: 0;
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.calc-grid button {
+  font-family: inherit;
+  font-size: 1.1rem;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-alt);
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.calc-grid button:hover {
+  transform: scale(1.03);
+  background: #ecfdf5;
+}
+
+.calc-grid button:active {
+  transform: scale(0.98);
+}
+
+.calc-display {
+  grid-column: 1 / -1;
+  font-family: ui-monospace, monospace;
+  font-size: 1.35rem;
+  padding: 14px 16px;
+  background: var(--code-bg);
+  border-radius: 10px;
+  border: 1px solid var(--pre-border);
+  text-align: right;
+  min-height: 52px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: var(--bg);
+  animation: todoIn 0.35s ease both;
+}
+
+@keyframes todoIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.todo-item.done span.label {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.filter-bar button {
+  margin-right: 6px;
+  margin-bottom: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.filter-bar button.active {
+  background: linear-gradient(135deg, var(--accent), #14b8a6);
+  color: #fff;
+  border-color: transparent;
+}
+
+.rps-btn {
+  font-size: 2.5rem;
+  padding: 16px 24px;
+  margin: 6px;
+  border-radius: 14px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rps-btn:hover {
+  transform: translateY(-4px) rotate(-3deg);
+  box-shadow: 0 12px 24px rgba(234, 88, 12, 0.15);
+}
+
+.score-board {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+/* Ajedrez */
+.chess-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: min(96vw, 420px);
+  aspect-ratio: 1;
+  margin: 16px auto;
+  border: 3px solid var(--accent);
+  border-radius: 6px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.chess-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.chess-square.light {
+  background: #f1ede4;
+}
+
+.chess-square.dark {
+  background: #b8c4a8;
+}
+
+.chess-square.selected {
+  outline: 3px solid var(--accent2);
+  outline-offset: -3px;
+  z-index: 1;
+}
+
+.chess-square.hint {
+  box-shadow: inset 0 0 0 3px rgba(15, 118, 110, 0.45);
+}
+
+.chess-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.chess-toolbar button {
+  font-family: inherit;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  cursor: pointer;
+}

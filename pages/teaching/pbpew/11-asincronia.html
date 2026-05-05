@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema 11 · Asincronía | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+  <link rel="stylesheet" href="pbpew-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">PBPEW</a>
+      <span>Tema 11</span></span>
+    </div>
+    <nav class="site-nav"><a href="index.html">Índice</a></nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Tema 11</span>
+      <h1 class="hero-title">Sincronía vs asincronía · temporizadores · promesas · async/await</h1>
+      <p class="hero-sub">No bloquear la interfaz; programar tareas que terminan “más tarde”. Template literals.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer</a>
+    </div>
+  </section>
+
+  <article class="pbpew-content section-alt" id="articulo">
+    <h2 id="sync-async" class="reveal">¿Qué cambia con lo asíncrono?</h2>
+    <p class="reveal">Código <strong>sincrónico</strong> se ejecuta línea a línea; cada línea espera a la anterior. Código <strong>asíncrono</strong> programa trabajo que completa más tarde (red, temporizador); el navegador puede seguir respondiendo a la UI.</p>
+
+    <h2 id="timeout-interval" class="reveal"><code>setTimeout</code> y <code>setInterval</code></h2>
+<pre class="reveal"><code class="language-javascript">const id = setTimeout(() => {
+  console.log("Pasó 1 segundo");
+}, 1000);
+
+const tick = setInterval(() => {
+  console.log("tic");
+}, 2000);
+clearInterval(tick);</code></pre>
+
+    <h2 id="promesas" class="reveal">Promesas</h2>
+    <p class="reveal">Una <strong>Promise</strong> representa un valor futuro: pendiente, cumplida (<code>resolved</code>) o rechazada (<code>rejected</code>).</p>
+<pre class="reveal"><code class="language-javascript">function esperar(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+esperar(500).then(() => console.log("listo"));</code></pre>
+
+    <h2 id="then-catch" class="reveal"><code>then</code>, <code>catch</code>, <code>finally</code></h2>
+<pre class="reveal"><code class="language-javascript">fetch("/api/datos.json")
+  .then((r) => r.json())
+  .then((data) => console.log(data))
+  .catch((err) => console.error("Fallo", err))
+  .finally(() => console.log("Fin del intento"));</code></pre>
+
+    <h2 id="async-await" class="reveal"><code>async</code> / <code>await</code></h2>
+<pre class="reveal"><code class="language-javascript">async function cargar() {
+  try {
+    const res = await fetch("/api/datos.json");
+    const data = await res.json();
+    console.log(data);
+  } catch (e) {
+    console.error(e);
+  }
+}</code></pre>
+
+    <h2 id="template" class="reveal">Template literals</h2>
+<pre class="reveal"><code class="language-javascript">const nombre = "Diana";
+const saludo = `Hola ${nombre}, bienvenida a PBPEW`;
+const multilinea = `
+  Línea 1
+  Línea 2`;</code></pre>
+
+    <div class="mermaid-wrap reveal"><div class="mermaid">
+sequenceDiagram
+  participant C as Código
+  participant W as Web API
+  participant Q as Cola de tareas
+  C->>W: setTimeout / fetch
+  W->>Q: callback / respuesta
+  Q->>C: ejecuta cuando puede
+    </div></div>
+
+    <h2 id="resumen" class="reveal">Resumen</h2>
+    <ul class="reveal">
+      <li>Temporizadores y red son asíncronos; encadenas con promesas o <code>async/await</code>.</li>
+      <li><code>catch</code> maneja errores en promesas; <code>finally</code> limpia siempre.</li>
+      <li>Los template literals interpolan expresiones con <code>${}</code>.</li>
+    </ul>
+  </article>
+
+  <div class="nav-row">
+    <a class="nav-card" href="10-dom-y-eventos.html"><i class="bi bi-arrow-left"></i> Anterior</a>
+    <a class="nav-card" href="12-ajax-fetch.html">Siguiente <i class="bi bi-arrow-right"></i></a>
+  </div>
+
+  <footer class="site-footer">PBPEW · Tema 11</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="pbpew.js"></script>
+</body>
+</html>

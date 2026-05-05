@@ -1,0 +1,40 @@
+.note-card {
+        background: var(--surface);
+        border-left: 4px solid var(--accent);
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 24px;
+        color: var(--text);
+      }
+      .card-anim {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .card-anim.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .site-footer {
+        background: var(--surface);
+        border-top: 1px solid #222;
+        padding: 24px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      pre code.hljs {
+        border-radius: 8px;
+      }

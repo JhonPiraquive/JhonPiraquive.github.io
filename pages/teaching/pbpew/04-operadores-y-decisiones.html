@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tema 04 · Operadores y decisiones | PBPEW</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+  <link rel="stylesheet" href="pbpew-theme.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="logo"><a href="index.html">PBPEW</a>
+      <span>Tema 04</span></span>
+    </div>
+    <nav class="site-nav"><a href="index.html">Índice</a></nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-inner reveal">
+      <span class="badge-tema">Tema 04</span>
+      <h1 class="hero-title">Operadores y control de flujo: if / switch</h1>
+      <p class="hero-sub">Aritmética, comparación y lógica; decisiones con <code>if</code>, <code>else if</code> y <code>switch</code>.</p>
+      <a href="#articulo" class="btn-primary-custom">Leer</a>
+    </div>
+  </section>
+
+  <article class="pbpew-content section-alt" id="articulo">
+    <h2 id="objetivos" class="reveal">Objetivos</h2>
+    <ul class="reveal">
+      <li>Usar operadores aritméticos, de comparación y lógicos.</li>
+      <li>Escribir ramas con <code>if</code>, <code>else if</code> y <code>else</code>.</li>
+      <li>Elegir entre varias opciones con <code>switch</code>.</li>
+    </ul>
+
+    <h2 id="aritmeticos" class="reveal">Operadores aritméticos</h2>
+<pre class="reveal"><code class="language-javascript">let a = 10 + 3; // 13
+let b = 10 - 3;
+let c = 10 * 3;
+let d = 10 / 3;
+let e = 10 % 3; // resto: 1
+let f = 2 ** 8; // potencia: 256</code></pre>
+
+    <h2 id="comparacion" class="reveal">Comparación</h2>
+    <p class="reveal">Usa <code>===</code> y <code>!==</code> para comparar <strong>valor y tipo</strong>. <code>==</code> hace coerción y suele confundir.</p>
+<pre class="reveal"><code class="language-javascript">5 === "5"; // false
+5 == "5"; // true (coerción)
+10 &gt; 3; // true
+10 &lt;= 10; // true</code></pre>
+
+    <h2 id="logicos" class="reveal">Operadores lógicos</h2>
+<pre class="reveal"><code class="language-javascript">true && false; // AND → false
+true || false; // OR → true
+!true; // NOT → false
+
+// Cortocircuito útil:
+const nombre = "" || "invitado"; // "invitado"</code></pre>
+
+    <h2 id="if-else" class="reveal"><code>if</code>, <code>else if</code>, <code>else</code></h2>
+<pre class="reveal"><code class="language-javascript">const nota = Number(prompt("Nota (0-5):"));
+
+if (Number.isNaN(nota)) {
+  console.log("No escribiste un número válido");
+} else if (nota &gt;= 3.0) {
+  console.log("Aprobado");
+} else {
+  console.log("Debes mejorar");
+}</code></pre>
+
+    <h2 id="switch" class="reveal"><code>switch</code></h2>
+<pre class="reveal"><code class="language-javascript">const dia = "lunes";
+
+switch (dia) {
+  case "lunes":
+  case "miércoles":
+    console.log("Hay clase de PBPEW");
+    break;
+  case "viernes":
+    console.log("Repaso");
+    break;
+  default:
+    console.log("Otro día");
+}</code></pre>
+
+    <div class="mermaid-wrap reveal"><div class="mermaid">
+flowchart TD
+  A[Condición] -->|true| B[Bloque A]
+  A -->|false| C{¿Otra condición?}
+  C -->|true| D[Bloque B]
+  C -->|false| E[Bloque por defecto]
+    </div></div>
+
+    <h2 id="resumen" class="reveal">Resumen</h2>
+    <ul class="reveal">
+      <li>Prefiere <code>===</code> para igualdad estricta.</li>
+      <li><code>if</code> encadena decisiones; <code>switch</code> lista valores discretos.</li>
+      <li>No olvides <code>break</code> en <code>switch</code> si no quieres “caída” al siguiente caso.</li>
+    </ul>
+  </article>
+
+  <div class="nav-row">
+    <a class="nav-card" href="03-variables-y-tipos.html"><i class="bi bi-arrow-left"></i> Anterior</a>
+    <a class="nav-card" href="05-bucles-y-errores.html">Siguiente <i class="bi bi-arrow-right"></i></a>
+  </div>
+
+  <footer class="site-footer">PBPEW · Tema 04</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="pbpew.js"></script>
+</body>
+</html>
