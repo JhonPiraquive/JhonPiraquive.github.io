@@ -1317,10 +1317,89 @@ section {
   .no-print,
   #header,
   #hero,
-  #certifications,
-  #hobbies,
   .back-to-top,
   .mobile-nav-toggle           { display: none !important; }
+
+  /* ===================================================
+     Certifications — print-friendly layout + attachments
+  =================================================== */
+  #certifications .cert-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10pt !important;
+  }
+
+  #certifications .cert-card {
+    border: 1pt solid rgba(0, 0, 0, 0.10) !important;
+    border-radius: 10pt !important;
+    overflow: hidden !important;
+  }
+
+  #certifications .cert-thumb {
+    aspect-ratio: auto !important;
+    border-bottom: 1pt solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  #certifications .cert-thumb img {
+    max-height: 110pt !important;
+    width: 100% !important;
+    object-fit: contain !important;
+  }
+
+  #certifications .cert-body {
+    padding: 8pt 9pt !important;
+  }
+
+  #certifications .cert-title {
+    font-size: 10.5pt !important;
+    margin: 0 !important;
+  }
+
+  #certifications .cert-desc {
+    font-size: 8.5pt !important;
+    margin: 4pt 0 0 0 !important;
+    color: #333 !important;
+  }
+
+  /* Make the print-only attachments list visible and compact */
+  #certifications .cert-attachments {
+    display: block !important;
+    margin: 6pt 0 10pt 0 !important;
+    padding: 8pt 10pt !important;
+    border: 1pt solid rgba(20, 157, 221, 0.35) !important;
+    border-radius: 10pt !important;
+    background: rgba(20, 157, 221, 0.06) !important;
+  }
+
+  #certifications .cert-attachments h3 {
+    font-family: "Poppins", sans-serif;
+    font-size: 10.5pt !important;
+    margin: 0 0 6pt 0 !important;
+    color: #040b14 !important;
+  }
+
+  #certifications .cert-attachments ol {
+    margin: 0 !important;
+    padding-left: 14pt !important;
+  }
+
+  #certifications .cert-attachments li {
+    margin: 2pt 0 !important;
+    font-size: 8.5pt !important;
+    color: #1a1a1a !important;
+    word-break: break-word !important;
+  }
+
+  #certifications .cert-attachments a {
+    color: #040b14 !important;
+    text-decoration: none !important;
+  }
+
+  #certifications .cert-attachments .print-url {
+    display: block !important;
+    font-size: 7.5pt !important;
+    color: #555 !important;
+  }
 
   /* ===================================================
      Sections — reset padding and backgrounds
