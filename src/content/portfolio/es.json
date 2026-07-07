@@ -1,0 +1,358 @@
+{
+  "meta": {
+    "title": "Jhon Alejandro Piraquive | Hoja de Vida & Portafolio",
+    "description": "Ingeniero en Sistemas, Especialista en Ciberseguridad y Desarrollador Fullstack en Medellín, Colombia."
+  },
+  "brand": {
+    "name": "Jhon Alejandro Piraquive",
+    "tagline": "Construyendo el futuro digital.",
+    "typedRoles": [
+      "Senior Developer",
+      "Especialista en Ciberseguridad",
+      "Profesor Universitario",
+      "Ingeniero en Sistemas y Telecomunicaciones",
+      "Desarrollador Fullstack"
+    ]
+  },
+  "nav": [
+    { "id": "hero", "label": "Inicio" },
+    { "id": "about", "label": "Acerca de mí" },
+    { "id": "archetype", "label": "Mi enfoque" },
+    { "id": "certifications", "label": "Certificaciones" },
+    { "id": "skills", "label": "Habilidades" },
+    { "id": "resume", "label": "Experiencia" },
+    { "id": "education", "label": "Educación" },
+    { "id": "posts", "label": "Publicaciones" },
+    { "id": "hobbies", "label": "Intereses" },
+    { "id": "teaching", "label": "Enseñanza", "href": "/teaching" }
+  ],
+  "about": {
+    "title": "Acerca de mí",
+    "summary": "Ingeniero en Sistemas y Telecomunicaciones con Especialización en Ciberseguridad y más de {expYears} años de experiencia profesional construyendo plataformas escalables, infraestructura cloud y software seguro.",
+    "role": "Senior Developer & Especialista en Ciberseguridad & Profesor Universitario",
+    "motto": "Mi regla es simple: dar un poco más de lo que cualquiera espera.",
+    "bio": "Co-lidero un equipo de desarrollo remoto en Heinsohn (CareTree), donde construimos Dala — una plataforma completa de gestión de salud — desde cero. Mi stack abarca microservicios en Go, backends en Laravel/PHP, frontends en React y React Native, APIs GraphQL e infraestructura cloud en AWS.",
+    "languages": [
+      { "name": "Español", "level": "Nativo" },
+      { "name": "Inglés", "level": "C2 (Dominio profesional)" },
+      { "name": "Francés", "level": "A1 (En aprendizaje)" }
+    ]
+  },
+  "archetype": [
+    { "name": "Creador", "desc": "Construyo soluciones, productos y plataformas escalables." },
+    { "name": "Sabio", "desc": "Enseño y comparto conocimiento en la universidad y en línea." },
+    { "name": "Gobernante", "desc": "Dirijo equipos y proyectos con visión empresarial." }
+  ],
+  "skillsIntro": "Un amplio conjunto de habilidades técnicas construido a través de años de desarrollo real, práctica en ciberseguridad y enseñanza académica.",
+  "skills": [
+    {
+      "group": "Lenguajes",
+      "items": [
+        { "name": "PHP", "percent": 90 },
+        { "name": "JavaScript", "percent": 80 },
+        { "name": "SQL", "percent": 80 },
+        { "name": "Python", "percent": 60 },
+        { "name": "TypeScript", "percent": 60 },
+        { "name": "Go", "percent": 65 }
+      ]
+    },
+    {
+      "group": "Frameworks",
+      "items": [
+        { "name": "Laravel", "percent": 90 },
+        { "name": "React", "percent": 65 },
+        { "name": "React Native", "percent": 60 },
+        { "name": "Ionic", "percent": 30 },
+        { "name": "Node.js", "percent": 30 },
+        { "name": "Vue.js", "percent": 30 }
+      ]
+    },
+    {
+      "group": "Bases de Datos",
+      "items": [
+        { "name": "MySQL", "percent": 90 },
+        { "name": "MariaDB", "percent": 90 },
+        { "name": "SQL Server", "percent": 80 }
+      ]
+    },
+    {
+      "group": "Metodologías",
+      "items": [
+        { "name": "SCRUM", "percent": 90 },
+        { "name": "Kanban", "percent": 90 },
+        { "name": "Git", "percent": 85 },
+        { "name": "Regression Testing", "percent": 90 },
+        { "name": "Unit Testing", "percent": 50 }
+      ]
+    },
+    {
+      "group": "Sistemas Operativos",
+      "items": [
+        { "name": "Windows", "percent": 90 },
+        { "name": "Ubuntu", "percent": 90 },
+        { "name": "CentOS", "percent": 80 },
+        { "name": "Kali Linux", "percent": 80 },
+        { "name": "Debian", "percent": 70 },
+        { "name": "Linux Mint", "percent": 60 }
+      ]
+    },
+    {
+      "group": "Diseño y Librerías",
+      "items": [
+        { "name": "HTML", "percent": 90 },
+        { "name": "CSS", "percent": 90 },
+        { "name": "Bootstrap", "percent": 90 },
+        { "name": "jQuery", "percent": 90 },
+        { "name": "SASS", "percent": 30 }
+      ]
+    },
+    {
+      "group": "Infraestructura",
+      "items": [
+        { "name": "Microservicios", "percent": 80 },
+        { "name": "REST API", "percent": 80 },
+        { "name": "GraphQL", "percent": 70 },
+        { "name": "AWS", "percent": 65 },
+        { "name": "GCP", "percent": 30 },
+        { "name": "Docker", "percent": 80 }
+      ]
+    },
+    {
+      "group": "Herramientas",
+      "items": [
+        { "name": "phpMyAdmin", "percent": 90 },
+        { "name": "cPanel", "percent": 90 },
+        { "name": "WSL2", "percent": 80 },
+        { "name": "VS Code", "percent": 80 },
+        { "name": "Jira", "percent": 70 },
+        { "name": "Confluence", "percent": 70 },
+        { "name": "Beanstalk", "percent": 70 },
+        { "name": "Slack", "percent": 70 },
+        { "name": "Composer", "percent": 70 },
+        { "name": "Bash", "percent": 70 },
+        { "name": "NPM", "percent": 60 },
+        { "name": "Algolia", "percent": 60 },
+        { "name": "PostHog", "percent": 55 }
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Scrum",
+      "desc": "Credencial que valida fundamentos ágiles, roles, eventos y entrega con Scrum.",
+      "type": "image",
+      "src": "/assets/img/certificaciones/scrum.jpg"
+    },
+    {
+      "title": "Git",
+      "desc": "Prueba de dominio en control de versiones: ramas, merges y flujos de trabajo en equipo.",
+      "type": "image",
+      "src": "/assets/img/certificaciones/git.jpg"
+    },
+    {
+      "title": "Inglés (C2)",
+      "desc": "Certificación de dominio profesional del inglés para comunicación internacional.",
+      "type": "image",
+      "src": "/assets/img/certificaciones/english.jpg"
+    },
+    {
+      "title": "ISO 27001",
+      "desc": "Formación / credencial relacionada con gestión de seguridad de la información y controles.",
+      "type": "pdf",
+      "src": "/assets/img/certificaciones/Copia%20de%20ISO27001.pdf",
+      "previewLabel": "Documento PDF"
+    },
+    {
+      "title": "Respuesta a Incidentes",
+      "desc": "Certificado enfocado en detección, contención y respuesta ante incidentes cibernéticos.",
+      "type": "pdf",
+      "src": "/assets/img/certificaciones/Respuesta%20ante%20Incidentes%20Ciberneticos.pdf",
+      "previewLabel": "Documento PDF"
+    },
+    {
+      "title": "Acta de Grado",
+      "desc": "Documento oficial que confirma la graduación y culminación del programa académico.",
+      "type": "pdf",
+      "src": "/assets/img/certificaciones/Acta%20de%20grado.pdf",
+      "previewLabel": "Documento PDF"
+    },
+    {
+      "title": "Acta de Especialización",
+      "desc": "Acta / constancia académica de estudios de especialización.",
+      "type": "pdf",
+      "src": "/assets/img/certificaciones/Acta%20especializaci%C3%B3n.pdf",
+      "previewLabel": "Documento PDF"
+    },
+    {
+      "title": "Manejo de Segunda Lengua",
+      "desc": "Certificado que verifica competencias y/o culminación de formación en segunda lengua.",
+      "type": "pdf",
+      "src": "/assets/img/certificaciones/Copia%20de%20Certificado%20de%20Manejo%20de%20Segunda%20Lengua.pdf",
+      "previewLabel": "Documento PDF"
+    },
+    {
+      "title": "Acta de Grado SENA",
+      "desc": "Documento soporte del acta de grado del SENA.",
+      "type": "pdf",
+      "src": "/assets/img/certificaciones/Copia%20de%20ACTA_GRADO_SENA.pdf",
+      "previewLabel": "Documento PDF"
+    }
+  ],
+  "experienceIntro": "Más de {expYears} años de experiencia progresiva — desde técnico en sistemas hasta senior developer y profesor universitario, construyendo software empresarial, asegurando infraestructuras digitales y formando futuros ingenieros.",
+  "experience": [
+    {
+      "title": "Profesor Universitario",
+      "period": "2024 – Actualmente",
+      "company": "Universidad de Manizales",
+      "location": "Manizales – Caldas (Colombia)",
+      "intro": "Diseño y dicto contenido académico para estudiantes de ingeniería en modalidades virtual y presencial, traduciendo constantemente prácticas industriales en aprendizaje estructurado y aplicable:",
+      "bullets": [
+        "Enseño arquitectura, configuración y despliegue en producción de servicios web.",
+        "Imparto programación orientada a web con PHP, HTML, CSS y JavaScript.",
+        "Guío a los estudiantes en la administración y configuración de sistemas operativos Linux y Windows.",
+        "Facilito cursos de bases de datos relacionales, SQL y herramientas de productividad.",
+        "Enseño rendimiento web, técnicas de optimización y buenas prácticas de SEO.",
+        "Imparto principios de diseño de software orientado a objetos y análisis UML.",
+        "Introduzco conceptos fundamentales de programación para entornos web."
+      ]
+    },
+    {
+      "title": "Senior Developer",
+      "period": "2022 – Actualmente",
+      "company": "Heinsohn (CareTree)",
+      "location": "Remoto, Colombia",
+      "intro": "",
+      "bullets": [
+        "Co-lidero un equipo de desarrollo completamente remoto, dirigiendo decisiones técnicas, revisiones de arquitectura y planificación de sprints con Scrum y Jira.",
+        "Arquitecto y desarrollo backends en PHP/Laravel que sustentan la lógica de negocio central de instituciones médicas.",
+        "Diseño y mantengo infraestructura en AWS (EC2, RDS, S3, Lambda) con pipelines de despliegue automatizados para releases sin tiempo de inactividad.",
+        "Construyo y publico aplicaciones móviles multiplataforma para iOS y Android usando React Native.",
+        "Lidero revisiones de seguridad y aplico buenas prácticas de ciberseguridad en todos los servicios, asegurando cumplimiento con estándares de protección de datos en salud.",
+        "Containerizo aplicaciones y entornos de desarrollo con Docker, optimizando la consistencia en despliegue y el onboarding del equipo."
+      ],
+      "highlight": {
+        "title": "Proyecto insignia: Dala — Plataforma completa de gestión de salud construida desde cero.",
+        "bullets": [
+          "Arquitecté microservicios escalables y de alto rendimiento en Go (Golang) para flujos clínicos críticos.",
+          "Diseñé e implementé una capa de API GraphQL, permitiendo consultas de datos flexibles y reduciendo el over-fetching en los frontends.",
+          "Aprovisié y gestioné toda la infraestructura cloud en AWS, incluyendo bases de datos administradas, almacenamiento y funciones serverless.",
+          "Integré Algolia para búsqueda en tiempo real sobre registros de pacientes y datos clínicos, reduciendo significativamente los tiempos de búsqueda del personal médico.",
+          "Implementé PostHog para analíticas de producto y seguimiento del comportamiento de usuarios, habilitando decisiones basadas en datos.",
+          "Entregué interfaces de salud responsivas y accesibles en React, alineadas con las mejores prácticas de UX."
+        ]
+      }
+    },
+    {
+      "title": "Desarrollador Web",
+      "period": "2021 – 2022",
+      "company": "QVO Consultoría Y Estrategia S.A.S",
+      "location": "Manizales – Caldas (Colombia)",
+      "intro": "Entregué proyectos de software a medida de ciclo completo para una firma de consultoría y seguridad, actuando como desarrollador y enlace con el cliente — desde el levantamiento de requisitos hasta el despliegue, capacitación y soporte post-entrega. Apliqué Kanban y Scrum para mantener la velocidad de entrega y la alineación con el cliente.",
+      "bullets": [
+        "Diseñé y construí una suite de sistemas web personalizados con PHP/Laravel y MySQL.",
+        "Desarrollé módulos de CRM, gestión de personal, logística, control de armamento y consultoría de seguridad.",
+        "Construí herramientas de gestión financiera y comercial, incluyendo créditos, finanzas estratégicas y dashboards de indicadores.",
+        "Implementé sistemas de intranet y gestión de usuarios con control de acceso basado en roles.",
+        "Realicé capacitaciones al cliente y brindé soporte técnico continuo tras la entrega."
+      ]
+    },
+    {
+      "title": "Desarrollador Web",
+      "period": "2019 – 2021",
+      "company": "Business Solutions On The Cloud",
+      "location": "Manizales – Caldas (Colombia)",
+      "intro": "Construí soluciones web personalizadas para una consultora de software orientada a la nube, entregando sistemas respaldados en SQL adaptados a los flujos operacionales de cada cliente.",
+      "bullets": [
+        "Desarrollé sistemas de CRM y plataformas de gestión de usuarios e intranet con PHP/Laravel y MySQL.",
+        "Construí herramientas de cotización electrónica, módulos de parametrización y configuración de sistemas.",
+        "Implementé módulos de gestión de créditos, reportes comerciales y finanzas estratégicas."
+      ]
+    },
+    {
+      "title": "Desarrollador Web",
+      "period": "2018 – 2019",
+      "company": "ASAP Staffing Company",
+      "location": "Manizales – Caldas (Colombia)",
+      "intro": "Diseñé y desarrollé de forma remota una plataforma intranet con CRM integrado para una empresa de personal temporal, permitiendo a los administradores gestionar contratos, cuentas de clientes y configuraciones del sistema a través de una interfaz web centralizada.",
+      "bullets": []
+    },
+    {
+      "title": "Técnico en Sistemas",
+      "period": "2017 – 2018",
+      "company": "Tecnisoft",
+      "location": "Manizales – Caldas (Colombia)",
+      "intro": "Asesoré a clientes en la adquisición de equipos de cómputo, realicé mantenimientos preventivos y correctivos de hardware, y diagnostiqué y resolví problemas de infraestructura de red — sentando las bases prácticas para una carrera en software y seguridad.",
+      "bullets": []
+    }
+  ],
+  "educationIntro": "Un recorrido académico continuo que abarca ingeniería, ciberseguridad, analítica de datos y estudios de idiomas.",
+  "education": [
+    {
+      "degree": "Ingeniería en Analítica de Datos",
+      "period": "Feb 2026 – Actualmente",
+      "school": "Virtual",
+      "location": "Virtual (Colombia)"
+    },
+    {
+      "degree": "Especialización en Ciberseguridad",
+      "period": "2024 – 2025",
+      "school": "Universidad Católica de Manizales",
+      "location": "Universidad Católica de Manizales, Manizales – Caldas (Colombia)"
+    },
+    {
+      "degree": "Ingeniería en Sistemas y Telecomunicaciones",
+      "period": "2017 – 2023",
+      "school": "Universidad de Manizales",
+      "location": "Universidad de Manizales, Manizales – Caldas (Colombia)"
+    },
+    {
+      "degree": "Técnico en Sistemas",
+      "period": "2011 – 2016",
+      "school": "Servicio Nacional de Aprendizaje (SENA)",
+      "location": "Servicio Nacional de Aprendizaje (SENA), Manizales – Caldas (Colombia)"
+    },
+    {
+      "degree": "Bachiller Técnico",
+      "period": "2011 – 2016",
+      "school": "Instituto Técnico San Rafael",
+      "location": "Instituto Técnico San Rafael, Manizales – Caldas (Colombia)"
+    },
+    {
+      "degree": "Diplomado de Inglés",
+      "period": "2013 – 2016",
+      "school": "Universidad Autónoma",
+      "location": "Universidad Autónoma, Manizales – Caldas (Colombia)"
+    },
+    {
+      "degree": "Diplomado de Francés",
+      "period": "2023 – En pausa",
+      "school": "Universidad Autónoma de Manizales",
+      "location": "Universidad Autónoma de Manizales, Manizales – Caldas (Colombia)"
+    }
+  ],
+  "posts": {
+    "intro": "Contribuciones de escritura técnica y difusión de conocimiento para la comunidad de ciberseguridad e ingeniería de software, incluyendo artículos publicados e investigación académica.",
+    "items": [
+      {
+        "author": "Autor — The Hacking Day",
+        "description": "Publicación del artículo \"Pentesting en servidores de Amazon Web Services y Google Cloud Platform\" (abril 2024). El artículo cubre técnicas ofensivas avanzadas aplicadas a entornos cloud, demostrando conocimiento práctico de superficies de ataque en AWS y GCP, métodos de reconocimiento y estrategias de mitigación. Compartido con una audiencia global de profesionales en ciberseguridad.",
+        "url": "https://blog.thehackingday.com/2024/04/pentesting-servidores-en-amazon-web.html?m=1",
+        "linkLabel": "Leer el artículo"
+      }
+    ]
+  },
+  "hobbies": {
+    "title": "Intereses",
+    "text": "Soy un geek de la tecnología en el alma — siempre leyendo sobre nuevos stacks, probando herramientas emergentes, experimentando con IA y buscando formas de traer lo más nuevo a proyectos reales. Amo las motos profundamente, y aunque actualmente conduzco un carro (un paso grande y significativo hacia lo que estoy construyendo), la pasión por rodar nunca desaparece. Mi mayor motivación ahora mismo es mi familia. La independencia financiera no es solo una meta de carrera — es un compromiso. Poder proveer y retribuir a las personas que más importan en mi vida es lo que me impulsa a seguir aprendiendo, seguir construyendo y seguir dando más. Esa misma motivación está detrás de mi objetivo de fundar mi propia empresa de tecnología. Creo firmemente que la única manera de tener éxito de verdad es dando un poco más de lo que cualquiera espera — y eso se refleja en quién soy en todos los sentidos. Cuando no estoy programando o enseñando, me encuentras en el gimnasio, en el campo jugando fútbol americano, viajando a algún lugar nuevo o compartiendo momentos valiosos con mi pareja y mi familia — las personas que hacen que todo valga la pena.",
+    "images": [
+      "/assets/img/hobbies1.jpg",
+      "/assets/img/hobbies2.jpg",
+      "/assets/img/hobbies3.jpg"
+    ]
+  },
+  "social": {
+    "linkedin": "https://linkedin.com/in/jhon-piraquive-ramirez-b0a6b1197",
+    "github": "https://github.com/JhonPiraquive",
+    "whatsapp": "https://wa.me/573187623543"
+  }
+}

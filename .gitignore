@@ -1,2 +1,23 @@
-clases/*
-qualifications/*
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Secretos y entorno local
+.env
+.env.*
+!.env.example
+
+# Guías internas de docente (credenciales de laboratorio demo)
+kb/education/instructor/
+
+# Python / caché
+__pycache__/
+*.py[cod]
+
+# Claves y certificados
+*.pem
+*.key
+*.p12
+*.pfx

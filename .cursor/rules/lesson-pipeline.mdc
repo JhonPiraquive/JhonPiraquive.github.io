@@ -1,0 +1,19 @@
+---
+description: Al crear contenido docente, usar el pipeline create-lesson
+globs: src/components/teaching/lessons/**,kb/education/**
+alwaysApply: false
+---
+
+# Lesson pipeline
+
+Al crear o mejorar lecciones docentes:
+
+1. Leer `.cursor/skills/create-lesson/SKILL.md`
+2. Invocar agente `lesson-orchestrator` (no escribir TSX directo sin brief)
+3. Ejecutar **Fase 0** (infra, topic-expert, fuentes, status) antes de cualquier lección
+4. Seguir artefactos en `kb/education/pipeline/{track}/{slug}/`
+5. Salida final en `src/components/teaching/lessons/{track}/{slug}/`
+6. Cumplir interactividad mínima en `kb/education/pedagogy-standards.md`
+7. **Profundidad explicativa:** cada concepto con bloques *Qué es*, *Para qué/Por qué*, *Cómo funciona*, ejemplo y señales de buen/mal uso — ver `pedagogy-standards.md` → «Profundidad explicativa»
+8. Registrar progreso en `kb/education/pipeline/{track}/status.md`
+9. Registrar lección en índices (portal + KB) — ver skill create-lesson → «Registro en índices»

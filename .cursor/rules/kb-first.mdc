@@ -1,0 +1,10 @@
+---
+description: Leer kb/ antes de cambios; actualizar ADRs y briefs al decidir
+alwaysApply: true
+---
+
+# KB first
+
+1. Consultar kb/README.md y docs relevantes antes de implementar.
+2. Decisiones nuevas → kb/decisions/NNN-*.md
+3. Cambios de contenido docente → actualizar briefs u outputs en kb/education/

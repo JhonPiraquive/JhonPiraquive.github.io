@@ -1,0 +1,13 @@
+:root {
+  --color-primary: #0a2540;
+  --color-secondary: #00c2ff;
+  --color-accent: #6b4eff;
+  --color-neutral-white: #ffffff;
+  --color-neutral-light: #f4f6f8;
+  --color-neutral-dark: #1e293b;
+  --font-heading: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-body: var(--font-inter), "Inter", sans-serif;
+  --clay-radius: 24px;
+  --clay-shadow-outer: 8px 8px 20px rgba(10, 37, 64, 0.08);
+  --clay-shadow-inner: inset 2px 2px 6px rgba(255, 255, 255, 0.6);
+}

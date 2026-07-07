@@ -1,0 +1,18 @@
+---
+description: One React component per file in src/
+alwaysApply: true
+---
+
+# One component per file
+
+## Rules
+
+- Maximum **1 exported React component** per file under `src/`.
+- No inline or anonymous components inside other components (including `ReactMarkdown` `components` maps).
+- Barrel `index.ts` files may **re-export only** — never define components there.
+- File name must match the component name in PascalCase (e.g. `HeroSection.tsx` → `HeroSection`).
+
+## Exceptions
+
+- Next.js route files (`page.tsx`, `layout.tsx`) keep their framework exports (`default`, `generateMetadata`, etc.).
+- Pure utility modules with no React components are unaffected.
