@@ -232,6 +232,22 @@ export function HostingSection() {
         </table>
       </div>
 
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Plan compartido para Black Friday:"}</strong>
+          {" Tienda en Cali colapsó con 500 visitas concurrentes en hosting $3/mes. Corrección: dimensionar plan o VPS antes de campañas; prueba de carga en staging."}
+        </li>
+        <li>
+          <strong>{"Sin backup antes de actualizar WordPress:"}</strong>
+          {" Plugin rompió sitio en producción; backup del hosting era semanal y perdieron 4 días de pedidos. Corrección: backup on-demand + staging para updates."}
+        </li>
+        <li>
+          <strong>{"Credenciales cPanel en email sin cifrar:"}</strong>
+          {" Ex empleado accedió con password compartido por WhatsApp. Corrección: usuarios individuales, MFA, rotación al offboarding."}
+        </li>
+      </ul>
+
       <Callout title="Publicación en panel de hosting">
         {
           "En un panel Nginx UI, cPanel o similar creas index.html con empresa ficticia (nombre, misión, contacto), configuras el root del sitio y verificas con curl o navegador. Un 403 suele indicar root vacío; DNS_PROBE indica que el cliente no resuelve el nombre — revisa /etc/hosts o el DNS del sistema."
@@ -356,6 +372,22 @@ export function HostingSection() {
           </tbody>
         </table>
       </div>
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"VPS sin admin para blog estático:"}</strong>
+          {" ONG en Quito pagó VPS $25/mes; nadie aplicaba parches y el sitio fue defaced. Corrección: hosting compartido gestionado o PaaS estático."}
+        </li>
+        <li>
+          <strong>{"Compartido para API con WebSockets:"}</strong>
+          {" Fintech en Medellín saturó CPU del vecino; hosting suspendió la cuenta. Corrección: VPS o nube con recursos dedicados."}
+        </li>
+        <li>
+          <strong>{"Datacenter en Europa para audiencia Colombia:"}</strong>
+          {" Latencia 250 ms en checkout móvil; abandono de carrito subió. Corrección: región Miami/Bogotá/São Paulo según tráfico."}
+        </li>
+      </ul>
 
       <h3 className="mt-8 mb-2 text-xl font-semibold">{"Optimización en hosting"}</h3>
       <p className="my-4">

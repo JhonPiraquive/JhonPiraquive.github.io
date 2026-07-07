@@ -90,6 +90,18 @@ export function ValidacionPostCorreccionSection() {
           {" cerrar ticket solo con «nginx restart»; confiar en ping cuando el fallo es HTTP; no probar server_name."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Cerrar ticket sin verificar externo:"}</strong>
+          {" Soporte validó solo en LAN oficina; clientes móviles seguían fallando. Corrección: prueba desde red celular o herramienta externa."}
+        </li>
+        <li>
+          <strong>{"Smoke test único sin regresión:"}</strong>
+          {" Fix TLS rompió redirect www. Corrección: checklist: apex, www, http, https, API health."}
+        </li>
+      </ul>
+
     </section>
   );
 }

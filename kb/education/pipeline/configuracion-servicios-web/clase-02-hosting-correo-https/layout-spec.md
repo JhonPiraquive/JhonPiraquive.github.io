@@ -7,6 +7,20 @@ prev: clase-01-fundamentos-web
 next: clase-03-administracion-remota
 ---
 
+## Páginas (paginación interna ADR 011)
+
+| slug | component | secciones | layout |
+|------|-----------|-----------|--------|
+| `clase-02-hosting-correo-https` | `Clase02HostingCorreoHttpsHubLesson` | ObjetivosSection + ClassPagesNavSection | LessonLayout |
+| `clase-02-hosting-correo-https/hosting-y-publicacion` | `HostingYPublicacionPageLesson` | ObjetivosSection, HostingSection, PublicacionSitioSection, LogsNginxPermisosSection | ClassPageLayout |
+| `clase-02-hosting-correo-https/https-y-tls` | `HttpsYTlsPageLesson` | HttpHttpsSection, SslTlsSection, ProtocolosHttpsSection | ClassPageLayout |
+| `clase-02-hosting-correo-https/correo-corporativo` | `CorreoCorporativoPageLesson` | CorreoCorporativoSection, CuentasCorporativasSection | ClassPageLayout |
+| `clase-02-hosting-correo-https/practica-y-cierre` | `PracticaYCierrePageLesson` | CompruebaTuComprensionSection, RetoIntegradorSection, CierreSection, MiniquizSection | ClassPageLayout |
+
+Nav prev/next: `class-navigation.ts` → `getPageNavChain()`.
+
+---
+
 ## Clase02HostingCorreoHttpsLesson.tsx — orden de secciones
 
 ```tsx

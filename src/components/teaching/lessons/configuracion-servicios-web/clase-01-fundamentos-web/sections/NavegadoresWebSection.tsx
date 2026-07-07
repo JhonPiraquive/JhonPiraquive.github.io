@@ -150,6 +150,26 @@ export function NavegadoresWebSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Probar solo en Chrome:"}</strong>
+          {" Sitio en WordPress se veía roto en Safari iOS (flexbox viejo); 40 % tráfico móvil Colombia afectado. Corrección: probar Chrome, Firefox y Safari móvil antes de publicar."}
+        </li>
+        <li>
+          <strong>{"Extensiones ad-block en soporte:"}</strong>
+          {" Cliente «no ve el chat»; soporte tenía uBlock bloqueando script de terceros. Corrección: ventana privada sin extensiones para reproducir incidencias."}
+        </li>
+        <li>
+          <strong>{"Ignorar caché del navegador:"}</strong>
+          {" Deploy corregido pero usuarios reportaban versión antigua; equipo re-desplegó innecesariamente. Corrección: hard refresh y verificar Cache-Control en servidor."}
+        </li>
+        <li>
+          <strong>{"User-Agent bloqueado en WAF:"}</strong>
+          {" Bot legítimo de monitoreo bloqueado; alertas falsas de caída. Corrección: allowlist de herramientas de uptime en reglas WAF."}
+        </li>
+      </ul>
+
       <p className="my-4">
         {
           "Configuración relevante: cookies (sesión, preferencias), caché (acelera recargas pero oculta cambios recientes), privacidad (terceros, rastreadores), DevTools (Red, Consola, Almacenamiento)."

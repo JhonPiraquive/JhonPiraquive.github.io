@@ -105,6 +105,14 @@ export function ValidacionServicioFtpSection() {
           {" validar solo systemctl sin transferencia real; omitar modo pasivo en entornos NAT."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Probar FTP desde misma red del servidor:"}</strong>
+          {" PASV con IP privada en respuesta; cliente externo falla. Corrección: probar desde red externa, configurar pasv_address pública."}
+        </li>
+      </ul>
+
     </section>
   );
 }

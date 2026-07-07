@@ -9,6 +9,11 @@ export type LessonMeta = {
   next?: string | null;
   seoTitle?: string;
   seoDescription?: string;
+  /** When false, hidden from track index listing (internal class pages). */
+  showInTrackIndex?: boolean;
+  classTitle?: string;
+  pageNumber?: number;
+  totalPages?: number;
 };
 
 export type LessonEntry = {
@@ -249,33 +254,177 @@ const REGISTRY: Record<string, LessonEntry> = {
   },
   "configuracion-servicios-web/clase-01-fundamentos-web": {
     component: () =>
-      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/Clase01FundamentosWebLesson"),
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/Clase01FundamentosWebHubLesson"),
     meta: () =>
       import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/lesson-meta").then(
         (m) => m.meta,
       ),
   },
+  "configuracion-servicios-web/clase-01-fundamentos-web/navegadores-web": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/navegadores-web/NavegadoresWebPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/navegadores-web/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-01-fundamentos-web/direcciones-ip": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/direcciones-ip/DireccionesIpPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/direcciones-ip/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-01-fundamentos-web/dns-y-dominios": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/dns-y-dominios/DnsYDominiosPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/dns-y-dominios/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-01-fundamentos-web/configuracion-dns": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/configuracion-dns/ConfiguracionDnsPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/configuracion-dns/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-01-fundamentos-web/practica-y-cierre": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-01-fundamentos-web/pages/practica-y-cierre/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
   "configuracion-servicios-web/clase-02-hosting-correo-https": {
     component: () =>
-      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/Clase02HostingCorreoHttpsLesson"),
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/Clase02HostingCorreoHttpsHubLesson"),
     meta: () =>
       import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/lesson-meta").then(
         (m) => m.meta,
       ),
   },
+  "configuracion-servicios-web/clase-02-hosting-correo-https/hosting-y-publicacion": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/pages/hosting-y-publicacion/HostingYPublicacionPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/pages/hosting-y-publicacion/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-02-hosting-correo-https/https-y-tls": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/pages/https-y-tls/HttpsYTlsPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/pages/https-y-tls/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-02-hosting-correo-https/correo-corporativo": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/pages/correo-corporativo/CorreoCorporativoPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/pages/correo-corporativo/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-02-hosting-correo-https/practica-y-cierre": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-02-hosting-correo-https/pages/practica-y-cierre/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
   "configuracion-servicios-web/clase-03-administracion-remota": {
     component: () =>
-      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/Clase03AdministracionRemotaLesson"),
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/Clase03AdministracionRemotaHubLesson"),
     meta: () =>
       import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/lesson-meta").then(
         (m) => m.meta,
       ),
   },
+  "configuracion-servicios-web/clase-03-administracion-remota/computacion-en-nube": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/pages/computacion-en-nube/ComputacionEnNubePageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/pages/computacion-en-nube/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-03-administracion-remota/transferencia-archivos": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/pages/transferencia-archivos/TransferenciaArchivosPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/pages/transferencia-archivos/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-03-administracion-remota/ssh-y-admin-remota": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/pages/ssh-y-admin-remota/SshYAdminRemotaPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/pages/ssh-y-admin-remota/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-03-administracion-remota/practica-y-cierre": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/pages/practica-y-cierre/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
   "configuracion-servicios-web/clase-04-virtualizacion-diagnostico": {
     component: () =>
-      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/Clase04VirtualizacionDiagnosticoLesson"),
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/Clase04VirtualizacionDiagnosticoHubLesson"),
     meta: () =>
       import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-04-virtualizacion-diagnostico/contenedores-docker": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/contenedores-docker/ContenedoresDockerPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/contenedores-docker/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-04-virtualizacion-diagnostico/virtualizacion": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/virtualizacion/VirtualizacionPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/virtualizacion/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-04-virtualizacion-diagnostico/diagnostico-troubleshooting": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/diagnostico-troubleshooting/DiagnosticoTroubleshootingPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/diagnostico-troubleshooting/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-04-virtualizacion-diagnostico/flujo-integrado": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/flujo-integrado/FlujoIntegradoPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/flujo-integrado/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-servicios-web/clase-04-virtualizacion-diagnostico/practica-y-cierre": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/pages/practica-y-cierre/lesson-meta").then(
         (m) => m.meta,
       ),
   },

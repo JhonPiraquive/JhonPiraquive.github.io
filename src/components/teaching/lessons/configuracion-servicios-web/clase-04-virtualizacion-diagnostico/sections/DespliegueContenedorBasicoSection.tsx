@@ -179,6 +179,18 @@ export function DespliegueContenedorBasicoSection() {
           {" ejecutar contenedores como root en producción sin revisar imagen; omitir evidencias de docker ps tras el run."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"docker run -d sin --restart:"}</strong>
+          {" Contenedor muerto tras reboot del VPS; tienda offline hasta lunes. Corrección: --restart unless-stopped o systemd unit."}
+        </li>
+        <li>
+          <strong>{"Publicar puerto 3306 de MySQL a Internet:"}</strong>
+          {" Base expuesta; ransomware en 72 h. Corrección: red internal de Compose, solo API publicada."}
+        </li>
+      </ul>
+
     </section>
   );
 }

@@ -144,6 +144,22 @@ ssh -v deploy@servidor.ejemplo.co`}
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"PasswordAuthentication yes:"}</strong>
+          {" Botnet comprometió VPS en 48 h con diccionario root. Corrección: claves, PermitRootLogin prohibit-password, fail2ban."}
+        </li>
+        <li>
+          <strong>{"Clave privada en repo Git:"}</strong>
+          {" GitHub scan encontró id_rsa; servidor usado para minería. Corrección: rotar clave, git-secrets, usar agent forwarding con cuidado."}
+        </li>
+        <li>
+          <strong>{"Port 22 sin cambio ni rate limit:"}</strong>
+          {" 40 000 intentos/día en logs sshd. Corrección: fail2ban, opcional puerto alterno, solo claves."}
+        </li>
+      </ul>
+
       <StepReveal
         title="De clave local a shell remoto"
         steps={[

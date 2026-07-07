@@ -140,6 +140,18 @@ server {
           {" systemctl restart en bucle sin leer journalctl; editar nginx.conf global cuando el error está en sites-available."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"nginx -t omitido:"}</strong>
+          {" Typo en ssl_certificate tumba nginx entero; todos los sitios caídos. Corrección: nginx -t siempre antes de reload."}
+        </li>
+        <li>
+          <strong>{"error.log ignorado por tamaño:"}</strong>
+          {" grep no encontró error reciente en log de 2 GB sin rotate. Corrección: logrotate y tail con --since."}
+        </li>
+      </ul>
+
     </section>
   );
 }

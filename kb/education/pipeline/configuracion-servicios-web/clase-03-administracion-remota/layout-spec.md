@@ -8,6 +8,20 @@ next: clase-04-virtualizacion-diagnostico
 tsx_target: src/components/teaching/lessons/configuracion-servicios-web/clase-03-administracion-remota/
 ---
 
+## Páginas (paginación interna ADR 011)
+
+| slug | component | secciones | layout |
+|------|-----------|-----------|--------|
+| `clase-03-administracion-remota` | `Clase03AdministracionRemotaHubLesson` | ObjetivosSection + ClassPagesNavSection | LessonLayout |
+| `clase-03-administracion-remota/computacion-en-nube` | `ComputacionEnNubePageLesson` | ObjetivosSection, NubeSection, ModeloClienteServidorRemotoSection | ClassPageLayout |
+| `clase-03-administracion-remota/transferencia-archivos` | `TransferenciaArchivosPageLesson` | FtpSection, ConfiguracionServidorFtpSection, ClientesFtpSection, TransferenciaArchivosSection, AdministracionRemotaArchivosSection, ComparativaProtocolosTransferenciaSection | ClassPageLayout |
+| `clase-03-administracion-remota/ssh-y-admin-remota` | `SshYAdminRemotaPageLesson` | SftpSection, SshSection, DocumentacionConexionSshSection, HerramientasGraficasSshSection, ReconocimientoEntornoSection, HerramientasAdminRemotaSection, PanelesAdministracionSection, CasosRealesLatamSection | ClassPageLayout |
+| `clase-03-administracion-remota/practica-y-cierre` | `PracticaYCierrePageLesson` | RetoIntegradorSection, CompruebaTuComprensionSection, CierreSection | ClassPageLayout |
+
+Nav prev/next: `class-navigation.ts` → `getPageNavChain()`.
+
+---
+
 ## Clase03AdministracionRemotaLesson.tsx — orden de secciones
 
 ```tsx

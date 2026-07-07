@@ -1,13 +1,16 @@
 import type { LessonMeta } from "@/lib/teaching-lessons-registry";
+import { CLASE_03, getNavForSlug } from "../class-navigation";
+
+const nav = getNavForSlug(CLASE_03.classSlug);
 
 export const meta: LessonMeta = {
   track: "configuracion-servicios-web",
-  slug: "clase-03-administracion-remota",
+  slug: CLASE_03.classSlug,
   title: "Administración remota: nube, SSH y SFTP",
-  order: 3,
-  prev: "clase-02-hosting-correo-https",
-  next: "clase-04-virtualizacion-diagnostico",
+  order: nav.order,
+  prev: nav.prev,
+  next: nav.next,
+  classTitle: CLASE_03.classTitle,
   seoTitle: "Administración remota: SSH, SFTP y nube | CSW",
-  seoDescription:
-    "Clase 3 CSW: principios NIST, IaaS/PaaS/SaaS, modelo cliente-servidor remoto, FTP vs SFTP, SSH con claves, FileZilla, cPanel y hardening básico.",
+  seoDescription: "Nube, FTP/SFTP, SSH y paneles remotos. Índice paginado de la Clase 3.",
 };

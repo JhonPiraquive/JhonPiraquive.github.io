@@ -114,6 +114,18 @@ export function ComparativaProtocolosTransferenciaSection() {
           {" asumir que «FTP seguro» existe sin TLS; mezclar SFTP con puerto 21; credenciales compartidas entre protocolos."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Elegir FTP por «más rápido»:"}</strong>
+          {" FTP sin cifrado en enlace internacional; datos de clientes expuestos. Corrección: SFTP o FTPS con certificado válido."}
+        </li>
+        <li>
+          <strong>{"SCP para árboles grandes diarios:"}</strong>
+          {" Transferencia de 50 GB sin reanudación falló a 90 %. Corrección: rsync -avz --partial para jobs grandes."}
+        </li>
+      </ul>
+
     </section>
   );
 }

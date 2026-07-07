@@ -165,6 +165,22 @@ export function DominioSubdominioSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"WHOIS con email personal del fundador:"}</strong>
+          {" Dueño de restaurante en Cartagena usó Gmail en WHOIS; recibió spear-phishing «renueva tu dominio» y casi transfirió el .co. Corrección: privacy WHOIS y contacto técnico corporativo."}
+        </li>
+        <li>
+          <strong>{"No registrar typos de marca:"}</strong>
+          {" Competidor registró innovatech-co.com y redirigió tráfico de clientes confundidos. Corrección: variantes críticas y monitoreo de dominios similares."}
+        </li>
+        <li>
+          <strong>{"Comprar dominio y olvidar NS:"}</strong>
+          {" Empresa pagó .com.co pero nunca apuntó NS al hosting; sitio en blanco 3 meses post-lanzamiento. Corrección: checklist post-compra: NS, A, MX, verificación dig."}
+        </li>
+      </ul>
+
 
       <h2 className="mb-4 mt-12 text-2xl font-bold text-[var(--color-primary)]">
         {"Subdominio: separar servicios"}
@@ -265,6 +281,22 @@ staging.ejemplo.co. 300  IN  CNAME  servidor-dev.hosting.com.`}
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Staging indexable con datos reales:"}</strong>
+          {" E-commerce en Lima dejó staging.tienda.pe abierto; Google indexó precios de prueba y clientes compraron SKUs inexistentes. Corrección: noindex, auth básica o IP allowlist."}
+        </li>
+        <li>
+          <strong>{"Wildcard *.dev sin control:"}</strong>
+          {" Equipo creó *.dev.empresa.co apuntando a servidor de prueba expuesto; scanner encontró panel admin default. Corrección: subdominios explícitos, no wildcard en entornos no productivos."}
+        </li>
+        <li>
+          <strong>{"Certificado solo en www:"}</strong>
+          {" Usuarios que escribían tienda.com.co (apex) veían HTTP sin redirect. Corrección: cert SAN con apex+www y redirect 301 unificado."}
+        </li>
+      </ul>
+
       <div className="my-8">
         <PracticeExercise
           prompt="¿Por qué una startup en Colombia podría elegir .co en lugar de .com? Menciona al menos dos razones."

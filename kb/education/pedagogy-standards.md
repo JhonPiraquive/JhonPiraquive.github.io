@@ -20,8 +20,21 @@ Cada concepto técnico principal debe desarrollarse con **bloques pedagógicos**
 | **Ventajas y desventajas** | Cuándo conviene y cuándo no |
 | **Ejemplo concreto** | Caso real, comando, registro DNS, petición HTTP |
 | **Señales de buen y mal uso** | Errores frecuentes y anti-patrones |
+| **Malas prácticas en el mundo real** | 3–5 escenarios concretos de producción/PYME/LATAM: qué se hizo mal, consecuencia, cómo evitarlo |
 
 **Regla:** si una sección solo tiene una tabla o 2–3 bullets sin desarrollar el *qué*, el *por qué* y un ejemplo, está **incompleta**. Referencia de tono y estructura: lecciones POSW (`servicios-web`, `modelo-cliente-servidor`, `backend`) y POO (`fundamentos`).
+
+## Malas prácticas en el mundo real (obligatorio cuando aplique)
+
+En **cada sección de concepto técnico** (no en Objetivos, Cierre, Miniquiz, Reto integrador ni navegación de hub):
+
+1. Incluir H3 **«Malas prácticas en el mundo real»** con **3–5 ítems** concretos.
+2. Cada ítem debe describir: **situación real** → **error común** → **consecuencia** (caída, spam, brecha, costo) → **corrección**.
+3. Priorizar escenarios de PYME, hosting compartido, migraciones DNS/correo, SSH/FTP/Docker mal configurados y contexto LATAM cuando encaje.
+4. Si ya existe «Señales de buen y mal uso», **ampliar** con esta subsección dedicada (no repetir la misma frase genérica).
+5. Opcional: un `Callout` con un caso memorable por sección.
+
+**Omitir** cuando el tema no admite anti-patrones (p. ej. solo listado de objetivos).
 
 Los `PracticeExercise` y preguntas de quiz deben incluir al menos una pregunta de tipo «¿por qué…?» o «¿qué pasaría si…?».
 
@@ -39,6 +52,20 @@ Los `PracticeExercise` y preguntas de quiz deben incluir al menos una pregunta d
 ## Pipeline IA
 Usar skill `.cursor/skills/create-lesson/SKILL.md` y agente `lesson-orchestrator`.
 Artefactos en `kb/education/pipeline/{track}/{slug}/`.
+
+## Paginación interna por clase (ADR 011)
+
+Módulos por sesiones/clases extensas (>8 secciones) deben dividirse en **páginas temáticas** dentro de cada clase:
+
+| Criterio | Regla |
+|----------|-------|
+| Hub de clase | Objetivos resumidos + índice de páginas (~5 min) |
+| Páginas | 3–5 por clase, 2–4 secciones, ~15–20 min lectura c/u |
+| Progresión | Conceptos → ejemplos → práctica en última página |
+| Audiencia | Contenido visual **solo estudiante**; guías docente en `kb/education/instructor/` |
+| Nav | Prev/next entre páginas y entre clases |
+
+Ver `kb/decisions/011-clases-con-paginas-internas.md`.
 
 ## Coherencia entre tracks
 - Misma estructura de frontmatter

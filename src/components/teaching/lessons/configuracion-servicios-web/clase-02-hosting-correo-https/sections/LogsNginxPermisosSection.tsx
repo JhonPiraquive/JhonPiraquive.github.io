@@ -77,6 +77,22 @@ sudo tail -n 20 /var/log/nginx/intranet.access.log`}
           {" chmod 777 «para que funcione»; root como propietario de index.html; ignorar error.log tras 403."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Ignorar error.log tras deploy:"}</strong>
+          {" 502 intermitente en API; nadie revisó error.log que mostraba permiso denegado a socket PHP-FPM. Corrección: tail -f error.log como paso post-deploy."}
+        </li>
+        <li>
+          <strong>{"Log sin rotación:"}</strong>
+          {" Disco lleno en VPS pequeño; MySQL y sitio cayeron juntos. Corrección: logrotate y alertas de disco >80%."}
+        </li>
+        <li>
+          <strong>{"chmod 777 «para que funcione»:"}</strong>
+          {" Uploads world-writable; intruso modificó index.php. Corrección: mínimo privilegio y SELinux/AppArmor si aplica."}
+        </li>
+      </ul>
+
     </section>
   );
 }

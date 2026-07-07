@@ -6,7 +6,7 @@
 | SEA | sea | 12 | index |
 | POO | poo | 10 | index |
 | POSW | posw | 22 | servicios-web (→ index nuevo) |
-| Configuración Servicios Web | configuracion-servicios-web | 4 + hub + actividad 1 | index |
+| Configuración Servicios Web | configuracion-servicios-web | 4 hubs + 18 páginas + index | index |
 
 ## Topic experts
 - pbpew → topic-expert-javascript

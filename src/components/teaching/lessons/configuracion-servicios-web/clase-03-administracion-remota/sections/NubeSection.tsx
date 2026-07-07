@@ -114,6 +114,22 @@ export function NubeSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Instancia 24/7 para cron de 5 min:"}</strong>
+          {" Startup en Medellín pagó EC2 todo el mes por job nocturno. Corrección: Lambda/Cloud Scheduler o apagar instancias fuera de horario."}
+        </li>
+        <li>
+          <strong>{"Snapshot nunca probado:"}</strong>
+          {" Restauración de backup AWS falló por AMI obsoleta; RTO incumplido. Corrección: restore drill trimestral documentado."}
+        </li>
+        <li>
+          <strong>{"Región us-east-1 lejos de usuarios:"}</strong>
+          {" API para app Colombia en Virginia; latencia 180 ms p95. Corrección: región sa-east-1 o us-east con CDN edge."}
+        </li>
+      </ul>
+
 
       <h3 className="mt-8 mb-2 text-xl font-semibold">{"IaaS, PaaS y SaaS: criterio de elección"}</h3>
       <p className="my-4">
@@ -232,6 +248,18 @@ export function NubeSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"IaaS para landing estática:"}</strong>
+          {" Consultora montó EC2+Apache para 3 HTML; $80/mes innecesarios. Corrección: S3+CloudFront o GitHub Pages."}
+        </li>
+        <li>
+          <strong>{"SaaS sin evaluar residencia de datos:"}</strong>
+          {" Clínica en Bogotá subió historiales a SaaS US sin DPA. Corrección: revisar normativa local y región de almacenamiento."}
+        </li>
+      </ul>
+
       <p className="my-4">
         {"Sigue el árbol de decisión desde control del SO hasta software listo:"}
       </p>

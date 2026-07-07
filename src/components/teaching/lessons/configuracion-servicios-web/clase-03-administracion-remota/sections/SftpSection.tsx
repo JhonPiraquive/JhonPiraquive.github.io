@@ -91,6 +91,18 @@ Archivo de clave: /home/user/.ssh/id_ed25519`}
           {" elegir «FTP» en FileZilla por inercia; compartir la misma contraseña de cPanel y SFTP."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"FileZilla en modo FTP:"}</strong>
+          {" Usuario eligió FTP explícito; credenciales en texto claro interceptadas en ISP. Corrección: protocolo SFTP, puerto 22, verificar candado en cliente."}
+        </li>
+        <li>
+          <strong>{"Misma clave SSH para 10 clientes:"}</strong>
+          {" Filtración de laptop expuso todos los servidores. Corrección: clave por cliente/proyecto en ~/.ssh/config."}
+        </li>
+      </ul>
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comparativa FTP / SFTP / FTPS"}</h3>
       <CompareTable
         headers={["Criterio", "FTP plano", "SFTP", "FTPS"]}

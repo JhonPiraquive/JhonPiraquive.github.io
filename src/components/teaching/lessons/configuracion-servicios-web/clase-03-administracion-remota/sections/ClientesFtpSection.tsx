@@ -134,6 +134,18 @@ export function ClientesFtpSection() {
           {" modo activo en red doméstica sin probar pasivo; omitir puerto cuando no es 21; FTP plano en Wi‑Fi pública."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Guardar password en FileZilla sin cifrar:"}</strong>
+          {" Malware leyó sitemanager.xml con 20 passwords. Corrección: claves SSH o master password del cliente."}
+        </li>
+        <li>
+          <strong>{"Modo binario olvidado en imágenes:"}</strong>
+          {" Deploy de assets corruptos en sitio Windows/Linux mixto. Corrección: transferencia binaria o SFTP que preserva bytes."}
+        </li>
+      </ul>
+
     </section>
   );
 }

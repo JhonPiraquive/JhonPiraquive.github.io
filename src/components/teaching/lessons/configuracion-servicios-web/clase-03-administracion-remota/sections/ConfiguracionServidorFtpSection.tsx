@@ -150,6 +150,18 @@ export function ConfiguracionServidorFtpSection() {
           {" permitir ftp anónimo con write_enable; compartir cuenta root; omitir restart tras editar conf."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"vsftpd con anonymous_enable=YES:"}</strong>
+          {" Scanner subió webshell vía FTP anónimo. Corrección: deshabilitar anónimo; preferir SFTP."}
+        </li>
+        <li>
+          <strong>{"Directorio upload en webroot:"}</strong>
+          {" Atacante subió .php ejecutable. Corrección: upload fuera de DocumentRoot o sin exec."}
+        </li>
+      </ul>
+
     </section>
   );
 }

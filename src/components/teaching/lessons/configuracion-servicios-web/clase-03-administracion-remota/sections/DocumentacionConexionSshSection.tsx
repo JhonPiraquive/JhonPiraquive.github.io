@@ -149,6 +149,18 @@ date
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Runbook con IP vieja post-migración:"}</strong>
+          {" Nuevo técnico bloqueado 2 h en incidente P1. Corrección: runbook versionado y revisión post-cambio DNS/IP."}
+        </li>
+        <li>
+          <strong>{"Hostname vs IP sin alias:"}</strong>
+          {" Cambio de IP rompió 15 scripts con IP hardcodeada. Corrección: DNS interno deploy.empresa.local y ~/.ssh/config Host aliases."}
+        </li>
+      </ul>
+
     </section>
   );
 }

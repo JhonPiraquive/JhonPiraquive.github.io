@@ -100,6 +100,18 @@ export function DiagnosticoSistematicoSection() {
           {" reiniciar nginx sin nginx -t; asumir DNS externo cuando curl local ya falla; omitir logs tras un failed."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Saltar capas: reiniciar todo:"}</strong>
+          {" Reboot ocultó bug de disco lleno que volvió en horas. Corrección: metodología capa por capa con evidencia en log."}
+        </li>
+        <li>
+          <strong>{"Un cambio múltiple:"}</strong>
+          {" DNS y cert cambiados juntos; imposible saber cuál falló. Corrección: un cambio, verificar, documentar, siguiente."}
+        </li>
+      </ul>
+
     </section>
   );
 }

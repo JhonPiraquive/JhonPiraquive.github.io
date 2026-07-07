@@ -84,6 +84,18 @@ export function CuentasCorporativasSection() {
         <li>{"Buen uso: un buzón por función; contraseñas fuertes; alias info@ → ventas@ si hace falta un contacto genérico."}</li>
         <li>{"Mal uso: un solo buzón compartido sin control; usar dominios reservados (.local) que algunos servidores rechazan; MX sin registro A en mail."}</li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Buzón compartido sin auditoría:"}</strong>
+          {" Ventas@ con password único; mensaje fraudulento a proveedor con transferencia. Corrección: buzones individuales, 2FA, alertas de reenvío sospechoso."}
+        </li>
+        <li>
+          <strong>{"Alias infinito sin cuota:"}</strong>
+          {" info@ reenviaba a 15 personas; buzón principal saturado. Corrección: listas de distribución con límites o grupo en Google/Zoho."}
+        </li>
+      </ul>
+
 
       <PracticeExercise
         prompt="¿Por qué ventas@ y soporte@ deben ser buzones distintos aunque los gestione la misma persona al inicio?"

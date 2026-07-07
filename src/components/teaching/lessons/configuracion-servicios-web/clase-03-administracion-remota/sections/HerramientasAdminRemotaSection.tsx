@@ -140,6 +140,18 @@ export function HerramientasAdminRemotaSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Solo GUI, cero documentación CLI:"}</strong>
+          {" Incidente nocturno sin cPanel disponible; nadie supo reiniciar nginx por SSH. Corrección: runbook con systemctl y rutas de log."}
+        </li>
+        <li>
+          <strong>{"Terminal compartido en Zoom sin ocultar:"}</strong>
+          {" Password tipeado visible en reunión con cliente. Corrección: copiar-pegar desde vault, sesiones sin compartir pantalla de credenciales."}
+        </li>
+      </ul>
+
       <StepReveal
         title="Caso agencia: cPanel vs SSH/SFTP"
         steps={[

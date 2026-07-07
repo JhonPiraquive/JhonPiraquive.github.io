@@ -140,6 +140,18 @@ export function TransferenciaArchivosSection() {
           {" asumir OK solo por barra verde sin comparar bytes; omitir verificación en archivos críticos."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"rsync --delete sin dry-run:"}</strong>
+          {" Sincronización borró carpeta uploads de producción. Corrección: --dry-run primero, backup previo, --exclude críticos."}
+        </li>
+        <li>
+          <strong>{"scp recursivo sobre prod en horario pico:"}</strong>
+          {" Sitio lento 20 min por I/O saturado. Corrección: ventana de mantenimiento o rsync con ionice."}
+        </li>
+      </ul>
+
     </section>
   );
 }

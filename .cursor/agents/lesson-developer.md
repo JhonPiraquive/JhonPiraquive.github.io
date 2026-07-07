@@ -20,6 +20,16 @@ description: Implementa lecciones TSX interactivas desde layout-spec del pipelin
 - `src/components/teaching/lessons/{track}/{slug}/{PascalCase}Lesson.tsx` — página principal con `LessonLayout`
 - `src/components/teaching/lessons/{track}/{slug}/lesson-meta.ts` — title, order, prev, next, seo
 - `src/components/teaching/lessons/{track}/{slug}/sections/*.tsx` — una sección por componente
+
+### Paginación interna por clase (ADR 011)
+
+Cuando `layout-spec.md` define `## Páginas`:
+
+- Hub: `{PascalCase}HubLesson.tsx` en `{clase}/` con `ClassPageLayout` + índice de páginas
+- Páginas: `{clase}/pages/{pagina}/{PascalCase}PageLesson.tsx` + `lesson-meta.ts`
+- Registry: slug `{track}/{clase}/{pagina}`; `showInTrackIndex: false` en páginas internas
+- Reutilizar `{clase}/sections/` — no duplicar contenido entre páginas
+- Quiz en última página con slug de **clase** (no de página)
 - Entrada en `src/lib/teaching-lessons-registry.ts`
 - Datos de quiz en `src/lib/teaching-quizzes/{track}.ts` si aplica
 
@@ -29,6 +39,7 @@ description: Implementa lecciones TSX interactivas desde layout-spec del pipelin
 3. Verificar que componentes interactivos compilan
 4. Registrar lección en `teaching-lessons-registry.ts` y **todos los índices** (skill create-lesson → «Registro en índices»)
 5. Ejecutar `npm run build` tras cambios
+6. En secciones de concepto: implementar H3 **«Malas prácticas en el mundo real»** según layout-spec / pedagogy-standards (3–5 escenarios concretos)
 
 ## NO hacer
 - Escribir MDX en `src/content/teaching/`

@@ -8,6 +8,21 @@ next: null
 tsx_target: src/components/teaching/lessons/configuracion-servicios-web/clase-04-virtualizacion-diagnostico/
 ---
 
+## Páginas (paginación interna ADR 011)
+
+| slug | component | secciones | layout |
+|------|-----------|-----------|--------|
+| `clase-04-virtualizacion-diagnostico` | `Clase04VirtualizacionDiagnosticoHubLesson` | ObjetivosSection + ClassPagesNavSection | LessonLayout |
+| `clase-04-virtualizacion-diagnostico/contenedores-docker` | `ContenedoresDockerPageLesson` | ObjetivosSection, ContenedoresSection, DespliegueContenedorBasicoSection | ClassPageLayout |
+| `clase-04-virtualizacion-diagnostico/virtualizacion` | `VirtualizacionPageLesson` | VirtualizacionSection | ClassPageLayout |
+| `clase-04-virtualizacion-diagnostico/diagnostico-troubleshooting` | `DiagnosticoTroubleshootingPageLesson` | SolucionProblemasSection, DiagnosticoSistematicoSection, NginxTroubleshootingSection, ValidacionPostCorreccionSection, InformeTecnicoSection | ClassPageLayout |
+| `clase-04-virtualizacion-diagnostico/flujo-integrado` | `FlujoIntegradoPageLesson` | ResolucionLocalSection, FlujoIntegradoSection, ChecklistPruebasSection, ValidacionServicioFtpSection | ClassPageLayout |
+| `clase-04-virtualizacion-diagnostico/practica-y-cierre` | `PracticaYCierrePageLesson` | RetoIntegradorSection, CompruebaTuComprensionSection, CierreSection, MiniquizSection | ClassPageLayout |
+
+Nav prev/next: `class-navigation.ts` → `getPageNavChain()`.
+
+---
+
 ## Clase04VirtualizacionDiagnosticoLesson.tsx — orden de secciones
 
 ```tsx

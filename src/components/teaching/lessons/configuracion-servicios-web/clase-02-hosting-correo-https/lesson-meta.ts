@@ -1,13 +1,16 @@
 import type { LessonMeta } from "@/lib/teaching-lessons-registry";
+import { CLASE_02, getNavForSlug } from "../class-navigation";
+
+const nav = getNavForSlug(CLASE_02.classSlug);
 
 export const meta: LessonMeta = {
   track: "configuracion-servicios-web",
-  slug: "clase-02-hosting-correo-https",
+  slug: CLASE_02.classSlug,
   title: "Clase 2: Hosting, correo corporativo y HTTPS",
-  order: 3,
-  prev: "clase-01-fundamentos-web",
-  next: "clase-03-administracion-remota",
+  order: nav.order,
+  prev: nav.prev,
+  next: nav.next,
+  classTitle: CLASE_02.classTitle,
   seoTitle: "Hosting, correo MX y HTTPS/TLS | CSW",
-  seoDescription:
-    "Tipos de hosting, HTTP/HTTPS con TLS y Let's Encrypt, correo corporativo con MX, SPF y DKIM. Clase 2 del curso Configuración de servicios web.",
+  seoDescription: "Tipos de hosting, HTTP/HTTPS con TLS y correo corporativo. Índice paginado de la Clase 2.",
 };

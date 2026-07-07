@@ -124,6 +124,18 @@ export function FtpSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"FTP activo detrás de NAT:"}</strong>
+          {" Transferencias fallaban aleatoriamente desde oficina Medellín. Corrección: SFTP o FTP pasivo con rango de puertos en firewall."}
+        </li>
+        <li>
+          <strong>{"Usuario ftp con shell /bin/bash:"}</strong>
+          {" Cuenta ftp comprometida → shell interactivo. Corrección: nologin shell y chroot para cuentas solo transferencia."}
+        </li>
+      </ul>
+
       <MermaidDiagram
         chart={`sequenceDiagram
   participant C as Cliente (FileZilla)

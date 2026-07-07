@@ -75,6 +75,18 @@ export function FlujoIntegradoSection() {
         <li>{"Buen uso: diagrama de arquitectura con FQDN, IP y puerto de cada servicio."}</li>
         <li>{"Mal uso: cambiar MX al migrar web sin planificar buzones; olvidar TXT SPF tras mover correo."}</li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Desplegar contenedor sin DNS previo:"}</strong>
+          {" URL apuntaba a IP anterior; rollback confuso. Corrección: orden DNS → TLS → app → smoke test."}
+        </li>
+        <li>
+          <strong>{"Correo migrado después del corte web:"}</strong>
+          {" Clientes recibieron bounce mientras web ya funcionaba. Corrección: plan integrado con dependencias MX/web."}
+        </li>
+      </ul>
+
 
       <PracticeExercise
         prompt="Un cliente abre www.empresa.co y ve el sitio, pero ventas@empresa.co rebota. ¿Qué capa investigarías primero y qué registro DNS revisarías?"

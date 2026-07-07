@@ -25,7 +25,7 @@ export default async function TrackIndexPage({
   const trackMeta = TRACKS.find((t) => t.id === track);
   if (!trackMeta) notFound();
   const lessons = (await getAllLessons())
-    .filter((l) => l.track === track)
+    .filter((l) => l.track === track && l.showInTrackIndex !== false)
     .sort((a, b) => a.order - b.order);
   const isEn = locale === "en";
 

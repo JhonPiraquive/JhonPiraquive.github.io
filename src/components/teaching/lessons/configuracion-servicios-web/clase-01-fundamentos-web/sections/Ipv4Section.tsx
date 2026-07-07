@@ -191,6 +191,22 @@ printf '%08d\\n' $(echo "obase=2;192" | bc)
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"IP privada en registro A público:"}</strong>
+          {" Técnico en Cali publicó 192.168.1.10 como A de tienda.com.co; sitio inalcanzable desde Internet. Corrección: IP pública del hosting/VPS, reservar privada solo en LAN."}
+        </li>
+        <li>
+          <strong>{"NAT sin port forwarding:"}</strong>
+          {" Cámaras IP en bodega Medellín: app móvil dejó de funcionar tras cambio de router. Corrección: reserva DHCP + port forwarding documentado o IP fija con ISP."}
+        </li>
+        <li>
+          <strong>{"Compartir IP en hosting ultra-barato:"}</strong>
+          {" Vecino en misma IP envió spam; dominio de ONG en lista negra compartida. Corrección: IP dedicada o proveedor con reputación verificable."}
+        </li>
+      </ul>
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>
       <PracticeExercise
         prompt="Un compañero dice: «Mi IP es 192.168.0.15, así que ya puedo poner esa IP en el registro A del dominio». ¿Qué le explicas sobre IP privada vs pública?"

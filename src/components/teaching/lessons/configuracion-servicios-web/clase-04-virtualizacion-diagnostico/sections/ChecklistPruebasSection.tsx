@@ -64,6 +64,18 @@ curl -sI "https://www.$DOM/" | head -3`}
         <li>{"Buen uso: guardar salidas dig/curl como evidencia; probar desde red distinta al servidor."}</li>
         <li>{"Mal uso: solo captura del panel sin verificar resolución del cliente; omitir prueba de correo entre buzones."}</li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Checklist en papel nunca actualizado:"}</strong>
+          {" Paso de verificar MX omitido en 5 migraciones seguidas. Corrección: checklist versionado en wiki/Git."}
+        </li>
+        <li>
+          <strong>{"Marcar todo OK sin prueba real:"}</strong>
+          {" Incumplimiento en auditoría cliente bancario. Corrección: evidencia screenshot o output de comando por ítem."}
+        </li>
+      </ul>
+
 
       <PracticeExercise
         prompt="¿Por qué el paso 2 (resolución en el PC) es necesario aunque el paso 1 (dig al autoritativo) ya devolvió la IP correcta?"

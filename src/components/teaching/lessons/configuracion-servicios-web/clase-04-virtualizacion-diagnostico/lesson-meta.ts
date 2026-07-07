@@ -1,13 +1,16 @@
 import type { LessonMeta } from "@/lib/teaching-lessons-registry";
+import { CLASE_04, getNavForSlug } from "../class-navigation";
+
+const nav = getNavForSlug(CLASE_04.classSlug);
 
 export const meta: LessonMeta = {
   track: "configuracion-servicios-web",
-  slug: "clase-04-virtualizacion-diagnostico",
+  slug: CLASE_04.classSlug,
   title: "Virtualización, contenedores y diagnóstico integrador",
-  order: 5,
-  prev: "clase-03-administracion-remota",
-  next: null,
+  order: nav.order,
+  prev: nav.prev,
+  next: nav.next,
+  classTitle: CLASE_04.classTitle,
   seoTitle: "Docker, VMs y diagnóstico web por capas | CSW",
-  seoDescription:
-    "Contenedores Docker, VMs, resolución local, flujo integrado dominio–DNS–hosting–correo, checklist de pruebas y troubleshooting por capas. Cierra el curso Configuración de Servicios Web.",
+  seoDescription: "Contenedores, virtualización y troubleshooting integrador. Índice paginado de la Clase 4.",
 };

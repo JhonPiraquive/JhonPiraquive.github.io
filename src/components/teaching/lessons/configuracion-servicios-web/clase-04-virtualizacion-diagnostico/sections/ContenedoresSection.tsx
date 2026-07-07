@@ -252,6 +252,22 @@ export function ContenedoresSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Imagen latest en producción:"}</strong>
+          {" Rebuild nocturno cambió versión Node; API cayó sin cambio de código. Corrección: tag semver fijo node:20.11-alpine."}
+        </li>
+        <li>
+          <strong>{"Secretos en ENV del Dockerfile:"}</strong>
+          {" Token AWS en capa de imagen subida a Docker Hub público. Corrección: secrets en runtime, .dockerignore, scan Trivy."}
+        </li>
+        <li>
+          <strong>{"Contenedor como root:"}</strong>
+          {" Escape de contenedor comprometió host en VPS compartido. Corrección: USER no-root en Dockerfile."}
+        </li>
+      </ul>
+
       <Callout title="Error frecuente">
         {
           "Confundir contenedor con VM: no puedes instalar Windows dentro de un contenedor Linux. Para otro SO completo, usa una máquina virtual."
@@ -375,6 +391,22 @@ docker compose logs -f --tail 50`}
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Volumen montado sobre /etc del host:"}</strong>
+          {" Compose de prueba sobrescribió resolv.conf del VPS. Corrección: volúmenes nombrados, nunca bind / críticos."}
+        </li>
+        <li>
+          <strong>{"depends_on sin healthcheck:"}</strong>
+          {" API arrancó antes que Postgres; errores en loop silencioso. Corrección: healthcheck y condition: service_healthy."}
+        </li>
+        <li>
+          <strong>{"Puerto 80:80 en host ocupado:"}</strong>
+          {" Segundo stack no levantó; nginx principal caído por conflicto. Corrección: mapear 8080:80 o reverse proxy único."}
+        </li>
+      </ul>
+
       <StepReveal
         title="Docker Desktop en Windows"
         steps={[
@@ -517,6 +549,18 @@ docker compose logs -f --tail 50`}
           {" empaquetar app web/API, CI/CD, mismo kernel Linux en host y destino, despliegue rápido en VPS."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"VM completa para servir HTML estático:"}</strong>
+          {" 512 MB RAM para nginx de 3 archivos. Corrección: contenedor nginx:alpine o hosting estático."}
+        </li>
+        <li>
+          <strong>{"Contenedor para probar drivers GPU:"}</strong>
+          {" Docker no expone GPU sin nvidia-runtime; días perdidos. Corrección: VM con passthrough o bare metal para ese caso."}
+        </li>
+      </ul>
+
       <PracticeExercise
         prompt="Un equipo en Buenos Aires debe probar `ufw` y `systemd` en Ubuntu Server antes de tocar el VPS de producción. ¿Recomendarías VM o contenedor? Justifica en una frase."
         hints={["¿Necesitas un SO completo con su propio kernel?", "¿El laboratorio simula un servidor bare-metal?"]}

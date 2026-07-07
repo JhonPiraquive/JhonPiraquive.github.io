@@ -19,7 +19,7 @@ description: Crear y ajustar contenido pedagógico de lecciones TSX usando brief
 
 ## Responsabilidades
 - Objetivos medibles, prerrequisitos, progresión concepto → ejemplo → práctica → cierre
-- **Profundidad explicativa:** por cada concepto del brief, redactar bloques H3: *Qué es*, *Para qué sirve / Por qué*, *Cómo funciona*, *Estructura* (si aplica), *Ventajas y desventajas* (si aplica), *Ejemplo*, *Señales de buen y mal uso* — ver `kb/education/pedagogy-standards.md`
+- **Profundidad explicativa:** por cada concepto del brief, redactar bloques H3: *Qué es*, *Para qué sirve / Por qué*, *Cómo funciona*, *Estructura* (si aplica), *Ventajas y desventajas* (si aplica), *Ejemplo*, *Señales de buen y mal uso*, *Malas prácticas en el mundo real* (3–5 escenarios concretos) — ver `kb/education/pedagogy-standards.md`
 - No publicar secciones que sean solo una tabla o lista sin párrafos de desarrollo
 - Marcar bloques interactivos: `<!-- interactive: ComponentName -->` + JSON de props
 - Marcar bloques de código: `<!-- code: {lang} -->` antes de cada fence (ver interactive-components.md)

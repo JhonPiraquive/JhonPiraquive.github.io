@@ -149,6 +149,18 @@ export function HerramientasGraficasSshSection() {
           {" reutilizar perfil «servidor» sin puerto; mezclar FTP (21) con SFTP (22) en MobaXterm; guardar contraseñas en texto plano en perfiles compartidos."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"PuTTY sin guardar clave en agent:"}</strong>
+          {" Re-login cada 5 min interrumpió deploy largo. Corrección: Pageant/agent con passphrase razonable."}
+        </li>
+        <li>
+          <strong>{"WinSCP sincronizar espejo a prod:"}</strong>
+          {" Borró archivos subidos por otro dev en servidor. Corrección: sync unidireccional local→staging primero."}
+        </li>
+      </ul>
+
     </section>
   );
 }

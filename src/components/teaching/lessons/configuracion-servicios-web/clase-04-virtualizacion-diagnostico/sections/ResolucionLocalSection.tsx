@@ -97,6 +97,18 @@ dig @ns.innovatech.co www.innovatech.co A +short`}
         <li>{"Buen uso: probar resolución del sistema antes del navegador; documentar entradas hosts temporales."}</li>
         <li>{"Mal uso: dejar hosts de prueba en producción; confundir dig @local con resolución global."}</li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"/etc/hosts como solución permanente:"}</strong>
+          {" Entrada manual olvidada tras migración DNS; mitad del equipo ve IP vieja. Corrección: hosts solo temporal, corregir DNS autoritativo."}
+        </li>
+        <li>
+          <strong>{"Caché systemd-resolved sin flush:"}</strong>
+          {" dig @8.8.8.8 OK pero curl local falla. Corrección: resolvectl flush-caches tras cambio local."}
+        </li>
+      </ul>
+
 
       <PracticeExercise
         prompt="dig @192.168.1.10 devuelve la IP correcta pero el navegador muestra DNS_PROBE. ¿Qué falta configurar?"

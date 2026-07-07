@@ -134,6 +134,18 @@ export function InformeTecnicoSection() {
           {" «Se reinició y funcionó» sin logs; mezclar varias causas sin priorizar; omitir validación externa."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Informe sin timestamps ni comandos:"}</strong>
+          {" Segundo turno repite diagnóstico desde cero. Corrección: hora, comando, output pegado, conclusión."}
+        </li>
+        <li>
+          <strong>{"Culpar al usuario sin evidencia:"}</strong>
+          {" «Debe ser su Wi-Fi» sin traceroute. Corrección: datos objetivos antes de conclusiones."}
+        </li>
+      </ul>
+
     </section>
   );
 }

@@ -106,6 +106,18 @@ export function VirtualizacionSection() {
           {" snapshots sin nomenclatura, VM sin red por adaptador mal configurado, usar la VM de producción para experimentos destructivos."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Snapshot como único backup:"}</strong>
+          {" Snapshot corrupto tras apagón; VM no arranca. Corrección: backup externo exportado y restore probado."}
+        </li>
+        <li>
+          <strong>{"Bridge mal configurado en laptop:"}</strong>
+          {" VM sin Internet en clase; 2 h perdidas. Corrección: NAT para labs, bridge solo cuando se necesite IP LAN."}
+        </li>
+      </ul>
+
       <Callout title="Síntoma: VM sin red">
         {
           "Si `ping` al gateway falla desde el invitado, revisa el modo del adaptador (NAT vs bridge) en VirtualBox o Hyper-V antes de reinstalar el SO."

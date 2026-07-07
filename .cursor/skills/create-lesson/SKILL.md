@@ -109,6 +109,22 @@ Si faltan títulos/descripciones para un track nuevo, inferir del catálogo del 
 | 5b | `lesson-developer` / `Assistant` | lección nueva | Registrar en todos los índices (ver abajo) |
 | 6 | shell | — | `npm run build` cada 3 lecciones |
 
+## Paginación interna por clase (ADR 011)
+
+Aplicar en módulos por sesiones/clases cuando una clase supere **~8 secciones** o **~20 min** de lectura continua.
+
+| Regla | Detalle |
+|-------|---------|
+| Estructura | Hub `{clase}` + páginas `{clase}/{pagina}` (3–5 páginas, 2–4 secciones c/u) |
+| Shell | `ClassPageLayout` con breadcrumb y «Página X de Y» |
+| Secciones | Reutilizar `{clase}/sections/*.tsx`; no duplicar contenido |
+| Cierre | Última página: práctica + reto + miniquiz (quiz por **clase**, no por página) |
+| Portal | `showInTrackIndex: false` en páginas internas; listar solo hubs |
+| Audiencia | Contenido TSX **solo estudiante** — sin guías docente, actividades evaluables ni repos en `/teaching/` |
+| layout-spec | Tabla `## Páginas` en `layout-spec.md` de cada clase |
+
+Referencia: `kb/decisions/011-clases-con-paginas-internas.md` · implementación: `configuracion-servicios-web`.
+
 ## Reglas
 
 - **Nunca** saltar Fase 0 ni `education-expert` (no publicar dominio sin brief)
@@ -116,6 +132,7 @@ Si faltan títulos/descripciones para un track nuevo, inferir del catálogo del 
 - **Nunca** escribir MDX en `src/content/teaching/`
 - Cada lección debe cumplir `kb/education/pedagogy-standards.md`
 - **Profundidad explicativa obligatoria:** cada concepto principal lleva bloques *Qué es*, *Para qué sirve / Por qué*, *Cómo funciona* y al menos un ejemplo; ver `pedagogy-standards.md` → «Profundidad explicativa». Al **mejorar** lecciones existentes, reescribir secciones delgadas (solo tablas/bullets) siguiendo el patrón de POSW/POO
+- **Malas prácticas en el mundo real:** en secciones de concepto técnico, H3 dedicado con 3–5 escenarios reales (error → consecuencia → corrección); ver `pedagogy-standards.md` → «Malas prácticas en el mundo real»
 - Componentes interactivos: `kb/education/interactive-components.md`
 - Infra faltante (carpetas, status, registry parcial) → crear en Fase 0 **sin pausa**
 - Topic-expert o track **nuevo** → bootstrap + **pausar para aprobación** antes del paso 1

@@ -146,6 +146,22 @@ export function SolucionProblemasSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Asumir propagación 48 h sin dig:"}</strong>
+          {" Sitio «caído» 2 días; registro A estaba mal, no era TTL. Corrección: dig autoritativo vs recursivo antes de esperar."}
+        </li>
+        <li>
+          <strong>{"certbot en DNS incorrecto:"}</strong>
+          {" Renovación falló porque A apuntaba a otro servidor. Corrección: confirmar capa DNS antes de capa TLS."}
+        </li>
+        <li>
+          <strong>{"docker restart loop sin leer logs:"}</strong>
+          {" Contenedor reiniciado 50 veces empeoró corrupción de volumen. Corrección: docker logs --tail 100 antes de restart."}
+        </li>
+      </ul>
+
       <PracticeExercise
         prompt="Síntoma: `curl http://IP` funciona, pero `curl http://dominio` falla. Escribe tres comprobaciones en orden y la causa más probable."
         hints={["Empieza por la capa DNS", "Compara resolución con `dig`", "¿El registro A apunta a la IP correcta?"]}

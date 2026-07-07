@@ -67,6 +67,18 @@ export function ModeloClienteServidorRemotoSection() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Administrar prod desde café sin VPN:"}</strong>
+          {" SSH expuesto a 0.0.0.0/0; intentos de fuerza bruta constantes desde botnets. Corrección: VPN o allowlist IP oficina + fail2ban."}
+        </li>
+        <li>
+          <strong>{"Mezclar roles dev y root:"}</strong>
+          {" Junior con root borró /var/log en «limpieza». Corrección: sudo granular, usuario deploy sin rm recursivo en prod."}
+        </li>
+      </ul>
+
       <MermaidDiagram
         chart={`sequenceDiagram
   participant Dev as Cliente (laptop Cali)

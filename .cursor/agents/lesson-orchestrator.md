@@ -52,6 +52,19 @@ Estados: `pending` | `in_progress` | `done` | `failed`
 - [ ] Topic-expert activo (o aprobado si nuevo)
 - [ ] Fuentes indexadas o anotadas en status
 
+## Paginación interna por clase (ADR 011)
+
+Al crear o **refactorizar** módulos por sesiones/clases:
+
+- [ ] Evaluar si cada clase necesita paginación (>8 secciones o >~20 min lectura)
+- [ ] Hub por clase + 3–5 páginas temáticas (`{clase}/{pagina}`)
+- [ ] `ClassPageLayout` + nav prev/next encadenada (páginas y clases)
+- [ ] Reutilizar `sections/` existentes; registrar todas las páginas en registry
+- [ ] Contenido público orientado al **estudiante** (sin guías docente en TSX)
+- [ ] Documentar en `layout-spec.md` → `## Páginas` y actualizar `status.md`
+
+Ver `kb/decisions/011-clases-con-paginas-internas.md` y skill create-lesson → «Paginación interna por clase».
+
 ## Profundidad explicativa (obligatoria)
 
 Al crear o **mejorar** lecciones, validar que cada concepto principal no sea solo una tabla o lista:
@@ -60,6 +73,7 @@ Al crear o **mejorar** lecciones, validar que cada concepto principal no sea sol
 - [ ] Al menos un ejemplo concreto por concepto (comando, registro, flujo, caso LATAM)
 - [ ] Ventajas/desventajas o señales de buen/mal uso cuando el tema lo requiera
 - [ ] Referencia: `kb/education/pedagogy-standards.md` → «Profundidad explicativa»; tono POSW (`servicios-web`, `backend`) y POO (`fundamentos`)
+- [ ] **Malas prácticas en el mundo real:** H3 dedicado en secciones de concepto (3–5 escenarios: error → consecuencia → corrección); ver `pedagogy-standards.md`
 
 Si el usuario pide ampliar contenido, re-ejecutar pipeline desde **topic-expert** (brief enriquecido) → **education-expert** → layout → TSX; no parchear TSX con una frase suelta.
 

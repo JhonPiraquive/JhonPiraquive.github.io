@@ -129,6 +129,18 @@ export function AdministracionRemotaArchivosSection() {
           {" chmod 777 recursivo; eliminar sin confirmar; mezclar archivos de clientes en una sola carpeta sin ACL."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Editar wp-config.php en prod con nano SSH:"}</strong>
+          {" Typo tumba WordPress en vivo. Corrección: editar local, diff, deploy SFTP, backup previo."}
+        </li>
+        <li>
+          <strong>{"Dos admins editando mismo archivo:"}</strong>
+          {" Cambios sobrescritos sin control de versiones. Corrección: Git + deploy, o lock comunicado en equipo."}
+        </li>
+      </ul>
+
     </section>
   );
 }

@@ -105,6 +105,18 @@ export function ReconocimientoEntornoSection() {
           {" asumir que «conecté» implica servidor correcto sin hostname; ignorar inactive en systemctl; confundir IP del contenedor con IP pública."}
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Asumir Ubuntu cuando es Debian:"}</strong>
+          {" Comandos apt en servidor con yum fallaron en urgencia. Corrección: uname -a, cat /etc/os-release al conectar."}
+        </li>
+        <li>
+          <strong>{"No verificar usuario antes de rm -rf:"}</strong>
+          {" Operador en / como root casi borra /etc. Corrección: whoami, pwd, alias rm='rm -i' en prod."}
+        </li>
+      </ul>
+
     </section>
   );
 }

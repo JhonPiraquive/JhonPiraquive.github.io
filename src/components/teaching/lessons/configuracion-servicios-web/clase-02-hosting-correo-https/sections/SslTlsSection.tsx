@@ -205,6 +205,22 @@ openssl s_client -connect ong.org.co:443 -tls1_2 </dev/null 2>/dev/null | grep P
           </tbody>
         </table>
       </div>
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Cert autofirmado en producción:"}</strong>
+          {" Consultora entregó sitio con cert self-signed; clientes abandonaron checkout. Corrección: Let's Encrypt o cert comercial antes del go-live."}
+        </li>
+        <li>
+          <strong>{"Cadena intermedia incompleta:"}</strong>
+          {" Android antiguos en LATAM no confiaban en sitio; iOS sí. Corrección: fullchain.pem en Nginx ssl_certificate."}
+        </li>
+        <li>
+          <strong>{"TLS 1.0/1.1 por compatibilidad:"}</strong>
+          {" Auditoría bancaria rechazó integración por protocolos obsoletos. Corrección: TLS 1.2+ mínimo, probar con SSL Labs."}
+        </li>
+      </ul>
     </section>
   );
 }

@@ -130,6 +130,22 @@ nslookup -type=TXT innovatech.co`}
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Confiar solo en ping:"}</strong>
+          {" Operador en Santiago declaró «DNS OK» porque ping respondía a IP vieja en caché ARP local. Corrección: dig +short dominio A desde red externa."}
+        </li>
+        <li>
+          <strong>{"nslookup sin especificar tipo:"}</strong>
+          {" Revisión de correo omitió MX porque consultaron solo A. Corrección: dig MX, TXT (SPF) y DKIM en checklist de migración."}
+        </li>
+        <li>
+          <strong>{"whois desactualizado para troubleshooting:"}</strong>
+          {" Datos de contacto obsoletos retrasaron recuperación de dominio secuestrado. Corrección: whois anual y 2FA en panel del registrar."}
+        </li>
+      </ul>
+
 
       <PracticeExercise
         prompt="¿Por qué `dig @ns1.proveedor.com` puede devolver una IP distinta a `dig www.ejemplo.co` sin @? Menciona caché y TTL."

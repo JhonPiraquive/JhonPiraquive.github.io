@@ -108,6 +108,22 @@ export function Ipv6Section() {
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"AAAA publicado sin firewall v6:"}</strong>
+          {" VPS con AAAA expuesto; servicios olvidados escuchaban en IPv6 sin ufw v6. Corrección: reglas firewall simétricas v4/v6 o no publicar AAAA hasta estar listo."}
+        </li>
+        <li>
+          <strong>{"Dual-stack roto en app legacy:"}</strong>
+          {" API solo escuchaba IPv4; clientes IPv6-only de operador móvil fallaban. Corrección: bind 0.0.0.0 y :: o proxy con IPv6 en edge."}
+        </li>
+        <li>
+          <strong>{"Ignorar IPv6 en diagnóstico:"}</strong>
+          {" «Sitio caído» era solo ruta IPv6 rota; IPv4 funcionaba. Corrección: curl -6 y curl -4 por separado en runbook."}
+        </li>
+      </ul>
+
     </section>
   );
 }

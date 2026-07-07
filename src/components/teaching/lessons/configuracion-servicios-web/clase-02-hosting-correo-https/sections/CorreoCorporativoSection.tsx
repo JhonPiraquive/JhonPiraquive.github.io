@@ -305,6 +305,31 @@ dig TXT zmail._domainkey.miempresa.org.co +short`}
         </table>
       </div>
 
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>{"Buen uso: un solo MX activo; SPF+DKIM alineados; contraseñas de aplicación con 2FA."}</li>
+        <li>{"Mal uso: MX duplicados; SPF +all; migrar MX en horario laboral sin aviso."}</li>
+      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Migración MX en horario pico:"}</strong>
+          {" Retail en Bogotá cambió MX a las 10:00; ventas perdió cotizaciones 4 horas. Corrección: ventana nocturna/fin de semana, TTL bajo previo, aviso al equipo."}
+        </li>
+        <li>
+          <strong>{"SPF con +all permisivo:"}</strong>
+          {" Consultor añadió +all «para que no rebote»; dominio usado para phishing masivo y bloqueo total. Corrección: ~all o -all con includes mínimos del proveedor real."}
+        </li>
+        <li>
+          <strong>{"DKIM selector viejo activo:"}</strong>
+          {" Tras rotar claves en Zoho dejaron registro zmail._domainkey antiguo; firmas inválidas intermitentes. Corrección: eliminar selectores obsoletos tras rotación guiada del panel."}
+        </li>
+        <li>
+          <strong>{"Contraseña Gmail personal en SMTP:"}</strong>
+          {" Contabilidad en Medellín con 2FA usó password normal; bloqueos diarios de Google. Corrección: contraseña de aplicación o OAuth del proveedor."}
+        </li>
+      </ul>
       <Callout title="Registro A ≠ MX">
         {
           "El sitio web puede estar en una IP (registro A) y el correo en otro proveedor (MX distinto). Es correcto y habitual; hay que configurar cada registro por separado."

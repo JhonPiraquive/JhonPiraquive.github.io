@@ -22,6 +22,20 @@ src/components/teaching/lessons/{track}/{slug}/
   sections/*.tsx
 ```
 
+### Clase con páginas internas (ADR 011)
+
+```
+src/components/teaching/lessons/{track}/{clase}/
+  {PascalCase}HubLesson.tsx      # hub + índice de páginas
+  lesson-meta.ts
+  sections/*.tsx                 # compartidas entre páginas
+  pages/{pagina}/
+    {PascalCase}PageLesson.tsx
+    lesson-meta.ts               # slug: {clase}/{pagina}, showInTrackIndex: false
+```
+
+Shell de página: `ClassPageLayout` (breadcrumb + «Página X de Y»).
+
 ## Registry
 
 `src/lib/teaching-lessons-registry.ts` mapea `{track, slug}` → `{ component, meta }`.

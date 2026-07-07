@@ -1,13 +1,17 @@
 import type { LessonMeta } from "@/lib/teaching-lessons-registry";
+import { CLASE_01, getNavForSlug } from "../class-navigation";
+
+const nav = getNavForSlug(CLASE_01.classSlug);
 
 export const meta: LessonMeta = {
   track: "configuracion-servicios-web",
-  slug: "clase-01-fundamentos-web",
+  slug: CLASE_01.classSlug,
   title: "Fundamentos web: navegadores, IP, dominios y DNS",
-  order: 2,
-  prev: "index",
-  next: "clase-02-hosting-correo-https",
+  order: nav.order,
+  prev: nav.prev,
+  next: nav.next,
   seoTitle: "Fundamentos web: navegadores, IP y DNS | Servicios web",
   seoDescription:
-    "Compara navegadores y DevTools, explica IPv4 e IPv6, estructura dominios y flujo DNS con registros A, AAAA, CNAME y MX. Clase 1 del curso Configuración de servicios web.",
+    "Clase 1 del curso CSW: navegadores, IPv4/IPv6, dominios y DNS. Índice de páginas con lectura guiada (~15–20 min por página).",
+  classTitle: CLASE_01.classTitle,
 };

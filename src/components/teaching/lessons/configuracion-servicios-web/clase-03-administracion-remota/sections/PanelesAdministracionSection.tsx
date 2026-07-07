@@ -105,6 +105,18 @@ export function PanelesAdministracionSection() {
         <li>{"Buen uso: documentar cada cambio en panel; exportar zona DNS; probar tras cada modificación."}</li>
         <li>{"Mal uso: editar DNS y hosting simultáneamente sin saber cuál capa falla; dejar paneles expuestos en Internet sin firewall."}</li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"URL /cpanel publicada en Google:"}</strong>
+          {" Panel indexado; bots intentaron login masivo. Corrección: restringir por IP, 2FA, URL no adivinable."}
+        </li>
+        <li>
+          <strong>{"WHM root compartido con freelancers:"}</strong>
+          {" Freelancer terminado conservó acceso 3 meses. Corrección: offboarding checklist, tokens temporales."}
+        </li>
+      </ul>
+
 
       <PracticeExercise
         prompt="¿En qué orden configurarías DNS, hosting y correo para una empresa nueva? Justifica brevemente."

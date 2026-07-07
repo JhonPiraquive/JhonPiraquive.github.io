@@ -330,6 +330,31 @@ Accept: application/json
         </table>
       </div>
 
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>{"Buen uso: HTTPS en todo el sitio; redirect 301 HTTP→HTTPS; probar con curl -vI."}</li>
+        <li>{"Mal uso: login o pagos por HTTP; mixed content; certificado vencido sin monitoreo."}</li>
+      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Login por HTTP en Wi-Fi de aeropuerto:"}</strong>
+          {" Contador en CDMX accedió al panel admin por http://; credenciales capturadas en red pública. Corrección: forzar HTTPS, HSTS y cookies Secure."}
+        </li>
+        <li>
+          <strong>{"Mixed content tras migración TLS:"}</strong>
+          {" Tienda en Bogotá activó HTTPS pero imágenes seguían en http://; navegador bloqueó contenido y checkout falló silenciosamente. Corrección: URLs relativas o Content-Security-Policy upgrade-insecure-requests."}
+        </li>
+        <li>
+          <strong>{"Certificado solo en www:"}</strong>
+          {" Clientes que escribían dominio.com.co sin www veían «No seguro». Corrección: cert multi-SAN apex+www y redirect 301 desde ambos."}
+        </li>
+        <li>
+          <strong>{"Redirect 302 temporal permanente:"}</strong>
+          {" SEO de restaurante en Lima cayó: 302 en lugar de 301 de HTTP a HTTPS durante 6 meses. Corrección: 301 permanente y verificar con curl -I."}
+        </li>
+      </ul>
       <Callout title="Caso real: migración Lima — «No seguro»">
         {
           "Consultora migra WordPress a nuevo VPS. Sitio carga por HTTP; clientes reportan «No seguro» y formulario no envía (mixed content + cert autofirmado). Resolución: certbot --nginx, URLs en BD a HTTPS, redirect 80→443."

@@ -4,29 +4,29 @@ export function NavegacionClasesSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Empezar el curso"}</h2>
       <p className="my-4">
         {
-          "Usa la navegación prev/siguiente de cada lección o el índice del track. El orden recomendado es Clase 1 → Clase 4."
+          "Cada clase tiene un índice con páginas temáticas (~15–20 min cada una). Usa la navegación anterior/siguiente o el índice dentro de cada clase."
         }
       </p>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Clase 1:"}</strong>
-          {" Navegadores, direcciones IP, dominios y DNS."}
+          {" 5 páginas — navegadores, IP, DNS, configuración y práctica."}
         </li>
         <li>
           <strong>{"Clase 2:"}</strong>
-          {" Hosting, correo corporativo (MX, SPF, DKIM) y HTTPS."}
+          {" 4 páginas — hosting, HTTPS/TLS, correo corporativo y práctica."}
         </li>
         <li>
           <strong>{"Clase 3:"}</strong>
-          {" Computación en la nube, SSH, SFTP y paneles remotos."}
+          {" 4 páginas — nube, transferencia de archivos, SSH y práctica."}
         </li>
         <li>
           <strong>{"Clase 4:"}</strong>
-          {" Contenedores Docker, VMs, resolución local, flujo integrado y checklist de pruebas."}
+          {" 5 páginas — Docker, virtualización, diagnóstico, flujo integrado y práctica."}
         </li>
       </ul>
       <p className="my-4 font-semibold">
-        {"Siguiente paso: Clase 1 — Fundamentos web."}
+        {"Siguiente paso: Clase 1 — Fundamentos web (índice de la clase)."}
       </p>
     </section>
   );

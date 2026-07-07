@@ -113,6 +113,22 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]`}
           </tbody>
         </table>
       </div>
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"HSTS sin probar redirect previo:"}</strong>
+          {" HSTS preload activado con cert mal configurado; usuarios atrapados en error irrecuperable sin borrar HSTS. Corrección: validar HTTPS estable antes de max-age largo."}
+        </li>
+        <li>
+          <strong>{"OCSP stapling mal configurado:"}</strong>
+          {" Latencia extra en handshake TLS en usuarios de Perú. Corrección: ssl_stapling on con resolver válido en Nginx."}
+        </li>
+        <li>
+          <strong>{"Renovación manual olvidada:"}</strong>
+          {" E-commerce en Lima perdió ventas 6 horas por cert vencido en domingo; cron certbot deshabilitado tras update del SO. Corrección: timer systemd + alerta 30 días antes."}
+        </li>
+      </ul>
     </section>
   );
 }

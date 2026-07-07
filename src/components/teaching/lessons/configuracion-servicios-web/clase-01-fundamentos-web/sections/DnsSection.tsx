@@ -204,6 +204,22 @@ Accept: text/html`}
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Resolver local cacheado tras incidente:"}</strong>
+          {" Tras cambiar A por ataque, soporte en Bogotá seguía viendo sitio comprometido por caché del ISP. Corrección: dig @8.8.8.8 y whatsmydns.net antes de cerrar ticket."}
+        </li>
+        <li>
+          <strong>{"Split-horizon no documentado:"}</strong>
+          {" Intranet en Medellín resolvía portal.empresa.local distinto que Internet; dev remoto no reproducía bug. Corrección: documentar vistas interna/externa y hosts de prueba."}
+        </li>
+        <li>
+          <strong>{"Delegación NS parcial:"}</strong>
+          {" Solo 2 de 4 NS actualizados al migrar; resolutores aleatorios fallaban. Corrección: cambiar todos los NS en registrar y verificar propagación completa."}
+        </li>
+      </ul>
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>
       <PracticeExercise
         prompt="Ordena los pasos del flujo DNS: (a) consulta TLD .co, (b) navegador abre TCP a la IP, (c) resolver pregunta a raíz, (d) usuario escribe URL, (e) respuesta A devuelta, (f) consulta NS de empresa.co."

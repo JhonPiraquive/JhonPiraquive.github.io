@@ -17,3 +17,5 @@ Al crear o mejorar lecciones docentes:
 7. **Profundidad explicativa:** cada concepto con bloques *Qué es*, *Para qué/Por qué*, *Cómo funciona*, ejemplo y señales de buen/mal uso — ver `pedagogy-standards.md` → «Profundidad explicativa»
 8. Registrar progreso en `kb/education/pipeline/{track}/status.md`
 9. Registrar lección en índices (portal + KB) — ver skill create-lesson → «Registro en índices»
+10. **Clases extensas:** paginar internamente (ADR 011) — hub + páginas `{clase}/{pagina}`, `ClassPageLayout`, contenido solo estudiante
+11. **Malas prácticas:** H3 «Malas prácticas en el mundo real» en secciones de concepto (3–5 escenarios reales) — ver `pedagogy-standards.md`

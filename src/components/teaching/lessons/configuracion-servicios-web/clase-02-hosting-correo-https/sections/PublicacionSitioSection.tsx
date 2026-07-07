@@ -140,6 +140,22 @@ curl -sI "http://www.innovatech.co:8080/" | head -1`}
         <li>{"Buen uso: root apunta a carpeta con index.html; server_name coincide con el FQDN del certificado TLS."}</li>
         <li>{"Mal uso: root en /var/www/ vacío; probar solo por IP sin verificar el virtual host por nombre."}</li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Subir a public_html equivocado:"}</strong>
+          {" Dev en Quito desplegó en carpeta de subdominio inactivo; cliente vio sitio viejo 2 días. Corrección: confirmar DocumentRoot en panel o ruta en Nginx."}
+        </li>
+        <li>
+          <strong>{"Permisos 777 en uploads:"}</strong>
+          {" WordPress con chmod 777; webshell subido vía formulario vulnerable. Corrección: 755 dirs, 644 files, propietario www-data."}
+        </li>
+        <li>
+          <strong>{"index.html vs index.php:"}</strong>
+          {" Sitio PHP mostraba listado de directorio; faltaba index.php como DirectoryIndex. Corrección: verificar orden DirectoryIndex y .htaccess."}
+        </li>
+      </ul>
+
 
       <PracticeExercise
         prompt="El sitio responde 403 Forbidden pero DNS resuelve bien. ¿Qué dos cosas revisarías primero en el servidor web?"

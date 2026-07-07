@@ -52,6 +52,31 @@ export function CasosRealesLatamSection() {
           " nuevos proyectos con tráfico medio migran a VPS con SSH; cPanel solo donde el cliente paga hosting compartido económico."
         }
       </p>
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>{"Buen uso: SFTP sobre SSH; MFA en paneles; claves por cliente; documentar accesos."}</li>
+        <li>{"Mal uso: FTP puerto 21; cPanel compartido; passwords en cron; ignorar logins geo-anómalos."}</li>
+      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"FTP en puerto 21 «por costumbre»:"}</strong>
+          {" Cliente retail en Cali exigió FTP; credenciales viajaron en claro y fueron brute-forced. Corrección: SFTP sobre SSH 22 con clave, documentar rechazo de FTP."}
+        </li>
+        <li>
+          <strong>{"cPanel compartido entre clientes:"}</strong>
+          {" Agencia en Bogotá usó un login cPanel para 12 sitios; error borró BD de cliente equivocado. Corrección: cuenta cPanel por cliente o SFTP con chroot."}
+        </li>
+        <li>
+          <strong>{"SSH con password en scripts cron:"}</strong>
+          {" Deploy automatizado guardó password en crontab legible. Corrección: clave Ed25519 con passphrase en agent y usuario deploy sin shell interactivo."}
+        </li>
+        <li>
+          <strong>{"Sin MFA tras login desde Rusia:"}</strong>
+          {" Agencia detectó acceso extranjero pero no forzó MFA hasta semanas después. Corrección: MFA obligatorio y alertas geo-anómalas inmediatas."}
+        </li>
+      </ul>
     </section>
   );
 }

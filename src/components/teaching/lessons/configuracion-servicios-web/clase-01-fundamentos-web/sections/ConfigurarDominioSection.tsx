@@ -1,6 +1,5 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { CompareTable } from "@/components/teaching/CompareTable";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function ConfigurarDominioSection() {
@@ -36,19 +35,11 @@ export function ConfigurarDominioSection() {
         <li>{"En el panel DNS autoritativo creas registros."}</li>
         <li>{"Verificas con dig y pruebas de navegador/correo."}</li>
       </ol>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Tipos de registro DNS"}</h3>
-      <CompareTable
-        headers={["Tipo", "Propósito", "Cuándo usarlo"]}
-        rows={[
-          ["A", "Nombre → IPv4", "Servidor web, API, apex con IP fija"],
-          ["AAAA", "Nombre → IPv6", "Dual stack en producción"],
-          ["CNAME", "Alias → otro nombre", "www, blog en hosting externo, CDN"],
-          ["MX", "Servidor de correo (prioridad + host)", "Google Workspace, correo propio"],
-          ["TXT", "Texto libre (SPF, DKIM, verificación)", "Seguridad de correo, dominio verificado"],
-          ["NS", "Nameserver autoritativo de la zona", "Delegación al proveedor DNS"],
-          ["SOA", "Metadatos de zona (serial, refresh, TTL)", "Gestionado por el proveedor; autoridad primaria"],
-        ]}
-      />
+      <p className="my-4">
+        {
+          "En la página anterior repasaste cada tipo de registro (A, AAAA, CNAME, MX, TXT, NS, SOA, PTR, SRV, CAA y más). Aquí verás cómo delegar la zona y publicar esos registros en un panel DNS real."
+        }
+      </p>
       <CodeFiddle
         language="dns"
         title="Nameservers en Cloudflare"
@@ -153,6 +144,26 @@ dig ejemplo.co SOA +short`}
           }
         </li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Dominio sin renovación automática:"}</strong>
+          {" Una ferretería en Pereira dejó vencer el .com.co durante vacaciones. El sitio y el correo @dominio quedaron offline 5 días; un competidor registró variante similar. Corrección: auto-renovación en NIC/registrar y alertas 60 días antes."}
+        </li>
+        <li>
+          <strong>{"MX duplicados tras migrar correo:"}</strong>
+          {" Consultora en Medellín añadió MX de Google pero no eliminó los del hosting viejo. Cotizaciones a ventas@ se perdían aleatoriamente durante dos semanas. Corrección: un solo par de MX activo; verificar con dig MX."}
+        </li>
+        <li>
+          <strong>{"CNAME en apex sin ALIAS:"}</strong>
+          {" Startup en Bogotá apuntó el dominio raíz con CNAME al CDN; resolución intermitente según el resolver. Corrección: registro A/ALIAS en apex y CNAME solo en subdominios."}
+        </li>
+        <li>
+          <strong>{"TTL alto el día del corte:"}</strong>
+          {" Migración de hosting un viernes con TTL 86400 s: usuarios en Cali vieron IP antigua hasta el lunes. Corrección: bajar TTL a 300 s 48 h antes del cambio de registro A."}
+        </li>
+      </ul>
+
       <Callout title="IP dinámica vs fija para cámaras IP">
         {
           "Una PyME instala 8 cámaras con app que exige IP fija del NVR. Con DHCP dinámico, el port forwarding deja de funcionar tras reinicio. Contratan IP fija con el ISP, reservan 192.168.1.100 en el router y actualizan el registro A de cctv.empresa.co a la nueva IP pública."

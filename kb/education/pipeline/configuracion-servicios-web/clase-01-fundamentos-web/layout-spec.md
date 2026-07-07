@@ -7,6 +7,21 @@ prev: index
 next: clase-02-hosting-correo-https
 ---
 
+## Páginas (paginación interna ADR 011)
+
+| slug | component | secciones | layout |
+|------|-----------|-----------|--------|
+| `clase-01-fundamentos-web` | `Clase01FundamentosWebHubLesson` | ObjetivosSection + ClassPagesNavSection | LessonLayout |
+| `clase-01-fundamentos-web/navegadores-web` | `NavegadoresWebPageLesson` | ObjetivosSection, NavegadoresWebSection | ClassPageLayout |
+| `clase-01-fundamentos-web/direcciones-ip` | `DireccionesIpPageLesson` | Ipv4Section, Ipv6Section | ClassPageLayout |
+| `clase-01-fundamentos-web/dns-y-dominios` | `DnsYDominiosPageLesson` | DnsSection, DominioSubdominioSection | ClassPageLayout |
+| `clase-01-fundamentos-web/configuracion-dns` | `ConfiguracionDnsPageLesson` | ConfigurarDominioSection, DnsHerramientasSection | ClassPageLayout |
+| `clase-01-fundamentos-web/practica-y-cierre` | `PracticaYCierrePageLesson` | CompruebaTuComprensionSection, RetoIntegradorSection, CierreSection, MiniquizFinalSection | ClassPageLayout |
+
+Nav prev/next: `class-navigation.ts` → `getPageNavChain()`.
+
+---
+
 ## Clase01FundamentosWebLesson.tsx — orden de secciones
 
 ```tsx
