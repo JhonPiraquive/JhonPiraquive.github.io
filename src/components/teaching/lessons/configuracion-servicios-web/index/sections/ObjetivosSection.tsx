@@ -36,6 +36,16 @@ export function ObjetivosSection() {
         <li>{"Administra de forma remota un equipo (SSH, documentación de acceso, reconocimiento del entorno)."}</li>
         <li>
           {
+            "Configura transferencia de archivos por FTP/SFTP: servidor vsftpd, clientes gráficos, integridad con checksums y administración remota de directorios."
+          }
+        </li>
+        <li>
+          {
+            "Despliega contenedores Docker básicos (pull, run, ps, exec) y documenta evidencias del entorno (uname, os-release)."
+          }
+        </li>
+        <li>
+          {
             "Diagnostica y corrige incidencias en servicios web (Nginx, logs, permisos) con metodología sistemática e informe técnico."
           }
         </li>
@@ -53,8 +63,8 @@ export function ObjetivosSection() {
       <p className="my-4 font-semibold">{"Estructura del tema"}</p>
       <ul className="my-4 list-disc pl-6">
         <li>{"1. Fundamentación: navegadores, dominios, hosting, correo, HTTPS, nube."}</li>
-        <li>{"2. Administración remota: SSH, clientes gráficos, reconocimiento del entorno y paneles."}</li>
-        <li>{"3. Virtualización: contenedores Docker y máquinas virtuales."}</li>
+        <li>{"2. Administración remota: SSH, FTP/SFTP, clientes gráficos, transferencia e integridad de archivos."}</li>
+        <li>{"3. Virtualización: contenedores Docker (despliegue básico y Compose) y máquinas virtuales."}</li>
         <li>{"4. Diagnóstico sistemático, Nginx, validación e informe técnico."}</li>
       </ul>
       <p className="my-4 font-semibold">{"Prerrequisitos"}</p>

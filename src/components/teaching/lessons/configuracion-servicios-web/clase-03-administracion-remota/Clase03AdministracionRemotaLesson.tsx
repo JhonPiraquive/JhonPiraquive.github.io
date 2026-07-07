@@ -4,6 +4,11 @@ import { ObjetivosSection } from "./sections/ObjetivosSection";
 import { NubeSection } from "./sections/NubeSection";
 import { ModeloClienteServidorRemotoSection } from "./sections/ModeloClienteServidorRemotoSection";
 import { FtpSection } from "./sections/FtpSection";
+import { ConfiguracionServidorFtpSection } from "./sections/ConfiguracionServidorFtpSection";
+import { ClientesFtpSection } from "./sections/ClientesFtpSection";
+import { TransferenciaArchivosSection } from "./sections/TransferenciaArchivosSection";
+import { AdministracionRemotaArchivosSection } from "./sections/AdministracionRemotaArchivosSection";
+import { ComparativaProtocolosTransferenciaSection } from "./sections/ComparativaProtocolosTransferenciaSection";
 import { SftpSection } from "./sections/SftpSection";
 import { SshSection } from "./sections/SshSection";
 import { DocumentacionConexionSshSection } from "./sections/DocumentacionConexionSshSection";
@@ -31,6 +36,11 @@ export default function Clase03AdministracionRemotaLesson({ locale }: Props) {
       <NubeSection />
       <ModeloClienteServidorRemotoSection />
       <FtpSection />
+      <ConfiguracionServidorFtpSection />
+      <ClientesFtpSection />
+      <TransferenciaArchivosSection />
+      <AdministracionRemotaArchivosSection />
+      <ComparativaProtocolosTransferenciaSection />
       <SftpSection />
       <SshSection />
       <DocumentacionConexionSshSection />

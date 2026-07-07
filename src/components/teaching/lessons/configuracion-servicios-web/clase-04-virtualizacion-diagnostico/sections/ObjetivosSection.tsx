@@ -33,6 +33,14 @@ export function ObjetivosSection() {
           {" fallos por capa (DNS, TLS, MX, SSH, contenedores, caché) y aplicar metodología sistemática en servicios web Linux (systemctl, nginx -t, logs)."}
         </li>
         <li>
+          <strong>{"Ejecutar"}</strong>
+          {" despliegue básico Docker: pull de imagen, run, docker ps, docker exec, uname y cat /etc/os-release con documentación de evidencias."}
+        </li>
+        <li>
+          <strong>{"Validar"}</strong>
+          {" un servicio FTP con checklist sistemático (vsftpd, cliente, transferencia, integridad, directorios)."}
+        </li>
+        <li>
           <strong>{"Validar"}</strong>
           {" correcciones con curl local y acceso externo, y redactar un informe técnico con problema, metodología, comandos, solución y lecciones aprendidas."}
         </li>

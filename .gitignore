@@ -9,9 +9,6 @@ next-env.d.ts
 .env.*
 !.env.example
 
-# Guías internas de docente (credenciales de laboratorio demo)
-kb/education/instructor/
-
 # Python / caché
 __pycache__/
 *.py[cod]

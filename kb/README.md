@@ -13,6 +13,7 @@
 | [archive/](archive/) | HTML legacy archivado (solo referencia / re-migración) |
 | [migration/](migration/) | Playbooks migración a TSX por track |
 | [education/](education/) | Pedagogía, briefs, outputs |
+| [education/instructor/](education/instructor/) | Guías docente internas (laboratorios, rúbricas) — no se publican en `/teaching/` |
 | [education/sources/clases/](education/sources/clases/) | Fuentes Markdown originales (sea, poo, posw) |
 | [agents/](agents/) | Roster, topic-experts, pipeline IA docente |
 

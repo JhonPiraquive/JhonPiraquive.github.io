@@ -38,6 +38,21 @@ export function ObjetivosSection() {
             "Elegir la herramienta adecuada de administración remota (PuTTY, MobaXterm, Bitvise, FileZilla, cPanel, RDP) según el escenario."
           }
         </li>
+        <li>
+          {
+            "Configurar un servidor de transferencia FTP (vsftpd): usuario dedicado, directorio de trabajo, parámetros de seguridad y verificación del servicio."
+          }
+        </li>
+        <li>
+          {
+            "Conectar con clientes FTP (FileZilla, WinSCP, Cyberduck), transferir archivos con verificación de integridad (md5sum, sha256sum) y administrar directorios remotos con permisos básicos."
+          }
+        </li>
+        <li>
+          {
+            "Comparar FTP, FTPS y SFTP: cifrado, puertos, ventajas, limitaciones y casos de uso empresariales en LATAM."
+          }
+        </li>
       </ul>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Prerrequisitos"}</h3>
       <ul className="my-4 list-disc pl-6">

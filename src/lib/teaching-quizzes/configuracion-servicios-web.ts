@@ -175,6 +175,34 @@ export const CONFIGURACION_SERVICIOS_WEB_QUIZZES: Record<string, QuizQuestion[]>
       correctIndex: 1,
       feedback: "hostname -I lista las IPs asignadas al host; whoami es el usuario; systemctl status revisa el servicio SSH.",
     },
+    {
+      question: "En vsftpd, ¿qué directiva confina al usuario autenticado a su directorio home?",
+      options: ["anonymous_enable=YES", "chroot_local_user=YES", "listen=NO", "write_enable=NO"],
+      correctIndex: 1,
+      feedback: "chroot_local_user=YES impide navegar fuera del home; anonymous_enable=NO deshabilita anónimos.",
+    },
+    {
+      question: "Tras subir un PDF por FTP, ¿cómo verificas que no se corrompió en tránsito?",
+      options: [
+        "Solo mirar que FileZilla muestre 100 %",
+        "Comparar sha256sum o md5sum en origen y destino",
+        "Reiniciar vsftpd",
+        "Cambiar a modo activo",
+      ],
+      correctIndex: 1,
+      feedback: "Los checksums confirman integridad byte a byte; la barra de progreso no detecta corrupción silenciosa.",
+    },
+    {
+      question: "¿Cuál es la diferencia principal entre SFTP y FTPS?",
+      options: [
+        "SFTP usa puerto 21; FTPS usa puerto 22",
+        "SFTP opera sobre canal SSH (puerto 22); FTPS añade TLS al protocolo FTP clásico",
+        "Son el mismo protocolo con nombres distintos",
+        "FTPS no cifra credenciales",
+      ],
+      correctIndex: 1,
+      feedback: "SFTP ≠ FTP; es subsistema SSH. FTPS cifra FTP con TLS (puerto 21 o 990).",
+    },
   ],
   "clase-04-virtualizacion-diagnostico": [
     {
@@ -250,6 +278,29 @@ export const CONFIGURACION_SERVICIOS_WEB_QUIZZES: Record<string, QuizQuestion[]>
       ],
       correctIndex: 1,
       feedback: "403 en local apunta a permisos/archivos o root incorrecto, no a DNS externo.",
+    },
+    {
+      question: "¿Qué comando lista contenedores Docker en ejecución con puertos mapeados?",
+      options: ["docker images", "docker ps", "docker pull", "docker build"],
+      correctIndex: 1,
+      feedback: "docker ps muestra STATUS y PORTS; docker images lista imágenes locales sin estado de ejecución.",
+    },
+    {
+      question: "FileZilla falla con «425 Can't open data connection» en modo activo. ¿Qué probar primero?",
+      options: [
+        "Cambiar a modo pasivo y verificar rango pasv en el servidor",
+        "Desinstalar vsftpd",
+        "Usar puerto 443",
+        "Deshabilitar chroot",
+      ],
+      correctIndex: 0,
+      feedback: "El modo pasivo (cliente inicia datos) y pasv_min/max_port suelen resolver 425 detrás de NAT/firewall.",
+    },
+    {
+      question: "Dentro de un contenedor Linux, ¿qué comando identifica la distribución (Debian, Ubuntu)?",
+      options: ["docker ps", "cat /etc/os-release", "docker compose up", "nginx -t"],
+      correctIndex: 1,
+      feedback: "cat /etc/os-release muestra PRETTY_NAME e ID; docker ps es desde el host.",
     },
   ],
 };

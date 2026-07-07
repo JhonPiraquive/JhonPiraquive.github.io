@@ -145,7 +145,7 @@ Este repositorio es **público**. Antes de hacer commit, revisar lo siguiente:
 | Tipo | Acción |
 |------|--------|
 | Archivos `.env`, `.env.local`, claves API, tokens, certificados (`.pem`, `.key`) | Cubiertos por `.gitignore` |
-| Guías internas de docente con credenciales de laboratorio | `kb/education/instructor/` está en `.gitignore` |
+| Guías internas de docente con credenciales de laboratorio | `kb/education/instructor/` — versionadas en este repo; no se renderizan en el sitio |
 | Secretos reales de producción | Usar variables de entorno locales, nunca en el código |
 
 ### Contenido público intencional
@@ -157,7 +157,7 @@ Este repositorio es **público**. Antes de hacer commit, revisar lo siguiente:
 ### Buenas prácticas
 
 - Mantener `.env.example` (sin valores reales) en repos de laboratorio separados, no en este sitio.
-- Si se añade material docente interno, colocarlo en `kb/education/instructor/` o fuera del repo.
+- Material docente interno (guías de laboratorio, rúbricas): `kb/education/instructor/`. No aparece en el portal; solo contraseñas ficticias de demo.
 - Ejecutar `git diff` antes de push para verificar que no se incluyan archivos ignorados.
 
 ---

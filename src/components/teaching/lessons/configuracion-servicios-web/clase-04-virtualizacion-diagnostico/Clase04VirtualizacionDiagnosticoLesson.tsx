@@ -2,7 +2,9 @@ import { LessonLayout } from "@/components/teaching/LessonLayout";
 import { meta } from "./lesson-meta";
 import { ObjetivosSection } from "./sections/ObjetivosSection";
 import { ContenedoresSection } from "./sections/ContenedoresSection";
+import { DespliegueContenedorBasicoSection } from "./sections/DespliegueContenedorBasicoSection";
 import { VirtualizacionSection } from "./sections/VirtualizacionSection";
+import { ValidacionServicioFtpSection } from "./sections/ValidacionServicioFtpSection";
 import { SolucionProblemasSection } from "./sections/SolucionProblemasSection";
 import { DiagnosticoSistematicoSection } from "./sections/DiagnosticoSistematicoSection";
 import { NginxTroubleshootingSection } from "./sections/NginxTroubleshootingSection";
@@ -29,6 +31,7 @@ export default function Clase04VirtualizacionDiagnosticoLesson({ locale }: Props
     >
       <ObjetivosSection />
       <ContenedoresSection />
+      <DespliegueContenedorBasicoSection />
       <VirtualizacionSection />
       <SolucionProblemasSection />
       <DiagnosticoSistematicoSection />
@@ -38,6 +41,7 @@ export default function Clase04VirtualizacionDiagnosticoLesson({ locale }: Props
       <ResolucionLocalSection />
       <FlujoIntegradoSection />
       <ChecklistPruebasSection />
+      <ValidacionServicioFtpSection />
       <RetoIntegradorSection />
       <CompruebaTuComprensionSection />
       <CierreSection />
