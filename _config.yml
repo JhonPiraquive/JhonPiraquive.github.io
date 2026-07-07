@@ -1,0 +1,19 @@
+# The site is built with Next.js (see .github/workflows/deploy.yml).
+# This config prevents Jekyll from processing internal docs that contain
+# Angular/Vue-style {{ }} syntax, which Liquid would misinterpret.
+exclude:
+  - kb
+  - src
+  - .cursor
+  - node_modules
+  - out
+  - scripts
+  - public
+  - package.json
+  - package-lock.json
+  - next.config.ts
+  - tsconfig.json
+  - postcss.config.mjs
+  - eslint.config.mjs
+  - .gitignore
+  - .github
