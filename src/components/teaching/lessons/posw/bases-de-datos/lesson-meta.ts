@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "herramientas-desarrollo",
   "next": "principios-solid",
   "seoTitle": "Bases de datos: SQL, NoSQL y ACID | POSW",
-  "seoDescription": "Clasifica SQL (DDL, DML, DCL, TCL), diseña tablas con PK/FK, compara SQL vs NoSQL y distingue motores columnares y de grafos. Lección 18 del track POSW."
+  "seoDescription": "Clasifica SQL (DDL, DML, DCL, TCL), diseña tablas con PK/FK, compara SQL vs NoSQL y distingue motores columnares y de grafos. Lección 18 del track Programación Orientada a Sitios Web (POSW)."
 };

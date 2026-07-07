@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "ingenieria-social-y-phishing",
   "next": "ataques-web-sqli-y-mitigacion",
   "seoTitle": "HTTPS y ataques MITM: qué protege y qué no",
-  "seoDescription": "Lección 6 del track SEA."
+  "seoDescription": "Lección 6 del track Seguridad en Aplicaciones (SEA)."
 };

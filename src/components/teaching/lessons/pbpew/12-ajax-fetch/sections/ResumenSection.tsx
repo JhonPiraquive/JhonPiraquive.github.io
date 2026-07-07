@@ -40,7 +40,7 @@ export function ResumenSection() {
         <li>
           <strong>{"Cierre del track núcleo:"}</strong>
           {
-            " ya puedes combinar DOM, eventos, asincronía y datos remotos — base para los proyectos PBPEW."
+            " ya puedes combinar DOM, eventos, asincronía y datos remotos — base para los proyectos integradores PBPEW."
           }
         </li>
       </ul>

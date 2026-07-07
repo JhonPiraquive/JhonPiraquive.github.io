@@ -21,7 +21,7 @@ export function PrerrequisitosSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Prerrequisitos"}</h2>
       <ul className="my-4 list-disc pl-6">
         <li>
-          <strong>{"Lecciones 01–12 del track PBPEW:"}</strong>{" "}
+          <strong>{"Lecciones 01–12 del track Programación básica para entornos web (PBPEW):"}</strong>{" "}
           {LESSONS.map((slug, i) => (
             <span key={slug}>
               {i > 0 && ", "}

@@ -4,7 +4,7 @@ export function CierreSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre de la lección"}</h2>
       <p className="my-4">
         {
-          "Has completado el estudio de herencia y su alternativa por composición en C#. Estos conceptos son la base para polimorfismo avanzado, clases abstractas e interfaces en lecciones posteriores del track POO."
+          "Has completado el estudio de herencia y su alternativa por composición en C#. Estos conceptos son la base para polimorfismo avanzado, clases abstractas e interfaces en lecciones posteriores del track de Programación Orientada a Objetos (POO)."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>

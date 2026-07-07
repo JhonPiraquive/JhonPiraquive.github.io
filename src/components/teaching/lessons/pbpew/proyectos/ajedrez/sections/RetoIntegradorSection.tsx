@@ -108,7 +108,7 @@ export function RetoIntegradorSection() {
           "textContent para símbolos Unicode",
         ]}
         expectedKeywords={["tablero", "deleg", "movimientoLegal", "turno"]}
-        successMessage="Excelente. Has integrado matriz 2D, DOM, eventos y validación en el capstone del track PBPEW."
+        successMessage="Excelente. Has integrado matriz 2D, DOM, eventos y validación en el capstone del track Programación básica para entornos web (PBPEW)."
         rows={10}
       />
     </section>

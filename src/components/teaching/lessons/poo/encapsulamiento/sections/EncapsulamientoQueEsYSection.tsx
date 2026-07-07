@@ -158,6 +158,24 @@ export function EncapsulamientoQueEsYSection() {
           "Un cajero automático: tú no cambias el saldo “a mano”. Solo puedes pedir operaciones permitidas (retirar, consultar), y el sistema valida."
         }
       </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          {
+            "Startup fintech: public decimal Saldo { get; set; } en CuentaBancaria “para facilitar tests” — módulo de migración asigna saldos negativos en producción. Corrección: { get; private set; } y métodos Depositar/Retirar con validación."
+          }
+        </li>
+        <li>
+          {
+            "ERP con DTOs que mutan en capa de presentación — la misma validación copiada en API, UI y jobs. Corrección: objeto de dominio con invariantes centralizadas."
+          }
+        </li>
+        <li>
+          {
+            "Clase Producto con public List<LineaPedido> Items — cualquier código vacía o duplica líneas. Corrección: lista privada y métodos AgregarLinea/QuitarLinea."
+          }
+        </li>
+      </ul>
       <Callout title="Caso real — incidente bancario">
         {
           "Un equipo expone public decimal Saldo { get; set; } en CuentaBancaria para “facilitar tests”. Un módulo de migración ejecuta cuenta.Saldo = cuenta.Saldo - ajuste sin validar fondos. En producción aparecen cuentas con saldo -847.50. Decisión: cambiar a { get; private set; }, forzar Depositar/Retirar con validación."

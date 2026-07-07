@@ -1,15 +1,16 @@
 ---
 track: posw
 topic_expert: topic-expert-web-services
-updated: 2026-06-23
+updated: 2026-07-06
 tsx_migration: complete
 pedagogy_compliance: complete (22/22)
+acronym_audit: complete
 build: passed
 ---
 
-# Pipeline POSW — estado
+# Pipeline Programación Orientada a Sitios Web (POSW) — estado
 
-**Track POSW completo:** 22/22 lecciones compliant.
+**Track Programación Orientada a Sitios Web (POSW) completo:** 22/22 lecciones compliant.
 
 | slug | order | brief | draft | spec | layout | tsx | build | quiz | practice | visual |
 |------|-------|-------|-------|------|--------|-----|-------|------|----------|--------|
@@ -39,3 +40,10 @@ build: passed
 **Fuentes:** `kb/education/sources/clases/programacion-orientada-sitios-web/*.md` · pipeline `kb/education/pipeline/posw/` (22 lecciones)
 
 **Quizzes:** `src/lib/teaching-quizzes/posw.ts` (22 slugs) · `QuizSection track="posw"`
+
+## Auditoría 2026-07-06
+
+- **Acrónimos:** slug `posw` sin cambio; nombre completo en primera mención (servicios-web, configuracion-servicios-web); `| POSW` en seoTitle conservado.
+- **CodeFiddle:** 0 `CodeBlock` / `<pre>` plano (corregido `tipos-servicios-web/GrpcWebsocketsSection` → `.proto`).
+- **Malas prácticas:** 18 secciones renombradas de «Errores comunes» → «Malas prácticas en el mundo real»; resto usa anti-patrones / señales de buen y mal uso.
+- **Profundidad:** bloques qué/por qué/cómo + ejemplos verificados en lecciones referencia (`servicios-web`, `modelo-cliente-servidor`, `backend`).

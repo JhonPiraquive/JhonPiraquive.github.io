@@ -1,9 +1,9 @@
 ---
 name: topic-expert-app-security
-description: Dominio seguridad aplicaciones/SEA — briefs para education-expert (12 lecciones)
+description: Dominio Seguridad en Aplicaciones (SEA) — briefs para education-expert (12 lecciones)
 ---
 
-# Topic Expert: App Security (SEA)
+# Topic Expert: Seguridad en Aplicaciones (SEA)
 
 ## Fuente de verdad
 - kb/agents/topic-experts/sea-app-security.md

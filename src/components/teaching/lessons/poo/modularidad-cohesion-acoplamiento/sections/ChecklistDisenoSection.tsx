@@ -53,7 +53,7 @@ export function ChecklistDisenoSection() {
       />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Composición en Main (borde de la aplicación)"}</h3>
       <CodeFiddle language="csharp" code={COMPOSICION_MAIN_CODE} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Síntesis del track POO completo"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Síntesis del track de Programación Orientada a Objetos (POO)"}</h3>
       <MermaidDiagram
         chart={`flowchart TD
   Fund[Fundamentos POO] --> Enc[Encapsulamiento]

@@ -7,7 +7,7 @@ export const meta: LessonMeta = {
   order: 2,
   prev: "fundamentos",
   next: "herencia",
-  seoTitle: "Encapsulamiento en C# | Track POO",
+  seoTitle: "Encapsulamiento en C# | POO",
   seoDescription:
-    "Segunda lección POO: modificadores de acceso, invariantes, { get; private set; }, métodos de dominio y refactorización de código inseguro en C#.",
+    "Segunda lección del track Programación Orientada a Objetos (POO): modificadores de acceso, invariantes, { get; private set; }, métodos de dominio y refactorización de código inseguro en C#.",
 };

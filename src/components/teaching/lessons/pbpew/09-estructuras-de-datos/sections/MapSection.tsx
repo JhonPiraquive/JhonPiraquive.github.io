@@ -8,7 +8,7 @@ export function MapSection() {
     <section>
       <p className="my-4">
         {
-          "Una estructura de datos es la forma de organizar y acceder a información en memoria. En PBPEW ya usaste arrays y objetos literales; aquí amplías el repertorio con `Map`, `Set` y dos patrones clásicos: pila (LIFO) y cola (FIFO)."
+          "Una estructura de datos es la forma de organizar y acceder a información en memoria. En Programación básica para entornos web (PBPEW) ya usaste arrays y objetos literales; aquí amplías el repertorio con `Map`, `Set` y dos patrones clásicos: pila (LIFO) y cola (FIFO)."
         }
       </p>
       <p className="my-4">

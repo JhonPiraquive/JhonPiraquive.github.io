@@ -51,7 +51,7 @@ function Contador() {
   );
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Mutar estado directamente (cuenta++) en lugar de setCuenta(c => c + 1)."}</li>
         <li>{"Usar índice como key en listas que cambian de orden."}</li>

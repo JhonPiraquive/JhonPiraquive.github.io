@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   "next": "asociacion-agregacion-composicion",
   seoTitle: "Herencia en C#: es un, virtual/override y composición | POO",
   seoDescription:
-    "Lección 3 POO: jerarquía Vehiculo/Carro/Moto con base(...) y polimorfismo, cuándo preferir composición (Alarma + INotificador) y mini-quiz de repaso.",
+    "Lección 3 del track Programación Orientada a Objetos (POO): jerarquía Vehiculo/Carro/Moto con base(...) y polimorfismo, cuándo preferir composición (Alarma + INotificador) y mini-quiz de repaso.",
 };

@@ -9,7 +9,7 @@ export function SeleccionarNodosSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Seleccionar nodos del DOM"}</h2>
       <p className="my-4">
         {
-          "Cualquier manipulación empieza por obtener una referencia al nodo. En PBPEW se prefiere `querySelector` / `querySelectorAll` por flexibilidad (combinan etiqueta, clase, `id`, atributos)."
+          "Cualquier manipulación empieza por obtener una referencia al nodo. En Programación básica para entornos web (PBPEW) se prefiere `querySelector` / `querySelectorAll` por flexibilidad (combinan etiqueta, clase, `id`, atributos)."
         }
       </p>
       <table className="my-4 w-full border-collapse text-sm">

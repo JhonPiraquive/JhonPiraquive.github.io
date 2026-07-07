@@ -4,7 +4,7 @@ export function CierreSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre de la lección"}</h2>
       <p className="my-4">
         {
-          "Has completado la introducción a JavaScript y al DOM. Los conceptos de esta lección son la base de todo el track PBPEW: sin entender la diferencia entre HTML estático y DOM vivo, y sin saber usar la consola del navegador, será difícil avanzar en manipulación del DOM, eventos y asincronía."
+          "Has completado la introducción a JavaScript y al DOM. Los conceptos de esta lección son la base de todo el track Programación básica para entornos web (PBPEW): sin entender la diferencia entre HTML estático y DOM vivo, y sin saber usar la consola del navegador, será difícil avanzar en manipulación del DOM, eventos y asincronía."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>

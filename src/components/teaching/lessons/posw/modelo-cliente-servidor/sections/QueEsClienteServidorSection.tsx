@@ -97,7 +97,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(3000, () => console.log("Servidor en puerto 3000"));`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Confundir cliente con frontend solamente (también puede ser curl, app móvil o ATM)."}</li>
         <li>{"Asumir que el servidor es un solo equipo (en producción suele ser cluster, CDN o balanceador)."}</li>

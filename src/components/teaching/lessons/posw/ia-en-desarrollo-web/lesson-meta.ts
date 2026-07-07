@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "arquitectura-api",
   seoTitle: "IA en desarrollo web: verificación | POSW",
   seoDescription:
-    "Usos productivos de IA, riesgos de alucinaciones, flujo de verificación, CLAUDE.md y prompts con contexto. Lección 21 del track POSW.",
+    "Usos productivos de IA, riesgos de alucinaciones, flujo de verificación, CLAUDE.md y prompts con contexto. Lección 21 del track Programación Orientada a Sitios Web (POSW).",
 };

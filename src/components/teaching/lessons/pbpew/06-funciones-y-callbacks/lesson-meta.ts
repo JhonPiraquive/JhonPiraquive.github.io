@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "07-arrays-json-objetos",
   seoTitle: "JavaScript: funciones, return y callbacks | PBPEW",
   seoDescription:
-    "Lección 6 PBPEW: declaración y arrow functions, parámetros, return, alcance local y callbacks con addEventListener y funciones de orden superior.",
+    "Lección 6 de Programación básica para entornos web (PBPEW): declaración y arrow functions, parámetros, return, alcance local y callbacks con addEventListener y funciones de orden superior.",
 };

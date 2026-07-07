@@ -99,7 +99,7 @@ services:
           { id: "blank5", answer: "docker build -t app .", placeholder: "paso e" },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"No usar .dockerignore: copia node_modules gigantes."}</li>
         <li>{"Un solo stage: incluir Node en imagen final cuando solo necesitas Nginx."}</li>

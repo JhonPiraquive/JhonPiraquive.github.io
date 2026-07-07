@@ -43,7 +43,7 @@ export function ObjetivosDelTemaSection() {
         <li>{"Familiaridad con el concepto de cliente y servidor en red."}</li>
         <li>
           {
-            "No se requiere experiencia previa en APIs REST ni en arquitectura distribuida; esta es la primera lección del track POSW."
+            "No se requiere experiencia previa en APIs REST ni en arquitectura distribuida; esta es la primera lección del track Programación Orientada a Sitios Web (POSW)."
           }
         </li>
       </ul>

@@ -70,7 +70,7 @@ export function RetoIntegradorSection() {
           "Cohesión/acoplamiento — ¿Utilidades eliminada?",
         ]}
         expectedKeywords={["checklist", "SRP", "DIP", "cohesión", "acoplamiento"]}
-        successMessage="Excelente. Has cerrado el track POO con criterios de diseño verificables."
+        successMessage="Excelente. Has cerrado el track de Programación Orientada a Objetos (POO) con criterios de diseño verificables."
         rows={8}
       />
     </section>

@@ -4,7 +4,7 @@ export function ObjetivosDelTemaSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Objetivos del tema"}</h2>
       <p className="my-4">
         {
-          "Esta lección introduce los pilares de la POO en C#: qué es el paradigma, qué es un objeto, cómo se define una clase, cómo se crean instancias y qué papel cumple el constructor. Al finalizar, el estudiante podrá:"
+          "Esta lección introduce los pilares de la Programación Orientada a Objetos (POO) en C#: qué es el paradigma, qué es un objeto, cómo se define una clase, cómo se crean instancias y qué papel cumple el constructor. Al finalizar, el estudiante podrá:"
         }
       </p>
       <ul className="my-4 list-disc pl-6">

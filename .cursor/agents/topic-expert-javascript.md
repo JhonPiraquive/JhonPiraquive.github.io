@@ -1,9 +1,9 @@
 ---
 name: topic-expert-javascript
-description: Dominio JavaScript/PBPEW — briefs para education-expert (12 lecciones + 4 proyectos)
+description: Dominio JavaScript — track Programación básica para entornos web (PBPEW); briefs para education-expert (12 lecciones + 4 proyectos)
 ---
 
-# Topic Expert: JavaScript (PBPEW)
+# Topic Expert: JavaScript — Programación básica para entornos web (PBPEW)
 
 ## Fuente de verdad
 - kb/agents/topic-experts/pbpew-javascript.md

@@ -49,7 +49,7 @@ export function ObjetivosDelTemaSection() {
       </ul>
       <Callout title="Relacionar ≠ heredar">
         {
-          "Muchos diseños POO no son “es un” sino cómo dos objetos colaboran: uso puntual, pertenencia débil o parte indisoluble. La herencia no sustituye estas relaciones."
+          "Muchos diseños de Programación Orientada a Objetos (POO) no son “es un” sino cómo dos objetos colaboran: uso puntual, pertenencia débil o parte indisoluble. La herencia no sustituye estas relaciones."
         }
       </Callout>
     </section>

@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "03-variables-y-tipos",
   seoTitle: "JavaScript en HTML, Hola mundo y consola | PBPEW",
   seoDescription:
-    "Lección 2 PBPEW: vincular JS al HTML (inline vs externo), ubicación del script (defer, async, final del body), console.log, métodos de consola y comentarios.",
+    "Lección 2 de Programación básica para entornos web (PBPEW): vincular JS al HTML (inline vs externo), ubicación del script (defer, async, final del body), console.log, métodos de consola y comentarios.",
 };

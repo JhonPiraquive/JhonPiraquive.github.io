@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "naming-conventions",
   seoTitle: "Principios SOLID: SRP, OCP y DIP | POSW",
   seoDescription:
-    "Explica los cinco principios SOLID, detecta violaciones en APIs y aplica DIP sin sobre-ingeniería. Lección 19 del track POSW.",
+    "Explica los cinco principios SOLID, detecta violaciones en APIs y aplica DIP sin sobre-ingeniería. Lección 19 del track Programación Orientada a Sitios Web (POSW).",
 };

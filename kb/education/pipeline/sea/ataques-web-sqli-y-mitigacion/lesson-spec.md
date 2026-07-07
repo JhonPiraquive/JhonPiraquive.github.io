@@ -13,7 +13,7 @@ interactive_blocks:
   - type: quiz
     id: cierre-quiz
 seo_title: "Ataques comunes a aplicaciones web: SQL Injection  | SEA"
-seo_description: "Lección 7 del track Seguridad en aplicaciones — contenido interactivo y práctica."
+seo_description: "Lección 7 del track Seguridad en Aplicaciones — contenido interactivo y práctica."
 hreflang_notes: "Traducir a EN en fase i18n"
 clay_variants:
   - card

@@ -16,7 +16,7 @@ export function ObjetivosSection() {
       </p>
       <Callout title="Regla del curso">
         {
-          "En PBPEW y en código nuevo de producción, usa siempre === y !== en comparaciones. Reserva == solo si dominas la coerción y documentas el motivo. En formularios y APIs los datos suelen llegar como string — la igualdad suelta oculta errores difíciles de depurar."
+          "En Programación básica para entornos web (PBPEW) y en código nuevo de producción, usa siempre === y !== en comparaciones. Reserva == solo si dominas la coerción y documentas el motivo. En formularios y APIs los datos suelen llegar como string — la igualdad suelta oculta errores difíciles de depurar."
         }
       </Callout>
       <p className="my-4">{"Al finalizar la lección, el estudiante podrá:"}</p>

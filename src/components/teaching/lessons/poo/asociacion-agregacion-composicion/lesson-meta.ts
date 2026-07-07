@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "herencia",
   "next": "abstraccion-clases-abstractas-interfaces",
   "seoTitle": "Asociación, agregación y composición en C# | POO",
-  "seoDescription": "Lección 4 POO: Doctor–Paciente, Biblioteca–Libro y Pedido–LineaPedido; criterios de ciclo de vida para asociación, agregación y composición. Mini-quiz."
+  "seoDescription": "Lección 4 del track Programación Orientada a Objetos (POO): Doctor–Paciente, Biblioteca–Libro y Pedido–LineaPedido; criterios de ciclo de vida para asociación, agregación y composición. Mini-quiz."
 };

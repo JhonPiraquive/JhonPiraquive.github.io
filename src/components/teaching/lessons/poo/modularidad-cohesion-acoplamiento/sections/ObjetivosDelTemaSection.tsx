@@ -7,7 +7,7 @@ export function ObjetivosDelTemaSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Objetivos del tema"}</h2>
       <p className="my-4">
         {
-          "Modularidad, cohesión y acoplamiento son los tres pilares que integran todo el track POO: fundamentos, relaciones, abstracción, polimorfismo, SOLID y modelado visual en criterios de diseño mantenible."
+          "Modularidad, cohesión y acoplamiento son los tres pilares que integran todo el track de Programación Orientada a Objetos (POO): fundamentos, relaciones, abstracción, polimorfismo, SOLID y modelado visual en criterios de diseño mantenible."
         }
       </p>
       <p className="my-4 font-semibold">{"Al finalizar, podrás:"}</p>

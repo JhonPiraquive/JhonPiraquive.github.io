@@ -56,7 +56,7 @@ Content-Length: 1234
       />
       <p className="my-4">
         {
-          "Versiones comunes: HTTP/1.1, HTTP/2 (multiplexación), HTTP/3 (sobre QUIC). En esta lección el foco es HTTP como transporte de la aplicación web en hosting; métodos detallados (GET, POST, PUT…) se profundizan en POSW http-metodos-status."
+          "Versiones comunes: HTTP/1.1, HTTP/2 (multiplexación), HTTP/3 (sobre QUIC). En esta lección el foco es HTTP como transporte de la aplicación web en hosting; métodos detallados (GET, POST, PUT…) se profundizan en la lección http-metodos-status del track Programación Orientada a Sitios Web (POSW)."
         }
       </p>
 

@@ -144,6 +144,33 @@ let b = 10;`}
           'Un equipo define const CONFIG = { apiUrl: "https://v1.api.com" }. Reasignar CONFIG = {} falla (TypeError). Mutar CONFIG.apiUrl funciona, pero genera confusión en code review si se documentó como inmutable. const protege la referencia, no un clon profundo del objeto.'
         }
       </Callout>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Declarar todo con `var` en código legacy copiado"}</strong>
+          {" — un bucle `for (var i…)` comparte `i` fuera del bloque y rompe callbacks posteriores. "}
+          <em>{"Corrección:"}</em>
+          {" migra a `let` en bucles y `const` por defecto."}
+        </li>
+        <li>
+          <strong>{"Asumir que `const` congela objetos"}</strong>
+          {" — mutar propiedades anidadas sin querer altera estado compartido entre módulos. "}
+          <em>{"Corrección:"}</em>
+          {" documenta si el objeto es mutable; usa copias (`{...obj}`) cuando el contrato es inmutable."}
+        </li>
+        <li>
+          <strong>{"Leer variables antes de declararlas (`let`/`const`)"}</strong>
+          {" — ReferenceError en producción tras un refactor apresurado. "}
+          <em>{"Corrección:"}</em>
+          {" declara arriba del bloque o usa funciones con hoisting explícito solo cuando lo dominas."}
+        </li>
+        <li>
+          <strong>{"Mezclar `var` y `let` en el mismo archivo"}</strong>
+          {" — el equipo no sabe qué regla aplica y reaparecen bugs de sombreado. "}
+          <em>{"Corrección:"}</em>
+          {" convención única: `const` → `let` → nunca `var` en código nuevo."}
+        </li>
+      </ul>
       <CodeChallenge
         title="Completa el código — contador con let y const"
         template={`{{blank1}} intentos = 0;

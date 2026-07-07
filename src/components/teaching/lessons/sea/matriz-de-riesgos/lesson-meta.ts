@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "programacion-segura-excepciones-logs-y-config-json",
   "next": null,
   "seoTitle": "Matriz de riesgos: cómo priorizar controles y justificar decisiones",
-  "seoDescription": "Lección 12 del track SEA."
+  "seoDescription": "Lección 12 del track Seguridad en Aplicaciones (SEA)."
 };

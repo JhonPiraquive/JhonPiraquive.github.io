@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "base64-y-diferencias-con-cifrado",
   "next": "proteccion-datos-cookies-y-jwt",
   "seoTitle": "Cifrado vs “encriptación”, funciones criptográficas y SHA‑256",
-  "seoDescription": "Lección 9 del track SEA."
+  "seoDescription": "Lección 9 del track Seguridad en Aplicaciones (SEA)."
 };

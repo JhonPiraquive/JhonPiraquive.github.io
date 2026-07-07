@@ -20,11 +20,11 @@ export function ResumenSection() {
           {" SRP, OCP, LSP, ISP, DIP + cohesión + acoplamiento."}
         </li>
         <li>
-          <strong>{"Track POO completo:"}</strong>
+          <strong>{"Track de Programación Orientada a Objetos (POO) completo:"}</strong>
           {" de clases y encapsulamiento a diseño mantenible con SOLID y módulos."}
         </li>
         <li>
-          <strong>{"Esta es la lección final del track POO"}</strong>
+          <strong>{"Esta es la lección final del track de Programación Orientada a Objetos (POO)"}</strong>
           {" — aplica el checklist en proyectos reales."}
         </li>
       </ul>

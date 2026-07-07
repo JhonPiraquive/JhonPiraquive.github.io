@@ -93,6 +93,33 @@ lista.appendChild(li);
 // más tarde:
 li.remove(); // o lista.removeChild(li);`}
       />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Renderizar comentarios de usuario con `innerHTML`"}</strong>
+          {" — un visitante inserta `<script>` o atributos `onerror` y compromete la sesión (XSS). "}
+          <em>{"Corrección:"}</em>
+          {" `textContent` o sanitización en servidor."}
+        </li>
+        <li>
+          <strong>{"Concatenar plantillas HTML con datos de API sin escapar"}</strong>
+          {" — un campo `nombre` con `<img onerror=…>` ejecuta código en el navegador de otros usuarios. "}
+          <em>{"Corrección:"}</em>
+          {" plantillas controladas + `textContent` para valores dinámicos."}
+        </li>
+        <li>
+          <strong>{"Sobrescribir `className` como string"}</strong>
+          {" — pierdes clases de utilidades o de un framework al añadir una sola clase nueva. "}
+          <em>{"Corrección:"}</em>
+          {" `classList.add` / `toggle` / `remove`."}
+        </li>
+        <li>
+          <strong>{"Insertar nodos sin `textContent` en listas generadas"}</strong>
+          {" — mezclar `innerHTML` en un ítem y texto plano en otro abre inconsistencias y vectores XSS. "}
+          <em>{"Corrección:"}</em>
+          {" `createElement` + `textContent` + `appendChild` de forma uniforme."}
+        </li>
+      </ul>
       <Callout title="Caso real: formulario que recarga y pierde datos">
         {
           "Una landing valida campos con JS pero el form sigue haciendo submit nativo. La página se recarga, se pierde lo escrito y el equipo cree que el JavaScript no funciona. El handler sí corrió, pero no llamó event.preventDefault(). En submit, valida y usa preventDefault si quieres manejar el envío en cliente."

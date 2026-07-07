@@ -215,6 +215,24 @@ foreach (var v in flota)
         <li>{"La jerarquía se vuelve rara: PatoElectricoConBluetoothConGPS…."}</li>
         <li>{"Modificar la base rompe muchas derivadas."}</li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          {
+            "E-commerce: Cuadrado hereda de Rectangulo para “reutilizar” ancho/alto — al redimensionar, rompe invariantes geométricas (LSP). Corrección: composición o interfaz común sin herencia forzada."
+          }
+        </li>
+        <li>
+          {
+            "App bancaria: Empleado y Cliente heredan de Persona con lógica distinta — duplicación y acoplamiento. Corrección: composición (Empleado tiene Persona) o interfaces por rol."
+          }
+        </li>
+        <li>
+          {
+            "Sistema de facturación: jerarquía de 8 niveles (Documento → Comprobante → Factura → …) — un cambio en Documento rompe decenas de derivadas. Corrección: aplanar con interfaces y composición."
+          }
+        </li>
+      </ul>
       <Callout title="Error frecuente">
         {
           "Olvidar base(placa) en el constructor de la derivada cuando la base exige parámetros. También usar override sin virtual/abstract en la base — el compilador lo rechaza."

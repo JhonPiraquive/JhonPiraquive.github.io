@@ -13,7 +13,7 @@ interactive_blocks:
   - type: quiz
     id: cierre-quiz
 seo_title: "Cifrado vs “encriptación”, funciones criptográfica | SEA"
-seo_description: "Lección 9 del track Seguridad en aplicaciones — contenido interactivo y práctica."
+seo_description: "Lección 9 del track Seguridad en Aplicaciones — contenido interactivo y práctica."
 hreflang_notes: "Traducir a EN en fase i18n"
 clay_variants:
   - card

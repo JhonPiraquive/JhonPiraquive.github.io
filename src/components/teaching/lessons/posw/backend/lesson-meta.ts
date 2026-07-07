@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "cache",
   seoTitle: "Backend: Tecnologías y Frameworks | POSW",
   seoDescription:
-    "Define el backend server-side, sus seis responsabilidades, arquitectura en capas, frameworks (Express, NestJS, FastAPI, Spring Boot) y criterios para elegir stack. Lección 10 del track POSW.",
+    "Define el backend server-side, sus seis responsabilidades, arquitectura en capas, frameworks (Express, NestJS, FastAPI, Spring Boot) y criterios para elegir stack. Lección 10 del track Programación Orientada a Sitios Web (POSW).",
 };

@@ -41,7 +41,7 @@ Console.WriteLine(response.Nombre);`}
         <li>{"Stubs generados desde .proto."}</li>
         <li>{"Unary y streaming (server, client, bidireccional)."}</li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"gRPC expuesto al navegador sin proxy/gateway — incompatibilidad con clientes web puros."}</li>
         <li>{"Usar gRPC para APIs públicas simples cuando REST/JSON basta."}</li>

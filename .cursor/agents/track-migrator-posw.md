@@ -1,9 +1,9 @@
 ---
 name: track-migrator-posw
-description: Migración POSW 22 temas a TSX
+description: Migración Programación Orientada a Sitios Web (POSW) — 22 temas a TSX
 ---
 
-# Track Migrator POSW
+# Track Migrator — Programación Orientada a Sitios Web (POSW)
 
 22 lecciones.
 

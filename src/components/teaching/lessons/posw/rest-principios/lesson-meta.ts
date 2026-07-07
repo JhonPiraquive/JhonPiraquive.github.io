@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "cache",
   "next": "typescript",
   "seoTitle": "Principios REST: Constraints y Richardson | POSW",
-  "seoDescription": "Aprende los seis constraints REST de Roy Fielding — Stateless, Client-Server, Cacheable, Layered, Uniform Interface y HATEOAS — y el modelo de madurez Richardson. Lección 12 del track POSW."
+  "seoDescription": "Aprende los seis constraints REST de Roy Fielding — Stateless, Client-Server, Cacheable, Layered, Uniform Interface y HATEOAS — y el modelo de madurez Richardson. Lección 12 del track Programación Orientada a Sitios Web (POSW)."
 };

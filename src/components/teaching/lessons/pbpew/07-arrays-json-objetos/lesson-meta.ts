@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "08-this-scope-clases",
   seoTitle: "JavaScript: arrays, JSON y objetos literales | PBPEW",
   seoDescription:
-    "Lección 7 PBPEW: índices y mutación de arrays, .forEach/.map/.filter con callbacks, JSON.stringify/parse y objetos literales con referencia, spread y destructuración.",
+    "Lección 7 de Programación básica para entornos web (PBPEW): índices y mutación de arrays, .forEach/.map/.filter con callbacks, JSON.stringify/parse y objetos literales con referencia, spread y destructuración.",
 };

@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "05-bucles-y-errores",
   seoTitle: "Operadores JS: ===, if/else y switch | PBPEW",
   seoDescription:
-    "Aprende operadores aritméticos y lógicos, comparación estricta (===), truthy/falsy, if/else y switch en JavaScript. Lección 4 PBPEW con ejercicios prácticos.",
+    "Aprende operadores aritméticos y lógicos, comparación estricta (===), truthy/falsy, if/else y switch en JavaScript. Lección 4 de Programación básica para entornos web (PBPEW) con ejercicios prácticos.",
 };

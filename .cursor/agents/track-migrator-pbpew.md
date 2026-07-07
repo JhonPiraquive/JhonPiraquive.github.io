@@ -1,9 +1,9 @@
 ---
 name: track-migrator-pbpew
-description: Migración PBPEW + proyectos interactivos a TSX
+description: Migración Programación básica para entornos web (PBPEW) + proyectos interactivos a TSX
 ---
 
-# Track Migrator PBPEW
+# Track Migrator — Programación básica para entornos web (PBPEW)
 
 12 lecciones + 4 proyectos.
 

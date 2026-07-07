@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "historia-redes-y-seguridad",
   "next": "iso-y-normas-27001-27002",
   "seoTitle": "Qué es un hacker, canales del ciberdelincuente y cómo protegerme",
-  "seoDescription": "Lección 2 del track SEA."
+  "seoDescription": "Lección 2 del track Seguridad en Aplicaciones (SEA)."
 };

@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "06-funciones-y-callbacks",
   seoTitle: "Bucles y manejo de errores | PBPEW",
   seoDescription:
-    "Lección 5 PBPEW: bucles for, while y do-while, break y continue, bucles infinitos, try/catch/finally y throw new Error en JavaScript.",
+    "Lección 5 de Programación básica para entornos web (PBPEW): bucles for, while y do-while, break y continue, bucles infinitos, try/catch/finally y throw new Error en JavaScript.",
 };

@@ -4,7 +4,7 @@ export function CierreSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre de la lección"}</h2>
       <p className="my-4">
         {
-          "Has completado la última lección núcleo del track PBPEW: AJAX y fetch. Unes lo aprendido en DOM y eventos (lección 10), asincronía (lección 11) y JSON (lección 7) para hablar con APIs reales desde el navegador."
+          "Has completado la última lección núcleo del track Programación básica para entornos web (PBPEW): AJAX y fetch. Unes lo aprendido en DOM y eventos (lección 10), asincronía (lección 11) y JSON (lección 7) para hablar con APIs reales desde el navegador."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>
@@ -39,7 +39,7 @@ export function CierreSection() {
       <p className="my-4">
         <strong>{"Siguiente paso:"}</strong>{" "}
         {
-          "proyectos PBPEW (calculadora, todo-list, piedra-papel-tijera, ajedrez) — aplicarás DOM, eventos, asincronía y fetch en escenarios completos."
+          "proyectos del track Programación básica para entornos web (PBPEW) (calculadora, todo-list, piedra-papel-tijera, ajedrez) — aplicarás DOM, eventos, asincronía y fetch en escenarios completos."
         }
       </p>
     </section>

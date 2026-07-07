@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "hackers-canales-y-proteccion",
   "next": "principios-cia-y-autenticidad",
   "seoTitle": "Introducción a normas ISO: qué es una ISO, ISO/IEC 27001 y 27002",
-  "seoDescription": "Lección 3 del track SEA."
+  "seoDescription": "Lección 3 del track Seguridad en Aplicaciones (SEA)."
 };

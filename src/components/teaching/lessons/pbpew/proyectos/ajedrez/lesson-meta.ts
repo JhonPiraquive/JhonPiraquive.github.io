@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: null,
   seoTitle: "Ajedrez en el navegador — capstone PBPEW",
   seoDescription:
-    "Proyecto integrador: matriz 2D, renderizado DOM, delegación de eventos, validación de movimientos, pila deshacer y persistencia con localStorage.",
+    "Proyecto capstone de Programación básica para entornos web (PBPEW): matriz 2D, renderizado DOM, delegación de eventos, validación de movimientos, pila deshacer y persistencia con localStorage.",
 };

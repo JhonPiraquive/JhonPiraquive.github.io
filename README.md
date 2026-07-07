@@ -34,7 +34,7 @@ Sitio personal y portal de enseñanza universitaria desplegado en [GitHub Pages]
 |-------|------|-----------|
 | Programación básica para entornos web | `pbpew` | 12 lecciones + 4 proyectos (JS, DOM, async, fetch) |
 | Programación Orientada a Objetos | `poo` | 10 lecciones (C#, SOLID, diagramas UML) |
-| Seguridad en aplicaciones | `sea` | 12 lecciones (CIA, ISO 27001, JWT, SQLi, criptografía) |
+| Seguridad en Aplicaciones | `sea` | 12 lecciones (CIA, ISO 27001, JWT, SQLi, criptografía) |
 | Programación Orientada a Sitios Web | `posw` | 22 lecciones (HTTP, REST, APIs, React, Angular) |
 | Configuración de Servicios Web | `configuracion-servicios-web` | 4 clases (DNS, hosting, correo, SSH, Docker, VMs) |
 

@@ -2,6 +2,7 @@
 
 import { Quiz } from "@/components/teaching/Quiz";
 import { CONFIGURACION_SERVICIOS_WEB_QUIZZES } from "@/lib/teaching-quizzes/configuracion-servicios-web";
+import { CONFIGURACION_SISTEMAS_OPERATIVOS_QUIZZES } from "@/lib/teaching-quizzes/configuracion-sistemas-operativos";
 import { PBPEW_QUIZZES } from "@/lib/teaching-quizzes/pbpew";
 import { POO_QUIZZES } from "@/lib/teaching-quizzes/poo";
 import { POSW_QUIZZES } from "@/lib/teaching-quizzes/posw";
@@ -13,6 +14,7 @@ const QUIZ_MAP: Record<string, Record<string, typeof SEA_QUIZZES[string]>> = {
   poo: POO_QUIZZES,
   posw: POSW_QUIZZES,
   "configuracion-servicios-web": CONFIGURACION_SERVICIOS_WEB_QUIZZES,
+  "configuracion-sistemas-operativos": CONFIGURACION_SISTEMAS_OPERATIVOS_QUIZZES,
 };
 
 export function QuizSection({ slug, track = "sea" }: { slug: string; track?: string }) {

@@ -1,9 +1,9 @@
 ---
 name: topic-expert-web-services
-description: Dominio POSW/servicios web — briefs para education-expert (23 temas)
+description: Dominio Programación Orientada a Sitios Web (POSW) — briefs para education-expert (23 temas)
 ---
 
-# Topic Expert: Web Services (POSW)
+# Topic Expert: Programación Orientada a Sitios Web (POSW)
 
 ## Fuente de verdad
 - kb/agents/topic-experts/posw-web-services.md

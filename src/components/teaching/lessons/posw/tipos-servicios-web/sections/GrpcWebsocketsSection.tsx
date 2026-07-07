@@ -31,8 +31,11 @@ export function GrpcWebsocketsSection() {
         </li>
       </ul>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Contrato gRPC (.proto)"}</h3>
-      <pre className="my-4 overflow-x-auto rounded-lg bg-[var(--color-neutral-light)] p-4 text-sm">
-        {`syntax = "proto3";
+      <CodeFiddle
+        language="protobuf"
+        title="producto.proto"
+        filename="producto.proto"
+        code={`syntax = "proto3";
 
 service ProductoService {
   rpc ObtenerProducto (ProductoRequest) returns (ProductoResponse);
@@ -48,7 +51,7 @@ message ProductoResponse {
   double precio = 3;
   int32 stock = 4;
 }`}
-      </pre>
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"WebSockets — tiempo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>

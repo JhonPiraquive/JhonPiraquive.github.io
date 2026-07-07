@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "ataques-web-sqli-y-mitigacion",
   "next": "criptografia-hash-sha256-y-buenas-practicas",
   "seoTitle": "Base64: codificación/decodificación y malentendidos frecuentes",
-  "seoDescription": "Lección 8 del track SEA."
+  "seoDescription": "Lección 8 del track Seguridad en Aplicaciones (SEA)."
 };

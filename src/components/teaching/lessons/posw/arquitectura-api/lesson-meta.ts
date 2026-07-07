@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: null,
   seoTitle: "Arquitectura de APIs: REST y GraphQL | POSW",
   seoDescription:
-    "Capas REST, SOAP, GraphQL, gRPC, API Gateway, BFF y Strangler Fig. Lección 22 — cierre del track POSW.",
+    "Capas REST, SOAP, GraphQL, gRPC, API Gateway, BFF y Strangler Fig. Lección 22 — cierre del track Programación Orientada a Sitios Web (POSW).",
 };

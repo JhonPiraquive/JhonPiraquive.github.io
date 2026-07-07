@@ -20,7 +20,7 @@ export function PrerrequisitosSection() {
           }
         </li>
         <li>
-          <strong>{"Proyectos previos PBPEW:"}</strong>
+          <strong>{"Proyectos previos del track Programación básica para entornos web (PBPEW):"}</strong>
           {" `proyectos/calculadora`, `proyectos/piedra-papel-tijera` — experiencia con eventos y estado en el navegador."}
         </li>
         <li>

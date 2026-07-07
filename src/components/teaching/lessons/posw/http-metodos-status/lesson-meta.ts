@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "protocolos-seguridad",
   "next": "http-headers",
   "seoTitle": "Métodos HTTP y Códigos de Estado | POSW",
-  "seoDescription": "Aprende verbos HTTP (GET, POST, PUT, PATCH, DELETE), propiedades Safe e Idempotente, mapping CRUD y familias de códigos 1xx–5xx. Lección 4 del track POSW."
+  "seoDescription": "Aprende verbos HTTP (GET, POST, PUT, PATCH, DELETE), propiedades Safe e Idempotente, mapping CRUD y familias de códigos 1xx–5xx. Lección 4 del track Programación Orientada a Sitios Web (POSW)."
 };

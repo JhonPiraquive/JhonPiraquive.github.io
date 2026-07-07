@@ -1,4 +1,4 @@
-# Seguridad en aplicaciones
+# Seguridad en Aplicaciones
 
 Este módulo te da un mapa práctico para entender amenazas reales en aplicaciones web, aplicar controles de seguridad que sí reducen riesgo y comunicar decisiones con lenguaje de negocio. La meta no es “hacer magia”, es construir hábitos: pensar como atacante, diseñar como ingeniero y justificar como profesional.
 

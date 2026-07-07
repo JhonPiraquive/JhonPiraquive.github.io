@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "formatos-datos",
   "next": "http-metodos-status",
   "seoTitle": "HTTP vs HTTPS: TLS, SSL y handshake | POSW",
-  "seoDescription": "Aprende HTTP stateless, HTTPS con TLS 1.3, evolución SSL→TLS, handshake y comparativa producción vs localhost. Tercera lección del track POSW."
+  "seoDescription": "Aprende HTTP stateless, HTTPS con TLS 1.3, evolución SSL→TLS, handshake y comparativa producción vs localhost. Tercera lección del track Programación Orientada a Sitios Web (POSW)."
 };

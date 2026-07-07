@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "proyectos/todo-list",
   seoTitle: "Calculadora interactiva — proyecto PBPEW",
   seoDescription:
-    "Proyecto integrador: calculadora HTML + JavaScript con estado en memoria, delegación de eventos, función calcular pura y manejo de errores sin eval.",
+    "Proyecto integrador de Programación básica para entornos web (PBPEW): calculadora HTML + JavaScript con estado en memoria, delegación de eventos, función calcular pura y manejo de errores sin eval.",
 };

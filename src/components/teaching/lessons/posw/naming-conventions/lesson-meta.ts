@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "ia-en-desarrollo-web",
   seoTitle: "Convenciones de nomenclatura en web | POSW",
   seoDescription:
-    "Aplica camelCase, PascalCase, snake_case y kebab-case por capa: TypeScript, SQL, JSON y URLs REST. Lección 20 del track POSW.",
+    "Aplica camelCase, PascalCase, snake_case y kebab-case por capa: TypeScript, SQL, JSON y URLs REST. Lección 20 del track Programación Orientada a Sitios Web (POSW).",
 };

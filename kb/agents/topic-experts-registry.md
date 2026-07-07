@@ -6,6 +6,7 @@
 | topic-expert-app-security | sea | kb/education/briefs/sea/ | active |
 | topic-expert-oop-csharp | poo | kb/education/briefs/poo/ | active |
 | topic-expert-web-services | posw | kb/education/briefs/posw/ | active |
+| topic-expert-os-config | configuracion-sistemas-operativos | kb/education/briefs/configuracion-sistemas-operativos/ | active |
 
 Definición completa: [topic-experts/](topic-experts/)
 

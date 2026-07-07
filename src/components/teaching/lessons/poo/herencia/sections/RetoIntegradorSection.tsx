@@ -8,7 +8,7 @@ export function RetoIntegradorSection() {
       </h2>
       <p className="my-4">
         {
-          "Un taller de POO pide un prototipo en consola (.NET) que combine herencia bien aplicada y composición donde corresponda."
+          "Un taller de Programación Orientada a Objetos (POO) pide un prototipo en consola (.NET) que combine herencia bien aplicada y composición donde corresponda."
         }
       </p>
       <p className="my-4 font-semibold">{"Parte A — Dominio vehículos"}</p>

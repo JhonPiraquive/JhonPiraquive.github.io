@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "backend",
   "next": "rest-principios",
   "seoTitle": "Caché en Aplicaciones Web: Redis, CDN y Headers | POSW",
-  "seoDescription": "Aprende tipos de caché, Cache Hit Rate, patrón cache-aside con Redis, headers Cache-Control y estrategias de invalidación. Lección 11 del track POSW."
+  "seoDescription": "Aprende tipos de caché, Cache Hit Rate, patrón cache-aside con Redis, headers Cache-Control y estrategias de invalidación. Lección 11 del track Programación Orientada a Sitios Web (POSW)."
 };

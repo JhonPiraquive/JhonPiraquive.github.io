@@ -6,7 +6,7 @@ export function PrerrequisitosSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Prerrequisitos"}</h2>
       <p className="my-4">
         {
-          "Antes de la Clase 1 conviene haber completado (o estar cursando en paralelo) estos temas del track POSW:"
+          "Antes de la Clase 1 conviene haber completado (o estar cursando en paralelo) estos temas del track Programación Orientada a Sitios Web (POSW):"
         }
       </p>
       <ul className="my-4 list-disc pl-6">

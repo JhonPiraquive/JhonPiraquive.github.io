@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "herramientas-desarrollo",
   seoTitle: "Modelo cliente-servidor: DNS, HTTP y capas | POSW",
   seoDescription:
-    "Aprende el modelo cliente-servidor, el flujo DNS→TLS→HTTP al abrir una URL, arquitecturas 2/3 capas y variantes P2P, híbrido y serverless. Lección 16 del track POSW.",
+    "Aprende el modelo cliente-servidor, el flujo DNS→TLS→HTTP al abrir una URL, arquitecturas 2/3 capas y variantes P2P, híbrido y serverless. Lección 16 del track Programación Orientada a Sitios Web (POSW).",
 };

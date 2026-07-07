@@ -285,7 +285,7 @@ export function ContenedoresSection() {
       </p>
       <p className="my-4">
         {
-          "Kubernetes (K8s) orquesta cientos de contenedores en clusters; Docker Compose orquesta pocos servicios en un solo host — ideal para staging y laboratorio POSW."
+          "Kubernetes (K8s) orquesta cientos de contenedores en clusters; Docker Compose orquesta pocos servicios en un solo host — ideal para staging y laboratorio de Programación Orientada a Sitios Web (POSW)."
         }
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve"}</h3>

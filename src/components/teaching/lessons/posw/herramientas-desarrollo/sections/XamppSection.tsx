@@ -79,7 +79,7 @@ curl -I http://localhost`}
           </tbody>
         </table>
       </div>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Editar archivos fuera de htdocs: Apache no los sirve."}</li>
         <li>{"Olvidar lampp start: MySQL o la página no responden."}</li>

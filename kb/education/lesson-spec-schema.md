@@ -19,7 +19,7 @@ interactive_blocks:
     id: identificar-amenaza
   - type: quiz
     id: cierre-quiz
-seo_title: "Historia de redes e Internet | Seguridad en aplicaciones"
+seo_title: "Historia de redes e Internet | Seguridad en Aplicaciones"
 seo_description: "Evolución de redes, origen de la ciberseguridad y lecciones históricas aplicables hoy."
 hreflang_notes: "Traducir título y meta a EN en fase i18n"
 clay_variants:

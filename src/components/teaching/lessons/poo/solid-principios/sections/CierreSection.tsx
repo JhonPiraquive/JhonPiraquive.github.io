@@ -6,7 +6,7 @@ export function CierreSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre de la lección"}</h2>
       <p className="my-4">
         {
-          "Has completado el estudio de los principios SOLID en C#. Son la brújula para convertir POO y polimorfismo en diseño mantenible."
+          "Has completado el estudio de los principios SOLID en C#. Son la brújula para convertir Programación Orientada a Objetos (POO) y polimorfismo en diseño mantenible."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>

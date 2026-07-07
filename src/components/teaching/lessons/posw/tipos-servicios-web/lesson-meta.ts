@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "http-headers",
   "next": "apis",
   "seoTitle": "Tipos de Servicios Web: SOAP, REST, GraphQL, gRPC y WebSockets | POSW",
-  "seoDescription": "Compara SOAP, REST, GraphQL, gRPC y WebSockets. Aprende cuándo usar cada arquitectura según API pública, microservicios internos, tiempo real o integración legacy. Lección 6 del track POSW."
+  "seoDescription": "Compara SOAP, REST, GraphQL, gRPC y WebSockets. Aprende cuándo usar cada arquitectura según API pública, microservicios internos, tiempo real o integración legacy. Lección 6 del track Programación Orientada a Sitios Web (POSW)."
 };

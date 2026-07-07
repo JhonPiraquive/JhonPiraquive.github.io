@@ -6,7 +6,7 @@ export function CierreTrackSection() {
       </h2>
       <p className="my-4">
         {
-          "Con arquitectura-api cierras el track POSW. Has pasado del modelo cliente-servidor hasta REST, GraphQL, gRPC, bases de datos, SOLID, naming e IA en el flujo de desarrollo."
+          "Con arquitectura-api cierras el track Programación Orientada a Sitios Web (POSW). Has pasado del modelo cliente-servidor hasta REST, GraphQL, gRPC, bases de datos, SOLID, naming e IA en el flujo de desarrollo."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave del recorrido:"}</p>
@@ -19,7 +19,7 @@ export function CierreTrackSection() {
       </ul>
       <p className="my-4">
         {
-          "Has completado el track POSW. Repasa lecciones clave o explora proyectos del portafolio."
+          "Has completado el track Programación Orientada a Sitios Web (POSW). Repasa lecciones clave o explora proyectos del portafolio."
         }
       </p>
     </section>

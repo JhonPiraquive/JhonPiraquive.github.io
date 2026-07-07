@@ -1,4 +1,4 @@
-import { CodeBlock } from "@/components/teaching/CodeBlock";
+import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 
 export function LogsDeAplicacionPhpSection() {
   return (
@@ -49,7 +49,22 @@ export function LogsDeAplicacionPhpSection() {
       <ul className="my-4 list-disc pl-6">
         <li>{"payloads completos sin enmascarar"}</li>
       </ul>
-      <CodeBlock className="language-json">{`{
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          <strong>{"Log con password en texto plano:"}</strong>
+          {" login_failed registró credencial; backup de logs filtró passwords. Corrección: nunca registrar secretos."}
+        </li>
+        <li>
+          <strong>{"Logs públicos en /var/www:"}</strong>
+          {" error.log accesible vía web por mala configuración nginx. Corrección: logs fuera del document root."}
+        </li>
+        <li>
+          <strong>{"Sin request_id:"}</strong>
+          {" Imposible correlacionar error de usuario con stack trace. Corrección: ID único por petición en toda la traza."}
+        </li>
+      </ul>
+      <CodeFiddle language="json" code={`{
   &quot;log_correcto&quot;: {
     &quot;event&quot;: &quot;login_failed&quot;,
     &quot;request_id&quot;: &quot;req_91b6c8&quot;,
@@ -65,7 +80,7 @@ export function LogsDeAplicacionPhpSection() {
     &quot;token&quot;: &quot;FULL_JWT_OR_SESSION_TOKEN&quot;
   },
   &quot;por_que_es_incorrecto&quot;: &quot;Guarda secretos/credenciales y puede convertirse en fuga de datos.&quot;
-}`}</CodeBlock>
+}`} />
     </section>
   );
 }

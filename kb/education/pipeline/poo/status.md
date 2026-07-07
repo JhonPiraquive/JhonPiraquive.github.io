@@ -1,15 +1,16 @@
 ---
 track: poo
 topic_expert: topic-expert-oop-csharp
-updated: 2026-06-22
+updated: 2026-07-06
 tsx_migration: complete
 pedagogy_compliance: complete (10/10)
-build: passed (lessons 1-10)
+acronym_compliance: normalized (Programación Orientada a Objetos / POO)
+build: blocked (pre-existing SEA syntax errors; POO lint-clean)
 ---
 
-# Pipeline POO — estado
+# Pipeline Programación Orientada a Objetos (POO) — estado
 
-**Track POO cerrado:** 10/10 lecciones compliant.
+**Track Programación Orientada a Objetos (POO) cerrado:** 10/10 lecciones compliant. Refactor acrónimos + malas prácticas puntuales (fundamentos, encapsulamiento, herencia) — 2026-07-06.
 
 | slug | order | brief | draft | spec | layout | tsx | build | quiz | practice | visual |
 |------|-------|-------|-------|------|--------|-----|-------|------|----------|--------|

@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "02-js-en-html",
   seoTitle: "JavaScript y DOM: intro y consola | PBPEW",
   seoDescription:
-    "Primera lección PBPEW: qué es JavaScript, cómo se relaciona con el DOM, historia breve y primer uso de DevTools con console.log en el navegador.",
+    "Primera lección de Programación básica para entornos web (PBPEW): qué es JavaScript, cómo se relaciona con el DOM, historia breve y primer uso de DevTools con console.log en el navegador.",
 };

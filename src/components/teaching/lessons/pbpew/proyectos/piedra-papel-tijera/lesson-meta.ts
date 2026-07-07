@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "proyectos/todo-list",
   seoTitle: "Piedra, papel o tijera en JavaScript: DOM, eventos y estado | PBPEW",
   seoDescription:
-    "Proyecto integrador PBPEW: minijuego piedra-papel-tijera con Math.random, determinarGanador, marcador persistente, addEventListener y delegación data-choice sin librerías.",
+    "Proyecto integrador de Programación básica para entornos web (PBPEW): minijuego piedra-papel-tijera con Math.random, determinarGanador, marcador persistente, addEventListener y delegación data-choice sin librerías.",
 };

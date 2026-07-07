@@ -1,4 +1,4 @@
-import { CodeBlock } from "@/components/teaching/CodeBlock";
+import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 
 export function EjemploTecnicoMatrizSimpleSection() {
   return (
@@ -68,7 +68,7 @@ export function EjemploTecnicoMatrizSimpleSection() {
       <p className="my-4">{"M"}</p>
       <p className="my-4">{"Mitigar"}</p>
       <p className="my-4">{"Secret manager + rotación"}</p>
-      <CodeBlock className="language-json">{`{
+      <CodeFiddle language="json" code={`{
   &quot;risk_id&quot;: &quot;R-001&quot;,
   &quot;asset&quot;: &quot;user_data&quot;,
   &quot;threat&quot;: &quot;data_exfiltration&quot;,
@@ -78,7 +78,7 @@ export function EjemploTecnicoMatrizSimpleSection() {
   &quot;level&quot;: &quot;A&quot;,
   &quot;decision&quot;: &quot;mitigate&quot;,
   &quot;control&quot;: &quot;prepared_statements_and_least_privilege&quot;
-}`}</CodeBlock>
+}`} />
     </section>
   );
 }

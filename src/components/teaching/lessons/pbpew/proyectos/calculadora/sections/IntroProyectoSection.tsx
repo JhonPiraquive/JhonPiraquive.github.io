@@ -6,7 +6,7 @@ export function IntroProyectoSection() {
       </h2>
       <p className="my-4">
         {
-          "Esta es la primera de cuatro lecciones-proyecto del track PBPEW. No introduce APIs nuevas: consolida en un solo artefacto lo visto en las lecciones 01–12 — variables, operadores, funciones, DOM, eventos y manejo básico de errores — en un front sin servidor."
+          "Esta es la primera de cuatro lecciones-proyecto del track Programación básica para entornos web (PBPEW). No introduce APIs nuevas: consolida en un solo artefacto lo visto en las lecciones 01–12 — variables, operadores, funciones, DOM, eventos y manejo básico de errores — en un front sin servidor."
         }
       </p>
       <p className="my-4">

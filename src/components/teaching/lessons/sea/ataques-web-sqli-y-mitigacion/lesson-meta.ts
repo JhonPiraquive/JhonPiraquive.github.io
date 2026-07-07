@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "https-y-mitm",
   "next": "base64-y-diferencias-con-cifrado",
   "seoTitle": "Ataques comunes a aplicaciones web: SQL Injection y mitigación",
-  "seoDescription": "Lección 7 del track SEA."
+  "seoDescription": "Lección 7 del track Seguridad en Aplicaciones (SEA)."
 };

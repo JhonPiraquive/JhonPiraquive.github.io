@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "proteccion-datos-cookies-y-jwt",
   "next": "matriz-de-riesgos",
   "seoTitle": "Programación segura: excepciones, logs y configuración sensible con JSON (PHP)",
-  "seoDescription": "Lección 11 del track SEA."
+  "seoDescription": "Lección 11 del track Seguridad en Aplicaciones (SEA)."
 };

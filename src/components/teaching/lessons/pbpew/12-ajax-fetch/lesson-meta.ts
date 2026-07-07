@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   "next": null,
   "seoTitle": "AJAX y la API fetch",
   "seoDescription":
-    "Peticiones HTTP con fetch, JSON, POST, manejo de errores y CORS. Última lección núcleo del track PBPEW."
+    "Peticiones HTTP con fetch, JSON, POST, manejo de errores y CORS. Última lección núcleo del track Programación básica para entornos web (PBPEW)."
 };

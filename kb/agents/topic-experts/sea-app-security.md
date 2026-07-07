@@ -1,4 +1,4 @@
-# SEA — App security topic expert
+# Seguridad en Aplicaciones (SEA) — topic expert
 
 Track: `sea` | Agent: `topic-expert-app-security` | 12 lecciones
 

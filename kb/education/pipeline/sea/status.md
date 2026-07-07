@@ -1,12 +1,13 @@
 ---
 track: sea
 topic_expert: topic-expert-app-security
-updated: 2026-06-22
+updated: 2026-07-06
 build: passed
 tsx_migration: complete
+refactor: acronym-normalized, codefiddle, malas-practicas, profundidad
 ---
 
-# Pipeline SEA — estado
+# Pipeline Seguridad en Aplicaciones (SEA) — estado
 
 | slug | order | brief | draft | spec | layout | tsx | build |
 |------|-------|-------|-------|------|--------|-----|-------|

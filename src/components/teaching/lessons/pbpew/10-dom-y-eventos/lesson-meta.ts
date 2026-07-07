@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "11-asincronia",
   seoTitle: "DOM y eventos en JavaScript: querySelector, addEventListener y delegación | PBPEW",
   seoDescription:
-    "Lección 10 PBPEW: seleccionar nodos, textContent vs innerHTML, classList, createElement, addEventListener, preventDefault, delegación de eventos y reto lista de tareas.",
+    "Lección 10 de Programación básica para entornos web (PBPEW): seleccionar nodos, textContent vs innerHTML, classList, createElement, addEventListener, preventDefault, delegación de eventos y reto lista de tareas.",
 };

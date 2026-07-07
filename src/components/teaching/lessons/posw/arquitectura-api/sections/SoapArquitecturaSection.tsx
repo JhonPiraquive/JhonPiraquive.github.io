@@ -15,7 +15,7 @@ export function SoapArquitecturaSection() {
         <li>{"Integraciones enterprise con contratos estrictos y seguridad WS-*."}</li>
         <li>{"Legado que ya expone WSDL; migración costosa."}</li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Elegir SOAP para un CRUD JSON nuevo sin requisito de legado."}</li>
         <li>{"Ignorar el overhead XML frente a JSON/Protobuf."}</li>

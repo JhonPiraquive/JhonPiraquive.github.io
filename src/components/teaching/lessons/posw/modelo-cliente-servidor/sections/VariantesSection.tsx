@@ -35,7 +35,7 @@ export function VariantesSection() {
           "Una startup copia P2P puro para videollamadas. Sin signaling estable, las llamadas fallan detrás de NAT corporativo. Decisión: modelo híbrido — servidor central para autenticación y signaling; media P2P o TURN según la red."
         }
       </Callout>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Tratar microservicios como obligatorios (añaden complejidad de red y observabilidad)."}</li>
         <li>{"Pensar que P2P no tiene servidores (muchos usan servidores de descubrimiento)."}</li>

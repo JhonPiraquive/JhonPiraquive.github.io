@@ -7,7 +7,7 @@ export const meta: LessonMeta = {
   "order": 10,
   "prev": "solid-principios",
   "next": null,
-  seoTitle: "Modularidad, cohesión y acoplamiento en C# | Cierre track POO",
+  seoTitle: "Modularidad, cohesión y acoplamiento en C# | POO",
   seoDescription:
-    "Integra SOLID con modularidad, alta cohesión y bajo acoplamiento. Checklist práctico, IReporteRenderer, split de Utilidades y reto final del track POO en C#.",
+    "Integra SOLID con modularidad, alta cohesión y bajo acoplamiento. Checklist práctico, IReporteRenderer, split de Utilidades y reto final del track Programación Orientada a Objetos (POO) en C#.",
 };

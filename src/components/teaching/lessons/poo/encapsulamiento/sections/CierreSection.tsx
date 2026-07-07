@@ -4,7 +4,7 @@ export function CierreSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre"}</h2>
       <p className="my-4">
         {
-          "Has completado el estudio del encapsulamiento en C#. Este principio conecta la noción de clase y estado de la lección fundamentos con el diseño de dominio que usarás en herencia y el resto del track POO."
+          "Has completado el estudio del encapsulamiento en C#. Este principio conecta la noción de clase y estado de la lección fundamentos con el diseño de dominio que usarás en herencia y el resto del track de Programación Orientada a Objetos (POO)."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>

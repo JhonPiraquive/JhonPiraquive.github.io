@@ -67,6 +67,24 @@ export function QueEsLaProgramacionSection() {
         <li>{"Aplica cuando: hay reglas de negocio, estados válidos e inválidos, entidades que “hacen” cosas."}</li>
         <li>{"No aplica cuando: el problema es pura transformación de datos (pipeline funcional simple) y una estructura sin objetos basta."}</li>
       </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>
+          {
+            "Fintech LATAM: carrito con public decimal Total { get; set; } — checkout asigna total sin validar; pedidos con monto negativo en reportes. Corrección: métodos AplicarDescuento y Total con private set."
+          }
+        </li>
+        <li>
+          {
+            "ERP PYME: 200 variables globales para un pedido — nadie sabe quién cambió el estado. Corrección: clase Pedido con estado encapsulado y métodos de dominio."
+          }
+        </li>
+        <li>
+          {
+            "Microservicio migrado a C# con clases anémicas (solo getters/setters) y toda la lógica en controllers. Corrección: mover reglas al dominio y proteger invariantes en el objeto."
+          }
+        </li>
+      </ul>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo de vida real"}</h3>
       <p className="my-4">
         {

@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   "next": "12-ajax-fetch",
   seoTitle: "JavaScript: promesas, async/await y event loop | PBPEW",
   seoDescription:
-    "Lección 11 PBPEW: setTimeout, setInterval, promesas, .then/.catch, async/await, template literals y event loop con reto de carga con reintentos."
+    "Lección 11 de Programación básica para entornos web (PBPEW): setTimeout, setInterval, promesas, .then/.catch, async/await, template literals y event loop con reto de carga con reintentos."
 };

@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "servicios-web",
   "next": "protocolos-seguridad",
   "seoTitle": "XML vs JSON: formatos de datos en servicios web | POSW",
-  "seoDescription": "Compara XML y JSON con ejemplos de pedidos, parsing en JavaScript, regla práctica REST vs SOAP y casos DIAN. Segunda lección del track POSW."
+  "seoDescription": "Compara XML y JSON con ejemplos de pedidos, parsing en JavaScript, regla práctica REST vs SOAP y casos DIAN. Segunda lección del track Programación Orientada a Sitios Web (POSW)."
 };

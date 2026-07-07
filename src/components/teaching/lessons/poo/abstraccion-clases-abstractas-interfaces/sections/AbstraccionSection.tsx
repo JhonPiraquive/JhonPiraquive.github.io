@@ -18,7 +18,7 @@ export function AbstraccionSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "Abstracción en POO significa programar contra un contrato (interfaz o clase base) en vez de una clase concreta. El consumidor no conoce si el pago es tarjeta o transferencia; solo llama Pagar(monto)."
+          "Abstracción en Programación Orientada a Objetos (POO) significa programar contra un contrato (interfaz o clase base) en vez de una clase concreta. El consumidor no conoce si el pago es tarjeta o transferencia; solo llama Pagar(monto)."
         }
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buena abstracción"}</h3>

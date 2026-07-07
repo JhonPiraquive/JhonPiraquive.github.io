@@ -39,7 +39,7 @@ export function RiesgosSection() {
           "Un consultor pegó fragmentos del core de pagos para refactorizar. Auditoría detectó fuga de lógica propietaria. Decisión: política de datos, IA enterprise con DPA, anonimizar snippets, agentes locales sin telemetría sensible."
         }
       </Callout>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Aceptar código sin leer línea por línea."}</li>
         <li>{"Prompt vago sin stack ni restricciones."}</li>

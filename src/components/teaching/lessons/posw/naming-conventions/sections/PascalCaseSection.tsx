@@ -27,7 +27,7 @@ export function PascalCaseSection() {
         {"Cada palabra capitalizada. Clases, interfaces, types, enums y componentes React."}
       </p>
       <CodeFiddle language="typescript" title="Interfaces, enums y componente" code={PASCAL_TS} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"PascalCase en URLs: /api/ObtenerProductos rompe convención REST."}</li>
         <li>{"camelCase en nombres de componente React: el JSX espera PascalCase."}</li>

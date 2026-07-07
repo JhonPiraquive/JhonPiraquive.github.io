@@ -40,7 +40,7 @@ export function ObjetivosDelTemaSection() {
       <ul className="my-4 list-disc pl-6">
         <li>
           {
-            "Lección asociacion-agregacion-composicion: asociación, agregación, composición en POO."
+            "Lección asociacion-agregacion-composicion: asociación, agregación, composición en Programación Orientada a Objetos (POO)."
           }
         </li>
         <li>

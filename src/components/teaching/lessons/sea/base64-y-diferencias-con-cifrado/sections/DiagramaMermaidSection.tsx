@@ -1,5 +1,4 @@
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { CodeBlock } from "@/components/teaching/CodeBlock";
 
 export function DiagramaMermaidSection() {
   return (

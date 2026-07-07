@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "iso-y-normas-27001-27002",
   "next": "ingenieria-social-y-phishing",
   "seoTitle": "Principios de seguridad: CIA + Autenticidad",
-  "seoDescription": "Lección 4 del track SEA."
+  "seoDescription": "Lección 4 del track Seguridad en Aplicaciones (SEA)."
 };

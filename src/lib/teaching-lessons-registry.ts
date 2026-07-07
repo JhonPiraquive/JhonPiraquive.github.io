@@ -428,6 +428,156 @@ const REGISTRY: Record<string, LessonEntry> = {
         (m) => m.meta,
       ),
   },
+  "configuracion-sistemas-operativos/index": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/index/ConfiguracionSistemasOperativosLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/index/lesson-meta").then((m) => m.meta),
+  },
+  "configuracion-sistemas-operativos/clase-01-arquitectura-computador": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/Clase01ArquitecturaComputadorHubLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-01-arquitectura-computador/chasis-y-carcasas": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/chasis-y-carcasas/ChasisYCarcasasPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/chasis-y-carcasas/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-01-arquitectura-computador/cpu-y-microprocesador": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/cpu-y-microprocesador/CpuYMicroprocesadorPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/cpu-y-microprocesador/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-01-arquitectura-computador/memoria-cache-binario": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/memoria-cache-binario/MemoriaCacheBinarioPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/memoria-cache-binario/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-01-arquitectura-computador/memoria-ram-rom": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/memoria-ram-rom/MemoriaRamRomPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/memoria-ram-rom/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-01-arquitectura-computador/practica-y-cierre": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-01-arquitectura-computador/pages/practica-y-cierre/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/Clase02DispositivosAlmacenamientoHubLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/discos-almacenamiento": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/pages/discos-almacenamiento/DiscosAlmacenamientoPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/pages/discos-almacenamiento/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/perifericos-monitor": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/pages/perifericos-monitor/PerifericosMonitorPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/pages/perifericos-monitor/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/hoja-vida-licencias": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/pages/hoja-vida-licencias/HojaVidaLicenciasPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/pages/hoja-vida-licencias/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/practica-y-cierre": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-02-dispositivos-almacenamiento/pages/practica-y-cierre/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-03-sistemas-operativos": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/Clase03SistemasOperativosHubLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-03-sistemas-operativos/tipos-sistemas-operativos": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/tipos-sistemas-operativos/TiposSistemasOperativosPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/tipos-sistemas-operativos/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-03-sistemas-operativos/instalacion-configuracion": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/instalacion-configuracion/InstalacionConfiguracionPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/instalacion-configuracion/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-03-sistemas-operativos/consola-comandos": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/consola-comandos/ConsolaComandosPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/consola-comandos/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-03-sistemas-operativos/usuarios-permisos-rutas": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/usuarios-permisos-rutas/UsuariosPermisosRutasPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/usuarios-permisos-rutas/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-03-sistemas-operativos/respaldo-informacion": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/respaldo-informacion/RespaldoInformacionPageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/respaldo-informacion/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
+  "configuracion-sistemas-operativos/clase-03-sistemas-operativos/practica-y-cierre": {
+    component: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () =>
+      import("@/components/teaching/lessons/configuracion-sistemas-operativos/clase-03-sistemas-operativos/pages/practica-y-cierre/lesson-meta").then(
+        (m) => m.meta,
+      ),
+  },
   "pbpew/proyectos/ajedrez": {
     component: () => import("@/components/teaching/lessons/pbpew/proyectos/ajedrez/AjedrezLesson"),
     meta: () => import("@/components/teaching/lessons/pbpew/proyectos/ajedrez/lesson-meta").then((m) => m.meta),

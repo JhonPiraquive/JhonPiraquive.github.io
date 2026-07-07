@@ -4,7 +4,7 @@ export function CierreSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre de la lección"}</h2>
       <p className="my-4">
         {
-          "Has completado la introducción a los servicios web. Estos conceptos son la base del track POSW: sin distinguir servicio de sitio estático, sin centralizar lógica y sin particionar responsabilidades, será difícil avanzar en formatos, protocolos y diseño de APIs."
+          "Has completado la introducción a los servicios web. Estos conceptos son la base del track Programación Orientada a Sitios Web (POSW): sin distinguir servicio de sitio estático, sin centralizar lógica y sin particionar responsabilidades, será difícil avanzar en formatos, protocolos y diseño de APIs."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>

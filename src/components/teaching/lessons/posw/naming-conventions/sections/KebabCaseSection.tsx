@@ -19,7 +19,7 @@ export function KebabCaseSection() {
         }
       </p>
       <CodeFiddle language="http" title="URLs REST idiomáticas" code={KEBAB_HTTP} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Endpoints verbales: /getOrders, /deleteUser/5."}</li>
         <li>{"Mezclar snake_case en URLs: /api/obtener_usuarios."}</li>

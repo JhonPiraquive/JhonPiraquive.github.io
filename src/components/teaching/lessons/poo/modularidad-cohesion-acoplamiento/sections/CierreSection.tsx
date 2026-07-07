@@ -1,7 +1,7 @@
 export function CierreSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre del track POO"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre del track de Programación Orientada a Objetos (POO)"}</h2>
       <p className="my-4">
         {
           "Has completado el track de Programación Orientada a Objetos en C#. Esta lección integra todo lo aprendido en criterios prácticos de diseño mantenible."

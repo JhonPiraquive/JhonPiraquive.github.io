@@ -8,7 +8,7 @@ export function IntroduccionEstadoSection() {
       </h2>
       <p className="my-4">
         {
-          "Este es el primer proyecto integrador de gestión de estado del track PBPEW. No usas frameworks: unes un array de objetos (lección 7) con manipulación del DOM y eventos (lección 10) en un flujo completo: add → render → toggle → remove → filter."
+          "Este es el primer proyecto integrador de gestión de estado del track Programación básica para entornos web (PBPEW). No usas frameworks: unes un array de objetos (lección 7) con manipulación del DOM y eventos (lección 10) en un flujo completo: add → render → toggle → remove → filter."
         }
       </p>
       <p className="my-4">

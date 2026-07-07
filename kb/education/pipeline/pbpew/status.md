@@ -1,15 +1,16 @@
 ---
 track: pbpew
 topic_expert: topic-expert-javascript
-updated: 2026-06-22
+updated: 2026-07-06
 tsx_migration: complete
 pedagogy_compliance: complete (16/16)
-build: passed (full track)
+acronym_normalization: complete (2026-07-06)
+build: passed (2026-07-06)
 ---
 
-# Pipeline PBPEW — estado
+# Pipeline Programación básica para entornos web (PBPEW) — estado
 
-**Track PBPEW completo:** 12 lecciones núcleo + 4 proyectos integradores.
+**Track completo:** 12 lecciones núcleo + 4 proyectos integradores.
 
 | slug | order | brief | draft | spec | layout | tsx | build | quiz | practice | visual | demo |
 |------|-------|-------|-------|------|--------|-----|-------|------|----------|--------|------|

@@ -35,7 +35,7 @@ export function CierreSection() {
       <p className="my-4">
         {"Para profundizar en Docker avanzado (Dockerfile multi-etapa, empaquetado React), consulta la lección "}
         <Link href="/teaching/posw/herramientas-desarrollo" className="text-[var(--color-secondary)] hover:underline">
-          {"herramientas de desarrollo del track POSW"}
+          {"herramientas de desarrollo del track Programación Orientada a Sitios Web (POSW)"}
         </Link>
         {"."}
       </p>

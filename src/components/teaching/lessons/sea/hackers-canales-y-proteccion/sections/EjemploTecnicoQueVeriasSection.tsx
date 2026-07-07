@@ -1,11 +1,11 @@
-import { CodeBlock } from "@/components/teaching/CodeBlock";
+import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 
 export function EjemploTecnicoQueVeriasSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Ejemplo técnico (qué verías en una app)"}</h2>
       <p className="my-4">{"Cuando el atacante mezcla ingeniería social con técnica, suele usar accesos legítimos robados: credenciales válidas, sesiones activas o tokens. Por eso los controles de autenticación, monitoreo y límite de acciones son tan importantes como “parchar vulnerabilidades”."}</p>
-      <CodeBlock className="language-json">{`{
+      <CodeFiddle language="json" code={`{
   &quot;event&quot;: &quot;bank_account_change&quot;,
   &quot;actor&quot;: {
     &quot;user_id&quot;: &quot;u_12345&quot;,
@@ -19,7 +19,7 @@ export function EjemploTecnicoQueVeriasSection() {
   },
   &quot;result&quot;: &quot;blocked&quot;,
   &quot;request_id&quot;: &quot;req_7b9a2c&quot;
-}`}</CodeBlock>
+}`} />
     </section>
   );
 }

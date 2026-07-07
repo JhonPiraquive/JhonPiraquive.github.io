@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "rest-principios",
   "next": "angular",
   "seoTitle": "TypeScript: Tipos, Interfaces y Genéricos | POSW",
-  "seoDescription": "Aprende TypeScript como superset de JavaScript: sistema de tipos, interfaces, genéricos, tsconfig strict y tipado de APIs REST. Lección 13 del track POSW."
+  "seoDescription": "Aprende TypeScript como superset de JavaScript: sistema de tipos, interfaces, genéricos, tsconfig strict y tipado de APIs REST. Lección 13 del track Programación Orientada a Sitios Web (POSW)."
 };

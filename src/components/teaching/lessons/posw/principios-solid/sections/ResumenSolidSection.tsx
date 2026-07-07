@@ -16,7 +16,7 @@ export function ResumenSolidSection() {
           ["Dependency Inversion", "D", "Alto nivel depende de abstracciones", "new MySQLRepository() dentro del servicio"],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Aplicación en POSW"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Aplicación en el track Programación Orientada a Sitios Web (POSW)"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Controladores delgados."}</li>
         <li>{"Servicios con lógica de negocio."}</li>

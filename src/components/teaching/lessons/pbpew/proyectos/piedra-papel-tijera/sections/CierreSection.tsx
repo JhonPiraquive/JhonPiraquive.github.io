@@ -5,7 +5,7 @@ export function CierreSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Cierre</h2>
       <p className="my-4">
-        Has integrado las 12 lecciones núcleo PBPEW en un minijuego real: estado, funciones con
+        Has integrado las 12 lecciones núcleo de Programación básica para entornos web (PBPEW) en un minijuego real: estado, funciones con
         responsabilidad única, arrays, decisiones, DOM, eventos y (opcional) asincronía.
       </p>
       <p className="my-4 font-semibold">Ideas clave para retener:</p>

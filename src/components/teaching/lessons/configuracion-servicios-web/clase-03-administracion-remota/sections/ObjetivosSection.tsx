@@ -65,7 +65,7 @@ export function ObjetivosSection() {
           {" tipos de hosting, TLS/HTTPS y servicios web en producción."}
         </li>
         <li>
-          <strong>{"Lecciones POSW relacionadas:"}</strong>
+          <strong>{"Lecciones de Programación Orientada a Sitios Web (POSW) relacionadas:"}</strong>
           {" modelo-cliente-servidor (roles y puertos), protocolos-seguridad (cifrado y autenticación)."}
         </li>
       </ul>

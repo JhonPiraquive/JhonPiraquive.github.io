@@ -15,7 +15,7 @@ export const PBPEW_QUIZZES: Record<string, QuizQuestion[]> = {
         "El navegador parsea HTML y construye el DOM; JavaScript lo manipula en runtime. No es el archivo en disco ni un framework.",
     },
     {
-      question: "¿Dónde se ejecuta principalmente el JavaScript en este curso PBPEW?",
+      question: "¿Dónde se ejecuta principalmente el JavaScript en Programación básica para entornos web (PBPEW)?",
       options: [
         "Solo en el servidor",
         "En el navegador del usuario",
@@ -24,7 +24,7 @@ export const PBPEW_QUIZZES: Record<string, QuizQuestion[]> = {
       ],
       correctIndex: 1,
       feedback:
-        "PBPEW empieza por JS en el navegador (DOM, consola). Node.js y otros entornos se mencionan como contexto, pero el foco inicial es el cliente.",
+        "El track PBPEW empieza por JS en el navegador (DOM, consola). Node.js y otros entornos se mencionan como contexto, pero el foco inicial es el cliente.",
     },
     {
       question: "¿Qué herramienta del navegador usas para ver errores y probar console.log?",

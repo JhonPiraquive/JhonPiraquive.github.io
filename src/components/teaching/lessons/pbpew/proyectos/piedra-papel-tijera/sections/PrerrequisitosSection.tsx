@@ -51,7 +51,7 @@ export function PrerrequisitosSection() {
           opcional para retraso «CPU pensando…» con <code>setTimeout</code>.
         </li>
         <li>
-          Haber completado o repasado las 12 lecciones núcleo PBPEW; este proyecto las integra en un solo
+          Haber completado o repasado las 12 lecciones núcleo de Programación básica para entornos web (PBPEW); este proyecto las integra en un solo
           flujo jugable.
         </li>
       </ul>

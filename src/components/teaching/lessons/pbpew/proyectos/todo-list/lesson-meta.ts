@@ -7,7 +7,7 @@ export const meta: LessonMeta = {
   order: 103,
   prev: "proyectos/piedra-papel-tijera",
   next: null,
-  seoTitle: "Proyecto PBPEW: lista de tareas con array, DOM y localStorage",
+  seoTitle: "Lista de tareas con array, DOM y localStorage | PBPEW",
   seoDescription:
-    "Proyecto 103 PBPEW: gestión de estado con array de objetos, render() central, delegación de eventos, filtros Todas/Pendientes/Completadas y persistencia opcional en localStorage.",
+    "Proyecto integrador de Programación básica para entornos web (PBPEW): gestión de estado con array de objetos, render() central, delegación de eventos, filtros Todas/Pendientes/Completadas y persistencia opcional en localStorage.",
 };

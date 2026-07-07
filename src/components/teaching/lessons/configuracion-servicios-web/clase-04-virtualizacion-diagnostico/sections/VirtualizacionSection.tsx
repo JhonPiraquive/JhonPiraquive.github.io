@@ -14,7 +14,7 @@ export function VirtualizacionSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "La virtualización de SO permite ejecutar varias máquinas lógicas sobre un host físico. En POSW se usa para laboratorio seguro: experimentar con SSH, Nginx y firewall sin comprometer el equipo principal."
+          "La virtualización de SO permite ejecutar varias máquinas lógicas sobre un host físico. En Programación Orientada a Sitios Web (POSW) se usa para laboratorio seguro: experimentar con SSH, Nginx y firewall sin comprometer el equipo principal."
         }
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve"}</h3>

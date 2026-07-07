@@ -7,7 +7,7 @@ export function CierreSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre"}</h2>
       <p className="my-4">
         {
-          "Has completado el proyecto integrador más exigente del track PBPEW. Combina matriz 2D, renderizado DOM, delegación de eventos, validación con funciones puras, pila LIFO y persistencia JSON — la síntesis de las lecciones 01–12."
+          "Has completado el proyecto integrador más exigente del track Programación básica para entornos web (PBPEW). Combina matriz 2D, renderizado DOM, delegación de eventos, validación con funciones puras, pila LIFO y persistencia JSON — la síntesis de las lecciones 01–12."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>

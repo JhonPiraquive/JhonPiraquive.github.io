@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   "next": "09-estructuras-de-datos",
   "seoTitle": "Ámbito, this y clases en JavaScript: scope, métodos e herencia",
   "seoDescription":
-    "Lección 8 PBPEW: scope global, función y bloque; contexto this en métodos y callbacks; clases ES6 con new, extends y super.",
+    "Lección 8 de Programación básica para entornos web (PBPEW): scope global, función y bloque; contexto this en métodos y callbacks; clases ES6 con new, extends y super.",
 };

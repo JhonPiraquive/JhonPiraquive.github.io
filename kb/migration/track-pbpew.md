@@ -1,4 +1,4 @@
-# Track PBPEW — migración
+# Track Programación básica para entornos web (PBPEW) — migración
 
 - **Estado:** completado (12 lecciones + 4 proyectos TSX)
 - **Destino:** `src/components/teaching/lessons/pbpew/`

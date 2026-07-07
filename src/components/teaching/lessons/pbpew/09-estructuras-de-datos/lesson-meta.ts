@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "10-dom-y-eventos",
   seoTitle: "JavaScript: Map, Set, pila LIFO y cola FIFO | PBPEW",
   seoDescription:
-    "Lección 9 PBPEW: Map y Set, pila LIFO con push/pop, cola FIFO con push/shift, objeto vs Map y reto integrador de turnos y caché.",
+    "Lección 9 de Programación básica para entornos web (PBPEW): Map y Set, pila LIFO con push/pop, cola FIFO con push/shift, objeto vs Map y reto integrador de turnos y caché.",
 };

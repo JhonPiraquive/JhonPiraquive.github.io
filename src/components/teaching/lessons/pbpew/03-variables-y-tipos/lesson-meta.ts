@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "04-operadores-y-decisiones",
   seoTitle: "Variables, hoisting y tipos | PBPEW",
   seoDescription:
-    "Lección 3 PBPEW: let, const y var, hoisting y TDZ, tipos primitivos, typeof, copia por referencia y coerción básica en JavaScript.",
+    "Lección 3 de Programación básica para entornos web (PBPEW): let, const y var, hoisting y TDZ, tipos primitivos, typeof, copia por referencia y coerción básica en JavaScript.",
 };

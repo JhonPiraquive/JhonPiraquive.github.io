@@ -51,7 +51,7 @@ if (typeof desconocido === "string") {
           ["never", "Valor imposible", "Funciones que lanzan o no retornan", "Útil en exhaustiveness checks"],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Usar any por comodidad en lugar de unknown + narrowing."}</li>
         <li>{"Ignorar errores con @ts-ignore en lugar de corregir el contrato."}</li>

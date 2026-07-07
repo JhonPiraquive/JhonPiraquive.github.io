@@ -1,4 +1,4 @@
-# POSW — Web services topic expert
+# Programación Orientada a Sitios Web (POSW) — topic expert
 
 Track: `posw` | Agent: `topic-expert-web-services` | 22 temas
 

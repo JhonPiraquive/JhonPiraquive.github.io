@@ -9,5 +9,5 @@ export const meta: LessonMeta = {
   next: "tokens",
   seoTitle: "APIs: Qué son, Tipos y Herramientas | POSW",
   seoDescription:
-    "Define APIs, clasifica por accesibilidad y arquitectura, prueba endpoints con curl y Postman, y aplica buenas prácticas de diseño REST. Lección 7 del track POSW.",
+    "Define APIs, clasifica por accesibilidad y arquitectura, prueba endpoints con curl y Postman, y aplica buenas prácticas de diseño REST. Lección 7 del track Programación Orientada a Sitios Web (POSW).",
 };

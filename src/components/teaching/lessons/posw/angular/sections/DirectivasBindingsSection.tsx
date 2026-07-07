@@ -54,7 +54,7 @@ Two-way en campo búsqueda → {{blank3}}`}
           { id: "blank3", answer: '[(ngModel)]="busqueda"', placeholder: "two-way binding" },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Mutar @Input() en el hijo en lugar de emitir evento al padre."}</li>
         <li>{"Usar *ngFor sin trackBy en listas dinámicas."}</li>

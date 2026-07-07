@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": null,
   "next": "hackers-canales-y-proteccion",
   "seoTitle": "Historia de redes y seguridad informática: evolución e importancia",
-  "seoDescription": "Lección 1 del track SEA."
+  "seoDescription": "Lección 1 del track Seguridad en Aplicaciones (SEA)."
 };

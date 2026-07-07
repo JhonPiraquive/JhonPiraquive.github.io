@@ -8,5 +8,5 @@ export const meta: LessonMeta = {
   "prev": "principios-cia-y-autenticidad",
   "next": "https-y-mitm",
   "seoTitle": "Ingeniería social y phishing: señales, prevención y respuesta",
-  "seoDescription": "Lección 5 del track SEA."
+  "seoDescription": "Lección 5 del track Seguridad en Aplicaciones (SEA)."
 };

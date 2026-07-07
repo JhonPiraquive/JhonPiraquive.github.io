@@ -3,7 +3,7 @@ name: topic-expert-oop-csharp
 description: Dominio POO/C# — briefs para education-expert (10 lecciones)
 ---
 
-# Topic Expert: OOP C# (POO)
+# Topic Expert: Programación Orientada a Objetos (POO) — C#
 
 ## Fuente de verdad
 - kb/agents/topic-experts/poo-csharp.md
