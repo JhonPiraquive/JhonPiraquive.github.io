@@ -6,22 +6,44 @@ import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 export function QueEsReactSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"¿Qué es React?"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"¿Qué es React?"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"React:"}</strong>
-          {" librería JavaScript (Meta, 2013) para interfaces con componentes reutilizables."}
+          {
+            " librería JavaScript (Meta, 2013) para interfaces con componentes reutilizables."
+          }
         </li>
-        <li>{"Tres pilares: componentes, Virtual DOM, flujo unidireccional de datos."}</li>
+        <li>
+          {
+            "Tres pilares: componentes, Virtual DOM, flujo unidireccional de datos."
+          }
+        </li>
         <li>
           {
             "Virtual DOM: representación en memoria; React calcula el diff mínimo y actualiza solo lo necesario."
           }
         </li>
-        <li>{"Componentes funcionales: estándar moderno con Hooks (desde 2019)."}</li>
+        <li>
+          {"Componentes funcionales: estándar moderno con Hooks (desde 2019)."}
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Flujo unidireccional de datos"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Que Es React"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Que Es React))
+    React librería JavaScript Meta 2013 para interfaces con componentes reutiliz
+    Tres pilares componentes Virtual DOM flujo unidireccional de datos
+    Virtual DOM representación en memoria
+    Componentes funcionales estándar moderno con Hooks desde 2019`}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Flujo unidireccional de datos"}
+      </h3>
       <MermaidDiagram
         chart={`flowchart TD
   EST[Estado en componente padre] -->|props| HIJO[Componente hijo]
@@ -34,13 +56,23 @@ export function QueEsReactSection() {
         headers={["Aspecto", "React", "Angular"]}
         rows={[
           ["Naturaleza", "Librería de UI", "Framework completo"],
-          ["Plantillas", "JSX en JavaScript/TS", "HTML declarativo con directivas"],
-          ["Estado", "useState, useReducer, librerías externas", "Servicios + DI integrados"],
+          [
+            "Plantillas",
+            "JSX en JavaScript/TS",
+            "HTML declarativo con directivas",
+          ],
+          [
+            "Estado",
+            "useState, useReducer, librerías externas",
+            "Servicios + DI integrados",
+          ],
           ["Ciclo de vida", "useEffect (hooks)", "ngOnInit, ngOnDestroy, etc."],
           ["HTTP", "fetch, React Query, SWR", "HttpClient integrado"],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Crear proyecto con Vite"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Crear proyecto con Vite"}
+      </h3>
       <CodeFiddle
         language="bash"
         title="Crear proyecto con Vite"

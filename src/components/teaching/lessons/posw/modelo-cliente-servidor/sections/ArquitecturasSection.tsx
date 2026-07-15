@@ -16,14 +16,29 @@ export function ArquitecturasSection() {
             "2 capas (2-Tier): cliente ↔ servidor con BD integrada o acceso directo. Simple pero riesgoso si el cliente toca la BD."
           }
         </li>
-        <li>{"3 capas (3-Tier): presentación → lógica/API → datos. Estándar en la web."}</li>
+        <li>
+          {
+            "3 capas (3-Tier): presentación → lógica/API → datos. Estándar en la web."
+          }
+        </li>
         <li>
           {
             "N capas / microservicios: API Gateway, servicios independientes, BDs por dominio. Escala por servicio; mayor complejidad operacional."
           }
         </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Arquitectura 3 capas"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Arquitecturas"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Arquitecturas))
+    2 capas 2 Tier cliente y servidor con BD integrada o acceso directo
+    3 capas 3 Tier presentación a lógica y API a datos
+    N capas y microservicios API Gateway servicios independientes BDs por domini`}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Arquitectura 3 capas"}
+      </h3>
       <MermaidDiagram
         chart={`flowchart TB
   P[Capa 1: Presentación<br/>React / App móvil]
@@ -32,15 +47,37 @@ export function ArquitecturasSection() {
   P -->|HTTPS JSON| L
   L -->|SQL / protocolo BD| D`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comparativa 2 capas frente a 3 capas"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Comparativa 2 capas frente a 3 capas"}
+      </h3>
       <CompareTable
         headers={["Aspecto", "2 capas", "3 capas"]}
         rows={[
-          ["Seguridad", "Riesgo si el cliente accede directo a BD", "La BD queda detrás de la API"],
-          ["Escalabilidad", "La BD recibe conexiones directas del cliente", "Pool de conexiones y caché en el backend"],
-          ["Separación", "Lógica mezclada en cliente o servidor único", "Presentación, lógica y datos separados"],
-          ["Complejidad", "Menor al inicio", "Mayor, pero mantenible en equipos"],
-          ["Ejemplo", "App escritorio + MySQL directo", "React → REST API → PostgreSQL"],
+          [
+            "Seguridad",
+            "Riesgo si el cliente accede directo a BD",
+            "La BD queda detrás de la API",
+          ],
+          [
+            "Escalabilidad",
+            "La BD recibe conexiones directas del cliente",
+            "Pool de conexiones y caché en el backend",
+          ],
+          [
+            "Separación",
+            "Lógica mezclada en cliente o servidor único",
+            "Presentación, lógica y datos separados",
+          ],
+          [
+            "Complejidad",
+            "Menor al inicio",
+            "Mayor, pero mantenible en equipos",
+          ],
+          [
+            "Ejemplo",
+            "App escritorio + MySQL directo",
+            "React → REST API → PostgreSQL",
+          ],
         ]}
       />
       <Callout title="Caso real: e-commerce con acceso directo a la BD">
@@ -50,7 +87,11 @@ export function ArquitecturasSection() {
       </Callout>
       <PracticeExercise
         prompt="Dibuja (o describe) una arquitectura 3 capas para una app de pedidos: React, API Spring Boot, PostgreSQL. ¿Qué capa no debe ser accesible desde internet?"
-        hints={["Capa de datos", "Solo HTTPS al frontend", "API como intermediaria"]}
+        hints={[
+          "Capa de datos",
+          "Solo HTTPS al frontend",
+          "API como intermediaria",
+        ]}
         expectedKeywords={["PostgreSQL", "datos", "API", "no expuesta"]}
         successMessage="Correcto. La capa de datos (PostgreSQL) nunca debe quedar expuesta directamente a internet."
       />

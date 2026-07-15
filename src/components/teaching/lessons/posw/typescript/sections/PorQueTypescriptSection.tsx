@@ -2,25 +2,66 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function PorQueTypescriptSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"¿Por qué TypeScript?"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"¿Por qué TypeScript?"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Detección temprana: errores en editor/compilación, no en producción."}</li>
-        <li>{"Documentación viva: firmas y formas de objetos explícitas en el código."}</li>
-        <li>{"Refactoring seguro: renombrar propiedades actualiza todos los usos tipados."}</li>
-        <li>{"Contratos con APIs REST: tipar respuestas evita desajustes con el backend."}</li>
+        <li>
+          {
+            "Detección temprana: errores en editor/compilación, no en producción."
+          }
+        </li>
+        <li>
+          {
+            "Documentación viva: firmas y formas de objetos explícitas en el código."
+          }
+        </li>
+        <li>
+          {
+            "Refactoring seguro: renombrar propiedades actualiza todos los usos tipados."
+          }
+        </li>
+        <li>
+          {
+            "Contratos con APIs REST: tipar respuestas evita desajustes con el backend."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — PorQueTypescript"
+        chart={`mindmap
+  root((PorQueTypescript))
+    Detección temprana
+    Documentación viva
+    Refactoring seguro
+    Contratos con APIs REST`}
+      />
+
       <CompareTable
         headers={["Aspecto", "JavaScript", "TypeScript"]}
         rows={[
-          ["Detección de errores de tipo", "En runtime (producción)", "En compilación/editor"],
+          [
+            "Detección de errores de tipo",
+            "En runtime (producción)",
+            "En compilación/editor",
+          ],
           ["Autocompletado", "Limitado sin tipos", "IntelliSense completo"],
-          ["Refactoring", "Frágil en proyectos grandes", "Renombrado seguro con tipos"],
-          ["Contrato API REST", "Fácil usar any sin aviso", "Interfaces y genéricos explícitos"],
+          [
+            "Refactoring",
+            "Frágil en proyectos grandes",
+            "Renombrado seguro con tipos",
+          ],
+          [
+            "Contrato API REST",
+            "Fácil usar any sin aviso",
+            "Interfaces y genéricos explícitos",
+          ],
           ["Curva inicial", "Menor", "Requiere aprender sistema de tipos"],
         ]}
       />
@@ -51,7 +92,11 @@ calcularTotal("4500", 3);
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>
       <PracticeExercise
         prompt='Explica por qué `calcularTotal("4500", 3)` falla en TypeScript pero no en JavaScript. ¿En qué capa se detecta cada error?'
-        hints={["Multiplicación vs concatenación", "Compilación vs runtime", "Firmas number"]}
+        hints={[
+          "Multiplicación vs concatenación",
+          "Compilación vs runtime",
+          "Firmas number",
+        ]}
         expectedKeywords={["compilación", "runtime", "string", "number"]}
         successMessage="Correcto. JS concatena en runtime; TS rechaza el argumento incompatible en compilación."
       />

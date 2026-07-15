@@ -1,11 +1,13 @@
 ---
 track: poo
 topic_expert: topic-expert-oop-csharp
-updated: 2026-07-06
+updated: 2026-07-15
 tsx_migration: complete
 pedagogy_compliance: complete (10/10)
 acronym_compliance: normalized (Programación Orientada a Objetos / POO)
 build: blocked (pre-existing SEA syntax errors; POO lint-clean)
+revision: visuales-adr-013
+visuals_remediation: done
 ---
 
 # Pipeline Programación Orientada a Objetos (POO) — estado
@@ -28,3 +30,10 @@ build: blocked (pre-existing SEA syntax errors; POO lint-clean)
 **Fuentes:** `kb/education/sources/clases/poo/*.md` · pipeline `kb/education/pipeline/poo/` (01–10)
 
 **Quizzes:** `src/lib/teaching-quizzes/poo.ts` (10 slugs) · `QuizSection track="poo"`
+
+## Revisión visual ADR 013 (2026-07-15)
+
+- Convertir «Mapa mental» basado solo en texto a `MermaidDiagram` (`mindmap` o `flowchart`).
+- Corregir promesas de flujo, ciclo, árbol, jerarquía, topología o línea de tiempo que no tengan un diagrama contiguo.
+- Representar matrices o heatmaps como tablas semánticas con contraste visual.
+- Verificar como deuda transversal de SEA: entidades HTML en Mermaid, `CodeFiddle` vacíos y directivas de autoría.

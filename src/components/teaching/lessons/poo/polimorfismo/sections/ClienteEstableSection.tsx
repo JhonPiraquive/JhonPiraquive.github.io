@@ -1,6 +1,7 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function ClienteEstableSection() {
   return (
@@ -14,6 +15,38 @@ export function ClienteEstableSection() {
         <li>{"Anti-patrón: switch o is por tipo en el cliente."}</li>
         <li>{"Sustituibilidad (LSP preview): cada implementación cumple el contrato."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — ClienteEstable"
+        chart={`mindmap
+  root((ClienteEstable))
+    Extender sin editar cliente
+    Anti-patron switch por tipo
+    Sustituibilidad LSP`}
+      />
+      <MermaidDiagram
+        title="Checkout depende del contrato IPasarelaPago"
+        description="Diagrama de clases: cliente estable con implementaciones intercambiables"
+        chart={`classDiagram
+  class IPasarelaPago {
+    <<interface>>
+    +Cobrar(monto)
+  }
+  class Checkout {
+    -pasarela IPasarelaPago
+    +Pagar()
+  }
+  class PagoTarjeta {
+    +Cobrar(monto)
+  }
+  class PagoTransferencia {
+    +Cobrar(monto)
+  }
+  IPasarelaPago <|.. PagoTarjeta
+  IPasarelaPago <|.. PagoTransferencia
+  Checkout --> IPasarelaPago
+`}
+      />
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

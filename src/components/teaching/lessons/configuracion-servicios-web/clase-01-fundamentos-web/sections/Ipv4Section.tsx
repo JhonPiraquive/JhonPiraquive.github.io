@@ -1,4 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function Ipv4Section() {
@@ -14,6 +15,26 @@ export function Ipv4Section() {
         <li>{"Pública vs privada: enrutable en Internet vs RFC 1918 (LAN)."}</li>
         <li>{"Fija vs dinámica: reserva DHCP o manual vs asignación que puede cambiar."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental de IPv4"
+        chart={`mindmap
+  root((IPv4))
+    Identificador de red
+      Interfaz
+      Origen y destino
+    Composición
+      32 bits
+      4 octetos
+      Notación decimal
+    Alcance
+      Pública
+        Enrutable en Internet
+      Privada
+        Red local RFC 1918
+    Asignación
+      Fija
+      Dinámica`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

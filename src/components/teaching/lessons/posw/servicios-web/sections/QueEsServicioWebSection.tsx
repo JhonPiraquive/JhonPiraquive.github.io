@@ -14,9 +14,23 @@ export function QueEsServicioWebSection() {
       <ul className="my-4 list-disc pl-6">
         <li>{"Interacción máquina-a-máquina por red."}</li>
         <li>{"Interfaz estandarizada (HTTP, JSON, XML)."}</li>
-        <li>{"Cliente consume; servicio publica y orquesta persistencia u otros servicios."}</li>
+        <li>
+          {
+            "Cliente consume; servicio publica y orquesta persistencia u otros servicios."
+          }
+        </li>
         <li>{"Distinto de una página HTML solo para humanos."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Que Es Servicio Web"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Que Es Servicio Web))
+    Interacción máquina a máquina por red
+    Interfaz estandarizada HTTP JSON XML
+    Cliente consume
+    Distinto de una página HTML solo para humanos`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
@@ -29,7 +43,9 @@ export function QueEsServicioWebSection() {
           "Como un cajero automático: no importa la marca de tarjeta ni el lenguaje interno del banco; la interfaz estandarizada permite retiro o consulta a cualquier cliente compatible. El cliente es quien inserta la tarjeta; la interfaz es el protocolo del cajero; el sistema interno del banco valida y ejecuta la operación."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Arquitectura cliente → servicio → recurso"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Arquitectura cliente → servicio → recurso"}
+      </h3>
       <MermaidDiagram
         chart={`flowchart LR
   C1[Cliente React] --> SW[Servicio Web]
@@ -38,17 +54,29 @@ export function QueEsServicioWebSection() {
   SW --> DB[(Base de Datos)]
   SW --> OTRO[Otro Servicio]`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Sitio web vs servicio web"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Sitio web vs servicio web"}
+      </h3>
       <CompareTable
         headers={["Aspecto", "Sitio web estático", "Servicio web"]}
         rows={[
           ["Consumidor", "Humano en navegador", "Otra aplicación o script"],
-          ["Interfaz", "HTML/CSS para lectura", "API HTTP con contrato (JSON/XML)"],
-          ["Propósito", "Mostrar contenido", "Exponer datos y operaciones programáticas"],
-          ['Ejemplo', 'Página "Acerca de"', "GET /api/productos/42 → JSON"],
+          [
+            "Interfaz",
+            "HTML/CSS para lectura",
+            "API HTTP con contrato (JSON/XML)",
+          ],
+          [
+            "Propósito",
+            "Mostrar contenido",
+            "Exponer datos y operaciones programáticas",
+          ],
+          ["Ejemplo", 'Página "Acerca de"', "GET /api/productos/42 → JSON"],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo: petición y respuesta mínima"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Ejemplo: petición y respuesta mínima"}
+      </h3>
       <CodeFiddle
         language="http"
         title="Petición GET"
@@ -66,7 +94,9 @@ Accept: application/json`}
   "stock": 12
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Anti-patrón: lógica duplicada en cada cliente"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Anti-patrón: lógica duplicada en cada cliente"}
+      </h3>
       <CodeFiddle
         language="javascript"
         title="Anti-patrón: lógica duplicada"
@@ -77,7 +107,9 @@ function totalCarrito(items) {
   return total;
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Patrón: cliente delgado, servicio con la regla"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Patrón: cliente delgado, servicio con la regla"}
+      </h3>
       <CodeFiddle
         language="http"
         title="Patrón: cliente delgado"

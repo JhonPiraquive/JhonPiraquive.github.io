@@ -1,5 +1,6 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function Ipv6Section() {
   return (
@@ -14,6 +15,24 @@ export function Ipv6Section() {
         <li>{"Dual stack: IPv4 e IPv6 en paralelo en redes modernas."}</li>
         <li>{"Registro AAAA: equivalente IPv6 del registro A."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental de IPv6"
+        chart={`mindmap
+  root((IPv6))
+    Dirección
+      128 bits
+      8 grupos hexadecimales
+      Abreviación con doble dos puntos
+    Motivación
+      Agotamiento de IPv4
+      Más dispositivos conectados
+    Transición
+      Dual stack
+        IPv4
+        IPv6
+    DNS
+      Registro AAAA`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

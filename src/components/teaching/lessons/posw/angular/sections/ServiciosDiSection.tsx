@@ -1,5 +1,6 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function ServiciosDiSection() {
   return (
@@ -10,11 +11,36 @@ export function ServiciosDiSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Servicio: lógica reutilizable y acceso HTTP centralizado."}</li>
-        <li>{"@Injectable({ providedIn: 'root' }): singleton a nivel aplicación."}</li>
+        <li>
+          {"@Injectable({ providedIn: 'root' }): singleton a nivel aplicación."}
+        </li>
         <li>{"HttpClient: cliente HTTP tipado con Observables."}</li>
         <li>{"DI: Angular inyecta dependencias en el constructor."}</li>
-        <li>{"Separación: componentes orquestan UI; servicios hablan con la API."}</li>
+        <li>
+          {"Separación: componentes orquestan UI; servicios hablan con la API."}
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — ServiciosDi"
+        chart={`mindmap
+  root((ServiciosDi))
+    Servicio
+    Injectable providedIn
+    HttpClient
+    DI
+    Separación`}
+      />
+      <MermaidDiagram
+        title="Flujo de servicios e inyección"
+        description="El componente delega el acceso remoto al servicio y HttpClient."
+        chart={`flowchart LR
+  C[Componente] --> S[Servicio inyectado]
+  S --> H[HttpClient]
+  H -->|Request HTTP| A[API]
+  A -->|Observable con respuesta| H
+  H --> S --> C`}
+      />
+
       <CodeFiddle
         language="typescript"
         title="Servicio HTTP con DI"

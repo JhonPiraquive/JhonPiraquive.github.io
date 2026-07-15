@@ -44,6 +44,29 @@ Los `PracticeExercise` y preguntas de quiz deben incluir al menos una pregunta d
 - Al menos 1 visual (`MermaidDiagram` o `StepReveal`)
 - Progresión: concepto → ejemplo → práctica → cierre
 
+## Promesas visuales (obligatorias) — ADR 013
+
+Si el título o el copy dice **mapa mental**, **diagrama**, **flujo**, **ciclo**, **árbol**, **jerarquía**, **topología** o **línea de tiempo**, la sección **debe** incluir un visual contiguo:
+
+| Promesa | Visual canónico |
+|---------|-----------------|
+| Mapa mental / resumen conceptual | `MermaidDiagram` `mindmap` |
+| Flujo / handshake / request-response | `sequenceDiagram` o `flowchart` |
+| Ciclo / proceso | `flowchart` (ciclo) o `StepReveal` + diagrama |
+| Árbol / jerarquía / topología | `flowchart` / `mindmap` |
+| Línea de tiempo | `timeline` |
+| Modelo de clases / datos | `classDiagram` / `erDiagram` |
+| Matriz / heatmap | `<table>` semántica con contraste, no párrafos sueltos |
+
+**Prohibido:**
+
+- Sustituir el visual solo con lista, tabla plana o párrafo.
+- Entidades HTML (`&quot;`, `&#x27;`) dentro de `chart` / `code` de Mermaid o `CodeFiddle`.
+- Publicar directivas de autoría («Debe incluir…», «El ejemplo debe…») en contenido estudiantil.
+- `CodeFiddle` con `code` vacío.
+
+Bullets breves pueden **acompañar** el diagrama; no lo reemplazan. Ver [013-visuales-obligatorios-en-lecciones.md](../decisions/013-visuales-obligatorios-en-lecciones.md).
+
 ## Quizzes
 - Una respuesta correcta por pregunta
 - Feedback breve al responder (por pregunta, no solo al final)

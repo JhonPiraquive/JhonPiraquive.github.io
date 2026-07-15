@@ -6,16 +6,16 @@ export function DiagramaMermaidSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Diagrama (Mermaid)"}</h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa de calor 3x3 (conceptual)"}</h3>
       <MermaidDiagram chart={`flowchart TB
-  subgraph grid[&quot;Impacto_vs_Probabilidad_(3x3)&quot;]
+  subgraph grid["Impacto_vs_Probabilidad_(3x3)"]
     direction LR
-    iB[&quot;Impacto_Bajo&quot;] --> iM[&quot;Impacto_Medio&quot;] --> iA[&quot;Impacto_Alto&quot;]
+    iB["Impacto_Bajo"] --> iM["Impacto_Medio"] --> iA["Impacto_Alto"]
   end
 
-  pB[&quot;Prob_Baja&quot;] --> r1[&quot;Secretos_en_repo (M)&quot;]
-  pM[&quot;Prob_Media&quot;] --> r2[&quot;SQLi (A)&quot;]
-  pM --> r3[&quot;MITM (A)&quot;]
-  pM --> r4[&quot;Phishing (A)&quot;]
-  pM --> r5[&quot;Sesion_eterna (A)&quot;]`} />
+  pB["Prob_Baja"] --> r1["Secretos_en_repo (M)"]
+  pM["Prob_Media"] --> r2["SQLi (A)"]
+  pM --> r3["MITM (A)"]
+  pM --> r4["Phishing (A)"]
+  pM --> r5["Sesion_eterna (A)"]`} />
     </section>
   );
 }

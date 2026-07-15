@@ -198,3 +198,10 @@ Contribución de **brand-identity-expert**. Arquetipo dominante: **Sabio** (ense
 - «Comprueba tu comprensión» → `Check your understanding`; «Reto integrador» → `Integrative challenge`; «Mini carrito con clases y contexto» → `Mini cart with classes and context`.
 - «Caso real: contador de clics — el badge no se actualiza» → `Real case: click counter — badge never updates`; conservar escenario UI neutro.
 - «Ámbito (scope)» → `Scope` en H2 EN; primera mención puede ser `Scope (lexical visibility)`.
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

@@ -5,7 +5,9 @@ import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 export function HttpsSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"HTTPS: HTTP Secure"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"HTTPS: HTTP Secure"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>
@@ -25,6 +27,16 @@ export function HttpsSection() {
         </li>
         <li>{"Tres pilares: confidencialidad, integridad, autenticación."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Https"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Https))
+    HTTP capa de cifrado TLS debajo
+    Puerto 443
+    Certificado digital de una CA de confianza
+    Tres pilares confidencialidad integridad autenticación`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         <strong>{"HTTPS"}</strong>
@@ -50,14 +62,20 @@ export function HttpsSection() {
           </thead>
           <tbody>
             <tr className="bg-white">
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Confidencialidad"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Confidencialidad"}
+              </td>
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 {"Terceros no leen el contenido"}
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Sniffing en Wi-Fi pública"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Sniffing en Wi-Fi pública"}
+              </td>
             </tr>
             <tr className="bg-[var(--color-neutral-light)]/50">
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Integridad"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Integridad"}
+              </td>
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 {"Detección de alteración en tránsito"}
               </td>
@@ -66,7 +84,9 @@ export function HttpsSection() {
               </td>
             </tr>
             <tr className="bg-white">
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Autenticación"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Autenticación"}
+              </td>
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 {"El servidor es quien dice ser"}
               </td>
@@ -77,14 +97,18 @@ export function HttpsSection() {
           </tbody>
         </table>
       </div>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"URL: esquema define seguridad del transporte"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"URL: esquema define seguridad del transporte"}
+      </h3>
       <CodeFiddle
         language="text"
         title="URL: esquema define seguridad"
         code={`http://api.ejemplo.com/recursos   → puerto 80, sin cifrado TLS
 https://api.ejemplo.com/recursos  → puerto 443, con TLS`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Misma petición tras HTTPS (conceptual)"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Misma petición tras HTTPS (conceptual)"}
+      </h3>
       <CodeFiddle
         language="http"
         title="Petición dentro del túnel TLS"
@@ -101,7 +125,9 @@ Content-Type: application/json
 
 {"id":42,"nombre":"Ana García"}`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Pila HTTP vs HTTPS"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Pila HTTP vs HTTPS"}
+      </h3>
       <MermaidDiagram
         chart={`flowchart TB
   subgraph HTTP_stack [HTTP]

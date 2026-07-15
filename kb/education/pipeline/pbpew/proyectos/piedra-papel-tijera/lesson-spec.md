@@ -283,3 +283,10 @@ Crear en `src/components/teaching/RockPaperScissorsDemo.tsx` (un componente por 
 - [ ] `Quiz` 5 preguntas en `src/lib/teaching-quizzes/pbpew.ts`
 - [ ] H2 unificado `text-2xl font-bold text-[var(--color-primary)]`
 - [ ] Actualizar `PiedraPapelTijeraLesson.tsx` con orden del mapa
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

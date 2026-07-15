@@ -1,6 +1,7 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function HerramientasApiSection() {
   return (
@@ -16,16 +17,39 @@ export function HerramientasApiSection() {
           }
         </li>
         <li>{"CLI: curl, HTTPie — pruebas rápidas, scripting, CI/CD."}</li>
-        <li>{"Testing automatizado: REST Assured (Java) y scripts curl en pipelines."}</li>
+        <li>
+          {
+            "Testing automatizado: REST Assured (Java) y scripts curl en pipelines."
+          }
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comparativa de herramientas"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — HerramientasApi"
+        chart={`mindmap
+  root((HerramientasApi))
+    GUI
+    CLI
+    Testing automatizado`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Comparativa de herramientas"}
+      </h3>
       <CompareTable
         headers={["Herramienta", "Tipo", "Caso de uso típico"]}
         rows={[
-          ["Postman", "GUI", "Colecciones, entornos, pruebas manuales en equipo"],
+          [
+            "Postman",
+            "GUI",
+            "Colecciones, entornos, pruebas manuales en equipo",
+          ],
           ["curl", "CLI", "Pruebas rápidas, scripts, integración CI/CD"],
           ["Swagger UI", "GUI (docs)", "Explorar contrato OpenAPI interactivo"],
-          ["Thunder Client", "GUI (VS Code)", "Probar endpoints sin salir del editor"],
+          [
+            "Thunder Client",
+            "GUI (VS Code)",
+            "Probar endpoints sin salir del editor",
+          ],
         ]}
       />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Pruebas con curl"}</h3>
@@ -55,7 +79,9 @@ curl -X DELETE https://api.ejemplo.com/productos/42
 # Ver headers de respuesta
 curl -I https://api.ejemplo.com/productos`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Consumo desde JavaScript"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Consumo desde JavaScript"}
+      </h3>
       <CodeFiddle
         language="javascript"
         title="Consumo desde JavaScript"
@@ -76,11 +102,27 @@ curl -I https://api.ejemplo.com/productos`}
 4. {{blank4}} (crear colección en Postman)
 5. {{blank5}} (agregar test en CI)`}
         blanks={[
-          { id: "blank1", answer: "definir URI y método HTTP", placeholder: "paso a" },
+          {
+            id: "blank1",
+            answer: "definir URI y método HTTP",
+            placeholder: "paso a",
+          },
           { id: "blank2", answer: "probar con curl", placeholder: "paso b" },
-          { id: "blank3", answer: "documentar en OpenAPI", placeholder: "paso c" },
-          { id: "blank4", answer: "crear colección en Postman", placeholder: "paso d" },
-          { id: "blank5", answer: "agregar test automatizado en CI", placeholder: "paso e" },
+          {
+            id: "blank3",
+            answer: "documentar en OpenAPI",
+            placeholder: "paso c",
+          },
+          {
+            id: "blank4",
+            answer: "crear colección en Postman",
+            placeholder: "paso d",
+          },
+          {
+            id: "blank5",
+            answer: "agregar test automatizado en CI",
+            placeholder: "paso e",
+          },
         ]}
       />
     </section>

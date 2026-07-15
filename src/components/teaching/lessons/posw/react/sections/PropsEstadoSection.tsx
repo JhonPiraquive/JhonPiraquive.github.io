@@ -1,24 +1,79 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function PropsEstadoSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Props y estado"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Props y estado"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Props: datos de solo lectura del padre al hijo; nunca mutar props."}</li>
-        <li>{"useState: estado local; actualizar con setter, no mutar directamente."}</li>
-        <li>{"Objetos en estado: usar spread setForm(prev => ({ ...prev, ... }))."}</li>
-        <li>{"Flujo unidireccional: padre posee el estado; hijo notifica con callbacks."}</li>
+        <li>
+          {"Props: datos de solo lectura del padre al hijo; nunca mutar props."}
+        </li>
+        <li>
+          {
+            "useState: estado local; actualizar con setter, no mutar directamente."
+          }
+        </li>
+        <li>
+          {
+            "Objetos en estado: usar spread setForm(prev => ({ ...prev, ... }))."
+          }
+        </li>
+        <li>
+          {
+            "Flujo unidireccional: padre posee el estado; hijo notifica con callbacks."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — PropsEstado"
+        chart={`mindmap
+  root((PropsEstado))
+    Props
+    useState
+    Objetos en estado
+    Flujo unidireccional`}
+      />
+      <MermaidDiagram
+        title="Flujo unidireccional de datos"
+        description="Padre envía props; hijo notifica con callbacks"
+        chart={`flowchart TD
+  Padre["Padre posee el estado"] -->|"props"| Hijo[Hijo]
+  Hijo -->|"callback onChange"| Padre
+`}
+      />
+
       <CompareTable
-        headers={["Concepto", "Quién lo controla", "Mutable en hijo", "Ejemplo"]}
+        headers={[
+          "Concepto",
+          "Quién lo controla",
+          "Mutable en hijo",
+          "Ejemplo",
+        ]}
         rows={[
-          ["Props", "Componente padre", "No (solo lectura)", "nombre, precio, onAgregar"],
-          ["Estado (useState)", "El propio componente", "Sí, vía setter", "contador, formulario, cargando"],
-          ["Callback prop", "Padre define función", "Hijo solo invoca", "onAgregar(nombre)"],
+          [
+            "Props",
+            "Componente padre",
+            "No (solo lectura)",
+            "nombre, precio, onAgregar",
+          ],
+          [
+            "Estado (useState)",
+            "El propio componente",
+            "Sí, vía setter",
+            "contador, formulario, cargando",
+          ],
+          [
+            "Callback prop",
+            "Padre define función",
+            "Hijo solo invoca",
+            "onAgregar(nombre)",
+          ],
         ]}
       />
       <CodeFiddle
@@ -51,11 +106,21 @@ function Contador() {
   );
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Malas prácticas en el mundo real"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Mutar estado directamente (cuenta++) en lugar de setCuenta(c => c + 1)."}</li>
+        <li>
+          {
+            "Mutar estado directamente (cuenta++) en lugar de setCuenta(c => c + 1)."
+          }
+        </li>
         <li>{"Usar índice como key en listas que cambian de orden."}</li>
-        <li>{"Inicializar estado local desde props sin considerar sincronización."}</li>
+        <li>
+          {
+            "Inicializar estado local desde props sin considerar sincronización."
+          }
+        </li>
       </ul>
       <PracticeExercise
         prompt="Compara el flujo de datos en React (props hacia abajo) con @Input/@Output en Angular. ¿Qué similitudes y diferencias encuentras?"

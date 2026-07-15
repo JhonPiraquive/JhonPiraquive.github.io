@@ -1,20 +1,40 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function JsxSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"JSX"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"JSX"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"JSX: sintaxis que mezcla HTML en JavaScript; compila a React.createElement."}</li>
+        <li>
+          {
+            "JSX: sintaxis que mezcla HTML en JavaScript; compila a React.createElement."
+          }
+        </li>
         <li>{"className en lugar de class (palabra reservada en JS)."}</li>
         <li>{"Un elemento raíz por return (o Fragment <>...</>)."}</li>
         <li>{"Expresiones {}: insertar variables y llamadas a funciones."}</li>
         <li>{"Componentes con mayúscula: <TarjetaProducto /> vs <div />."}</li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"JSX vs React.createElement"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Jsx"
+        chart={`mindmap
+  root((Jsx))
+    JSX
+    className en lugar de class palabra reservada en JS
+    Un elemento raíz por return o Fragment /
+    Expresiones
+    Componentes con mayúscula`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"JSX vs React.createElement"}
+      </h3>
       <CodeFiddle
         language="javascript"
         title="JSX vs React.createElement"
@@ -40,9 +60,17 @@ const elemento = (
         rows={[
           ["Clase CSS", 'class="tarjeta"', 'className="tarjeta"'],
           ["Atributo for", 'for="email"', 'htmlFor="email"'],
-          ["Cerrar tags", "Opcional en algunos", "Obligatorio: <img />, <br />"],
+          [
+            "Cerrar tags",
+            "Opcional en algunos",
+            "Obligatorio: <img />, <br />",
+          ],
           ["Componente custom", "N/A", "Nombre con mayúscula inicial"],
-          ["JavaScript en template", "N/A", "Expresiones entre llaves {precio}"],
+          [
+            "JavaScript en template",
+            "N/A",
+            "Expresiones entre llaves {precio}",
+          ],
         ]}
       />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>

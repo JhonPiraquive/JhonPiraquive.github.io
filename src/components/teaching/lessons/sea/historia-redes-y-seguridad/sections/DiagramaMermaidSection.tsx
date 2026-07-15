@@ -10,10 +10,10 @@ export function DiagramaMermaidSection() {
   masUsuarios --> masSuperficie[Más_superficie]
   masSuperficie --> masControles[Necesidad_de_controles]
 
-  conectar --> obj1[&quot;Objetivo: disponibilidad&quot;]
-  masUsuarios --> obj2[&quot;Objetivo: permisos&quot;]
-  masSuperficie --> obj3[&quot;Objetivo: reducir_monetización_del_ataque&quot;]
-  masControles --> obj4[&quot;Objetivo: gobernanza_y_evidencia&quot;]`} />
+  conectar --> obj1["Objetivo: disponibilidad"]
+  masUsuarios --> obj2["Objetivo: permisos"]
+  masSuperficie --> obj3["Objetivo: reducir_monetización_del_ataque"]
+  masControles --> obj4["Objetivo: gobernanza_y_evidencia"]`} />
     </section>
   );
 }

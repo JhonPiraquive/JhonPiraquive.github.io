@@ -6,13 +6,30 @@ import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 export function CrudHttpSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"CRUD y métodos HTTP"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"CRUD y métodos HTTP"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"CRUD: Create, Read, Update, Delete sobre recursos."}</li>
-        <li>{"Cada operación se mapea a un verbo HTTP y una URI de recurso."}</li>
-        <li>{"Create → POST en colección; Read → GET; Update total → PUT; Update parcial → PATCH; Delete → DELETE."}</li>
+        <li>
+          {"Cada operación se mapea a un verbo HTTP y una URI de recurso."}
+        </li>
+        <li>
+          {
+            "Create → POST en colección; Read → GET; Update total → PUT; Update parcial → PATCH; Delete → DELETE."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Crud Http"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Crud Http))
+    CRUD Create Read Update Delete sobre recursos
+    Cada operación se mapea a un verbo HTTP y una URI de recurso
+    Create a POST en colección`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Tabla CRUD ↔ HTTP"}</h3>
       <CompareTable
         headers={["Operación", "Método", "URI ejemplo"]}
@@ -25,7 +42,24 @@ export function CrudHttpSection() {
           ["Delete", "DELETE", "/api/productos/42"],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ciclo CRUD completo"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Ciclo CRUD completo"}
+      </h3>
+      <MermaidDiagram
+        title="Ciclo CRUD completo"
+        description="Secuencia de creación, lectura, actualización y eliminación de un recurso."
+        chart={`sequenceDiagram
+  participant C as Cliente
+  participant S as Servidor
+  C->>S: POST /api/productos
+  S-->>C: 201 Created + Location
+  C->>S: GET /api/productos/7
+  S-->>C: 200 OK + JSON
+  C->>S: PATCH /api/productos/7
+  S-->>C: 200 OK
+  C->>S: DELETE /api/productos/7
+  S-->>C: 204 No Content`}
+      />
       <CodeFiddle
         language="http"
         title="Ciclo CRUD completo"
@@ -52,21 +86,9 @@ Content-Type: application/json
 DELETE /api/productos/7 HTTP/1.1
 Host: tienda.ejemplo.com`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Flujo secuencia CRUD"}</h3>
-      <MermaidDiagram
-        chart={`sequenceDiagram
-  participant C as Cliente
-  participant S as Servidor
-  C->>S: POST /api/productos
-  S-->>C: 201 Created + Location
-  C->>S: GET /api/productos/7
-  S-->>C: 200 OK + JSON
-  C->>S: PATCH /api/productos/7
-  S-->>C: 200 OK
-  C->>S: DELETE /api/productos/7
-  S-->>C: 204 No Content`}
-      />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Anti-patrón: POST para todo"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Anti-patrón: POST para todo"}
+      </h3>
       <p className="my-4">
         {
           "Usar POST para actualizar o eliminar rompe la semántica HTTP, dificulta caché y proxies, y confunde a los consumidores de la API. Las actualizaciones deben ser PUT o PATCH; la eliminación, DELETE."

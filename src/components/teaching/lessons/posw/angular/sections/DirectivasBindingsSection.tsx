@@ -1,27 +1,69 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function DirectivasBindingsSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Directivas y data binding"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Directivas y data binding"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Directivas estructurales: *ngIf, *ngFor, *ngSwitch — modifican el DOM."}</li>
-        <li>{"Directivas de atributo: ngClass, ngStyle — modifican apariencia/comportamiento."}</li>
+        <li>
+          {
+            "Directivas estructurales: *ngIf, *ngFor, *ngSwitch — modifican el DOM."
+          }
+        </li>
+        <li>
+          {
+            "Directivas de atributo: ngClass, ngStyle — modifican apariencia/comportamiento."
+          }
+        </li>
         <li>{"Interpolación: {{ expresión }} — muestra datos en template."}</li>
-        <li>{"Property binding: [prop]=\"valor\" — padre → DOM."}</li>
-        <li>{"Event binding: (evento)=\"handler()\" — DOM → clase."}</li>
-        <li>{"Two-way binding: [(ngModel)]=\"campo\" — sincronización bidireccional."}</li>
+        <li>{'Property binding: [prop]="valor" — padre → DOM.'}</li>
+        <li>{'Event binding: (evento)="handler()" — DOM → clase.'}</li>
+        <li>
+          {
+            'Two-way binding: [(ngModel)]="campo" — sincronización bidireccional.'
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — DirectivasBindings"
+        chart={`mindmap
+  root((DirectivasBindings))
+    Directivas estructurales
+    Directivas de atributo
+    Interpolación
+    Concepto
+    Concepto
+    Concepto`}
+      />
+
       <CompareTable
         headers={["Tipo", "Sintaxis", "Dirección", "Ejemplo"]}
         rows={[
-          ["Interpolación", "{{ nombre }}", "Clase → Vista", "Mostrar título del producto"],
-          ["Property", "[src]=\"imagenUrl\"", "Clase → DOM", "Imagen dinámica"],
-          ["Event", "(click)=\"guardar()\"", "DOM → Clase", "Botón agregar al carrito"],
-          ["Two-way", "[(ngModel)]=\"busqueda\"", "Bidireccional", "Campo de búsqueda en vivo"],
+          [
+            "Interpolación",
+            "{{ nombre }}",
+            "Clase → Vista",
+            "Mostrar título del producto",
+          ],
+          ["Property", '[src]="imagenUrl"', "Clase → DOM", "Imagen dinámica"],
+          [
+            "Event",
+            '(click)="guardar()"',
+            "DOM → Clase",
+            "Botón agregar al carrito",
+          ],
+          [
+            "Two-way",
+            '[(ngModel)]="busqueda"',
+            "Bidireccional",
+            "Campo de búsqueda en vivo",
+          ],
         ]}
       />
       <CodeFiddle
@@ -49,14 +91,30 @@ export function DirectivasBindingsSection() {
 Click en guardar → {{blank2}}
 Two-way en campo búsqueda → {{blank3}}`}
         blanks={[
-          { id: "blank1", answer: '[src]="imagenUrl"', placeholder: "property binding" },
-          { id: "blank2", answer: '(click)="guardar()"', placeholder: "event binding" },
-          { id: "blank3", answer: '[(ngModel)]="busqueda"', placeholder: "two-way binding" },
+          {
+            id: "blank1",
+            answer: '[src]="imagenUrl"',
+            placeholder: "property binding",
+          },
+          {
+            id: "blank2",
+            answer: '(click)="guardar()"',
+            placeholder: "event binding",
+          },
+          {
+            id: "blank3",
+            answer: '[(ngModel)]="busqueda"',
+            placeholder: "two-way binding",
+          },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Malas prácticas en el mundo real"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Mutar @Input() en el hijo en lugar de emitir evento al padre."}</li>
+        <li>
+          {"Mutar @Input() en el hijo en lugar de emitir evento al padre."}
+        </li>
         <li>{"Usar *ngFor sin trackBy en listas dinámicas."}</li>
         <li>{"Olvidar importar FormsModule para [(ngModel)]."}</li>
       </ul>

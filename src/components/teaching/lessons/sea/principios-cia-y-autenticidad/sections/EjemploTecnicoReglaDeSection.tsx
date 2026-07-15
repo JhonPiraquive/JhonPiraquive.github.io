@@ -10,12 +10,12 @@ POST /api/checkout HTTP/1.1
 Host: tienda.ejemplo
 Content-Type: application/json
 
-{&quot;cart_id&quot;:&quot;c_9&quot;,&quot;discount&quot;:90}
+{"cart_id":"c_9","discount":90}
 
 HTTP/1.1 400 Bad Request
 Content-Type: application/json
 
-{&quot;error&quot;:&quot;No fue posible procesar la solicitud.&quot;}`} />
+{"error":"No fue posible procesar la solicitud."}`} />
     </section>
   );
 }

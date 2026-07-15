@@ -13,20 +13,55 @@ export function IntroSolidPreviewSection() {
       <ul className="my-4 list-disc pl-6">
         <li>{"SOLID = cinco principios de diseño OO (Robert C. Martin)."}</li>
         <li>{"Especialmente relevantes al estructurar y evolucionar APIs."}</li>
-        <li>{"Mal particionado → endpoints frágiles y deuda en integraciones."}</li>
+        <li>
+          {"Mal particionado → endpoints frágiles y deuda en integraciones."}
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Los cinco principios"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Intro Solid Preview"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Intro Solid Preview))
+    SOLID cinco principios de diseño OO Robert C
+    Especialmente relevantes al estructurar y evolucionar APIs
+    Mal particionado a endpoints frágiles y deuda en integraciones`}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Los cinco principios"}
+      </h3>
       <CompareTable
         headers={["Letra", "Principio", "Ejemplo en API"]}
         rows={[
-          ["S", "Single Responsibility", "/usuarios no mezcla pagos ni emails de marketing"],
-          ["O", "Open/Closed", "Nuevo tipo de auth sin modificar el controlador existente"],
-          ["L", "Liskov Substitution", "RepositorioSQL y RepositorioMongo intercambiables vía IRepositorio"],
-          ["I", "Interface Segregation", "ILector e IEscritor en lugar de una interfaz gigante"],
-          ["D", "Dependency Inversion", "El servicio depende de IRepositorio, no de MySQLRepositorio"],
+          [
+            "S",
+            "Single Responsibility",
+            "/usuarios no mezcla pagos ni emails de marketing",
+          ],
+          [
+            "O",
+            "Open/Closed",
+            "Nuevo tipo de auth sin modificar el controlador existente",
+          ],
+          [
+            "L",
+            "Liskov Substitution",
+            "RepositorioSQL y RepositorioMongo intercambiables vía IRepositorio",
+          ],
+          [
+            "I",
+            "Interface Segregation",
+            "ILector e IEscritor en lugar de una interfaz gigante",
+          ],
+          [
+            "D",
+            "Dependency Inversion",
+            "El servicio depende de IRepositorio, no de MySQLRepositorio",
+          ],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Capas de una API bien particionada"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Capas de una API bien particionada"}
+      </h3>
       <MermaidDiagram
         chart={`flowchart TD
   EP[Endpoint /usuarios] --> SRV[Servicio Usuarios]
@@ -46,7 +81,12 @@ export function IntroSolidPreviewSection() {
           "Piensa en pruebas con mock",
           "Cambiar de motor de BD sin tocar lógica de negocio",
         ]}
-        expectedKeywords={["abstracción", "IRepositorio", "acoplamiento", "test"]}
+        expectedKeywords={[
+          "abstracción",
+          "IRepositorio",
+          "acoplamiento",
+          "test",
+        ]}
         successMessage="Correcto. Depender de abstracciones desacopla la lógica de la implementación concreta y facilita pruebas y cambios de persistencia."
       />
     </section>

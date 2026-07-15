@@ -9,7 +9,7 @@ export function DiagramaMermaidSection() {
   ex[Excepcion] --> h[Handler_de_errores]
   h --> u[Respuesta_segura_al_usuario]
   h --> l[Log_detallado_interno]
-  l --> corr[&quot;request_id_(correlacion)&quot;]
+  l --> corr["request_id_(correlacion)"]
   u --> corr`} />
     </section>
   );

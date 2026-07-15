@@ -1,17 +1,36 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function ComponentesFuncionalesSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Componentes funcionales"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Componentes funcionales"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Componente funcional: función que recibe props y retorna JSX."}</li>
-        <li>{"Props tipadas: interface TypeScript para contrato padre-hijo."}</li>
+        <li>
+          {"Componente funcional: función que recibe props y retorna JSX."}
+        </li>
+        <li>
+          {"Props tipadas: interface TypeScript para contrato padre-hijo."}
+        </li>
         <li>{"Composición: componentes pequeños que se ensamblan."}</li>
-        <li>{"key en listas: ID estable para reconciliación del Virtual DOM."}</li>
+        <li>
+          {"key en listas: ID estable para reconciliación del Virtual DOM."}
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — ComponentesFuncionales"
+        chart={`mindmap
+  root((ComponentesFuncionales))
+    Componente funcional
+    Props tipadas
+    Composición
+    key en listas`}
+      />
+
       <CodeFiddle
         language="javascript"
         title="Componente con props tipadas"

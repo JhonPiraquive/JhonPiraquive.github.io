@@ -2,19 +2,44 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function DisenoApiSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Diseño de APIs"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Diseño de APIs"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"URIs con sustantivos, no verbos; métodos HTTP expresan la acción."}</li>
+        <li>
+          {"URIs con sustantivos, no verbos; métodos HTTP expresan la acción."}
+        </li>
         <li>{"Versionado desde el día uno (/api/v1/)."}</li>
-        <li>{"HTTPS en producción; códigos de estado correctos; errores JSON descriptivos."}</li>
-        <li>{"Paginación, documentación OpenAPI, rate limiting y autenticación (JWT/OAuth)."}</li>
+        <li>
+          {
+            "HTTPS en producción; códigos de estado correctos; errores JSON descriptivos."
+          }
+        </li>
+        <li>
+          {
+            "Paginación, documentación OpenAPI, rate limiting y autenticación (JWT/OAuth)."
+          }
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Buenas prácticas vs anti-patrones"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — DisenoApi"
+        chart={`mindmap
+  root((DisenoApi))
+    URIs con sustantivos no verbos métodos HTTP expresan la ac
+    Versionado desde el día uno /api/v1/
+    HTTPS en producción códigos de estado correctos errores JS
+    Paginación documentación OpenAPI rate limiting y autentica`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Buenas prácticas vs anti-patrones"}
+      </h3>
       <CompareTable
         headers={["Buena práctica", "Anti-patrón", "Por qué importa"]}
         rows={[
@@ -40,7 +65,9 @@ export function DisenoApiSection() {
           ],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Respuesta de error bien diseñada"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Respuesta de error bien diseñada"}
+      </h3>
       <CodeFiddle
         language="json"
         title="Respuesta de error bien diseñada"
@@ -66,7 +93,11 @@ Nunca usar → GET {{blank3}}`}
         blanks={[
           { id: "blank1", answer: "/api/v1/usuarios", placeholder: "URI" },
           { id: "blank2", answer: "/api/v1/productos", placeholder: "URI" },
-          { id: "blank3", answer: "/eliminarProducto/42", placeholder: "anti-patrón" },
+          {
+            id: "blank3",
+            answer: "/eliminarProducto/42",
+            placeholder: "anti-patrón",
+          },
         ]}
       />
     </section>

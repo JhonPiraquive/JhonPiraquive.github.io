@@ -1,3 +1,4 @@
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function HerramientasAdminRemotaSection() {
@@ -110,6 +111,19 @@ export function HerramientasAdminRemotaSection() {
           {" RDP para GUI; PowerShell remoto en entornos enterprise."}
         </li>
       </ol>
+      <MermaidDiagram
+        title="Flujo típico de administración remota en una agencia LATAM"
+        chart={`flowchart LR
+  A[Equipo de la agencia] --> B{Tipo de entorno}
+  B -->|Hosting compartido| C[cPanel]
+  C --> D[Archivos, correo y DNS]
+  B -->|VPS Linux| E[SSH]
+  E --> F[Logs y Docker Compose]
+  E --> G[SFTP para assets]
+  B -->|Windows Server| H[RDP]
+  H --> I[Administración con GUI]
+  H --> J[PowerShell remoto]`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ventajas y desventajas de paneles vs SSH"}</h3>
       <p className="my-4">
         <strong>{"Paneles (cPanel):"}</strong>

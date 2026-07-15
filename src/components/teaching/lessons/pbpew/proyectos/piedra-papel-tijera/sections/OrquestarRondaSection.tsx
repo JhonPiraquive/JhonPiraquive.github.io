@@ -1,6 +1,7 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function OrquestarRondaSection() {
   return (
@@ -78,6 +79,15 @@ contenedor.addEventListener("click", (evento) => {
           { id: "blank1", answer: "usuario hace clic", placeholder: "primer paso" },
           { id: "blank2", answer: "se compara jugador vs CPU", placeholder: "antes del marcador" },
         ]}
+      />
+      <MermaidDiagram
+        title="Flujo de una ronda"
+        chart={`flowchart TD
+  A[Usuario hace clic en una opción] --> B[Leer data-choice]
+  B --> C[CPU elige al azar]
+  C --> D[Comparar jugador y CPU]
+  D --> E[Actualizar marcador]
+  E --> F[Renderizar elecciones y resultado]`}
       />
     </section>
   );

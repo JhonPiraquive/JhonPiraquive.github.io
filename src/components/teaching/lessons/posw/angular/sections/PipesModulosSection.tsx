@@ -1,19 +1,43 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function PipesModulosSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Pipes y módulos"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Pipes y módulos"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Pipes: transforman datos en template sin mutar el original."}</li>
         <li>{"Pipes comunes: currency, date, async, json, uppercase."}</li>
-        <li>{"NgModule: agrupa declaraciones, imports, exports, providers."}</li>
-        <li>{"AppModule: módulo raíz; importa BrowserModule, HttpClientModule, etc."}</li>
-        <li>{"Standalone (Angular 15+): componentes sin NgModule reducen boilerplate."}</li>
+        <li>
+          {"NgModule: agrupa declaraciones, imports, exports, providers."}
+        </li>
+        <li>
+          {
+            "AppModule: módulo raíz; importa BrowserModule, HttpClientModule, etc."
+          }
+        </li>
+        <li>
+          {
+            "Standalone (Angular 15+): componentes sin NgModule reducen boilerplate."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — PipesModulos"
+        chart={`mindmap
+  root((PipesModulos))
+    Pipes
+    Pipes comunes
+    NgModule
+    AppModule
+    Standalone Angular 15+`}
+      />
+
       <CodeFiddle
         language="html"
         title="Pipes en template"

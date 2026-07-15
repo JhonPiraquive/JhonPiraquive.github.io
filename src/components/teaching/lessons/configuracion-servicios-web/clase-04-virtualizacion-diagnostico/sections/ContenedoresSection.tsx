@@ -153,6 +153,17 @@ export function ContenedoresSection() {
           }
         </li>
       </ol>
+      <MermaidDiagram
+        title="Ciclo de creación y ejecución de un contenedor"
+        chart={`flowchart LR
+  A[Dockerfile o registro] --> B[Imagen inmutable]
+  B -->|docker run| C[Contenedor en ejecución]
+  C --> D[Motor de contenedores]
+  D --> E[Namespaces: procesos, red y archivos]
+  D --> F[Cgroups: CPU y memoria]
+  E --> G[Kernel compartido del host]
+  F --> G`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Estructura y composición"}</h3>
       <p className="my-4">
         {

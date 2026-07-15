@@ -1,3 +1,5 @@
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
+
 export function QueEsHttpsSection() {
   return (
     <section>
@@ -23,6 +25,21 @@ export function QueEsHttpsSection() {
           "Cliente y servidor negocian versión TLS, intercambian claves y el servidor presenta certificado. El cliente valida cadena de confianza (CA). Tras el handshake, todo el HTTP viaja cifrado. HTTPS no protege datos ya comprometidos en el servidor ni vulnerabilidades de la aplicación."
         }
       </p>
+      <MermaidDiagram
+        title="Handshake TLS simplificado"
+        description="Secuencia cliente-servidor del handshake TLS"
+        chart={`sequenceDiagram
+  participant C as Cliente
+  participant S as Servidor
+  C->>S: ClientHello
+  S->>C: ServerHello + certificado
+  C->>C: Valida cadena CA
+  C->>S: Claves de sesión
+  Note over C,S: Canal cifrado HTTP
+  C->>S: GET /app
+  S->>C: 200 OK cifrado
+`}
+      />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">

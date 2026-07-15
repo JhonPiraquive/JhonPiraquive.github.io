@@ -1,3 +1,5 @@
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
+
 export function QueEsUnaIsoSection() {
   return (
     <section>
@@ -23,6 +25,16 @@ export function QueEsUnaIsoSection() {
           "Planificar (alcance, riesgos, políticas) → Hacer (implementar controles) → Verificar (auditorías, métricas) → Actuar (mejoras). La certificación demuestra que el sistema existe y se mantiene, no que no hay vulnerabilidades."
         }
       </p>
+      <MermaidDiagram
+        title="Ciclo PDCA del SGSI"
+        description="Flujo cíclico Planificar, Hacer, Verificar y Actuar"
+        chart={`flowchart LR
+  P[Planificar] --> D[Hacer]
+  D --> C[Verificar]
+  C --> A[Actuar]
+  A --> P
+`}
+      />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">

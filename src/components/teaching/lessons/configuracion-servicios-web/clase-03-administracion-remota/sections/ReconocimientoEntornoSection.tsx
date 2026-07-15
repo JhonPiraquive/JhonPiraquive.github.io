@@ -1,5 +1,6 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 const COMANDOS_RECONOCIMIENTO = `# Sistema operativo y kernel
@@ -79,6 +80,16 @@ export function ReconocimientoEntornoSection() {
         <li>{"Revisar puertos: sudo ss -tlnp | grep -E ':80|:443|:22'."}</li>
         <li>{"Documentar hallazgos antes de modificar configuración."}</li>
       </ol>
+      <MermaidDiagram
+        title="Flujo de reconocimiento post-SSH"
+        chart={`flowchart TD
+  A[Conectar por SSH] --> B[Confirmar usuario y hostname]
+  B --> C[Identificar sistema operativo e IP]
+  C --> D[Revisar servicios relevantes]
+  D --> E[Comprobar puertos en escucha]
+  E --> F[Documentar hallazgos]
+  F --> G[Modificar solo con contexto verificado]`}
+      />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo concreto"}</h3>
       <p className="my-4">

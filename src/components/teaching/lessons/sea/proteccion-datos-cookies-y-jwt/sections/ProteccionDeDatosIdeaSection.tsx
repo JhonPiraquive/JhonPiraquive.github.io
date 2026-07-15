@@ -1,3 +1,5 @@
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
+
 export function ProteccionDeDatosIdeaSection() {
   return (
     <section>
@@ -23,6 +25,16 @@ export function ProteccionDeDatosIdeaSection() {
           "En tránsito: HTTPS + flags seguros en cookies (Secure, HttpOnly, SameSite). En reposo: cifrado de BD sensibles. En uso: permisos mínimos y expiración de sesión. JWT: firmar, expirar corto, no guardar secretos en payload."
         }
       </p>
+      <MermaidDiagram
+        title="Capas de protección de datos"
+        description="Flujo de capas: tránsito, reposo y uso"
+        chart={`flowchart TB
+  Recolectar[Recolectar minimo] --> Transito[En transito: HTTPS]
+  Transito --> Reposo[En reposo: cifrado y ACL]
+  Reposo --> Uso[En uso: permisos y sesion corta]
+  Uso --> Eliminar[Eliminar cuando no se necesita]
+`}
+      />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">

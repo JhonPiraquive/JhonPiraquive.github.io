@@ -285,3 +285,10 @@ No envolver `MermaidDiagram` ni `CodeBlock` en `ClayCard` adicional. Máximo un 
 - [ ] H2: «Seleccionar nodos del DOM», «Modificar el DOM», «Eventos en JavaScript», «Demo: contador de clics en la página»
 - [ ] H3: «Contenido: textContent frente a innerHTML», «Estilos y clases», «Crear y eliminar nodos», «Objeto evento», «preventDefault en formularios», «Delegación de eventos»
 - [ ] Actualizar `DomYEventosLesson.tsx` con orden de secciones del mapa
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

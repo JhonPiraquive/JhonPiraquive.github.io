@@ -3,23 +3,50 @@ import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 export function EjemploTecnicoDemostracionConceptualSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Ejemplo técnico (demostración conceptual)"}</h2>
-      <p className="my-4">{"La demostración debe mostrar dos versiones: una consulta vulnerable construida por concatenación (para evidenciar el riesgo) y una versión segura con parámetros (para evidenciar la mitigación). También debe mostrar la diferencia de manejo de errores: el usuario recibe mensaje genérico, mientras el log interno guarda el detalle."}</p>
-      <CodeFiddle language="sql" code={`-- Consulta vulnerable (ejemplo conceptual: NO copiar a producción)
-SELECT * FROM users WHERE name = &#x27;>&#x27;;
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Ejemplo técnico: SQLi vulnerable vs parametrizado"}
+      </h2>
+      <p className="my-4">
+        {
+          "Contraste conceptual: la concatenación permite inyectar lógica SQL. La versión parametrizada separa consulta y datos. El usuario ve un mensaje genérico; el log interno guarda el detalle."
+        }
+      </p>
+      <CodeFiddle
+        language="sql"
+        title="Ataque conceptual (no usar en producción)"
+        code={`-- Vulnerable: el input rompe la consulta
+SELECT * FROM users WHERE name = ''; -- input: ' OR '1'='1
+-- Resultado: puede devolver demasiadas filas`}
+      />
+      <CodeFiddle
+        language="php"
+        title="PHP: concatenación vs prepared statement"
+        code={`<?php
+// MAL: concatenación
+$sql = "SELECT * FROM users WHERE name = '" . $_GET['q'] . "'";
 
--- Si input_usuario = &#x27;a&#x27; OR &#x27;1&#x27;=&#x27;1
--- La condición cambia y puede devolver demasiados resultados.`} />
-      <CodeFiddle language="php" code={``} />
-      <CodeFiddle language="json" code={`{
-  &quot;event&quot;: &quot;sqli_attempt&quot;,
-  &quot;user_id&quot;: null,
-  &quot;ip&quot;: &quot;198.51.100.10&quot;,
-  &quot;endpoint&quot;: &quot;/buscar&quot;,
-  &quot;payload_truncado&quot;: &quot;&#x27; OR &#x27;1&#x27;=&#x27;1&quot;,
-  &quot;resultado&quot;: &quot;blocked&quot;,
-  &quot;request_id&quot;: &quot;req_13f5c1&quot;
-}`} />
+// BIEN: parámetros
+$stmt = $pdo->prepare('SELECT * FROM users WHERE name = :name');
+$stmt->execute(['name' => $_GET['q']]);
+
+// Usuario: mensaje genérico; log: detalle técnico
+error_log('[req_13f5c1] sqli_attempt blocked');
+echo 'No se encontraron resultados.';
+`}
+      />
+      <CodeFiddle
+        language="json"
+        title="Evento de seguridad (log interno)"
+        code={`{
+  "event": "sqli_attempt",
+  "user_id": null,
+  "ip": "198.51.100.10",
+  "endpoint": "/buscar",
+  "payload_truncado": "' OR '1'='1",
+  "resultado": "blocked",
+  "request_id": "req_13f5c1"
+}`}
+      />
     </section>
   );
 }

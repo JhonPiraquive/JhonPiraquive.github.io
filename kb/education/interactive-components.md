@@ -11,12 +11,25 @@ Usados por `lesson-developer` en `src/components/teaching/lessons/`.
 | Completar código (ejercicio) | `CodeChallenge` | `template`, `blanks[]` con `answer` |
 | Caso real paso a paso | `StepReveal` | `steps[]` con `title`, `content` |
 | Comparar conceptos | `CompareTable` | `headers[]`, `rows[]` |
-| Diagrama de flujo/arquitectura | `MermaidDiagram` | `chart` |
+| Diagrama / mapa mental / flujo / ciclo / timeline | `MermaidDiagram` | `chart`, opcional `title`/`description` |
 | Advertencia / tip pedagógico | `Callout` | `title`, children |
 | Bloque de código (lectura) | `CodeFiddle` | `code`, `language`, opcional `title`/`filename` |
 | ~~Bloque de código~~ | ~~`CodeBlock`~~ | **Obsoleto** — usar `CodeFiddle` |
 
-## Mínimos por lección (pedagogy-standards)
+## Tipografía Mermaid (ADR 013)
+
+| Relación | Tipo `chart` |
+|----------|--------------|
+| Mapa mental | `mindmap` |
+| Flujo / capas / ciclo | `flowchart TD` / `LR` |
+| Intercambio HTTP/TLS/auth | `sequenceDiagram` |
+| Modelo OO | `classDiagram` |
+| Modelo datos | `erDiagram` |
+| Cronología | `timeline` |
+
+Props opcionales: `title` (figcaption), `description` (aria-label).
+
+**Nunca** poner entidades HTML (`&quot;`) dentro del string `chart`.
 
 1. `PracticeExercise` o `CodeChallenge` (1+)
 2. `Quiz` (3–5 preguntas)

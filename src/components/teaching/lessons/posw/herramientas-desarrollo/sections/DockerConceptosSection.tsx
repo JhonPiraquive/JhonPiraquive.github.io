@@ -1,5 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function DockerConceptosSection() {
   return (
@@ -30,12 +31,28 @@ export function DockerConceptosSection() {
           }
         </li>
         <li>
-          {"Docker Compose: orquesta varios contenedores desde docker-compose.yml."}
+          {
+            "Docker Compose: orquesta varios contenedores desde docker-compose.yml."
+          }
         </li>
         <li>
-          {"Mapeo de puertos: -p 8080:80 expone puerto 80 del contenedor en 8080 del host."}
+          {
+            "Mapeo de puertos: -p 8080:80 expone puerto 80 del contenedor en 8080 del host."
+          }
         </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — DockerConceptos"
+        chart={`mindmap
+  root((DockerConceptos))
+    Docker
+    Imagen Image
+    Contenedor Container
+    Dockerfile
+    Docker Compose
+    Mapeo de puertos`}
+      />
+
       <CompareTable
         headers={["Aspecto", "Máquina virtual", "Contenedor Docker"]}
         rows={[
@@ -43,10 +60,14 @@ export function DockerConceptosSection() {
           ["Tamaño típico", "Gigabytes", "Megabytes"],
           ["Arranque", "Minutos", "Segundos"],
           ["Aislamiento", "Muy fuerte", "Proceso aislado, kernel compartido"],
-          ["Uso típico", "SO distintos en un host", "Empaquetar apps con dependencias"],
+          [
+            "Uso típico",
+            "SO distintos en un host",
+            "Empaquetar apps con dependencias",
+          ],
         ]}
       />
-      <Callout title={'Caso real: «en mi máquina funciona»'}>
+      <Callout title={"Caso real: «en mi máquina funciona»"}>
         {
           "Cuatro estudiantes con PHP 8.2 en Windows y 8.0 en Linux fallan en demo por extensiones distintas. Decisión: docker-compose.yml con php:8.2-apache y mariadb:11 fijas para todos y para CI."
         }

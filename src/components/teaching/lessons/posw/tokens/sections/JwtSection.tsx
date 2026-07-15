@@ -6,18 +6,40 @@ import { StepReveal } from "@/components/teaching/StepReveal";
 export function JwtSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"JWT (JSON Web Token)"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"JWT (JSON Web Token)"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"JWT (RFC 7519): estándar para transmitir claims entre partes de forma compacta."}</li>
-        <li>{"Tres partes separadas por puntos: header.payload.signature (Base64URL)."}</li>
-        <li>{"Stateless: el servidor no almacena el token; verifica la firma."}</li>
+        <li>
+          {
+            "JWT (RFC 7519): estándar para transmitir claims entre partes de forma compacta."
+          }
+        </li>
+        <li>
+          {
+            "Tres partes separadas por puntos: header.payload.signature (Base64URL)."
+          }
+        </li>
+        <li>
+          {"Stateless: el servidor no almacena el token; verifica la firma."}
+        </li>
         <li>
           {
             "Advertencia: el payload no está cifrado — solo codificado; nunca guardar contraseñas ni PII sensible."
           }
         </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Jwt"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Jwt))
+    JWT RFC 7519 estándar para transmitir claims entre partes de forma compacta
+    Tres partes separadas por puntos header
+    Stateless el servidor no almacena el token
+    Advertencia el payload no está cifrado solo codificado`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Estructura JWT"}</h3>
       <CodeFiddle
         language="json"
@@ -35,10 +57,14 @@ export function JwtSection() {
       />
       <ul className="my-4 list-disc pl-6">
         <li>{"Header: algoritmo (alg: HS256, RS256) y tipo (typ: JWT)."}</li>
-        <li>{"Payload: claims — sub (subject), iat (issued at), exp (expiration), iss, aud."}</li>
         <li>
           {
-            "Signature: HMACSHA256(base64Url(header) + \".\" + base64Url(payload), SECRET_KEY) — verifica integridad."
+            "Payload: claims — sub (subject), iat (issued at), exp (expiration), iss, aud."
+          }
+        </li>
+        <li>
+          {
+            'Signature: HMACSHA256(base64Url(header) + "." + base64Url(payload), SECRET_KEY) — verifica integridad.'
           }
         </li>
       </ul>
@@ -77,7 +103,9 @@ export function JwtSection() {
   C->>S: GET /api/perfil Authorization Bearer
   S-->>C: 200 OK {datos usuario}`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Login y request autenticado"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Login y request autenticado"}
+      </h3>
       <CodeFiddle
         language="http"
         title="Login y request autenticado"
@@ -102,7 +130,9 @@ Accept: application/json`}
           "Un equipo guarda últimos 4 dígitos de tarjeta y email en el JWT 'para no consultar la DB'. Un atacante decodifica el token en WiFi pública. Decisión: payload solo con sub, rol y metadatos mínimos; datos sensibles siempre en servidor tras validar firma."
         }
       </Callout>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Almacenar y enviar token en JavaScript"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Almacenar y enviar token en JavaScript"}
+      </h3>
       <CodeFiddle
         language="javascript"
         title="Almacenar y enviar token en JavaScript"

@@ -1,5 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function ConfigurarDominioSection() {
@@ -16,6 +17,27 @@ export function ConfigurarDominioSection() {
         <li>{"MX / TXT: correo y verificaciones (SPF, DKIM)."}</li>
         <li>{"SOA: metadatos de la zona (serial, TTL mínimo)."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental de la configuración de dominio"
+        chart={`mindmap
+  root((Configurar dominio))
+    Delegación
+      Nameservers
+      Proveedor autoritativo
+    Web
+      A
+      AAAA
+      CNAME
+    Correo
+      MX
+      TXT
+        SPF
+        DKIM
+    Zona
+      SOA
+      Serial
+      TTL`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

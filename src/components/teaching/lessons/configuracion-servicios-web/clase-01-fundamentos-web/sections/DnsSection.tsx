@@ -17,6 +17,27 @@ export function DnsSection() {
         <li>{"13 servidores raíz: delegan a TLD; no resuelven el A final."}</li>
         <li>{"Resolver recursivo: hace el trabajo de búsqueda por el cliente (ISP, 1.1.1.1, 8.8.8.8)."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental del sistema DNS"
+        chart={`mindmap
+  root((DNS))
+    Traducción de nombres
+      Dominio
+      Dirección IP
+      Correo y verificación
+    Jerarquía
+      Raíz
+      TLD
+      Dominio registrado
+      Subdominio
+    Servidores raíz
+      Delegan a los TLD
+      No resuelven el registro final
+    Resolver recursivo
+      Caché
+      Consulta la jerarquía
+      Devuelve la respuesta al cliente`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

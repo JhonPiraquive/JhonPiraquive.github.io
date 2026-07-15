@@ -1,11 +1,13 @@
 ---
 track: posw
 topic_expert: topic-expert-web-services
-updated: 2026-07-06
+updated: 2026-07-15
 tsx_migration: complete
 pedagogy_compliance: complete (22/22)
 acronym_audit: complete
 build: passed
+revision: visuales-adr-013
+visuals_remediation: done
 ---
 
 # Pipeline Programación Orientada a Sitios Web (POSW) — estado
@@ -47,3 +49,10 @@ build: passed
 - **CodeFiddle:** 0 `CodeBlock` / `<pre>` plano (corregido `tipos-servicios-web/GrpcWebsocketsSection` → `.proto`).
 - **Malas prácticas:** 18 secciones renombradas de «Errores comunes» → «Malas prácticas en el mundo real»; resto usa anti-patrones / señales de buen y mal uso.
 - **Profundidad:** bloques qué/por qué/cómo + ejemplos verificados en lecciones referencia (`servicios-web`, `modelo-cliente-servidor`, `backend`).
+
+## Revisión visual ADR 013 (2026-07-15)
+
+- Convertir «Mapa mental» basado solo en texto a `MermaidDiagram` (`mindmap` o `flowchart`).
+- Corregir promesas de flujo, ciclo, árbol, jerarquía, topología o línea de tiempo que no tengan un diagrama contiguo.
+- Representar matrices o heatmaps como tablas semánticas con contraste visual.
+- Verificar como deuda transversal de SEA: entidades HTML en Mermaid, `CodeFiddle` vacíos y directivas de autoría.

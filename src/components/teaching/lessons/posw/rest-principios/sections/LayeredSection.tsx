@@ -8,10 +8,25 @@ export function LayeredSection() {
       </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"El cliente no sabe si habla con el servidor final o con un intermediario."}</li>
+        <li>
+          {
+            "El cliente no sabe si habla con el servidor final o con un intermediario."
+          }
+        </li>
         <li>{"Solo conoce la capa adyacente."}</li>
-        <li>{"Capas típicas: CDN → API Gateway → Load Balancer → servidores."}</li>
+        <li>
+          {"Capas típicas: CDN → API Gateway → Load Balancer → servidores."}
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Layered"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Layered))
+    El cliente no sabe si habla con el servidor final o con un intermediario
+    Solo conoce la capa adyacente
+    Capas típicas CDN a API Gateway a Load Balancer a servidores`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama de capas"}</h3>
       <MermaidDiagram
         chart={`flowchart TD

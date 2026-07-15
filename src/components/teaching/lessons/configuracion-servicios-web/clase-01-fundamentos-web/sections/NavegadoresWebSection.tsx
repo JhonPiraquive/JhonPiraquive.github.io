@@ -1,4 +1,5 @@
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function NavegadoresWebSection() {
@@ -20,6 +21,28 @@ export function NavegadoresWebSection() {
         <li>{"Motor de red: DNS, HTTP, TLS y caché HTTP."}</li>
         <li>{"DevTools: Red, Consola y Almacenamiento para aislar fallos de servidor, red, caché o extensiones."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental del navegador web"
+        chart={`mindmap
+  root((Navegador web))
+    Interfaz
+      Barra de direcciones
+      Pestañas
+    Motor de red
+      DNS
+      HTTP y TLS
+      Caché
+    Renderizado
+      DOM
+      Estilos
+      Capas
+    JavaScript
+      Ejecución de scripts
+    DevTools
+      Red
+      Consola
+      Almacenamiento`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

@@ -185,3 +185,10 @@ Evitar duplicar en H2 y primer párrafo la misma frase literal (mejor para snipp
 - **Términos sin traducir:** SQL, DDL, DML, DCL, TCL, ACID, JOIN, PostgreSQL, MongoDB, Redis, Neo4j, Cypher, API.
 - **Traducciones preferidas:** «Comprueba tu comprensión» → `Check your understanding`; «Reto integrador» → `Integrative challenge`.
 - **Sitemap:** incluir ambas locales cuando exista `/en/`; `lastmod` sincronizado entre pares.
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

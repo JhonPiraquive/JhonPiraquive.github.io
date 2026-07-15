@@ -1,11 +1,13 @@
 ---
 track: pbpew
 topic_expert: topic-expert-javascript
-updated: 2026-07-06
+updated: 2026-07-15
 tsx_migration: complete
 pedagogy_compliance: complete (16/16)
 acronym_normalization: complete (2026-07-06)
 build: passed (2026-07-06)
+revision: visuales-adr-013
+visuals_remediation: done
 ---
 
 # Pipeline Programación básica para entornos web (PBPEW) — estado
@@ -34,3 +36,10 @@ build: passed (2026-07-06)
 **Fuentes:** `kb/education/briefs/pbpew/` (01–12 + 4 proyectos).
 
 **Componentes demo compartidos:** `src/components/teaching/{DemoCalculadora,RockPaperScissorsDemo,TodoListDemo,ChessBoardDemo,DemoEnVivoApi}.tsx`
+
+## Revisión visual ADR 013 (2026-07-15)
+
+- Convertir «Mapa mental» basado solo en texto a `MermaidDiagram` (`mindmap` o `flowchart`).
+- Corregir promesas de flujo, ciclo, árbol, jerarquía, topología o línea de tiempo que no tengan un diagrama contiguo.
+- Representar matrices o heatmaps como tablas semánticas con contraste visual.
+- Verificar como deuda transversal de SEA: entidades HTML en Mermaid, `CodeFiddle` vacíos y directivas de autoría.

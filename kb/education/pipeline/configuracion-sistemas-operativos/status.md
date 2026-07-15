@@ -1,11 +1,13 @@
 ---
 track: configuracion-sistemas-operativos
 topic_expert: topic-expert-os-config
-updated: 2026-07-06
+updated: 2026-07-15
 tsx_migration: done
 pedagogy_compliance: done
 build: done
 pagination: enabled
+revision: visuales-adr-013
+visuals_remediation: done
 ---
 
 # Pipeline Configuración de Sistemas Operativos — estado
@@ -34,3 +36,10 @@ pagination: enabled
 **Imágenes:** `public/teaching/configuracion-sistemas-operativos/` (9 assets)
 
 **Build 2026-07-06:** 225 rutas estáticas, track completo.
+
+## Revisión visual ADR 013 (2026-07-15)
+
+- Convertir «Mapa mental» basado solo en texto a `MermaidDiagram` (`mindmap` o `flowchart`).
+- Corregir promesas de flujo, ciclo, árbol, jerarquía, topología o línea de tiempo que no tengan un diagrama contiguo.
+- Representar matrices o heatmaps como tablas semánticas con contraste visual.
+- Verificar como deuda transversal de SEA: entidades HTML en Mermaid, `CodeFiddle` vacíos y directivas de autoría.

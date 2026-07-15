@@ -173,3 +173,10 @@ Contribución de **brand-identity-expert**. Arquetipo dominante: **Sabio** (ense
 - «Comprueba tu comprensión» → `Check your understanding`; «Reto integrador» → `Integrative challenge`; «Centro de turnos y caché de consultas» → `Turn center and query cache`.
 - «Caso real: caché de sesión en dashboard» → `Real case: session cache in a dashboard`; conservar escenario técnico neutro.
 - «Caso real: cola de tickets al revés» → `Real case: ticket queue implemented backwards`.
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

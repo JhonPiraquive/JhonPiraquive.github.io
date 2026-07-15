@@ -1,6 +1,7 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function JsonSection() {
   return (
@@ -10,18 +11,33 @@ export function JsonSection() {
       </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Formato ligero basado en sintaxis de objetos JS (~2001, Douglas Crockford)."}</li>
-        <li>{"Tipos nativos: string, number, boolean, null, array, object."}</li>
+        <li>
+          {
+            "Formato ligero basado en sintaxis de objetos JS (~2001, Douglas Crockford)."
+          }
+        </li>
+        <li>
+          {"Tipos nativos: string, number, boolean, null, array, object."}
+        </li>
         <li>
           <strong>{"Sin comentarios"}</strong>
           {" en la spec estándar; sin atributos ni namespaces."}
         </li>
         <li>{"Predeterminado en APIs REST modernas."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Json"
+        chart={`mindmap
+  root((Json))
+    Formato ligero basado en sintaxis de objetos JS 2001 Doug
+    Tipos nativos
+    Predeterminado en APIs REST modernas`}
+      />
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "JSON representa datos estructurados de forma compacta. Los metadatos que en XML van como atributos (moneda=\"COP\") en JSON son campos anidados dentro de objetos."
+          'JSON representa datos estructurados de forma compacta. Los metadatos que en XML van como atributos (moneda="COP") en JSON son campos anidados dentro de objetos.'
         }
       </p>
       <CodeFiddle
@@ -50,7 +66,9 @@ export function JsonSection() {
   }
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Parsear JSON en JavaScript"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Parsear JSON en JavaScript"}
+      </h3>
       <CodeFiddle
         language="javascript"
         title="Parsear JSON en JavaScript"
@@ -61,7 +79,9 @@ console.log(pedido.activo);  // true (boolean, no string)
 console.log(typeof pedido.id);     // "number"
 console.log(typeof pedido.activo); // "boolean"`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Anti-ejemplo: JSON inválido"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Anti-ejemplo: JSON inválido"}
+      </h3>
       <CodeFiddle
         language="json"
         title="Anti-ejemplo: JSON inválido"

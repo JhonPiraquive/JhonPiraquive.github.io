@@ -1,4 +1,5 @@
 import { Callout } from "@/components/teaching/Callout";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function BiosParticionesSection() {
   return (
@@ -49,6 +50,14 @@ export function BiosParticionesSection() {
         <li>{"/home — ext4, resto del disco (datos de usuario)"}</li>
         <li>{"swap — opcional si RAM ≥ 16 GB en SSD rápido"}</li>
       </ul>
+      <MermaidDiagram
+        title="Distribución de un disco GPT para Linux"
+        chart={`flowchart LR
+  D[Disco con tabla GPT] --> E[Partición EFI<br/>FAT32]
+  D --> R[Partición raíz<br/>ext4]
+  D --> H[Partición home<br/>ext4]
+  D --> S[Partición swap<br/>opcional]`}
+      />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Cómo funciona Secure Boot"}</h3>
       <p className="my-4">

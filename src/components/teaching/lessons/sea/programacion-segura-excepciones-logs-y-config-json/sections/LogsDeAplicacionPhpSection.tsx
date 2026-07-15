@@ -65,21 +65,21 @@ export function LogsDeAplicacionPhpSection() {
         </li>
       </ul>
       <CodeFiddle language="json" code={`{
-  &quot;log_correcto&quot;: {
-    &quot;event&quot;: &quot;login_failed&quot;,
-    &quot;request_id&quot;: &quot;req_91b6c8&quot;,
-    &quot;user_id&quot;: null,
-    &quot;ip&quot;: &quot;203.0.113.9&quot;,
-    &quot;result&quot;: &quot;denied&quot;,
-    &quot;reason&quot;: &quot;invalid_credentials&quot;,
-    &quot;email_masked&quot;: &quot;j***@example.com&quot;
+  "log_correcto": {
+    "event": "login_failed",
+    "request_id": "req_91b6c8",
+    "user_id": null,
+    "ip": "203.0.113.9",
+    "result": "denied",
+    "reason": "invalid_credentials",
+    "email_masked": "j***@example.com"
   },
-  &quot;log_incorrecto&quot;: {
-    &quot;event&quot;: &quot;login_failed&quot;,
-    &quot;password&quot;: &quot;PlainTextPassword123!&quot;,
-    &quot;token&quot;: &quot;FULL_JWT_OR_SESSION_TOKEN&quot;
+  "log_incorrecto": {
+    "event": "login_failed",
+    "password": "PlainTextPassword123!",
+    "token": "FULL_JWT_OR_SESSION_TOKEN"
   },
-  &quot;por_que_es_incorrecto&quot;: &quot;Guarda secretos/credenciales y puede convertirse en fuga de datos.&quot;
+  "por_que_es_incorrecto": "Guarda secretos/credenciales y puede convertirse en fuga de datos."
 }`} />
     </section>
   );

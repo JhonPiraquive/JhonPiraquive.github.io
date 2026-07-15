@@ -1,15 +1,35 @@
 import { Callout } from "@/components/teaching/Callout";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function CodeOnDemandSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Code on Demand (opcional)"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Code on Demand (opcional)"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Único constraint opcional de REST."}</li>
-        <li>{"El servidor puede enviar código ejecutable al cliente (JavaScript)."}</li>
-        <li>{"Las SPAs modernas lo implementan al descargar bundles JS desde el servidor."}</li>
+        <li>
+          {
+            "El servidor puede enviar código ejecutable al cliente (JavaScript)."
+          }
+        </li>
+        <li>
+          {
+            "Las SPAs modernas lo implementan al descargar bundles JS desde el servidor."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — CodeOnDemand"
+        chart={`mindmap
+  root((CodeOnDemand))
+    Único constraint opcional de REST
+    El servidor puede enviar código ejecutable al cliente JavaS
+    Las SPAs modernas lo implementan al descargar bundles JS des`}
+      />
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo implícito"}</h3>
       <p className="my-4">
         {

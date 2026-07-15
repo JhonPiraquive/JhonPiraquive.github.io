@@ -5,18 +5,40 @@ import { StepReveal } from "@/components/teaching/StepReveal";
 export function QueEsFrontendSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"¿Qué es el frontend?"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"¿Qué es el frontend?"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Frontend (client-side):"}</strong>
           {" capa que el usuario ve y con la que interactúa en el navegador."}
         </li>
-        <li>{"El código se ejecuta en el dispositivo del usuario, no en el servidor."}</li>
+        <li>
+          {
+            "El código se ejecuta en el dispositivo del usuario, no en el servidor."
+          }
+        </li>
         <li>{"Se comunica con el backend por HTTP (APIs)."}</li>
-        <li>{"Responsabilidades: UI, consumo de APIs, estado, routing, rendimiento, accesibilidad, SEO."}</li>
+        <li>
+          {
+            "Responsabilidades: UI, consumo de APIs, estado, routing, rendimiento, accesibilidad, SEO."
+          }
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Separación frontend / backend"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Que Es Frontend"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Que Es Frontend))
+    Frontend client side capa que el usuario ve y con la que interactúa en el na
+    El código se ejecuta en el dispositivo del usuario no en el servidor
+    Se comunica con el backend por HTTP APIs
+    Responsabilidades UI consumo de APIs estado routing rendimiento accesibilida`}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Separación frontend / backend"}
+      </h3>
       <MermaidDiagram
         chart={`flowchart LR
   subgraph Browser [Navegador - Frontend]
@@ -37,15 +59,18 @@ export function QueEsFrontendSection() {
         steps={[
           {
             title: "1. Renderizar interfaz",
-            content: "HTML, CSS y componentes reutilizables que el usuario ve y manipula.",
+            content:
+              "HTML, CSS y componentes reutilizables que el usuario ve y manipula.",
           },
           {
             title: "2. Consumir APIs",
-            content: "fetch o axios hacia el backend; manejar loading, errores HTTP y parsear JSON.",
+            content:
+              "fetch o axios hacia el backend; manejar loading, errores HTTP y parsear JSON.",
           },
           {
             title: "3. Manejar estado",
-            content: "Formularios, sesión, carrito — estado local o global (Context, Pinia, Redux).",
+            content:
+              "Formularios, sesión, carrito — estado local o global (Context, Pinia, Redux).",
           },
           {
             title: "4. Routing SPA",
@@ -53,11 +78,14 @@ export function QueEsFrontendSection() {
           },
           {
             title: "5. Optimizar UX",
-            content: "Rendimiento (Core Web Vitals), accesibilidad (labels, alt) y SEO cuando aplica.",
+            content:
+              "Rendimiento (Core Web Vitals), accesibilidad (labels, alt) y SEO cuando aplica.",
           },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Consumir API desde JavaScript"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Consumir API desde JavaScript"}
+      </h3>
       <CodeFiddle
         language="javascript"
         title="Consumir API desde JavaScript"

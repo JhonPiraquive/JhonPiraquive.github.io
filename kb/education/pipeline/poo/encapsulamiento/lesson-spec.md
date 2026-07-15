@@ -224,3 +224,10 @@ Contribución de **clay-ui-expert**. Referencia: `kb/education/pipeline/pbpew/06
 - **Vista lección completa:** nivel 1 = `LessonLayout` `ClayCard` contenedor; nivel 2 = interactivos dentro de cada `<section>`.
 - **Sección `EncapsulamientoQueEsYSection`:** variant **stepper** por `StepReveal` central; no anidar `ClayCard` dentro de `StepReveal`.
 - **Sección `InvariantesReglasQueElSection`:** variant **card** en `CodeChallenge` + `PracticeExercise`; diagrama y `Callout` como hermanos, no apilados en triple card.
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

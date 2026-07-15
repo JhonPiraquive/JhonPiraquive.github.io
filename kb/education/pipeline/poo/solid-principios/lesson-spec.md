@@ -268,3 +268,10 @@ Ritmo por principio: prose → CodeBlock → mermaid `my-6` → interactivo clay
 - [ ] Poblar `DipSection`: `CodeBlock`, mermaid `my-6`, `PracticeExercise` `my-8`
 - [ ] Comprueba (3 practice `my-8`), Reto con `CodeChallenge`, Cierre, Miniquiz
 - [ ] Registrar quiz en `src/lib/teaching-quizzes/poo.ts`
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

@@ -19,20 +19,36 @@ export function XmlSection() {
           {" en etiquetas."}
         </li>
         <li>{"Verbose pero validable (DTD, XSD); namespaces."}</li>
-        <li>{"Dominó el intercambio antes de JSON; sigue en SOAP, Maven, Spring, facturación."}</li>
+        <li>
+          {
+            "Dominó el intercambio antes de JSON; sigue en SOAP, Maven, Spring, facturación."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Xml"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Xml))
+    Lenguaje de marcado W3C 1996
+    Un elemento raíz jerarquía en árbol atributos en etiquetas
+    Verbose pero validable DTD XSD
+    Dominó el intercambio antes de JSON`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
           "XML almacena y transporta datos legibles por humanos y máquinas. Todo es texto; la estructura es estrictamente jerárquica. Un documento bien formado tiene exactamente un elemento raíz."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Estructura de un documento"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Estructura de un documento"}
+      </h3>
       <ol className="my-4 list-decimal pl-6">
-        <li>{"Declaración: <?xml version=\"1.0\" encoding=\"UTF-8\"?>"}</li>
+        <li>{'Declaración: <?xml version="1.0" encoding="UTF-8"?>'}</li>
         <li>{"Elemento raíz único (p. ej. <pedido>)"}</li>
         <li>{"Elementos hijos anidados"}</li>
-        <li>{"Atributos en la etiqueta de apertura (moneda=\"COP\")"}</li>
+        <li>{'Atributos en la etiqueta de apertura (moneda="COP")'}</li>
       </ol>
       <CodeFiddle
         language="xml"
@@ -58,7 +74,9 @@ export function XmlSection() {
   <total moneda="COP">4670000</total>
 </pedido>`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Árbol jerárquico del pedido"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Árbol jerárquico del pedido"}
+      </h3>
       <MermaidDiagram
         chart={`flowchart TD
   P[pedido id=1042] --> C[cliente]
@@ -69,7 +87,9 @@ export function XmlSection() {
   I --> I1[item]
   I --> I2[item]`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Parsear XML en el navegador"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Parsear XML en el navegador"}
+      </h3>
       <CodeFiddle
         language="javascript"
         title="Parsear XML en el navegador"
@@ -85,7 +105,10 @@ console.log(doc.querySelector("total").textContent); // "4670000"`}
       </Callout>
       <PracticeExercise
         prompt="Parsea un XML mínimo con DOMParser y lee un atributo del elemento raíz. ¿Qué método usas para obtener el valor del atributo id?"
-        hints={["DOMParser con application/xml", "getAttribute en documentElement"]}
+        hints={[
+          "DOMParser con application/xml",
+          "getAttribute en documentElement",
+        ]}
         expectedKeywords={["DOMParser", "getAttribute", "documentElement"]}
         successMessage="Correcto. DOMParser construye el árbol; getAttribute lee atributos de un elemento."
       />

@@ -15,7 +15,7 @@ export function DiagramaMermaidSection() {
   logout --> inval[Invalidar_sesion]
 
   robo[Robo_de_sesion] -.-> uso
-  exp -.->|&quot;Limita_tiempo_util&quot;| robo`} />
+  exp -.->|"Limita_tiempo_util"| robo`} />
     </section>
   );
 }

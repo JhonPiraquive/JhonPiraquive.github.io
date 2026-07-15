@@ -1,6 +1,7 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function UniformInterfaceSection() {
   return (
@@ -12,10 +13,31 @@ export function UniformInterfaceSection() {
       <ul className="my-4 list-disc pl-6">
         <li>{"Constraint central de REST; cuatro sub-constraints:"}</li>
         <li>{"Identificación de recursos — URI única (/productos/42)."}</li>
-        <li>{"Manipulación mediante representaciones — JSON/XML; el cliente envía la representación deseada."}</li>
-        <li>{"Mensajes autodescriptivos — Content-Type, método HTTP, códigos de estado dan contexto."}</li>
-        <li>{"HATEOAS — _links con acciones posibles desde el estado actual."}</li>
+        <li>
+          {
+            "Manipulación mediante representaciones — JSON/XML; el cliente envía la representación deseada."
+          }
+        </li>
+        <li>
+          {
+            "Mensajes autodescriptivos — Content-Type, método HTTP, códigos de estado dan contexto."
+          }
+        </li>
+        <li>
+          {"HATEOAS — _links con acciones posibles desde el estado actual."}
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — UniformInterface"
+        chart={`mindmap
+  root((UniformInterface))
+    Constraint central de REST cuatro sub-constraints
+    Identificación de recursos
+    Manipulación mediante representaciones
+    Mensajes autodescriptivos
+    HATEOAS`}
+      />
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"HATEOAS en JSON"}</h3>
       <CodeFiddle
         language="json"
@@ -37,7 +59,9 @@ export function UniformInterfaceSection() {
   }
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Cliente navegando HATEOAS"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Cliente navegando HATEOAS"}
+      </h3>
       <CodeFiddle
         language="javascript"
         title="Cliente navegando HATEOAS"
@@ -69,10 +93,26 @@ Siguiente: {{blank2}}
 Siguiente: {{blank3}}
 Nivel más alto: {{blank4}}`}
         blanks={[
-          { id: "blank1", answer: "un solo URI con POST para todo", placeholder: "nivel 0" },
-          { id: "blank2", answer: "múltiples URIs por recurso", placeholder: "nivel 1" },
-          { id: "blank3", answer: "verbos HTTP y códigos de estado correctos", placeholder: "nivel 2" },
-          { id: "blank4", answer: "HATEOAS con _links", placeholder: "nivel 3" },
+          {
+            id: "blank1",
+            answer: "un solo URI con POST para todo",
+            placeholder: "nivel 0",
+          },
+          {
+            id: "blank2",
+            answer: "múltiples URIs por recurso",
+            placeholder: "nivel 1",
+          },
+          {
+            id: "blank3",
+            answer: "verbos HTTP y códigos de estado correctos",
+            placeholder: "nivel 2",
+          },
+          {
+            id: "blank4",
+            answer: "HATEOAS con _links",
+            placeholder: "nivel 3",
+          },
         ]}
       />
     </section>

@@ -1,4 +1,5 @@
 import { Callout } from "@/components/teaching/Callout";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function InstalacionSoSection() {
   return (
@@ -34,6 +35,19 @@ export function InstalacionSoSection() {
         <li>{"Instalar drivers faltantes (GPU, Wi‑Fi, chipset)."}</li>
         <li>{"Aplicar actualizaciones del sistema y activar respaldo."}</li>
       </ol>
+      <MermaidDiagram
+        title="Flujo de instalación del SO"
+        description="Pasos desde requisitos hasta actualizaciones y respaldo"
+        chart={`flowchart TD
+  A[Verificar requisitos e ISO] --> B[Crear USB booteable]
+  B --> C[Configurar BIOS o UEFI]
+  C --> D[Idioma teclado licencia]
+  D --> E[Particionar disco]
+  E --> F[Copiar sistema y usuario]
+  F --> G[Instalar drivers]
+  G --> H[Actualizar y respaldar]
+`}
+      />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Drivers"}</h3>
       <p className="my-4">

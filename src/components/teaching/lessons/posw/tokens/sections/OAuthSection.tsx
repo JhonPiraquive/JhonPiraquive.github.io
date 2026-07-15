@@ -4,7 +4,9 @@ import { StepReveal } from "@/components/teaching/StepReveal";
 export function OAuthSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"OAuth 2.0"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"OAuth 2.0"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>
@@ -12,15 +14,35 @@ export function OAuthSection() {
             "OAuth 2.0 (RFC 6749): framework de autorización delegada — acceso sin compartir credenciales con el tercero."
           }
         </li>
-        <li>{"Analogía: llave de valet del coche — acceso limitado, revocable, sin acceso a la guantera."}</li>
+        <li>
+          {
+            "Analogía: llave de valet del coche — acceso limitado, revocable, sin acceso a la guantera."
+          }
+        </li>
         <li>
           {
             "Roles: Resource Owner (usuario), Client (app tercera), Authorization Server (emite tokens), Resource Server (protege recursos)."
           }
         </li>
-        <li>{"OpenID Connect (OIDC): capa de identidad sobre OAuth; agrega id_token y /userinfo."}</li>
+        <li>
+          {
+            "OpenID Connect (OIDC): capa de identidad sobre OAuth; agrega id_token y /userinfo."
+          }
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Authorization Code flow"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — O Auth"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((O Auth))
+    OAuth 2
+    Analogía llave de valet del coche acceso limitado revocable sin acceso a la
+    Roles Resource Owner usuario Client app tercera Authorization Server emite t
+    OpenID Connect OIDC capa de identidad sobre OAuth`}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Authorization Code flow"}
+      </h3>
       <MermaidDiagram
         chart={`sequenceDiagram
   participant U as Usuario
@@ -47,7 +69,8 @@ export function OAuthSection() {
         steps={[
           {
             title: "1. Redirect al proveedor",
-            content: "La app redirige al usuario a Google/GitHub con client_id y scopes solicitados.",
+            content:
+              "La app redirige al usuario a Google/GitHub con client_id y scopes solicitados.",
           },
           {
             title: "2. Usuario autentica y aprueba",
@@ -56,7 +79,8 @@ export function OAuthSection() {
           },
           {
             title: "3. Redirect con authorization code",
-            content: "El proveedor redirige a la app con ?code=XYZ (código de un solo uso, corta duración).",
+            content:
+              "El proveedor redirige a la app con ?code=XYZ (código de un solo uso, corta duración).",
           },
           {
             title: "4. Intercambio en backend",
@@ -65,7 +89,8 @@ export function OAuthSection() {
           },
           {
             title: "5. Acceso a API protegida",
-            content: "La app llama al Resource Server con Authorization: Bearer access_token.",
+            content:
+              "La app llama al Resource Server con Authorization: Bearer access_token.",
           },
         ]}
       />

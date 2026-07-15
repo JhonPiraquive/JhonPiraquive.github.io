@@ -5,17 +5,38 @@ import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 export function CorsSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"CORS y preflight"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"CORS y preflight"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"CORS"}</strong>
           {" = mecanismo del navegador, no de curl ni apps nativas."}
         </li>
-        <li>{"Bloquea peticiones entre orígenes distintos salvo permiso explícito del servidor."}</li>
-        <li>{"Peticiones complejas (PUT, DELETE, Authorization) disparan preflight OPTIONS."}</li>
+        <li>
+          {
+            "Bloquea peticiones entre orígenes distintos salvo permiso explícito del servidor."
+          }
+        </li>
+        <li>
+          {
+            "Peticiones complejas (PUT, DELETE, Authorization) disparan preflight OPTIONS."
+          }
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Petición simple vs compleja"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Cors"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Cors))
+    CORS mecanismo del navegador no de curl ni apps nativas
+    Bloquea peticiones entre orígenes distintos salvo permiso explícito del serv
+    Peticiones complejas PUT DELETE Authorization disparan preflight OPTIONS`}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Petición simple vs compleja"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Simple:"}</strong>
@@ -30,7 +51,9 @@ export function CorsSection() {
           }
         </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Flujo preflight CORS"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Flujo preflight CORS"}
+      </h3>
       <MermaidDiagram
         chart={`sequenceDiagram
   participant B as Navegador
@@ -60,11 +83,15 @@ Access-Control-Max-Age: 86400`}
           "Frontend en https://app.ejemplo.com, API en https://api.ejemplo.com. Postman funciona; Chrome falla con CORS. El servidor no responde OPTIONS con Access-Control-Allow-*. Solución: manejar OPTIONS y declarar origen, métodos y headers permitidos."
         }
       </Callout>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores CORS frecuentes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Errores CORS frecuentes"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Access-Control-Allow-Origin: *"}</strong>
-          {" con cookies/credenciales → incompatible; usar origen específico + Allow-Credentials: true."}
+          {
+            " con cookies/credenciales → incompatible; usar origen específico + Allow-Credentials: true."
+          }
         </li>
         <li>
           <strong>{"Ignorar preflight"}</strong>

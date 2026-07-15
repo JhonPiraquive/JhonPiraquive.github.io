@@ -2,29 +2,79 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function StatelessSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Stateless (sin estado)"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Stateless (sin estado)"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Cada petición contiene toda la información necesaria."}</li>
         <li>{"El servidor no guarda contexto de sesión entre requests."}</li>
         <li>{"El token viaja en cada llamada (Authorization: Bearer)."}</li>
-        <li>{"Beneficios: escalabilidad horizontal, caching más simple, resiliencia."}</li>
+        <li>
+          {
+            "Beneficios: escalabilidad horizontal, caching más simple, resiliencia."
+          }
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Stateless vs stateful"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Stateless"
+        chart={`mindmap
+  root((Stateless))
+    Cada petición contiene toda la información necesaria
+    El servidor no guarda contexto de sesión entre requests
+    El token viaja en cada llamada Authorization
+    Beneficios`}
+      />
+      <MermaidDiagram
+        title="Dos nodos validan el mismo Bearer"
+        description="Secuencia stateless: cualquier nodo atiende cualquier request"
+        chart={`sequenceDiagram
+  participant C as Cliente
+  participant N1 as Nodo_1
+  participant N2 as Nodo_2
+  C->>N1: GET /pedidos Bearer JWT
+  N1-->>C: 200 OK
+  C->>N2: POST /pedidos Bearer JWT
+  N2-->>C: 201 Created
+`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Stateless vs stateful"}
+      </h3>
       <CompareTable
         headers={["Aspecto", "Stateless (RESTful)", "Stateful (no RESTful)"]}
         rows={[
-          ["Quién guarda estado", "Cliente (token en cada request)", "Servidor (sesión en memoria)"],
-          ["Escalabilidad", "Cualquier nodo atiende cualquier request", "Sticky sessions o estado compartido"],
-          ["Ejemplo auth", "JWT en header Authorization", "Cookie de sesión opaca tras POST /login"],
-          ["Fallo de nodo", "Otro nodo continúa sin pérdida", "401 si sesión estaba en otro nodo"],
+          [
+            "Quién guarda estado",
+            "Cliente (token en cada request)",
+            "Servidor (sesión en memoria)",
+          ],
+          [
+            "Escalabilidad",
+            "Cualquier nodo atiende cualquier request",
+            "Sticky sessions o estado compartido",
+          ],
+          [
+            "Ejemplo auth",
+            "JWT en header Authorization",
+            "Cookie de sesión opaca tras POST /login",
+          ],
+          [
+            "Fallo de nodo",
+            "Otro nodo continúa sin pérdida",
+            "401 si sesión estaba en otro nodo",
+          ],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Request stateless con token"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Request stateless con token"}
+      </h3>
       <CodeFiddle
         language="http"
         title="GET pedidos con Bearer"
@@ -51,7 +101,11 @@ Content-Type: application/json
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>
       <PracticeExercise
         prompt="¿Por qué POST /login que guarda sesión en memoria del servidor viola Stateless? ¿Qué alternativa RESTful usarías?"
-        hints={["Servidor recuerda estado", "JWT en cada request", "Sin sticky sessions"]}
+        hints={[
+          "Servidor recuerda estado",
+          "JWT en cada request",
+          "Sin sticky sessions",
+        ]}
         expectedKeywords={["stateless", "JWT", "token", "sesión"]}
         successMessage="Correcto. Stateless exige que cada request sea autosuficiente; JWT en Authorization evita sesión server-side."
       />

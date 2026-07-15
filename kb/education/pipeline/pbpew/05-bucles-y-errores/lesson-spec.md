@@ -133,3 +133,10 @@ Contribución de **brand-identity-expert**. Arquetipo dominante: **Sabio** (ense
 - Mantener equivalencia terminológica: *break*, *continue*, *try/catch*, *finally*, *throw*, *runtime*.
 - «Comprueba tu comprensión» → `Check your understanding`; «Reto integrador» → `Integrative challenge`.
 - Casos reales: traducir narrativa; conservar nombres técnicos (`while (true)`, `setInterval`).
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

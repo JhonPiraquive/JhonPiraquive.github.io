@@ -1,5 +1,6 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function InterfacesSection() {
   return (
@@ -11,6 +12,34 @@ export function InterfacesSection() {
         <li>{"Una clase puede implementar varias interfaces."}</li>
         <li>{"Inyección por constructor desacopla implementación de uso."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Interfaces"
+        chart={`mindmap
+  root((Interfaces))
+    Contrato de capacidad
+    Varias implementaciones
+    Inyeccion por constructor`}
+      />
+      <MermaidDiagram
+        title="Contrato ILogger e implementaciones"
+        description="Diagrama de clases: ILogger implementado por LoggerConsola y usado por Servicio"
+        chart={`classDiagram
+  class ILogger {
+    <<interface>>
+    +Info(mensaje)
+  }
+  class LoggerConsola {
+    +Info(mensaje)
+  }
+  class Servicio {
+    -logger ILogger
+    +Ejecutar()
+  }
+  ILogger <|.. LoggerConsola
+  Servicio --> ILogger
+`}
+      />
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

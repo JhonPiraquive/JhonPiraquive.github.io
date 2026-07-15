@@ -1,6 +1,7 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function InterfacesTypesSection() {
   return (
@@ -10,11 +11,33 @@ export function InterfacesTypesSection() {
       </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Interfaces: contratos para forma de objetos; ? opcional, readonly, extends."}</li>
+        <li>
+          {
+            "Interfaces: contratos para forma de objetos; ? opcional, readonly, extends."
+          }
+        </li>
         <li>{"Type aliases: uniones, intersecciones y alias complejos."}</li>
-        <li>{"Regla práctica: interface para objetos/clases; type para uniones (Producto | Error)."}</li>
-        <li>{"Enums: constantes con nombre; preferir string enums para JSON predecible."}</li>
+        <li>
+          {
+            "Regla práctica: interface para objetos/clases; type para uniones (Producto | Error)."
+          }
+        </li>
+        <li>
+          {
+            "Enums: constantes con nombre; preferir string enums para JSON predecible."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — InterfacesTypes"
+        chart={`mindmap
+  root((InterfacesTypes))
+    Interfaces
+    Type aliases
+    Regla práctica
+    Enums`}
+      />
+
       <CodeFiddle
         language="typescript"
         title="Interface y respuesta de API genérica"
@@ -60,9 +83,21 @@ interface Pedido {
       <CompareTable
         headers={["Constructo", "Mejor para", "Ejemplo"]}
         rows={[
-          ["interface", "Forma de objetos y clases", "interface Usuario { id: number; nombre: string }"],
-          ["type", "Uniones e intersecciones", "type Resultado = Producto | ErrorApi"],
-          ["enum", "Conjunto de constantes nombradas", 'enum EstadoPedido { PENDIENTE = "PENDIENTE" }'],
+          [
+            "interface",
+            "Forma de objetos y clases",
+            "interface Usuario { id: number; nombre: string }",
+          ],
+          [
+            "type",
+            "Uniones e intersecciones",
+            "type Resultado = Producto | ErrorApi",
+          ],
+          [
+            "enum",
+            "Conjunto de constantes nombradas",
+            'enum EstadoPedido { PENDIENTE = "PENDIENTE" }',
+          ],
         ]}
       />
     </section>

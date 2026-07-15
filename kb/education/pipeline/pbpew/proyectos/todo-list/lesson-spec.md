@@ -297,3 +297,10 @@ No envolver `MermaidDiagram` ni `CodeBlock` en `ClayCard` adicional. `TodoListDe
 - [ ] Registrar quiz en `src/lib/teaching-quizzes/pbpew.ts`
 - [ ] H2 alineados con tabla de jerarquía; H3 solo en casos reales
 - [ ] Verificar profundidad clay ≤ 2 en demo + arquitectura (no anidar cards)
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

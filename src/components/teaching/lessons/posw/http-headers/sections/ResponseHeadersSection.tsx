@@ -1,17 +1,33 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function ResponseHeadersSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Response headers"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Response headers"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Enviados por el servidor con cada respuesta."}</li>
         <li>{"Describen el cuerpo, caché, cookies y redirecciones."}</li>
-        <li>{"Relacionados con códigos de estado vistos en la lección anterior."}</li>
+        <li>
+          {"Relacionados con códigos de estado vistos en la lección anterior."}
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Headers de respuesta frecuentes"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — ResponseHeaders"
+        chart={`mindmap
+  root((ResponseHeaders))
+    Enviados por el servidor con cada respuesta
+    Describen el cuerpo caché cookies y redirecciones
+    Relacionados con códigos de estado vistos en la lección ante`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Headers de respuesta frecuentes"}
+      </h3>
       <div className="my-4 overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <thead>
@@ -32,28 +48,42 @@ export function ResponseHeadersSection() {
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 <code>{"Content-Type"}</code>
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Tipo del body recibido"}</td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Casi siempre con cuerpo"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Tipo del body recibido"}
+              </td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Casi siempre con cuerpo"}
+              </td>
             </tr>
             <tr className="bg-[var(--color-neutral-light)]/50">
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 <code>{"Content-Length"}</code>
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Tamaño en bytes"}</td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Respuestas con body"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Tamaño en bytes"}
+              </td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Respuestas con body"}
+              </td>
             </tr>
             <tr className="bg-white">
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 <code>{"ETag"}</code>
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Versión del recurso"}</td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Recursos cacheables"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Versión del recurso"}
+              </td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Recursos cacheables"}
+              </td>
             </tr>
             <tr className="bg-[var(--color-neutral-light)]/50">
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 <code>{"Cache-Control"}</code>
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Instrucciones de caché"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Instrucciones de caché"}
+              </td>
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 <code>{"max-age=3600, public"}</code>
               </td>
@@ -65,28 +95,42 @@ export function ResponseHeadersSection() {
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 {"URI del recurso creado o redirect"}
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"201, 3xx"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"201, 3xx"}
+              </td>
             </tr>
             <tr className="bg-[var(--color-neutral-light)]/50">
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 <code>{"Set-Cookie"}</code>
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Establece cookie en cliente"}</td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Login, sesión"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Establece cookie en cliente"}
+              </td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Login, sesión"}
+              </td>
             </tr>
             <tr className="bg-white">
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 <code>{"WWW-Authenticate"}</code>
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Esquema auth requerido"}</td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"401"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Esquema auth requerido"}
+              </td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"401"}
+              </td>
             </tr>
             <tr className="bg-[var(--color-neutral-light)]/50">
               <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
                 <code>{"Retry-After"}</code>
               </td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"Segundos antes de reintentar"}</td>
-              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">{"429, 503"}</td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"Segundos antes de reintentar"}
+              </td>
+              <td className="border-b border-[var(--color-neutral-mid)]/20 px-4 py-3">
+                {"429, 503"}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -120,7 +164,9 @@ WWW-Authenticate: Bearer realm="api"
   "mensaje": "Token ausente o expirado"
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"¿Qué header esperar en DELETE y POST?"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"¿Qué header esperar en DELETE y POST?"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"DELETE exitoso sin cuerpo:"}</strong>

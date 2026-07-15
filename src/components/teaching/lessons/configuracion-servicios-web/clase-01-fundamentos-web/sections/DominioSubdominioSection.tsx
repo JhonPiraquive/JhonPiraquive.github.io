@@ -16,6 +16,24 @@ export function DominioSubdominioSection() {
         <li>{"TLD: categoría o país (.co, .com, .mx)."}</li>
         <li>{"FQDN: nombre completo resoluble (api.tienda.ejemplo.co)."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental de dominios y subdominios"
+        chart={`mindmap
+  root((Dominio))
+    Identidad DNS
+      Nombre registrado
+      Renovación
+    Jerarquía
+      TLD
+        País o categoría
+      SLD
+        Nombre elegido
+      Subdominio
+        Servicio separado
+    FQDN
+      Nombre completo resoluble
+      api.tienda.ejemplo.co`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

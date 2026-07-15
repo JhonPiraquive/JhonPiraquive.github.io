@@ -1,29 +1,70 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function HooksSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Hooks principales"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Hooks principales"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Hooks: funciones que conectan componentes funcionales con capacidades de React."}</li>
+        <li>
+          {
+            "Hooks: funciones que conectan componentes funcionales con capacidades de React."
+          }
+        </li>
         <li>{"useState: estado local."}</li>
         <li>{"useEffect: efectos secundarios tras render."}</li>
         <li>{"useContext: consumir contexto sin props drilling."}</li>
         <li>{"useRef: referencia mutable que no causa re-render."}</li>
-        <li>{"useMemo / useCallback: optimización de cálculos y funciones."}</li>
+        <li>
+          {"useMemo / useCallback: optimización de cálculos y funciones."}
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Hooks"
+        chart={`mindmap
+  root((Hooks))
+    Hooks
+    useState
+    useEffect
+    useContext
+    useRef
+    useMemo / useCallback`}
+      />
+
       <CompareTable
         headers={["Hook", "Propósito", "Cuándo usar"]}
         rows={[
           ["useState", "Estado local", "Contador, formularios, flags de UI"],
-          ["useEffect", "Efectos secundarios", "Fetch API, suscripciones, timers"],
-          ["useContext", "Contexto compartido", "Tema, usuario autenticado, idioma"],
-          ["useReducer", "Estado complejo", "Múltiples sub-valores con acciones"],
-          ["useRef", "Referencia DOM o valor mutable", "Focus en input, guardar valor sin re-render"],
-          ["useMemo", "Memoizar cálculo costoso", "Filtrar lista grande sin recalcular cada render"],
+          [
+            "useEffect",
+            "Efectos secundarios",
+            "Fetch API, suscripciones, timers",
+          ],
+          [
+            "useContext",
+            "Contexto compartido",
+            "Tema, usuario autenticado, idioma",
+          ],
+          [
+            "useReducer",
+            "Estado complejo",
+            "Múltiples sub-valores con acciones",
+          ],
+          [
+            "useRef",
+            "Referencia DOM o valor mutable",
+            "Focus en input, guardar valor sin re-render",
+          ],
+          [
+            "useMemo",
+            "Memoizar cálculo costoso",
+            "Filtrar lista grande sin recalcular cada render",
+          ],
         ]}
       />
       <Callout title="Solo en el nivel superior">

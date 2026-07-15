@@ -1,4 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function GrpcArquitecturaSection() {
   return (
@@ -6,6 +7,19 @@ export function GrpcArquitecturaSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
         {"gRPC: Protobuf y HTTP/2"}
       </h2>
+      <MermaidDiagram
+        title="Llamada gRPC unary"
+        description="Cliente usa stub generado desde .proto sobre HTTP/2"
+        chart={`sequenceDiagram
+  participant C as Cliente
+  participant Stub as Stub generado
+  participant S as Servidor gRPC
+  C->>Stub: ObtenerProducto id=42
+  Stub->>S: Protobuf sobre HTTP/2
+  S-->>Stub: Producto binario
+  Stub-->>C: Objeto tipado
+`}
+      />
       <CodeFiddle
         language="plaintext"
         title="Definición .proto"
@@ -41,10 +55,18 @@ Console.WriteLine(response.Nombre);`}
         <li>{"Stubs generados desde .proto."}</li>
         <li>{"Unary y streaming (server, client, bidireccional)."}</li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Malas prácticas en el mundo real"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"gRPC expuesto al navegador sin proxy/gateway — incompatibilidad con clientes web puros."}</li>
-        <li>{"Usar gRPC para APIs públicas simples cuando REST/JSON basta."}</li>
+        <li>
+          {
+            "gRPC expuesto al navegador sin proxy/gateway — incompatibilidad con clientes web puros."
+          }
+        </li>
+        <li>
+          {"Usar gRPC para APIs públicas simples cuando REST/JSON basta."}
+        </li>
       </ul>
     </section>
   );

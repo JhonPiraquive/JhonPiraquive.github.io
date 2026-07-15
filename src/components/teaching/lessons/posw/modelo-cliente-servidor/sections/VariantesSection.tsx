@@ -1,5 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function VariantesSection() {
   return (
@@ -10,10 +11,14 @@ export function VariantesSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>
-          {"P2P: cada nodo es cliente y servidor (BitTorrent, blockchain). Sin servidor central de contenido."}
+          {
+            "P2P: cada nodo es cliente y servidor (BitTorrent, blockchain). Sin servidor central de contenido."
+          }
         </li>
         <li>
-          {"Híbrido: servidor central coordina; clientes comparten datos (Skype, metadatos en Spotify)."}
+          {
+            "Híbrido: servidor central coordina; clientes comparten datos (Skype, metadatos en Spotify)."
+          }
         </li>
         <li>
           {
@@ -21,13 +26,52 @@ export function VariantesSection() {
           }
         </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Cuándo usar cada variante"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Variantes"
+        chart={`mindmap
+  root((Variantes))
+    P2P
+    Híbrido
+    Serverless`}
+      />
+      <MermaidDiagram
+        title="Topologías P2P, híbrida y serverless"
+        description="Comparación visual de conexiones entre nodos y servicios."
+        chart={`flowchart LR
+  subgraph P2P
+    P1[Nodo A] <--> P2[Nodo B]
+    P2 <--> P3[Nodo C]
+    P3 <--> P1
+  end
+  subgraph Híbrido
+    HC[Servidor coordinador] --> H1[Cliente A]
+    HC --> H2[Cliente B]
+    H1 <--> H2
+  end
+  subgraph Serverless
+    SC[Cliente] --> GW[Gateway]
+    GW --> F1[Función A]
+    GW --> F2[Función B]
+  end`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Cuándo usar cada variante"}
+      </h3>
       <CompareTable
         headers={["Variante", "Ventaja", "Riesgo / límite"]}
         rows={[
-          ["P2P", "Sin cuello de botella central", "NAT, descubrimiento; muchos «P2P» usan servidores de coordinación"],
+          [
+            "P2P",
+            "Sin cuello de botella central",
+            "NAT, descubrimiento; muchos «P2P» usan servidores de coordinación",
+          ],
           ["Híbrido", "Balance costo/confiabilidad", "Más piezas que P2P puro"],
-          ["Serverless", "Escala automática sin administrar servidores", "Cold starts, vendor lock-in"],
+          [
+            "Serverless",
+            "Escala automática sin administrar servidores",
+            "Cold starts, vendor lock-in",
+          ],
         ]}
       />
       <Callout title="Caso real: videollamadas sin servidor de señalización">
@@ -35,11 +79,23 @@ export function VariantesSection() {
           "Una startup copia P2P puro para videollamadas. Sin signaling estable, las llamadas fallan detrás de NAT corporativo. Decisión: modelo híbrido — servidor central para autenticación y signaling; media P2P o TURN según la red."
         }
       </Callout>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Malas prácticas en el mundo real"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Tratar microservicios como obligatorios (añaden complejidad de red y observabilidad)."}</li>
-        <li>{"Pensar que P2P no tiene servidores (muchos usan servidores de descubrimiento)."}</li>
-        <li>{"Exponer la BD directamente al cliente en 2-Tier mal aplicado."}</li>
+        <li>
+          {
+            "Tratar microservicios como obligatorios (añaden complejidad de red y observabilidad)."
+          }
+        </li>
+        <li>
+          {
+            "Pensar que P2P no tiene servidores (muchos usan servidores de descubrimiento)."
+          }
+        </li>
+        <li>
+          {"Exponer la BD directamente al cliente en 2-Tier mal aplicado."}
+        </li>
       </ul>
     </section>
   );

@@ -1,10 +1,13 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function SoapSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"SOAP"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"SOAP"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>
@@ -27,6 +30,17 @@ export function SoapSection() {
         </li>
         <li>{"Dominante en banca, gobierno, SAP, HL7."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Soap"
+        chart={`mindmap
+  root((SOAP))
+    Protocolo de mensajería
+    Envelope XML
+    Contrato WSDL
+    Extensiones WS
+    Banca y sistemas enterprise`}
+      />
+
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es SOAP"}</h3>
       <p className="my-4">
         <strong>{"SOAP (Simple Object Access Protocol)"}</strong>
@@ -60,7 +74,9 @@ export function SoapSection() {
           <strong>{"WS-Security"}</strong>
           {" (firma digital, cifrado de mensaje)."}
         </li>
-        <li>{"Sectores regulados: banca interbancaria, gobierno, salud (HL7)."}</li>
+        <li>
+          {"Sectores regulados: banca interbancaria, gobierno, salud (HL7)."}
+        </li>
       </ul>
       <Callout title="Caso real: banco colombiano">
         {

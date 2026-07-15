@@ -1,11 +1,14 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function GraphqlSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"GraphQL"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"GraphQL"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>
@@ -26,7 +29,20 @@ export function GraphqlSection() {
         </li>
         <li>{"Schema evoluciona; mutations para escritura."}</li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Over-fetching y under-fetching"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Graphql"
+        chart={`mindmap
+  root((GraphQL))
+    Consulta flexible
+    Schema tipado
+    Cliente elige campos
+    Endpoint único
+    Mutations para escritura`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Over-fetching y under-fetching"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Over-fetching (REST):"}</strong>
@@ -36,7 +52,9 @@ export function GraphqlSection() {
         </li>
         <li>
           <strong>{"Under-fetching (REST):"}</strong>
-          {" cargar un pedido requiere 3 requests (pedido, cliente, items) → latencia acumulada."}
+          {
+            " cargar un pedido requiere 3 requests (pedido, cliente, items) → latencia acumulada."
+          }
         </li>
         <li>
           <strong>{"GraphQL:"}</strong>
@@ -84,9 +102,17 @@ export function GraphqlSection() {
         headers={["Aspecto", "REST", "GraphQL"]}
         rows={[
           ["Endpoints", "Múltiples URIs por recurso", "Un endpoint /graphql"],
-          ["Datos devueltos", "Forma fija del servidor", "Forma definida por el cliente"],
+          [
+            "Datos devueltos",
+            "Forma fija del servidor",
+            "Forma definida por el cliente",
+          ],
           ["Over-fetching", "Frecuente", "Evitado (solo campos pedidos)"],
-          ["Under-fetching", "Varias peticiones", "Query anidada en una request"],
+          [
+            "Under-fetching",
+            "Varias peticiones",
+            "Query anidada en una request",
+          ],
           ["Caché HTTP", "Nativo con GET y ETag", "Más complejo (POST único)"],
         ]}
       />

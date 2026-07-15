@@ -418,3 +418,10 @@ No envolver `MermaidDiagram` ni `CodeBlock` en `ClayCard` adicional. Máximo un 
 - [ ] Crear `CierreSection` (prose) y `MiniquizSection` con `QuizSection`
 - [ ] Registrar preguntas quiz en `src/lib/teaching-quizzes/pbpew.ts`
 - [ ] Actualizar `interactive_blocks` en frontmatter al cerrar ids
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

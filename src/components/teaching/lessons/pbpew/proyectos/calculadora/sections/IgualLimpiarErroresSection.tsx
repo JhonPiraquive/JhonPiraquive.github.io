@@ -1,5 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function IgualLimpiarErroresSection() {
@@ -68,6 +69,18 @@ function mostrarError(mensaje) {
             content: "Muestra resultado, limpia operador pendiente, esperandoNuevoOperando = true.",
           },
         ]}
+      />
+      <MermaidDiagram
+        title="Decisiones al pulsar igual"
+        chart={`flowchart TD
+  A[Usuario pulsa igual] --> B{Hay operador pendiente}
+  B -->|No| C[Conservar la pantalla]
+  B -->|Sí| D[Calcular con el estado actual]
+  D --> E{Resultado válido}
+  E -->|No| F[Mostrar error y reiniciar operación]
+  E -->|Sí| G[Mostrar resultado]
+  G --> H[Limpiar operador pendiente]
+  H --> I[Esperar un nuevo operando]`}
       />
       <Callout title="Precisión de flotantes">
         {

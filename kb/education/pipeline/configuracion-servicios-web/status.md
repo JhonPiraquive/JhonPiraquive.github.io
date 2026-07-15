@@ -1,11 +1,12 @@
 ---
 track: configuracion-servicios-web
 topic_expert: topic-expert-web-services
-updated: 2026-07-06
+updated: 2026-07-15
 tsx_migration: complete
 pedagogy_compliance: complete
 build: passed
-revision: malas-practicas-mundo-real
+revision: visuales-adr-013
+visuals_remediation: done
 pagination: enabled
 ---
 
@@ -64,3 +65,10 @@ Cada clase = **hub** + **páginas temáticas** (`{clase}/{pagina}`). Nav prev/ne
 **Sección 2026-07-06:** `TiposRegistrosDnsSection` en página `clase-01-fundamentos-web/dns-y-dominios` — A, AAAA, CNAME, MX, TXT, NS, SOA, PTR, SRV, CAA, DNSSEC y ALIAS.
 
 **Revisión malas-practicas-mundo-real (2026-07-06):** H3 «Malas prácticas en el mundo real» (3–5 escenarios LATAM/PYME) en 44 secciones conceptuales TSX de clases 1–4. Prioridad HttpHttpsSection, CorreoCorporativoSection, CasosRealesLatamSection (bloque Señales + Malas). Secciones con tabla en Señales (HostingSection, SslTlsSection, ProtocolosHttpsSection) actualizadas manualmente. Build 185 rutas OK.
+
+## Revisión visual ADR 013 (2026-07-15)
+
+- Convertir «Mapa mental» basado solo en texto a `MermaidDiagram` (`mindmap` o `flowchart`).
+- Corregir promesas de flujo, ciclo, árbol, jerarquía, topología o línea de tiempo que no tengan un diagrama contiguo.
+- Representar matrices o heatmaps como tablas semánticas con contraste visual.
+- Verificar como deuda transversal de SEA: entidades HTML en Mermaid, `CodeFiddle` vacíos y directivas de autoría.

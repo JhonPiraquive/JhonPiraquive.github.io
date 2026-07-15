@@ -1,6 +1,7 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function TiposRegistrosDnsSection() {
@@ -18,6 +19,33 @@ export function TiposRegistrosDnsSection() {
         <li>{"NS y SOA: delegación y metadatos de la zona."}</li>
         <li>{"Otros: PTR (inverso), SRV (servicios), CAA (certificados), DNSSEC."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental de los registros DNS"
+        chart={`mindmap
+  root((Registros DNS))
+    Dirección
+      A
+        IPv4
+      AAAA
+        IPv6
+    Alias
+      CNAME
+    Correo y verificación
+      MX
+      TXT
+    Autoridad de zona
+      NS
+      SOA
+    Especializados
+      PTR
+      SRV
+      CAA
+      DNSSEC
+    Campos comunes
+      Nombre
+      Valor
+      TTL`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {

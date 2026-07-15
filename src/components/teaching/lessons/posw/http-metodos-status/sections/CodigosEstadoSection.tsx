@@ -6,14 +6,31 @@ import { StepReveal } from "@/components/teaching/StepReveal";
 export function CodigosEstadoSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Códigos de estado HTTP"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Códigos de estado HTTP"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Código de 3 dígitos en la línea de estado de la respuesta."}</li>
         <li>{"Primer dígito = familia (1xx–5xx)."}</li>
-        <li>{"Debe reflejar el resultado real; no ocultar errores en JSON con 200 OK."}</li>
+        <li>
+          {
+            "Debe reflejar el resultado real; no ocultar errores en JSON con 200 OK."
+          }
+        </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Familias de códigos"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Codigos Estado"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Codigos Estado))
+    Código de 3 dígitos en la línea de estado de la respuesta
+    Primer dígito familia 1xx 5xx
+    Debe reflejar el resultado real`}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Familias de códigos"}
+      </h3>
       <MermaidDiagram
         chart={`flowchart LR
   R[Respuesta HTTP] --> F1[1xx Info]
@@ -37,7 +54,8 @@ export function CodigosEstadoSection() {
           },
           {
             title: "3xx — Redirecciones",
-            content: "301 Moved Permanently, 302 Found, 304 Not Modified (caché válida con ETag).",
+            content:
+              "301 Moved Permanently, 302 Found, 304 Not Modified (caché válida con ETag).",
           },
           {
             title: "4xx — Errores del cliente",
@@ -46,7 +64,8 @@ export function CodigosEstadoSection() {
           },
           {
             title: "5xx — Errores del servidor",
-            content: "500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout.",
+            content:
+              "500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable, 504 Gateway Timeout.",
           },
         ]}
       />
@@ -63,7 +82,9 @@ export function CodigosEstadoSection() {
           }
         </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplos de respuestas"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Ejemplos de respuestas"}
+      </h3>
       <CodeFiddle
         language="http"
         title="201 Created (POST exitoso)"
@@ -106,11 +127,25 @@ Content-Type: application/json
           'Una API devuelve HTTP 200 con { "ok": false, "mensaje": "Producto no encontrado" }. Clientes que solo miran el status muestran stock incorrecto. Decisión: usar 404, 422 y 429 con cuerpo JSON estructurado.'
         }
       </Callout>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores frecuentes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Errores frecuentes"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Devolver 404 cuando el recurso existe pero los datos son inválidos → usar 400 o 422."}</li>
-        <li>{"Devolver 500 por validación fallida del cliente → reservar 5xx para fallos internos."}</li>
-        <li>{"Omitir header Location en 201 Created → el cliente no sabe dónde quedó el recurso nuevo."}</li>
+        <li>
+          {
+            "Devolver 404 cuando el recurso existe pero los datos son inválidos → usar 400 o 422."
+          }
+        </li>
+        <li>
+          {
+            "Devolver 500 por validación fallida del cliente → reservar 5xx para fallos internos."
+          }
+        </li>
+        <li>
+          {
+            "Omitir header Location en 201 Created → el cliente no sabe dónde quedó el recurso nuevo."
+          }
+        </li>
       </ul>
     </section>
   );

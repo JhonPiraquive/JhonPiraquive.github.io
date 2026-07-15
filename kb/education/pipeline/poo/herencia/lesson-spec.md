@@ -248,3 +248,10 @@ No envolver `MermaidDiagram` ni `CodeBlock` en `ClayCard` adicional. Máximo un 
 - [ ] Actualizar `HerenciaLesson.tsx` con orden de secciones del mapa
 - [ ] Registrar preguntas quiz en `src/lib/teaching-quizzes/poo.ts` (patrón track POO)
 - [ ] H2: «Herencia: qué es y para qué sirve», «¿Cuándo NO usar herencia? (composición como alternativa)»
+
+## Nota de remediación visual ADR 013 (2026-07-15)
+
+- **Estado:** `in_progress`; esta nota no reescribe el `lesson-draft.md`.
+- En layout/TSX, toda promesa de mapa mental, diagrama, flujo, ciclo, árbol, jerarquía, topología o línea de tiempo debe tener un visual real contiguo.
+- Usar `MermaidDiagram`, `figure` + `img` o `StepReveal` con diagrama; las matrices/heatmaps deben ser tablas semánticas.
+

@@ -1,5 +1,6 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function FrameworksSection() {
   return (
@@ -26,21 +27,71 @@ export function FrameworksSection() {
           {" compila a JS puro; sin Virtual DOM runtime (~6.5%)."}
         </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comparativa de frameworks"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Frameworks"
+        chart={`mindmap
+  root((Frameworks frontend))
+    React
+      Componentes y JSX
+    Angular
+      Framework completo
+    Vue
+      Adopción progresiva
+    Svelte
+      Compilación anticipada`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Comparativa de frameworks"}
+      </h3>
       <CompareTable
-        headers={["Framework", "Tipo", "Curva", "Ecosistema / meta-framework", "Mejor para"]}
+        headers={[
+          "Framework",
+          "Tipo",
+          "Curva",
+          "Ecosistema / meta-framework",
+          "Mejor para",
+        ]}
         rows={[
-          ["React", "Librería", "Media", "Next.js, Redux, React Query", "Mayor demanda laboral, flexibilidad"],
-          ["Angular", "Framework completo", "Alta", "Angular CLI integrado", "Enterprise, equipos grandes con TS"],
-          ["Vue", "Framework progresivo", "Baja", "Nuxt.js, Pinia", "Aprender rápido, adopción incremental"],
-          ["Svelte", "Compilador", "Baja-media", "SvelteKit", "Apps pequeñas/medianas, alto rendimiento"],
+          [
+            "React",
+            "Librería",
+            "Media",
+            "Next.js, Redux, React Query",
+            "Mayor demanda laboral, flexibilidad",
+          ],
+          [
+            "Angular",
+            "Framework completo",
+            "Alta",
+            "Angular CLI integrado",
+            "Enterprise, equipos grandes con TS",
+          ],
+          [
+            "Vue",
+            "Framework progresivo",
+            "Baja",
+            "Nuxt.js, Pinia",
+            "Aprender rápido, adopción incremental",
+          ],
+          [
+            "Svelte",
+            "Compilador",
+            "Baja-media",
+            "SvelteKit",
+            "Apps pequeñas/medianas, alto rendimiento",
+          ],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"React vs librería vs framework"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"React vs librería vs framework"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"React"}</strong>
-          {" es una librería: necesitas elegir routing, estado y herramientas de build."}
+          {
+            " es una librería: necesitas elegir routing, estado y herramientas de build."
+          }
         </li>
         <li>
           <strong>{"Angular"}</strong>
@@ -48,11 +99,15 @@ export function FrameworksSection() {
         </li>
         <li>
           <strong>{"Vue"}</strong>
-          {" es progresivo: puedes usar solo la capa de vista o escalar a SPA completa."}
+          {
+            " es progresivo: puedes usar solo la capa de vista o escalar a SPA completa."
+          }
         </li>
         <li>
           <strong>{"Svelte"}</strong>
-          {" mueve trabajo al compilador en build time — menos overhead en runtime."}
+          {
+            " mueve trabajo al compilador en build time — menos overhead en runtime."
+          }
         </li>
       </ul>
       <CodeChallenge

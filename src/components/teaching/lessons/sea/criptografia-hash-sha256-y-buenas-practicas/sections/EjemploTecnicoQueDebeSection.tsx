@@ -3,20 +3,34 @@ import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 export function EjemploTecnicoQueDebeSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Ejemplo técnico (qué debe demostrar)"}</h2>
-      <p className="my-4">{"El ejemplo debe mostrar: (1) una huella SHA‑256 de un archivo o texto, (2) cómo un cambio mínimo produce un hash totalmente distinto, y (3) un caso de uso: verificar integridad de descarga o detectar alteración de un payload. No debe presentarse SHA‑256 como forma de “cifrar”."}</p>
-      <CodeFiddle language="bash" code={`# Calcular SHA-256 (ejemplo conceptual)
-printf &quot;hola\\n&quot; > mensaje.txt
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Ejemplo técnico: integridad con SHA-256"}
+      </h2>
+      <p className="my-4">
+        {
+          "SHA-256 genera una huella: un cambio mínimo produce un hash distinto. Sirve para verificar descargas o detectar alteración de un payload. No es cifrado: no se «descifra» un hash para recuperar el mensaje."
+        }
+      </p>
+      <CodeFiddle
+        language="bash"
+        title="Huella SHA-256 y efecto avalancha"
+        code={`# Calcular SHA-256 (ejemplo conceptual)
+printf "hola\\n" > mensaje.txt
 sha256sum mensaje.txt
 
 # Cambio mínimo → hash diferente
-printf &quot;hola!\\n&quot; > mensaje.txt
-sha256sum mensaje.txt`} />
-      <CodeFiddle language="json" code={`{
-  &quot;manifest&quot;: [
-    { &quot;file&quot;: &quot;app.tar.gz&quot;, &quot;sha256&quot;: &quot;EXPECTED_SHA256_HEX_HERE&quot; }
+printf "hola!\\n" > mensaje.txt
+sha256sum mensaje.txt`}
+      />
+      <CodeFiddle
+        language="json"
+        title="Manifest de integridad"
+        code={`{
+  "manifest": [
+    { "file": "app.tar.gz", "sha256": "EXPECTED_SHA256_HEX_HERE" }
   ]
-}`} />
+}`}
+      />
     </section>
   );
 }

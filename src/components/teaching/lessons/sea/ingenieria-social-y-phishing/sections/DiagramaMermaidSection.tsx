@@ -12,9 +12,9 @@ export function DiagramaMermaidSection() {
   acceso --> acciones[Acciones_sensibles_(cambiar_correo_2FA)]
   acciones --> persist[Persistencia]
 
-  msg -->|&quot;Corte: verificacion&quot;| verif[Verificar_por_canal_oficial]
-  captura -->|&quot;Corte: 2FA&quot;| twoFA[Segundo_factor]
-  acceso -->|&quot;Corte: alertas&quot;| alertas[Alertas_y_bloqueo_por_riesgo]`} />
+  msg -->|"Corte: verificacion"| verif[Verificar_por_canal_oficial]
+  captura -->|"Corte: 2FA"| twoFA[Segundo_factor]
+  acceso -->|"Corte: alertas"| alertas[Alertas_y_bloqueo_por_riesgo]`} />
     </section>
   );
 }

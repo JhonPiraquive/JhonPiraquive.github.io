@@ -1,4 +1,5 @@
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function ClavesSection() {
   return (
@@ -8,8 +9,14 @@ export function ClavesSection() {
       </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Primary Key (PK): identifica fila única; no NULL ni duplicada."}</li>
-        <li>{"Foreign Key (FK): referencia PK de otra tabla; integridad referencial."}</li>
+        <li>
+          {"Primary Key (PK): identifica fila única; no NULL ni duplicada."}
+        </li>
+        <li>
+          {
+            "Foreign Key (FK): referencia PK de otra tabla; integridad referencial."
+          }
+        </li>
         <li>{"Unique Key: valores no repetidos."}</li>
         <li>
           {
@@ -22,19 +29,44 @@ export function ClavesSection() {
           }
         </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
+      <MermaidDiagram
+        title="Mapa mental — Claves"
+        chart={`mindmap
+  root((Claves))
+    Primary Key PK
+    Foreign Key FK
+    Unique Key
+    Composite Key
+    Surrogate vs Natural Key`}
+      />
+
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Malas prácticas en el mundo real"}
+      </h3>
       <ul className="my-4 list-disc pl-6">
         <li>
-          {"PK natural inestable: email como PK y romper referencias al cambiar email."}
+          {
+            "PK natural inestable: email como PK y romper referencias al cambiar email."
+          }
         </li>
-        <li>{"FK sin índice en columna referenciada: JOINs lentos en tablas grandes."}</li>
         <li>
-          {"Elegir NoSQL solo por moda cuando el dominio es altamente relacional."}
+          {
+            "FK sin índice en columna referenciada: JOINs lentos en tablas grandes."
+          }
+        </li>
+        <li>
+          {
+            "Elegir NoSQL solo por moda cuando el dominio es altamente relacional."
+          }
         </li>
       </ul>
       <PracticeExercise
         prompt="Modela usuarios, pedidos y detalle_pedido indicando PK y FK entre tablas. ¿Por qué detalle_pedido suele tener clave compuesta o surrogate id?"
-        hints={["pedido_id FK", "producto_id FK", "Un pedido tiene varios ítems"]}
+        hints={[
+          "pedido_id FK",
+          "producto_id FK",
+          "Un pedido tiene varios ítems",
+        ]}
         expectedKeywords={["FK", "PK", "pedido", "detalle"]}
         successMessage="Correcto. detalle_pedido enlaza pedidos con productos; la FK garantiza integridad referencial."
       />

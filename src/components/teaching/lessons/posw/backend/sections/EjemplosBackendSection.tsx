@@ -1,15 +1,33 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function EjemplosBackendSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Ejemplos de backend"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Ejemplos de backend"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Separación de capas: rutas → controlador → servicio → modelo."}</li>
+        <li>
+          {"Separación de capas: rutas → controlador → servicio → modelo."}
+        </li>
         <li>{"Validación en servidor antes de persistir."}</li>
-        <li>{"Códigos HTTP semánticos: 201 creado, 404 no encontrado, 422 validación."}</li>
+        <li>
+          {
+            "Códigos HTTP semánticos: 201 creado, 404 no encontrado, 422 validación."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — EjemplosBackend"
+        chart={`mindmap
+  root((EjemplosBackend))
+    Separación de capas
+    Validación en servidor antes de persistir
+    Códigos HTTP semánticos`}
+      />
+
       <CodeFiddle
         language="javascript"
         title="Listar productos (Express)"

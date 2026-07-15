@@ -1,10 +1,12 @@
 ---
 track: sea
 topic_expert: topic-expert-app-security
-updated: 2026-07-06
+updated: 2026-07-15
 build: passed
 tsx_migration: complete
 refactor: acronym-normalized, codefiddle, malas-practicas, profundidad
+revision: visuales-adr-013
+visuals_remediation: done
 ---
 
 # Pipeline Seguridad en Aplicaciones (SEA) — estado
@@ -23,3 +25,17 @@ refactor: acronym-normalized, codefiddle, malas-practicas, profundidad
 | proteccion-datos-cookies-y-jwt | 10 | done | done | done | done | done | done |
 | programacion-segura-excepciones-logs-y-config-json | 11 | done | done | done | done | done | done |
 | matriz-de-riesgos | 12 | done | done | done | done | done | done |
+
+## Revisión visual ADR 013 (2026-07-15)
+
+- Convertir «Mapa mental» basado solo en texto a `MermaidDiagram` (`mindmap` o `flowchart`).
+- Corregir promesas de flujo, ciclo, árbol, jerarquía, topología o línea de tiempo que no tengan un diagrama contiguo.
+- Representar matrices o heatmaps como tablas semánticas con contraste visual.
+- Corregir entidades HTML, `CodeFiddle` vacíos y directivas de autoría.
+
+### Deuda SEA (resuelta 2026-07-15)
+
+- 12 instancias de `DiagramaMermaidSection` contienen `&quot;`; sustituir por comillas literales válidas para Mermaid.
+- `matriz-de-riesgos`: reemplazar la matriz expresada como párrafos por una tabla heatmap semántica.
+- `EjemploTecnico*`: eliminar directivas de autoría y completar o retirar los `CodeFiddle` vacíos.
+- `MapaMentalVistaRapidaSection`: dos lecciones presentan mapas mentales solo textuales; convertirlos a `mindmap` o `flowchart`.

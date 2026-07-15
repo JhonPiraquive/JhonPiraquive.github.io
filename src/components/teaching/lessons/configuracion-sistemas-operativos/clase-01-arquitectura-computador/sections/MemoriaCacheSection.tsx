@@ -1,4 +1,5 @@
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function MemoriaCacheSection() {
   return (
@@ -27,6 +28,15 @@ export function MemoriaCacheSection() {
           "Jerarquía típica: L1 (por núcleo, ~32–64 KB, 1–4 ciclos), L2 (por núcleo o cluster, ~256 KB–1 MB), L3 (compartida, varios MB). En miss de caché, se consulta el nivel siguiente hasta llegar a RAM."
         }
       </p>
+      <MermaidDiagram
+        title="Jerarquía de memoria caché"
+        description="Pirámide L1 a L2 a L3 a RAM"
+        chart={`flowchart TB
+  L1["L1 - muy rapida poca capacidad"] --> L2["L2 - rapida"]
+  L2 --> L3["L3 - compartida"]
+  L3 --> RAM["RAM principal"]
+`}
+      />
 
       <CompareTable
         headers={["Nivel", "Tamaño típico", "Latencia", "Compartición"]}

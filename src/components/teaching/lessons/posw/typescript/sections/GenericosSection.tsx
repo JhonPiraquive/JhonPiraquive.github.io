@@ -1,18 +1,41 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function GenericosSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Genéricos"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Genéricos"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Genéricos <T>: código reutilizable que conserva información de tipo."}</li>
-        <li>{"Funciones genéricas: function primerElemento<T>(arr: T[]): T | undefined."}</li>
+        <li>
+          {
+            "Genéricos <T>: código reutilizable que conserva información de tipo."
+          }
+        </li>
+        <li>
+          {
+            "Funciones genéricas: function primerElemento<T>(arr: T[]): T | undefined."
+          }
+        </li>
         <li>{"Clases genéricas: repositorios, cachés, wrappers de API."}</li>
-        <li>{"Restricciones: T extends { id: number } limita el tipo aceptado."}</li>
+        <li>
+          {"Restricciones: T extends { id: number } limita el tipo aceptado."}
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Genericos"
+        chart={`mindmap
+  root((Genericos))
+    Genéricos T
+    Funciones genéricas
+    Clases genéricas
+    Restricciones`}
+      />
+
       <CodeFiddle
         language="typescript"
         title="Repositorio genérico"
@@ -43,12 +66,22 @@ const texto = primerElemento(["a", "b"]);   // infiere string`}
       <CodeChallenge
         title="Completa la firma genérica"
         template="function primerElemento<T>(arr: T[]): {{blank1}}"
-        blanks={[{ id: "blank1", answer: "T | undefined", placeholder: "tipo de retorno" }]}
+        blanks={[
+          {
+            id: "blank1",
+            answer: "T | undefined",
+            placeholder: "tipo de retorno",
+          },
+        ]}
       />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>
       <PracticeExercise
         prompt="¿Qué tipo infiere TypeScript en `primerElemento([1, 2, 3])`? ¿Por qué los genéricos son útiles frente a usar `any`?"
-        hints={["Inferencia automática", "Conserva el tipo del array", "number"]}
+        hints={[
+          "Inferencia automática",
+          "Conserva el tipo del array",
+          "number",
+        ]}
         expectedKeywords={["number", "genérico", "inferencia", "tipo"]}
         successMessage="Correcto. Infiere `number` y mantiene type safety sin perder flexibilidad."
       />

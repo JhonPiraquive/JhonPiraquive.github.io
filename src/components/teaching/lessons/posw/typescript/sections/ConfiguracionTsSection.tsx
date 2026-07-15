@@ -1,5 +1,6 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function ConfiguracionTsSection() {
   return (
@@ -15,6 +16,17 @@ export function ConfiguracionTsSection() {
         <li>{"outDir / rootDir: carpetas de salida y fuente."}</li>
         <li>{"esModuleInterop: compatibilidad con imports CommonJS."}</li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — ConfiguracionTs"
+        chart={`mindmap
+  root((ConfiguracionTs))
+    target
+    module / moduleResolution
+    strict
+    outDir / rootDir
+    esModuleInterop`}
+      />
+
       <CodeFiddle
         language="javascript"
         title="tsconfig.json recomendado para proyecto web"
@@ -37,11 +49,31 @@ export function ConfiguracionTsSection() {
       <CompareTable
         headers={["Opción", "Qué hace", "Por qué importa"]}
         rows={[
-          ["strict", "Activa verificaciones estrictas", "Evita null/undefined silenciosos y any implícito"],
-          ["noImplicitAny", "Prohíbe any implícito", "Fuerza anotar tipos en parámetros sin tipo"],
-          ["strictNullChecks", "null/undefined son tipos distintos", "Previene accesos a propiedades de null"],
-          ["outDir", "Carpeta de JS compilado", "Separa fuente .ts de artefactos .js"],
-          ["esModuleInterop", "Imports default desde CommonJS", "Compatibilidad con librerías npm legacy"],
+          [
+            "strict",
+            "Activa verificaciones estrictas",
+            "Evita null/undefined silenciosos y any implícito",
+          ],
+          [
+            "noImplicitAny",
+            "Prohíbe any implícito",
+            "Fuerza anotar tipos en parámetros sin tipo",
+          ],
+          [
+            "strictNullChecks",
+            "null/undefined son tipos distintos",
+            "Previene accesos a propiedades de null",
+          ],
+          [
+            "outDir",
+            "Carpeta de JS compilado",
+            "Separa fuente .ts de artefactos .js",
+          ],
+          [
+            "esModuleInterop",
+            "Imports default desde CommonJS",
+            "Compatibilidad con librerías npm legacy",
+          ],
         ]}
       />
       <CodeFiddle

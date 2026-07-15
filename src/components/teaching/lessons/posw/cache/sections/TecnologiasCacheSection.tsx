@@ -5,13 +5,36 @@ import { StepReveal } from "@/components/teaching/StepReveal";
 export function TecnologiasCacheSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Tecnologías de caché"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Tecnologías de caché"}
+      </h2>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Redis: estándar de facto; strings, hashes, listas; persistencia opcional; < 1 ms."}</li>
-        <li>{"Memcached: solo strings; más simple; sin persistencia; Redis suele ser mejor hoy."}</li>
-        <li>{"Service Worker: intercepta peticiones en navegador; Cache API para PWA offline."}</li>
+        <li>
+          {
+            "Redis: estándar de facto; strings, hashes, listas; persistencia opcional; < 1 ms."
+          }
+        </li>
+        <li>
+          {
+            "Memcached: solo strings; más simple; sin persistencia; Redis suele ser mejor hoy."
+          }
+        </li>
+        <li>
+          {
+            "Service Worker: intercepta peticiones en navegador; Cache API para PWA offline."
+          }
+        </li>
       </ul>
+      <MermaidDiagram
+        title="Mapa mental — Tecnologias Cache"
+        description="Resumen visual de los conceptos principales."
+        chart={`mindmap
+  root((Tecnologias Cache))
+    Redis estándar de facto
+    Memcached solo strings
+    Service Worker intercepta peticiones en navegador`}
+      />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Flujo cache-aside"}</h3>
       <MermaidDiagram
         chart={`sequenceDiagram
@@ -102,7 +125,8 @@ async function obtenerProducto(id) {
           },
           {
             title: "5. Devolver JSON al cliente",
-            content: "Misma respuesta que en HIT; la próxima vez será más rápida.",
+            content:
+              "Misma respuesta que en HIT; la próxima vez será más rápida.",
           },
         ]}
       />
