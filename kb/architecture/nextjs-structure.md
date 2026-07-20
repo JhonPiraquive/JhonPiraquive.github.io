@@ -6,10 +6,10 @@ src/
   app/[locale]/page.tsx
   app/[locale]/teaching/page.tsx
   app/[locale]/teaching/[track]/[...slug]/page.tsx
-  components/{brand,clay,layout,portfolio,teaching}/
+  components/{brand,clay,layout,portfolio,resume,teaching}/
     teaching/lessons/{track}/{slug}/
   content/portfolio/{es,en}.json
-  lib/{i18n,profile-stats,teaching,teaching-lessons-registry}.ts
+  lib/{i18n,profile-stats,teaching,teaching-lessons-registry,download-resume-pdf}.ts(x)
   styles/{tokens,clay,globals}.css
   i18n/{routing,request}.ts
   messages/{es,en}.json

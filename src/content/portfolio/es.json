@@ -31,7 +31,7 @@
     "summary": "Ingeniero en Sistemas y Telecomunicaciones con Especialización en Ciberseguridad y más de {expYears} años de experiencia profesional construyendo plataformas escalables, infraestructura cloud y software seguro.",
     "role": "Senior Developer & Especialista en Ciberseguridad & Profesor Universitario",
     "motto": "Mi regla es simple: dar un poco más de lo que cualquiera espera.",
-    "bio": "Co-lidero un equipo de desarrollo remoto en Heinsohn (CareTree), donde construimos Dala — una plataforma completa de gestión de salud — desde cero. Mi stack abarca microservicios en Go, backends en Laravel/PHP, frontends en React y React Native, APIs GraphQL e infraestructura cloud en AWS.",
+    "bio": "En Heinsohn crecí de Junior a Senior: empecé solo en CareTree, en Semi-Senior se sumó Dala y hoy como Senior trabajo en CareTree, Dala e Islamic Relief Canada (IRC). Mi stack abarca microservicios en Go, backends en Laravel/PHP, frontends en React y React Native, APIs GraphQL e infraestructura cloud en AWS.",
     "languages": [
       { "name": "Español", "level": "Nativo" },
       { "name": "Inglés", "level": "C2 (Dominio profesional)" },
@@ -217,33 +217,57 @@
       ]
     },
     {
-      "title": "Senior Developer",
+      "title": "Desarrollador Senior",
       "period": "2022 – Actualmente",
-      "company": "Heinsohn (CareTree)",
+      "company": "Heinsohn",
       "location": "Remoto, Colombia",
       "intro": "",
-      "bullets": [
-        "Co-lidero un equipo de desarrollo completamente remoto, dirigiendo decisiones técnicas, revisiones de arquitectura y planificación de sprints con Scrum y Jira.",
-        "Arquitecto y desarrollo backends en PHP/Laravel que sustentan la lógica de negocio central de instituciones médicas.",
-        "Diseño y mantengo infraestructura en AWS (EC2, RDS, S3, Lambda) con pipelines de despliegue automatizados para releases sin tiempo de inactividad.",
-        "Construyo y publico aplicaciones móviles multiplataforma para iOS y Android usando React Native.",
-        "Lidero revisiones de seguridad y aplico buenas prácticas de ciberseguridad en todos los servicios, asegurando cumplimiento con estándares de protección de datos en salud.",
-        "Containerizo aplicaciones y entornos de desarrollo con Docker, optimizando la consistencia en despliegue y el onboarding del equipo."
-      ],
-      "highlight": {
-        "title": "Proyecto insignia: Dala — Plataforma completa de gestión de salud construida desde cero.",
-        "bullets": [
-          "Arquitecté microservicios escalables y de alto rendimiento en Go (Golang) para flujos clínicos críticos.",
-          "Diseñé e implementé una capa de API GraphQL, permitiendo consultas de datos flexibles y reduciendo el over-fetching en los frontends.",
-          "Aprovisié y gestioné toda la infraestructura cloud en AWS, incluyendo bases de datos administradas, almacenamiento y funciones serverless.",
-          "Integré Algolia para búsqueda en tiempo real sobre registros de pacientes y datos clínicos, reduciendo significativamente los tiempos de búsqueda del personal médico.",
-          "Implementé PostHog para analíticas de producto y seguimiento del comportamiento de usuarios, habilitando decisiones basadas en datos.",
-          "Entregué interfaces de salud responsivas y accesibles en React, alineadas con las mejores prácticas de UX."
+      "bullets": [],
+      "roleTimeline": {
+        "title": "Evolución de cargo y proyectos",
+        "roles": [
+          {
+            "level": "Desarrollador Senior",
+            "period": "Actual",
+            "current": true,
+            "projects": ["CareTree", "Dala", "IRC"],
+            "summary": "Liderazgo de punta a punta en tres frentes: tickets, tecnología, infraestructura, documentación y entrega a producción.",
+            "responsibilities": [
+              "Creo y priorizo tickets, defino criterios de aceptación y oriento al equipo en la ejecución.",
+              "Decido tecnologías, arquitectura e infraestructura (cloud, pipelines, contenedores) y documento con diagramas y especificaciones.",
+              "CareTree: co-lidero backends PHP/Laravel, apps React Native, AWS, seguridad de datos de salud y contenedores Docker.",
+              "Dala: lidero la plataforma de gestión de salud — microservicios en Go, GraphQL, AWS, Algolia, PostHog e interfaces React.",
+              "IRC (Islamic Relief Canada): desarrollo apps web (React), móviles (React Native) y backend — apps internas y plataformas de donaciones masivas en eventos de alto impacto."
+            ]
+          },
+          {
+            "level": "Desarrollador Semi-Senior",
+            "period": "CareTree + incorporación de Dala",
+            "projects": ["CareTree", "Dala"],
+            "summary": "Además de desarrollar, participé en levantamiento de requerimientos y sumé Dala al portafolio de proyectos.",
+            "responsibilities": [
+              "Participé en el levantamiento de requerimientos con stakeholders y traduje necesidades del negocio en tareas técnicas.",
+              "CareTree: desarrollé features de mayor complejidad, backends Laravel y mejoras continuas con más autonomía.",
+              "Dala: me incorporé a la construcción de la plataforma de salud desde cero — APIs, frontends React y bases de la arquitectura cloud.",
+              "Aporté en revisiones de código y en la definición técnica compartida entre ambos proyectos."
+            ]
+          },
+          {
+            "level": "Desarrollador Junior",
+            "period": "Inicio en Heinsohn · solo CareTree",
+            "projects": ["CareTree"],
+            "summary": "Enfoque exclusivo en desarrollo sobre CareTree: ejecutar actividades ya definidas con calidad.",
+            "responsibilities": [
+              "Implementé tickets y tareas técnicas de CareTree con alcance y criterios ya definidos por el equipo.",
+              "Desarrollé funcionalidades en el stack de CareTree (PHP/Laravel, web y móvil según asignación).",
+              "Me concentré en código, pruebas y entrega — sin liderar discovery, arquitectura ni infraestructura."
+            ]
+          }
         ]
       }
     },
     {
-      "title": "Desarrollador Web",
+      "title": "Desarrollador Junior",
       "period": "2021 – 2022",
       "company": "QVO Consultoría Y Estrategia S.A.S",
       "location": "Manizales – Caldas (Colombia)",
@@ -257,7 +281,7 @@
       ]
     },
     {
-      "title": "Desarrollador Web",
+      "title": "Desarrollador Junior",
       "period": "2019 – 2021",
       "company": "Business Solutions On The Cloud",
       "location": "Manizales – Caldas (Colombia)",
@@ -269,7 +293,7 @@
       ]
     },
     {
-      "title": "Desarrollador Web",
+      "title": "Desarrollador Junior",
       "period": "2018 – 2019",
       "company": "ASAP Staffing Company",
       "location": "Manizales – Caldas (Colombia)",
@@ -353,6 +377,18 @@
   "social": {
     "linkedin": "https://linkedin.com/in/jhon-piraquive-ramirez-b0a6b1197",
     "github": "https://github.com/JhonPiraquive",
-    "whatsapp": "https://wa.me/573187623543"
+    "whatsapp": "https://wa.me/573187623543",
+    "website": "https://jhonpiraquive.github.io"
+  },
+  "resumePdf": {
+    "printLabel": "Descargar hoja de vida (PDF)",
+    "documentTitle": "Hoja de vida",
+    "filename": "Jhon-Alejandro-Piraquive-HV.pdf",
+    "profile": "Perfil",
+    "experience": "Experiencia laboral",
+    "education": "Estudios",
+    "certifications": "Certificados",
+    "languages": "Idiomas",
+    "projects": "Proyectos"
   }
 }

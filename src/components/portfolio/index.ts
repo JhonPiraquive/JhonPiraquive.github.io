@@ -7,6 +7,7 @@ export { SkillCategoryModal } from "./SkillCategoryModal";
 export { SkillProgressBar } from "./SkillProgressBar";
 export { ExperienceSection } from "./ExperienceSection";
 export { ExperienceCard } from "./ExperienceCard";
+export { ExperienceRoleTimeline } from "./ExperienceRoleTimeline";
 export { EducationSection } from "./EducationSection";
 export { CertificationsGrid } from "./CertificationsGrid";
 export { CertificationCard } from "./CertificationCard";

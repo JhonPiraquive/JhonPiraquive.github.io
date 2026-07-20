@@ -30,3 +30,4 @@
 - Marca: Jhon Alejandro Piraquive · *Construyendo el futuro digital.*
 - Visual: claymorphism premium (#0A2540, #00C2FF, #6B4EFF)
 - Teaching: remediación visual ADR 013 en progreso en los seis tracks (2026-07-15)
+- Portafolio: export HV/CV PDF desde sidebar (ADR 014, 2026-07-20)

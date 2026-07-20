@@ -32,11 +32,7 @@ export function BrandSidebar({ content, locale }: BrandSidebarProps) {
           </Link>
         </div>
 
-        <SocialLinks
-          github={content.social.github}
-          linkedin={content.social.linkedin}
-          whatsapp={content.social.whatsapp}
-        />
+        <SocialLinks content={content} />
 
         <nav className="mt-6 flex flex-1 flex-col gap-1">
           {content.nav.filter((item) => item.id !== "teaching").map((item) => {
