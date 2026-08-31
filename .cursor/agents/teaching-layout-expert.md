@@ -20,7 +20,7 @@ Shell técnico de lecciones — no contenido pedagógico (eso es education-exper
 3. Indicar si requiere componente nuevo en `sections/` (escalar a lesson-developer)
 4. Mantener LessonLayout / `ClassPageLayout` y nav prev/next coherentes
 5. **Paginación por clase (ADR 011):** si la clase es extensa, diseñar tabla `## Páginas` con agrupación temática (2–4 secciones/página), hub de clase e índice visual; última página = práctica + cierre + quiz
-6. **Malas prácticas:** mapear H3 `Malas prácticas en el mundo real` en layout-spec para cada sección de concepto (props: lista de escenarios o prose en lesson-developer)
+6. **Malas prácticas / señales buen-mal uso:** mapear en layout-spec **solo si** el draft/brief las incluye y aportan; no inventar H3 por plantilla en cada sección de concepto
 
 ## layout-spec.md formato
 ```yaml

@@ -12,20 +12,13 @@ description: Dominio Programación Orientada a Sitios Web (POSW) — briefs para
 ## Entregable
 `kb/education/pipeline/{track}/{slug}/brief.md` — conceptos, casos reales, ejercicios tipados, errores comunes, código, retos, quiz
 
-## Profundidad en briefs (obligatorio)
+## Profundidad en briefs (según modo del módulo)
 
-Por cada concepto del syllabus, el brief debe especificar contenido para los bloques pedagógicos que apliquen:
+El brief debe cubrir el **contenido propio** del tema. No rellenar siempre *Qué es* / *Para qué* / *Cómo funciona*.
 
-- **Qué es** — definición
-- **Para qué sirve / Por qué importa** — motivación
-- **Cómo funciona** — mecanismo o flujo
-- **Estructura / Composición** — partes, formatos (ej. octetos IPv4, labels DNS)
-- **Tipos / Variantes** — clasificación y criterio de elección
-- **Ventajas y desventajas**
-- **Ejemplo concreto** — comando, registro, caso LATAM
-- **Señales de buen y mal uso** — errores frecuentes
-
-Referencia: `kb/education/pedagogy-standards.md` → «Profundidad explicativa».
+- **Historia / narrativa:** etapas, hitos, causa→efecto, lenguaje simple.
+- **Concepto / procedimiento (POSW típico):** definir, motivar, mecanismo, ejemplo, errores — usar bloques que **aporten** claridad.
+- Referencia: `kb/education/pedagogy-standards.md` → «Profundidad y foco del módulo».
 
 ## Nota
 Navegación en grafo — incluir prereqs y related en cada brief

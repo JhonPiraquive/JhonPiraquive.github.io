@@ -18,12 +18,11 @@ description: Crear y ajustar contenido pedagógico de lecciones TSX usando brief
 `kb/education/pipeline/{track}/{slug}/lesson-draft.md`
 
 ## Responsabilidades
-- Objetivos medibles, prerrequisitos, progresión concepto → ejemplo → práctica → cierre
-- **Profundidad explicativa:** por cada concepto del brief, redactar bloques H3: *Qué es*, *Para qué sirve / Por qué*, *Cómo funciona*, *Estructura* (si aplica), *Ventajas y desventajas* (si aplica), *Ejemplo*, *Señales de buen y mal uso*, *Malas prácticas en el mundo real* (3–5 escenarios concretos) — ver `kb/education/pedagogy-standards.md`
-- No publicar secciones que sean solo una tabla o lista sin párrafos de desarrollo
+- Objetivos medibles, prerrequisitos, progresión acorde al **modo del módulo** (narrativa → hitos claros; concepto → ejemplo → práctica; procedimiento → pasos → práctica)
+- **Foco del contenido:** redactar lo que el módulo pide. **No** rellenar automáticamente H3 *Qué es* / *Para qué sirve* / *Por qué importa*, ni *Malas prácticas en el mundo real*, ni *Señales de buen y mal uso*. Usarlos solo si aportan al modo del módulo. Historia → relato simple por etapas, sin fichas ni anti-patrones forzados. Ver `kb/education/pedagogy-standards.md` → «Profundidad y foco del módulo» y «Malas prácticas y señales…»
 - Marcar bloques interactivos: `<!-- interactive: ComponentName -->` + JSON de props
 - Marcar bloques de código: `<!-- code: {lang} -->` antes de cada fence (ver interactive-components.md)
-- Incluir: 1+ práctica, 3–5 quiz (al menos una «¿por qué…?»), 1+ visual (mermaid o StepReveal)
+- Incluir: 1+ práctica, 3–5 quiz, 1+ visual (mermaid o StepReveal) adaptados al modo del módulo
 - NO inventar dominio técnico sin brief del topic-expert
 
 ## Estructura lesson-draft.md

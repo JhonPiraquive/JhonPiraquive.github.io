@@ -55,4 +55,12 @@ export const TRACKS = [
     descEs: "Arquitectura de hardware, almacenamiento, periféricos, SO y consola.",
     descEn: "Hardware architecture, storage, peripherals, OS and command line.",
   },
+  {
+    id: "bases-de-datos",
+    icon: "🗄️",
+    titleEs: "Bases de Datos",
+    titleEn: "Databases",
+    descEs: "Modelo relacional, SGBD, SQL (DDL/DML) e historia de las bases de datos.",
+    descEn: "Relational model, DBMS, SQL (DDL/DML) and database history.",
+  },
 ] as const;

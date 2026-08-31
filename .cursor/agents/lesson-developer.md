@@ -39,7 +39,7 @@ Cuando `layout-spec.md` define `## Páginas`:
 3. Verificar que componentes interactivos compilan
 4. Registrar lección en `teaching-lessons-registry.ts` y **todos los índices** (skill create-lesson → «Registro en índices»)
 5. Ejecutar `npm run build` tras cambios
-6. En secciones de concepto: implementar H3 **«Malas prácticas en el mundo real»** según layout-spec / pedagogy-standards (3–5 escenarios concretos)
+6. Implementar H3 **«Malas prácticas…»** o **«Señales de buen y mal uso»** solo si el layout-spec / draft las piden — no añadirlas por defecto en cada sección
 
 ## NO hacer
 - Escribir MDX en `src/content/teaching/`

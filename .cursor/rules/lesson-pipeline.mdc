@@ -14,8 +14,8 @@ Al crear o mejorar lecciones docentes:
 4. Seguir artefactos en `kb/education/pipeline/{track}/{slug}/`
 5. Salida final en `src/components/teaching/lessons/{track}/{slug}/`
 6. Cumplir interactividad mínima en `kb/education/pedagogy-standards.md`
-7. **Profundidad explicativa:** cada concepto con bloques *Qué es*, *Para qué/Por qué*, *Cómo funciona*, ejemplo y señales de buen/mal uso — ver `pedagogy-standards.md` → «Profundidad explicativa»
+7. **Foco del módulo:** contenido acorde al propósito (historia → narrar; concepto → definir/operar; procedimiento → pasos). No forzar siempre *Qué es* / *Para qué* / *Por qué importa* — ver `pedagogy-standards.md` → «Profundidad y foco del módulo»
 8. Registrar progreso en `kb/education/pipeline/{track}/status.md`
 9. Registrar lección en índices (portal + KB) — ver skill create-lesson → «Registro en índices»
 10. **Clases extensas:** paginar internamente (ADR 011) — hub + páginas `{clase}/{pagina}`, `ClassPageLayout`, contenido solo estudiante
-11. **Malas prácticas:** H3 «Malas prácticas en el mundo real» en secciones de concepto (3–5 escenarios reales) — ver `pedagogy-standards.md`
+11. **Malas prácticas / señales buen-mal uso:** opcionales; solo si aportan (nunca plantilla en narrativa) — ver `pedagogy-standards.md`

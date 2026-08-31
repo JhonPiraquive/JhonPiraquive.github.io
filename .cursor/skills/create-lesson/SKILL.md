@@ -131,8 +131,8 @@ Referencia: `kb/decisions/011-clases-con-paginas-internas.md` · implementación
 - **Nunca** inventar dominio técnico en education-expert
 - **Nunca** escribir MDX en `src/content/teaching/`
 - Cada lección debe cumplir `kb/education/pedagogy-standards.md`
-- **Profundidad explicativa obligatoria:** cada concepto principal lleva bloques *Qué es*, *Para qué sirve / Por qué*, *Cómo funciona* y al menos un ejemplo; ver `pedagogy-standards.md` → «Profundidad explicativa». Al **mejorar** lecciones existentes, reescribir secciones delgadas (solo tablas/bullets) siguiendo el patrón de POSW/POO
-- **Malas prácticas en el mundo real:** en secciones de concepto técnico, H3 dedicado con 3–5 escenarios reales (error → consecuencia → corrección); ver `pedagogy-standards.md` → «Malas prácticas en el mundo real»
+- **Foco del módulo (no plantilla fija):** el contenido debe corresponder al propósito de la clase. Historia → narrar etapas con claridad; concepto → definir y operar; procedimiento → pasos. **No** exigir siempre H3 *Qué es* / *Para qué sirve* / *Por qué importa* — solo cuando el modo del módulo lo pida. Ver `pedagogy-standards.md` → «Profundidad y foco del módulo».
+- **Malas prácticas / señales de buen y mal uso:** opcionales; solo si aportan en contenido técnico-operativo. **Prohibido** meterlas por plantilla en historia u otros módulos narrativos. Ver `pedagogy-standards.md` → «Malas prácticas y señales…»
 - Componentes interactivos: `kb/education/interactive-components.md`
 - Infra faltante (carpetas, status, registry parcial) → crear en Fase 0 **sin pausa**
 - Topic-expert o track **nuevo** → bootstrap + **pausar para aprobación** antes del paso 1

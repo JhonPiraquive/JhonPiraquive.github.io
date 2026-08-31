@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ClayCard } from "@/components/clay";
 
 export type PracticeExerciseProps = {
+  title?: string;
   prompt: string;
   hints?: string[];
   expectedKeywords?: string[];
@@ -12,6 +13,7 @@ export type PracticeExerciseProps = {
 };
 
 export function PracticeExercise({
+  title = "Ejercicio de práctica",
   prompt,
   hints = [],
   expectedKeywords = [],
@@ -29,7 +31,7 @@ export function PracticeExercise({
 
   return (
     <ClayCard className="my-8 border-l-4 border-[var(--color-accent)]">
-      <h3 className="mb-3 text-lg font-semibold text-[var(--color-primary)]">Ejercicio de práctica</h3>
+      <h3 className="mb-3 text-lg font-semibold text-[var(--color-primary)]">{title}</h3>
       <p className="mb-4">{prompt}</p>
       <textarea
         className="w-full rounded-xl border border-[var(--color-neutral-mid)] bg-white p-3 text-sm"

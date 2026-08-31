@@ -578,6 +578,10 @@ const REGISTRY: Record<string, LessonEntry> = {
         (m) => m.meta,
       ),
   },
+  "bases-de-datos/index": {
+    component: () => import("@/components/teaching/lessons/bases-de-datos/index/BasesDeDatosLesson"),
+    meta: () => import("@/components/teaching/lessons/bases-de-datos/index/lesson-meta").then((m) => m.meta),
+  },
   "pbpew/proyectos/ajedrez": {
     component: () => import("@/components/teaching/lessons/pbpew/proyectos/ajedrez/AjedrezLesson"),
     meta: () => import("@/components/teaching/lessons/pbpew/proyectos/ajedrez/lesson-meta").then((m) => m.meta),
@@ -593,6 +597,396 @@ const REGISTRY: Record<string, LessonEntry> = {
   "pbpew/proyectos/todo-list": {
     component: () => import("@/components/teaching/lessons/pbpew/proyectos/todo-list/TodoListLesson"),
     meta: () => import("@/components/teaching/lessons/pbpew/proyectos/todo-list/lesson-meta").then((m) => m.meta),
+  },
+  "bases-de-datos/clase-01-historia-bases-de-datos": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/Clase01HistoriaBasesDeDatosHubLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-01-historia-bases-de-datos/linea-de-tiempo-y-archivos": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/linea-de-tiempo-y-archivos/LineaDeTiempoYArchivosPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/linea-de-tiempo-y-archivos/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-01-historia-bases-de-datos/navegacion-y-codd": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/navegacion-y-codd/NavegacionYCoddPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/navegacion-y-codd/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-01-historia-bases-de-datos/sql-comercial-e-imperio": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/sql-comercial-e-imperio/SqlComercialEImperioPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/sql-comercial-e-imperio/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-01-historia-bases-de-datos/nosql-convergencia-y-sintesis": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/nosql-convergencia-y-sintesis/NosqlConvergenciaYSintesisPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/nosql-convergencia-y-sintesis/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-01-historia-bases-de-datos/practica-y-cierre": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/practica-y-cierre/PracticaYCierrePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-01-historia-bases-de-datos/pages/practica-y-cierre/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-02-fundamentos-motores-estructura": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/Clase02FundamentosMotoresEstructuraHubLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-02-fundamentos-motores-estructura/que-es-y-tipos": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/pages/que-es-y-tipos/QueEsYTiposPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/pages/que-es-y-tipos/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-02-fundamentos-motores-estructura/motores-y-gestores": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/pages/motores-y-gestores/MotoresYGestoresPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/pages/motores-y-gestores/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-02-fundamentos-motores-estructura/estructura-tablas-campos": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/pages/estructura-tablas-campos/EstructuraTablasCamposPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/pages/estructura-tablas-campos/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-02-fundamentos-motores-estructura/practica-y-cierre": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/pages/practica-y-cierre/PracticaYCierrePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-02-fundamentos-motores-estructura/pages/practica-y-cierre/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/Clase04DdlDmlRelacionalHubLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional/ddl-estructura": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/ddl-estructura/DdlEstructuraPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/ddl-estructura/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional/ddl-restricciones": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/ddl-restricciones/DdlRestriccionesPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/ddl-restricciones/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional/dml-insert-select": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/dml-insert-select/DmlInsertSelectPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/dml-insert-select/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional/dml-filtros-orden": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/dml-filtros-orden/DmlFiltrosOrdenPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/dml-filtros-orden/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional/agregados-group-having": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/agregados-group-having/AgregadosGroupHavingPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/agregados-group-having/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional/update-delete": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/update-delete/UpdateDeletePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/update-delete/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional/relacional-fk-joins": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/relacional-fk-joins/RelacionalFkJoinsPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/relacional-fk-joins/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-04-ddl-dml-relacional/practica-y-cierre": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/practica-y-cierre/PracticaYCierrePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-04-ddl-dml-relacional/pages/practica-y-cierre/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-03-modelos-datos-er": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/Clase03ModelosDatosErHubLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-03-modelos-datos-er/modelos-conceptual-logico-fisico": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/modelos-conceptual-logico-fisico/ModelosConceptualLogicoFisicoPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/modelos-conceptual-logico-fisico/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-03-modelos-datos-er/diagramas-er": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/diagramas-er/DiagramasErPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/diagramas-er/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-03-modelos-datos-er/familias-relacional-nosql-grafos": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/familias-relacional-nosql-grafos/FamiliasRelacionalNosqlGrafosPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/familias-relacional-nosql-grafos/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-03-modelos-datos-er/transformacion-tipos-llaves": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/transformacion-tipos-llaves/TransformacionTiposLlavesPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/transformacion-tipos-llaves/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-03-modelos-datos-er/practica-y-cierre": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/practica-y-cierre/PracticaYCierrePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-03-modelos-datos-er/pages/practica-y-cierre/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-05-normalizacion-esquemas": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/Clase05NormalizacionEsquemasHubLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-05-normalizacion-esquemas/redundancia-y-dependencia-funcional": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/redundancia-y-dependencia-funcional/RedundanciaYDependenciaFuncionalPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/redundancia-y-dependencia-funcional/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-05-normalizacion-esquemas/formas-normales-1-2-3": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/formas-normales-1-2-3/FormasNormales123PageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/formas-normales-1-2-3/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-05-normalizacion-esquemas/desnormalizacion": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/desnormalizacion/DesnormalizacionPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/desnormalizacion/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-05-normalizacion-esquemas/estrella-y-copo-de-nieve": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/estrella-y-copo-de-nieve/EstrellaYCopoDeNievePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/estrella-y-copo-de-nieve/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-05-normalizacion-esquemas/practica-y-cierre": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/practica-y-cierre/PracticaYCierrePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-05-normalizacion-esquemas/pages/practica-y-cierre/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-06-dcl-tcl-objetos-bd": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/Clase06DclTclObjetosBdHubLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-06-dcl-tcl-objetos-bd/mapa-sql-familias": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/mapa-sql-familias/MapaSqlFamiliasPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/mapa-sql-familias/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-06-dcl-tcl-objetos-bd/dcl-grant-revoke": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/dcl-grant-revoke/DclGrantRevokePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/dcl-grant-revoke/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-06-dcl-tcl-objetos-bd/tcl-transacciones-acid": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/tcl-transacciones-acid/TclTransaccionesAcidPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/tcl-transacciones-acid/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-06-dcl-tcl-objetos-bd/vistas": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/vistas/VistasPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/vistas/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-06-dcl-tcl-objetos-bd/funciones-procedimientos-triggers": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/funciones-procedimientos-triggers/FuncionesProcedimientosTriggersPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/funciones-procedimientos-triggers/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "bases-de-datos/clase-06-dcl-tcl-objetos-bd/practica-y-cierre": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/practica-y-cierre/PracticaYCierrePageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/bases-de-datos/clase-06-dcl-tcl-objetos-bd/pages/practica-y-cierre/lesson-meta"
+      ).then((m) => m.meta),
   },
 };
 

@@ -1,48 +1,51 @@
 # Pedagogy standards
 
 ## Por lección
-1. Objetivos de aprendizaje (2–5 bullets medibles)
-2. Prerrequisitos explícitos
-3. Progresión: concepto → señales → ejemplo → práctica
-4. Cierre: reto + mini-quiz (3–5 preguntas)
+1. Objetivos de aprendizaje (2–5 bullets medibles) cuando apliquen al tipo de página
+2. Prerrequisitos explícitos si la clase los necesita
+3. Progresión acorde al **modo** (narrativa → hitos; concepto → ejemplo → práctica; procedimiento → pasos → práctica)
+4. Cierre: reto y/o mini-quiz cuando el módulo lo pida (3–5 preguntas)
 
-## Profundidad explicativa (obligatoria)
+## Profundidad y foco del módulo (obligatorio)
 
-Cada concepto técnico principal debe desarrollarse con **bloques pedagógicos** (no solo listas o tablas sueltas). Usar los que apliquen al tema:
+**Primero el propósito del módulo; después la forma.** No forzar en todas las secciones los H3 *Qué es* / *Para qué sirve* / *Por qué importa*.
 
-| Bloque | Contenido mínimo |
-|--------|------------------|
-| **Qué es** | Definición clara en lenguaje accesible |
-| **Para qué sirve / Por qué importa** | Motivación y contexto de uso real |
-| **Cómo funciona** | Mecanismo, flujo o pasos (diagrama si ayuda) |
-| **Estructura / Composición** | Partes, formatos, capas (ej. octetos IPv4, labels de dominio) |
-| **Tipos / Variantes** | Clasificación con criterio de elección |
-| **Ventajas y desventajas** | Cuándo conviene y cuándo no |
-| **Ejemplo concreto** | Caso real, comando, registro DNS, petición HTTP |
-| **Señales de buen y mal uso** | Errores frecuentes y anti-patrones |
-| **Malas prácticas en el mundo real** | 3–5 escenarios concretos de producción/PYME/LATAM: qué se hizo mal, consecuencia, cómo evitarlo |
+| Modo del módulo (ejemplos) | Qué debe priorizar el contenido |
+|----------------------------|----------------------------------|
+| **Narrativa / historia** (p. ej. historia de las BD) | Contar el relato con claridad: etapas, hitos, causa→efecto, lenguaje simple. Timeline y ejemplos bastan; no convertir cada etapa en ficha «qué es / para qué». |
+| **Concepto / definición** (p. ej. qué es un SGBD, DDL) | Definir, motivar y mostrar cómo opera — ahí sí encajan *Qué es*, *Para qué*, *Cómo funciona* cuando aporten. |
+| **Procedimiento / práctica** (p. ej. normalizar, GRANT) | Pasos ejecutables, checklist, antes/después, errores frecuentes. |
+| **Comparación / elección** (p. ej. relacional vs NoSQL) | Criterios, tablas, escenarios de decisión. |
 
-**Regla:** si una sección solo tiene una tabla o 2–3 bullets sin desarrollar el *qué*, el *por qué* y un ejemplo, está **incompleta**. Referencia de tono y estructura: lecciones POSW (`servicios-web`, `modelo-cliente-servidor`, `backend`) y POO (`fundamentos`).
+**Reglas:**
+- Cada clase/módulo desarrolla **su** contenido (el brief y la fuente), con comprensión simple y tono de enseñanza a una persona.
+- Usar bloques *Qué es* / *Para qué* / *Cómo funciona* **solo si el tema es definitorio o técnico-operativo** y el bloque añade claridad — no como plantilla automática.
+- **No** forzar *Malas prácticas en el mundo real* ni *Señales de buen y mal uso* en cada sección; ver sección siguiente.
+- Prohibido rellenar historia o contexto con fichas mecánicas que rompan el hilo narrativo.
+- Sí exigir: claridad y ejemplo cuando ayuden a entender el tema del módulo.
+- Al mejorar lecciones: alinear al **modo del módulo**, no imponer el patrón POSW/POO de definición en módulos narrativos.
 
-## Malas prácticas en el mundo real (obligatorio cuando aplique)
+## Malas prácticas y señales de buen/mal uso (opcionales — solo si aportan)
 
-En **cada sección de concepto técnico** (no en Objetivos, Cierre, Miniquiz, Reto integrador ni navegación de hub):
+**No son obligatorias por sección ni por clase.** Incluirlas únicamente cuando el contenido sea técnico-operativo y el anti-patrón o la señal ayuden a aprender.
 
-1. Incluir H3 **«Malas prácticas en el mundo real»** con **3–5 ítems** concretos.
-2. Cada ítem debe describir: **situación real** → **error común** → **consecuencia** (caída, spam, brecha, costo) → **corrección**.
-3. Priorizar escenarios de PYME, hosting compartido, migraciones DNS/correo, SSH/FTP/Docker mal configurados y contexto LATAM cuando encaje.
-4. Si ya existe «Señales de buen y mal uso», **ampliar** con esta subsección dedicada (no repetir la misma frase genérica).
-5. Opcional: un `Callout` con un caso memorable por sección.
+| Bloque | Cuándo sí | Cuándo no |
+|--------|-----------|-----------|
+| **Malas prácticas en el mundo real** | Procedimiento, seguridad, DDL/DML, config, operación (error → consecuencia → corrección) | Historia, objetivos literales, relato contextual, comparación pura sin riesgo operativo |
+| **Señales de buen y mal uso** | Criterio de diseño/elección donde el estudiante pueda equivocarse al aplicar | Narrativa, timelines, listados de hechos, secciones sin decisión práctica |
 
-**Omitir** cuando el tema no admite anti-patrones (p. ej. solo listado de objetivos).
+Si se incluyen malas prácticas:
+1. Preferir H3 dedicado con **2–5** escenarios concretos (situación → error → consecuencia → corrección).
+2. Priorizar PYME / LATAM cuando encaje.
+3. No repetir el mismo mensaje genérico en cada sección de la clase.
 
-Los `PracticeExercise` y preguntas de quiz deben incluir al menos una pregunta de tipo «¿por qué…?» o «¿qué pasaría si…?».
+Los `PracticeExercise` y quizzes: en módulos técnicos, al menos una pregunta «¿por qué…?» o «¿qué pasaría si…?» ayuda; en módulos narrativos, preguntas de comprensión del relato bastan.
 
-## Interactividad mínima (obligatoria)
-- 1 bloque de práctica resoluble en página (`PracticeExercise`)
-- 3–5 preguntas quiz con feedback (`Quiz`)
-- Al menos 1 visual (`MermaidDiagram` o `StepReveal`)
-- Progresión: concepto → ejemplo → práctica → cierre
+## Interactividad mínima (adaptar al módulo)
+- 1 bloque de práctica resoluble cuando el tema lo permita (`PracticeExercise`)
+- 3–5 preguntas quiz con feedback (`Quiz`) — comprensión del relato o del procedimiento según el modo
+- Al menos 1 visual si aporta (`MermaidDiagram` o `StepReveal`)
+- No inventar práctica/anti-patrones solo para “cumplir checklist”
 
 ## Promesas visuales (obligatorias) — ADR 013
 

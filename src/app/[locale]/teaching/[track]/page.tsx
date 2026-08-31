@@ -53,7 +53,7 @@ export default async function TrackIndexPage({
                     {l.order < 100 ? String(l.order).padStart(2, "0") : "★"}
                   </span>
                   <span className="text-base font-medium leading-snug text-[var(--color-primary)]">
-                    {l.title}
+                    {l.classTitle ?? l.title}
                   </span>
                 </Link>
               </li>

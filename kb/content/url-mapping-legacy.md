@@ -9,5 +9,6 @@
 | `/pages/teaching/sea/*.html` | `/es/teaching/sea/{slug}/` |
 | `/pages/teaching/poo/*.html` | `/es/teaching/poo/{slug}/` |
 | `/pages/teaching/posw/*.html` | `/es/teaching/posw/{slug}/` |
+| `/pages/teaching/bases-de-datos/index.html` | `/es/teaching/bases-de-datos/` |
 
 Legacy HTML archivado en `kb/archive/legacy-pages/`. Mapa de redirects en `kb/content/legacy-redirects.json`; stubs generados en `out/pages/` post-build.

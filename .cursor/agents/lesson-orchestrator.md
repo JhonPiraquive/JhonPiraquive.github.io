@@ -65,23 +65,23 @@ Al crear o **refactorizar** módulos por sesiones/clases:
 
 Ver `kb/decisions/011-clases-con-paginas-internas.md` y skill create-lesson → «Paginación interna por clase».
 
-## Profundidad explicativa (obligatoria)
+## Foco del módulo (obligatorio — no plantilla fija)
 
-Al crear o **mejorar** lecciones, validar que cada concepto principal no sea solo una tabla o lista:
+Al crear o mejorar lecciones, validar que el contenido **corresponde al propósito** de la clase:
 
-- [ ] Bloques pedagógicos: *Qué es*, *Para qué sirve / Por qué*, *Cómo funciona* (los que apliquen)
-- [ ] Al menos un ejemplo concreto por concepto (comando, registro, flujo, caso LATAM)
-- [ ] Ventajas/desventajas o señales de buen/mal uso cuando el tema lo requiera
-- [ ] Referencia: `kb/education/pedagogy-standards.md` → «Profundidad explicativa»; tono POSW (`servicios-web`, `backend`) y POO (`fundamentos`)
-- [ ] **Malas prácticas en el mundo real:** H3 dedicado en secciones de concepto (3–5 escenarios: error → consecuencia → corrección); ver `pedagogy-standards.md`
+- [ ] Modo identificado: narrativa / concepto / procedimiento / comparación (ver `pedagogy-standards.md` → «Profundidad y foco del módulo»)
+- [ ] **No** exigir H3 *Qué es* / *Para qué* / *Cómo funciona* en todas las secciones — solo si el modo lo pide
+- [ ] Historia u otro relato: etapas claras, lenguaje simple, timeline/ejemplos; sin fichas mecánicas por etapa
+- [ ] Concepto/procedimiento: explicación suficiente + ejemplo; *malas prácticas* / *señales buen-mal uso* **solo si aportan** (nunca obligatorias por sección)
+- [ ] Referencia: `kb/education/pedagogy-standards.md`
 
 Si el usuario pide ampliar contenido, re-ejecutar pipeline desde **topic-expert** (brief enriquecido) → **education-expert** → layout → TSX; no parchear TSX con una frase suelta.
 
 ## Validación antes de cerrar lección
 
-- [ ] brief.md tiene secciones obligatorias (brief-schema) y cobertura de conceptos con bloques qué/por qué/cómo
+- [ ] brief.md tiene secciones obligatorias (brief-schema) y cobertura del **contenido propio** del módulo (sin relleno de plantilla qué/para qué si no aplica)
 - [ ] lesson-draft.md tiene bloques interactivos marcados
-- [ ] lesson-draft.md desarrolla conceptos con profundidad explicativa (no solo bullets)
+- [ ] lesson-draft.md desarrolla el tema según su modo (narrativa clara **o** profundidad técnica — no forzar ambos)
 - [ ] lesson-draft.md marca bloques de código con `<!-- code: {lang} -->` (no texto plano suelto)
 - [ ] lesson-spec.md mergeado (brand + clay + seo)
 - [ ] layout-spec.md mapea secciones → componentes TSX
