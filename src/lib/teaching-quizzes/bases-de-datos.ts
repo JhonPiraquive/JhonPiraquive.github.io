@@ -1,7 +1,7 @@
 import type { QuizQuestion } from "@/components/teaching/Quiz";
 
 export const BASES_DE_DATOS_QUIZZES: Record<string, QuizQuestion[]> = {
-  "clase-01-historia-bases-de-datos": [
+  "clase-01-fundamentos-bd": [
     {
       question: "¿Cuál fue el problema central de los archivos planos en los años 50–60?",
       options: [
@@ -26,43 +26,6 @@ export const BASES_DE_DATOS_QUIZZES: Record<string, QuizQuestion[]> = {
       feedback:
         "Codd propuso relaciones (tablas) e independencia frente al acceso navegacional.",
     },
-    {
-      question: "¿Dónde nace SQL en el relato?",
-      options: [
-        "Solo en el paper de Codd 1970",
-        "En System R (SEQUEL/SQL) e influencias de INGRES; luego productos comerciales como Oracle",
-        "Únicamente en CODASYL",
-        "En BigTable",
-      ],
-      correctIndex: 1,
-      feedback: "El modelo es de Codd; el lenguaje SQL surge en el ecosistema System R.",
-    },
-    {
-      question: "¿Cuál es el sentido histórico correcto?",
-      options: [
-        "NoSQL → Codd → archivos planos",
-        "Archivos planos → navegacional → Codd → SQL comercial → imperio relacional → NoSQL → convergencia",
-        "Oracle → IMS → archivos planos",
-        "Vectoriales → CODASYL → Codd",
-      ],
-      correctIndex: 1,
-      feedback: "El relato sigue esa línea de causa→efecto.",
-    },
-    {
-      question:
-        "¿Qué lectura histórica corresponde a una startup que pone Excel compartido como única “base” de pedidos?",
-      options: [
-        "Cumple el modelo CODASYL",
-        "Reproduce fallas pre-BD: choques de edición, duplicados e inconsistencias",
-        "Activa HTAP por defecto",
-        "Demuestra que Codd inventó SQL",
-      ],
-      correctIndex: 1,
-      feedback:
-        "Sin motor de concurrencia ni fuente única, reaparece el problema de los años 50.",
-    },
-  ],
-  "clase-02-fundamentos-motores-estructura": [
     {
       question: "¿Qué describe mejor una BD frente a un SGBD?",
       options: [
@@ -96,34 +59,66 @@ export const BASES_DE_DATOS_QUIZZES: Record<string, QuizQuestion[]> = {
       ],
       correctIndex: 1,
       feedback: "El motor persiste y ejecuta; GUI y CLI son clientes.",
-    },
+    }
+  ],
+  "clase-02-diseno-modelos-er": [
     {
-      question: "¿Cuál es la forma correcta de referirse a un campo y a un valor de texto en SQL?",
+      question: "Conceptual vs físico:",
       options: [
-        "Campo Nombre Programa y valor sin comillas",
-        "Campo Nombre_Programa y valor 'Técnica Profesional en Configuración de Servicios Web'",
-        "Campo con espacios y valor entre corchetes",
-        "Los valores nunca pueden tener tildes",
+        "Conceptual ya define VARCHAR; físico solo dibuja",
+        "Conceptual = qué existe en el negocio; físico = tipos SQL, motor, índices",
+        "Son sinónimos de NoSQL",
+        "El físico no usa PK",
       ],
       correctIndex: 1,
-      feedback:
-        "Identificadores sin espacios (_); literales de texto entre comillas simples; tildes permitidas en el valor.",
+      feedback: "El lógico está en medio (atributos/claves sin motor).",
     },
     {
-      question:
-        "¿Qué pasaría si una PYME usa solo Excel compartido como «base» de cupos de programas mientras tres sedes editan a la vez?",
+      question: "En 1:N, ¿dónde va la FK?",
       options: [
-        "Obtendría transacciones ACID automáticas del motor MariaDB",
-        "Reaparecerían inconsistencias y choques de edición propios de no tener un SGBD",
-        "Se convertiría automáticamente en MongoDB",
-        "phpMyAdmin corregiría los conflictos solo",
+        "Siempre en el lado 1",
+        "En el lado N (tabla hija)",
+        "Nunca se usa FK",
+        "Solo en NoSQL",
       ],
       correctIndex: 1,
-      feedback:
-        "Sin motor con concurrencia e integridad, el patrón pre-BD (duplicidad/inconsistencia) vuelve con otra herramienta.",
+      feedback: "El hijo apunta al padre.",
+    },
+    {
+      question: "Grafos frente a relacional típico:",
+      options: [
+        "No pueden representar relaciones",
+        "Las aristas son ciudadanas de primera clase; consultas por caminos",
+        "Solo almacenan Excel",
+        "Obligan a VARCHAR",
+      ],
+      correctIndex: 1,
+      feedback: "Forma de pregunta distinta → familia distinta.",
+    },
+    {
+      question: "N:M a SQL:",
+      options: [
+        "IDs separados por coma en una columna",
+        "Tabla puente con FKs a ambas entidades",
+        "Dos PRIMARY KEY en la misma tabla padre",
+        "Solo LEFT JOIN sin tablas nuevas",
+      ],
+      correctIndex: 1,
+      feedback: "Asociación explícita.",
+    },
+    {
+      question: "Orden de diseño sano:",
+      options: [
+        "CREATE TABLE → luego preguntar al negocio",
+        "Requisitos → conceptual/ER → lógico → físico/DDL",
+        "Solo físico",
+        "Solo NoSQL primero",
+      ],
+      correctIndex: 1,
+      feedback: "Diseñar antes de crear.",
     },
   ],
-  "clase-04-ddl-dml-relacional": [
+  "clase-03-sql-ddl-dml": [
     {
       question: "¿Qué distingue DDL de DML?",
       options: [
@@ -184,64 +179,7 @@ export const BASES_DE_DATOS_QUIZZES: Record<string, QuizQuestion[]> = {
         "WHERE filtra filas; HAVING filtra grupos tras GROUP BY — pregunta del material sobre conjuntos agrupados.",
     },
   ],
-  "clase-03-modelos-datos-er": [
-    {
-      question: "Conceptual vs físico:",
-      options: [
-        "Conceptual ya define VARCHAR; físico solo dibuja",
-        "Conceptual = qué existe en el negocio; físico = tipos SQL, motor, índices",
-        "Son sinónimos de NoSQL",
-        "El físico no usa PK",
-      ],
-      correctIndex: 1,
-      feedback: "El lógico está en medio (atributos/claves sin motor).",
-    },
-    {
-      question: "En 1:N, ¿dónde va la FK?",
-      options: [
-        "Siempre en el lado 1",
-        "En el lado N (tabla hija)",
-        "Nunca se usa FK",
-        "Solo en NoSQL",
-      ],
-      correctIndex: 1,
-      feedback: "El hijo apunta al padre.",
-    },
-    {
-      question: "Grafos frente a relacional típico:",
-      options: [
-        "No pueden representar relaciones",
-        "Las aristas son ciudadanas de primera clase; consultas por caminos",
-        "Solo almacenan Excel",
-        "Obligan a VARCHAR",
-      ],
-      correctIndex: 1,
-      feedback: "Forma de pregunta distinta → familia distinta.",
-    },
-    {
-      question: "N:M a SQL:",
-      options: [
-        "IDs separados por coma en una columna",
-        "Tabla puente con FKs a ambas entidades",
-        "Dos PRIMARY KEY en la misma tabla padre",
-        "Solo LEFT JOIN sin tablas nuevas",
-      ],
-      correctIndex: 1,
-      feedback: "Asociación explícita.",
-    },
-    {
-      question: "Orden de diseño sano:",
-      options: [
-        "CREATE TABLE → luego preguntar al negocio",
-        "Requisitos → conceptual/ER → lógico → físico/DDL",
-        "Solo físico",
-        "Solo NoSQL primero",
-      ],
-      correctIndex: 1,
-      feedback: "Diseñar antes de crear.",
-    },
-  ],
-  "clase-05-normalizacion-esquemas": [
+  "clase-04-experto-bd": [
     {
       question: "¿Qué es una dependencia funcional A → B en el sentido de esta clase?",
       options: [
@@ -281,32 +219,6 @@ export const BASES_DE_DATOS_QUIZZES: Record<string, QuizQuestion[]> = {
         "Desnormalizar ≠ improvisar: es una decisión con dueño de la verdad y sync o inmutabilidad. Quitar FK debilita integridad; no es desnormalización consciente.",
     },
     {
-      question: "En BI, ¿qué diferencia clave hay entre esquema en estrella y copo de nieve?",
-      options: [
-        "Estrella usa NoSQL; copo usa SQL",
-        "Estrella tiene dimensiones planas (a menudo desnormalizadas); copo normaliza dimensiones en subdimensiones (más JOINs)",
-        "Son sinónimos de 1FN y 2FN",
-        "El copo no tiene tabla de hechos",
-      ],
-      correctIndex: 1,
-      feedback:
-        "Ambos son formas analíticas (hechos + dims); el copo normaliza jerarquías dimensionales.",
-    },
-    {
-      question: "¿Qué problema ataca principalmente la 1FN (1NF)?",
-      options: [
-        "Dependencias transitivas entre no-claves",
-        "Valores no atómicos / grupos repetidos (listas en celdas, curso1…cursoN)",
-        "Únicamente el rendimiento de JOINs en tableros",
-        "Permisos de usuarios (DCL)",
-      ],
-      correctIndex: 1,
-      feedback:
-        "1FN = atomicidad y sin grupos repetidos; 2FN/3FN vienen después con DFs.",
-    },
-  ],
-  "clase-06-dcl-tcl-objetos-bd": [
-    {
       question: "¿Qué es DCL (Data Control Language — Lenguaje de Control de Datos)?",
       options: [
         "El lenguaje para INSERT/UPDATE/DELETE de filas",
@@ -328,43 +240,6 @@ export const BASES_DE_DATOS_QUIZZES: Record<string, QuizQuestion[]> = {
       ],
       correctIndex: 2,
       feedback: "Atomicidad evita estados a medias (p. ej. cupo descontado sin inscripción).",
-    },
-    {
-      question: "¿Cuál es una motivación típica para crear una vista?",
-      options: [
-        "Reemplazar siempre a las tablas base para almacenar filas",
-        "Simplificar consultas y/o exponer solo columnas autorizadas con GRANT sobre la vista",
-        "Eliminar la necesidad de transacciones",
-        "Convertir automáticamente el modelo a NoSQL",
-      ],
-      correctIndex: 1,
-      feedback:
-        "La vista es una consulta guardada; ayuda a seguridad por proyección y a reutilizar SELECT complejos.",
-    },
-    {
-      question:
-        "¿Qué diferencia principal hay entre una UDF (User-Defined Function — función definida por el usuario) y un PROCEDURE?",
-      options: [
-        "No hay ninguna diferencia",
-        "La UDF suele retornar un valor usable en expresiones/SELECT; el procedimiento se invoca con CALL y encapsula procesos (a menudo con efectos)",
-        "Los procedimientos solo existen en Excel",
-        "Las UDF reemplazan a GRANT",
-      ],
-      correctIndex: 1,
-      feedback: "Función = valor; procedimiento = rutina/proceso.",
-    },
-    {
-      question:
-        "¿Cuál es una mala práctica típica con triggers? ¿Qué pasaría si encadenas lógica oculta entre varios?",
-      options: [
-        "Usarlos para una auditoría delgada AFTER INSERT",
-        "Encadenar lógica oculta compleja entre varios triggers hasta volver imposible depurar",
-        "Documentar el evento BEFORE/AFTER",
-        "Preferir FK para integridad referencial cuando basta",
-      ],
-      correctIndex: 1,
-      feedback:
-        "Los triggers son potentes; la complejidad oculta y las cascadas son el anti-patrón clásico.",
-    },
-  ],
+    }
+  ]
 };

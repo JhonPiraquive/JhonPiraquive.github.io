@@ -464,4 +464,112 @@ export const POO_QUIZZES: Record<string, QuizQuestion[]> = {
       feedback: "DIP y contratos permiten cambiar implementaciones en el borde.",
     },
   ],
+  /** Miniquiz de cierre — Clase 1 */
+  "clase-01-fundamentos-poo": [
+    {
+      question: "En el caso Tienda Andes, ¿qué es mejor modelar como clase?",
+      options: [
+        "Un procedimiento PrintFactura suelto sin estado",
+        "Producto con Sku, Precio y reglas de validación",
+        "Una variable global con el stock",
+        "Solo un diccionario string→decimal",
+      ],
+      correctIndex: 1,
+      feedback:
+        "Producto agrupa datos y reglas (encapsulamiento). Procedimientos sueltos y globals dispersan invariantes.",
+    },
+    {
+      question: "V/F: Encapsular es ocultar todo y no exponer ningún método público.",
+      options: ["Verdadero", "Falso"],
+      correctIndex: 1,
+      feedback:
+        "Encapsular es controlar acceso: oculta detalles e expone una API segura (métodos/propiedades).",
+    },
+    {
+      question: "¿Qué muestra un diagrama de clases simple?",
+      options: [
+        "El orden de ejecución de métodos",
+        "Nombre, atributos y métodos de un tipo",
+        "Logs de producción",
+        "Uso de CPU",
+      ],
+      correctIndex: 1,
+      feedback: "La caja UML comunica estructura estática del tipo.",
+    },
+    {
+      question: "¿Qué crea una instancia en C#?",
+      options: ["class", "new", "using", "namespace"],
+      correctIndex: 1,
+      feedback: "new invoca el constructor y asigna el objeto en memoria.",
+    },
+  ],
+  /** Miniquiz de cierre — Clase 2 */
+  "clase-02-relaciones-reutilizacion": [
+    {
+      question: "Libro es un Producto. ¿Qué relación es?",
+      options: ["Composición", "Herencia", "Agregación débil", "Solo asociación"],
+      correctIndex: 1,
+      feedback: 'Herencia modela "es-un". Composición/agregación modelan "tiene-un".',
+    },
+    {
+      question: "Pedido contiene LineaPedido que no viven sin él. ¿Qué es?",
+      options: ["Asociación simple", "Agregación", "Composición", "Herencia"],
+      correctIndex: 2,
+      feedback: "Composición: el ciclo de vida de la parte depende del todo.",
+    },
+    {
+      question: "En C#, override requiere en la base…",
+      options: [
+        "Solo public",
+        "virtual o abstract",
+        "static",
+        "Ningún modificador",
+      ],
+      correctIndex: 1,
+      feedback: "Sin virtual/abstract no hay sobrescritura polimórfica.",
+    },
+    {
+      question: "V/F: Overload (sobrecarga) se resuelve en runtime según el tipo real del objeto.",
+      options: ["Verdadero", "Falso"],
+      correctIndex: 1,
+      feedback: "Overload es en compile-time por firma; override/dispatch es en runtime.",
+    },
+  ],
+  /** Miniquiz de cierre — Clase 3 */
+  "clase-03-experto-poo": [
+    {
+      question: "¿Para qué sirve una interface en el diseño de Tienda Andes?",
+      options: [
+        "Guardar estado mutable compartido",
+        "Definir un contrato que varias clases pueden cumplir",
+        "Reemplazar el compilador",
+        "Evitar usar clases",
+      ],
+      correctIndex: 1,
+      feedback: "La interface fija el qué; cada clase concreta define el cómo.",
+    },
+    {
+      question: "Lista<Producto> con Libro y Gadget llamando CalcularDescuento() es…",
+      options: ["Solo overload", "Polimorfismo", "Acoplamiento accidental", "Encapsulamiento roto"],
+      correctIndex: 1,
+      feedback: "Misma referencia de tipo base; comportamiento según instancia real.",
+    },
+    {
+      question: "Una clase con demasiados motivos de cambio viola…",
+      options: ["LSP", "SRP", "ISP", "DIP"],
+      correctIndex: 1,
+      feedback: "Single Responsibility: un motivo principal de cambio.",
+    },
+    {
+      question: "¿Qué reduce acoplamiento entre módulos?",
+      options: [
+        "Depender de interfaces en lugar de concretos",
+        "new de infraestructura dentro del dominio",
+        "Una clase Utilidades global",
+        "Campos public en todas partes",
+      ],
+      correctIndex: 0,
+      feedback: "DIP: alto nivel depende de abstracciones.",
+    },
+  ],
 };

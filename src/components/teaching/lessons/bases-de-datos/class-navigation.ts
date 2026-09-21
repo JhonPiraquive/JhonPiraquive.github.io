@@ -7,49 +7,19 @@ export type ClassNavConfig = {
   pages: ClassPageLink[];
 };
 
+/** Clase 1 — Fundamentos: historia condensada + BD/SGBD + motores + abecedario. */
 export const CLASE_01: ClassNavConfig = {
-  classSlug: "clase-01-historia-bases-de-datos",
-  classTitle: "Clase 1: Historia de las bases de datos",
+  classSlug: "clase-01-fundamentos-bd",
+  classTitle: "Clase 1: Fundamentos de bases de datos",
   hubOrder: 2,
   pages: [
     {
-      slug: "linea-de-tiempo-y-archivos",
-      title: "Línea de tiempo y archivos planos",
-      description: "Por qué importa la historia, timeline de 7 etapas y el problema raíz de los archivos planos.",
-      readMinutes: 18,
+      slug: "historia-como-motivacion",
+      title: "Historia como motivación",
+      description:
+        "De archivos planos a Codd y SQL; contraste rápido relacional vs NoSQL (no es un curso de historia).",
+      readMinutes: 28,
     },
-    {
-      slug: "navegacion-y-codd",
-      title: "Navegación por punteros y Codd 1970",
-      description: "IMS/CODASYL, modelo relacional e independencia de datos.",
-      readMinutes: 20,
-    },
-    {
-      slug: "sql-comercial-e-imperio",
-      title: "SQL comercial e imperio relacional",
-      description: "System R, Oracle, SQL estándar y el puente ER de Chen.",
-      readMinutes: 20,
-    },
-    {
-      slug: "nosql-convergencia-y-sintesis",
-      title: "NoSQL, convergencia y comparación de modelos",
-      description: "Web-scale, NewSQL/cloud, comparación de modelos, errores y casos LATAM.",
-      readMinutes: 22,
-    },
-    {
-      slug: "practica-y-cierre",
-      title: "Práctica, reto AndinaMarket y cierre",
-      description: "Cinco ejercicios, reto integrador, cierre y miniquiz.",
-      readMinutes: 25,
-    },
-  ],
-};
-
-export const CLASE_02: ClassNavConfig = {
-  classSlug: "clase-02-fundamentos-motores-estructura",
-  classTitle: "Clase 2: Fundamentos, motores y estructura",
-  hubOrder: 8,
-  pages: [
     {
       slug: "que-es-y-tipos",
       title: "Qué es una BD, SGBD y tipos",
@@ -74,16 +44,17 @@ export const CLASE_02: ClassNavConfig = {
     {
       slug: "practica-y-cierre",
       title: "Práctica, reto Andes Tech y cierre",
-      description: "Cinco ejercicios, reto integrador Andes Tech, cierre y miniquiz.",
-      readMinutes: 22,
+      description: "Ejercicios, reto integrador, cierre y miniquiz de fundamentos.",
+      readMinutes: 25,
     },
   ],
 };
 
-export const CLASE_03: ClassNavConfig = {
-  classSlug: "clase-03-modelos-datos-er",
-  classTitle: "Clase 3: Modelos de datos y diagramas ER",
-  hubOrder: 13,
+/** Clase 2 — Diseño: C/L/F, ER, PK/FK, ER→SQL (ex clase 03). */
+export const CLASE_02: ClassNavConfig = {
+  classSlug: "clase-02-diseno-modelos-er",
+  classTitle: "Clase 2: Diseño de datos y diagramas ER",
+  hubOrder: 8,
   pages: [
     {
       slug: "modelos-conceptual-logico-fisico",
@@ -100,7 +71,7 @@ export const CLASE_03: ClassNavConfig = {
     {
       slug: "familias-relacional-nosql-grafos",
       title: "Familias: relacional, NoSQL y grafos",
-      description: "Contexto de diseño por forma de pregunta (estrella/copo diferido a clase 5)",
+      description: "Contexto de diseño por forma de pregunta",
       readMinutes: 12,
     },
     {
@@ -112,16 +83,17 @@ export const CLASE_03: ClassNavConfig = {
     {
       slug: "practica-y-cierre",
       title: "Práctica y cierre",
-      description: "Ejercicios, reto, cierre y miniquiz",
+      description: "Ejercicios, reto, cierre y miniquiz — diseño listo para implementar",
       readMinutes: 25,
     },
   ],
 };
 
-export const CLASE_04: ClassNavConfig = {
-  classSlug: "clase-04-ddl-dml-relacional",
-  classTitle: "Clase 4: DDL, DML y consultas SQL",
-  hubOrder: 22,
+/** Clase 3 — SQL operativo (ex clase 04). */
+export const CLASE_03: ClassNavConfig = {
+  classSlug: "clase-03-sql-ddl-dml",
+  classTitle: "Clase 3: SQL — DDL, DML y JOINs",
+  hubOrder: 14,
   pages: [
     {
       slug: "ddl-estructura",
@@ -162,7 +134,7 @@ export const CLASE_04: ClassNavConfig = {
     {
       slug: "relacional-fk-joins",
       title: "Consultas entre tablas: JOINs",
-      description: "INNER, LEFT y RIGHT JOIN con ejemplos",
+      description: "INNER, LEFT y RIGHT JOIN con el caso de la Clase 2",
       readMinutes: 22,
     },
     {
@@ -174,10 +146,11 @@ export const CLASE_04: ClassNavConfig = {
   ],
 };
 
-export const CLASE_05: ClassNavConfig = {
-  classSlug: "clase-05-normalizacion-esquemas",
-  classTitle: "Clase 5: Normalización, desnormalización y copo de nieve",
-  hubOrder: 28,
+/** Clase 4 — Experto: normalización + DCL/TCL/objetos (ex 05+06). */
+export const CLASE_04: ClassNavConfig = {
+  classSlug: "clase-04-experto-bd",
+  classTitle: "Clase 4: Experto — normalización, permisos y objetos",
+  hubOrder: 24,
   pages: [
     {
       slug: "redundancia-y-dependencia-funcional",
@@ -188,39 +161,19 @@ export const CLASE_05: ClassNavConfig = {
     {
       slug: "formas-normales-1-2-3",
       title: "Formas normales 1FN, 2FN y 3FN",
-      description: "Checklist ejecutable 1FN→2FN→3FN + mención BCNF y SQL",
+      description: "Checklist ejecutable 1FN→2FN→3FN + mención BCNF",
       readMinutes: 22,
     },
     {
-      slug: "desnormalizacion",
-      title: "Desnormalización consciente",
-      description: "Cuándo / por qué / riesgos; snapshot de factura",
-      readMinutes: 12,
+      slug: "desnormalizacion-y-bi",
+      title: "Desnormalización consciente y esquemas BI",
+      description: "Cuándo desnormalizar; estrella vs copo de nieve",
+      readMinutes: 20,
     },
-    {
-      slug: "estrella-y-copo-de-nieve",
-      title: "Estrella y copo de nieve",
-      description: "Dims planas vs normalizadas en BI (no OLTP)",
-      readMinutes: 12,
-    },
-    {
-      slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Ejercicios, reto Rutas Digitales, cierre y miniquiz",
-      readMinutes: 25,
-    },
-  ],
-};
-
-export const CLASE_06: ClassNavConfig = {
-  classSlug: "clase-06-dcl-tcl-objetos-bd",
-  classTitle: "Clase 6: DCL, TCL, vistas, funciones, procedimientos y triggers",
-  hubOrder: 34,
-  pages: [
     {
       slug: "mapa-sql-familias",
-      title: "Del abecedario completo · DDL / DML / DCL / TCL",
-      description: "Completa el mapa SQL con DCL y TCL; etiquetar cualquier sentencia",
+      title: "Mapa SQL: DDL / DML / DCL / TCL",
+      description: "Completa el mapa SQL; etiquetar cualquier sentencia",
       readMinutes: 12,
     },
     {
@@ -250,13 +203,13 @@ export const CLASE_06: ClassNavConfig = {
     {
       slug: "practica-y-cierre",
       title: "Práctica, reto y cierre",
-      description: "Lab, ejercicios, reto Matrícula segura, miniquiz",
-      readMinutes: 25,
+      description: "Lab normalización + DCL/TCL, retos, cierre y miniquiz",
+      readMinutes: 28,
     },
   ],
 };
 
-export const ALL_CLASSES = [CLASE_01, CLASE_02, CLASE_03, CLASE_04, CLASE_05, CLASE_06] as const;
+export const ALL_CLASSES = [CLASE_01, CLASE_02, CLASE_03, CLASE_04] as const;
 
 export function buildPageSlug(classSlug: string, pageSlug: string): string {
   return `${classSlug}/${pageSlug}`;
@@ -270,6 +223,16 @@ export function getClassFirstPageSlug(config: ClassNavConfig): string {
 export function getClassLastPageSlug(config: ClassNavConfig): string {
   return buildPageSlug(config.classSlug, config.pages[config.pages.length - 1]!.slug);
 }
+
+/** Old class slugs → first live page (aliases / legacy bookmarks). */
+export const LEGACY_CLASS_REDIRECTS: Record<string, string> = {
+  "clase-01-historia-bases-de-datos": getClassFirstPageSlug(CLASE_01),
+  "clase-02-fundamentos-motores-estructura": buildPageSlug(CLASE_01.classSlug, "que-es-y-tipos"),
+  "clase-03-modelos-datos-er": getClassFirstPageSlug(CLASE_02),
+  "clase-04-ddl-dml-relacional": getClassFirstPageSlug(CLASE_03),
+  "clase-05-normalizacion-esquemas": getClassFirstPageSlug(CLASE_04),
+  "clase-06-dcl-tcl-objetos-bd": buildPageSlug(CLASE_04.classSlug, "mapa-sql-familias"),
+};
 
 /**
  * Cadena de navegación sin hubs de clase.
