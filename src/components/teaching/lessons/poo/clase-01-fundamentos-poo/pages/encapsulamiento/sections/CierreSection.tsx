@@ -36,9 +36,10 @@ export function CierreSection() {
         </li>
       </ul>
       <p className="my-4">
-        <strong>{"Siguiente paso:"}</strong>{" lección "}
-        <code>{"herencia"}</code>
-        {" — protected, extensión de clases base y diseño de APIs heredables."}
+        <strong>{"Siguiente paso:"}</strong>
+        {
+          " diagrama de clases (intro) — leer y dibujar la caja UML de Producto (Tienda Andes) antes de la práctica de cierre. La herencia llega en Clase 2."
+        }
       </p>
     </section>
   );

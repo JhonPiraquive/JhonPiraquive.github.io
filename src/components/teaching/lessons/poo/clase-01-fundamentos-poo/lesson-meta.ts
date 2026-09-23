@@ -1,5 +1,5 @@
 import type { LessonMeta } from "@/lib/teaching-lessons-registry";
-import { CLASE_01, buildPageSlug } from "../class-navigation";
+import { CLASE_01, getClassFirstPageSlug } from "../class-navigation";
 
 export const meta: LessonMeta = {
   track: "poo",
@@ -7,7 +7,7 @@ export const meta: LessonMeta = {
   title: "Fundamentos de POO",
   order: CLASE_01.hubOrder,
   prev: null,
-  next: buildPageSlug(CLASE_01.classSlug, "fundamentos"),
+  next: getClassFirstPageSlug(CLASE_01),
   seoTitle: "Fundamentos de POO: objetos, encapsulamiento y diagrama simple",
   seoDescription: "Fundamentos de POO: objetos, encapsulamiento y diagrama simple.",
   showInTrackIndex: false,

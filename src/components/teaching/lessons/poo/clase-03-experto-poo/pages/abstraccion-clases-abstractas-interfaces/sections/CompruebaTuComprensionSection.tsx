@@ -4,36 +4,38 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">
+        {"Responde en consola o en tu cuaderno; usa el código de la lección como base."}
+      </p>
       <PracticeExercise
-        prompt="Implementa `PagoTransferencia : IPago` y verifica que `Caja` no se editó al usarla en `Main`. ¿Qué principio de diseño demuestra esto?"
+        prompt="Implementa PagoNequi : IPago y cobra desde Caja sin editar la clase Caja. ¿Qué ganaste respecto a un switch por método?"
         hints={[
-          "PagoTransferencia implementa void Pagar(decimal monto)",
+          "PagoNequi implementa void Pagar(decimal monto)",
           "Caja solo conoce IPago en su constructor",
-          "El cliente permanece estable al añadir variantes",
+          "Nueva clase en lugar de nueva rama",
         ]}
         expectedKeywords={["IPago", "Caja", "desacoplamiento"]}
-        successMessage="Correcto. Nueva implementación sin modificar el cliente — abstracción bien aplicada."
+        successMessage="Correcto. Extensión por clase nueva; el cliente de cobro sigue estable."
       />
       <PracticeExercise
-        prompt="Crea `NotificacionSms` con validación mínima de destino (debe empezar con `+`) y úsala en `Main`. ¿Dónde conviene poner la validación de destino: base o derivada?"
+        prompt="NotificacionSms exige destino con prefijo +. ¿Dónde va esa regla: en la base, en Sms o en ambos con criterio?"
         hints={[
-          "Si todos los canales exigen el mismo formato, la base es mejor",
-          "Sms con prefijo + es regla específica del canal",
-          "Constructor de NotificacionSms puede validar antes de base(destino)",
+          "Mensaje no vacío es común a todos los canales → base",
+          "Formato +57… es regla del canal SMS",
+          "Constructor de Sms puede validar antes de base(destino)",
         ]}
         expectedKeywords={["NotificacionSms", "destino", "validación"]}
-        successMessage="Correcto. Reglas comunes en la base; reglas específicas del canal en la derivada."
+        successMessage="Correcto. Lo común en la abstracta; lo específico en la derivada."
       />
       <PracticeExercise
-        prompt="Para `Reporte`, `Factura` y `Contrato`: indica si usarías clase abstracta, interfaz o ambas; justifica en 3 bullets por tipo."
+        prompt="Para persistencia de pedidos vs exportación CSV de Libro: ¿interfaz, abstracta o ambas? Justifica en tres bullets."
         hints={[
-          "¿Comparten flujo o validación común?",
-          "¿Necesitan capacidades cruzadas como Firmar?",
-          "¿Hay variación real de implementación?",
+          "Guardar pedido → contrato IRepositorioPedidos",
+          "Libro comparte Producto y además exporta",
+          "Una base + interfaz lateral encaja con C#",
         ]}
-        expectedKeywords={["abstracta", "interfaz", "contrato"]}
-        successMessage="Correcto. La elección depende de estado compartido, Template Method y multi-rol."
+        expectedKeywords={["abstracta", "interfaz", "Producto"]}
+        successMessage="Correcto. La elección sigue estado compartido y roles, no moda."
       />
     </section>
   );

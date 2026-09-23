@@ -4,41 +4,41 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">{"Verifica override vs overload antes del reto."}</p>
       <div className="my-8">
         <PracticeExercise
-          prompt="Crea `MensajeSms : Mensaje` con `override` de `Enviar`; añádela a `List<Mensaje>` y verifica salida en `foreach`."
+          prompt="Añade Artesania : Producto con override de DescripcionEtiqueta a List<Producto> y comprueba la salida en foreach."
           hints={[
-            "MensajeSms implementa override Enviar con formato SMS",
-            "Añade instancia a List<Mensaje> junto a MensajeEmail",
-            "foreach llama Enviar polimórficamente",
+            "Artesania override con texto propio",
+            "Lista tipada como Producto",
+            "foreach llama DescripcionEtiqueta polimórficamente",
           ]}
-          expectedKeywords={["MensajeSms", "override", "foreach"]}
-          successMessage="Correcto. Override permite procesar canales distintos en un bucle uniforme."
+          expectedKeywords={["Artesania", "override", "foreach"]}
+          successMessage="Correcto. Override permite un bucle uniforme sobre la vitrina."
         />
       </div>
       <div className="my-8">
         <PracticeExercise
-          prompt="Añade `Sumar(params int[] valores)` a `Calculadora` si no existe. Predice qué firma usa `Sumar(1, 2, 3, 4)` antes de ejecutar."
+          prompt="¿Qué Total usa CalculadoraPedido para Total(20m, 3, 5m)? ¿Runtime o compile time?"
           hints={[
-            "params acepta arreglo variable de int",
-            "Cuatro argumentos no encajan en Sumar(int,int) ni Sumar(int,int,int)",
-            "Compilador elige en compile time",
+            "Tres argumentos: decimal, int, decimal",
+            "Coincide con la sobrecarga con descuento",
+            "Overload se resuelve al compilar",
           ]}
-          expectedKeywords={["params", "10", "compile"]}
-          successMessage="Correcto. La sobrecarga variádica suma todos los valores."
+          expectedKeywords={["descuento", "compile", "Total"]}
+          successMessage="Correcto. Tercera sobrecarga; decisión del compilador."
         />
       </div>
       <div className="my-8">
         <PracticeExercise
-          prompt="Documenta en un comentario qué pasaría si `MensajePush` usara `new void Enviar` en lugar de `override` con variable `Mensaje`."
+          prompt="Si Gadget usara new string DescripcionEtiqueta() en lugar de override, ¿qué vería un foreach sobre List<Producto>?"
           hints={[
-            "new oculta sin dispatch polimórfico",
-            "foreach sobre List<Mensaje> llamaría versión base",
-            "override es necesario para polimorfismo real",
+            "new no participa en dispatch polimórfico",
+            "Referencia Producto llama versión base",
+            "override es necesario para vitrina uniforme",
           ]}
-          expectedKeywords={["new", "base", "override", "Mensaje"]}
-          successMessage="Correcto. Con new, el cliente con referencia Mensaje no ve la implementación de la derivada."
+          expectedKeywords={["new", "base", "override", "Producto"]}
+          successMessage="Correcto. Con new, el cliente con referencia Producto no ve la etiqueta del gadget."
         />
       </div>
     </section>

@@ -3,122 +3,127 @@ import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
-const MENSAJES_POLIMORFICOS_CODE = `using System;
+const ETIQUETAS_CODE = `using System;
 using System.Collections.Generic;
 
-public class Mensaje
+public class Producto
 {
-    public virtual void Enviar(string texto)
-        => Console.WriteLine($"Enviando mensaje genérico: {texto}");
+    public string Sku { get; }
+
+    public Producto(string sku) => Sku = sku;
+
+    public virtual string DescripcionEtiqueta()
+        => $"Producto {Sku}";
 }
 
-public class MensajeEmail : Mensaje
+public class Libro : Producto
 {
-    public override void Enviar(string texto)
-        => Console.WriteLine($"Enviando EMAIL: {texto}");
+    public string Isbn { get; }
+
+    public Libro(string sku, string isbn) : base(sku)
+    {
+        Isbn = isbn;
+    }
+
+    public override string DescripcionEtiqueta()
+        => $"Libro {Isbn} ({Sku})";
 }
 
-public class MensajeSms : Mensaje
+public class Artesania : Producto
 {
-    public override void Enviar(string texto)
-        => Console.WriteLine($"Enviando SMS: {texto}");
+    public string Artesano { get; }
+
+    public Artesania(string sku, string artesano) : base(sku)
+    {
+        Artesano = artesano;
+    }
+
+    public override string DescripcionEtiqueta()
+        => $"Artesanía de {Artesano} — {Sku}";
 }`;
 
-const LISTA_MENSAJES_CODE = `var mensajes = new List<Mensaje>
+const LISTA_ETIQUETAS_CODE = `var vitrina = new List<Producto>
 {
-    new MensajeEmail(),
-    new MensajeSms()
+    new Libro("L-01", "978-123"),
+    new Artesania("A-07", "María Quispe")
 };
 
-foreach (var m in mensajes)
-    m.Enviar("Hola"); // EMAIL, luego SMS`;
+foreach (var item in vitrina)
+    Console.WriteLine(item.DescripcionEtiqueta());`;
 
 export function OverrideSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Override (sobrescritura)"}</h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Override reemplaza implementación heredada con la misma firma."}</li>
-        <li>{"Base marca virtual o abstract; derivada usa override."}</li>
-        <li>{"Dispatch en runtime cuando la variable es del tipo base."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Override: misma firma, otro comportamiento"}</h2>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Etiquetas distintas en la misma vitrina"}</h3>
       <p className="my-4">
         {
-          "Override permite que una clase derivada sustituya el comportamiento de un método de la base. Con referencia Mensaje m = new MensajeEmail(), m.Enviar() ejecuta la versión de la instancia real — complemento directo del polimorfismo."
+          "En Tienda Andes imprimes etiquetas para estantería. Todos los ítems tienen DescripcionEtiqueta(), pero un libro muestra ISBN y una artesanía muestra el nombre del artesano. Override (sobrescritura) reemplaza la implementación heredada manteniendo el mismo nombre y parámetros."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de override correcto"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Reglas en C#"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Método base con virtual o abstract."}</li>
-        <li>{"Derivada con override (no new)."}</li>
-        <li>{"Cliente itera List<Mensaje> sin if por tipo."}</li>
+        <li>{"La base marca el método como virtual o abstract."}</li>
+        <li>{"La derivada usa override, no new, si quieres polimorfismo."}</li>
+        <li>{"Con Producto p = new Libro(...), p.DescripcionEtiqueta() llama a Libro en runtime."}</li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: mensajes polimórficos"}</h3>
-      <CodeFiddle language="csharp" code={MENSAJES_POLIMORFICOS_CODE} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Lista polimórfica con override"}</h3>
-      <CodeFiddle language="csharp" code={LISTA_MENSAJES_CODE} />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código"}</h3>
+      <CodeFiddle language="csharp" code={ETIQUETAS_CODE} />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Imprimir sin preguntar el tipo"}</h3>
+      <CodeFiddle language="csharp" code={LISTA_ETIQUETAS_CODE} />
       <StepReveal
-        title="m.Enviar() con referencia Mensaje"
+        title="Qué hace el foreach"
         steps={[
           {
-            title: "Variable declarada como Mensaje",
-            content: "La referencia es del tipo base; el contrato es `Enviar(string)`.",
+            title: "Lista de tipo base",
+            content: "List<Producto> acepta Libro y Artesania por polimorfismo.",
           },
           {
-            title: "Instancia real MensajeEmail",
-            content: "El objeto en memoria es `MensajeEmail`, no la base genérica.",
+            title: "Referencia Producto",
+            content: "Cada item se ve como Producto desde el bucle.",
           },
           {
-            title: "Dispatch a override",
-            content: "El runtime resuelve `override Enviar` de la derivada.",
+            title: "Dispatch",
+            content: "El runtime ejecuta el override de la clase real.",
           },
           {
-            title: "Salida específica del canal",
-            content: "Se imprime el formato EMAIL, no el mensaje genérico.",
+            title: "Sin if por tipo",
+            content: "No necesitas if (item is Libro) para imprimir.",
           },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Jerarquía Mensaje"}</h3>
       <MermaidDiagram
         chart={`classDiagram
-  Mensaje <|-- MensajeEmail
-  Mensaje <|-- MensajeSms
-  class Mensaje {
-    +Enviar(string texto)
+  Producto <|-- Libro
+  Producto <|-- Artesania
+  class Producto {
+    +DescripcionEtiqueta()*
   }
-  class MensajeEmail {
-    +Enviar(string texto)
+  class Libro {
+    +DescripcionEtiqueta()
   }
-  class MensajeSms {
-    +Enviar(string texto)
+  class Artesania {
+    +DescripcionEtiqueta()
   }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: canal de notificaciones"}</h3>
-      <p className="my-4">
-        {
-          "Un sistema de alertas mantenía if (tipo == \"email\") en un método de 200 líneas. Con Mensaje + override, el orquestador itera List<Mensaje> sin ramas por tipo."
-        }
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Confusión típica"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"override sin virtual/abstract en la base — error de compilación."}</li>
-        <li>{"new pensando que polimorfiza — con referencia base se llama la versión de Animal."}</li>
-        <li>{"Override que rompe contrato — derivada lanza excepción donde la base no lo hace (preview LSP)."}</li>
+        <li>{"override sin virtual en Producto — error de compilación."}</li>
+        <li>{"new void DescripcionEtiqueta() creyendo que polimorfiza — con referencia Producto gana la base."}</li>
+        <li>{"Override que lanza excepción donde la base no — rompe expectativas (preview LSP)."}</li>
       </ul>
       <CodeChallenge
-        title="Completa el override de Enviar"
-        template={`public class MensajeSms : Mensaje
+        title="Completa el override"
+        template={`public class Artesania : Producto
 {
-    public {{b1}} void Enviar(string texto)
-        => Console.WriteLine($"Enviando SMS: {texto}");
+    public {{b1}} string DescripcionEtiqueta()
+        => $"Artesanía de {Artesano} — {Sku}";
 }`}
         blanks={[
           {
             id: "b1",
             answer: "override",
-            placeholder: "Keyword para redefinir un método virtual de la base",
+            placeholder: "Palabra clave para redefinir un virtual",
           },
         ]}
       />

@@ -6,88 +6,59 @@ export function PolimorfismoHerenciaSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Polimorfismo con clase abstracta"}
+        {"Polimorfismo con herencia: descuentos en el catálogo"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Clase abstracta Impuesto define contrato común Calcular."}</li>
-        <li>{"Derivadas Iva, ImpuestoCero, ImpuestoFijo implementan con override."}</li>
-        <li>{"List<Impuesto> permite bucle homogéneo."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "El polimorfismo también opera con jerarquías de herencia: variable de tipo base o abstracta, objeto concreto derivado. foreach sobre List<Impuesto> llama Calcular polimórficamente."
+          "Polimorfismo (en POO) es que una misma llamada — por ejemplo CalcularDescuento() — ejecuta lógica distinta según el tipo real del objeto, aunque la variable se declare con el tipo base Producto. El compilador ve Producto; en runtime elige Libro o Gadget."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de polimorfismo con abstracta"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Método abstract o virtual en la base."}</li>
-        <li>{"Derivadas con override (no new)."}</li>
-        <li>{"Colección del tipo base/contrato, no del concreto."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: impuestos"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Una promoción, reglas distintas por producto"}</h3>
+      <p className="my-4">
+        {
+          "La caja de Tienda Andes recorre líneas del pedido y pregunta a cada producto cuánto descuenta. Libro y Gadget son Producto en el diagrama, pero CalcularDescuento() no devuelve lo mismo."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"C#: Producto abstracto y derivadas"}</h3>
       <CodeFiddle
         language="csharp"
         code={`using System;
 using System.Collections.Generic;
 
-public abstract class Impuesto
+public abstract class Producto
 {
-    public abstract decimal Calcular(decimal baseImponible);
+    public decimal Precio { get; }
+    protected Producto(decimal precio) => Precio = precio;
+    public abstract decimal CalcularDescuento();
 }
 
-public class Iva : Impuesto
+public class Libro : Producto
 {
-    public override decimal Calcular(decimal baseImponible) => baseImponible * 0.19m;
+    public Libro(decimal precio) : base(precio) { }
+    public override decimal CalcularDescuento() => Precio * 0.10m;
 }
 
-public class ImpuestoCero : Impuesto
+public class Gadget : Producto
 {
-    public override decimal Calcular(decimal baseImponible) => 0m;
-}
-
-public class ImpuestoFijo : Impuesto
-{
-    private readonly decimal _monto;
-    public ImpuestoFijo(decimal monto) => _monto = monto;
-
-    public override decimal Calcular(decimal baseImponible) => _monto;
+    public Gadget(decimal precio) : base(precio) { }
+    public override decimal CalcularDescuento() => Precio * 0.05m;
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Foreach polimórfico"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Foreach sobre List<Producto>"}</h3>
       <CodeFiddle
         language="csharp"
-        code={`var impuestos = new List<Impuesto>
+        code={`var catalogo = new List<Producto>
 {
-    new Iva(),
-    new ImpuestoCero(),
-    new ImpuestoFijo(5m)
+    new Libro(20_000m),
+    new Gadget(50_000m)
 };
 
-foreach (var imp in impuestos)
-    Console.WriteLine(imp.Calcular(100)); // 19, 0, 5`}
+foreach (var p in catalogo)
+    Console.WriteLine(p.CalcularDescuento()); // 2000, 2500`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Preview herencia virtual (conexión lección herencia)"}</h3>
-      <CodeFiddle
-        language="csharp"
-        code={`public class Vehiculo
-{
-    public virtual void Arrancar() => Console.WriteLine("Vehículo arrancando...");
-}
-
-public class Carro : Vehiculo
-{
-    public override void Arrancar() => Console.WriteLine("Carro arrancando...");
-}
-
-Vehiculo v = new Carro();
-v.Arrancar(); // Carro arrancando... — dispatch en runtime`}
-      />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Dispatch en runtime (secuencia)"}</h3>
       <MermaidDiagram
-        title="Despacho polimórfico — Tienda Andes"
-        description="Misma referencia Producto; CalcularDescuento() resuelve en Libro o Gadget en tiempo de ejecución"
+        title="Dispatch en runtime"
+        description="Referencia Producto; CalcularDescuento resuelve en Libro o Gadget"
         chart={`sequenceDiagram
   participant C as Caja
   participant R as Producto ref
@@ -95,48 +66,54 @@ v.Arrancar(); // Carro arrancando... — dispatch en runtime`}
   participant G as Gadget
   C->>R: CalcularDescuento()
   alt instancia Libro
-    R->>L: override CalcularDescuento
-    L-->>C: 10%
+    R->>L: override
+    L-->>C: 10% del precio
   else instancia Gadget
-    R->>G: override CalcularDescuento
-    G-->>C: 5%
+    R->>G: override
+    G-->>C: 5% del precio
   end`}
       />
-      <MermaidDiagram
-        chart={`sequenceDiagram
-  participant C as Cliente
-  participant V as Vehiculo ref
-  participant Car as Carro instancia
-  C->>V: Arrancar()
-  V->>Car: override Arrancar()
-  Car-->>C: Carro arrancando...`}
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Impuestos: mismo mecanismo, otro subdominio"}</h3>
+      <p className="my-4">
+        {
+          "Al facturar, List<Impuesto> con Iva, ImpuestoCero e ImpuestoFijo se comporta igual: una llamada Calcular(base), distintos montos. Úsalo en el reto si quieres practicar abstractas además del catálogo."
+        }
+      </p>
+      <CodeFiddle
+        language="csharp"
+        code={`public abstract class Impuesto
+{
+    public abstract decimal Calcular(decimal baseImponible);
+}
+
+public class Iva : Impuesto
+{
+    public override decimal Calcular(decimal b) => b * 0.19m;
+}
+
+public class ImpuestoCero : Impuesto
+{
+    public override decimal Calcular(decimal b) => 0m;
+}
+
+foreach (var imp in new Impuesto[] { new Iva(), new ImpuestoCero() })
+    Console.WriteLine(imp.Calcular(100)); // 19, 0`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Jerarquía Impuesto"}</h3>
-      <MermaidDiagram
-        chart={`classDiagram
-  Impuesto <|-- Iva
-  Impuesto <|-- ImpuestoCero
-  Impuesto <|-- ImpuestoFijo
-  class Impuesto {
-    <<abstract>>
-    +Calcular(decimal baseImponible) decimal
-  }`}
-      />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Trampas en C#"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"new en lugar de override — oculta sin dispatch polimórfico."}</li>
-        <li>{"Olvidar virtual/abstract en la base."}</li>
-        <li>{"Contrato inconsistente: una implementación lanza excepción donde otras cumplen."}</li>
+        <li>{"Olvidar abstract/virtual en la base."}</li>
+        <li>{"Una derivada lanza excepción donde las demás cumplen — rompe LSP (lo verás en SOLID)."}</li>
       </ul>
       <PracticeExercise
-        prompt="Predice la salida de imp.Calcular(100) para Iva, ImpuestoCero e ImpuestoFijo(5) antes de ejecutar. Luego verifica en consola."
+        prompt="Antes de ejecutar: ¿qué imprime el foreach sobre Libro(10000) y Gadget(10000)? Luego verifica en consola."
         hints={[
-          "Iva: 19% de 100 = 19",
-          "ImpuestoCero siempre devuelve 0",
-          "ImpuestoFijo ignora la base y devuelve el monto fijo",
+          "Libro: 10% → 1000",
+          "Gadget: 5% → 500",
+          "La firma es la misma; el cuerpo no",
         ]}
-        expectedKeywords={["19", "0", "5"]}
-        successMessage="Correcto. Cada derivada responde distinto bajo la misma firma Calcular."
+        expectedKeywords={["1000", "500", "CalcularDescuento"]}
+        successMessage="Correcto. Misma llamada, respuestas distintas — polimorfismo con herencia."
       />
     </section>
   );

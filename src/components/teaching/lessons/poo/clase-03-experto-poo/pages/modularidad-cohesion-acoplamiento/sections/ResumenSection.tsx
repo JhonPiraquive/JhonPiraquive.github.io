@@ -5,27 +5,23 @@ export function ResumenSection() {
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Modularidad:"}</strong>
-          {" piezas con límites, API y dependencias controladas — no solo carpetas."}
+          {" límites + contratos, no solo carpetas."}
         </li>
         <li>
           <strong>{"Cohesión:"}</strong>
-          {" responsabilidades relacionadas dentro de la clase — evitar Utilidades mezclada."}
+          {" un objetivo por clase; adiós UtilidadesTienda."}
         </li>
         <li>
           <strong>{"Acoplamiento:"}</strong>
-          {" pocas dependencias fuertes entre módulos — contratos e inyección."}
+          {" reportes y repos intercambiables vía interfaz + Main."}
         </li>
         <li>
           <strong>{"Checklist:"}</strong>
-          {" SRP, OCP, LSP, ISP, DIP + cohesión + acoplamiento."}
+          {" SOLID + cohesión + acoplamiento con evidencia."}
         </li>
         <li>
-          <strong>{"Track de Programación Orientada a Objetos (POO) completo:"}</strong>
-          {" de clases y encapsulamiento a diseño mantenible con SOLID y módulos."}
-        </li>
-        <li>
-          <strong>{"Esta es la lección final del track de Programación Orientada a Objetos (POO)"}</strong>
-          {" — aplica el checklist en proyectos reales."}
+          <strong>{"Siguiente página:"}</strong>
+          {" practica-y-cierre — capstone Tienda Andes y miniquiz de Clase 3."}
         </li>
       </ul>
     </section>

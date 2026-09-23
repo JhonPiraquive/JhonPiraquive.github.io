@@ -4,7 +4,7 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">{"Verifica que puedes aplicar los conceptos de este tema antes del reto de la clase."}</p>
       <PracticeExercise
         prompt="Un script de mantenimiento hace producto.Cantidad = 0 sin pasar por reglas. ¿Qué cambio en la clase Producto evitaría esa asignación directa?"
         hints={["Piensa en private set", "Métodos Ingresar/Retirar/Ajustar"]}

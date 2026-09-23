@@ -4,32 +4,28 @@ export function ResumenSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Resumen"}</h2>
       <ul className="my-4 list-disc pl-6">
         <li>
-          <strong>{"S (SRP):"}</strong>
-          {" un motivo de cambio por clase; separar crear, notificar, persistir."}
+          <strong>{"S:"}</strong>
+          {" un motivo de cambio — PedidoService partido en roles."}
         </li>
         <li>
-          <strong>{"O (OCP):"}</strong>
-          {" extender con nuevas clases (IEnvio); eliminar switch en cliente."}
+          <strong>{"O:"}</strong>
+          {" EnvioGratis sin tocar calculadora — polimorfismo útil."}
         </li>
         <li>
-          <strong>{"L (LSP):"}</strong>
-          {" derivada sustituible; evitar Pinguino.Volar() que lanza."}
+          <strong>{"L:"}</strong>
+          {" Producto/Gadget y pingüino — contrato semántico."}
         </li>
         <li>
-          <strong>{"I (ISP):"}</strong>
-          {" IImpresora + IEscaner en lugar de interfaz comodín."}
+          <strong>{"I:"}</strong>
+          {" ticket vs escaneo — contratos por rol."}
         </li>
         <li>
-          <strong>{"D (DIP):"}</strong>
-          {" ServicioUsuarios → IRepositorioUsuarios; concreto en Main."}
+          <strong>{"D:"}</strong>
+          {" ServicioPedidos → IRepositorioPedidos; SQL en Main."}
         </li>
         <li>
-          <strong>{"Principios interconectados:"}</strong>
-          {" polimorfismo habilita OCP y DIP; LSP protege polimorfismo real."}
-        </li>
-        <li>
-          <strong>{"Siguiente lección:"}</strong>
-          {" modularidad-cohesion-acoplamiento — modularidad con checklist práctico."}
+          <strong>{"Siguiente página:"}</strong>
+          {" modularidad-cohesion-acoplamiento — empaquetar SOLID en módulos."}
         </li>
       </ul>
     </section>

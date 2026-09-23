@@ -6,67 +6,65 @@ export function RelacionesDiagramaSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Relaciones: asociación, agregación y composición"}
+        {"Vínculos en el diagrama de Tienda Andes"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Asociación (-->): clases relacionadas sin propiedad fuerte."}</li>
-        <li>{"Agregación (o--): parte puede existir fuera del todo."}</li>
-        <li>{"Composición (*--): ciclo de vida ligado — parte muere con el todo."}</li>
-        <li>{"Cardinalidad: 1, 0..*, 1..* en los extremos."}</li>
-      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Símbolos que ya codificaste"}</h3>
+      <p className="my-4">
+        {
+          "Asociación (-->): se relacionan sin propiedad fuerte. Agregación (o--): el todo agrupa partes que viven fuera. Composición (*--): la parte va ligada al todo. Cardinalidad (\"1\", \"0..*\") evita ambigüedad."
+        }
+      </p>
       <CompareTable
-        headers={["Relación", "Símbolo Mermaid", "Ciclo de vida", "Ejemplo típico"]}
+        headers={["Relación", "Mermaid", "En la tienda"]}
         rows={[
-          ["Asociación", "-->", "Independientes", "Cliente → Pedido"],
-          ["Agregación", "o--", "Parte puede existir sola", "Equipo o-- Jugador"],
-          ["Composición", "*--", "Parte muere con el todo", "Pedido *-- LineaPedido"],
+          ["Asociación", "-->", "Cliente realiza Pedido"],
+          ["Agregación", "o--", "CarritoCompras agrupa Producto"],
+          ["Composición", "*--", "Pedido compone LineaPedido"],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Relaciones recordatorio"}</h3>
       <MermaidDiagram
         chart={`classDiagram
-  Equipo o-- Jugador
-  Pedido *-- LineaPedido
-  Doctor --> Paciente : atiende`}
+  Cliente "1" --> "0..*" Pedido : realiza
+  CarritoCompras o-- Producto : agrega
+  Pedido *-- LineaPedido : compone
+  AsesorVentas --> Cliente : atiende`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Composición Pedido — LineaPedido"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Pedido y líneas con cardinalidad"}</h3>
       <MermaidDiagram
         chart={`classDiagram
   Pedido *-- "1..*" LineaPedido : compone
   class Pedido {
     +string Id
     +Total() decimal
-    +AgregarLinea(string productoId, int cantidad)
+    +AgregarLinea(string sku, int cantidad, decimal precio)
   }
   class LineaPedido {
-    +string ProductoId
+    +string Sku
     +int Cantidad
     +decimal PrecioUnitario
     +Subtotal() decimal
   }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: onboarding tienda online"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Incidente de onboarding"}</h3>
       <p className="my-4">
         {
-          "Sin diagrama, un dev asumió que Producto pertenece al Pedido por composición y borró catálogo al cancelar pedidos. El diagrama aclaró: Pedido *-- LineaPedido (composición), LineaPedido --> Producto (referencia al catálogo)."
+          "Sin diagrama, un dev modeló Producto dentro del Pedido por composición y borraba catálogo al cancelar. El dibujo aclaró: Pedido *-- LineaPedido; LineaPedido guarda SKU y precio, no «posee» el Producto vivo del catálogo."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Confusión típica"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Composición donde hay agregación (Equipo/Jugador)."}</li>
-        <li>{"Asociación tratada como composición."}</li>
-        <li>{"Omitir cardinalidad — deja ambiguo el modelo."}</li>
+        <li>{"*-- entre CarritoCompras y Producto — debería ser o--."}</li>
+        <li>{"Omitir cardinalidad en Cliente–Pedido."}</li>
       </ul>
       <PracticeExercise
-        prompt="Para Doctor y Paciente en una consulta, ¿asociación, agregación o composición? Argumenta ciclo de vida en 2–3 frases."
+        prompt="¿AsesorVentas y Cliente en una sesión de mostrador: asociación, agregación o composición? Dos frases con ciclo de vida."
         hints={[
-          "El paciente existe sin esa consulta específica",
-          "No es composición — el paciente no muere con la consulta",
-          "Asociación simple con flecha suele bastar",
+          "El cliente existe sin esa sesión",
+          "No hay todo–parte fuerte",
+          "Flecha simple --> suele bastar",
         ]}
-        expectedKeywords={["asociación", "ciclo de vida", "independiente"]}
-        successMessage="Correcto. Doctor y Paciente se relacionan sin propiedad fuerte de ciclo de vida."
+        expectedKeywords={["asociación", "ciclo", "independiente"]}
+        successMessage="Correcto. Colaboración puntual sin composición."
       />
     </section>
   );

@@ -1,5 +1,5 @@
 import type { LessonMeta } from "@/lib/teaching-lessons-registry";
-import { CLASE_03, buildPageSlug } from "../class-navigation";
+import { CLASE_03, getClassFirstPageSlug } from "../class-navigation";
 
 export const meta: LessonMeta = {
   track: "poo",
@@ -7,7 +7,7 @@ export const meta: LessonMeta = {
   title: "Experto — abstracción, SOLID y diseño",
   order: CLASE_03.hubOrder,
   prev: null,
-  next: buildPageSlug(CLASE_03.classSlug, "abstraccion-clases-abstractas-interfaces"),
+  next: getClassFirstPageSlug(CLASE_03),
   seoTitle: "Abstracción, polimorfismo, SOLID y modularidad",
   seoDescription: "Abstracción, polimorfismo, SOLID y modularidad.",
   showInTrackIndex: false,

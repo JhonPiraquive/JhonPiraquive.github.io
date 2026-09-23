@@ -558,6 +558,16 @@ const REGISTRY: Record<string, LessonEntry> = {
         "@/components/teaching/lessons/poo/clase-01-fundamentos-poo/lesson-meta"
       ).then((m) => m.meta),
   },
+  "poo/clase-01-fundamentos-poo/objetivos": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/poo/clase-01-fundamentos-poo/pages/objetivos/ObjetivosPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/poo/clase-01-fundamentos-poo/pages/objetivos/lesson-meta"
+      ).then((m) => m.meta),
+  },
   "poo/clase-01-fundamentos-poo/fundamentos": {
     component: () =>
       import(
@@ -606,6 +616,16 @@ const REGISTRY: Record<string, LessonEntry> = {
     meta: () =>
       import(
         "@/components/teaching/lessons/poo/clase-02-relaciones-reutilizacion/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "poo/clase-02-relaciones-reutilizacion/objetivos": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/poo/clase-02-relaciones-reutilizacion/pages/objetivos/ObjetivosPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/poo/clase-02-relaciones-reutilizacion/pages/objetivos/lesson-meta"
       ).then((m) => m.meta),
   },
   "poo/clase-02-relaciones-reutilizacion/herencia": {
@@ -666,6 +686,16 @@ const REGISTRY: Record<string, LessonEntry> = {
     meta: () =>
       import(
         "@/components/teaching/lessons/poo/clase-03-experto-poo/lesson-meta"
+      ).then((m) => m.meta),
+  },
+  "poo/clase-03-experto-poo/objetivos": {
+    component: () =>
+      import(
+        "@/components/teaching/lessons/poo/clase-03-experto-poo/pages/objetivos/ObjetivosPageLesson"
+      ),
+    meta: () =>
+      import(
+        "@/components/teaching/lessons/poo/clase-03-experto-poo/pages/objetivos/lesson-meta"
       ).then((m) => m.meta),
   },
   "poo/clase-03-experto-poo/abstraccion-clases-abstractas-interfaces": {

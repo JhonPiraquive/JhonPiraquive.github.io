@@ -2,109 +2,108 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
-const DOCTOR_PACIENTE_CODE = `using System;
+const ASESOR_CLIENTE_CODE = `using System;
 
-public class Paciente
+public class Cliente
 {
     public string Nombre { get; }
-    public Paciente(string nombre) => Nombre = nombre;
+    public Cliente(string nombre) => Nombre = nombre;
 }
 
-public class Doctor
+public class AsesorVentas
 {
     public string Nombre { get; }
-    public Doctor(string nombre) => Nombre = nombre;
+    public AsesorVentas(string nombre) => Nombre = nombre;
 
-    public void Atender(Paciente paciente)
+    public void Recomendar(Cliente cliente, Producto producto)
     {
-        Console.WriteLine($"{Nombre} atiende a {paciente.Nombre}");
+        Console.WriteLine($"{Nombre} sugiere a {cliente.Nombre}: {producto.Sku}");
     }
+}
+
+public class Producto
+{
+    public string Sku { get; }
+    public Producto(string sku) => Sku = sku;
 }`;
 
-const CLASE_CITA_CODE = `public class Cita
+const SESION_MOSTRADOR_CODE = `public class SesionMostrador
 {
-    public Doctor Doctor { get; }
-    public Paciente Paciente { get; }
-    public DateTime Fecha { get; }
+    public AsesorVentas Asesor { get; }
+    public Cliente Cliente { get; }
+    public DateTime Inicio { get; }
 
-    public Cita(Doctor doctor, Paciente paciente, DateTime fecha)
+    public SesionMostrador(AsesorVentas asesor, Cliente cliente, DateTime inicio)
     {
-        Doctor = doctor ?? throw new ArgumentNullException(nameof(doctor));
-        Paciente = paciente ?? throw new ArgumentNullException(nameof(paciente));
-        Fecha = fecha;
+        Asesor = asesor ?? throw new ArgumentNullException(nameof(asesor));
+        Cliente = cliente ?? throw new ArgumentNullException(nameof(cliente));
+        Inicio = inicio;
     }
 }
 
-// Doctor.Atender(Cita cita) imprime fecha + nombres`;
+// AsesorVentas.Atender(SesionMostrador s) puede leer s.Cliente y s.Inicio`;
 
 export function AsociacionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Asociación: colaboración sin propiedad"}
+        {"Asociación: se conocen, nadie «contiene» al otro"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Asociación = A conoce o usa a B sin propiedad fuerte."}</li>
-        <li>{"Puede durar una sola operación (parámetro) o formalizarse en una clase puente."}</li>
-        <li>{"Ciclo de vida independiente: B existe sin A."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "La asociación es la relación más general: un objeto interactúa con otro sin adueñarse de su existencia. Ejemplo clásico: un Doctor atiende a un Paciente; ninguno “contiene” al otro."
+          "Asociación es una colaboración entre objetos independientes: se conocen (método, campo o clase puente) sin que uno sea dueño del ciclo de vida del otro."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de asociación"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"El vínculo es temporal o por contexto (consulta, cita, transacción)."}</li>
-        <li>{"B se crea y vive fuera de A; A solo lo referencia o recibe por parámetro."}</li>
-        <li>{"No hay agrupación todo–parte con reglas de pertenencia."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: Doctor y Paciente"}</h3>
-      <CodeFiddle language="csharp" code={DOCTOR_PACIENTE_CODE} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Asociación formalizada: clase de enlace"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Escena en el mostrador"}</h3>
       <p className="my-4">
         {
-          "Cuando el contexto importa (fecha, lugar, participantes), una clase puente une los objetos sin herencia ni composición:"
+          "Un asesor recomienda un producto a un cliente. Ninguno es parte del otro: mañana el mismo cliente puede comprar solo y el asesor atiende a otra persona."
         }
       </p>
-      <CodeFiddle language="csharp" code={CLASE_CITA_CODE} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: hospital"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Uso puntual en un método"}</h3>
       <p className="my-4">
         {
-          "Un sistema modeló Consulta : Paciente para “tener” datos del paciente. Los reportes mezclan identidad con la visita; al fusionar historiales se pierde qué médico atendió en cada fecha."
+          "La forma más simple es pasar el otro objeto como parámetro. El ciclo de vida sigue independiente: Cliente y Producto existen antes y después de la recomendación."
         }
       </p>
+      <CodeFiddle language="csharp" code={ASESOR_CLIENTE_CODE} />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Cuando el contexto importa: clase de enlace"}</h3>
       <p className="my-4">
         {
-          "Decisión: Cita asocia Doctor, Paciente y DateTime; Doctor.Atender(Cita) formaliza la colaboración."
+          "Si necesitas guardar quién atendió a quién y cuándo, una clase puente (SesionMostrador) une asesor y cliente sin herencia ni «Pedido es un Cliente»."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama UML (preview)"}</h3>
+      <CodeFiddle language="csharp" code={SESION_MOSTRADOR_CODE} />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Error que vimos en clase"}</h3>
+      <p className="my-4">
+        {
+          "Alguien modeló VisitaMostrador : Cliente para «tener» el nombre del cliente. Los reportes mezclaron identidad con la visita y se perdió qué asesor atendió en cada fecha. SesionMostrador asocia roles con fecha."
+        }
+      </p>
       <MermaidDiagram
         chart={`classDiagram
-  Doctor --> Paciente : atiende
-  class Cita {
-    +Doctor Doctor
-    +Paciente Paciente
-    +DateTime Fecha
+  AsesorVentas --> Cliente : atiende
+  AsesorVentas --> Producto : recomienda
+  class SesionMostrador {
+    +AsesorVentas Asesor
+    +Cliente Cliente
+    +DateTime Inicio
   }
-  Doctor --> Cita
-  Paciente --> Cita`}
+  AsesorVentas --> SesionMostrador
+  Cliente --> SesionMostrador`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Confusión típica"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Usar herencia para “tiene” (class Consulta : Paciente)."}</li>
-        <li>{"Pasar 10 objetos a cada método en lugar de una clase de contexto (Cita, OrdenCompra)."}</li>
+        <li>{"Heredar para relacionar (class Pedido : Cliente)."}</li>
+        <li>{"Pasar ocho parámetros sueltos cuando una SesionMostrador basta."}</li>
       </ul>
       <CodeChallenge
         title="Completa la asociación"
-        template={`public void Atender({{b1}} paciente)
+        template={`public void Recomendar({{b1}} cliente, Producto producto)
 {
-    Console.WriteLine($"{Nombre} atiende a {paciente.Nombre}");
+    Console.WriteLine($"{Nombre} sugiere a {cliente.Nombre}: {producto.Sku}");
 }`}
-        blanks={[{ id: "b1", answer: "Paciente", placeholder: "Tipo del parámetro que recibe el doctor" }]}
+        blanks={[{ id: "b1", answer: "Cliente", placeholder: "Tipo del parámetro cliente" }]}
       />
     </section>
   );

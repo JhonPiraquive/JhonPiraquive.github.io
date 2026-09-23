@@ -1,76 +1,56 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
-const UTILIDADES_CODE = `// Anti-ejemplo — baja cohesión
-public class Utilidades
+const UTILIDADES_CODE = `// Anti-ejemplo en Tienda Andes — baja cohesión
+public class UtilidadesTienda
 {
-    public string FormatearNombre(string nombre) => nombre.Trim().ToUpperInvariant();
-    public decimal CalcularImpuesto(decimal valor) => valor * 0.19m;
-    public void EnviarEmail(string destino) { }
+    public string FormatearSku(string sku) => sku.Trim().ToUpperInvariant();
+    public decimal CalcularIva(decimal valor) => valor * 0.19m;
+    public void EnviarSmsCliente(string destino) { }
 }
 
-// Mejora — alta cohesión
-public class FormateoTexto
+// Alta cohesión — un objetivo por clase
+public class FormateoSku
 {
-    public string FormatearNombre(string nombre) => nombre.Trim().ToUpperInvariant();
+    public string Normalizar(string sku) => sku.Trim().ToUpperInvariant();
 }
 
-public class CalculadoraImpuestos
+public class CalculadoraIva
 {
     public decimal Calcular(decimal valor) => valor * 0.19m;
 }
 
-public class NotificadorEmail
+public class NotificadorSms
 {
-    public void Enviar(string destino) => Console.WriteLine($"Email a {destino}");
+    public void Enviar(string destino) => Console.WriteLine($"SMS a {destino}");
 }`;
 
 export function CohesionSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cohesión"}</h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Cohesión: qué tan relacionadas están las responsabilidades dentro de una clase o módulo."}</li>
-        <li>{"Alta cohesión = un objetivo común por clase."}</li>
-        <li>{"Clase Utilidades = anti-patrón de baja cohesión."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Baja cohesión → alta cohesión"}</h3>
-      <CodeFiddle language="csharp" code={UTILIDADES_CODE} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Split Utilidades"}</h3>
-      <MermaidDiagram
-        chart={`flowchart TD
-  Baja[Utilidades\\nbaja cohesión] --> Mezcla[Formateo + Impuestos + Email]
-  Alta1[FormateoTexto] --> T[Solo texto]
-  Alta2[CalculadoraImpuestos] --> I[Solo impuestos]
-  Alta3[NotificadorEmail] --> N[Solo notificación]`}
-      />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: split de Utilidades en equipo paralelo"}</h3>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cohesión: una idea por clase"}</h2>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"UtilidadesTienda otra vez"}</h3>
       <p className="my-4">
         {
-          "Cuatro desarrolladores en el mismo Utilidades.cs — conflictos de merge diarios. Refactor a FormateoTexto, CalculadoraImpuestos, NotificadorEmail con diagrama Mermaid acordado en PR."
+          "Cohesión mide si lo que vive junto en una clase persigue el mismo objetivo. UtilidadesTienda mezcla formato de SKU, impuesto y SMS — tres motivos de cambio distintos. Cuatro devs en el mismo archivo = merges eternos."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Utils como vertedero — cada función suelta va a Utilidades."}</li>
-        <li>
-          {
-            'Cohesión confundida con "pocas líneas" — 200 líneas cohesas pueden ser mejor que cinco clases arbitrarias.'
-          }
-        </li>
-        <li>{"Clase dios con formateo, impuestos, logs y SMTP."}</li>
-      </ul>
+      <CodeFiddle language="csharp" code={UTILIDADES_CODE} />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"No confundir con «pocas líneas»"}</h3>
+      <p className="my-4">
+        {
+          "Doscientas líneas que solo calculan totales de pedido pueden ser más cohesas que cinco clases arbitrarias. Pregunta: «¿todo esto cambia por la misma razón de negocio?»"
+        }
+      </p>
       <PracticeExercise
-        prompt="Lista 3 responsabilidades de Utilidades y propón 3 clases con alta cohesión que las reemplacen."
+        prompt="Separa UtilidadesTienda en tres clases cohesas (nombres del ejemplo). ¿Qué motivo de cambio tiene cada una?"
         hints={[
-          "FormatearNombre → FormateoTexto",
-          "CalcularImpuesto → CalculadoraImpuestos",
-          "EnviarEmail → NotificadorEmail",
+          "SKU → FormateoSku",
+          "IVA → CalculadoraIva",
+          "SMS → NotificadorSms",
         ]}
-        expectedKeywords={["FormateoTexto", "CalculadoraImpuestos", "NotificadorEmail"]}
-        successMessage="Correcto. Cada clase con un objetivo claro — alta cohesión."
+        expectedKeywords={["FormateoSku", "CalculadoraIva", "NotificadorSms"]}
+        successMessage="Correcto. Alta cohesión = un rol reconocible por clase."
       />
     </section>
   );

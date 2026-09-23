@@ -4,36 +4,24 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">{"Relaciona cada respuesta con modularidad, cohesión o acoplamiento."}</p>
       <PracticeExercise
-        prompt="Crea RepositorioPedidosSql (simulado) y úsalo con ServicioPedidos sin cambiar esa clase."
-        hints={[
-          "RepositorioPedidosSql implementa IRepositorioPedidos",
-          "ServicioPedidos recibe contrato por constructor",
-          "Solo Main cambia la instancia concreta",
-        ]}
-        expectedKeywords={["RepositorioPedidosSql", "ServicioPedidos", "IRepositorioPedidos"]}
-        successMessage="Correcto. Modularidad + DIP: infra intercambiable en el borde."
+        prompt="RepositorioPedidosSql con ServicioPedidos sin editar la clase servicio. ¿Qué dos ideas de diseño demuestras?"
+        hints={["Contrato IRepositorioPedidos", "Main elige concreto", "Modularidad + DIP"]}
+        expectedKeywords={["modularidad", "DIP", "Main"]}
+        successMessage="Correcto. Infra intercambiable en el borde."
       />
       <PracticeExercise
-        prompt="Lista 3 responsabilidades de Utilidades y propón 3 clases con alta cohesión que las reemplacen."
-        hints={[
-          "Una responsabilidad por clase de dominio",
-          "Nombres que describen el rol",
-          "Sin mezclar formateo con impuestos",
-        ]}
-        expectedKeywords={["FormateoTexto", "CalculadoraImpuestos", "NotificadorEmail", "cohesión"]}
-        successMessage="Correcto. Alta cohesión: cada clase un objetivo."
+        prompt="Divide UtilidadesTienda en tres clases. ¿Qué sube: cohesión, acoplamiento o ambos?"
+        hints={["Cada clase un objetivo", "Menos mezcla interna", "Cohesión sube"]}
+        expectedKeywords={["cohesión", "FormateoSku", "CalculadoraIva"]}
+        successMessage="Correcto. Cohesión alta dentro de cada módulo/clase."
       />
       <PracticeExercise
-        prompt="Recorre el checklist en un fragmento con new PdfGenerator() dentro de ReporteService. ¿Qué ítems fallan y cómo los corriges?"
-        hints={[
-          "DIP y acoplamiento — depende de concreto",
-          "Introducir IReporteRenderer",
-          "Inyectar por constructor; elegir renderer en Main",
-        ]}
-        expectedKeywords={["DIP", "acoplamiento", "IReporteRenderer", "inyección"]}
-        successMessage="Correcto. El checklist detecta acoplamiento alto y guía el refactor."
+        prompt="ReporteVentasDia con new GeneradorPdf() adentro: ¿qué ítems del checklist fallan y fix mínimo?"
+        hints={["DIP y acoplamiento", "IReporteVentasRenderer", "Inyección + Main"]}
+        expectedKeywords={["DIP", "acoplamiento", "IReporteVentasRenderer"]}
+        successMessage="Correcto. El checklist guía el refactor mínimo."
       />
     </section>
   );

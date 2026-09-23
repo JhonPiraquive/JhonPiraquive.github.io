@@ -12,14 +12,16 @@ public class Pedido
 
     public Pedido(string id)
     {
-        if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("Id requerido");
+        if (string.IsNullOrWhiteSpace(id))
+            throw new ArgumentException("Id requerido");
         Id = id;
         Estado = "Creado";
     }
 
     public void Pagar()
     {
-        if (Estado != "Creado") throw new InvalidOperationException("Solo se paga un pedido creado");
+        if (Estado != "Creado")
+            throw new InvalidOperationException("Solo se paga un pedido creado");
         Estado = "Pagado";
     }
 }`;
@@ -28,64 +30,46 @@ export function QueEsUnConstructorSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"¿Qué es un Constructor y para qué se usa?"}
+        {"El constructor: nacer en buen estado"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Se ejecuta al crear el objeto (new)."}</li>
-        <li>{"Deja el objeto en un estado válido."}</li>
-        <li>{"Puede validar y asignar valores iniciales."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "Un constructor es un método especial con el mismo nombre de la clase, sin tipo de retorno, que se ejecuta cuando creas una instancia con new."
+          "Cuando un pedido de Tienda Andes aparece en el sistema, no debería nacer “a medias”: sin id, con estado null, o ya marcado como pagado sin pasar por el flujo. El constructor es el método especial que corre al hacer new y deja el objeto listo."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Asegurar invariantes (“un pedido nace con estado Creado”)."}</li>
-        <li>{"Validar entradas (“precio no negativo”, “id no vacío”)."}</li>
-        <li>{"Preparar el objeto para usarse de inmediato, sin “arreglos” posteriores."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Bien: constructor valida lo esencial y deja el objeto listo."}</li>
-        <li>{"Mal: constructor con I/O pesada (HTTP, base de datos, archivos) que vuelve lenta y frágil la creación."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo de vida real"}</h3>
       <p className="my-4">
-        {"“Encender” un dispositivo: al encender, se inicializa a un estado listo, no “a medias”."}
+        {
+          "En C#, el constructor se llama igual que la clase, no declara tipo de retorno, y suele validar lo mínimo indispensable. Una invariante — regla que siempre debe cumplirse — puede ser: “todo Pedido tiene Id no vacío y Estado inicial Creado”."
+        }
       </p>
       <CodeFiddle language="csharp" code={PEDIDO_CODE} />
       <MermaidDiagram
         chart={`flowchart TD
   New["new Pedido(id)"] --> Ctor["Constructor valida + inicializa"]
-  Ctor --> Ready["Objeto listo (Estado=Creado)"]`}
+  Ctor --> Ready["Objeto listo\nEstado = Creado"]`}
       />
-      <Callout title="Caso real: constructor vacío y estados inválidos">
+      <Callout title="Anti-patrón que verás en proyectos reales">
         {
-          "Un microservicio crea Pedido con constructor por defecto y luego llama setters desde otro servicio. A veces el pedido queda sin Id, con Estado null o ya Pagado sin pasar por el flujo. Decisión clave: constructor que exija id válido y deje Estado = Creado. Un objeto debe nacer listo para usar."
+          "Constructor vacío + una lluvia de setters desde otro lado. El pedido queda sin Id o con Estado raro. Mejor: exigir lo esencial al crear y cambiar el estado solo con métodos de dominio (Pagar, Cancelar)."
         }
       </Callout>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Convenciones C# en esta lección"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Proyecto consola: dotnet new console"}</li>
-        <li>{"PascalCase para clases y métodos públicos"}</li>
-        <li>{"camelCase para variables locales y parámetros"}</li>
-        <li>{"new para instanciar"}</li>
-        <li>{"Propiedades con { get; private set; } para proteger estado"}</li>
-      </ul>
       <p className="my-4">
         {
-          "Crea var p = new Pedido(\"\"); y mejora el mensaje de validación. Crea var p2 = new Pedido(\"P-1\");, llama Pagar() dos veces; la segunda debe fallar con excepción clara."
+          "No pongas en el constructor llamadas pesadas a red o base de datos. Crear un objeto debería ser barato y predecible; la I/O vive en servicios que usan el objeto."
         }
       </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Convenciones C# que usaremos"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>{"Proyecto consola: dotnet new console"}</li>
+        <li>{"PascalCase en clases y métodos públicos"}</li>
+        <li>{"camelCase en variables locales y parámetros"}</li>
+        <li>{"new para instanciar; { get; private set; } para proteger estado"}</li>
+      </ul>
       <PracticeExercise
-        prompt="¿Cuándo POO no sería la mejor opción? Da un ejemplo de problema de transformación de datos donde un enfoque funcional simple bastaría."
-        hints={["Piensa en pipelines sin identidad de entidades", "¿Hay reglas de negocio o solo mapeo de datos?"]}
-        expectedKeywords={["pipeline", "transform", "funcional", "datos"]}
-        successMessage="Correcto. Si solo transformas datos sin identidad ni reglas complejas (por ejemplo, filtrar y mapear una lista), un enfoque funcional puede ser más simple que modelar objetos."
+        prompt='Prueba mental: new Pedido("") debe fallar. new Pedido("P-1") + Pagar() dos veces: la segunda falla. ¿Qué regla protege el constructor y cuál el método Pagar?'
+        hints={["Constructor: Id", "Pagar: transición de estado"]}
+        expectedKeywords={["Id", "Creado", "Pagado", "estado"]}
+        successMessage="El constructor garantiza Id y Estado=Creado; Pagar solo permite la transición Creado→Pagado una vez."
       />
     </section>
   );

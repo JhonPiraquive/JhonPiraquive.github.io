@@ -5,79 +5,82 @@ import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 const CUENTA_CODE = `using System;
 
-public class CuentaBancaria
+// En Tienda Andes, la caja tiene una cuenta de cobros del día
+public class CajaDelDia
 {
-    public decimal Saldo { get; private set; }
+    public decimal TotalCobrado { get; private set; }
 
-    public CuentaBancaria(decimal saldoInicial)
+    public CajaDelDia(decimal apertura)
     {
-        if (saldoInicial < 0) throw new ArgumentException("Saldo inicial inválido");
-        Saldo = saldoInicial;
+        if (apertura < 0) throw new ArgumentException("Apertura inválida");
+        TotalCobrado = apertura;
     }
 
-    public void Retirar(decimal monto)
+    public void RegistrarVenta(decimal monto)
     {
         if (monto <= 0) throw new ArgumentException("Monto inválido");
-        if (monto > Saldo) throw new InvalidOperationException("Fondos insuficientes");
-        Saldo -= monto;
+        TotalCobrado += monto;
+    }
+
+    public void AnularVenta(decimal monto)
+    {
+        if (monto <= 0) throw new ArgumentException("Monto inválido");
+        if (monto > TotalCobrado)
+            throw new InvalidOperationException("No hay tanto cobrado para anular");
+        TotalCobrado -= monto;
     }
 }`;
 
 export function QueEsUnObjetoSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"¿Qué es un Objeto?"}</h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Tiene identidad (es “ese” objeto)."}</li>
-        <li>{"Tiene estado (datos actuales)."}</li>
-        <li>{"Tiene comportamiento (métodos)."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Un objeto: una cosa viva en memoria"}
+      </h2>
       <p className="my-4">
         {
-          "Un objeto es una instancia que vive en memoria y representa algo del dominio. No es “solo un paquete de datos”: también sabe ejecutar operaciones válidas sobre sí mismo y proteger sus invariantes."
+          "Cuando dices “este pedido de Ana” o “esta caja del martes”, no hablas de un molde abstracto: hablas de algo concreto, con su propio historial. En POO, eso concreto es un objeto."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Encapsular reglas: “solo se puede retirar si hay saldo”."}</li>
-        <li>{"Evitar estados inválidos: “un pedido no puede enviarse si no está pagado”."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Bien: métodos que expresan intención (Pagar(), Retirar()), no setters públicos masivos."}</li>
-        <li>{"Mal: objetos anémicos (solo propiedades) con reglas dispersas en servicios gigantes."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo de vida real"}</h3>
       <p className="my-4">
         {
-          "Una tarjeta de acceso: no cualquiera decide que “ahora es válida”. Hay reglas (fecha, permisos, bloqueo). El objeto controla cuándo puede usarse."
+          "Un objeto tiene tres cosas útiles de recordar: identidad (es ese, no otro), estado (sus datos ahora) y comportamiento (métodos que sabe ejecutar). No es solo un paquete de propiedades: también decide qué cambios son legales."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo: la caja del día"}</h3>
+      <p className="my-4">
+        {
+          "En Tienda Andes, TotalCobrado no debería poder bajar a negativo porque alguien escribió caja.TotalCobrado = -1. El objeto CajaDelDia solo cambia el total por RegistrarVenta o AnularVenta."
         }
       </p>
       <CodeFiddle language="csharp" code={CUENTA_CODE} />
-      <p className="my-4">{"Variante: agrega Depositar(decimal monto) rechazando montos ≤ 0."}</p>
       <MermaidDiagram
         chart={`classDiagram
-  class CuentaBancaria {
-    +decimal Saldo
-    +CuentaBancaria(decimal saldoInicial)
-    +Retirar(decimal monto)
+  class CajaDelDia {
+    +decimal TotalCobrado
+    +CajaDelDia(decimal apertura)
+    +RegistrarVenta(decimal monto)
+    +AnularVenta(decimal monto)
   }`}
       />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Estado vs comportamiento"}</h3>
       <CompareTable
-        headers={["Concepto", "Representación en C#", "Ejemplo en CuentaBancaria"]}
+        headers={["Concepto", "En C#", "En CajaDelDia"]}
         rows={[
-          ["Estado", "Propiedades / campos", "Saldo"],
-          ["Comportamiento", "Métodos", "Retirar(), Depositar()"],
+          ["Estado", "Propiedades / campos", "TotalCobrado"],
+          ["Comportamiento", "Métodos", "RegistrarVenta(), AnularVenta()"],
         ]}
       />
+      <p className="my-4">
+        {
+          "Cuidado con el “objeto anémico”: una clase que solo tiene get/set y toda la lógica vive afuera. Ahí perdiste la ventaja de modelar con objetos."
+        }
+      </p>
       <PracticeExercise
-        prompt="Implementa Depositar(decimal monto) en CuentaBancaria rechazando montos ≤ 0. Prueba depósito y retiro válidos con dotnet run."
-        hints={["Valida monto <= 0 con ArgumentException", "Suma al Saldo si el monto es válido"]}
-        expectedKeywords={["Depositar", "Saldo", "ArgumentException"]}
-        successMessage="Correcto. El objeto controla cómo cambia su saldo mediante métodos validados, no con setters públicos."
+        prompt="Agrega mentalmente DepositarFondo(decimal monto) a CajaDelDia (solo montos > 0). ¿Por qué no bastaría un set público de TotalCobrado?"
+        hints={["¿Quién valida?", "¿Qué pasa si alguien pone un negativo?"]}
+        expectedKeywords={["valid", "private", "método", "regla"]}
+        successMessage="Exacto. El método valida; un set público deja que cualquier código rompa el total."
       />
     </section>
   );

@@ -5,27 +5,23 @@ export function ResumenSection() {
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Polimorfismo:"}</strong>
-          {" misma llamada, comportamiento según tipo real del objeto en runtime."}
+          {" misma llamada; el objeto real decide el comportamiento en runtime."}
         </li>
         <li>
-          <strong>{"Con interfaz:"}</strong>
-          {" IPasarelaPago + Checkout; inyección y bucles sin switch."}
+          <strong>{"Interfaces:"}</strong>
+          {" IPasarelaPago + Checkout; Nequi = clase nueva."}
         </li>
         <li>
-          <strong>{"Con abstracta:"}</strong>
-          {" Impuesto + override; List<Impuesto> homogénea."}
+          <strong>{"Herencia:"}</strong>
+          {" Producto + override; List<Producto> en la caja."}
         </li>
         <li>
           <strong>{"Cliente estable:"}</strong>
-          {" nuevas variantes sin editar Checkout ni Factura."}
+          {" indicador clave — sin switch por tipo en dominio."}
         </li>
         <li>
-          <strong>{"Evitar:"}</strong>
-          {" new sin polimorfismo, if por tipo, listas de tipo concreto."}
-        </li>
-        <li>
-          <strong>{"Siguiente lección:"}</strong>
-          {" override-y-sobrecarga — matiza redefinición vs sobrecarga."}
+          <strong>{"Siguiente página:"}</strong>
+          {" solid-principios — nombrar violaciones en el mismo checkout y catálogo."}
         </li>
       </ul>
     </section>

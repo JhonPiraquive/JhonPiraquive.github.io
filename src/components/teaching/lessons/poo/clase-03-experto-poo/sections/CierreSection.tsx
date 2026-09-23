@@ -4,12 +4,16 @@ import { Link } from "@/i18n/navigation";
 export function CierreSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre"}</h2>
-      <p className="my-4">{"Cierre del módulo POO. Revisa el hub del track y compara tu diseño final con SOLID y acoplamiento bajo."}</p>
-      <Callout title="Recuerda" variant="callout-tip">
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre del track POO"}</h2>
+      <p className="my-4">
+        {
+          "De clase y objeto a contratos, polimorfismo, SOLID y módulos — siempre con la misma tienda. Guarda capstone (diagrama + C# + checklist) para tu portafolio académico."
+        }
+      </p>
+      <Callout title="Qué llevar contigo" variant="callout-tip">
         <p className="mb-0">
           {
-            "POO no es solo sintaxis: es decidir qué sabe cada objeto y cómo colaboran sin romper encapsulamiento."
+            "POO no es sintaxis: es decidir qué sabe cada objeto, cómo colaboran sin romper encapsulamiento y cuándo una interfaz vale más que un switch."
           }
         </p>
       </Callout>

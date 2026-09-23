@@ -4,16 +4,29 @@ import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
-const CARRO_CODE = `using System;
+const PRODUCTO_CODE = `using System;
 
-public class Carro
+// Tienda Andes: un producto del catálogo
+public class Producto
 {
-    public int Velocidad { get; private set; }
+    public string Nombre { get; private set; }
+    public decimal Precio { get; private set; }
 
-    public void Acelerar(int delta)
+    public Producto(string nombre, decimal precio)
     {
-        if (delta <= 0) throw new ArgumentException("delta debe ser positivo");
-        Velocidad += delta;
+        if (string.IsNullOrWhiteSpace(nombre))
+            throw new ArgumentException("El nombre no puede estar vacío");
+        if (precio < 0)
+            throw new ArgumentException("El precio no puede ser negativo");
+        Nombre = nombre;
+        Precio = precio;
+    }
+
+    public void AplicarDescuento(decimal porcentaje)
+    {
+        if (porcentaje <= 0 || porcentaje > 50)
+            throw new ArgumentException("Descuento entre 0 y 50%");
+        Precio -= Precio * (porcentaje / 100m);
     }
 }
 
@@ -21,103 +34,87 @@ public class Program
 {
     public static void Main()
     {
-        var carro = new Carro();
-        carro.Acelerar(10);
-        Console.WriteLine(carro.Velocidad); // 10
+        var cafe = new Producto("Café de Nariño", 12_000m);
+        cafe.AplicarDescuento(10);
+        Console.WriteLine($"{cafe.Nombre}: {cafe.Precio}"); // 10800
     }
 }`;
 
-const CARRO_MALO_CODE = `// Evitar: cualquiera puede poner velocidad negativa
-public class CarroMalo
+const MALO_CODE = `// Evitar: cualquiera puede romper el precio desde afuera
+public class ProductoRotto
 {
-    public int Velocidad { get; set; } // ← rompe el control del objeto
+    public decimal Precio { get; set; } // ← sin control
 }`;
 
 export function QueEsLaProgramacionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"¿Qué es la Programación Orientada a Objetos (POO)?"}
+        {"Empecemos por un problema concreto"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Modelar el mundo (o el negocio) como “cosas” con datos + acciones."}</li>
-        <li>{"Agrupar datos y comportamiento en la misma unidad: el objeto."}</li>
-        <li>{"Reutilizar y extender comportamiento sin copiar y pegar."}</li>
-        <li>{"Mejorar mantenibilidad: cambios más localizados."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "La POO es un estilo de programación donde organizas el software alrededor de objetos. Un objeto suele representar una entidad del dominio (por ejemplo, Pedido, Usuario, Carrito) y contiene:"
+          "Imagina Tienda Andes: una tienda que vende café, panela y artesanías. En el código, sin orientación a objetos, suele pasar esto: variables sueltas (nombreProducto, precio, stock) y funciones repartidas que las tocan. Un día el checkout pone precio = -500. Nadie lo impidió."
         }
       </p>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Estado: sus datos internos (propiedades o campos)."}</li>
-        <li>{"Comportamiento: lo que puede hacer (métodos)."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Reducir caos: en vez de funciones sueltas repartidas por el código, tienes unidades con responsabilidades claras."}</li>
-        <li>{"Evitar inconsistencias: el objeto protege sus reglas (invariantes)."}</li>
-        <li>{"Diseñar para el cambio: agregar variantes (por ejemplo, nuevos métodos de pago) sin tocar todo el sistema."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Aplica cuando: hay reglas de negocio, estados válidos e inválidos, entidades que “hacen” cosas."}</li>
-        <li>{"No aplica cuando: el problema es pura transformación de datos (pipeline funcional simple) y una estructura sin objetos basta."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>
-          {
-            "Fintech LATAM: carrito con public decimal Total { get; set; } — checkout asigna total sin validar; pedidos con monto negativo en reportes. Corrección: métodos AplicarDescuento y Total con private set."
-          }
-        </li>
-        <li>
-          {
-            "ERP PYME: 200 variables globales para un pedido — nadie sabe quién cambió el estado. Corrección: clase Pedido con estado encapsulado y métodos de dominio."
-          }
-        </li>
-        <li>
-          {
-            "Microservicio migrado a C# con clases anémicas (solo getters/setters) y toda la lógica en controllers. Corrección: mover reglas al dominio y proteger invariantes en el objeto."
-          }
-        </li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo de vida real"}</h3>
       <p className="my-4">
         {
-          "Piensa en un carro: tiene estado (velocidad, combustible) y comportamientos (acelerar, frenar). No tiene sentido “sumar velocidad” desde cualquier parte sin reglas: el carro controla cómo cambia su estado."
+          "Qué es POO en una frase: un estilo de programar donde modelas el negocio como objetos — entidades con estado (datos) y comportamiento (métodos) — en lugar de datos sueltos y funciones que los tocan desde afuera."
         }
       </p>
-      <CodeFiddle language="csharp" title="Ejemplo C# (mínimo)" code={CARRO_CODE} />
+      <p className="my-4">
+        {
+          "La Programación Orientada a Objetos (POO) responde a esa molestia: en vez de datos sueltos, modelas “cosas” del negocio — un Producto, un Pedido, un Cliente — que cargan sus datos y las reglas de cómo pueden cambiar."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"La idea en una frase"}</h3>
+      <p className="my-4">
+        {
+          "Un objeto agrupa estado (los datos actuales) y comportamiento (lo que puede hacer con esos datos). El resto del programa no “mete mano” al estado a ciegas: le pide al objeto que haga algo válido."
+        }
+      </p>
       <MermaidDiagram
-        chart={`classDiagram
-  class Carro {
-    +int Velocidad
-    +Acelerar(int delta)
-  }`}
+        title="De variables sueltas a un objeto"
+        description="El Producto concentra nombre, precio y las reglas de cambio"
+        chart={`flowchart LR
+  subgraph Antes["Sin POO"]
+    A1[nombre]
+    A2[precio]
+    A3[descuento]
+    F1[función checkout]
+    F1 --> A2
+  end
+  subgraph Despues["Con POO"]
+    P["Producto\nnombre + precio\n+AplicarDescuento"]
+  end
+  Antes -.->|modelar| Despues`}
       />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Míralo en C#"}</h3>
+      <p className="my-4">
+        {
+          "Abajo, Producto nace con nombre y precio válidos. AplicarDescuento es la única forma de bajar el precio: si pasas un porcentaje absurdo, el objeto rechaza el cambio."
+        }
+      </p>
+      <CodeFiddle language="csharp" title="Producto en Tienda Andes" code={PRODUCTO_CODE} />
       <ClayCard className="my-6 border-l-4 border-[var(--color-accent)]">
-        <strong className="mb-2 block">{"Anti-ejemplo: setter público rompe invariantes"}</strong>
+        <strong className="mb-2 block">{"Error típico al empezar"}</strong>
         <p>
           {
-            "Evitar exponer todo con public set. Si Velocidad tuviera { get; set; }, cualquier código podría asignar velocidad negativa y romper las reglas del dominio."
+            "Crear “clases” que solo tienen getters y setters públicos, y dejar toda la lógica en el Program o en un controlador. Eso no es POO útil: el objeto no protege nada."
           }
         </p>
       </ClayCard>
-      <CodeFiddle language="csharp" code={CARRO_MALO_CODE} />
-      <Callout title="Caso real: saldo negativo por setter público">
+      <CodeFiddle language="csharp" title="Anti-ejemplo" code={MALO_CODE} />
+      <Callout title="Por qué importa en la vida del código">
         {
-          "Un equipo migra un módulo de carrito a clases pero deja public decimal Saldo { get; set; } en CuentaBancaria. Un bug en checkout hace cuenta.Saldo = -100 directamente. Los pedidos se procesan con saldo inválido hasta que auditoría detecta inconsistencias. Decisión clave: private set + métodos Retirar/Depositar que validen montos."
+          "Cuando el precio solo cambia por métodos del Producto, un bug en el checkout no puede inventar un monto negativo. Las reglas viven junto al dato. Eso es mantenibilidad concreta, no teoría."
         }
       </Callout>
       <PracticeExercise
-        prompt="Explica con tus palabras qué gana un proyecto al modelar un carrito de compras como objeto en lugar de variables sueltas (total, items, descuento) repartidas por funciones."
-        hints={["Piensa en reglas de negocio centralizadas", "¿Quién valida el descuento o el total?"]}
-        expectedKeywords={["reglas", "estado", "encapsul", "manten"]}
-        successMessage="Correcto. Un objeto agrupa estado y reglas en un solo lugar, reduce inconsistencias y facilita cambios localizados."
+        prompt="Con tus palabras: ¿qué gana Tienda Andes si el carrito es un objeto (con ítems y total) en lugar de tres variables sueltas que toca cada función?"
+        hints={["¿Quién valida el descuento o el total?", "Piensa en un solo lugar con las reglas"]}
+        expectedKeywords={["reglas", "estado", "objeto", "valid"]}
+        successMessage="Bien. El objeto concentra estado y reglas: menos inconsistencias y cambios más localizados."
       />
     </section>
   );

@@ -1,42 +1,24 @@
+import Link from "next/link";
+
 export function CierreSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre del track de Programación Orientada a Objetos (POO)"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre de la lección"}</h2>
       <p className="my-4">
         {
-          "Has completado el track de Programación Orientada a Objetos en C#. Esta lección integra todo lo aprendido en criterios prácticos de diseño mantenible."
-        }
-      </p>
-      <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>
-      <ul className="my-4 list-disc pl-6">
-        <li>
-          <strong>{"Modularidad"}</strong>
-          {" — límites, API, dependencias controladas."}
-        </li>
-        <li>
-          <strong>{"Alta cohesión"}</strong>
-          {" — un objetivo por clase; evitar Utilidades cajón de sastre."}
-        </li>
-        <li>
-          <strong>{"Bajo acoplamiento"}</strong>
-          {" — contratos e inyección; concretos en Main."}
-        </li>
-        <li>
-          <strong>{"Checklist"}</strong>
-          {" — SRP, OCP, LSP, ISP, DIP + cohesión + acoplamiento antes de merge."}
-        </li>
-      </ul>
-      <p className="my-4 font-semibold">{"Recorrido del track:"}</p>
-      <p className="my-4">
-        {
-          "Fundamentos → encapsulamiento → herencia → relaciones → abstracción → polimorfismo → override/overload → diagramas → SOLID → modularidad, cohesión y acoplamiento."
+          "Modularidad cierra la teoría de diseño de Clase 3: POO, contratos, polimorfismo, SOLID y módulos en un mismo relato — Tienda Andes."
         }
       </p>
       <p className="my-4">
         <strong>{"Siguiente paso:"}</strong>
-        {
-          " aplica el checklist en tus proyectos. Revisa diagramas, separa módulos y sustituye Utilidades y switch por contratos polimórficos."
-        }
+        {" "}
+        <Link
+          href="/teaching/poo/clase-03-experto-poo/practica-y-cierre"
+          className="text-[var(--color-secondary)] hover:underline"
+        >
+          {"practica-y-cierre"}
+        </Link>
+        {" — entrega capstone, miniquiz experto y cierre del track POO."}
       </p>
     </section>
   );

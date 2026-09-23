@@ -8,16 +8,16 @@ using System.Linq;
 
 public class LineaPedido
 {
-    public string Producto { get; }
+    public string Sku { get; }
     public int Cantidad { get; }
     public decimal PrecioUnitario { get; }
 
-    public LineaPedido(string producto, int cantidad, decimal precioUnitario)
+    public LineaPedido(string sku, int cantidad, decimal precioUnitario)
     {
-        if (string.IsNullOrWhiteSpace(producto)) throw new ArgumentException("Producto requerido");
+        if (string.IsNullOrWhiteSpace(sku)) throw new ArgumentException("SKU requerido");
         if (cantidad <= 0) throw new ArgumentException("Cantidad inválida");
         if (precioUnitario < 0) throw new ArgumentException("Precio inválido");
-        Producto = producto;
+        Sku = sku;
         Cantidad = cantidad;
         PrecioUnitario = precioUnitario;
     }
@@ -29,80 +29,61 @@ public class Pedido
 {
     private readonly List<LineaPedido> _lineas = new();
 
-    public void AgregarLinea(string producto, int cantidad, decimal precioUnitario)
+    public void AgregarLinea(string sku, int cantidad, decimal precioUnitario)
     {
-        _lineas.Add(new LineaPedido(producto, cantidad, precioUnitario));
+        _lineas.Add(new LineaPedido(sku, cantidad, precioUnitario));
     }
 
-    public void QuitarProducto(string producto)
-    {
-        _lineas.RemoveAll(l => l.Producto == producto);
-    }
+    public void QuitarSku(string sku) => _lineas.RemoveAll(l => l.Sku == sku);
 
     public decimal Total() => _lineas.Sum(l => l.Subtotal());
 }`;
 
-const ANTIPATRON_LISTA_CODE = `// MAL: rompe el control del Pedido sobre sus líneas
+const ANTIPATRON_LISTA_CODE = `// MAL: cualquiera muta las líneas sin pasar por Pedido
 public List<LineaPedido> Lineas { get; set; }`;
 
 export function ComposicionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Composición: todo–parte fuerte"}
+        {"Composición: el pedido «fabrica» sus líneas"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Composición = la parte no tiene sentido (o no existe en el modelo) sin el todo."}</li>
-        <li>{"El todo crea y controla las partes internamente."}</li>
-        <li>{"Ciclo de vida acoplado: si el todo desaparece, las partes del modelo van con él."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "En composición, el todo es responsable de instanciar y gobernar sus partes. Ejemplo: un Pedido compone LineaPedido; la línea pertenece a un pedido concreto con precio congelado."
+          "Composición es una relación todo–parte fuerte: la parte (LineaPedido) nace y muere con el todo (Pedido). No tiene sentido suelta en el modelo de negocio."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de composición"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Las partes se crean solo mediante métodos del todo (AgregarLinea)."}</li>
-        <li>{"No se pasa una parte ya construida desde afuera si el dominio exige que solo exista dentro del todo."}</li>
-        <li>{"La lista interna es privada; no se expone mutable al exterior."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: Pedido y LineaPedido"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Precio congelado al confirmar"}</h3>
+      <p className="my-4">
+        {
+          "Cuando el cliente paga, Tienda Andes guarda SKU, cantidad y precio unitario de ese momento. Si mañana sube el precio en catálogo, el pedido histórico no cambia. LineaPedido nace dentro de un Pedido concreto."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código"}</h3>
       <CodeFiddle language="csharp" code={PEDIDO_LINEA_CODE} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Anti-patrón: lista pública"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Lista pública = pierdes el control"}</h3>
       <CodeFiddle language="csharp" code={ANTIPATRON_LISTA_CODE} />
       <p className="my-4">
-        {"Código externo puede mutar o reemplazar líneas sin pasar por reglas del Pedido."}
+        {"Código externo podría insertar líneas inválidas o vaciar la lista sin reglas de negocio."}
       </p>
       <StepReveal
-        title="Línea de pedido"
+        title="AgregarLinea por dentro"
         steps={[
-          { title: "Cliente llama", content: 'pedido.AgregarLinea("Teclado", 2, 49.99m);' },
+          { title: "Cliente", content: 'pedido.AgregarLinea("TE-ANDES", 2, 12m);' },
           {
-            title: "Pedido instancia",
-            content: "Internamente new LineaPedido(...) — la parte nace dentro del todo.",
+            title: "Pedido crea",
+            content: "Internamente new LineaPedido(...) — la línea nace con el pedido.",
           },
-          {
-            title: "Validación",
-            content: "El constructor de LineaPedido valida producto, cantidad y precio.",
-          },
-          { title: "Total", content: "pedido.Total() suma subtotales sin exponer la lista." },
+          { title: "Validación", content: "El constructor de LineaPedido valida cantidad y precio." },
+          { title: "Total", content: "pedido.Total() sin exponer la lista mutable." },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: pedido confirmado vs catálogo"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"No confundir con el catálogo"}</h3>
       <p className="my-4">
         {
-          "Un marketplace reutilizaba instancias de Producto del catálogo como líneas de pedido. Un cambio de precio en catálogo alteraba pedidos históricos."
+          "Un error grave es reutilizar la misma instancia de Producto del catálogo como línea: un cambio de Precio en vitrina alteraría pedidos viejos. La línea guarda copia del precio (y SKU) al confirmar."
         }
       </p>
-      <p className="my-4">
-        {
-          "Lección: Pedido compone LineaPedido con precio y cantidad congelados al momento de la compra."
-        }
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama UML (preview)"}</h3>
       <MermaidDiagram
         chart={`classDiagram
   Pedido *-- LineaPedido : compone
@@ -112,10 +93,10 @@ export function ComposicionSection() {
     +Total()
   }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Confusión típica"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Crear LineaPedido en Main y pasarla a Pedido cuando el dominio exige composición."}</li>
-        <li>{"Olvidar validar en AgregarLinea — delegar todo afuera rompe invariantes."}</li>
+        <li>{"Exponer List<LineaPedido> pública «para facilitar» — rompe encapsulamiento."}</li>
       </ul>
     </section>
   );

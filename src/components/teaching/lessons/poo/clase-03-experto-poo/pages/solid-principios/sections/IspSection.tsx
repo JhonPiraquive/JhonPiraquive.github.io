@@ -1,68 +1,60 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
-const INTERFACES_SEGREGADAS = `public interface IImpresora
+const INTERFACES_SEGREGADAS = `public interface IImpresoraTicket
 {
     void Imprimir(string texto);
 }
 
-public interface IEscaner
+public interface IEscanerFactura
 {
     void Escanear();
 }
 
-public class ImpresoraBasica : IImpresora
+public class ImpresoraCaja : IImpresoraTicket
 {
     public void Imprimir(string texto) => Console.WriteLine(texto);
 }
 
-public class ImpresoraTodoEnUno : IImpresora, IEscaner
+public class MultifuncionalBodega : IImpresoraTicket, IEscanerFactura
 {
     public void Imprimir(string texto) => Console.WriteLine(texto);
-    public void Escanear() => Console.WriteLine("Escaneando...");
+    public void Escanear() => Console.WriteLine("Escaneando factura proveedor...");
 }`;
 
 export function IspSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"I — Segregación de interfaces (ISP)"}
+        {"I — Interfaces pequeñas (ISP)"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Interfaces pequeñas y específicas por rol."}</li>
-        <li>{"No forzar a implementar métodos que la clase no usa."}</li>
-        <li>{"Dividir interfaz \"comodín\" en contratos enfocados."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Anti-patrón: interfaz hinchada"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"La impresora de caja no escanea"}</h3>
       <p className="my-4">
         {
-          "Una IImpresoraMultiuso con fax obliga a impresora básica a métodos vacíos o NotImplementedException."
+          "ISP (Interface Segregation Principle) evita que IEquipoDeTienda obligue a la impresora del mostrador a implementar Escanear con NotImplementedException. En Tienda Andes: contrato de ticket separado del contrato de bodega."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Interfaces segregadas"}</h3>
       <CodeFiddle language="csharp" code={INTERFACES_SEGREGADAS} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama ISP"}</h3>
       <MermaidDiagram
         chart={`classDiagram
-  class IImpresora {
+  class IImpresoraTicket {
     <<interface>>
     +Imprimir(string texto)
   }
-  class IEscaner {
+  class IEscanerFactura {
     <<interface>>
     +Escanear()
   }
-  IImpresora <|.. ImpresoraBasica
-  IImpresora <|.. ImpresoraTodoEnUno
-  IEscaner <|.. ImpresoraTodoEnUno`}
+  IImpresoraTicket <|.. ImpresoraCaja
+  IImpresoraTicket <|.. MultifuncionalBodega
+  IEscanerFactura <|.. MultifuncionalBodega`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Interfaz gigante \"por si acaso\"."}</li>
-        <li>{"Implementaciones con métodos vacíos — señal de ISP violado."}</li>
-        <li>{"Confundir ISP con \"una interfaz por método\"."}</li>
-      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señal de alerta"}</h3>
+      <p className="my-4">
+        {
+          "Métodos vacíos o throw NotImplemented en implementaciones «simples» suelen gritar interfaz hinchada. Parte el contrato por rol real, no por «por si acaso»."
+        }
+      </p>
     </section>
   );
 }

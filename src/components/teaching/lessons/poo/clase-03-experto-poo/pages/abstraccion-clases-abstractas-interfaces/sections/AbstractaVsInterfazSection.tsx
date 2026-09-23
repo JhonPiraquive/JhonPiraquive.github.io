@@ -7,79 +7,95 @@ export function AbstractaVsInterfazSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Clase abstracta vs interfaz"}
+        {"¿Abstracta o interfaz en Tienda Andes?"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Abstracta cuando hay código y estado compartidos."}</li>
-        <li>{"Interfaz cuando solo necesitas contrato y posible multi-rol."}</li>
-        <li>{"Un tipo puede combinar ambos."}</li>
-      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Dos preguntas antes de elegir"}</h3>
+      <p className="my-4">
+        {
+          "¿Varias clases comparten estado o pasos idénticos (validar SKU, calcular descuento base)? Piensa en clase abstracta Producto. ¿Solo necesitas intercambiar un comportamiento en el borde (pago, persistencia)? Piensa en interfaz IPago o IRepositorioPedidos."
+        }
+      </p>
       <CompareTable
         headers={["Criterio", "Clase abstracta", "Interfaz"]}
         rows={[
           ["Instanciable con new", "No", "No (la interfaz sola)"],
           ["Estado / campos compartidos", "Sí", "No"],
           ["Código común en base", "Sí", "No (solo contrato)"],
-          ["Múltiples roles por clase", "Una base", "Varias interfaces"],
-          ["Caso típico", "Template Method", "Capacidad intercambiable"],
+          ["Múltiples roles por clase", "Una base en C#", "Varias interfaces"],
+          ["En la tienda", "Producto → Libro / Gadget", "IPago, IRepositorioPedidos"],
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo combinado: Documento + IFirmable"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Combinar ambos: Producto + IExportable"}</h3>
+      <p className="my-4">
+        {
+          "Libro hereda invariantes de Producto (SKU, precio) y además puede cumplir un contrato lateral para exportar catálogo a CSV — sin mezclar eso en la jerarquía de productos."
+        }
+      </p>
       <CodeFiddle
         language="csharp"
-        code={`public interface IFirmable
+        code={`public interface IExportable
 {
-    void Firmar();
+    string ExportarLineaCsv();
 }
 
-public abstract class Documento
+public abstract class Producto
 {
-    public abstract void Validar();
-    public void Archivar() => Console.WriteLine("Archivado.");
+    public string Sku { get; }
+    public decimal Precio { get; }
+    protected Producto(string sku, decimal precio)
+    {
+        Sku = sku;
+        Precio = precio;
+    }
+    public abstract decimal CalcularDescuento();
 }
 
-public class Contrato : Documento, IFirmable
+public class Libro : Producto, IExportable
 {
-    public override void Validar() => Console.WriteLine("Contrato válido.");
-    public void Firmar() => Console.WriteLine("Firmado.");
+    public string Isbn { get; }
+    public Libro(string sku, decimal precio, string isbn) : base(sku, precio) => Isbn = isbn;
+    public override decimal CalcularDescuento() => Precio * 0.10m;
+    public string ExportarLineaCsv() => $"{Sku},{Precio},{Isbn}";
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama: Documento abstracto + IFirmable"}</h3>
       <MermaidDiagram
         chart={`classDiagram
-  class IFirmable {
+  class IExportable {
     <<interface>>
-    +Firmar()
+    +ExportarLineaCsv()
   }
-  class Documento {
+  class Producto {
     <<abstract>>
-    +Validar()*
-    +Archivar()
+    +CalcularDescuento()*
   }
-  Documento <|-- Contrato
-  IFirmable <|.. Contrato`}
+  Producto <|-- Libro
+  IExportable <|.. Libro`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Criterio de decisión rápida"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>
-          <strong>{"Pagos intercambiables sin estado compartido:"}</strong>
-          {" interfaz IPago."}
-        </li>
-        <li>
-          <strong>{"Notificaciones con validación común:"}</strong>
-          {" clase abstracta Notificacion."}
-        </li>
-        <li>
-          <strong>{"Documento con validación variable + capacidad de firmar:"}</strong>
-          {" abstracta + interfaz."}
-        </li>
-      </ul>
-      <Callout title="Error frecuente">
-        {
-          "Duplicar el mismo contrato en interfaz y clase abstracta sin criterio. Elige según si necesitas estado/código compartido (abstracta) o solo capacidad intercambiable (interfaz)."
-        }
+      <Callout title="Malentendidos en C#" variant="callout-warning">
+        <ul className="mb-0 list-disc pl-5">
+          <li>
+            {
+              "Abstracción (idea) ≠ abstract class. Puedes abstraer solo con IPago; no hace falta una clase abstracta Pago."
+            }
+          </li>
+          <li>
+            {
+              "En C#: una sola clase base, muchas interfaces. Libro : Producto, IExportable compila; dos bases no."
+            }
+          </li>
+          <li>
+            {
+              "«Siempre interfaz; herencia mala» es falso aquí: Libro y Gadget comparten reglas de Producto; la base está justificada."
+            }
+          </li>
+        </ul>
       </Callout>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Decisión rápida"}</h3>
+      <ul className="my-4 list-disc pl-6">
+        <li>{"Pagos distintos, sin flujo común en base → IPago."}</li>
+        <li>{"Avisos de pedido con validación y log compartidos → NotificacionPedido abstracta."}</li>
+        <li>{"Catálogo con descuento variable + exportación → Producto abstracta + IExportable."}</li>
+      </ul>
     </section>
   );
 }

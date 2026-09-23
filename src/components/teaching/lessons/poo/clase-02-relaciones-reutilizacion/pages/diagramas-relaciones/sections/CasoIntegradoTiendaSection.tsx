@@ -6,15 +6,14 @@ export function CasoIntegradoTiendaSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Caso integrado: tienda de pedidos"}
+        {"Tienda Andes en un solo diagrama"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Modelo completo: Cliente, Pedido, LineaPedido, Producto."}</li>
-        <li>{"Cardinalidades explícitas en cada relación."}</li>
-        <li>{"Señal de diseño: clase con 15 métodos de dominios distintos — preview SRP."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso integrado tienda (modelo completo)"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Plano antes del sprint"}</h3>
+      <p className="my-4">
+        {
+          "Este diagrama resume Clase 2: herencia en catálogo, composición en pedido confirmado, asociación cliente–pedido y referencia de línea al SKU (sin borrar catálogo)."
+        }
+      </p>
       <MermaidDiagram
         chart={`classDiagram
   class Cliente {
@@ -22,68 +21,79 @@ export function CasoIntegradoTiendaSection() {
     +string Nombre
   }
   class Producto {
-    +string Id
-    +string Nombre
+    +string Sku
     +decimal Precio
+    +DescripcionEtiqueta()*
+  }
+  class Libro {
+    +string Isbn
+  }
+  class Gadget {
+    +string Marca
   }
   class LineaPedido {
-    +string ProductoId
+    +string Sku
     +int Cantidad
     +decimal PrecioUnitario
     +Subtotal() decimal
   }
   class Pedido {
     +string Id
-    +EstadoPedido Estado
     +Total() decimal
-    +AgregarLinea(string productoId, int cantidad)
+    +AgregarLinea(string sku, int cantidad, decimal precio)
   }
+  class CarritoCompras {
+    +Agregar(Producto)
+    +Quitar(string sku)
+  }
+  Producto <|-- Libro
+  Producto <|-- Gadget
   Cliente "1" --> "0..*" Pedido : realiza
   Pedido *-- "1..*" LineaPedido : compone
-  LineaPedido --> Producto : referencia`}
+  CarritoCompras o-- Producto : agrega`}
       />
       <StepReveal
-        title="Caso tienda: de UML a C#"
+        title="Leer el diagrama como compañero nuevo"
         steps={[
           {
-            title: "Caja Pedido con métodos",
-            content: "Total() y AgregarLinea definen comportamiento del agregado raíz.",
+            title: "Catálogo",
+            content: "Producto <|-- Libro/Gadget — «es un»; override en DescripcionEtiqueta.",
           },
           {
-            title: "Flecha composición a LineaPedido",
-            content: "Las líneas se crean y destruyen con el pedido — *-- con cardinalidad 1..*.",
+            title: "Carrito",
+            content: "o-- Producto — agregación; vaciar carrito no elimina catálogo.",
           },
           {
-            title: "Referencia a Producto",
-            content: "LineaPedido apunta al catálogo; no borra Producto al eliminar línea.",
+            title: "Pedido",
+            content: "*-- LineaPedido — composición; precio congelado en la línea.",
           },
           {
-            title: "Validar cardinalidad",
-            content: "Cliente 1 realiza 0..* Pedidos — un cliente puede tener varios pedidos o ninguno.",
+            title: "Cliente",
+            content: "Flecha realiza con 0..* — un cliente, varios pedidos o ninguno.",
           },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: refactor de checkout"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama pequeño, código alineado"}</h3>
       <p className="my-4">
         {
-          "Un equipo de e-commerce dibujó en 90 minutos Cliente, Pedido, LineaPedido, Producto, IPasarelaPago y implementaciones. Cardinalidad y composición acordadas antes de tocar código."
+          "En un taller real, el equipo acordó este recorte en una hora antes de tocar C#. Regla: si cambias AgregarLinea, actualizas la caja Pedido en Mermaid."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Clase \"Dios\" en el diagrama — PedidoService con 15 métodos de dominios distintos."}</li>
-        <li>{"Desincronía diagrama-código — acordar quién actualiza el Mermaid."}</li>
-        <li>{"Incluir todo el sistema en una sola figura."}</li>
-      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Alerta de diseño (preview)"}</h3>
+      <p className="my-4">
+        {
+          "Si dibujas una sola clase PedidoService con cobro, envío, inventario y reportes, el diagrama te avisa antes de Clase 3 (SOLID): demasiadas razones para cambiar en una caja."
+        }
+      </p>
       <PracticeExercise
-        prompt="Dibuja en Mermaid Usuario, Carrito y Producto. Conecta carrito con varios productos. Justifica agregación vs composición."
+        prompt="Añade CarritoCompras o-- Producto al diagrama con cardinalidad 0..*. ¿Agregación o composición? Una frase."
         hints={[
-          "Carrito o-- Producto si el producto existe en catálogo sin carrito",
-          "Cardinalidad 0..* en productos del carrito",
-          "No uses composición si Producto es catálogo compartido",
+          "Producto del catálogo sobrevive al carrito",
+          "Símbolo o--",
+          "No uses *-- para catálogo compartido",
         ]}
-        expectedKeywords={["Carrito", "Producto", "agregación", "o--"]}
-        successMessage="Correcto. Agregación refleja que el producto del catálogo sobrevive al carrito."
+        expectedKeywords={["CarritoCompras", "agregación", "o--"]}
+        successMessage="Correcto. Carrito agrupa referencias al catálogo."
       />
     </section>
   );

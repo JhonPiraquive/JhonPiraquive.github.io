@@ -7,40 +7,36 @@ export function ResumenSection() {
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Diagrama de clases:"}</strong>
-          {" estructura estática — clases, atributos, métodos, relaciones."}
+          {" estructura estática de Tienda Andes — no flujo de pantallas."}
         </li>
         <li>
           <strong>{"Herencia"}</strong>
           {" <|--; "}
-          <strong>{"implementación"}</strong>
-          {" <|..; estereotipos <<abstract>>, <<interface>>."}
+          <strong>{"interfaz"}</strong>
+          {" <|..; Producto y derivadas en catálogo."}
         </li>
         <li>
           <strong>{"Relaciones:"}</strong>
-          {" asociación -->, agregación o--, composición *-- + cardinalidad."}
+          {" --> asociación; o-- carrito; *-- pedido y líneas."}
         </li>
         <li>
-          <strong>{"Mermaid"}</strong>
-          {" reutilizable en el curso; mismo modelo mapeable a C#."}
+          <strong>{"Hábito:"}</strong>
+          {" diagrama pequeño, actualizado cuando cambia AgregarLinea o el catálogo."}
         </li>
         <li>
-          <strong>{"Foco:"}</strong>
-          {" diagramas pequeños, actualizados, alineados al código."}
-        </li>
-        <li>
-          <strong>{"Siguiente lección:"}</strong>
-          {" solid-principios — reglas para clases sobrecargadas detectadas en diagramas."}
+          <strong>{"Siguiente:"}</strong>
+          {" practica-y-cierre — implementar parte 2 de Tienda Andes en consola."}
         </li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Checklist símbolos Mermaid"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Símbolos Mermaid (chuleta)"}</h3>
       <CompareTable
         headers={["Concepto", "Sintaxis Mermaid"]}
         rows={[
-          ["Herencia", "Base <|-- Derivada"],
-          ["Implementación interfaz", "IContrato <|.. Clase"],
-          ["Asociación", "A --> B"],
-          ["Agregación", "Todo o-- Parte"],
-          ["Composición", "Todo *-- Parte"],
+          ["Herencia", "Producto <|-- Libro"],
+          ["Implementación interfaz", "IPasarelaPago <|.. PasarelaTarjeta"],
+          ["Asociación", "Cliente --> Pedido"],
+          ["Agregación", "CarritoCompras o-- Producto"],
+          ["Composición", "Pedido *-- LineaPedido"],
           ['Cardinalidad', '"1" --> "0..*"'],
         ]}
       />

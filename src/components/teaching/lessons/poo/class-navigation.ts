@@ -14,11 +14,18 @@ export const CLASE_01: ClassNavConfig = {
   hubOrder: 2,
   pages: [
     {
+      slug: "objetivos",
+      title: "Objetivos de aprendizaje",
+      description:
+        "Qué lograrás en Clase 1: POO, encapsulamiento, diagrama caja y entregable Producto.",
+      readMinutes: 7,
+    },
+    {
       slug: "fundamentos",
       title: "Qué es POO: clase, objeto, instancia y constructor",
       description:
         "De la programación estructurada a objetos; molde vs ejemplar; new y constructor en C#.",
-      readMinutes: 35,
+      readMinutes: 28,
     },
     {
       slug: "encapsulamiento",
@@ -47,13 +54,20 @@ export const CLASE_01: ClassNavConfig = {
 export const CLASE_02: ClassNavConfig = {
   classSlug: "clase-02-relaciones-reutilizacion",
   classTitle: "Clase 2: Relaciones y reutilización",
-  hubOrder: 8,
+  hubOrder: 9,
   pages: [
+    {
+      slug: "objetivos",
+      title: "Objetivos de aprendizaje",
+      description:
+        "Qué lograrás en Clase 2: herencia, override/overload, relaciones y UML del caso.",
+      readMinutes: 7,
+    },
     {
       slug: "herencia",
       title: "Herencia: es-un y especialización",
       description: "Jerarquías, virtual/override básico y cuándo no heredar.",
-      readMinutes: 28,
+      readMinutes: 22,
     },
     {
       slug: "override-y-sobrecarga",
@@ -87,13 +101,20 @@ export const CLASE_02: ClassNavConfig = {
 export const CLASE_03: ClassNavConfig = {
   classSlug: "clase-03-experto-poo",
   classTitle: "Clase 3: Experto — abstracción, SOLID y diseño",
-  hubOrder: 14,
+  hubOrder: 16,
   pages: [
+    {
+      slug: "objetivos",
+      title: "Objetivos de aprendizaje",
+      description:
+        "Qué lograrás en Clase 3: abstracción, polimorfismo, SOLID y modularidad.",
+      readMinutes: 7,
+    },
     {
       slug: "abstraccion-clases-abstractas-interfaces",
       title: "Abstracción, abstractas e interfaces",
       description: "Contratos vs implementación; cuándo abstract y cuándo interface.",
-      readMinutes: 30,
+      readMinutes: 23,
     },
     {
       slug: "polimorfismo",

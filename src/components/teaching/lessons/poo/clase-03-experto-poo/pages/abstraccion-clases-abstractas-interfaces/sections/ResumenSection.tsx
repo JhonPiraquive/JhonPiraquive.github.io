@@ -5,27 +5,23 @@ export function ResumenSection() {
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Abstracción:"}</strong>
-          {" programar contra contratos; ocultar detalles de implementación."}
+          {" el cliente habla con contratos; los detalles (Nequi, SQL) quedan afuera."}
         </li>
         <li>
           <strong>{"Interfaz:"}</strong>
-          {" capacidad intercambiable; inyección por constructor (Caja + IPago, Servicio + ILogger)."}
+          {" capacidad intercambiable — IPago, IRepositorioPedidos — con inyección por constructor."}
         </li>
         <li>
           <strong>{"Clase abstracta:"}</strong>
-          {" estado y flujo común; métodos abstract obligatorios (Notificacion / EnviarCore)."}
+          {" estado y flujo compartidos; Template Method (NotificacionPedido)."}
         </li>
         <li>
-          <strong>{"Elección:"}</strong>
-          {" abstracta con Template Method; interfaz para contrato puro y multi-rol."}
+          <strong>{"C#:"}</strong>
+          {" una base, varias interfaces; Producto + IExportable es un combo válido."}
         </li>
         <li>
-          <strong>{"Evitar:"}</strong>
-          {" abstracción prematura e interfaces sobredimensionadas."}
-        </li>
-        <li>
-          <strong>{"Siguiente lección:"}</strong>
-          {" polimorfismo — misma llamada, distinto comportamiento en runtime."}
+          <strong>{"Siguiente página:"}</strong>
+          {" polimorfismo — la misma llamada ejecuta distinto comportamiento en runtime."}
         </li>
       </ul>
     </section>

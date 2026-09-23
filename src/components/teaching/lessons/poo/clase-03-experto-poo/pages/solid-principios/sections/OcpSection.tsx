@@ -5,94 +5,72 @@ import { StepReveal } from "@/components/teaching/StepReveal";
 
 const CONTRATO_IENVIO = `public interface IEnvio
 {
-    decimal Calcular(decimal peso);
+    decimal Calcular(decimal pesoKg);
 }
 
 public class EnvioExpress : IEnvio
 {
-    public decimal Calcular(decimal peso) => peso * 10;
+    public decimal Calcular(decimal pesoKg) => pesoKg * 10;
 }
 
 public class EnvioNormal : IEnvio
 {
-    public decimal Calcular(decimal peso) => peso * 5;
+    public decimal Calcular(decimal pesoKg) => pesoKg * 5;
 }
 
-public class EnvioGratis : IEnvio
+public class CalculadoraEnvioPedido
 {
-    public decimal Calcular(decimal peso) => peso <= 1 ? 0 : 3;
+    private readonly IEnvio _estrategia;
+    public CalculadoraEnvioPedido(IEnvio estrategia) => _estrategia = estrategia;
+    public decimal Costo(decimal pesoKg) => _estrategia.Calcular(pesoKg);
 }`;
 
 export function OcpSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"O — Abierto/Cerrado (OCP)"}
+        {"O — Abierto a extensión, cerrado al cliente (OCP)"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Abierto a extensión — nuevas clases que implementan contrato."}</li>
-        <li>{"Cerrado a modificación del cliente — sin switch creciente."}</li>
-        <li>{"OCP con polimorfismo: IEnvio + variantes."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Contrato IEnvio"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Nueva modalidad de envío cada trimestre"}</h3>
+      <p className="my-4">
+        {
+          "Tienda Andes vende artesanías pesadas: express, normal y promos. OCP (Open/Closed Principle) pide que agregar «envío gratis» sea una clase nueva, no otro else en CalculadoraEnvioPedido. El polimorfismo que ya practicaste es la herramienta."
+        }
+      </p>
       <CodeFiddle language="csharp" code={CONTRATO_IENVIO} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Jerarquía OCP"}</h3>
       <MermaidDiagram
         chart={`classDiagram
   class IEnvio {
     <<interface>>
-    +Calcular(decimal peso) decimal
+    +Calcular(decimal pesoKg) decimal
   }
   IEnvio <|.. EnvioExpress
-  IEnvio <|.. EnvioNormal
-  IEnvio <|.. EnvioGratis`}
+  IEnvio <|.. EnvioNormal`}
       />
       <StepReveal
-        title="Extender sin editar cliente"
+        title="EnvioGratis sin editar CalculadoraEnvioPedido"
         steps={[
-          {
-            title: "Cliente usa IEnvio",
-            content: "La calculadora o servicio depende del contrato, no del concreto.",
-          },
-          {
-            title: "Existen Express y Normal",
-            content: "Implementaciones iniciales registradas en composición raíz.",
-          },
-          {
-            title: "Nueva clase EnvioGratis",
-            content: "Se añade archivo/clase que implementa IEnvio.",
-          },
-          {
-            title: "Cliente sin cambios",
-            content: "Solo Main o DI registra la nueva instancia — sin switch.",
-          },
+          { title: "Cliente usa IEnvio", content: "CalculadoraEnvioPedido solo delega en _estrategia." },
+          { title: "Express y Normal existen", content: "Main elige cuál inyectar." },
+          { title: "Llega EnvioGratis", content: "Nueva clase : IEnvio con regla promo." },
+          { title: "Calculadora intacta", content: "Solo cambia la línea de composición en Main." },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: calculadora de envíos"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"No confundir con «nunca editar nada»"}</h3>
       <p className="my-4">
         {
-          "Logística añadía modalidades cada trimestre. switch(tipo) duplicado en tres microservicios. Refactor a IEnvio + estrategias; nuevos tipos = nueva clase."
+          "Sí editas implementaciones y corriges bugs. Lo que no debería crecer es el switch en el orquestador cada vez que marketing inventa una promo."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"switch por tipo en muchos lugares — viola OCP."}</li>
-        <li>
-          {
-            "Confundir OCP con \"nunca editar código\" — se editan implementaciones nuevas, no el cliente estable."
-          }
-        </li>
-      </ul>
       <PracticeExercise
-        prompt="Implementa EnvioGratis : IEnvio (peso ≤ 1 → 0, si no → 3) sin modificar EnvioExpress ni EnvioNormal."
+        prompt="Implementa EnvioGratis : IEnvio (peso ≤ 1 kg → 0, si no → 3) sin tocar EnvioExpress ni CalculadoraEnvioPedido."
         hints={[
-          "Nueva clase que implementa Calcular",
-          "No tocar clases existentes ni cliente",
-          "Registra instancia en Main",
+          "Nueva clase con Calcular",
+          "Registra en Main",
+          "OCP = extensión, no modificación del cliente",
         ]}
         expectedKeywords={["EnvioGratis", "IEnvio", "Calcular"]}
-        successMessage="Correcto. OCP: extensión por nueva clase, cliente intacto."
+        successMessage="Correcto. OCP en acción sobre envíos de la tienda."
       />
     </section>
   );

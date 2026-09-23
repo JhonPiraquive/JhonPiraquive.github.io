@@ -4,52 +4,48 @@ export function RetoIntegradorSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Reto integrador: sistema de flota y alertas"}
+        {"Reto integrador: catálogo y avisos en consola"}
       </h2>
       <p className="my-4">
         {
-          "Un taller de Programación Orientada a Objetos (POO) pide un prototipo en consola (.NET) que combine herencia bien aplicada y composición donde corresponda."
+          "Prototipo .NET para Tienda Andes: herencia donde el «es un» es real y composición para los avisos de pedido."
         }
       </p>
-      <p className="my-4 font-semibold">{"Parte A — Dominio vehículos"}</p>
+      <p className="my-4 font-semibold">{"Parte A — Catálogo"}</p>
       <ol className="my-4 list-decimal pl-6">
-        <li>
-          {
-            "Clase base Vehiculo con Placa, constructor validado, virtual void Arrancar() y void Parar()."
-          }
-        </li>
-        <li>{"Derivadas Carro, Moto y Camion con override de Arrancar() (mensajes distintos y creíbles)."}</li>
-        <li>{"Método que reciba List<Vehiculo> y ejecute Arrancar() y luego Parar() en cada elemento."}</li>
+        <li>{"Producto con SKU, precio, constructor validado y virtual DescripcionEtiqueta()."}</li>
+        <li>{"Libro y Gadget con override (mensajes distintos y creíbles)."}</li>
+        <li>{"Método que reciba List<Producto> e imprima DescripcionEtiqueta() de cada ítem."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte B — Alertas (sin herencia entre canales)"}</p>
+      <p className="my-4 font-semibold">{"Parte B — Avisos (sin herencia entre canales)"}</p>
       <ol className="my-4 list-decimal pl-6" start={4}>
-        <li>{"Interfaz INotificador con Enviar(string)."}</li>
-        <li>{"Implementaciones NotificadorEmail, NotificadorSms, NotificadorWhatsApp."}</li>
-        <li>{"Clase Alarma con constructor que recibe INotificador y método Disparar()."}</li>
-        <li>{"En Main, crea al menos dos alarmas con notificadores distintos y dispara ambas."}</li>
+        <li>{"Interfaz ICanalAviso con Enviar(string)."}</li>
+        <li>{"AvisoEmail, AvisoSms y al menos un tercer canal."}</li>
+        <li>{"ConfirmacionPedido con constructor que recibe ICanalAviso y PedidoListo(id)."}</li>
+        <li>{"En Main, dos confirmaciones con canales distintos."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte C — Criterio de diseño"}</p>
+      <p className="my-4 font-semibold">{"Parte C — Justificación"}</p>
       <ol className="my-4 list-decimal pl-6" start={8}>
         <li>
           {
-            "En un comentario o párrafo breve, justifica por qué no hiciste AlarmaEmail : AlarmaBase y por qué Camion sí hereda de Vehiculo."
+            "Comentario breve: por qué Gadget hereda de Producto y por qué AvisoEmail no hereda de ConfirmacionPedido."
           }
         </li>
       </ol>
       <p className="my-4 text-sm text-[var(--color-neutral-mid)]">
         {
-          "Criterio de éxito: compila en dotnet run; cada vehículo imprime su Arrancar(); Parar() funciona sin override; nuevos notificadores se añaden sin editar Alarma; la justificación distingue “es un” vs “tiene un”."
+          "Éxito: compila; cada producto imprime su etiqueta; nuevos canales no editan ConfirmacionPedido; la justificación distingue «es un» y «tiene un»."
         }
       </p>
       <PracticeExercise
-        prompt="Redacta la justificación de diseño (Parte C): ¿por qué Camion hereda de Vehiculo pero los canales de alerta no heredan de AlarmaBase?"
+        prompt="Redacta la Parte C: ¿Gadget es un Producto? ¿AvisoEmail es un ConfirmacionPedido?"
         hints={[
-          "Camion es un Vehiculo — relación es un estable",
-          "Email/SMS/WhatsApp no son tipos de Alarma — son estrategias de envío",
-          "INotificador permite extender sin modificar Alarma",
+          "Gadget comparte rol de ítem de catálogo",
+          "Email es medio de entrega, no tipo de confirmación",
+          "Menciona composición o interfaz",
         ]}
         expectedKeywords={["es un", "tiene un", "composición", "interfaz"]}
-        successMessage="Excelente. Has distinguido herencia (especialización) de composición (estrategia intercambiable)."
+        successMessage="Excelente. Separaste especialización de catálogo y estrategia de aviso."
         rows={6}
       />
     </section>

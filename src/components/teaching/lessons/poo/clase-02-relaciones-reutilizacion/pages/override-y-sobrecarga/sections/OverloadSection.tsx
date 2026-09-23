@@ -2,68 +2,62 @@ import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
-const CALCULADORA_CODE = `using System;
+const TOTAL_PEDIDO_CODE = `using System;
+using System.Linq;
 
-public class Calculadora
+public class CalculadoraPedido
 {
-    public int Sumar(int a, int b) => a + b;
-    public int Sumar(int a, int b, int c) => a + b + c;
-    public decimal Sumar(decimal a, decimal b) => a + b;
-    public int Sumar(params int[] valores)
+    public decimal Total(decimal precioUnitario, int cantidad)
+        => precioUnitario * cantidad;
+
+    public decimal Total(decimal precioUnitario, int cantidad, decimal descuentoPorcentaje)
     {
-        var total = 0;
-        foreach (var v in valores) total += v;
-        return total;
+        var bruto = precioUnitario * cantidad;
+        return bruto * (1 - descuentoPorcentaje / 100m);
+    }
+
+    public decimal Total(params decimal[] preciosLinea)
+    {
+        return preciosLinea.Sum();
     }
 }`;
 
 export function OverloadSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Overload (sobrecarga)"}</h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Varios métodos con el mismo nombre y firmas distintas en la misma clase."}</li>
-        <li>{"No requiere herencia — resolución en compile time."}</li>
-        <li>{"Todas las sobrecargas deben representar la misma intención operativa."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Overload: un nombre, varias firmas"}
+      </h2>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Total del pedido de muchas formas"}</h3>
       <p className="my-4">
         {
-          "Overload permite ofrecer ergonomía de API: Sumar(1, 2) vs Sumar(1, 2, 3) vs Sumar(1.5m, 2.0m). El compilador elige la firma según los tipos estáticos de los argumentos."
+          "En caja a veces sumas una línea (precio × cantidad), otras aplicas descuento del 10 %, otras sumas varios subtotales ya calculados. Sobrecarga (overload) permite varios métodos Total con el mismo nombre y parámetros distintos en la misma clase. No usa herencia: el compilador elige la firma al compilar."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: calculadora con varias firmas"}</h3>
-      <CodeFiddle language="csharp" code={CALCULADORA_CODE} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Resolución por firma"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código"}</h3>
+      <CodeFiddle language="csharp" code={TOTAL_PEDIDO_CODE} />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Quién elige la firma"}</h3>
       <MermaidDiagram
         chart={`flowchart TD
-  Call1["Sumar(1,2)"] --> PickA["Sumar(int,int)"]
-  Call2["Sumar(1,2,3)"] --> PickB["Sumar(int,int,int)"]
-  Call3["Sumar(1.5m,2.0m)"] --> PickC["Sumar(decimal,decimal)"]`}
+  Call1["Total(49.99m, 2)"] --> PickA["Total(decimal, int)"]
+  Call2["Total(49.99m, 2, 10m)"] --> PickB["Total(decimal, int, decimal)"]
+  Call3["Total(10m, 20m, 5m)"] --> PickC["Total(params decimal[])"]`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: API de búsqueda"}</h3>
-      <p className="my-4">
-        {
-          "Un repositorio exponía BuscarPorId, BuscarPorNombre, BuscarCompleto. El equipo unificó en Buscar(int id), Buscar(string nombre) y Buscar(string nombre, decimal precioMax) — misma intención, firmas distintas."
-        }
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malentendido típico"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Sobrecargas con intenciones distintas — API confusa."}</li>
-        <li>{"Demasiadas sobrecargas — preferir parámetros opcionales u objeto de opciones."}</li>
-        <li>{"Ambigüedad con params — Sumar(int a, int b) vs Sumar(params int[] valores)."}</li>
-        <li>{"Asumir resolución en runtime — siempre es decisión del compilador."}</li>
+        <li>{"Sobrecargas con intenciones distintas (Total y Cancelar con el mismo nombre) confunden la API."}</li>
+        <li>{"Demasiadas variantes — a veces conviene un objeto opciones."}</li>
+        <li>{"Overload no es override: no hay jerarquía ni dispatch en runtime por tipo de objeto."}</li>
       </ul>
       <PracticeExercise
-        prompt="Predice qué firma de `Sumar` usa el compilador para `Sumar(1, 2, 3, 4)` antes de ejecutar. Verifica en consola."
+        prompt="Antes de ejecutar: ¿qué Total usa CalculadoraPedido para Total(15m, 25m, 40m)?"
         hints={[
-          "Cuatro argumentos int no coincide con Sumar(int,int)",
-          "params int[] acepta cualquier cantidad de int",
-          "La resolución es en compile time",
+          "Tres decimales no encajan en (decimal, int)",
+          "params decimal[] agrupa los tres",
+          "La decisión es en compile time",
         ]}
-        expectedKeywords={["params", "int[]", "4"]}
-        successMessage="Correcto. Sumar(params int[] valores) suma los cuatro enteros."
+        expectedKeywords={["params", "decimal", "80"]}
+        successMessage="Correcto. La variante params suma 15 + 25 + 40."
       />
     </section>
   );

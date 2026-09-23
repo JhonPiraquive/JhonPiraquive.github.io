@@ -2,7 +2,7 @@ import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
-const PEDIDO_SERVICE_ANTIEJEMPLO = `// Anti-ejemplo — mezcla crear + notificar
+const PEDIDO_SERVICE_ANTIEJEMPLO = `// Tienda Andes — todo en un método
 public class PedidoService
 {
     public void CrearYNotificar(string emailCliente, decimal total)
@@ -47,7 +47,7 @@ public class OrquestadorPedido
     public void Procesar(string email, decimal total)
     {
         _creador.Crear(total);
-        _notificador.Enviar(email, "Pedido registrado");
+        _notificador.Enviar(email, "Pedido registrado en Tienda Andes");
     }
 }`;
 
@@ -55,46 +55,38 @@ export function SrpSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"S — Responsabilidad única (SRP)"}
+        {"S — Una razón para cambiar (SRP)"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Una clase = un motivo principal de cambio (un rol coherente)."}</li>
-        <li>{"SRP ≠ un método — es separar dominio, orquestación e I/O."}</li>
-        <li>{"CreadorPedido crea; INotificador notifica; OrquestadorPedido coordina."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Anti-ejemplo: PedidoService monolítico"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"PedidoService hace de todo"}</h3>
+      <p className="my-4">
+        {
+          "SRP (Single Responsibility Principle — responsabilidad única) no dice «un método por clase». Dice: si cambia la plantilla del email, no deberías recompilar la validación del total. En Tienda Andes, mezclar crear pedido y notificar en un solo servicio concentra motivos de cambio."
+        }
+      </p>
       <CodeFiddle language="csharp" code={PEDIDO_SERVICE_ANTIEJEMPLO} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Refactor SRP + orquestación"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Separar roles y orquestar"}</h3>
       <CodeFiddle language="csharp" code={REFACTOR_SRP_ORQUESTACION} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Flujo de responsabilidades"}</h3>
       <MermaidDiagram
         chart={`flowchart LR
   Orquestador[OrquestadorPedido] --> Creador[CreadorPedido]
   Orquestador --> Notif[INotificador]
-  Creador --> SoloCrear[Crear pedido]
-  Notif --> SoloNotif[Notificar]`}
+  Creador --> SoloCrear[Validar y registrar]
+  Notif --> SoloNotif[Avisar cliente]`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: monolito de pedidos"}</h3>
-      <p className="my-4">
-        {
-          "Un ERP tenía PedidoService con 800 líneas: validación, SQL, SMTP y PDF. Cada cambio en plantilla de email rompía tests de impuestos. Separación en CreadorPedido, INotificador, IRepositorioPedidos, OrquestadorPedido."
-        }
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Clase \"hace de todo\" — valida, persiste, envía email y genera PDF."}</li>
-        <li>{"SRP llevado al extremo — una clase por línea sin motivos de cambio reales."}</li>
-        <li>{"Orquestador que vuelve a mezclar reglas, SQL y SMTP."}</li>
-      </ul>
       <CompareTable
-        headers={["Aspecto", "PedidoService monolítico", "Separado SRP + DIP"]}
+        headers={["Aspecto", "PedidoService monolítico", "Separado + contratos"]}
         rows={[
-          ["Motivos de cambio", "Muchos", "Uno por clase"],
-          ["Test sin DB", "Difícil", "RepositorioMemoria"],
-          ["Cambio de email", "Toca validación", "Solo INotificador"],
+          ["Motivos de cambio", "Validación, SMTP, persistencia…", "Uno por clase"],
+          ["Probar sin email", "Difícil", "INotificador mock"],
+          ["Cambio de canal SMS", "Toca lógica de total", "Solo notificador"],
         ]}
       />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malentendido"}</h3>
+      <p className="my-4">
+        {
+          "SRP extremo — una clase por línea — también duele. Pregunta: «¿por qué motivo real cambiaría este archivo?» Si la respuesta es una sola idea de negocio, vas bien."
+        }
+      </p>
     </section>
   );
 }

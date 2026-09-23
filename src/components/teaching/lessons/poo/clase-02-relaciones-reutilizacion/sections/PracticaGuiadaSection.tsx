@@ -10,20 +10,19 @@ export function PracticaGuiadaSection() {
       </h2>
       <p className="my-4">
         {
-          "Caso transversal del módulo: una tienda universitaria vende productos (libros, gadgets) con clientes y pedidos. Trabaja en C#."
+          "Retomas el Producto encapsulado de Clase 1. Hoy especializas el catálogo con herencia y cierras ventas con un Pedido que compone sus líneas — tal como acordaste en el diagrama."
         }
       </p>
       <MermaidDiagram
-        title="Mapa del caso Tienda Andes"
-        description="Vista de alto nivel del dominio que atraviesa las 3 clases"
+        title="Tienda Andes — relaciones de Clase 2"
+        description="Herencia en catálogo y composición en pedido confirmado"
         chart={`classDiagram
   direction TB
   class Cliente {
     +string Nombre
-    +RealizarPedido()
   }
   class Pedido {
-    +Date Fecha
+    +DateTime Fecha
     +AgregarLinea()
   }
   class LineaPedido {
@@ -42,25 +41,38 @@ export function PracticaGuiadaSection() {
   Cliente "1" --> "*" Pedido : realiza
   Pedido "1" *-- "*" LineaPedido : compone
   LineaPedido --> Producto : referencia
-  Libro --|> Producto
-  Gadget --|> Producto`}
+  Producto <|-- Libro
+  Producto <|-- Gadget`}
       />
-      <Callout title="Entregable de esta clase" variant="callout-tip">
+      <Callout title="Pasos en el aula" variant="callout-tip">
+        <ol className="mb-0 list-decimal pl-5">
+          <li>
+            {"Implementa "}
+            <code>{"Libro : Producto"}</code>
+            {" y "}
+            <code>{"Gadget : Producto"}</code>
+            {"."}
+          </li>
+          <li>{"Override en Descripcion() o DescripcionEtiqueta() en al menos una derivada."}</li>
+          <li>{"Pedido crea LineaPedido solo dentro de AgregarLinea (composición)."}</li>
+          <li>{"En Mermaid usa Producto <|-- Derivada (triángulo hacia Producto)."}</li>
+        </ol>
+      </Callout>
+      <Callout title="Error común" variant="callout-warning">
         <p className="mb-0">
           {
-            "Completa el reto de abajo en papel o en tu IDE. Guarda nombres de clases y relaciones: la siguiente clase las reutiliza."
+            "class Pedido : LineaPedido o heredar de List<>. Un pedido tiene líneas; no es una línea ni una lista genérica."
           }
         </p>
       </Callout>
       <CodeFiddle
-        title="Plantilla mínima (C#)"
+        title="Esqueleto herencia + composición (C#)"
         language="csharp"
-        filename="Producto.cs"
+        filename="TiendaAndesParte2.cs"
         code={`public class Producto
 {
     public string Sku { get; private set; }
     public decimal Precio { get; private set; }
-
     public Producto(string sku, decimal precio)
     {
         if (string.IsNullOrWhiteSpace(sku)) throw new ArgumentException(nameof(sku));
@@ -68,6 +80,38 @@ export function PracticaGuiadaSection() {
         Sku = sku;
         Precio = precio;
     }
+    public virtual string Descripcion() => $"{Sku} — {Precio:C}";
+}
+
+public class Libro : Producto
+{
+    public string Isbn { get; private set; }
+    public Libro(string sku, decimal precio, string isbn) : base(sku, precio)
+    {
+        Isbn = isbn;
+    }
+    public override string Descripcion() => $"Libro {Isbn} / {base.Descripcion()}";
+}
+
+public class LineaPedido
+{
+    public string Sku { get; }
+    public int Cantidad { get; }
+    public decimal PrecioUnitario { get; }
+    public LineaPedido(string sku, int cantidad, decimal precioUnitario)
+    {
+        Sku = sku;
+        Cantidad = cantidad;
+        PrecioUnitario = precioUnitario;
+    }
+}
+
+public class Pedido
+{
+    private readonly List<LineaPedido> _lineas = new();
+    public DateTime Fecha { get; } = DateTime.UtcNow;
+    public void AgregarLinea(string sku, int cantidad, decimal precioUnitario)
+        => _lineas.Add(new LineaPedido(sku, cantidad, precioUnitario));
 }
 `}
       />

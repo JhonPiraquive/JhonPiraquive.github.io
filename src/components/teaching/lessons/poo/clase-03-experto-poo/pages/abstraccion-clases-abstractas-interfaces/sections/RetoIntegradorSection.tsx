@@ -4,55 +4,46 @@ export function RetoIntegradorSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Reto integrador: caja registradora y alertas de sistema"}
+        {"Reto integrador — borrador Tienda Andes"}
       </h2>
       <p className="my-4">
         {
-          "Prototipo .NET que combine interfaces y clase abstracta sin mezclar responsabilidades."
+          "Consola .NET que mezcle interfaz e abstracta en el mismo dominio de la tienda. El capstone final de Clase 3 está en la página practica-y-cierre; aquí calientas motores."
         }
       </p>
-      <p className="my-4 font-semibold">{"Parte A — Pagos (interfaz)"}</p>
+      <p className="my-4 font-semibold">{"Parte A — Cobro (interfaz)"}</p>
       <ol className="my-4 list-decimal pl-6">
         <li>{"IPago con Pagar(decimal monto)."}</li>
-        <li>{"Implementaciones PagoTarjeta, PagoTransferencia, PagoEfectivo."}</li>
-        <li>
-          {
-            "Caja con constructor que recibe IPago; en Main, tres cajas con métodos distintos cobrando el mismo monto."
-          }
-        </li>
+        <li>{"PagoTarjeta, PagoTransferencia, PagoEfectivo."}</li>
+        <li>{"Caja(IPago); en Main, tres cajas cobran el mismo monto con métodos distintos."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte B — Notificaciones (clase abstracta)"}</p>
+      <p className="my-4 font-semibold">{"Parte B — Avisos (clase abstracta)"}</p>
       <ol className="my-4 list-decimal pl-6" start={4}>
-        <li>{"abstract class Notificacion con Enviar (flujo común) y EnviarCore abstracto."}</li>
-        <li>{"NotificacionEmail y NotificacionSms; al menos una validación en la base (mensaje no vacío)."}</li>
+        <li>{"NotificacionPedido con Enviar común y EnviarCore abstracto."}</li>
+        <li>{"NotificacionEmail y NotificacionSms; validación de mensaje vacío solo en la base."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte C — Logging (interfaz auxiliar)"}</p>
+      <p className="my-4 font-semibold">{"Parte C — Persistencia (interfaz)"}</p>
       <ol className="my-4 list-decimal pl-6" start={6}>
-        <li>{"ILogger con Info(string); Servicio que recibe ILogger en constructor."}</li>
-        <li>{"LoggerConsola y LoggerSilencioso; demostrar Servicio sin cambios al intercambiar logger."}</li>
+        <li>{"IRepositorioPedidos + ServicioPedidos; RepositorioMemoria y RepositorioConsola."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte D — Criterio de diseño"}</p>
-      <ol className="my-4 list-decimal pl-6" start={8}>
-        <li>
-          {
-            "Comentario breve: por qué pagos usan interfaz y notificaciones usan clase abstracta en este diseño."
-          }
-        </li>
+      <p className="my-4 font-semibold">{"Parte D — Justificación"}</p>
+      <ol className="my-4 list-decimal pl-6" start={7}>
+        <li>{"Comentario breve: por qué pagos y repo usan interfaz y avisos usan abstracta."}</li>
       </ol>
       <p className="my-4 text-sm text-[var(--color-neutral-mid)]">
         {
-          "Criterio de éxito: compila; nuevos pagos y loggers sin editar Caja ni Servicio; flujo común de notificación no duplicado en derivadas; justificación coherente con la lección."
+          "Éxito: compila; nuevos pagos o repos sin editar Caja ni ServicioPedidos; flujo Enviar no duplicado en Email/Sms."
         }
       </p>
       <PracticeExercise
-        prompt="Redacta la justificación (Parte D): ¿por qué pagos usan interfaz y notificaciones usan clase abstracta?"
+        prompt="Redacta la Parte D: interfaz vs abstracta en este diseño de Tienda Andes."
         hints={[
-          "Pagos no comparten estado ni flujo común en la base",
-          "Notificaciones comparten validación y secuencia Enviar",
-          "IPago es contrato puro; Notificacion es Template Method",
+          "Pagos no comparten flujo en una base",
+          "Avisos comparten validación y secuencia Enviar",
+          "Template Method en NotificacionPedido",
         ]}
         expectedKeywords={["interfaz", "abstracta", "Template", "contrato"]}
-        successMessage="Excelente. Has aplicado el criterio estado compartido vs contrato puro."
+        successMessage="Excelente. Criterio: estado/flujo compartido vs contrato puro."
         rows={6}
       />
     </section>

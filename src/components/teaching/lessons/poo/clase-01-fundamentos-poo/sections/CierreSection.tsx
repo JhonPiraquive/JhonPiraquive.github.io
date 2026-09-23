@@ -5,7 +5,11 @@ export function CierreSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre"}</h2>
-      <p className="my-4">{"Siguiente: abre Clase 2 (herencia y relaciones). Lleva tu diagrama y las clases C# del caso Tienda Andes."}</p>
+      <p className="my-4">
+        {
+          "Puente 1→2: ya tienes Producto encapsulado y su caja UML. En Clase 2 especializas (Libro/Gadget) y relacionas Pedido→Línea sin romper encapsulamiento."
+        }
+      </p>
       <Callout title="Recuerda" variant="callout-tip">
         <p className="mb-0">
           {
@@ -14,8 +18,15 @@ export function CierreSection() {
         </p>
       </Callout>
       <p className="mt-4">
+        <Link
+          href="/teaching/poo/clase-02-relaciones-reutilizacion/objetivos"
+          className="text-[var(--color-secondary)] hover:underline"
+        >
+          {"Ir a Clase 2 — Objetivos"}
+        </Link>
+        {" · "}
         <Link href="/teaching/poo/index" className="text-[var(--color-secondary)] hover:underline">
-          {"Volver al hub del módulo POO"}
+          {"Hub POO"}
         </Link>
       </p>
     </section>

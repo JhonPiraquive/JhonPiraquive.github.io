@@ -4,37 +4,32 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">{"Verifica en código o por escrito antes del miniquiz."}</p>
       <PracticeExercise
-        prompt="Añade PasarelaEfectivo : IPasarelaPago y new Checkout(new PasarelaEfectivo()) sin editar Checkout. Verifica que el foreach de checkouts incluye la nueva pasarela."
+        prompt="Añade PasarelaNequi y un checkout extra al foreach. ¿Cuántas líneas cambiaron dentro de la clase Checkout?"
         hints={[
-          "PasarelaEfectivo implementa Nombre y Cobrar",
-          "Checkout ya depende solo de IPasarelaPago",
-          "Añade la instancia a la List<Checkout> en Main",
+          "PasarelaNequi implementa Nombre y Cobrar",
+          "Checkout ya depende de IPasarelaPago",
+          "Cero edits en Checkout si el diseño es estable",
         ]}
-        expectedKeywords={["PasarelaEfectivo", "Checkout", "foreach"]}
-        successMessage="Correcto. Extensión sin modificar el cliente — polimorfismo en acción."
+        expectedKeywords={["PasarelaNequi", "Checkout", "cero"]}
+        successMessage="Correcto. Extensión en implementación y composición, no en el cliente."
       />
       <PracticeExercise
-        prompt="Implementa ImpuestoFijo con monto constante. Predice salida de imp.Calcular(100) para Iva, ImpuestoCero e ImpuestoFijo(5) antes de ejecutar."
-        hints={[
-          "ImpuestoFijo devuelve _monto sin usar baseImponible",
-          "Iva: 100 * 0.19 = 19",
-          "ImpuestoCero: 0",
-        ]}
-        expectedKeywords={["19", "0", "5", "Calcular"]}
-        successMessage="Correcto. Has validado dispatch polimórfico con predicción previa."
+        prompt="Predice CalcularDescuento para Libro(20000) y Gadget(20000). Luego ejecuta el foreach del catálogo."
+        hints={["10% vs 5%", "2000 y 1000", "override en cada derivada"]}
+        expectedKeywords={["2000", "1000", "CalcularDescuento"]}
+        successMessage="Correcto. Dispatch polimórfico en herencia."
       />
       <PracticeExercise
-        prompt="Nombra dos anti-patrones que anulan el polimorfismo y dos señales de diseño polimórfico correcto según la lección."
+        prompt="Nombra dos anti-patrones que matan el polimorfismo y una señal de que sí lo estás usando bien."
         hints={[
-          "Anti: switch/is por tipo en cliente",
-          "Anti: new en lugar de override",
-          "Bien: contrato + inyección",
-          "Bien: List del tipo base/interfaz",
+          "switch/is en Checkout",
+          "new en lugar de override",
+          "Lista del tipo contrato + inyección",
         ]}
-        expectedKeywords={["switch", "override", "contrato", "interfaz"]}
-        successMessage="Correcto. Polimorfismo requiere contrato estable y dispatch en runtime, no ramas por tipo."
+        expectedKeywords={["switch", "override", "contrato"]}
+        successMessage="Correcto. Contrato estable + override, no ramas por tipo."
       />
     </section>
   );

@@ -4,10 +4,7 @@ import { HerenciaInterfacesDiagramaSection } from "./sections/HerenciaInterfaces
 import { RelacionesDiagramaSection } from "./sections/RelacionesDiagramaSection";
 import { CasoIntegradoTiendaSection } from "./sections/CasoIntegradoTiendaSection";
 import { ResumenSection } from "./sections/ResumenSection";
-import { CompruebaTuComprensionSection } from "./sections/CompruebaTuComprensionSection";
-import { RetoIntegradorSection } from "./sections/RetoIntegradorSection";
 import { CierreSection } from "./sections/CierreSection";
-import { MiniquizFinalSection } from "./sections/MiniquizFinalSection";
 
 type Props = { locale: string };
 
@@ -26,10 +23,7 @@ export default function DiagramasRelacionesPageLesson({ locale: _locale }: Props
       <RelacionesDiagramaSection />
       <CasoIntegradoTiendaSection />
       <ResumenSection />
-      <CompruebaTuComprensionSection />
-      <RetoIntegradorSection />
       <CierreSection />
-      <MiniquizFinalSection />
     </ClassPageLayout>
   );
 }

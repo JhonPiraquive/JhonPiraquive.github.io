@@ -5,27 +5,23 @@ export function ResumenSection() {
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Asociación:"}</strong>
-          {" colaboración sin propiedad fuerte; parámetro o clase de enlace (Cita)."}
+          {" asesor y cliente colaboran; SesionMostrador guarda contexto."}
         </li>
         <li>
           <strong>{"Agregación:"}</strong>
-          {" todo agrupa partes independientes; Agregar/Quitar sin destruir la parte."}
+          {" carrito referencia Producto del catálogo; Quitar no destruye ítems."}
         </li>
         <li>
           <strong>{"Composición:"}</strong>
-          {" el todo crea y controla partes con ciclo de vida acoplado; lista privada."}
+          {" Pedido crea LineaPedido con precio congelado; lista privada."}
         </li>
         <li>
           <strong>{"Criterio:"}</strong>
-          {" ciclo de vida + quién instancia — no la sola presencia de List<T>."}
-        </li>
-        <li>
-          <strong>{"Anti-patrones:"}</strong>
-          {" herencia para “tiene un”, listas públicas mutables, composición donde las partes son compartidas."}
+          {" ciclo de vida + quién instancia, no solo List<T>."}
         </li>
         <li>
           <strong>{"Siguiente lección:"}</strong>
-          {" abstraccion-clases-abstractas-interfaces — contratos sobre implementaciones."}
+          {" diagramas-relaciones — dibujar Tienda Andes en Mermaid."}
         </li>
       </ul>
     </section>

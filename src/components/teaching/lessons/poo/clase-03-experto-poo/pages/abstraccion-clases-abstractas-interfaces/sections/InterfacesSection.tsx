@@ -1,115 +1,83 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
 export function InterfacesSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Interfaces"}</h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Interfaz = contrato de capacidad (“qué puede hacer”)."}</li>
-        <li>{"Una clase puede implementar varias interfaces."}</li>
-        <li>{"Inyección por constructor desacopla implementación de uso."}</li>
-      </ul>
-      <MermaidDiagram
-        title="Mapa mental — Interfaces"
-        chart={`mindmap
-  root((Interfaces))
-    Contrato de capacidad
-    Varias implementaciones
-    Inyeccion por constructor`}
-      />
-      <MermaidDiagram
-        title="Contrato ILogger e implementaciones"
-        description="Diagrama de clases: ILogger implementado por LoggerConsola y usado por Servicio"
-        chart={`classDiagram
-  class ILogger {
-    <<interface>>
-    +Info(mensaje)
-  }
-  class LoggerConsola {
-    +Info(mensaje)
-  }
-  class Servicio {
-    -logger ILogger
-    +Ejecutar()
-  }
-  ILogger <|.. LoggerConsola
-  Servicio --> ILogger
-`}
-      />
-
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Interfaces: capacidades que se intercambian"}
+      </h2>
       <p className="my-4">
         {
-          "Una interfaz (interface) declara miembros sin implementación (en el contrato). Define una capacidad intercambiable: ILogger, IPago, INotificador. El cliente recibe la abstracción en el constructor."
+          "Una interfaz (interface) en C# es un contrato: declara qué operaciones existen (por ejemplo Guardar) sin decir cómo se implementan. Varias clases pueden cumplir el mismo contrato; el cliente depende del contrato, no del detalle."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de interfaz"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Solo necesitas un contrato sin estado compartido en la base."}</li>
-        <li>{"Un tipo puede cumplir múltiples roles (Contrato : Documento, IFirmable)."}</li>
-        <li>{"Varias implementaciones intercambiables (consola, archivo, silencioso)."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: ILogger y Servicio"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Pedido no debería saber si guardas en SQL o en memoria"}</h3>
+      <p className="my-4">
+        {
+          "El dominio de Tienda Andes (Pedido, líneas, totales) no debería importar si hoy persistes en una lista en memoria y mañana en SQL. El servicio recibe ese contrato en el constructor (inyección de dependencias)."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"C#: IRepositorioPedidos"}</h3>
       <CodeFiddle
         language="csharp"
         code={`using System;
+using System.Collections.Generic;
 
-public interface ILogger
+public interface IRepositorioPedidos
 {
-    void Info(string mensaje);
+    void Guardar(string pedidoId);
 }
 
-public class LoggerConsola : ILogger
+public class RepositorioMemoria : IRepositorioPedidos
 {
-    public void Info(string mensaje) => Console.WriteLine($"INFO: {mensaje}");
+    private readonly List<string> _ids = new();
+    public void Guardar(string pedidoId) => _ids.Add(pedidoId);
 }
 
-public class LoggerSilencioso : ILogger
+public class RepositorioConsola : IRepositorioPedidos
 {
-    public void Info(string mensaje) { /* sin salida — útil en tests */ }
+    public void Guardar(string pedidoId) => Console.WriteLine($"Pedido {pedidoId} registrado");
 }
 
-public class LoggerArchivo : ILogger
+public class ServicioPedidos
 {
-    public void Info(string mensaje) => Console.WriteLine($"[archivo] {mensaje}");
-}
+    private readonly IRepositorioPedidos _repo;
 
-public class Servicio
-{
-    private readonly ILogger _logger;
+    public ServicioPedidos(IRepositorioPedidos repo) => _repo = repo;
 
-    public Servicio(ILogger logger) => _logger = logger;
-
-    public void Ejecutar() => _logger.Info("Ejecutando...");
+    public void Confirmar(string pedidoId)
+    {
+        _repo.Guardar(pedidoId);
+        Console.WriteLine("Pedido confirmado en Tienda Andes");
+    }
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Intercambiar logger sin editar Servicio"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Intercambiar implementación en Main"}</h3>
       <CodeFiddle
         language="csharp"
-        code={`var servicio1 = new Servicio(new LoggerConsola());
-var servicio2 = new Servicio(new LoggerSilencioso());
-servicio1.Ejecutar(); // INFO: Ejecutando...
-servicio2.Ejecutar(); // sin salida`}
+        code={`var enPruebas = new ServicioPedidos(new RepositorioMemoria());
+var enDemo = new ServicioPedidos(new RepositorioConsola());
+enPruebas.Confirmar("PED-001");
+enDemo.Confirmar("PED-002");`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Segregación (preview SOLID)"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Varios roles: una clase, varias interfaces"}</h3>
       <p className="my-4">
         {
-          "Interfaces gigantes (IManagerDeTodo) obligan a implementar métodos no usados. Preferir contratos pequeños y focalizados."
+          "En C# una clase puede implementar varias interfaces. Un mismo tipo puede ser «guardable» y «notificable» sin heredar de dos bases imposibles. Más adelante, con SOLID, verás ISP: contratos pequeños, no un IManagerDeTodo."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Interfaces como marcadores sin métodos útiles."}</li>
-        <li>{"Cliente que instancia concretos dentro del dominio en lugar de recibir el contrato."}</li>
-      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comprueba"}</h3>
+      <p className="my-4">
+        {
+          "Si ServicioPedidos hace new RepositorioConsola() por dentro, ¿sigue valiendo la interfaz? No: el acoplamiento volvió. El contrato sirve cuando quien usa el servicio elige la implementación afuera (Main o pruebas)."
+        }
+      </p>
       <CodeChallenge
-        title="Implementa la interfaz"
-        template={`public class LoggerConsola : {{b1}}\n{\n    public void Info(string mensaje) => Console.WriteLine($"INFO: {mensaje}");\n}`}
+        title="Implementa el repositorio"
+        template={`public class RepositorioConsola : {{b1}}\n{\n    public void Guardar(string pedidoId) => Console.WriteLine($"Pedido {pedidoId} registrado");\n}`}
         blanks={[
-          { id: "b1", answer: "ILogger", placeholder: "Contrato que declara Info(string)" },
+          { id: "b1", answer: "IRepositorioPedidos", placeholder: "Contrato que declara Guardar" },
         ]}
       />
     </section>

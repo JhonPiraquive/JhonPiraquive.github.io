@@ -5,72 +5,46 @@ export function RetoIntegradorSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Reto integrador: mini-sistema de compras"}
+        {"Reto integrador — monolito de compras Tienda Andes"}
       </h2>
       <p className="my-4">
-        <strong>{"Reorganiza el mini-sistema de compras"}</strong>
-      </p>
-      <p className="my-4">
         {
-          "Un solo archivo mezcla: calcular total, aplicar descuento, guardar pedido, enviar notificación, generar reporte."
+          "Un archivo mezcla total, descuento, guardar pedido, notificar y reporte. Reorganízalo antes del capstone en practica-y-cierre."
         }
       </p>
       <p className="my-4 font-semibold">{"Parte A — Análisis"}</p>
       <ol className="my-4 list-decimal pl-6">
-        <li>{"Identifica 5 responsabilidades mezcladas en el código inicial."}</li>
-        <li>{"Marca cuáles son dominio vs infraestructura."}</li>
+        <li>{"Lista cinco responsabilidades mezcladas."}</li>
+        <li>{"Marca dominio vs infraestructura."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte B — Diseño modular"}</p>
+      <p className="my-4 font-semibold">{"Parte B — Diseño"}</p>
       <ol className="my-4 list-decimal pl-6" start={3}>
-        <li>{"Propón 4–6 clases/módulos con nombres claros (CalculadoraTotal, AplicadorDescuento, etc.)."}</li>
-        <li>{"Define 2–3 interfaces (IRepositorioPedidos, INotificador, IReporteRenderer)."}</li>
-        <li>{"Diagrama Mermaid con flechas: dominio no debe depender de concretos de infra."}</li>
+        <li>{"4–6 clases con nombres de dominio (CalculadoraTotal, OrquestadorCompra…)."}</li>
+        <li>{"IRepositorioPedidos, INotificador, IReporteVentasRenderer."}</li>
+        <li>{"Mermaid: dominio no apunta a concretos SQL/PDF."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte C — Implementación C#"}</p>
+      <p className="my-4 font-semibold">{"Parte C — C#"}</p>
       <ol className="my-4 list-decimal pl-6" start={6}>
-        <li>{"Implementa servicios con alta cohesión (una idea por clase)."}</li>
-        <li>{"OrquestadorCompra coordina; inyección por constructor."}</li>
-        <li>{"Main elige RepositorioPedidosMemoria, NotificadorConsola, PdfRenderer o HtmlRenderer."}</li>
+        <li>{"OrquestadorCompra con inyección; Main elige Memoria, SMS, HTML."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte D — Checklist y cierre track"}</p>
-      <ol className="my-4 list-decimal pl-6" start={9}>
-        <li>
-          {
-            "Recorre checklist: SRP, OCP (¿nuevo descuento sin editar orquestador?), DIP, cohesión, acoplamiento — marca cumplimiento por ítem."
-          }
-        </li>
-        <li>
-          {
-            "Párrafo final: cómo esta lección conecta con polimorfismo, SOLID y diagramas del track."
-          }
-        </li>
+      <p className="my-4 font-semibold">{"Parte D — Checklist"}</p>
+      <ol className="my-4 list-decimal pl-6" start={7}>
+        <li>{"✓/✗ por ítem SOLID + cohesión + acoplamiento con una frase de evidencia."}</li>
       </ol>
-      <p className="my-4 text-sm text-[var(--color-neutral-mid)]">
-        {
-          "Criterio de éxito: dominio sin new de Sql/Pdf/Smtp; diagrama alineado con código; intercambio de renderer o repositorio solo en Main; checklist documentado."
-        }
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Dependencias objetivo del reto"}</h3>
       <MermaidDiagram
         chart={`flowchart TD
   Orq[OrquestadorCompra] --> Calc[CalculadoraTotal]
-  Orq --> Desc[AplicadorDescuento]
   Orq --> Repo[IRepositorioPedidos]
   Orq --> Notif[INotificador]
-  Orq --> Rep[IReporteRenderer]
+  Orq --> Rep[IReporteVentasRenderer]
   Repo <|.. RepoMem[RepositorioMemoria]
-  Notif <|.. NotifConsola[NotificadorConsola]`}
+  Notif <|.. Sms[NotificadorSms]`}
       />
       <PracticeExercise
-        prompt="Documenta el checklist del reto (Parte D): marca ✓ o ✗ en SRP, OCP, DIP, cohesión y acoplamiento con una frase de evidencia por ítem."
-        hints={[
-          "SRP — ¿cada clase un rol?",
-          "OCP — ¿nuevo descuento sin editar orquestador?",
-          "DIP — ¿dominio sin new de infra?",
-          "Cohesión/acoplamiento — ¿Utilidades eliminada?",
-        ]}
-        expectedKeywords={["checklist", "SRP", "DIP", "cohesión", "acoplamiento"]}
-        successMessage="Excelente. Has cerrado el track de Programación Orientada a Objetos (POO) con criterios de diseño verificables."
+        prompt="Documenta Parte D: un ✓ o ✗ por ítem del checklist con evidencia del código."
+        hints={["SRP por clase", "OCP en envío/descuento", "DIP sin new Sql adentro"]}
+        expectedKeywords={["checklist", "SRP", "DIP"]}
+        successMessage="Excelente. Preparado para el capstone final."
         rows={8}
       />
     </section>

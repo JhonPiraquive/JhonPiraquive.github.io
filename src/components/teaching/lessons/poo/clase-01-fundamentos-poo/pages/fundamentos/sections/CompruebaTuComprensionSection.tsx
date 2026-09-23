@@ -4,7 +4,7 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">{"Verifica que puedes aplicar los conceptos de este tema antes del reto de la clase."}</p>
       <PracticeExercise
         prompt="Crea var cuenta = new CuentaBancaria(50); y llama cuenta.Retirar(80);. Mejora el mensaje de error para incluir saldo actual y monto solicitado."
         hints={["Usa string interpolation en InvalidOperationException", "Incluye Saldo y monto en el mensaje"]}

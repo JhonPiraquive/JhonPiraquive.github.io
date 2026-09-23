@@ -1,3 +1,4 @@
+import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
@@ -7,32 +8,26 @@ export function AbstraccionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Abstracción: contrato y desacoplamiento"}
+        {"Abstracción: el checkout no debe conocer Nequi"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Abstracción = enfocarse en lo esencial y ocultar detalles accidentales."}</li>
-        <li>{"Contrato = define qué se puede hacer, no cómo."}</li>
-        <li>{"El cliente depende del contrato, no de la implementación concreta."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "Abstracción en Programación Orientada a Objetos (POO) significa programar contra un contrato (interfaz o clase base) en vez de una clase concreta. El consumidor no conoce si el pago es tarjeta o transferencia; solo llama Pagar(monto)."
+          "Abstracción, en POO (programación orientada a objetos), es enfocarte en lo esencial y ocultar detalles que pueden cambiar. En C# lo materializas con un contrato — una interfaz o una clase base abstracta — y el cliente solo conoce ese contrato."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buena abstracción"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Hay al menos dos implementaciones reales o previstas."}</li>
-        <li>{"El cliente (Caja, Checkout) no debe cambiar al añadir variantes."}</li>
-        <li>{"Se reduce acoplamiento: nuevas clases en lugar de editar if/switch."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de abstracción prematura"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Crear IPersona, IPersonaRepository sin segunda implementación."}</li>
-        <li>{"Interfaces gigantes que nadie implementa completa."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: IPago y Caja"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Historia: cada método de pago rompía la caja"}</h3>
+      <p className="my-4">
+        {
+          "En Tienda Andes la clase CajaDelDia empezó con un if (metodo == \"efectivo\"). Llegó tarjeta, transferencia y Nequi: cada uno añadió ramas en Caja, en Pedido y en un reporte. Un bug mezcló la lógica de Nequi con la de tarjeta porque el mismo switch se copió en tres archivos."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"La idea: contrato en lugar de clase concreta"}</h3>
+      <p className="my-4">
+        {
+          "Con abstracción, la caja no pregunta «¿es Nequi?»; solo llama Pagar(monto). Quién implementa el cobro puede cambiar sin reescribir Caja."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"C# mínimo: IPago y Caja"}</h3>
       <CodeFiddle
         language="csharp"
         code={`using System;
@@ -62,26 +57,16 @@ public class Caja
 }`}
       />
       <StepReveal
-        title="Nuevo método de pago"
+        title="Registrar Nequi sin tocar Caja"
         steps={[
-          { title: "Cliente inicial", content: "`new Caja(new PagoTarjeta())` — `Caja` solo conoce `IPago`." },
-          { title: "Nueva implementación", content: "Creas `PagoTransferencia : IPago` sin editar `Caja`." },
-          { title: "Mismo Cobrar", content: "`caja.Cobrar(100)` delega en la implementación inyectada." },
-          { title: "Salida distinta", content: "Cada `IPago` imprime su propio mensaje; el cliente no cambió." },
+          { title: "Hoy", content: "`new Caja(new PagoTarjeta())` — `Caja` solo ve `IPago`." },
+          { title: "Mañana", content: "Creas `PagoNequi : IPago`; `Caja` no se edita." },
+          { title: "Misma llamada", content: "`caja.Cobrar(100)` delega en la implementación inyectada." },
+          { title: "Comportamiento distinto", content: "Cada `IPago` imprime su mensaje; el cliente permanece igual." },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: pasarela de pagos"}</h3>
-      <p className="my-4">
-        {
-          "Un checkout con if (tipo == \"tarjeta\") ... else if (tipo == \"transferencia\") obligaba a editar varios servicios por cada método nuevo. Bug en producción mezcló lógica de Nequi con tarjeta."
-        }
-      </p>
-      <p className="my-4">
-        <strong>{"Decisión:"}</strong>
-        {" IPago con implementaciones por proveedor; Caja solo llama Pagar(monto)."}
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama: Caja depende de IPago"}</h3>
       <MermaidDiagram
+        title="Caja depende del contrato, no del banco"
         chart={`classDiagram
   class IPago {
     <<interface>>
@@ -95,11 +80,17 @@ public class Caja
   IPago <|.. PagoTarjeta
   IPago <|.. PagoTransferencia`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"El dominio Caja hace new PagoTarjeta() internamente en lugar de recibir IPago."}</li>
-        <li>{"Abstraer “por si acaso” sin variación real."}</li>
-      </ul>
+      <Callout title="Malentendido frecuente" variant="callout-warning">
+        {
+          "Abstracción no es «meter interfaces por si acaso». Si solo hay efectivo y no hay segunda implementación a la vista, IPago puede esperar. Abstrae cuando hay variación real y quieres que Caja (u otro cliente) no cambie cada trimestre."
+        }
+      </Callout>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comprueba en una frase"}</h3>
+      <p className="my-4">
+        {
+          "¿Qué tipo debe recibir el constructor de Caja para que Nequi sea solo una clase nueva? Si respondiste el contrato de pago, vas bien."
+        }
+      </p>
       <CodeChallenge
         title="Completa la inyección"
         template="public Caja({{b1}} pago) => _pago = pago ?? throw new ArgumentNullException(nameof(pago));"

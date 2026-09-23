@@ -1,9 +1,8 @@
 import { ClassPageLayout } from "@/components/teaching/ClassPageLayout";
 import { meta } from "./lesson-meta";
-import { ObjetivosDelTemaSection } from "./sections/ObjetivosDelTemaSection";
 import { ElementosBasicosSection } from "./sections/ElementosBasicosSection";
 import { ResumenSection } from "./sections/ResumenSection";
-import { CompruebaTuComprensionSection } from "./sections/CompruebaTuComprensionSection";
+import { CierreSection } from "./sections/CierreSection";
 
 type Props = { locale: string };
 
@@ -18,10 +17,9 @@ export default function DiagramaClaseSimplePageLesson({ locale: _locale }: Props
       prev={meta.prev}
       next={meta.next}
     >
-      <ObjetivosDelTemaSection />
       <ElementosBasicosSection />
       <ResumenSection />
-      <CompruebaTuComprensionSection />
+      <CierreSection />
     </ClassPageLayout>
   );
 }

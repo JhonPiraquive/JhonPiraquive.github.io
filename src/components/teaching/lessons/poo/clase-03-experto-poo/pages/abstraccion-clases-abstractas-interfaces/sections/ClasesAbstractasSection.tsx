@@ -5,35 +5,36 @@ import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 export function ClasesAbstractasSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Clases abstractas"}</h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Clase abstracta = no se instancia con new; puede tener estado y código común."}</li>
-        <li>{"Métodos abstract obligan implementación en derivadas."}</li>
-        <li>{"Template Method: flujo común en la base, paso variable en derivada."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Clases abstractas: el mismo guion, distinto canal"}
+      </h2>
       <p className="my-4">
         {
-          "Una clase abstracta (abstract class) combina contrato parcial con implementación compartida. Puede tener campos, constructores, métodos con cuerpo y métodos abstract sin cuerpo que las derivadas deben implementar."
+          "Una clase abstracta (abstract class) es una clase base incompleta: no se instancia con new, puede guardar estado y métodos con cuerpo, y deja pasos abstractos que las hijas deben completar."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de clase abstracta"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Varias derivadas comparten validación, logging o flujo idéntico."}</li>
-        <li>{"Necesitas estado común (Destino en notificaciones)."}</li>
-        <li>{"Un método público no sobrescribible orquesta pasos (Enviar → EnviarCore)."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: Notificacion (Template Method)"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Problema: validación copiada en email y SMS"}</h3>
+      <p className="my-4">
+        {
+          "Tienda Andes avisa al cliente cuando un pedido sale: por correo o por SMS. Con solo una interfaz INotificador, cada canal repetía «mensaje no vacío», el log de preparación y el cierre «enviado». Un cambio en la regla obligaba a tocar dos clases."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Idea: flujo común en la base, detalle en la derivada"}</h3>
+      <p className="my-4">
+        {
+          "Es el patrón Template Method: un esqueleto fijo (Enviar) y un gancho variable (EnviarCore). Campos, constructores y validación compartida viven en la abstracta; el canal concreto solo hace el envío."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"C#: NotificacionPedido"}</h3>
       <CodeFiddle
         language="csharp"
         code={`using System;
 
-public abstract class Notificacion
+public abstract class NotificacionPedido
 {
     public string Destino { get; }
 
-    protected Notificacion(string destino)
+    protected NotificacionPedido(string destino)
     {
         if (string.IsNullOrWhiteSpace(destino)) throw new ArgumentException("Destino requerido");
         Destino = destino;
@@ -42,15 +43,15 @@ public abstract class Notificacion
     public void Enviar(string mensaje)
     {
         if (string.IsNullOrWhiteSpace(mensaje)) throw new ArgumentException("Mensaje requerido");
-        Console.WriteLine($"Preparando notificación para {Destino}...");
+        Console.WriteLine($"Preparando aviso de pedido para {Destino}...");
         EnviarCore(mensaje);
-        Console.WriteLine("Notificación enviada.");
+        Console.WriteLine("Aviso enviado.");
     }
 
     protected abstract void EnviarCore(string mensaje);
 }
 
-public class NotificacionEmail : Notificacion
+public class NotificacionEmail : NotificacionPedido
 {
     public NotificacionEmail(string destino) : base(destino) { }
 
@@ -58,7 +59,7 @@ public class NotificacionEmail : Notificacion
         Console.WriteLine($"Email a {Destino}: {mensaje}");
 }
 
-public class NotificacionSms : Notificacion
+public class NotificacionSms : NotificacionPedido
 {
     public NotificacionSms(string destino) : base(destino) { }
 
@@ -66,37 +67,31 @@ public class NotificacionSms : Notificacion
         Console.WriteLine($"SMS a {Destino}: {mensaje}");
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"abstract vs virtual"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"abstract frente a virtual"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"abstract: obliga implementación en derivada; sin cuerpo en la base."}</li>
-        <li>{"virtual: ofrece implementación por defecto sobrescribible."}</li>
-        <li>{"new Notificacion(\"x\") no compila — las abstractas no se instancian directamente."}</li>
+        <li>{"abstract: la base no tiene cuerpo; la derivada debe implementar."}</li>
+        <li>{"virtual: la base ofrece comportamiento por defecto que puedes sobrescribir."}</li>
+        <li>{"new NotificacionPedido(\"x\") no compila — la abstracta es molde, no producto."}</li>
       </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: notificaciones"}</h3>
-      <p className="my-4">
-        {
-          "Con solo interfaz INotificacion, cada canal duplicaba validación de mensaje y formato de log. Con clase abstracta, Enviar centraliza reglas; canales solo implementan EnviarCore."
-        }
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama: jerarquía Notificacion"}</h3>
       <MermaidDiagram
         chart={`classDiagram
-  Notificacion <|-- NotificacionEmail
-  Notificacion <|-- NotificacionSms
-  class Notificacion {
+  NotificacionPedido <|-- NotificacionEmail
+  NotificacionPedido <|-- NotificacionSms
+  class NotificacionPedido {
     <<abstract>>
     +string Destino
     +Enviar(string mensaje)
     #EnviarCore(string mensaje)*
   }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Clase abstracta vacía solo para prohibir new cuando una interfaz bastaría."}</li>
-        <li>{"Cada derivada repite validación que debería vivir en la base."}</li>
-      </ul>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Error típico"}</h3>
+      <p className="my-4">
+        {
+          "Crear una clase abstracta vacía solo para prohibir new cuando una interfaz bastaría. Si no hay estado ni flujo compartido, IPago sigue siendo mejor que NotificacionPedido sin cuerpo común."
+        }
+      </p>
       <PracticeExercise
-        prompt="¿Por qué `Enviar` no es abstracto pero `EnviarCore` sí? ¿Qué patrón de diseño preview introduce esto?"
+        prompt="¿Por qué Enviar no es abstracto pero EnviarCore sí? ¿Qué patrón introduce eso?"
         hints={[
           "Enviar tiene flujo común idéntico para todos los canales",
           "EnviarCore varía según Email o Sms",

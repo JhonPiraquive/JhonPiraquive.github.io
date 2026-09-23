@@ -4,36 +4,24 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">{"Relaciona cada ejercicio con la letra SOLID que corresponda."}</p>
       <PracticeExercise
-        prompt="Implementa EnvioGratis : IEnvio (peso ≤ 1 → 0, si no → 3) sin modificar EnvioExpress ni EnvioNormal."
-        hints={[
-          "OCP — nueva clase, no editar existentes",
-          "Calcular implementa la regla de negocio",
-          "Cliente usa IEnvio polimórficamente",
-        ]}
-        expectedKeywords={["EnvioGratis", "OCP", "Calcular"]}
-        successMessage="Correcto. Has aplicado OCP con extensión por nueva implementación."
+        prompt="EnvioGratis : IEnvio sin editar CalculadoraEnvioPedido. ¿Qué letra SOLID demuestras?"
+        hints={["Nueva clase bajo contrato", "Cliente estable", "Open/Closed"]}
+        expectedKeywords={["OCP", "EnvioGratis", "extensión"]}
+        successMessage="Correcto. OCP: extender sin modificar el orquestador."
       />
       <PracticeExercise
-        prompt="¿Qué principio viola Pinguino : Ave con Volar() que lanza? Propón rediseño con IVolador o clases separadas."
-        hints={[
-          "Liskov Substitution Principle",
-          "Cliente con List<Ave> espera Volar exitoso",
-          "Separar capacidades por interfaz o modelo",
-        ]}
-        expectedKeywords={["LSP", "Liskov", "IVolador"]}
-        successMessage="Correcto. LSP protege sustituibilidad en jerarquías polimórficas."
+        prompt="Gadget que lanza en CalcularDescuento vs pingüino que lanza en Volar. ¿Mismo principio?"
+        hints={["Sustituibilidad en foreach", "Liskov", "Contrato semántico"]}
+        expectedKeywords={["LSP", "Liskov", "Producto"]}
+        successMessage="Correcto. LSP es sobre significado, no solo sintaxis."
       />
       <PracticeExercise
-        prompt="Identifica en PedidoService monolítico qué principios viola (al menos SRP y DIP) y nombra dos clases del refactor."
-        hints={[
-          "Mezcla crear y notificar — SRP",
-          "Sin abstracción de persistencia o notificación — DIP",
-          "CreadorPedido e INotificador del refactor",
-        ]}
-        expectedKeywords={["SRP", "DIP", "CreadorPedido", "INotificador"]}
-        successMessage="Correcto. El monolito concentra motivos de cambio y depende de detalles concretos."
+        prompt="PedidoService monolítico: nombra violaciones SRP y DIP y dos clases del refactor."
+        hints={["Mezcla crear y notificar", "Sin IRepositorio/INotificador", "CreadorPedido, OrquestadorPedido"]}
+        expectedKeywords={["SRP", "DIP", "CreadorPedido"]}
+        successMessage="Correcto. Monolito = muchos motivos de cambio + detalles acoplados."
       />
     </section>
   );

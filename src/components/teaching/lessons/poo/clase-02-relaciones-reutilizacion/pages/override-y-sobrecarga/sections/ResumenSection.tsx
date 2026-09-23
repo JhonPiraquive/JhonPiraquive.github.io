@@ -5,23 +5,19 @@ export function ResumenSection() {
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Override:"}</strong>
-          {" misma firma en jerarquía; virtual/abstract + override; resolución en runtime."}
+          {" misma firma en jerarquía; virtual + override; runtime en List<Producto>."}
         </li>
         <li>
           <strong>{"Overload:"}</strong>
-          {" firmas distintas en la misma clase; resolución en compile time; misma intención operativa."}
+          {" firmas distintas en CalculadoraPedido; compile time; misma intención (calcular total)."}
         </li>
         <li>
           <strong>{"new:"}</strong>
-          {" oculta sin polimorfismo — no sustituye a override en diseño polimórfico."}
-        </li>
-        <li>
-          <strong>{"Coexistencia:"}</strong>
-          {" Animal puede tener overload de Comer y Perro override de Hablar."}
+          {" oculta sin polimorfismo — no sustituye override en la vitrina."}
         </li>
         <li>
           <strong>{"Siguiente lección:"}</strong>
-          {" diagramas-de-clases — representar jerarquías y relaciones en UML/Mermaid."}
+          {" asociacion-agregacion-composicion — cómo se relacionan pedido, cliente y catálogo."}
         </li>
       </ul>
     </section>

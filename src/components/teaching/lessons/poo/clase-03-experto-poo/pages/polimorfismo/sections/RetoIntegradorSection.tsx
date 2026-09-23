@@ -4,60 +4,48 @@ export function RetoIntegradorSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Reto integrador: facturación con checkout e impuestos"}
+        {"Reto integrador — cobro y factura en Tienda Andes"}
       </h2>
       <p className="my-4">
         {
-          "Sistema consola .NET que una pagos polimórficos y cálculo fiscal en un flujo coherente."
+          "Consola .NET que una pasarelas polimórficas con impuestos opcionales. Todo en el lenguaje de la tienda; sin clientes ficticios extra."
         }
       </p>
-      <p className="my-4 font-semibold">{"Parte A — Pasarelas (interfaz)"}</p>
+      <p className="my-4 font-semibold">{"Parte A — Pasarelas"}</p>
       <ol className="my-4 list-decimal pl-6">
         <li>{"IPasarelaPago con Nombre y Cobrar(decimal)."}</li>
-        <li>{"Al menos tres implementaciones (tarjeta, transferencia, efectivo)."}</li>
-        <li>{"Checkout con inyección; método Pagar(decimal) sin lógica switch interna."}</li>
-        <li>{"List<Checkout> procesada en bucle en Main."}</li>
+        <li>{"Al menos tarjeta, transferencia y efectivo."}</li>
+        <li>{"Checkout con inyección; Pagar sin switch interno."}</li>
+        <li>{"List<Checkout> en Main con foreach."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte B — Impuestos (clase abstracta)"}</p>
+      <p className="my-4 font-semibold">{"Parte B — Impuestos (abstracta)"}</p>
       <ol className="my-4 list-decimal pl-6" start={5}>
-        <li>{"abstract class Impuesto con Calcular(decimal baseImponible)."}</li>
-        <li>{"Iva (19%), ImpuestoCero, ImpuestoFijo (monto fijo)."}</li>
-        <li>
-          {
-            "Clase Factura con decimal Base y List<Impuesto>; método TotalImpuestos() que itera sin if por tipo."
-          }
-        </li>
+        <li>{"Impuesto con Calcular(decimal baseImponible)."}</li>
+        <li>{"Iva 19%, ImpuestoCero, ImpuestoFijo."}</li>
+        <li>{"Factura con Base y List<Impuesto>; TotalImpuestos() sin if por tipo."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte C — Integración"}</p>
+      <p className="my-4 font-semibold">{"Parte C — Integración en Main"}</p>
       <ol className="my-4 list-decimal pl-6" start={8}>
-        <li>
-          {
-            "En Main: crear factura con base 100 y dos impuestos; imprimir total impuestos; luego ejecutar dos checkouts con pasarelas distintas."
-          }
-        </li>
+        <li>{"Factura base 100 con dos impuestos; imprimir total; dos checkouts con pasarelas distintas."}</li>
       </ol>
-      <p className="my-4 font-semibold">{"Parte D — Extensión demostrada"}</p>
+      <p className="my-4 font-semibold">{"Parte D — Extensión"}</p>
       <ol className="my-4 list-decimal pl-6" start={9}>
-        <li>
-          {
-            "Añadir PasarelaNequi o ImpuestoReducido después de tener Partes A–C funcionando, sin editar Checkout ni Factura.TotalImpuestos."
-          }
-        </li>
+        <li>{"PasarelaNequi o ImpuestoReducido después de A–C, sin editar Checkout ni Factura.TotalImpuestos."}</li>
       </ol>
       <p className="my-4 text-sm text-[var(--color-neutral-mid)]">
         {
-          "Criterio de éxito: compila; bucles sin ramas por tipo concreto; nueva pasarela o impuesto solo añade archivo/clase; salida numérica coherente con reglas definidas."
+          "Éxito: bucles sin ramas por tipo concreto; salida numérica coherente; extensión solo añade clases."
         }
       </p>
       <PracticeExercise
-        prompt="Documenta qué archivos editaste al añadir PasarelaNequi o ImpuestoReducido (Parte D). ¿Por qué Checkout y Factura no aparecen en la lista?"
+        prompt="Al añadir Nequi o ImpuestoReducido, lista qué archivos tocaste. ¿Por qué Checkout y Factura no deberían aparecer?"
         hints={[
-          "Solo nueva clase que implementa el contrato",
-          "Main o composición registra la nueva instancia",
-          "Cliente estable no cambia al extender",
+          "Solo nueva implementación del contrato",
+          "Main registra la instancia",
+          "Cliente estable",
         ]}
-        expectedKeywords={["nueva clase", "sin editar", "Checkout", "Factura"]}
-        successMessage="Excelente. Extensión por adición, no por modificación del cliente."
+        expectedKeywords={["nueva clase", "Checkout", "Factura"]}
+        successMessage="Excelente. Polimorfismo = extender por adición."
         rows={6}
       />
     </section>

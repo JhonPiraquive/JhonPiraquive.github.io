@@ -1,3 +1,4 @@
+import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { StepReveal } from "@/components/teaching/StepReveal";
@@ -25,22 +26,30 @@ export function ElementosBasicosSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Elementos básicos del diagrama"}
+        {"Una caja UML: dibujar lo que ya programaste"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Compartimentos UML: nombre, atributos, métodos."}</li>
-        <li>{"En Mermaid classDiagram se modelan en el cuerpo de la clase."}</li>
-        <li>{"Un diagrama por módulo o caso de uso — evitar el \"mapa del universo\"."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué representa una clase en el diagrama"}</h3>
       <p className="my-4">
         {
-          "Cada caja expone la interfaz pública del dominio: qué datos guarda y qué operaciones ofrece. Los detalles de framework o logs no suelen aparecer."
+          "Un diagrama de clases es un dibujo estático del modelo: qué tipos existen y qué datos/operaciones tiene cada uno. No muestra el orden de ejecución (eso sería un diagrama de secuencia)."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama Mermaid — Producto"}</h3>
+      <p className="my-4">
+        {
+          "Antes de las flechas (herencia, composición), necesitas leer una sola caja. UML (Unified Modeling Language) es el lenguaje visual estándar; aquí usamos Mermaid classDiagram: una caja = una clase."
+        }
+      </p>
+      <p className="my-4">
+        {
+          "Tres compartimentos: nombre arriba, atributos (estado) en el medio, métodos (comportamiento) abajo. El + suele indicar público."
+        }
+      </p>
+      <Callout title="En el aula" variant="callout-tip">
+        {
+          "Pide a dos estudiantes: uno dibuja la caja; el otro escribe la clase C#. Luego cruzan: ¿coinciden nombres y visibilidad?"
+        }
+      </Callout>
       <MermaidDiagram
+        title="Producto en Tienda Andes"
         chart={`classDiagram
   class Producto {
     +string Nombre
@@ -49,35 +58,38 @@ export function ElementosBasicosSection() {
     +AplicarDescuento(decimal porcentaje)
   }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Correspondencia diagrama ↔ C# (mínimo)"}</h3>
+      <p className="my-4">
+        {
+          "Esa caja se traduce casi línea a línea a C#. Si el diagrama y el código no coinciden, uno de los dos miente — y el equipo se pelea."
+        }
+      </p>
       <CodeFiddle language="csharp" code={PRODUCTO_CODE} />
       <StepReveal
-        title="Leer un diagrama de clase"
+        title="Cómo leer la caja"
         steps={[
           {
-            title: "Nombre de la clase",
-            content: "La caja superior identifica el tipo del dominio (`Producto`).",
+            title: "Nombre",
+            content: "Producto: el tipo del dominio.",
           },
           {
             title: "Atributos",
-            content: "Datos que persiste el objeto (`Nombre`, `Precio`).",
+            content: "Nombre y Precio: datos que guarda el objeto.",
           },
           {
             title: "Métodos",
-            content: "Comportamiento público (`AplicarDescuento`).",
+            content: "Constructor y AplicarDescuento: operaciones. El constructor no es un “dato”.",
           },
           {
             title: "Mapeo a C#",
-            content: "Cada miembro del diagrama tiene equivalente en la clase C#.",
+            content: "Cada miembro del diagrama tiene equivalente en la clase.",
           },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Saturar la caja con detalles de implementación irrelevantes."}</li>
-        <li>{"Diagrama gigante sin foco — nadie lo mantiene."}</li>
-        <li>{"Dibujar solo al final sin haber pensado el diseño."}</li>
-      </ul>
+      <p className="my-4">
+        {
+          "Dibuja solo lo del dominio. No satures la caja con logs, detalles de EF Core o nombres de tablas. Un diagrama por módulo o caso de uso — no el mapa del universo."
+        }
+      </p>
     </section>
   );
 }

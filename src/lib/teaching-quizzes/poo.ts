@@ -571,5 +571,26 @@ export const POO_QUIZZES: Record<string, QuizQuestion[]> = {
       correctIndex: 0,
       feedback: "DIP: alto nivel depende de abstracciones.",
     },
+    {
+      question:
+        "En C#, ¿cuándo prefieres clase abstracta frente a interfaz para Producto en Tienda Andes?",
+      options: [
+        "Siempre interfaz; nunca herencia",
+        "Cuando hay estado e invariantes compartidos entre Libro y Gadget",
+        "Solo si no hay métodos",
+        "Cuando quieres múltiples bases concretas",
+      ],
+      correctIndex: 1,
+      feedback:
+        "Abstracta (o base concreta) conviene con estado/flujo común; interfaz para capacidades intercambiables. C# permite una sola clase base.",
+    },
+    {
+      question:
+        "Gadget.CalcularDescuento() lanza si el precio es bajo, dentro de un foreach de Producto. ¿Qué principio viola?",
+      options: ["SRP", "OCP", "LSP", "ISP"],
+      correctIndex: 2,
+      feedback:
+        "LSP: la derivada no debe sorprender al cliente que usa el contrato de Producto.",
+    },
   ],
 };

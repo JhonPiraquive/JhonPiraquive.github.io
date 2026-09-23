@@ -4,37 +4,38 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">
+        {"Responde con tus palabras antes de pasar a override y sobrecarga."}
+      </p>
       <PracticeExercise
-        prompt="¿Por qué Moto puede usar Arrancar() de la base sin override, pero Carro define el suyo? ¿Qué decide el programador?"
+        prompt="Gadget usa override en DescripcionEtiqueta, pero podrías dejar PrecioConIva solo en Producto. ¿Qué decide el programador en cada caso?"
         hints={[
-          "override solo cuando el comportamiento debe ser distinto",
-          "Moto acepta el mensaje genérico de Vehiculo",
-          "Carro necesita un mensaje específico del dominio",
+          "override cuando el texto de la etiqueta cambia por tipo",
+          "sin override cuando el cálculo es igual para todos",
+          "virtual solo donde esperas redefinir",
         ]}
-        expectedKeywords={["override", "especializ", "comportamiento"]}
-        successMessage="Correcto. Override es opcional: se usa cuando la derivada necesita comportamiento distinto; si la implementación base sirve, se hereda tal cual."
+        expectedKeywords={["override", "virtual", "comportamiento"]}
+        successMessage="Correcto. Override es opcional: lo usas cuando la derivada debe comportarse distinto; si la base basta, heredas tal cual."
       />
       <PracticeExercise
-        prompt="Nombra dos señales de mal uso de herencia y dos de buen uso según la lección."
+        prompt="¿Por qué ConfirmacionPedido no debería heredar de AvisoEmail aunque «envíe correos»?"
         hints={[
-          "Mal: heredar solo para copiar código",
-          "Mal: jerarquías profundas o romper expectativas",
-          "Bien: relación es un estable",
-          "Bien: sustituibilidad sin romper contratos",
+          "Email no es un tipo de confirmación de pedido",
+          "Mañana querrás SMS sin nueva subclase de ConfirmacionPedido",
+          "ICanalAviso intercambia implementaciones",
         ]}
-        expectedKeywords={["composición", "es un", "acoplamiento", "sustituibilidad"]}
-        successMessage="Correcto. Buen uso = es un claro y sustituible; mal uso = copiar código, jerarquías forzadas o contratos rotos."
+        expectedKeywords={["composición", "interfaz", "es un"]}
+        successMessage="Correcto. El canal es una estrategia intercambiable, no una especialización «es un»."
       />
       <PracticeExercise
-        prompt='Ordena mentalmente el flujo al construir new Carro("ABC-123"): (a) constructor Carro, (b) base("ABC-123"), (c) asignación de Placa en Vehiculo, (d) objeto listo. ¿Cuál es el orden correcto?'
+        prompt='Orden al ejecutar new Libro("L-1", 10m, "978-x"): (a) constructor Libro, (b) base(...), (c) Producto asigna SKU/precio, (d) objeto listo. ¿Cuál es el orden?'
         hints={[
           "Primero entra el constructor de la derivada",
-          "base delega al constructor de la base",
-          "La base valida y asigna antes de terminar la derivada",
+          "base delega al constructor de Producto",
+          "La base termina antes de completar la derivada",
         ]}
-        expectedKeywords={["base", "constructor", "placa"]}
-        successMessage="Correcto. Orden: (a) → (b) → (c) → (d). El constructor de Carro delega en base; Vehiculo fija Placa; luego el objeto está listo."
+        expectedKeywords={["base", "constructor", "Producto"]}
+        successMessage="Correcto. Orden: (a) → (b) → (c) → (d)."
       />
     </section>
   );

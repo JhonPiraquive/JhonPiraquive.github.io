@@ -4,36 +4,40 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">
+        {
+          "Verifica solo lo de esta página: leer y completar una caja. Las relaciones (herencia, agregación) se practican en Clase 2."
+        }
+      </p>
       <PracticeExercise
-        prompt="Dibuja en Mermaid Usuario, Carrito y Producto; conecta carrito con varios productos. Justifica agregación vs composición."
+        prompt="Traduce esta caja a C#: Producto con +string Sku, +decimal Precio (solo lectura pública) y un constructor que recibe sku y precio. ¿Qué propiedades usarías con private set?"
         hints={[
-          "Producto del catálogo no desaparece al vaciar carrito",
-          "Rombo vacío o-- para agregación",
-          "Incluye cardinalidad en la relación",
+          "Sku y Precio: { get; private set; }",
+          "Validar sku no vacío y precio >= 0 en el constructor",
+          "No hace falta herencia todavía",
         ]}
-        expectedKeywords={["Mermaid", "agregación", "Producto", "Carrito"]}
-        successMessage="Correcto. Has modelado relación con ciclo de vida independiente del catálogo."
+        expectedKeywords={["private set", "Sku", "Precio", "constructor"]}
+        successMessage="Correcto. La caja UML guió encapsulamiento sin inventar relaciones aún."
       />
       <PracticeExercise
-        prompt="Añade AplicarDescuento(decimal porcentaje) al diagrama de Producto y la jerarquía Notificacion abstracta con Email y Sms."
+        prompt="En Mermaid classDiagram, añade a Producto el método +void AplicarDescuento(decimal porcentaje). ¿En qué compartimento de la caja va (atributos vs métodos)?"
         hints={[
-          "Método en cuerpo de Producto en classDiagram",
-          "<<abstract>> en Notificacion",
-          "Notificacion <|-- NotificacionEmail",
+          "Tercer compartimento: operaciones",
+          "Sintaxis: +AplicarDescuento(decimal porcentaje) void",
+          "El porcentaje no es atributo permanente salvo que lo modeles así",
         ]}
-        expectedKeywords={["AplicarDescuento", "abstract", "NotificacionEmail"]}
-        successMessage="Correcto. Diagrama actualizado con método y jerarquía abstracta."
+        expectedKeywords={["AplicarDescuento", "método", "classDiagram"]}
+        successMessage="Correcto. Sabes ampliar la caja sin confundir estado y comportamiento."
       />
       <PracticeExercise
-        prompt="Señala en el caso tienda una clase que podría violar SRP si se le añaden más de cinco responsabilidades distintas. ¿Cuál y por qué?"
+        prompt="Un compañero dibuja +Producto() en el compartimento de atributos. ¿Qué le corriges en una frase?"
         hints={[
-          "PedidoService o clase que mezcla dominios",
-          "Muchos métodos de áreas distintas en una caja",
-          "Preview lección SOLID — un motivo de cambio",
+          "El constructor es operación, no dato",
+          "En C# no tiene tipo de retorno",
+          "Va con los métodos",
         ]}
-        expectedKeywords={["SRP", "responsabilidad", "Pedido"]}
-        successMessage="Correcto. Diagramas con clases sobrecargadas anticipan refactor SOLID."
+        expectedKeywords={["constructor", "método", "atributo"]}
+        successMessage="Correcto. Evitaste el malentendido típico de mezclar datos y operaciones."
       />
     </section>
   );

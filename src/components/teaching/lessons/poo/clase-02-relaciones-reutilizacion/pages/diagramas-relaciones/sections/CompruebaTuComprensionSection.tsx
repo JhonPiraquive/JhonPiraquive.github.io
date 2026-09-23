@@ -4,36 +4,36 @@ export function CompruebaTuComprensionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
-      <p className="my-4">{"Antes del cierre, verifica que puedes aplicar los conceptos de la lección."}</p>
+      <p className="my-4">{"Traduce relaciones a Mermaid antes de la práctica final."}</p>
       <PracticeExercise
-        prompt="Dibuja en Mermaid Usuario, Carrito y Producto; conecta carrito con varios productos. Justifica agregación vs composición."
+        prompt="Dibuja CarritoCompras, Producto y Pedido *-- LineaPedido en Mermaid. Justifica o-- vs *-- en una frase cada uno."
         hints={[
-          "Producto del catálogo no desaparece al vaciar carrito",
-          "Rombo vacío o-- para agregación",
-          "Incluye cardinalidad en la relación",
+          "Carrito referencia catálogo",
+          "Pedido crea líneas",
+          "Incluye cardinalidad si puedes",
         ]}
-        expectedKeywords={["Mermaid", "agregación", "Producto", "Carrito"]}
-        successMessage="Correcto. Has modelado relación con ciclo de vida independiente del catálogo."
+        expectedKeywords={["o--", "*--", "CarritoCompras", "LineaPedido"]}
+        successMessage="Correcto. Símbolos alineados al ciclo de vida."
       />
       <PracticeExercise
-        prompt="Añade AplicarDescuento(decimal porcentaje) al diagrama de Producto y la jerarquía Notificacion abstracta con Email y Sms."
+        prompt="Añade IPasarelaPago <|.. dos implementaciones y Checkout --> IPasarelaPago al diagrama de Tienda Andes."
         hints={[
-          "Método en cuerpo de Producto en classDiagram",
-          "<<abstract>> en Notificacion",
-          "Notificacion <|-- NotificacionEmail",
+          "<<interface>> en IPasarelaPago",
+          "Línea punteada a implementaciones",
+          "Checkout depende del contrato, no de Tarjeta concreta",
         ]}
-        expectedKeywords={["AplicarDescuento", "abstract", "NotificacionEmail"]}
-        successMessage="Correcto. Diagrama actualizado con método y jerarquía abstracta."
+        expectedKeywords={["interface", "<|..", "Checkout"]}
+        successMessage="Correcto. Contrato de pago modelado aparte del pedido."
       />
       <PracticeExercise
-        prompt="Señala en el caso tienda una clase que podría violar SRP si se le añaden más de cinco responsabilidades distintas. ¿Cuál y por qué?"
+        prompt="¿Qué clase del diagrama integrado sería candidata a «demasiadas responsabilidades» si mezcla cobro, envío e inventario? Una frase (preview SRP)."
         hints={[
-          "PedidoService o clase que mezcla dominios",
-          "Muchos métodos de áreas distintas en una caja",
-          "Preview lección SOLID — un motivo de cambio",
+          "Busca la caja con muchos dominios",
+          "PedidoService o similar",
+          "Un motivo de cambio por clase",
         ]}
         expectedKeywords={["SRP", "responsabilidad", "Pedido"]}
-        successMessage="Correcto. Diagramas con clases sobrecargadas anticipan refactor SOLID."
+        successMessage="Correcto. El diagrama anticipa refactor en Clase 3."
       />
     </section>
   );

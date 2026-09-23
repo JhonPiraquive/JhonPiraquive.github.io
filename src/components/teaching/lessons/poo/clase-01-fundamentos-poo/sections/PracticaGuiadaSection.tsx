@@ -10,45 +10,32 @@ export function PracticaGuiadaSection() {
       </h2>
       <p className="my-4">
         {
-          "Caso transversal del módulo: una tienda universitaria vende productos (libros, gadgets) con clientes y pedidos. Trabaja en C#."
+          "Hilo del curso: Tienda Andes. Hoy solo el catálogo: un Producto encapsulado (Sku, Precio, descuento). Cliente, Pedido y “es-un” llegan en Clase 2."
         }
       </p>
       <MermaidDiagram
-        title="Mapa del caso Tienda Andes"
-        description="Vista de alto nivel del dominio que atraviesa las 3 clases"
+        title="Producto — caja de Clase 1"
+        description="Sin herencia ni composición todavía"
         chart={`classDiagram
   direction TB
-  class Cliente {
-    +string Nombre
-    +RealizarPedido()
-  }
-  class Pedido {
-    +Date Fecha
-    +AgregarLinea()
-  }
-  class LineaPedido {
-    +int Cantidad
-  }
   class Producto {
     +string Sku
     +decimal Precio
-  }
-  class Libro {
-    +string Isbn
-  }
-  class Gadget {
-    +string Marca
-  }
-  Cliente "1" --> "*" Pedido : realiza
-  Pedido "1" *-- "*" LineaPedido : compone
-  LineaPedido --> Producto : referencia
-  Libro --|> Producto
-  Gadget --|> Producto`}
+    +Producto(string sku, decimal precio)
+    +void AplicarDescuento(decimal porcentaje)
+  }`}
       />
-      <Callout title="Entregable de esta clase" variant="callout-tip">
+      <Callout title="Pasos en el aula" variant="callout-tip">
+        <ol className="mb-0 list-decimal pl-5">
+          <li>{"Crea un proyecto consola: "}<code>{"dotnet new console"}</code>{"."}</li>
+          <li>{"Pega la plantilla Producto y prueba un SKU vacío (debe fallar)."}</li>
+          <li>{"Dibuja la misma caja en Mermaid o papel; guarda el diagrama para Clase 2."}</li>
+        </ol>
+      </Callout>
+      <Callout title="Error común" variant="callout-warning">
         <p className="mb-0">
           {
-            "Completa el reto de abajo en papel o en tu IDE. Guarda nombres de clases y relaciones: la siguiente clase las reutiliza."
+            "Malentendido: creer que dibujar Libro y Gadget ya es obligatorio. Hoy no: primero un Producto válido y encapsulado."
           }
         </p>
       </Callout>
@@ -67,6 +54,13 @@ export function PracticaGuiadaSection() {
         if (precio < 0) throw new ArgumentOutOfRangeException(nameof(precio));
         Sku = sku;
         Precio = precio;
+    }
+
+    public void AplicarDescuento(decimal porcentaje)
+    {
+        if (porcentaje < 0 || porcentaje > 100)
+            throw new ArgumentOutOfRangeException(nameof(porcentaje));
+        Precio = Precio * (1 - porcentaje / 100m);
     }
 }
 `}

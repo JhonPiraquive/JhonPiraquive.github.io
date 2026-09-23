@@ -5,25 +5,39 @@ export function HerenciaInterfacesDiagramaSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Herencia e interfaces en el diagrama"}
+        {"Herencia e interfaces en Mermaid"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Herencia: Base <|-- Derivada — triángulo hacia la base."}</li>
-        <li>{"Interfaz: <<interface>> + Interface <|.. ClaseImplementa."}</li>
-        <li>{"Clase abstracta: <<abstract>> cuando no se instancia directamente."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Notificación abstracta + derivadas"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Del código al dibujo"}</h3>
+      <p className="my-4">
+        {
+          "Antes de seguir escribiendo clases, el equipo de Tienda Andes acuerda un diagrama de clases: estructura estática (no secuencia de clics). Herencia de productos usa flecha con triángulo hacia la base: en Mermaid, Base <|-- Derivada."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Catálogo: Producto y derivadas"}</h3>
       <MermaidDiagram
         chart={`classDiagram
-  class Notificacion {
-    <<abstract>>
-    +Enviar(string mensaje)
+  Producto <|-- Libro
+  Producto <|-- Gadget
+  class Producto {
+    +string Sku
+    +decimal Precio
+    +DescripcionEtiqueta()*
   }
-  Notificacion <|-- NotificacionEmail
-  Notificacion <|-- NotificacionSms`}
+  class Libro {
+    +string Isbn
+    +DescripcionEtiqueta()
+  }
+  class Gadget {
+    +string Marca
+    +DescripcionEtiqueta()
+  }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Interfaz y implementaciones (pasarelas)"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Pago: interfaz, no herencia de Pedido"}</h3>
+      <p className="my-4">
+        {
+          "Un contrato (interfaz) dice qué debe hacer una clase sin fijar cómo. En Mermaid: <<interface>> y línea punteada <|.. hacia la implementación."
+        }
+      </p>
       <MermaidDiagram
         chart={`classDiagram
   class IPasarelaPago {
@@ -31,29 +45,27 @@ export function HerenciaInterfacesDiagramaSection() {
     +Cobrar(decimal monto)
   }
   IPasarelaPago <|.. PasarelaTarjeta
-  IPasarelaPago <|.. PasarelaTransferencia`}
+  IPasarelaPago <|.. PasarelaTransferencia
+  class Checkout {
+    +Pagar(decimal monto)
+  }
+  Checkout --> IPasarelaPago : usa`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales en el diagrama"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Confusión típica"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"<|-- para herencia de clase — no para interfaz."}</li>
-        <li>{"<|.. (línea punteada) para implementación de interfaz."}</li>
-        <li>{"<<abstract>> y <<interface>> estereotipos UML en Mermaid."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Herencia vs implementación invertidas — interfaz requiere <|.."}</li>
-        <li>{"Confundir diagrama de clases con diagrama de secuencia."}</li>
-        <li>{"Jerarquías profundas sin necesidad de dominio."}</li>
+        <li>{"Usar <|-- entre interfaz e implementación — debe ser <|.."}</li>
+        <li>{"Invertir la flecha de herencia (--|> en lugar de <|--)."}</li>
+        <li>{"Mezclar diagrama de clases con diagrama de secuencia."}</li>
       </ul>
       <PracticeExercise
-        prompt="Añade al diagrama de Producto la clase abstracta Notificacion con NotificacionEmail y NotificacionSms. Usa estereotipos y herencia correctos en Mermaid."
+        prompt="Añade Artesania : Producto al diagrama del catálogo con override de DescripcionEtiqueta en la caja. Usa <|--."
         hints={[
-          "Notificacion lleva <<abstract>>",
-          "Herencia de clase usa <|--",
-          "NotificacionEmail y NotificacionSms heredan de Notificacion",
+          "Artesania hereda de Producto",
+          "Método en cuerpo de Artesania",
+          "Triángulo apunta a Producto",
         ]}
-        expectedKeywords={["abstract", "<|--", "NotificacionEmail", "NotificacionSms"]}
-        successMessage="Correcto. Has modelado jerarquía abstracta con sintaxis Mermaid válida."
+        expectedKeywords={["Artesania", "<|--", "Producto"]}
+        successMessage="Correcto. Jerarquía de catálogo legible en Mermaid."
       />
     </section>
   );

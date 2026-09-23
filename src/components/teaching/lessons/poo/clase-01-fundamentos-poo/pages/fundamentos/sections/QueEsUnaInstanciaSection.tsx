@@ -3,17 +3,18 @@ import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
-const INSTANCIAS_CODE = `var p1 = new Producto("Café", 5.5m);
-var p2 = new Producto("Té", 4.0m);`;
+const INSTANCIAS_CODE = `var cafe = new Producto("Café de Nariño", 12_000m);
+var panela = new Producto("Panela orgánica", 8_500m);
+// cafe y panela son instancias distintas: cambiar una no cambia la otra`;
 
 const CATALOGO_CODE = `using System;
 using System.Collections.Generic;
 
 var catalogo = new List<Producto>
 {
-    new Producto("Café", 5.5m),
-    new Producto("Té", 4.0m),
-    new Producto("Jugo", 6.0m)
+    new Producto("Café de Nariño", 12_000m),
+    new Producto("Panela orgánica", 8_500m),
+    new Producto("Mochila Wayuu", 95_000m)
 };
 
 foreach (var p in catalogo)
@@ -22,72 +23,61 @@ foreach (var p in catalogo)
 export function QueEsUnaInstanciaSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"¿Qué es una Instancia?"}</h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Instancia = objeto concreto creado desde una clase."}</li>
-        <li>{"Dos instancias de la misma clase pueden tener estados distintos."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
-      <p className="my-4">{"Una instancia es un objeto específico creado a partir de una clase:"}</p>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Instancia: el objeto concreto"}
+      </h2>
+      <p className="my-4">
+        {
+          "“Instancia” es solo la palabra técnica para “este objeto creado a partir de la clase”. Cuando escribes new Producto(...), estás instanciando: nace un objeto con su propio estado."
+        }
+      </p>
       <CodeFiddle language="csharp" code={INSTANCIAS_CODE} />
       <p className="my-4">
-        {"p1 y p2 son instancias diferentes con estados distintos. Modificar p1 no cambia p2 automáticamente."}
+        {
+          "En el catálogo de Tienda Andes puedes tener decenas de productos. Todos salen del mismo molde Producto, pero cada uno es independiente: el café a 12 000 y la panela a 8 500 no se pisan entre sí."
+        }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Representar múltiples elementos del mismo tipo en el sistema."}</li>
-        <li>{"Guardarlos en colecciones, procesarlos, compararlos."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Bien: crear instancias cuando necesitas identidad y estado propio."}</li>
-        <li>{"Mal: crear instancias solo para agrupar funciones sin datos (quizá basta un helper estático)."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo de vida real"}</h3>
-      <p className="my-4">{"Usuario (clase) vs “Ana” y “Juan” (instancias con nombres y permisos distintos)."}</p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Instancias independientes en colección"}</h3>
-      <CodeFiddle language="csharp" code={CATALOGO_CODE} />
+      <CodeFiddle language="csharp" title="Varias instancias en una lista" code={CATALOGO_CODE} />
       <MermaidDiagram
         chart={`flowchart LR
-  Clase[Clase Producto] -->|new| p1["Instancia p1: Café"]
-  Clase -->|new| p2["Instancia p2: Té"]`}
+  Clase[Clase Producto] -->|new| cafe["Instancia cafe"]
+  Clase -->|new| panela["Instancia panela"]`}
       />
       <StepReveal
-        title="Creación de un objeto en C#"
+        title="Qué pasa cuando escribes new en C#"
         steps={[
           {
-            title: "1. Defines la clase",
+            title: "1. Ya existe la clase",
             content:
-              "Escribes class Producto con propiedades, constructor y métodos. Es el molde reutilizable.",
+              "Definiste class Producto con propiedades y constructor. Eso es el molde, todavía sin objeto.",
           },
           {
             title: "2. Escribes new Producto(...)",
             content:
-              "La expresión new reserva memoria e invoca el constructor con los argumentos proporcionados.",
+              "new reserva memoria e invoca el constructor con los argumentos que pasaste.",
           },
           {
-            title: "3. Se ejecuta el constructor",
+            title: "3. Corre el constructor",
             content:
-              "El constructor valida entradas y asigna valores iniciales. El objeto nace en estado válido.",
+              "Valida entradas y deja el objeto en un estado inicial válido (por ejemplo, precio >= 0).",
           },
           {
-            title: "4. El objeto queda listo en memoria",
+            title: "4. La variable apunta a la instancia",
             content:
-              "La variable (por ejemplo, var cafe) referencia la instancia concreta con su propio estado.",
-          },
-          {
-            title: "5. Llamas métodos que respetan reglas",
-            content:
-              "Operaciones como Retirar() o Pagar() modifican el estado solo si las reglas del dominio lo permiten.",
+              "var cafe referencia ese objeto concreto. A partir de ahí llamas métodos sobre cafe.",
           },
         ]}
       />
+      <p className="my-4">
+        {
+          "No crees instancias “por deporte”. Si no hay estado propio ni identidad que cuidar, a veces basta un método estático helper. Si hay datos que cambian y reglas, sí: instancia."
+        }
+      </p>
       <PracticeExercise
-        prompt='Analogía receta vs galleta: en var cafe = new Producto("Café", 5.5m);, ¿qué parte es la clase y qué parte es la instancia?'
-        hints={["Producto sin new es solo el tipo", "new crea el objeto concreto en memoria"]}
+        prompt='En var cafe = new Producto("Café de Nariño", 12000m); ¿qué es la clase y qué es la instancia?'
+        hints={["Producto sin new es el tipo", "new crea el objeto en memoria"]}
         expectedKeywords={["Producto", "clase", "cafe", "instancia"]}
-        successMessage="Correcto. Producto es la clase (molde); cafe es la instancia u objeto concreto creado con new."
+        successMessage="Correcto. Producto es la clase; cafe es la instancia."
       />
     </section>
   );

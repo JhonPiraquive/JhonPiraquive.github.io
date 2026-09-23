@@ -5,31 +5,22 @@ export function ResumenSection() {
       <ul className="my-4 list-disc pl-6">
         <li>
           <strong>{"Herencia"}</strong>
-          {
-            " modela relación “es un”: la derivada especializa o redefine comportamiento de la base (virtual / override, base(...))."
-          }
+          {" modela «es un»: Libro especializa Producto con base(...), virtual y override."}
         </li>
         <li>
           <strong>{"Polimorfismo básico:"}</strong>
-          {" Vehiculo v = new Carro(...) — v.Arrancar() ejecuta la versión del tipo real."}
+          {" Producto p = new Libro(...); p.DescripcionEtiqueta() usa la versión del objeto real."}
         </li>
         <li>
-          {
-            "No todo método necesita override: comportamiento común (Parar()) se define una vez en la base."
-          }
+          {"No todo método necesita override: lo común (p. ej. PrecioConIva) vive una sola vez en la base."}
         </li>
         <li>
           <strong>{"Composición + interfaz"}</strong>
-          {" (Alarma + INotificador) extiende canales sin jerarquías rígidas ni editar la clase cliente."}
-        </li>
-        <li>
-          {
-            "Criterio principal: sustituibilidad y “es un” válido; reutilizar código es beneficio secundario."
-          }
+          {" (ConfirmacionPedido + ICanalAviso) agrega canales sin jerarquías rígidas."}
         </li>
         <li>
           <strong>{"Siguiente lección:"}</strong>
-          {" asociacion-agregacion-composicion — matiza “tiene un” (asociación, agregación, composición)."}
+          {" override-y-sobrecarga — mismo catálogo, dos mecanismos distintos en C#."}
         </li>
       </ul>
     </section>

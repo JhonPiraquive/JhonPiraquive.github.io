@@ -3,33 +3,38 @@ import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
-const BIBLIOTECA_LIBRO_CODE = `using System;
+const CARRITO_PRODUCTO_CODE = `using System;
 using System.Collections.Generic;
 
-public class Libro
+public class Producto
 {
-    public string Titulo { get; }
-    public Libro(string titulo) => Titulo = titulo;
+    public string Sku { get; }
+    public decimal Precio { get; }
+    public Producto(string sku, decimal precio)
+    {
+        Sku = sku;
+        Precio = precio;
+    }
 }
 
-public class Biblioteca
+public class CarritoCompras
 {
-    private readonly List<Libro> _libros = new();
+    private readonly List<Producto> _items = new();
 
-    public void Agregar(Libro libro) => _libros.Add(libro);
+    public void Agregar(Producto producto) => _items.Add(producto);
 
-    public bool Quitar(string titulo)
+    public bool Quitar(string sku)
     {
-        var idx = _libros.FindIndex(l => l.Titulo == titulo);
+        var idx = _items.FindIndex(p => p.Sku == sku);
         if (idx < 0) return false;
-        _libros.RemoveAt(idx);
+        _items.RemoveAt(idx);
         return true;
     }
 
     public void Listar()
     {
-        foreach (var libro in _libros)
-            Console.WriteLine(libro.Titulo);
+        foreach (var p in _items)
+            Console.WriteLine($"{p.Sku} — {p.Precio:C}");
     }
 }`;
 
@@ -37,77 +42,59 @@ export function AgregacionSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Agregación: todo–parte débil"}
+        {"Agregación: el carrito agrupa productos del catálogo"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Agregación = todo agrupa partes que pueden existir sin él."}</li>
-        <li>{"El todo mantiene referencias; usualmente no crea las partes."}</li>
-        <li>{"Quitar una parte del todo no destruye la parte en el sistema."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "En agregación, hay relación todo–parte pero la parte tiene vida propia. Ejemplo: una Biblioteca agrupa Libro creados afuera; quitar un libro de la biblioteca no elimina el libro si otra variable lo referencia."
+          "Agregación es una relación todo–parte débil: el todo (carrito) agrupa partes (productos) que existen por su cuenta. Si vacías el carrito, los productos siguen en el catálogo."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de agregación"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Las partes se instancian fuera del todo y se pasan con Agregar."}</li>
-        <li>{"El todo ofrece Quitar sin destruir el objeto parte."}</li>
-        <li>{"Las partes pueden compartirse entre varios todos o existir antes del todo."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: Biblioteca y Libro"}</h3>
-      <CodeFiddle language="csharp" code={BIBLIOTECA_LIBRO_CODE} />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Problema de la vitrina"}</h3>
+      <p className="my-4">
+        {
+          "Los Producto viven en el catálogo de Tienda Andes aunque nadie los compre hoy. El carrito solo guarda referencias a ítems que el cliente eligió."
+        }
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código"}</h3>
+      <CodeFiddle language="csharp" code={CARRITO_PRODUCTO_CODE} />
       <StepReveal
-        title="Agregar y quitar libro"
+        title="Agregar y quitar del carrito"
         steps={[
           {
-            title: "Crear Libro",
-            content: "En Main: var libro = new Libro(\"C# POO\"); — existe independiente de la biblioteca.",
+            title: "Crear Producto",
+            content: 'var te = new Producto("TE-ANDES", 12m); — existe fuera del carrito.',
           },
-          { title: "Agregar", content: "biblioteca.Agregar(libro); — el todo mantiene una referencia." },
-          { title: "Listar", content: "La biblioteca imprime títulos de sus referencias." },
+          { title: "Agregar", content: "carrito.Agregar(te); — el carrito guarda una referencia." },
+          { title: "Quitar", content: 'carrito.Quitar("TE-ANDES"); — solo sale de la lista interna.' },
           {
-            title: "Quitar",
-            content: "biblioteca.Quitar(\"C# POO\"); — solo se elimina la referencia interna.",
-          },
-          {
-            title: "Parte viva",
-            content: "Si libro sigue en una variable local, libro.Titulo sigue siendo válido.",
+            title: "Producto sigue vivo",
+            content: "Si la variable te sigue en Main, te.Precio sigue siendo válido.",
           },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: e-commerce (carrito)"}</h3>
-      <p className="my-4">
-        {
-          "Un Carrito agrega referencias a Producto del catálogo. Los productos viven sin el carrito; el carrito solo agrupa lo que el usuario selecciona temporalmente."
-        }
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama UML (preview)"}</h3>
       <MermaidDiagram
         chart={`classDiagram
-  Biblioteca o-- Libro : agrega
-  class Biblioteca {
-    -List~Libro~ _libros
-    +Agregar(Libro)
-    +Quitar(string)
+  CarritoCompras o-- Producto : agrega
+  class CarritoCompras {
+    -List~Producto~ _items
+    +Agregar(Producto)
+    +Quitar(string sku)
   }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Confusión típica"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"Etiquetar todo como composición cuando las partes se comparten o existen antes del todo."}</li>
-        <li>{"Destruir o invalidar la parte al quitarla de una agregación."}</li>
+        <li>{"Marcar composición porque hay List<T> — la clave es quién crea el Producto y si vive sin el carrito."}</li>
+        <li>{"Eliminar el objeto Producto al quitarlo del carrito — en agregación solo sueltas la referencia."}</li>
       </ul>
       <PracticeExercise
-        prompt="¿Por qué Biblioteca con List<Libro> privada es agregación y no composición? Menciona quién crea el Libro y qué pasa al quitar."
+        prompt="¿Por qué CarritoCompras con List<Producto> privada es agregación? Menciona quién crea el Producto y qué pasa al Quitar."
         hints={[
-          "El Libro se crea fuera de Biblioteca",
-          "Quitar solo elimina la referencia en la lista",
-          "El objeto Libro puede seguir existiendo",
+          "Producto se crea en catálogo o Main",
+          "Quitar no destruye el objeto",
+          "El mismo SKU puede estar en otro carrito",
         ]}
-        expectedKeywords={["referencia", "crea", "quitar", "independiente"]}
-        successMessage="Correcto. Agregación: el todo agrupa referencias; las partes tienen ciclo de vida propio."
+        expectedKeywords={["referencia", "catálogo", "quitar", "independiente"]}
+        successMessage="Correcto. El carrito agrupa referencias; el catálogo sobrevive."
       />
     </section>
   );

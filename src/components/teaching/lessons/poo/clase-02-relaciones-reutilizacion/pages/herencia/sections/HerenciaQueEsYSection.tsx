@@ -8,244 +8,192 @@ export function HerenciaQueEsYSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
-        {"Herencia: qué es y para qué sirve"}
+        {"Herencia en el catálogo de Tienda Andes"}
       </h2>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Mapa mental"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Herencia = relación “es un” (is-a)."}</li>
-        <li>{"Reutiliza comportamiento común en una clase base."}</li>
-        <li>{"Permite especialización en subclases."}</li>
-        <li>{"Se usa con cuidado: puede aumentar acoplamiento."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"El problema: tres productos, mucho código repetido"}</h3>
       <p className="my-4">
         {
-          "Herencia es un mecanismo donde una clase derivada (hija) obtiene estado y comportamiento de una clase base (padre). En C# se expresa con dos puntos:"
+          "Tu compañero creó LibroTienda, GadgetTienda y ArtesaniaTienda con el mismo SKU, precio y validaciones copiadas. Si mañana cambias cómo se valida el precio, tocas tres archivos. Necesitas un solo lugar para lo común y clases concretas para lo específico."
         }
       </p>
-      <CodeFiddle language="csharp" code={`class Carro : Vehiculo { }`} />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"La idea: «es un» (herencia)"}</h3>
       <p className="my-4">
         {
-          "Un Carro es un Vehiculo; un Moto es un Vehiculo. No confundir con “tiene un” (composición)."
+          "Herencia es un mecanismo de Programación Orientada a Objetos (POO) donde una clase derivada recibe estado y comportamiento de una clase base. Un Libro es un Producto; un Gadget es un Producto. En C# lo escribes con dos puntos:"
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Compartir lógica común (Placa, Arrancar) sin duplicar en cada subclase."}</li>
-        <li>{"Modelar jerarquías reales del dominio cuando el “es un” es natural y estable."}</li>
-        <li>
-          {
-            "Habilitar polimorfismo: tratar derivadas como base; la llamada resuelve el tipo real en tiempo de ejecución."
-          }
-        </li>
-      </ul>
+      <CodeFiddle language="csharp" code={`class Libro : Producto { }`} />
+      <p className="my-4">
+        {
+          "No confundas esto con «tiene un»: un Pedido tiene líneas de pedido, pero no es una línea. Eso lo verás en la lección de asociación y composición."
+        }
+      </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Constructor y base(...)"}</h3>
       <p className="my-4">
         {
-          "Si la clase base exige parámetros en su constructor, la derivada debe invocar base(placa) antes de añadir lógica propia. Olvidar base(...) provoca error de compilación si la base no tiene constructor sin parámetros."
+          "Si Producto exige SKU en su constructor, Libro debe llamar base(sku, precio) antes de guardar el ISBN. Si olvidas base(...) y la base no tiene constructor vacío, el compilador te detiene."
         }
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"virtual y override"}</h3>
       <ul className="my-4 list-disc pl-6">
-        <li>{"virtual en la base: marca un método que puede redefinirse en derivadas."}</li>
-        <li>{"override en la derivada: reemplaza la implementación respetando la firma."}</li>
-        <li>
-          {
-            "Sin virtual (ni abstract), override es rechazado; new solo oculta y no da polimorfismo real."
-          }
-        </li>
+        <li>{"virtual en la base: el método puede redefinirse en las hijas."}</li>
+        <li>{"override en la derivada: nueva implementación con la misma firma."}</li>
+        <li>{"Sin virtual, override falla; new solo oculta y no da polimorfismo real."}</li>
       </ul>
       <StepReveal
-        title="Construcción de una derivada"
+        title="Qué pasa al hacer new Libro(...)"
         steps={[
-          { title: "Cliente", content: 'Se llama new Carro("ABC-123").' },
-          {
-            title: "Constructor derivado",
-            content: "Entra el constructor Carro y delega en base(placa).",
-          },
-          {
-            title: "Constructor base",
-            content: "Vehiculo valida la placa y asigna Placa.",
-          },
+          { title: "Cliente", content: 'Se ejecuta new Libro("SKU-01", 29.99m, "978-…").' },
+          { title: "Constructor de Libro", content: "Entra Libro y delega en base(sku, precio)." },
+          { title: "Constructor de Producto", content: "Producto valida SKU y precio y los asigna." },
           {
             title: "Objeto listo",
-            content: "La instancia es Carro; puede declararse como Vehiculo o Carro.",
+            content: "La instancia es Libro; puedes declararla como Producto o como Libro.",
           },
         ]}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo C#: Vehiculo, Carro, Moto"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código: Producto, Libro y Gadget"}</h3>
       <CodeFiddle
         language="csharp"
         code={`using System;
 
-public class Vehiculo
+public class Producto
 {
-    public string Placa { get; }
+    public string Sku { get; }
+    public decimal Precio { get; }
 
-    public Vehiculo(string placa)
+    public Producto(string sku, decimal precio)
     {
-        if (string.IsNullOrWhiteSpace(placa))
-            throw new ArgumentException("Placa requerida");
-        Placa = placa;
+        if (string.IsNullOrWhiteSpace(sku))
+            throw new ArgumentException("SKU requerido");
+        if (precio < 0)
+            throw new ArgumentOutOfRangeException(nameof(precio));
+        Sku = sku;
+        Precio = precio;
     }
 
-    public virtual void Arrancar()
-    {
-        Console.WriteLine("Vehículo arrancando...");
-    }
+    public virtual string DescripcionEtiqueta()
+        => $"{Sku} — {Precio:C}";
 }
 
-public class Carro : Vehiculo
+public class Libro : Producto
 {
-    public Carro(string placa) : base(placa) { }
+    public string Isbn { get; }
 
-    public override void Arrancar()
+    public Libro(string sku, decimal precio, string isbn) : base(sku, precio)
     {
-        Console.WriteLine("Carro arrancando (inyección + encendido)...");
+        Isbn = isbn ?? throw new ArgumentNullException(nameof(isbn));
     }
+
+    public override string DescripcionEtiqueta()
+        => $"Libro {Isbn} / {base.DescripcionEtiqueta()}";
 }
 
-public class Moto : Vehiculo
+public class Gadget : Producto
 {
-    public Moto(string placa) : base(placa) { }
+    public string Marca { get; }
+
+    public Gadget(string sku, decimal precio, string marca) : base(sku, precio)
+    {
+        Marca = marca ?? throw new ArgumentNullException(nameof(marca));
+    }
+
+    public override string DescripcionEtiqueta()
+        => $"{Marca} — {base.DescripcionEtiqueta()}";
 }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Polimorfismo con tipo base"}</h3>
-      <CodeFiddle
-        language="csharp"
-        code={`Vehiculo v1 = new Carro("ABC-123");
-Vehiculo v2 = new Moto("XYZ-999");
-
-v1.Arrancar(); // Carro arrancando...
-v2.Arrancar(); // Vehículo arrancando... (implementación base)`}
-      />
-      <StepReveal
-        title="Llamada polimórfica"
-        steps={[
-          {
-            title: "Declaración",
-            content: 'Vehiculo v = new Carro("ABC-123"); — la variable es de tipo base.',
-          },
-          { title: "Objeto real", content: "En memoria el objeto es un Carro." },
-          {
-            title: "Dispatch",
-            content: "v.Arrancar() ejecuta Carro.Arrancar en runtime (override).",
-          },
-        ]}
-      />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Método heredado sin override: Parar()"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Polimorfismo: una lista, muchos tipos"}</h3>
       <p className="my-4">
         {
-          "No todo método necesita virtual. Si el comportamiento es igual para todas las derivadas, se define una vez en la base:"
+          "Polimorfismo significa tratar objetos distintos con la misma interfaz de uso: declaras Producto pero el objeto real puede ser Libro o Gadget."
         }
       </p>
       <CodeFiddle
         language="csharp"
-        code={`public class Vehiculo
-{
-    // ... constructor y Arrancar virtual ...
+        code={`Producto p1 = new Libro("L-01", 45m, "978-123");
+Producto p2 = new Gadget("G-99", 120m, "AndesTech");
 
-    public void Parar()
-    {
-        Console.WriteLine("Vehículo detenido.");
-    }
-}
-// Carro y Moto heredan Parar() sin redefinir.`}
+Console.WriteLine(p1.DescripcionEtiqueta()); // override de Libro
+Console.WriteLine(p2.DescripcionEtiqueta()); // override de Gadget`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Lista polimórfica"}</h3>
+      <StepReveal
+        title="Por qué imprime la etiqueta del libro"
+        steps={[
+          {
+            title: "Referencia",
+            content: "Producto p = new Libro(...); — la variable es de tipo base.",
+          },
+          { title: "Objeto real", content: "En memoria vive un Libro." },
+          {
+            title: "Dispatch en runtime",
+            content: "p.DescripcionEtiqueta() ejecuta Libro.DescripcionEtiqueta (override).",
+          },
+        ]}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Cuando no hace falta override"}</h3>
+      <p className="my-4">
+        {
+          "Si todas las derivadas comparten el mismo comportamiento, defínelo una vez en Producto sin virtual:"
+        }
+      </p>
+      <CodeFiddle
+        language="csharp"
+        code={`public decimal PrecioConIva(decimal tasa)
+    => Precio * (1 + tasa);
+// Libro y Gadget lo heredan igual; no redefinen.`}
+      />
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Inventario polimórfico"}</h3>
       <CodeFiddle
         language="csharp"
         code={`using System.Collections.Generic;
 
-var flota = new List<Vehiculo>
+var vitrina = new List<Producto>
 {
-    new Carro("ABC-123"),
-    new Moto("XYZ-999"),
-    new Camion("TRL-001")
+    new Libro("L-01", 45m, "978-123"),
+    new Gadget("G-99", 120m, "AndesTech"),
+    new Producto("GEN-1", 9.99m)
 };
 
-foreach (var v in flota)
-    v.Arrancar();`}
+foreach (var item in vitrina)
+    Console.WriteLine(item.DescripcionEtiqueta());`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: flota de transporte"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malentendido frecuente"}</h3>
       <p className="my-4">
         {
-          "Un sistema modela Vehiculo → Camion → CamionRefrigerado. Tras añadir tipos eléctricos, Arrancar() en la base asume motor de combustión y Parar() en Camion libera remolque — pero Moto no tiene remolque. Un foreach (var v in flota) v.Parar() falla en motos."
+          "Alguien propone class Pedido : Producto «para reutilizar el precio». Un pedido no es un producto: mezcla roles y rompe el modelo. Herencia aquí sería un atajo que después cuesta arreglar."
         }
       </p>
-      <p className="my-4">
-        {
-          "Lección: heredar solo cuando el contrato de la base aplica a todas las derivadas. Si el comportamiento diverge mucho, composición o interfaces específicas evitan cascadas de override vacíos o excepciones."
-        }
-      </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama: jerarquía de vehículos"}</h3>
       <MermaidDiagram
         chart={`classDiagram
-  Vehiculo <|-- Carro
-  Vehiculo <|-- Moto
-  Vehiculo <|-- Camion
-
-  class Vehiculo {
-    +string Placa
-    +Vehiculo(string placa)
-    +Arrancar()*
-    +Parar()
+  Producto <|-- Libro
+  Producto <|-- Gadget
+  class Producto {
+    +string Sku
+    +decimal Precio
+    +DescripcionEtiqueta()*
   }
-  class Carro {
-    +Arrancar()
+  class Libro {
+    +string Isbn
+    +DescripcionEtiqueta()
   }
-  class Moto
-  class Camion {
-    +Arrancar()
+  class Gadget {
+    +string Marca
+    +DescripcionEtiqueta()
   }`}
       />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
-      <p className="my-4 font-semibold">{"Aplica herencia cuando:"}</p>
-      <ul className="my-4 list-disc pl-6">
-        <li>
-          {
-            "La derivada puede reemplazar a la base sin romper expectativas (sustituibilidad, preview LSP)."
-          }
-        </li>
-        <li>{"El “es un” es natural y estable."}</li>
-      </ul>
-      <p className="my-4 font-semibold">{"No aplica cuando:"}</p>
-      <ul className="my-4 list-disc pl-6">
-        <li>{"Solo quieres reutilizar código (mejor composición)."}</li>
-        <li>{"La jerarquía se vuelve rara: PatoElectricoConBluetoothConGPS…."}</li>
-        <li>{"Modificar la base rompe muchas derivadas."}</li>
-      </ul>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
-      <ul className="my-4 list-disc pl-6">
-        <li>
-          {
-            "E-commerce: Cuadrado hereda de Rectangulo para “reutilizar” ancho/alto — al redimensionar, rompe invariantes geométricas (LSP). Corrección: composición o interfaz común sin herencia forzada."
-          }
-        </li>
-        <li>
-          {
-            "App bancaria: Empleado y Cliente heredan de Persona con lógica distinta — duplicación y acoplamiento. Corrección: composición (Empleado tiene Persona) o interfaces por rol."
-          }
-        </li>
-        <li>
-          {
-            "Sistema de facturación: jerarquía de 8 niveles (Documento → Comprobante → Factura → …) — un cambio en Documento rompe decenas de derivadas. Corrección: aplanar con interfaces y composición."
-          }
-        </li>
-      </ul>
       <Callout title="Error frecuente">
         {
-          "Olvidar base(placa) en el constructor de la derivada cuando la base exige parámetros. También usar override sin virtual/abstract en la base — el compilador lo rechaza."
+          "Olvidar base(sku, precio) en el constructor de la derivada. También intentar override sin virtual en Producto — el compilador lo rechaza."
         }
       </Callout>
       <CodeChallenge
-        title="Completa la lista polimórfica"
-        template={`var flota = new List<Vehiculo> { new Carro("A"), new {{b1}}(), new {{b2}}() };
-foreach (var v in flota) v.{{b3}}();`}
+        title="Completa la vitrina"
+        template={`var vitrina = new List<Producto> { new Libro("A", 10m, "978-x"), new {{b1}}(), new {{b2}}() };
+foreach (var item in vitrina) Console.WriteLine(item.{{b3}}());`}
         blanks={[
-          { id: "b1", answer: "Moto", placeholder: "Otra derivada de Vehiculo" },
-          { id: "b2", answer: "Camion", placeholder: "Tercera derivada con override" },
-          { id: "b3", answer: "Arrancar", placeholder: "Método virtual en la base" },
+          { id: "b1", answer: "Gadget", placeholder: "Otra derivada de Producto" },
+          { id: "b2", answer: "Producto", placeholder: "Instancia de la base" },
+          { id: "b3", answer: "DescripcionEtiqueta", placeholder: "Método virtual en Producto" },
         ]}
       />
     </section>

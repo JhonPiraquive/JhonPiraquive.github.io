@@ -3,26 +3,26 @@ import { Callout } from "@/components/teaching/Callout";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
-const CLASE_01_HREF = "/teaching/poo/clase-01-fundamentos-poo/fundamentos";
-const CLASE_02_HREF = "/teaching/poo/clase-02-relaciones-reutilizacion/herencia";
-const CLASE_03_HREF = "/teaching/poo/clase-03-experto-poo/abstraccion-clases-abstractas-interfaces";
+const CLASE_01_HREF = "/teaching/poo/clase-01-fundamentos-poo/objetivos";
+const CLASE_02_HREF = "/teaching/poo/clase-02-relaciones-reutilizacion/objetivos";
+const CLASE_03_HREF = "/teaching/poo/clase-03-experto-poo/objetivos";
 
 const RECORRIDO_STEPS = [
   {
     title: "Hub (estás aquí)",
-    content: "Orientación, objetivos y mapa de las 3 clases con el caso Tienda Andes.",
+    content: "Orientación del track, resultados del módulo y mapa de las 3 clases (Tienda Andes).",
   },
   {
     title: "Clase 1 — Fundamentos",
-    content: "POO, clase/objeto/constructor, encapsulamiento e intro a diagrama de clases.",
+    content: "Empieza en objetivos; luego POO, encapsulamiento e intro a diagrama de clases.",
   },
   {
     title: "Clase 2 — Relaciones",
-    content: "Herencia, override vs overload, asociación/agregación/composición y UML con vínculos.",
+    content: "Objetivos de clase; luego herencia, override, relaciones y UML con vínculos.",
   },
   {
     title: "Clase 3 — Experto",
-    content: "Abstracción, polimorfismo, SOLID, modularidad y reto integrador de diseño.",
+    content: "Objetivos de clase; luego abstracción, polimorfismo, SOLID y modularidad.",
   },
 ];
 
@@ -48,7 +48,9 @@ export function ComoOrganizadoSection() {
       <StepReveal title="Preview del recorrido" steps={RECORRIDO_STEPS} />
       <Callout title="Siguiente paso: Clase 1" variant="callout-tip">
         <p>
-          {"Empieza por fundamentos. Las URLs antiguas (poo/fundamentos, etc.) redirigen a las páginas nuevas."}
+          {
+            "Empieza por los objetivos de Clase 1. Las URLs antiguas (poo/fundamentos, etc.) redirigen a las páginas de contenido."
+          }
         </p>
         <p className="mt-3 mb-0">
           <Link href={CLASE_01_HREF} className="text-[var(--color-secondary)] hover:underline">
