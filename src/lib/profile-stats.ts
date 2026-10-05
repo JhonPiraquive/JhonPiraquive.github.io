@@ -6,6 +6,10 @@ export function getAge(dob = new Date("2000-04-02")): number {
   return age;
 }
 
-export function getExperienceYears(since = 2018): number {
-  return new Date().getFullYear() - since;
+export function getExperienceYears(since = new Date("2018-04-01")): number {
+  const today = new Date();
+  let years = today.getFullYear() - since.getFullYear();
+  const month = today.getMonth() - since.getMonth();
+  if (month < 0 || (month === 0 && today.getDate() < since.getDate())) years--;
+  return years;
 }
