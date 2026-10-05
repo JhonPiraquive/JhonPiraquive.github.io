@@ -3,6 +3,18 @@ import type { PortfolioContent } from "@/lib/portfolio";
 
 type ExperienceItem = PortfolioContent["experience"][number];
 
+type RoleTimeline = {
+  title: string;
+  roles: {
+    level: string;
+    period: string;
+    summary: string;
+    projects: string[];
+    responsibilities: string[];
+    current?: boolean;
+  }[];
+};
+
 type ResumePdfExperienceJobProps = {
   job: ExperienceItem;
   projectsLabel: string;
@@ -73,7 +85,10 @@ const styles = StyleSheet.create({
 });
 
 export function ResumePdfExperienceJob({ job, projectsLabel }: ResumePdfExperienceJobProps) {
-  const timeline = job.roleTimeline;
+  const timeline =
+    "roleTimeline" in job && job.roleTimeline
+      ? (job.roleTimeline as RoleTimeline)
+      : undefined;
 
   return (
     <View style={styles.jobBlock}>

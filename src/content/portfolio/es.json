@@ -1,15 +1,15 @@
 {
   "meta": {
     "title": "Jhon Alejandro Piraquive | Hoja de Vida & Portafolio",
-    "description": "Senior Software Engineer en Medellín. Salud en AWS y donaciones en GCP, con Laravel, Go y React."
+    "description": "Senior Software Engineer en Medellín. Backend, cloud y seguridad: ownership técnico desde el requerimiento hasta producción en AWS y GCP."
   },
   "brand": {
     "name": "Jhon Alejandro Piraquive",
     "tagline": "De un requerimiento incompleto a software en producción.",
     "typedRoles": [
       "Senior Software Engineer",
-      "Desarrollador de producto",
-      "Profesor universitario"
+      "Backend · Cloud · Security",
+      "Technical Ownership"
     ]
   },
   "nav": [
@@ -26,99 +26,85 @@
   ],
   "about": {
     "title": "Acerca de mí",
-    "summary": "Senior Software Engineer con más de {expYears} años de producto en producción. Desde marzo de 2024 respondo por la entrega en Heinsohn de plataformas de salud en AWS (CareTree, Dala) y donaciones en GCP (Islamic Relief Canada), con Laravel, Go y React. Priorizo lo que detiene a una persona o a una empresa. Si el requerimiento llega incompleto, dejo el plan escrito y cierro la causa, no solo el síntoma. Docencia universitaria en paralelo, de 2 a 4 horas por semana. Inglés C2. Vivo en Medellín.",
-    "role": "Senior Software Engineer en Heinsohn · Profesor universitario",
-    "motto": "Entregar más de lo pedido, y dejarlo dicho con claridad.",
-    "bio": "En Heinsohn pasé de ejecutar alcance definido a cubrir al equipo cuando el líder se ausentaba. Desde marzo de 2024 soy senior. CareTree y Dala los sostenemos dos personas, después de un incidente de seguridad heredado del que asumí los hallazgos. En Islamic Relief Canada el equipo es de cuatro, más el área de TI del cliente. Clasifico cada pedido en urgente, importante o mejora: urgente es lo que detiene la operación de una persona o una empresa; importante, lo que el cliente o el negocio sostiene que debería funcionar de otra forma; una solicitud de mejora queda en prioridad media o baja según cuántos clientes la pidan y el efecto en la plataforma. Si soporte no reproduce un caso en CareTree o Dala, participo en la sesión en inglés con el cliente, identifico la causa y la cierro.",
+    "summary": "Senior Software Engineer con más de {expYears} años en software de producción. Evolucioné desde soporte técnico hasta ownership técnico en backend, cloud y seguridad. Convierto requerimientos ambiguos en arquitectura, implementación, despliegue y soporte en producción, con comunicación directa con clientes en inglés y español. Docencia universitaria en paralelo (2–4 h/semana). Inglés C2. Vivo en Medellín y trabajo principalmente remoto.",
+    "role": "Senior Software Engineer | Backend · Cloud · Security",
+    "motto": "Tomar el problema ambiguo y llevarlo a producción con ownership.",
+    "bio": "En Heinsohn desde abril de 2022. Desde marzo de 2024 soy Senior Software Developer. En CareTree y Dala (plataformas de salud en AWS) asumo ownership técnico en un equipo reducido: migración de datos, seguridad, entrega y continuidad operativa. En IRC trabajo con TypeScript de extremo a extremo (NestJS, React y React Native) sobre GCP, priorizando agilidad y reutilización. Cuando soporte no reproduce un caso, participo en la sesión con el cliente —también en inglés—, encuentro la causa y la cierro. Clasifico cada pedido en urgente, importante o mejora según el impacto operativo.",
     "languages": [
       { "name": "Español", "level": "Nativo" },
       { "name": "Inglés", "level": "C2 (Dominio profesional)" }
     ]
   },
   "archetype": [
-    { "name": "Creador", "desc": "Llevo a producción productos de salud, donaciones y software a la medida." },
+    { "name": "Creador", "desc": "Llevo a producción productos de salud, plataformas digitales y software empresarial." },
     { "name": "Sabio", "desc": "Dejo las decisiones por escrito para que el equipo y los estudiantes continúen sin mí." },
     { "name": "Gobernante", "desc": "Ordeno el trabajo por impacto, defino el criterio de listo y documento el camino." }
   ],
-  "skillsIntro": "Stack con el que llevo producto a producción.",
+  "skillsIntro": "Capacidades con las que llevo problemas ambiguos a producción.",
   "skills": [
     {
       "group": "Lenguajes",
       "items": [
+        { "name": "TypeScript", "percent": 85 },
+        { "name": "JavaScript", "percent": 85 },
         { "name": "PHP", "percent": 90 },
-        { "name": "JavaScript", "percent": 80 },
         { "name": "SQL", "percent": 85 },
         { "name": "Go", "percent": 70 },
-        { "name": "TypeScript", "percent": 65 },
         { "name": "Python", "percent": 60 }
       ]
     },
     {
-      "group": "Frameworks",
+      "group": "Backend",
       "items": [
+        { "name": "NestJS", "percent": 85 },
+        { "name": "Node.js", "percent": 85 },
         { "name": "Laravel", "percent": 90 },
-        { "name": "React", "percent": 70 },
-        { "name": "React Native", "percent": 65 },
-        { "name": "NestJS", "percent": 65 }
+        { "name": "GraphQL", "percent": 70 },
+        { "name": "REST", "percent": 85 },
+        { "name": "CQRS", "percent": 65 }
+      ]
+    },
+    {
+      "group": "Frontend & Mobile",
+      "items": [
+        { "name": "React", "percent": 80 },
+        { "name": "React Native", "percent": 75 },
+        { "name": "HTML / CSS", "percent": 80 }
+      ]
+    },
+    {
+      "group": "Cloud & DevOps",
+      "items": [
+        { "name": "AWS (S3, Glue)", "percent": 80 },
+        { "name": "GCP", "percent": 75 },
+        { "name": "Docker", "percent": 80 },
+        { "name": "Terraform", "percent": 75 },
+        { "name": "CI/CD", "percent": 80 },
+        { "name": "Git", "percent": 85 }
       ]
     },
     {
       "group": "Datos",
       "items": [
-        { "name": "MySQL", "percent": 90 },
-        { "name": "MariaDB", "percent": 85 },
+        { "name": "Snowflake", "percent": 75 },
+        { "name": "MySQL / MariaDB", "percent": 90 },
         { "name": "SQL Server", "percent": 75 },
-        { "name": "Snowflake", "percent": 70 }
+        { "name": "Medallion Architecture", "percent": 75 }
       ]
     },
     {
-      "group": "Plataforma",
+      "group": "Seguridad & forma de trabajo",
       "items": [
-        { "name": "AWS (S3, Glue)", "percent": 75 },
-        { "name": "GCP", "percent": 70 },
-        { "name": "Terraform", "percent": 70 },
-        { "name": "CI/CD", "percent": 75 },
-        { "name": "Docker", "percent": 80 },
-        { "name": "GraphQL", "percent": 70 }
-      ]
-    },
-    {
-      "group": "Forma de trabajo",
-      "items": [
-        { "name": "Scrum", "percent": 90 },
-        { "name": "Kanban", "percent": 85 },
-        { "name": "Git", "percent": 85 },
-        { "name": "SVN", "percent": 60 },
-        { "name": "Jira", "percent": 75 },
-        { "name": "CQRS", "percent": 65 }
-      ]
-    },
-    {
-      "group": "Entorno",
-      "items": [
-        { "name": "Ubuntu", "percent": 90 }
+        { "name": "Vulnerability assessment", "percent": 80 },
+        { "name": "Incident response", "percent": 80 },
+        { "name": "ISO 27001", "percent": 75 },
+        { "name": "Scrum / Kanban", "percent": 85 },
+        { "name": "Customer-facing engineering", "percent": 85 },
+        { "name": "Linux / Ubuntu", "percent": 90 }
       ]
     }
   ],
   "certifications": [
-    {
-      "title": "Scrum",
-      "desc": "Fundamentos ágiles, roles, eventos y entrega.",
-      "type": "image",
-      "src": "/assets/img/certificaciones/scrum.jpg"
-    },
-    {
-      "title": "Git",
-      "desc": "Ramas, merges y flujo de trabajo en equipo.",
-      "type": "image",
-      "src": "/assets/img/certificaciones/git.jpg"
-    },
-    {
-      "title": "Inglés (C2)",
-      "desc": "Dominio profesional para clientes y equipos internacionales.",
-      "type": "image",
-      "src": "/assets/img/certificaciones/english.jpg"
-    },
     {
       "title": "Auditor interno ISO 27001",
       "desc": "Auditoría interna del sistema de gestión de seguridad de la información.",
@@ -132,109 +118,106 @@
       "type": "pdf",
       "src": "/assets/img/certificaciones/Respuesta%20ante%20Incidentes%20Ciberneticos.pdf",
       "previewLabel": "Documento PDF"
+    },
+    {
+      "title": "Inglés (C2)",
+      "desc": "Dominio profesional para clientes y equipos internacionales.",
+      "type": "image",
+      "src": "/assets/img/certificaciones/english.jpg"
+    },
+    {
+      "title": "Scrum",
+      "desc": "Fundamentos ágiles, roles, eventos y entrega.",
+      "type": "image",
+      "src": "/assets/img/certificaciones/scrum.jpg"
+    },
+    {
+      "title": "Git",
+      "desc": "Ramas, merges y flujo de trabajo en equipo.",
+      "type": "image",
+      "src": "/assets/img/certificaciones/git.jpg"
     }
   ],
-  "experienceIntro": "Más de {expYears} años de producto en producción. Senior en Heinsohn desde marzo de 2024, con docencia universitaria en paralelo.",
+  "experienceIntro": "Más de {expYears} años en software de producción. Senior Software Developer en Heinsohn desde marzo de 2024. Docencia universitaria en paralelo.",
   "experience": [
     {
-      "title": "Ingeniero de software",
-      "period": "2022 – Actualmente",
+      "title": "Senior Software Developer",
+      "period": "Marzo 2024 – Actualmente",
       "company": "Heinsohn",
       "location": "Remoto · Medellín, Colombia",
-      "intro": "Promoción interna de junior a senior en marzo de 2024. Entré solo con CareTree. El producto fue vendido dos veces y quedó en Dala, que hasta entonces era su competencia. Hoy respondo también por Dala y por Islamic Relief Canada. Cada pedido se clasifica en urgente, importante o mejora, según si detiene la operación, si el negocio exige otro comportamiento, o si es una solicitud de mejora.",
-      "bullets": [],
-      "roleTimeline": {
-        "title": "Evolución de cargo y proyectos",
-        "roles": [
-          {
-            "level": "Desarrollador Senior",
-            "period": "Marzo 2024 – Actualmente",
-            "current": true,
-            "projects": ["CareTree", "Dala", "IRC"],
-            "summary": "CareTree y Dala, en un equipo de dos. Islamic Relief Canada, con cuatro personas más el TI del cliente. Los requerimientos rara vez llegan cerrados: los parto, los priorizo y los dejo listos para entregar.",
-            "responsibilities": [
-              "En CareTree el equipo era de siete personas y yo cubría al líder en sus ausencias. Del equipo inicial quedamos dos. CareTree llegó a atender cerca de 1.000 empresas; hoy opera con cerca de 300, cada una con su propio conjunto de usuarios. Tras un incidente de seguridad heredado asumí los hallazgos y completé la especialización en ciberseguridad.",
-              "Evalué CareTree y prioricé vulnerabilidades de servidor y de código, de críticas a menores. El equipo las corrigió. Durante un ataque activo, a partir de alertas de tráfico recibidas por un compañero, revisé los logs del servidor de aplicaciones, reproduje la causa y cerramos la exposición en 30 minutos. Implementé un escáner activo de archivos en AWS con ClamAV, con el criterio de cumplir HIPAA.",
-              "Migración de CareTree a Dala. El encargo era trasladar la información. Definí el plan y la implementación: jobs de AWS Glue desde la base de CareTree hacia S3, Snowflake como fuente de verdad con arquitectura medallion, schemas, pipes, triggers y endpoints para que Dala consuma el dato. Reservé días completos por producto y cambié de frente solo cuando algo detenía a las personas o a la empresa. Ajusté los jobs para reducir el tiempo de extracción.",
-              "Islamic Relief Canada: aplicaciones móviles y web en GCP, con plazo corto y requerimientos incompletos, buscando eficiencia, agilidad y reutilización. El gerente de proyecto de Heinsohn para Manizales, Pereira, Armenia, Cali y parte de Bogotá me pidió apoyar la gestión, junto con el equipo. Organicé tickets priorizados, publiqué una versión funcional para revisión en tiendas y coordiné con el TI del cliente las fichas y la infraestructura mientras continuaban los ajustes. El equipo: dos ingenieros, una persona de datos y una de inteligencia artificial.",
-              "En CareTree diseño y prototipo las interfaces con el cliente antes de construirlas. Cuando soporte no reproduce un incidente en CareTree o Dala, participo en la sesión en inglés, aclaro el caso, encuentro la causa y la cierro.",
-              "Establecí el flujo de entrega: CI/CD desde cero, infraestructura con Terraform y feature branching, de modo que cada cambio llega a producción con un alcance acotado."
-            ]
-          },
-          {
-            "level": "Desarrollador Semi-Senior",
-            "period": "CareTree + incorporación de Dala",
-            "projects": ["CareTree", "Dala"],
-            "summary": "Pasé de ejecutar a levantar requerimientos. Tras la compra, CareTree quedó en Dala y empecé a trabajar con su equipo de TI.",
-            "responsibilities": [
-              "Levanté requerimientos con los interesados y los convertí en tareas técnicas.",
-              "En CareTree entregué funcionalidades de mayor complejidad en Laravel, con autonomía sobre el diseño de la solución.",
-              "En Dala tomé encargos iniciales, acotados, sobre APIs, interfaces en React y la arquitectura en AWS, en coordinación con su equipo de TI.",
-              "Revisé código y participé en las decisiones técnicas compartidas entre ambos productos."
-            ]
-          },
-          {
-            "level": "Desarrollador Junior",
-            "period": "Inicio en Heinsohn · solo CareTree",
-            "projects": ["CareTree"],
-            "summary": "Ejecución de alcance ya definido en CareTree, con énfasis en la calidad de la entrega.",
-            "responsibilities": [
-              "Implementé tickets de CareTree con alcance y criterios definidos por el equipo.",
-              "Desarrollé funcionalidades en PHP/Laravel, web y móvil, según la asignación.",
-              "Me enfoqué en código, pruebas y entrega, sin liderar descubrimiento, arquitectura ni infraestructura."
-            ]
-          }
-        ]
-      }
+      "intro": "Ownership técnico en plataformas de salud CareTree/Dala (AWS) y en IRC (productos digitales en GCP). Equipos pequeños; liderazgo técnico informal, no people management.",
+      "bullets": [
+        "Diseñé e implementé la migración de información CareTree → Dala a partir de un requerimiento ambiguo: plan, responsabilidades, herramientas y arquitectura con AWS Glue, S3, Snowflake como fuente de verdad, arquitectura Medallion, schemas, pipes, triggers y endpoints de consumo; optimicé jobs para mejorar la eficiencia de procesamiento.",
+        "Tras la especialización en ciberseguridad, evalué CareTree, prioricé vulnerabilidades de críticas a menores y trabajé con el equipo en la remediación. Implementé escaneo activo de archivos con ClamAV en AWS en un entorno de salud con fuertes requisitos de seguridad y privacidad.",
+        "Investigué un incidente de seguridad a partir de alertas de tráfico anómalo: analicé logs de Apache, identifiqué exposición pública indebida de la IP del servidor de aplicaciones, reproduje el comportamiento de forma controlada, comuniqué la causa y apoyé la corrección en aproximadamente 30 minutos.",
+        "En IRC, con un equipo de ~2 developers más data e IA, organicé requerimientos incompletos orientados a agilidad y reutilización. Impulsé una primera versión funcional con TypeScript de extremo a extremo: NestJS en backend, React en web y React Native en móvil sobre GCP, con CI/CD e infraestructura; coordiné con IT del cliente publicación en tiendas e infraestructura.",
+        "Cuando soporte no reproduce incidentes en CareTree o Dala, participo en sesiones con el cliente en inglés: aclaro el comportamiento esperado, encuentro la causa raíz, actualizo el ticket, propongo e implemento la solución y comunico el resultado.",
+        "Establecí el flujo de entrega: CI/CD desde cero, Terraform e infraestructura, feature branching y restricciones de ramas para cambios con alcance controlado en producción.",
+        "Brindo liderazgo técnico informal y continuidad operativa (organización del trabajo, decisiones técnicas, resolución de bloqueos) en CareTree/Dala, hoy sostenidos por un equipo reducido de ~2 developers. Colaboro en prototipos de interfaz con stakeholders como parte de la ingeniería de producto."
+      ]
+    },
+    {
+      "title": "Software Developer",
+      "period": "Abril 2022 – Febrero 2024",
+      "company": "Heinsohn",
+      "location": "Remoto · Medellín, Colombia",
+      "intro": "Entré a Heinsohn en CareTree. Evolucioné de ejecutar alcance definido a levantar requerimientos, diseñar soluciones y aportar continuidad técnica. Tras la adquisición, CareTree quedó vinculado a Dala y comencé trabajo con su equipo de TI.",
+      "bullets": [
+        "Desarrollé e integré funcionalidades backend en PHP/Laravel para CareTree, plataforma de salud utilizada por múltiples empresas.",
+        "Pasé de tickets con alcance cerrado a discovery con interesados, diseño de solución y mayor autonomía técnica.",
+        "En Dala tomé encargos iniciales sobre APIs, interfaces en React y arquitectura en AWS, en coordinación con su equipo de TI.",
+        "Aporté continuidad técnica cuando el líder no estaba disponible (equipo original ~7 personas): organización del trabajo y resolución de bloqueos como liderazgo informal, no como people management."
+      ]
     },
     {
       "title": "Profesor universitario",
       "period": "2024 – Actualmente",
       "company": "Universidad de Manizales",
       "location": "Virtual · desde Medellín",
-      "intro": "Docencia en paralelo con Heinsohn: de 2 a 4 horas por semana, un curso al mes y dos como máximo.",
+      "intro": "Docencia en paralelo con la ingeniería de software: de 2 a 4 horas por semana, normalmente un curso al mes.",
       "bullets": [
-        "Servicios web, sistemas operativos, programación orientada a objetos, programación web, diseño y análisis de software, bases de datos, seguridad en aplicaciones y tecnologías emergentes."
+        "Cursos de servicios web, sistemas operativos, POO, programación web, diseño y análisis de software, bases de datos, seguridad en aplicaciones, programación orientada a sitios web y tecnologías emergentes.",
+        "Evidencia de comunicación técnica y mentoring; la carrera principal sigue siendo Software Engineering."
       ]
     },
     {
-      "title": "Desarrollador Junior",
+      "title": "Software Developer",
       "period": "2021 – 2022",
       "company": "QVO Consultoría Y Estrategia S.A.S",
       "location": "Manizales, Colombia",
-      "intro": "QVO adquirió al equipo de Business Solutions. Los cinco desarrolladores pasamos a ejecutar los proyectos de ambas compañías. El producto de QVO es un sistema de gestión para empresas de seguridad privada en Colombia: la operación estaba en Excel y el sistema centralizó guardas, escoltas, caninos, circuitos cerrados, cotizaciones, gestión comercial, finanzas, cuadros de mando y proveedores.",
+      "intro": "QVO adquirió al equipo de Business Solutions. Pasamos a ejecutar proyectos de software empresarial para empresas de seguridad privada: la operación vivía en Excel y el sistema centralizó módulos operativos, comerciales, financieros, CCTV, proveedores y cuadros de mando.",
       "bullets": [
         "Ciclo completo en Laravel y MySQL: requerimientos, prototipo de interfaces con el cliente, construcción, despliegue, capacitación y soporte.",
-        "Parte de los usuarios resistió el cambio. Con acompañamiento sostenido adoptaron el sistema y dejaron las hojas de cálculo."
+        "Acompañé a usuarios con resistencia al cambio para adoptar el sistema y dejar las hojas de cálculo."
       ]
     },
     {
-      "title": "Desarrollador Junior",
+      "title": "Software Developer",
       "period": "2019 – 2021",
       "company": "Business Solutions On The Cloud",
       "location": "Manizales, Colombia",
-      "intro": "Software a la medida en PHP nativo orientado a objetos, para empresas específicas: sitios en WordPress y sistemas de inventario y CRM.",
+      "intro": "Software a la medida en PHP orientado a objetos para empresas específicas: inventarios, CRM y sitios WordPress.",
       "bullets": [
-        "Aplicaciones de gestión en PHP y Laravel, alineadas al flujo de cada cliente, con prototipo de interfaces antes del desarrollo."
+        "Aplicaciones de gestión en PHP y Laravel alineadas al flujo de cada cliente, con prototipo de interfaces antes del desarrollo."
       ]
     },
     {
-      "title": "Desarrollador Junior",
+      "title": "Software Developer",
       "period": "Abril 2018 – 2019",
       "company": "ASAP Staffing Company",
       "location": "Remoto · Manizales, Colombia",
-      "intro": "En quinto semestre entré al equipo de TI: dos desarrolladores y una líder. Primero hicimos cambios sobre un software en PHP procedural, mantenido por un equipo en India. Después construimos y mejoramos un CRM en Laravel para contratar personal de eventos, como bartenders y catering.",
+      "intro": "Entrada profesional al desarrollo en quinto semestre de universidad. Equipo de TI pequeño: ~2 developers y 1 líder. Primero software PHP procedural; después un CRM en Laravel para contratar personal de eventos.",
       "bullets": [
-        "El CRM centralizó documentación legal, certificados, clientes y lugares.",
-        "Diseñé y prototipé las interfaces con el cliente antes de construirlas."
+        "El CRM centralizó documentación, certificados, clientes, lugares y contrataciones.",
+        "Diseñé y prototipé interfaces con el cliente antes de construirlas."
       ]
     },
     {
       "title": "Técnico en sistemas",
-      "period": "2016 – abril 2018",
+      "period": "2016 – Abril 2018",
       "company": "Tecnisoft",
       "location": "Manizales, Colombia",
-      "intro": "Soporte y mantenimiento de equipos de cómputo, en el hardware y en el sistema, antes de pasar a desarrollo de software.",
+      "intro": "Soporte y mantenimiento de equipos de cómputo —origen de la carrera tecnológica— antes de pasar a desarrollo de software.",
       "bullets": []
     }
   ],
@@ -280,6 +263,7 @@
     ]
   },
   "social": {
+    "email": "alejandro5.6@icloud.com",
     "linkedin": "https://linkedin.com/in/jhon-piraquive-ramirez-b0a6b1197",
     "github": "https://github.com/JhonPiraquive",
     "whatsapp": "https://wa.me/573187623543",

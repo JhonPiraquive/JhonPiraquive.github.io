@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaGithub, FaLinkedin, FaPrint, FaWhatsapp } from "react-icons/fa";
+import { FaEnvelope, FaGithub, FaLinkedin, FaPrint, FaWhatsapp } from "react-icons/fa";
 import type { PortfolioContent } from "@/lib/portfolio";
 
 type SocialLinksProps = {
@@ -10,9 +10,10 @@ type SocialLinksProps = {
 
 export function SocialLinks({ content }: SocialLinksProps) {
   const [busy, setBusy] = useState(false);
-  const { github, linkedin, whatsapp } = content.social;
+  const { email, github, linkedin, whatsapp } = content.social;
 
   const links = [
+    { href: `mailto:${email}`, label: "Email", Icon: FaEnvelope },
     { href: github, label: "GitHub", Icon: FaGithub },
     { href: linkedin, label: "LinkedIn", Icon: FaLinkedin },
     { href: whatsapp, label: "WhatsApp", Icon: FaWhatsapp },

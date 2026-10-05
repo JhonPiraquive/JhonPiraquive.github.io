@@ -81,6 +81,7 @@ export function ResumePdfDocument({ content }: ResumePdfDocumentProps) {
     .map((l) => `${l.name} (${l.level})`)
     .join(" | ");
   const contact = [
+    content.social.email,
     content.social.website,
     content.social.linkedin,
     content.social.github,
