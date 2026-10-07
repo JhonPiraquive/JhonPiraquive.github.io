@@ -1,5 +1,4 @@
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function CasoIntegradoTiendaSection() {
@@ -85,16 +84,6 @@ export function CasoIntegradoTiendaSection() {
           "Si dibujas una sola clase PedidoService con cobro, envío, inventario y reportes, el diagrama te avisa antes de Clase 3 (SOLID): demasiadas razones para cambiar en una caja."
         }
       </p>
-      <PracticeExercise
-        prompt="Añade CarritoCompras o-- Producto al diagrama con cardinalidad 0..*. ¿Agregación o composición? Una frase."
-        hints={[
-          "Producto del catálogo sobrevive al carrito",
-          "Símbolo o--",
-          "No uses *-- para catálogo compartido",
-        ]}
-        expectedKeywords={["CarritoCompras", "agregación", "o--"]}
-        successMessage="Correcto. Carrito agrupa referencias al catálogo."
-      />
     </section>
   );
 }

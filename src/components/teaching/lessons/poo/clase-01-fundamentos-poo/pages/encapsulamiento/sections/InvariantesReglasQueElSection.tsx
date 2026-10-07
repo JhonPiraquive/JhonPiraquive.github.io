@@ -2,8 +2,6 @@ import { ClayCard } from "@/components/clay/ClayCard";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const PROMOCION_CODE = `using System;
 
 // Tienda Andes: una promoción tiene ventana de fechas válida
@@ -82,18 +80,6 @@ export function InvariantesReglasQueElSection() {
           "DTO: solo mueve datos entre capas — encapsulamiento estricto suele ser excesivo. Objeto de dominio (pedido, inventario, promoción): las reglas viven en el tipo."
         }
       </p>
-      <PracticeExercise
-        prompt="¿Cuándo basta un DTO y cuándo necesitas un objeto de dominio encapsulado? Usa un ejemplo de Tienda Andes."
-        hints={["DTO = transporte", "Dominio = reglas"]}
-        expectedKeywords={["dto", "dominio", "reglas", "transporte"]}
-        successMessage="DTO para enviar un JSON al front; dominio para InventarioProducto o Pedido que protegen stock y estados."
-      />
-      <PracticeExercise
-        prompt="Compara public int Cantidad { get; set; } vs { get; private set; }. ¿Qué invariante protege el segundo?"
-        hints={["¿Quién asigna desde fuera?", "Cantidad >= 0"]}
-        expectedKeywords={["private set", "negativ", "invariante"]}
-        successMessage="private set obliga a mutar por métodos que validan Cantidad >= 0."
-      />
     </section>
   );
 }

@@ -2,8 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ObjetosLiteralesSection() {
   return (
     <section>
@@ -102,18 +100,6 @@ console.log(nombre, rol); // "Ana" "admin"`}
           "[1,2] === [1,2] es false — son referencias distintas aunque el contenido sea igual. Lo mismo con objetos literales distintos. Comparar contenido requiere lógica explícita o serialización."
         }
       </Callout>
-      <PracticeExercise
-        prompt="Dado const persona = { nombre: 'Luis', edad: 20 }, usa destructuración para extraer nombre y edad en constantes e imprímelas en consola."
-        hints={["const { nombre, edad } = persona", "Desestructuración en el lado izquierdo del ="]}
-        expectedKeywords={["{", "nombre", "edad", "persona"]}
-        successMessage="Correcto. const { nombre, edad } = persona; console.log(nombre, edad); → Luis 20."
-      />
-      <PracticeExercise
-        prompt="Dado const items = ['pan', 'leche'], añade 'huevos' al final con push (sin reasignar items). Luego crea const copia = [...items] y añade 'mantequilla' solo a copia. ¿Qué contiene cada array?"
-        hints={["push muta items", "spread crea array nuevo", "push en copia no afecta items"]}
-        expectedKeywords={["pan", "leche", "huevos", "mantequilla"]}
-        successMessage="Correcto. items → ['pan','leche','huevos']; copia → ['pan','leche','huevos','mantequilla']."
-      />
     </section>
   );
 }

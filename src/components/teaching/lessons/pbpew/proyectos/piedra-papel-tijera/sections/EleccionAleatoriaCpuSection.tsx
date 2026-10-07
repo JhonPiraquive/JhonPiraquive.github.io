@@ -1,8 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function EleccionAleatoriaCpuSection() {
   return (
     <section>
@@ -38,12 +36,6 @@ export function EleccionAleatoriaCpuSection() {
           { id: "blank1", answer: "floor", placeholder: "redondea hacia abajo" },
           { id: "blank2", answer: "length", placeholder: "tamaño del array" },
         ]}
-      />
-      <PracticeExercise
-        prompt="¿Qué devuelve Math.floor(Math.random() * 3) y por qué es seguro como índice de un array de 3 elementos?"
-        hints={["Math.random() está en [0, 1)", "Math.floor convierte a enteros 0, 1 o 2"]}
-        expectedKeywords={["0", "2", "índice", "floor"]}
-        successMessage="Correcto. Produce enteros 0, 1 o 2 — válidos para OPCIONES[0..2]."
       />
     </section>
   );

@@ -2,8 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ColaSection() {
   return (
     <section>
@@ -63,12 +61,6 @@ console.log(cola.shift()); // "x" — FIFO`}
           ["Pila LIFO", "push (final)", "pop (final)", "push / pop", "Deshacer en editor"],
           ["Cola FIFO", "push (final)", "shift (inicio)", "push / shift", "Tickets de soporte"],
         ]}
-      />
-      <PracticeExercise
-        prompt="Explica con tus palabras la diferencia entre LIFO y FIFO usando la metáfora de platos (pila) vs fila del banco (cola)."
-        hints={["LIFO: último en entrar, primero en salir", "FIFO: primero en entrar, primero en salir"]}
-        expectedKeywords={["último", "primero", "LIFO", "FIFO"]}
-        successMessage="Correcto. Pila = último apilado sale primero; cola = quien llegó primero es atendido primero."
       />
     </section>
   );

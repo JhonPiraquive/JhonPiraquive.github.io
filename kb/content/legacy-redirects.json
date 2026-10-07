@@ -13,7 +13,7 @@
   "teaching/pbpew/10-dom-y-eventos.html": "/es/teaching/pbpew/10-dom-y-eventos/",
   "teaching/pbpew/11-asincronia.html": "/es/teaching/pbpew/11-asincronia/",
   "teaching/pbpew/12-ajax-fetch.html": "/es/teaching/pbpew/12-ajax-fetch/",
-  "teaching/pbpew/index.html": "/es/teaching/pbpew/",
+  "teaching/pbpew/index.html": "/es/teaching/pbpew/index/",
   "teaching/pbpew/proyectos/ajedrez.html": "/es/teaching/pbpew/proyectos/ajedrez/",
   "teaching/pbpew/proyectos/calculadora.html": "/es/teaching/pbpew/proyectos/calculadora/",
   "teaching/pbpew/proyectos/piedra-papel-tijera.html": "/es/teaching/pbpew/proyectos/piedra-papel-tijera/",
@@ -122,5 +122,6 @@
   "teaching/bases-de-datos/clase-04-experto-bd.html": "/es/teaching/bases-de-datos/clase-04-experto-bd/redundancia-y-dependencia-funcional/",
   "teaching/poo/clase-01-fundamentos-poo.html": "/es/teaching/poo/clase-01-fundamentos-poo/fundamentos/",
   "teaching/poo/clase-02-relaciones-reutilizacion.html": "/es/teaching/poo/clase-02-relaciones-reutilizacion/herencia/",
-  "teaching/poo/clase-03-experto-poo.html": "/es/teaching/poo/clase-03-experto-poo/abstraccion-clases-abstractas-interfaces/"
+  "teaching/poo/clase-03-experto-poo.html": "/es/teaching/poo/clase-03-experto-poo/abstraccion-clases-abstractas-interfaces/",
+  "teaching/analisis-diseno-sistemas/index.html": "/es/teaching/analisis-diseno-sistemas/index/"
 }

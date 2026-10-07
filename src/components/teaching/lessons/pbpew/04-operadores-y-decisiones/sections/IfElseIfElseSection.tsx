@@ -2,8 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function IfElseIfElseSection() {
   return (
     <section>
@@ -80,12 +78,6 @@ if (usuario {{blank1}} null {{blank2}} usuario.activo === {{blank3}}) {
           { id: "blank2", answer: "&&", placeholder: "operador lógico" },
           { id: "blank3", answer: "true", placeholder: "boolean" },
         ]}
-      />
-      <PracticeExercise
-        prompt='Escribe un if/else if/else que clasifique una variable temperatura (número): < 0 → "hielo", 0–30 → "templado", > 30 → "calor". Incluye la validación con Number.isNaN si la temperatura viene de prompt.'
-        hints={["Primero valida Number.isNaN(temperatura)", "Usa else if para el rango medio", "Comparaciones con <, <=, >"]}
-        expectedKeywords={["if", "else if", "temperatura", "Number.isNaN"]}
-        successMessage="Correcto. Validar NaN primero evita mensajes confusos; los rangos se evalúan en orden con else if."
       />
     </section>
   );

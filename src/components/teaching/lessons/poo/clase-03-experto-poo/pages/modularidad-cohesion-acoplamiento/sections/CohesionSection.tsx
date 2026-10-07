@@ -1,6 +1,4 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const UTILIDADES_CODE = `// Anti-ejemplo en Tienda Andes — baja cohesión
 public class UtilidadesTienda
 {
@@ -42,16 +40,6 @@ export function CohesionSection() {
           "Doscientas líneas que solo calculan totales de pedido pueden ser más cohesas que cinco clases arbitrarias. Pregunta: «¿todo esto cambia por la misma razón de negocio?»"
         }
       </p>
-      <PracticeExercise
-        prompt="Separa UtilidadesTienda en tres clases cohesas (nombres del ejemplo). ¿Qué motivo de cambio tiene cada una?"
-        hints={[
-          "SKU → FormateoSku",
-          "IVA → CalculadoraIva",
-          "SMS → NotificadorSms",
-        ]}
-        expectedKeywords={["FormateoSku", "CalculadoraIva", "NotificadorSms"]}
-        successMessage="Correcto. Alta cohesión = un rol reconocible por clase."
-      />
     </section>
   );
 }

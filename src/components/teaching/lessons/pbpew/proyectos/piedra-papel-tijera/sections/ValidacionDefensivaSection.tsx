@@ -1,7 +1,5 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ValidacionDefensivaSection() {
   return (
     <section>
@@ -49,12 +47,6 @@ export function ValidacionDefensivaSection() {
         conservaba «¡Ganaste!» de la ronda anterior. Usuarios denunciaron fraude. Lección: siempre llamar
         renderizarRonda al final, incluso en empate.
       </Callout>
-      <PracticeExercise
-        prompt="Implementa validación: si eleccionJugador no está en OPCIONES, muestra en #resultado «Opción no válida» y no modifiques el marcador."
-        hints={["OPCIONES.includes(eleccionJugador)", "return temprano antes de actualizarMarcador"]}
-        expectedKeywords={["includes", "return", "no válida"]}
-        successMessage="Bien. La UI refleja el estado calculado y el marcador no se falsea."
-      />
     </section>
   );
 }

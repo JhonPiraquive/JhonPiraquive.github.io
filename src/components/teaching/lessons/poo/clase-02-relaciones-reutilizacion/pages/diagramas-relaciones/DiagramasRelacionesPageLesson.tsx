@@ -3,9 +3,6 @@ import { meta } from "./lesson-meta";
 import { HerenciaInterfacesDiagramaSection } from "./sections/HerenciaInterfacesDiagramaSection";
 import { RelacionesDiagramaSection } from "./sections/RelacionesDiagramaSection";
 import { CasoIntegradoTiendaSection } from "./sections/CasoIntegradoTiendaSection";
-import { ResumenSection } from "./sections/ResumenSection";
-import { CierreSection } from "./sections/CierreSection";
-
 type Props = { locale: string };
 
 export default function DiagramasRelacionesPageLesson({ locale: _locale }: Props) {
@@ -22,8 +19,6 @@ export default function DiagramasRelacionesPageLesson({ locale: _locale }: Props
       <HerenciaInterfacesDiagramaSection />
       <RelacionesDiagramaSection />
       <CasoIntegradoTiendaSection />
-      <ResumenSection />
-      <CierreSection />
-    </ClassPageLayout>
+</ClassPageLayout>
   );
 }

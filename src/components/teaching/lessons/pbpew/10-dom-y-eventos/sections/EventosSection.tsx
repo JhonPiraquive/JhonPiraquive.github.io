@@ -3,7 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function EventosSection() {
@@ -166,18 +165,6 @@ lista.addEventListener("click", (e) => {
           'Un panel renderiza 200 filas y enlaza addEventListener en cada una. Al añadir filas vía API, los botones nuevos no responden. Migran a un solo listener en tbody que lee event.target.closest("tr") y actúa según data-id.'
         }
       </Callout>
-      <PracticeExercise
-        prompt="Explica la diferencia entre event.target y event.currentTarget en una lista con delegación (listener en el <ul>, clic en un <li>)."
-        hints={["target = origen del clic", "currentTarget = nodo donde está el listener"]}
-        expectedKeywords={["target", "currentTarget", "deleg"]}
-        successMessage="Correcto. currentTarget es el <ul> (donde registraste el listener); target puede ser el <li>, un <span> interno o el botón pulsado."
-      />
-      <PracticeExercise
-        prompt="Ordena el flujo al pulsar un botón: (a) navegador encola evento, (b) callback actualiza DOM, (c) usuario hace clic, (d) navegador despacha evento al listener. Indica el orden correcto."
-        hints={["Primero el usuario, luego encolar, despachar, actualizar"]}
-        expectedKeywords={["c", "a", "d", "b"]}
-        successMessage="Correcto. Orden: (c) clic → (a) encola → (d) despacha → (b) callback actualiza DOM."
-      />
     </section>
   );
 }

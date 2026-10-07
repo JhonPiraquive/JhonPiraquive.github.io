@@ -1,6 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 const CONTRATO_IENVIO = `public interface IEnvio
@@ -62,16 +61,6 @@ export function OcpSection() {
           "Sí editas implementaciones y corriges bugs. Lo que no debería crecer es el switch en el orquestador cada vez que marketing inventa una promo."
         }
       </p>
-      <PracticeExercise
-        prompt="Implementa EnvioGratis : IEnvio (peso ≤ 1 kg → 0, si no → 3) sin tocar EnvioExpress ni CalculadoraEnvioPedido."
-        hints={[
-          "Nueva clase con Calcular",
-          "Registra en Main",
-          "OCP = extensión, no modificación del cliente",
-        ]}
-        expectedKeywords={["EnvioGratis", "IEnvio", "Calcular"]}
-        successMessage="Correcto. OCP en acción sobre envíos de la tienda."
-      />
     </section>
   );
 }

@@ -3,7 +3,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function DeclaracionDeFuncionSection() {
@@ -134,12 +133,6 @@ console.log(areaRectangulo(5, 4)); // debe imprimir 20`}
           { id: "blank1", answer: "base", placeholder: "parámetro ancho" },
           { id: "blank2", answer: "altura", placeholder: "parámetro alto" },
         ]}
-      />
-      <PracticeExercise
-        prompt="Explica la diferencia entre parámetro y argumento usando function resta(a, b) y la llamada resta(10, 3)."
-        hints={["Parámetros = nombres en la definición", "Argumentos = valores concretos en la llamada"]}
-        expectedKeywords={["parámetro", "argumento", "definición", "llamada"]}
-        successMessage="Correcto. a y b son parámetros en la definición; 10 y 3 son argumentos en la llamada."
       />
     </section>
   );

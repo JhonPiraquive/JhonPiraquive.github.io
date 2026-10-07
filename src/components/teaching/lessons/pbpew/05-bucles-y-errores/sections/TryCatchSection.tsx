@@ -2,8 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function TryCatchSection() {
   return (
     <section>
@@ -139,15 +137,6 @@ try {
           'Evita catch (e) {} vacío: oculta fallos y dificulta depuración. Al menos console.error(e.message) o un mensaje claro al usuario. Usa throw new Error(...) en lugar de throw "texto" para conservar stack trace.'
         }
       </Callout>
-      <PracticeExercise
-        prompt="Implementa dividir(a, b) con throw si b === 0 y llámala dentro de try/catch mostrando err.message en consola."
-        hints={[
-          "if (b === 0) throw new Error(...)",
-          "try { dividir(4, 0); } catch (err) { console.error(err.message); }",
-        ]}
-        expectedKeywords={["throw", "try", "catch", "message"]}
-        successMessage="Correcto. throw interrumpe el flujo; catch recupera el control y permite loguear o informar sin tumbar toda la UI."
-      />
       <CodeChallenge
         title="Completa try/catch"
         template={"{{blank1}} {\n  risky();\n} catch (e) {\n  console.error(e.{{blank2}});\n}"}
@@ -155,12 +144,6 @@ try {
           { id: "blank1", answer: "try", placeholder: "bloque que puede fallar" },
           { id: "blank2", answer: "message", placeholder: "propiedad del error" },
         ]}
-      />
-      <PracticeExercise
-        prompt="¿Por qué un catch vacío es mala práctica? ¿Qué harías en su lugar en una app web?"
-        hints={["Depuración y soporte", "console.error o mensaje al usuario"]}
-        expectedKeywords={["oculta", "depur", "mensaje", "error"]}
-        successMessage="Correcto. Un catch vacío traga el error; mejor loguear err.message y mostrar feedback recuperable al usuario."
       />
     </section>
   );

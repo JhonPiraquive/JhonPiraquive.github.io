@@ -1,7 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function TemplateLiteralsSection() {
   return (
     <section>
@@ -44,12 +42,6 @@ console.log(mensaje);`}
   C->>C: sigue código sincrónico
   W->>Q: fn lista tras 1 s
   Q->>C: event loop ejecuta fn`}
-      />
-      <PracticeExercise
-        prompt="Crea const mensaje = `Usuario ${nombre} tiene ${puntos} puntos` con nombre y puntos dados e imprímela. ¿Por qué no funciona con comillas simples?"
-        hints={["Interpolación solo con backticks", "${} dentro de backticks"]}
-        expectedKeywords={["backtick", "${", "interpol"]}
-        successMessage="Correcto. Solo los template literals con backticks evalúan ${expresion}; comillas simples tratan ${} como texto literal."
       />
     </section>
   );

@@ -2,8 +2,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ModeloMatriz2DSection() {
   return (
     <section>
@@ -85,15 +83,6 @@ tablero[{{blank2}}][4] = "bK";`}
           { id: "blank1", answer: "7", placeholder: "fila rey blanco" },
           { id: "blank2", answer: "0", placeholder: "fila rey negro" },
         ]}
-      />
-      <PracticeExercise
-        prompt="¿Por qué la matriz tablero[fila][col] debe ser la fuente de verdad y no las posiciones visuales de los nodos DOM?"
-        hints={[
-          "El DOM es solo la vista",
-          "Si solo mueves nodos sin actualizar datos, estado lógico y pantalla se desincronizan",
-        ]}
-        expectedKeywords={["matriz", "fuente", "DOM", "vista"]}
-        successMessage="Correcto. La lógica lee y escribe la matriz; el render solo refleja ese estado."
       />
     </section>
   );

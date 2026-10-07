@@ -63,4 +63,12 @@ export const TRACKS = [
     descEs: "Modelo relacional, SGBD, SQL (DDL/DML) e historia de las bases de datos.",
     descEn: "Relational model, DBMS, SQL (DDL/DML) and database history.",
   },
+  {
+    id: "analisis-diseno-sistemas",
+    icon: "📐",
+    titleEs: "Análisis y Diseño de Sistemas de Información",
+    titleEn: "Information Systems Analysis and Design",
+    descEs: "Tres clases: sistemas de información, análisis/UML y diseño con casos de uso y Scrum.",
+    descEn: "Three classes: information systems, analysis/UML, and design with use cases and Scrum.",
+  },
 ] as const;

@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function QueCambiaConLoSection() {
@@ -90,18 +89,6 @@ setTimeout(() => {
 
 console.log("2: fin");
 // Imprime: 1 → 2 → 3`}
-      />
-      <PracticeExercise
-        prompt='¿Por qué setTimeout(() => console.log("B"), 0) se imprime después de console.log("A") aunque el delay sea 0?'
-        hints={["El callback entra en la cola de tareas", "El stack sincrónico debe terminar primero"]}
-        expectedKeywords={["cola", "stack", "sincrónico", "event loop"]}
-        successMessage="Correcto. El callback se encola y el event loop lo ejecuta cuando el código sincrónico actual termina."
-      />
-      <PracticeExercise
-        prompt="Explica con tus palabras la diferencia entre sincrónico y asíncrono usando la analogía de «pedir comida y quedarte mirando el móvil sin poder hacer nada» frente a «pedir y seguir charlando hasta que llegue»."
-        hints={["Sincrónico = esperas bloqueado", "Asíncrono = sigues haciendo otras cosas"]}
-        expectedKeywords={["bloque", "espera", "después", "interfaz"]}
-        successMessage="Correcto. Sincrónico bloquea hasta terminar; asíncrono programa el resultado y el programa (y la UI) sigue respondiendo."
       />
     </section>
   );

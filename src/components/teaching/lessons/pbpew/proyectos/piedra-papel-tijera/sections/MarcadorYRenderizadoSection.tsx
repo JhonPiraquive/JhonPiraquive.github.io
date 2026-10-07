@@ -1,8 +1,6 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function MarcadorYRenderizadoSection() {
   return (
     <section>
@@ -53,12 +51,6 @@ function renderizarRonda(jugador, cpu, resultado) {
         template={`const elMarcador = document.querySelector("#marcador");
 elMarcador.{{blank1}} = \`Victorias: \${marcador.victorias}\`;`}
         blanks={[{ id: "blank1", answer: "textContent", placeholder: "propiedad segura para texto" }]}
-      />
-      <PracticeExercise
-        prompt='Dado let v = 0, escribe el if que incrementa v solo cuando determinarGanador devuelve "jugador".'
-        hints={['Compara resultado === "jugador"', "Usa += 1 o v++"]}
-        expectedKeywords={["if", "jugador", "v"]}
-        successMessage="Correcto. El marcador solo crece cuando el resultado calculado es victoria del jugador."
       />
     </section>
   );

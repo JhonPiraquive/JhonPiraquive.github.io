@@ -6,12 +6,6 @@ import { CaracteristicasPrincipalesSection } from "./sections/CaracteristicasPri
 import { ParaQueSeUsaSection } from "./sections/ParaQueSeUsaSection";
 import { HistoriaBreveYVideoSection } from "./sections/HistoriaBreveYVideoSection";
 import { QueEsElDomSection } from "./sections/QueEsElDomSection";
-import { CompruebaTuComprensionSection } from "./sections/CompruebaTuComprensionSection";
-import { ResumenSection } from "./sections/ResumenSection";
-import { RetoIntegradorSection } from "./sections/RetoIntegradorSection";
-import { CierreSection } from "./sections/CierreSection";
-import { MiniquizSection } from "./sections/MiniquizSection";
-
 type Props = { locale: string };
 
 export default function IntroJsYDomLesson({ locale }: Props) {
@@ -29,11 +23,6 @@ export default function IntroJsYDomLesson({ locale }: Props) {
       <ParaQueSeUsaSection />
       <HistoriaBreveYVideoSection />
       <QueEsElDomSection />
-      <CompruebaTuComprensionSection />
-      <ResumenSection />
-      <RetoIntegradorSection />
-      <CierreSection />
-      <MiniquizSection />
-    </LessonLayout>
+</LessonLayout>
   );
 }

@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function BucleForSection() {
@@ -87,12 +86,6 @@ console.log(suma); // 15`}
           "Al indexar arrays usa i < array.length, no i <= array.length. El último índice válido es length - 1; un índice extra devuelve undefined (preview lección 7)."
         }
       </Callout>
-      <PracticeExercise
-        prompt="¿Cuándo elegirías for en lugar de while? Responde con un ejemplo concreto (rango, contador o número fijo de iteraciones)."
-        hints={["Piensa en cuántas vueltas conoces de antemano", "Contador let i = 0; i < N; i++"]}
-        expectedKeywords={["rango", "contador", "iteraciones", "conocido"]}
-        successMessage="Correcto. for encaja cuando el número de repeticiones o el rango están definidos (p. ej. imprimir pares del 0 al 8, sumar del 1 al 5)."
-      />
     </section>
   );
 }

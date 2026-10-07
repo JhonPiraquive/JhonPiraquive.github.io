@@ -1,6 +1,4 @@
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function HerenciaInterfacesDiagramaSection() {
   return (
     <section>
@@ -45,16 +43,6 @@ export function HerenciaInterfacesDiagramaSection() {
         <li>{"Confundir diagrama de clases con diagrama de secuencia."}</li>
         <li>{"Jerarquías profundas sin necesidad de dominio."}</li>
       </ul>
-      <PracticeExercise
-        prompt="Añade al diagrama de Producto la clase abstracta Notificacion con NotificacionEmail y NotificacionSms. Usa estereotipos y herencia correctos en Mermaid."
-        hints={[
-          "Notificacion lleva <<abstract>>",
-          "Herencia de clase usa <|--",
-          "NotificacionEmail y NotificacionSms heredan de Notificacion",
-        ]}
-        expectedKeywords={["abstract", "<|--", "NotificacionEmail", "NotificacionSms"]}
-        successMessage="Correcto. Has modelado jerarquía abstracta con sintaxis Mermaid válida."
-      />
     </section>
   );
 }

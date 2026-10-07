@@ -3,7 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function AmbitoScopeSection() {
@@ -134,12 +133,6 @@ for (var j = 0; j < 3; j++) {
 }
 // console.log(x) → ReferenceError si usaste let/const`}
         blanks={[{ id: "blank1", answer: "let", placeholder: "let o const (no var)" }]}
-      />
-      <PracticeExercise
-        prompt="Explica la diferencia entre ámbito de función y ámbito de bloque con let frente a var en un if."
-        hints={["let/const respetan { }", "var solo respeta function"]}
-        expectedKeywords={["bloque", "función", "let", "var"]}
-        successMessage="Correcto. let/const viven solo en el bloque { }; var se eleva a toda la función, no al bloque."
       />
     </section>
   );

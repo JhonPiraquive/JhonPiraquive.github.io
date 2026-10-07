@@ -1,8 +1,6 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const ACOPLAMIENTO_CODE = `// Alto acoplamiento — reporte atado a PDF
 public class ReporteVentasDiaAcoplado
 {
@@ -63,16 +61,6 @@ export function AcoplamientoSection() {
           ["Acoplamiento", "new GeneradorPdf() adentro", "IReporteVentasRenderer inyectado"],
           ["Modularidad", "Todo referencia todo", "Dominio → contrato ← infra"],
         ]}
-      />
-      <PracticeExercise
-        prompt="Añade ReporteHtmlRenderer y cámbialo solo en Main. ¿Cuántas líneas tocas en ReporteVentasDia?"
-        hints={[
-          "HtmlRenderer implementa Render",
-          "Constructor ya recibe contrato",
-          "Cero en dominio si DIP está bien",
-        ]}
-        expectedKeywords={["HtmlRenderer", "Main", "cero"]}
-        successMessage="Correcto. Bajo acoplamiento: el formato es decisión del borde."
       />
     </section>
   );

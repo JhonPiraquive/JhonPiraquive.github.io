@@ -5,9 +5,6 @@ import { OcpSection } from "./sections/OcpSection";
 import { LspSection } from "./sections/LspSection";
 import { IspSection } from "./sections/IspSection";
 import { DipSection } from "./sections/DipSection";
-import { ResumenSection } from "./sections/ResumenSection";
-import { CierreSection } from "./sections/CierreSection";
-
 type Props = { locale: string };
 
 export default function SolidPrincipiosPageLesson({ locale: _locale }: Props) {
@@ -26,8 +23,6 @@ export default function SolidPrincipiosPageLesson({ locale: _locale }: Props) {
       <LspSection />
       <IspSection />
       <DipSection />
-      <ResumenSection />
-      <CierreSection />
-    </ClassPageLayout>
+</ClassPageLayout>
   );
 }

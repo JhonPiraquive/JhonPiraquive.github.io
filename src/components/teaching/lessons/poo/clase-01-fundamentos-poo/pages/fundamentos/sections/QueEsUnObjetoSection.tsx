@@ -1,8 +1,6 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const CUENTA_CODE = `using System;
 
 // En Tienda Andes, la caja tiene una cuenta de cobros del día
@@ -76,12 +74,6 @@ export function QueEsUnObjetoSection() {
           "Cuidado con el “objeto anémico”: una clase que solo tiene get/set y toda la lógica vive afuera. Ahí perdiste la ventaja de modelar con objetos."
         }
       </p>
-      <PracticeExercise
-        prompt="Agrega mentalmente DepositarFondo(decimal monto) a CajaDelDia (solo montos > 0). ¿Por qué no bastaría un set público de TotalCobrado?"
-        hints={["¿Quién valida?", "¿Qué pasa si alguien pone un negativo?"]}
-        expectedKeywords={["valid", "private", "método", "regla"]}
-        successMessage="Exacto. El método valida; un set público deja que cualquier código rompa el total."
-      />
     </section>
   );
 }

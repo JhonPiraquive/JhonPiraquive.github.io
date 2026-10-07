@@ -3,9 +3,6 @@ import { meta } from "./lesson-meta";
 import { PolimorfismoInterfacesSection } from "./sections/PolimorfismoInterfacesSection";
 import { PolimorfismoHerenciaSection } from "./sections/PolimorfismoHerenciaSection";
 import { ClienteEstableSection } from "./sections/ClienteEstableSection";
-import { ResumenSection } from "./sections/ResumenSection";
-import { CierreSection } from "./sections/CierreSection";
-
 type Props = { locale: string };
 
 export default function PolimorfismoPageLesson({ locale: _locale }: Props) {
@@ -22,8 +19,6 @@ export default function PolimorfismoPageLesson({ locale: _locale }: Props) {
       <PolimorfismoInterfacesSection />
       <PolimorfismoHerenciaSection />
       <ClienteEstableSection />
-      <ResumenSection />
-      <CierreSection />
-    </ClassPageLayout>
+</ClassPageLayout>
   );
 }

@@ -1,6 +1,5 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function SetSection() {
@@ -92,12 +91,6 @@ console.log(registrar(101)); // false`}
           { id: "blank1", answer: "has", placeholder: "¿ya existe?" },
           { id: "blank2", answer: "add", placeholder: "añadir valor" },
         ]}
-      />
-      <PracticeExercise
-        prompt="¿Por qué new Set([1, 2, 2, 3]).size es 3 y no 4? Explica con tus palabras qué hace Set con valores repetidos."
-        hints={["Set guarda solo valores únicos", "La comparación usa ==="]}
-        expectedKeywords={["único", "duplicad", "repet"]}
-        successMessage="Correcto. Set almacena cada valor una sola vez; el segundo 2 no aumenta el tamaño."
       />
     </section>
   );

@@ -1,6 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function DeshacerPersistenciaSection() {
@@ -84,12 +83,6 @@ function cargarPartida(estado) {
     return false;
   }
 }`}
-      />
-      <PracticeExercise
-        prompt="Implementa deshacer con un array como pila: push antes de mover, pop al pulsar el botón. ¿Qué debe restaurar además del tablero?"
-        hints={["turno previo", "seleccion = null", "pieza capturada queda en la copia del tablero"]}
-        expectedKeywords={["turno", "pop", "push", "pila"]}
-        successMessage="Correcto. El pop debe devolver tablero y turno coherentes; la capturada ya está en la copia de la matriz."
       />
     </section>
   );

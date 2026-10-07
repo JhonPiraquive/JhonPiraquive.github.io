@@ -3,8 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ArrayCallbacksSection() {
   return (
     <section>
@@ -97,21 +95,6 @@ console.log(suma); // 12`}
 const dobles = numeros.___((n) => n * 2);
 console.log(dobles); // [6, 10, 14]`}
         blanks={[{ id: "blank1", answer: "map", placeholder: "método de transformación" }]}
-      />
-      <PracticeExercise
-        prompt="Explica la diferencia entre .forEach y .map cuando quieres duplicar cada número de una lista [1, 2, 3]."
-        hints={[
-          ".forEach no devuelve un array acumulado",
-          ".map devuelve un nuevo array con los resultados del callback",
-        ]}
-        expectedKeywords={["forEach", "map", "nuevo", "devuelve", "undefined"]}
-        successMessage="Correcto. .map devuelve un nuevo array con los valores transformados; .forEach solo ejecuta el callback por elemento y retorna undefined."
-      />
-      <PracticeExercise
-        prompt="Crea const notas = [6, 7, 8, 5] y obtén un array solo con notas ≥ 6 usando .filter. Pega tu código o describe el resultado."
-        hints={["El predicado devuelve true o false", "n => n >= 6"]}
-        expectedKeywords={["filter", "6", "7", "8"]}
-        successMessage="Correcto. const aprobadas = notas.filter(n => n >= 6); → [6, 7, 8]."
       />
     </section>
   );

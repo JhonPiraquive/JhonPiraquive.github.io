@@ -1,8 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function FormularioYEstadoSection() {
   return (
     <section>
@@ -44,12 +42,6 @@ form.addEventListener("submit", (e) => {
   agregarTarea(input.value);
 });`}
         blanks={[{ id: "blank1", answer: "preventDefault", placeholder: "evita recarga" }]}
-      />
-      <PracticeExercise
-        prompt="Ordena mentalmente el flujo al pulsar Agregar: (a) render(), (b) usuario envía formulario, (c) push al array, (d) preventDefault, (e) leer y validar texto. Escribe la secuencia correcta (ej. d-e-c-a)."
-        hints={["Primero evitas recarga", "Luego validas y mutas", "Al final pintas"]}
-        expectedKeywords={["d", "e", "c", "a", "preventDefault", "push", "render"]}
-        successMessage="Secuencia: d → e → c → a (y opcionalmente guardar). Mutar primero, pintar después."
       />
     </section>
   );

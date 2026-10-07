@@ -1,6 +1,4 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function FiltrosSection() {
   return (
     <section>
@@ -22,12 +20,6 @@ filtros.addEventListener("click", (e) => {
   btn.classList.add("activo");
   render();
 });`}
-      />
-      <PracticeExercise
-        prompt="¿Qué diferencia hay entre filtrar tareas y eliminarlas del array?"
-        hints={["¿Cambia tareas.length?", "¿Qué pasa al volver a Todas?"]}
-        expectedKeywords={["filtro", "vista", "array", "borrar", "eliminar"]}
-        successMessage="Filtrar solo cambia qué muestra render(); eliminar quita objetos del array con filter o similar."
       />
       <p className="my-4">
         {

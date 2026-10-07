@@ -2,8 +2,6 @@ import { ClayCard } from "@/components/clay/ClayCard";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ExpresionDeFuncionYArrowFunctionSection() {
   return (
     <section>
@@ -67,12 +65,6 @@ console.log(esPar(7)); // false`}
         template={`const mitad = (x) => {{blank1}};
 console.log(mitad(10)); // debe imprimir 5`}
         blanks={[{ id: "blank1", answer: "x / 2", placeholder: "expresión que devuelve la mitad" }]}
-      />
-      <PracticeExercise
-        prompt="Convierte function esPar(n) { return n % 2 === 0; } a arrow function equivalente y comprueba con esPar(4) y esPar(7). Pega tu código o describe el resultado esperado."
-        hints={["Una expresión sin llaves → return implícito", "n % 2 === 0 devuelve true o false"]}
-        expectedKeywords={["=>", "n % 2", "true", "false"]}
-        successMessage="Correcto. const esPar = (n) => n % 2 === 0; esPar(4) → true, esPar(7) → false."
       />
     </section>
   );

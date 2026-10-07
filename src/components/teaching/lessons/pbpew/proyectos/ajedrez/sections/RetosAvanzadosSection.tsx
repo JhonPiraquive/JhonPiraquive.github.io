@@ -1,7 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function RetosAvanzadosSection() {
   return (
     <section>
@@ -64,12 +62,6 @@ const juego = new Chess();
     return false;
   }
 }`}
-      />
-      <PracticeExercise
-        prompt="¿Cuándo tendría sentido usar chess.js en lugar de escribir todas las reglas a mano?"
-        hints={["Jaque, mate, enroque, captura al paso", "Ya dominas modelo-vista-controlador con reglas simples"]}
-        expectedKeywords={["jaque", "reglas", "completas", "motor"]}
-        successMessage="Correcto. chess.js aporta reglas completas cuando tu capa DOM ya funciona; la validación manual enseña más JS en el MVP."
       />
     </section>
   );

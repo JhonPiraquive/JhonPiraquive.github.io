@@ -1,6 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 const CARRITO_PRODUCTO_CODE = `using System;
@@ -86,16 +85,6 @@ export function AgregacionSection() {
         <li>{"Marcar composición porque hay List<T> — la clave es quién crea el Producto y si vive sin el carrito."}</li>
         <li>{"Eliminar el objeto Producto al quitarlo del carrito — en agregación solo sueltas la referencia."}</li>
       </ul>
-      <PracticeExercise
-        prompt="¿Por qué CarritoCompras con List<Producto> privada es agregación? Menciona quién crea el Producto y qué pasa al Quitar."
-        hints={[
-          "Producto se crea en catálogo o Main",
-          "Quitar no destruye el objeto",
-          "El mismo SKU puede estar en otro carrito",
-        ]}
-        expectedKeywords={["referencia", "catálogo", "quitar", "independiente"]}
-        successMessage="Correcto. El carrito agrupa referencias; el catálogo sobrevive."
-      />
     </section>
   );
 }

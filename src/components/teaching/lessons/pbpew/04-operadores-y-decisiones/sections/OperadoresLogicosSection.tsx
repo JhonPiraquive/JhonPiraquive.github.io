@@ -3,7 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function OperadoresLogicosSection() {
@@ -86,12 +85,6 @@ if ([]) console.log("array vacío es truthy"); // se ejecuta`}
           'if ("0") ejecuta el bloque porque el string "0" es truthy; if (0) no. Los valores de <input> llegan como string — no confundas "vacío visual" con falsy. Agrupa condiciones compuestas con paréntesis: (a && b) || c.'
         }
       </Callout>
-      <PracticeExercise
-        prompt='Lista cinco valores falsy en JavaScript y un valor que parezca "vacío" pero sea truthy.'
-        hints={['Falsy: false, 0, "", null, undefined, NaN, 0n', "¿Un array vacío [] es truthy o falsy?"]}
-        expectedKeywords={["false", "0", "null", "undefined", "truthy"]}
-        successMessage='Correcto. Falsy clásicos: false, 0, "", null, undefined, NaN. [] y {} son truthy aunque estén vacíos.'
-      />
       <CodeChallenge
         title="Completa el código: acceso condicional"
         template={`const edad = 20;

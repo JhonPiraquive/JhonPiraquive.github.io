@@ -3,7 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function DondePonerElScriptSection() {
@@ -122,12 +121,6 @@ export function DondePonerElScriptSection() {
   E --> F[console.log / DOM]
   F --> G[DevTools Console]
   C --> E`}
-      />
-      <PracticeExercise
-        prompt="¿Por qué poner un script al final del <body> evita errores al acceder al DOM?"
-        hints={["¿En qué orden parsea el navegador?", "¿Cuándo existen los nodos del body?"]}
-        expectedKeywords={["parse", "dom", "construido", "existe"]}
-        successMessage="Correcto. Al final del body el HTML ya fue parseado y los nodos existen cuando corre el script."
       />
       <CodeChallenge
         title="Completa el HTML — script externo con defer"

@@ -1,8 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const SERVICIO_REPOSITORIO_DIP = `using System.Collections.Generic;
 
 public interface IRepositorioPedidos
@@ -64,16 +62,6 @@ export function DipSection() {
           }
         </p>
       </Callout>
-      <PracticeExercise
-        prompt="Usa ServicioPedidos con RepositorioPedidosMemoria en Main. ¿Qué archivo NO deberías editar al cambiar a SQL?"
-        hints={[
-          "ServicioPedidos solo ve IRepositorioPedidos",
-          "Main elige implementación",
-          "Dominio sin strings de conexión",
-        ]}
-        expectedKeywords={["ServicioPedidos", "Main", "IRepositorioPedidos"]}
-        successMessage="Correcto. Flecha hacia abstracciones; concreto intercambiable en el borde."
-      />
     </section>
   );
 }

@@ -1,7 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ClasesAbstractasSection() {
   return (
     <section>
@@ -90,16 +88,6 @@ public class NotificacionSms : NotificacionPedido
           "Crear una clase abstracta vacía solo para prohibir new cuando una interfaz bastaría. Si no hay estado ni flujo compartido, IPago sigue siendo mejor que NotificacionPedido sin cuerpo común."
         }
       </p>
-      <PracticeExercise
-        prompt="¿Por qué Enviar no es abstracto pero EnviarCore sí? ¿Qué patrón introduce eso?"
-        hints={[
-          "Enviar tiene flujo común idéntico para todos los canales",
-          "EnviarCore varía según Email o Sms",
-          "Template Method: algoritmo común con paso variable",
-        ]}
-        expectedKeywords={["Template", "común", "abstract", "EnviarCore"]}
-        successMessage="Correcto. La base define el esqueleto; la derivada solo implementa el paso que cambia."
-      />
     </section>
   );
 }

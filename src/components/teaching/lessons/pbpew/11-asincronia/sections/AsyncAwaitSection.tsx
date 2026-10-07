@@ -3,8 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function AsyncAwaitSection() {
   return (
     <section>
@@ -104,12 +102,6 @@ async function obtener() {
   const data = await fetch("/api");
   return data;
 }`}
-      />
-      <PracticeExercise
-        prompt="Implementa async function tresPasos() que espere 300 ms entre tres console.log consecutivos usando await esperar(300)."
-        hints={["Reutiliza function esperar(ms) con Promise + setTimeout", "await esperar(300) entre cada log"]}
-        expectedKeywords={["async", "await", "esperar", "300"]}
-        successMessage="Correcto. async/await aplana el flujo sin bloquear la UI entre pasos."
       />
     </section>
   );

@@ -1,6 +1,4 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function PuenteApiSection() {
   return (
     <section>
@@ -17,12 +15,6 @@ export function PuenteApiSection() {
         code={`function exportarJson() {
   console.log(JSON.stringify(tareas, null, 2));
 }`}
-      />
-      <PracticeExercise
-        prompt="Si mañana sincronizas con fetch, ¿qué funciones separarías de la lógica de pintado?"
-        hints={["agregarTarea, eliminarPorId", "render y guardar", "¿Qué devuelve el servidor?"]}
-        expectedKeywords={["agregar", "eliminar", "render", "guardar", "fetch", "API"]}
-        successMessage="Separa mutaciones de datos (agregar, toggle, eliminar) y persistencia (guardar/cargar/fetch) de render(), que solo pinta."
       />
     </section>
   );

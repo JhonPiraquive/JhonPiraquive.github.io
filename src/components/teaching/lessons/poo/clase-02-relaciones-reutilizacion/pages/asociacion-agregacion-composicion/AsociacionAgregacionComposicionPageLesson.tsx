@@ -4,9 +4,6 @@ import { AsociacionSection } from "./sections/AsociacionSection";
 import { AgregacionSection } from "./sections/AgregacionSection";
 import { ComposicionSection } from "./sections/ComposicionSection";
 import { ComparacionRelacionesSection } from "./sections/ComparacionRelacionesSection";
-import { ResumenSection } from "./sections/ResumenSection";
-import { CierreSection } from "./sections/CierreSection";
-
 type Props = { locale: string };
 
 export default function AsociacionAgregacionComposicionPageLesson({ locale: _locale }: Props) {
@@ -24,8 +21,6 @@ export default function AsociacionAgregacionComposicionPageLesson({ locale: _loc
       <AgregacionSection />
       <ComposicionSection />
       <ComparacionRelacionesSection />
-      <ResumenSection />
-      <CierreSection />
-    </ClassPageLayout>
+</ClassPageLayout>
   );
 }

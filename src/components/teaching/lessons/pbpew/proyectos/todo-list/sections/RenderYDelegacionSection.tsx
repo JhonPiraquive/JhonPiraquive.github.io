@@ -1,7 +1,5 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function RenderYDelegacionSection() {
   return (
     <section>
@@ -88,12 +86,6 @@ function render() {
           "Si enlazas click en cada <li> dentro de render() sin limpiar, acumulas listeners. Preferir un listener delegado en el contenedor padre."
         }
       </Callout>
-      <PracticeExercise
-        prompt="Escribe toggleCompletada(id) que invierta completada en el objeto correcto dentro de tareas y llame a render(). Pega tu función o descríbela."
-        hints={["tareas.find(t => t.id === id)", "tarea.completada = !tarea.completada", "render() al final"]}
-        expectedKeywords={["find", "completada", "render"]}
-        successMessage="Bien. Mutación controlada en el array + re-pintado completo."
-      />
     </section>
   );
 }

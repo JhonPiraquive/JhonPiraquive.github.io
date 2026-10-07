@@ -3,7 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function SwitchSection() {
@@ -127,12 +126,6 @@ switch (dia) {
     console.log("Día laboral");
 }`}
         blanks={[{ id: "blank1", answer: "break", placeholder: "salir del switch" }]}
-      />
-      <PracticeExercise
-        prompt='Predice y ejecuta en consola: console.log(0 == false, 0 === false, "" == false, "" === false). Anota qué pares usan coerción y cuáles no.'
-        hints={["== aplica coerción", "=== no convierte tipos", "false se convierte a 0 con =="]}
-        expectedKeywords={["true", "false", "coerción", "==="]}
-        successMessage='Correcto. 0 == false y "" == false son true (coerción); con === ambos son false.'
       />
     </section>
   );

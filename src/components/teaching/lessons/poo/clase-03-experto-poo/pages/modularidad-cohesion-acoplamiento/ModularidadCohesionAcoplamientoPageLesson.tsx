@@ -4,9 +4,6 @@ import { ModularidadSection } from "./sections/ModularidadSection";
 import { CohesionSection } from "./sections/CohesionSection";
 import { AcoplamientoSection } from "./sections/AcoplamientoSection";
 import { ChecklistDisenoSection } from "./sections/ChecklistDisenoSection";
-import { ResumenSection } from "./sections/ResumenSection";
-import { CierreSection } from "./sections/CierreSection";
-
 type Props = { locale: string };
 
 export default function ModularidadCohesionAcoplamientoPageLesson({ locale: _locale }: Props) {
@@ -24,8 +21,6 @@ export default function ModularidadCohesionAcoplamientoPageLesson({ locale: _loc
       <CohesionSection />
       <AcoplamientoSection />
       <ChecklistDisenoSection />
-      <ResumenSection />
-      <CierreSection />
-    </ClassPageLayout>
+</ClassPageLayout>
   );
 }

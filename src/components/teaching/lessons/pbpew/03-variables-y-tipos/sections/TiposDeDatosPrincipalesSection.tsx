@@ -3,7 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function TiposDeDatosPrincipalesSection() {
@@ -117,18 +116,6 @@ console.log(copiaReferencia === original); // true`}
 console.log("5" - 1);    // 4 — resta fuerza número
 console.log(5 == "5");   // true — coerción con ==
 console.log(5 === "5");  // false — sin coerción, tipos distintos`}
-      />
-      <PracticeExercise
-        prompt="Explica con tus palabras por qué se recomienda const por defecto y let solo cuando hace falta reasignar. Incluye qué problema evita const en equipos de desarrollo."
-        hints={["Piensa en valores que no cambian: URLs, límites", "const no impide mutar objetos, solo reasignar"]}
-        expectedKeywords={["const", "let", "reasign", "referencia"]}
-        successMessage="Correcto. const comunica intención de estabilidad; let reserva reasignación explícita cuando el valor debe cambiar."
-      />
-      <PracticeExercise
-        prompt="¿Cuál es la diferencia entre undefined y null? Da un ejemplo de cuándo usarías cada uno en una app web."
-        hints={["undefined = no se asignó valor", "null = vacío intencional del programador"]}
-        expectedKeywords={["undefined", "null", "asign"]}
-        successMessage="Correcto. undefined es el default sin asignar; null indica ausencia deliberada (p. ej. usuarioActivo = null cuando no hay sesión)."
       />
       <CodeChallenge
         title="Completa el código — inspeccionar tipos"

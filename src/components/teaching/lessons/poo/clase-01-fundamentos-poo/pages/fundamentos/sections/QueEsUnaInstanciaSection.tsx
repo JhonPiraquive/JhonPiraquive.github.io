@@ -1,6 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 const INSTANCIAS_CODE = `var cafe = new Producto("Café de Nariño", 12_000m);
@@ -73,12 +72,6 @@ export function QueEsUnaInstanciaSection() {
           "No crees instancias “por deporte”. Si no hay estado propio ni identidad que cuidar, a veces basta un método estático helper. Si hay datos que cambian y reglas, sí: instancia."
         }
       </p>
-      <PracticeExercise
-        prompt='En var cafe = new Producto("Café de Nariño", 12000m); ¿qué es la clase y qué es la instancia?'
-        hints={["Producto sin new es el tipo", "new crea el objeto en memoria"]}
-        expectedKeywords={["Producto", "clase", "cafe", "instancia"]}
-        successMessage="Correcto. Producto es la clase; cafe es la instancia."
-      />
     </section>
   );
 }

@@ -2,7 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function CallbacksSection() {
@@ -137,12 +136,6 @@ boton.addEventListener("click", function () {
 
 // ✅ Bien — referencia para más tarde
 // boton.onclick = alClic;`}
-      />
-      <PracticeExercise
-        prompt="¿Por qué addEventListener('click', manejarClick()) suele ser incorrecto frente a addEventListener('click', manejarClick)? Explica qué ocurre con los paréntesis."
-        hints={["() invoca la función de inmediato", "addEventListener espera una referencia de función"]}
-        expectedKeywords={["paréntesis", "referencia", "undefined", "inmediato"]}
-        successMessage="Correcto. manejarClick() ejecuta al registrar y pasa el retorno (undefined); manejarClick pasa la función para que el navegador la llame en el clic."
       />
     </section>
   );

@@ -12,10 +12,6 @@ import { MarcadorYRenderizadoSection } from "./sections/MarcadorYRenderizadoSect
 import { OrquestarRondaSection } from "./sections/OrquestarRondaSection";
 import { ValidacionDefensivaSection } from "./sections/ValidacionDefensivaSection";
 import { ExtensionesOpcionalesSection } from "./sections/ExtensionesOpcionalesSection";
-import { RetoIntegradorSection } from "./sections/RetoIntegradorSection";
-import { CierreSection } from "./sections/CierreSection";
-import { MiniquizSection } from "./sections/MiniquizSection";
-
 type Props = { locale: string };
 
 export default function PiedraPapelTijeraLesson({ locale }: Props) {
@@ -39,9 +35,6 @@ export default function PiedraPapelTijeraLesson({ locale }: Props) {
       <OrquestarRondaSection />
       <ValidacionDefensivaSection />
       <ExtensionesOpcionalesSection />
-      <RetoIntegradorSection />
-      <CierreSection />
-      <MiniquizSection />
-    </LessonLayout>
+</LessonLayout>
   );
 }

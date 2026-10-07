@@ -3,8 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function BreakContinueSection() {
   return (
     <section>
@@ -63,12 +61,6 @@ console.log("Aprobadas:", aprobadas); // 3`}
           "break y continue solo son válidos dentro de for, while, do...while o switch. Fuera de un bucle provocan SyntaxError. No confundas break (salir del bucle) con continue (saltar a la siguiente vuelta)."
         }
       </Callout>
-      <PracticeExercise
-        prompt="Usando continue, escribe un for que imprima del 1 al 6 excepto el 3 y el 5."
-        hints={["if (i === 3 || i === 5) continue;", "for (let i = 1; i <= 6; i++)"]}
-        expectedKeywords={["continue", "3", "5", "for"]}
-        successMessage="Correcto. continue ignora el resto del cuerpo en esas iteraciones; el bucle sigue con 4 y 6."
-      />
       <CodeChallenge
         title="Completa el bucle for"
         template={"for (let i = 0; i {{blank1}} 5; i{{blank2}}) {\n  console.log(i);\n}"}

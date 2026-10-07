@@ -1,7 +1,6 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function ControladorEventosSection() {
@@ -111,16 +110,6 @@ function actualizarEstadoUI() {
     el.textContent = \`Turno: \${estado.turno === "w" ? "blancas" : "negras"}\`;
   }
 }`}
-      />
-      <PracticeExercise
-        prompt="Explica el flujo de dos clics (seleccionar → mover) y qué ocurre si el segundo clic es ilegal."
-        hints={[
-          "Primer clic guarda seleccion si la pieza es del turno",
-          "Segundo clic valida con movimientoLegal",
-          "Si es ilegal, solo se limpia seleccion",
-        ]}
-        expectedKeywords={["seleccion", "legal", "turno", "limpiar"]}
-        successMessage="Correcto. La validación ocurre antes de mutar la matriz; un clic ilegal no cambia el tablero."
       />
       <CodeChallenge
         title="Completa el alternado de turno"

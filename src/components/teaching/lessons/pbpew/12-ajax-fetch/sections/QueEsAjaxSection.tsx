@@ -1,7 +1,5 @@
 import { Callout } from "@/components/teaching/Callout";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function QueEsAjaxSection() {
   return (
     <section>
@@ -56,12 +54,6 @@ export function QueEsAjaxSection() {
           "AJAX es el enfoque (datos en segundo plano + actualización parcial). fetch y XMLHttpRequest son herramientas para implementarlo. En código nuevo del curso: usar fetch."
         }
       </Callout>
-      <PracticeExercise
-        prompt="¿Por qué AJAX mejoró la experiencia frente a recargar la página entera al enviar un formulario?"
-        hints={["Piensa en qué parte de la pantalla cambia", "¿Qué percibe el usuario: parpadeo o fluidez?"]}
-        expectedKeywords={["actualizar", "recargar", "parte", "rápido"]}
-        successMessage="Correcto. Solo se actualiza la zona necesaria; menos parpadeo y sensación de mayor velocidad."
-      />
     </section>
   );
 }

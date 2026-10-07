@@ -1,8 +1,6 @@
 import { ClayCard } from "@/components/clay/ClayCard";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function HolaMundoConsolaSection() {
   return (
     <section>
@@ -82,12 +80,6 @@ console.log(MAX_INTENTOS);`}
   B -->|404 Not Found| D[JS no ejecuta]
   D --> E[Sin logs en consola / sin eventos]
   C --> F[console.log visible en Console]`}
-      />
-      <PracticeExercise
-        prompt='Crea index.html con un <script> inline que imprima console.log("Hola, PBPEW"). Abre el archivo en el navegador y verifica el mensaje en DevTools → Console.'
-        hints={["Usa etiquetas <script>...</script> antes de cerrar </body>", "F12 → pestaña Console"]}
-        expectedKeywords={["hola", "pbpew", "consola"]}
-        successMessage="Correcto. Has vinculado JS inline al HTML y verificado la salida en DevTools."
       />
     </section>
   );

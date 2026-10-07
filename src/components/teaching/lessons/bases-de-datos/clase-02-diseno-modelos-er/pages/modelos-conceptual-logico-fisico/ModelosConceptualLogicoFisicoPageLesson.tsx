@@ -1,7 +1,6 @@
 import { ClassPageLayout } from "@/components/teaching/ClassPageLayout";
 import { meta } from "./lesson-meta";
 import { ObjetivosSection } from "../../sections/ObjetivosSection";
-import { MapaPaginasClase03Section } from "../../sections/MapaPaginasClase03Section";
 import { IntroDisenarAntesSection } from "../../sections/IntroDisenarAntesSection";
 import { MapaRequisitoDdlSection } from "../../sections/MapaRequisitoDdlSection";
 import { ModeloDatosSection } from "../../sections/ModeloDatosSection";
@@ -23,7 +22,6 @@ export default function ModelosConceptualLogicoFisicoPageLesson({ locale }: Prop
       next={meta.next}
     >
       <ObjetivosSection />
-      <MapaPaginasClase03Section />
       <IntroDisenarAntesSection />
       <MapaRequisitoDdlSection />
       <ModeloDatosSection />

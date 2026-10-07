@@ -5,7 +5,7 @@ export const meta: LessonMeta = {
   slug: "01-intro-js-y-dom",
   title: "Introducción a JavaScript y al DOM: conceptos, historia y consola",
   order: 1,
-  prev: null,
+  prev: "index",
   next: "02-js-en-html",
   seoTitle: "JavaScript y DOM: intro y consola | PBPEW",
   seoDescription:

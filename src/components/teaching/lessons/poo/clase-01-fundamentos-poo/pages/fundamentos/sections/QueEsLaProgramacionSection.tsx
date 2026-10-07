@@ -2,8 +2,6 @@ import { ClayCard } from "@/components/clay/ClayCard";
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const PRODUCTO_CODE = `using System;
 
 // Tienda Andes: un producto del catálogo
@@ -110,12 +108,6 @@ export function QueEsLaProgramacionSection() {
           "Cuando el precio solo cambia por métodos del Producto, un bug en el checkout no puede inventar un monto negativo. Las reglas viven junto al dato. Eso es mantenibilidad concreta, no teoría."
         }
       </Callout>
-      <PracticeExercise
-        prompt="Con tus palabras: ¿qué gana Tienda Andes si el carrito es un objeto (con ítems y total) en lugar de tres variables sueltas que toca cada función?"
-        hints={["¿Quién valida el descuento o el total?", "Piensa en un solo lugar con las reglas"]}
-        expectedKeywords={["reglas", "estado", "objeto", "valid"]}
-        successMessage="Bien. El objeto concentra estado y reglas: menos inconsistencias y cambios más localizados."
-      />
     </section>
   );
 }

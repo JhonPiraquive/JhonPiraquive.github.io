@@ -1,7 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const AVE_PINGUINO_ANTIEJEMPLO = `public class Ave
 {
     public virtual void Volar() => Console.WriteLine("Volando");
@@ -78,16 +76,6 @@ export function LspSection() {
           "En catálogo: si la promo no aplica, devuelve 0 en lugar de lanzar; o modela reglas con composición, no con herencia que miente."
         }
       </p>
-      <PracticeExercise
-        prompt="¿Qué principio viola Gadget.CalcularDescuento() con throw? ¿Cómo lo arreglarías para el foreach de la caja?"
-        hints={[
-          "LSP — sustituibilidad",
-          "Devolver 0 o mover regla fuera del contrato Producto",
-          "Cliente uniforme sobre Producto",
-        ]}
-        expectedKeywords={["LSP", "Producto", "sustituibilidad"]}
-        successMessage="Correcto. LSP protege el polimorfismo que ya construiste."
-      />
     </section>
   );
 }

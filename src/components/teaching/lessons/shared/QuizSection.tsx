@@ -1,6 +1,7 @@
 "use client";
 
 import { Quiz } from "@/components/teaching/Quiz";
+import { ANALISIS_DISENO_SISTEMAS_QUIZZES } from "@/lib/teaching-quizzes/analisis-diseno-sistemas";
 import { BASES_DE_DATOS_QUIZZES } from "@/lib/teaching-quizzes/bases-de-datos";
 import { CONFIGURACION_SERVICIOS_WEB_QUIZZES } from "@/lib/teaching-quizzes/configuracion-servicios-web";
 import { CONFIGURACION_SISTEMAS_OPERATIVOS_QUIZZES } from "@/lib/teaching-quizzes/configuracion-sistemas-operativos";
@@ -17,6 +18,7 @@ const QUIZ_MAP: Record<string, Record<string, typeof SEA_QUIZZES[string]>> = {
   "configuracion-servicios-web": CONFIGURACION_SERVICIOS_WEB_QUIZZES,
   "configuracion-sistemas-operativos": CONFIGURACION_SISTEMAS_OPERATIVOS_QUIZZES,
   "bases-de-datos": BASES_DE_DATOS_QUIZZES,
+  "analisis-diseno-sistemas": ANALISIS_DISENO_SISTEMAS_QUIZZES,
 };
 
 export function QuizSection({ slug, track = "sea" }: { slug: string; track?: string }) {

@@ -5,9 +5,6 @@ import { QueEsUnObjetoSection } from "./sections/QueEsUnObjetoSection";
 import { QueEsUnaClaseSection } from "./sections/QueEsUnaClaseSection";
 import { QueEsUnaInstanciaSection } from "./sections/QueEsUnaInstanciaSection";
 import { QueEsUnConstructorSection } from "./sections/QueEsUnConstructorSection";
-import { ResumenSection } from "./sections/ResumenSection";
-import { CierreSection } from "./sections/CierreSection";
-
 type Props = { locale: string };
 
 export default function FundamentosPageLesson({ locale: _locale }: Props) {
@@ -26,8 +23,6 @@ export default function FundamentosPageLesson({ locale: _locale }: Props) {
       <QueEsUnaClaseSection />
       <QueEsUnaInstanciaSection />
       <QueEsUnConstructorSection />
-      <ResumenSection />
-      <CierreSection />
-    </ClassPageLayout>
+</ClassPageLayout>
   );
 }

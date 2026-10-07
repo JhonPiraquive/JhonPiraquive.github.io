@@ -2,7 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function ClasesYMetodosSection() {
@@ -129,12 +128,6 @@ console.log(c.diametro()); // 10`}
           { id: "blank1", answer: "radio", placeholder: "parámetro del constructor" },
           { id: "blank2", answer: "2", placeholder: "factor del diámetro" },
         ]}
-      />
-      <PracticeExercise
-        prompt="Crea un objeto contador con valor: 0 y método subir() que haga this.valor++. Llama contador.subir() dos veces y muestra contador.valor. Pega tu código o indica el resultado."
-        hints={["Objeto literal con método abreviado", "this.valor++ dentro de subir"]}
-        expectedKeywords={["valor", "2", "subir", "this"]}
-        successMessage="Correcto. Tras dos llamadas a subir(), contador.valor debe ser 2."
       />
     </section>
   );

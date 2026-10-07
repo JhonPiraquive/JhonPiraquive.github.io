@@ -2,8 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ThisSection() {
   return (
     <section>
@@ -131,21 +129,6 @@ objeto.metodoFlecha(); // undefined (this exterior, p. ej. undefined en módulo)
 
 // ✅ Wrapper flecha conserva cuenta del closure; incrementar usa this = cuenta
 boton.addEventListener("click", () => cuenta.incrementar());`}
-      />
-      <PracticeExercise
-        prompt="¿Por qué this no es una variable que puedas asignar como let x = 5?"
-        hints={["Es un binding especial", "Depende de cómo se invoca la función"]}
-        expectedKeywords={["binding", "invoc", "llamada", "contexto"]}
-        successMessage="Correcto. this es un binding especial determinado por la forma de llamada (o reglas léxicas en flechas), no una variable declarativa."
-      />
-      <PracticeExercise
-        prompt="¿Por qué boton.addEventListener('click', objeto.manejar) puede fallar mientras boton.addEventListener('click', () => objeto.manejar()) suele funcionar?"
-        hints={[
-          "Al hacer clic, manejar se invoca sin el punto objeto.",
-          "La flecha conserva la referencia a objeto del closure",
-        ]}
-        expectedKeywords={["contexto", "this", "flecha", "callback"]}
-        successMessage="Correcto. Pasar el método suelto pierde el enlace this = objeto; el wrapper flecha llama objeto.manejar() con el punto, restaurando el contexto."
       />
     </section>
   );

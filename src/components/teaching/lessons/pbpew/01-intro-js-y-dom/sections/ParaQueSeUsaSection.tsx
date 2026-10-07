@@ -1,6 +1,4 @@
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ParaQueSeUsaSection() {
   return (
     <section>
@@ -48,16 +46,6 @@ export function ParaQueSeUsaSection() {
           "Existen motores y bibliotecas (Phaser, Three.js, WebGL) que usan JavaScript para juegos en navegador o empaquetados como aplicación."
         }
       </p>
-      <PracticeExercise
-        prompt="Enumera tres ámbitos donde se usa JavaScript hoy. Incluye al menos: navegador, servidor y uno más (móvil, herramientas, juegos, etc.)."
-        hints={[
-          "Piensa en Node.js para servidor",
-          "React Native es un ejemplo móvil",
-          "Phaser o Three.js son ejemplos de juegos",
-        ]}
-        expectedKeywords={["navegador", "servidor", "node"]}
-        successMessage="Correcto. Has identificado los principales ecosistemas donde JavaScript opera hoy."
-      />
     </section>
   );
 }

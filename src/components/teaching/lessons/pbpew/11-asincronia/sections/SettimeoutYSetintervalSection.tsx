@@ -2,7 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function SettimeoutYSetintervalSection() {
@@ -130,15 +129,6 @@ esperar(500)
           { id: "blank1", answer: "setTimeout", placeholder: "temporizador" },
           { id: "blank2", answer: '"dos"', placeholder: "segundo mensaje" },
         ]}
-      />
-      <PracticeExercise
-        prompt='Escribe esperar(ms) que devuelva una promesa resuelta tras ms milisegundos. Encadénala para imprimir "uno", esperar 500 ms e imprimir "dos".'
-        hints={[
-          "return new Promise((resolve) => setTimeout(resolve, ms))",
-          "Encadena con .then(() => esperar(500))",
-        ]}
-        expectedKeywords={["Promise", "setTimeout", "then"]}
-        successMessage="Correcto. esperar envuelve setTimeout en una promesa; .then encadena pasos en orden."
       />
     </section>
   );

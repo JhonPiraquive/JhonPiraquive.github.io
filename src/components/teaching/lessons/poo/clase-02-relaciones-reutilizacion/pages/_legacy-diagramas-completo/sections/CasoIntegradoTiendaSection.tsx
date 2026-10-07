@@ -1,5 +1,4 @@
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function CasoIntegradoTiendaSection() {
@@ -75,16 +74,6 @@ export function CasoIntegradoTiendaSection() {
         <li>{"Desincronía diagrama-código — acordar quién actualiza el Mermaid."}</li>
         <li>{"Incluir todo el sistema en una sola figura."}</li>
       </ul>
-      <PracticeExercise
-        prompt="Dibuja en Mermaid Usuario, Carrito y Producto. Conecta carrito con varios productos. Justifica agregación vs composición."
-        hints={[
-          "Carrito o-- Producto si el producto existe en catálogo sin carrito",
-          "Cardinalidad 0..* en productos del carrito",
-          "No uses composición si Producto es catálogo compartido",
-        ]}
-        expectedKeywords={["Carrito", "Producto", "agregación", "o--"]}
-        successMessage="Correcto. Agregación refleja que el producto del catálogo sobrevive al carrito."
-      />
     </section>
   );
 }

@@ -2,8 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const PRODUCTO_PEDIDO_CODE = `using System;
 
 public class Producto
@@ -94,16 +92,6 @@ export function OverrideVsOverloadSection() {
         <li>{"Overload: varias formas de llamar Total o PrecioLista sin duplicar nombres."}</li>
         <li>{"new: casi nunca en diseño docente; preferir override con virtual."}</li>
       </ul>
-      <PracticeExercise
-        prompt="Con Producto p = new Libro() y Libro l = new Libro(), ¿DescripcionEtiqueta() imprime lo mismo en ambos? Explica override y tipo de referencia."
-        hints={[
-          "Libro override DescripcionEtiqueta",
-          "p es referencia Producto pero objeto Libro",
-          "Misma implementación override en ambos casos",
-        ]}
-        expectedKeywords={["override", "runtime", "Libro", "referencia"]}
-        successMessage="Correcto. Ambas llamadas usan Libro.DescripcionEtiqueta por dispatch polimórfico."
-      />
     </section>
   );
 }

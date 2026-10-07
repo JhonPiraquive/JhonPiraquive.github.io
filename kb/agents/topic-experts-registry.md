@@ -8,6 +8,7 @@
 | topic-expert-web-services | posw | kb/education/briefs/posw/ | active |
 | topic-expert-os-config | configuracion-sistemas-operativos | kb/education/briefs/configuracion-sistemas-operativos/ | active |
 | topic-expert-databases | bases-de-datos | kb/education/briefs/bases-de-datos/ | active |
+| topic-expert-analisis-diseno | analisis-diseno-sistemas | kb/education/briefs/analisis-diseno-sistemas/ | active |
 
 Definición completa: [topic-experts/](topic-experts/)
 

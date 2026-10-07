@@ -1,8 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const PEDIDO_CODE = `using System;
 
 public class Pedido
@@ -65,12 +63,6 @@ export function QueEsUnConstructorSection() {
         <li>{"camelCase en variables locales y parámetros"}</li>
         <li>{"new para instanciar; { get; private set; } para proteger estado"}</li>
       </ul>
-      <PracticeExercise
-        prompt='Prueba mental: new Pedido("") debe fallar. new Pedido("P-1") + Pagar() dos veces: la segunda falla. ¿Qué regla protege el constructor y cuál el método Pagar?'
-        hints={["Constructor: Id", "Pagar: transición de estado"]}
-        expectedKeywords={["Id", "Creado", "Pagado", "estado"]}
-        successMessage="El constructor garantiza Id y Estado=Creado; Pagar solo permite la transición Creado→Pagado una vez."
-      />
     </section>
   );
 }

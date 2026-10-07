@@ -2,8 +2,6 @@ import { ClayCard } from "@/components/clay/ClayCard";
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function JavascriptInlineYExternoSection() {
   return (
     <section>
@@ -92,12 +90,6 @@ console.log(document.getElementById("msg").textContent); // "Hola"`}
           "Un equipo publica la web en https://empresa.com/producto/ pero el HTML referencia <script src=\"/js/analytics.js\"> (ruta absoluta desde la raíz del dominio). El archivo real está en /producto/js/analytics.js. Network muestra 404; métricas y eventos no se registran aunque el diseño se vea intacto."
         }
       </Callout>
-      <PracticeExercise
-        prompt="¿Cuándo preferirías JavaScript externo sobre inline? Menciona al menos dos razones."
-        hints={["Piensa en proyectos medianos o grandes", "¿Qué gana el navegador con archivos separados?"]}
-        expectedKeywords={["reutiliz", "caché", "mantenimiento", "separación"]}
-        successMessage="Correcto. JS externo favorece reutilización, caché del navegador, separación de responsabilidades y mantenimiento en proyectos reales."
-      />
     </section>
   );
 }

@@ -1,8 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ThenCatchFinallySection() {
   return (
     <section>
@@ -51,12 +49,6 @@ export function ThenCatchFinallySection() {
           { id: "blank2", answer: "then", placeholder: "segundo paso" },
           { id: "blank3", answer: "catch", placeholder: "errores" },
         ]}
-      />
-      <PracticeExercise
-        prompt="Ordena el flujo del event loop simplificado: (a) Web API completa el timer, (b) callback a la cola, (c) stack ejecuta código sincrónico, (d) stack vacío, event loop saca callback, (e) se registra setTimeout. Indica el orden correcto."
-        hints={["Primero se registra setTimeout", "Luego código sync", "Al final el callback"]}
-        expectedKeywords={["e", "c", "a", "b", "d"]}
-        successMessage="Correcto. Orden: (e) registra → (c) sync → (a) timer completa → (b) a cola → (d) event loop ejecuta."
       />
     </section>
   );

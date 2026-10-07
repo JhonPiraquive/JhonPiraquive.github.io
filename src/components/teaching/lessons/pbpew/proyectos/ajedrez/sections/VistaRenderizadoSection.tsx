@@ -1,7 +1,5 @@
 import { ClayCard } from "@/components/clay/ClayCard";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function VistaRenderizadoSection() {
   return (
     <section>
@@ -74,12 +72,6 @@ export function VistaRenderizadoSection() {
           "No uses innerHTML con datos dinámicos para piezas. textContent con Unicode es suficiente y evita riesgo XSS si en el futuro mezclas nombres de usuario."
         }
       </ClayCard>
-      <PracticeExercise
-        prompt="Escribe function simbolo(codigo) que devuelva el Unicode correcto desde SIMBOLOS o cadena vacía si codigo es null."
-        hints={['SIMBOLOS[codigo] ?? ""', "Comprueba null antes de indexar"]}
-        expectedKeywords={["SIMBOLOS", "null", "textContent"]}
-        successMessage="Correcto. Una función pura centraliza el mapeo código → símbolo."
-      />
     </section>
   );
 }

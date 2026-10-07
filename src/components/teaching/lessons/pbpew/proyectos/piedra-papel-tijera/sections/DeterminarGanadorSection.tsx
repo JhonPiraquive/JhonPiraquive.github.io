@@ -2,8 +2,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function DeterminarGanadorSection() {
   return (
     <section>
@@ -67,12 +65,6 @@ function determinarGanador(jugador, cpu) {
 const resultado = determinarGanador("tijera", "papel");
 // resultado === "{{blank1}}"`}
         blanks={[{ id: "blank1", answer: "jugador", placeholder: "jugador | cpu | empate" }]}
-      />
-      <PracticeExercise
-        prompt="¿Por qué conviene separar determinarGanador de actualizarMarcador?"
-        hints={["Una función calcula; la otra muta estado", "Facilita pruebas y cambios de reglas"]}
-        expectedKeywords={["lógica", "estado", "prueba", "separar"]}
-        successMessage="Bien. La lógica pura es testeable; el marcador depende del resultado calculado."
       />
     </section>
   );

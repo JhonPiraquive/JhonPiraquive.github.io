@@ -1,7 +1,5 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function BucleWhileSection() {
   return (
     <section>
@@ -31,12 +29,6 @@ while (n < 3) {
           "let n = 0; while (n < 5) { console.log(n); } — olvidaste n++ y n nunca cambia. En el navegador puede congelar la pestaña. Siempre debe haber una salida: condición que cambie, break o límite de seguridad."
         }
       </Callout>
-      <PracticeExercise
-        prompt="Escribe un while que cuente de 10 a 1 (cuenta regresiva) e imprima cada número con console.log."
-        hints={["Empieza con let n = 10", "Condición n >= 1 o n > 0", "Decrementa con n--"]}
-        expectedKeywords={["while", "10", "n--", "console.log"]}
-        successMessage="Correcto. Ejemplo: let n = 10; while (n >= 1) { console.log(n); n--; }"
-      />
     </section>
   );
 }

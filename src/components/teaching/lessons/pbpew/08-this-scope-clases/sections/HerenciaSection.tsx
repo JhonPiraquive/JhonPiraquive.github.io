@@ -2,8 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function HerenciaSection() {
   return (
     <section>
@@ -71,12 +69,6 @@ console.log(c.area()); // 9 — hereda area() del padre`}
           { id: "blank1", answer: "Rectangulo", placeholder: "clase padre" },
           { id: "blank2", answer: "super", placeholder: "llamada al constructor padre" },
         ]}
-      />
-      <PracticeExercise
-        prompt="Ordena los pasos de const r = new Rectangulo(2, 3): (a) se crea objeto vacío, (b) se ejecuta constructor con this enlazado, (c) se asignan this.ancho y this.alto, (d) se devuelve la instancia a r, (e) r.area() usa this = r. Indica el orden correcto."
-        hints={["Primero new crea el objeto", "Luego constructor, luego asignación, luego devolución"]}
-        expectedKeywords={["a", "b", "c", "d", "e"]}
-        successMessage="Correcto. Orden: (a) crear objeto → (b) constructor con this → (c) asignar propiedades → (d) devolver a r → (e) r.area() con this = r."
       />
       <p className="my-4">
         {

@@ -1,7 +1,5 @@
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function RelacionesDiagramaSection() {
   return (
     <section>
@@ -58,16 +56,6 @@ export function RelacionesDiagramaSection() {
         <li>{"Asociación tratada como composición."}</li>
         <li>{"Omitir cardinalidad — deja ambiguo el modelo."}</li>
       </ul>
-      <PracticeExercise
-        prompt="Para Doctor y Paciente en una consulta, ¿asociación, agregación o composición? Argumenta ciclo de vida en 2–3 frases."
-        hints={[
-          "El paciente existe sin esa consulta específica",
-          "No es composición — el paciente no muere con la consulta",
-          "Asociación simple con flecha suele bastar",
-        ]}
-        expectedKeywords={["asociación", "ciclo de vida", "independiente"]}
-        successMessage="Correcto. Doctor y Paciente se relacionan sin propiedad fuerte de ciclo de vida."
-      />
     </section>
   );
 }

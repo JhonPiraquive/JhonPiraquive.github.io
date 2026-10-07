@@ -1,7 +1,5 @@
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ModeloDatosSection() {
   return (
     <section>
@@ -45,12 +43,6 @@ export function ModeloDatosSection() {
         code={`let tareas = [];
 let filtroActivo = "todas"; // "todas" | "pendientes" | "completadas"
 let siguienteId = 1;`}
-      />
-      <PracticeExercise
-        prompt="¿Por qué conviene guardar las tareas en un array en lugar de leer solo lo que hay en el <ul>?"
-        hints={["Piensa en filtrar, contar y persistir", "¿Qué pasa si sincronizas con una API?"]}
-        expectedKeywords={["fuente", "verdad", "array", "filtrar", "persistir"]}
-        successMessage="Correcto. El array modela el estado; facilita filtrar, contar, serializar y sincronizar con API."
       />
       <CodeChallenge
         title="eliminarPorId con filter"

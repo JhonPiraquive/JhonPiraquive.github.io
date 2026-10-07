@@ -1,6 +1,4 @@
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function HerenciaInterfacesDiagramaSection() {
   return (
     <section>
@@ -57,16 +55,6 @@ export function HerenciaInterfacesDiagramaSection() {
         <li>{"Invertir la flecha de herencia (--|> en lugar de <|--)."}</li>
         <li>{"Mezclar diagrama de clases con diagrama de secuencia."}</li>
       </ul>
-      <PracticeExercise
-        prompt="Añade Artesania : Producto al diagrama del catálogo con override de DescripcionEtiqueta en la caja. Usa <|--."
-        hints={[
-          "Artesania hereda de Producto",
-          "Método en cuerpo de Artesania",
-          "Triángulo apunta a Producto",
-        ]}
-        expectedKeywords={["Artesania", "<|--", "Producto"]}
-        successMessage="Correcto. Jerarquía de catálogo legible en Mermaid."
-      />
     </section>
   );
 }

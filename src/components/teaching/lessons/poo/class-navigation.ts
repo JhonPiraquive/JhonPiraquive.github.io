@@ -43,9 +43,9 @@ export const CLASE_01: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Caso Tienda Andes (parte 1), reto, puente a Clase 2 y miniquiz de fundamentos.",
-      readMinutes: 25,
+      title: "Miniquiz de la clase",
+      description: "Comprueba los fundamentos de POO con el miniquiz de Clase 1.",
+      readMinutes: 15,
     },
   ],
 };
@@ -90,9 +90,9 @@ export const CLASE_02: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Tienda Andes (parte 2), reto de diseño y miniquiz de relaciones.",
-      readMinutes: 25,
+      title: "Miniquiz de la clase",
+      description: "Comprueba herencia, relaciones y UML con el miniquiz de Clase 2.",
+      readMinutes: 15,
     },
   ],
 };
@@ -136,9 +136,9 @@ export const CLASE_03: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Reto integrador y cierre del módulo",
-      description: "Diseño completo Tienda Andes, miniquiz experto y cierre del track.",
-      readMinutes: 30,
+      title: "Miniquiz de la clase",
+      description: "Comprueba abstracción, polimorfismo y SOLID con el miniquiz de Clase 3.",
+      readMinutes: 15,
     },
   ],
 };

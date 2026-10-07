@@ -1,8 +1,6 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function CuandoNoUsarHerenciaSection() {
   return (
     <section>
@@ -108,16 +106,6 @@ confirmacion.PedidoListo("ANDES-42");`}
         <li>{"class Carrito : Producto porque «el carrito tiene productos» — eso es agregación, no herencia."}</li>
         <li>{"Cuadrado : Rectángulo solo para reutilizar ancho/alto — rompe reglas al redimensionar."}</li>
       </ul>
-      <PracticeExercise
-        prompt='En Tienda Andes, da un ejemplo de «es un» y uno de «tiene un» con nombres de clase concretos.'
-        hints={[
-          "Libro es un Producto encaja en herencia",
-          "Pedido tiene LineaPedido encaja en composición",
-          "¿Podrías usar la derivada donde usas la base sin sorpresas?",
-        ]}
-        expectedKeywords={["Producto", "Pedido", "es un", "tiene un"]}
-        successMessage='Correcto. Herencia para especialización estable; composición para partes y colaboradores.'
-      />
     </section>
   );
 }

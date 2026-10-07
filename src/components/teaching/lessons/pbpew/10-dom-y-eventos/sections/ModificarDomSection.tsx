@@ -2,8 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ModificarDomSection() {
   return (
     <section>
@@ -125,12 +123,6 @@ li.remove(); // o lista.removeChild(li);`}
           "Una landing valida campos con JS pero el form sigue haciendo submit nativo. La página se recarga, se pierde lo escrito y el equipo cree que el JavaScript no funciona. El handler sí corrió, pero no llamó event.preventDefault(). En submit, valida y usa preventDefault si quieres manejar el envío en cliente."
         }
       </Callout>
-      <PracticeExercise
-        prompt="¿Por qué textContent es más seguro que innerHTML cuando muestras un comentario escrito por un usuario?"
-        hints={["innerHTML interpreta etiquetas y scripts", "textContent trata todo como texto plano"]}
-        expectedKeywords={["texto", "HTML", "XSS", "segur"]}
-        successMessage="Correcto. innerHTML parsea marcado arbitrario; textContent muestra el valor como texto literal."
-      />
       <CodeChallenge
         title="Completa la creación de un ítem"
         template={`const lista = document.querySelector("#lista");

@@ -1,8 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function SeleccionarNodosSection() {
   return (
     <section>
@@ -70,12 +68,6 @@ if (app) {
           { id: "blank1", answer: "querySelectorAll", placeholder: "todos los .item" },
           { id: "blank2", answer: "querySelector", placeholder: "primer #app" },
         ]}
-      />
-      <PracticeExercise
-        prompt='Selecciona el elemento con id titulo y cambia su textContent a tu nombre. Describe qué API usaste y por qué.'
-        hints={['document.querySelector("#titulo")', "Comprueba que no sea null antes de asignar"]}
-        expectedKeywords={["querySelector", "textContent", "titulo"]}
-        successMessage='Correcto. querySelector("#titulo") devuelve el nodo; textContent actualiza el texto visible.'
       />
     </section>
   );

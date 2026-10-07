@@ -1,8 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function OperadoresAritmeticosSection() {
   return (
     <section>
@@ -71,12 +69,6 @@ console.log("a" !== "b"); // true`}
           'Un portal interno evalúa if (rol == 0) con rol leído de un <select> (string). La coerción hace que valores distintos parezcan equivalentes: 5 == "5" es true. Decisión clave: comparar con === contra strings explícitos (rol === "admin") y validar contra una lista blanca de roles permitidos.'
         }
       </Callout>
-      <PracticeExercise
-        prompt="Explica por qué === es más seguro que == cuando lees valores de un <input> o de una API. Menciona un ejemplo con número y string."
-        hints={['Los inputs devuelven string', '5 === "5" vs 5 == "5"']}
-        expectedKeywords={["===", "tipo", "string", "coerción"]}
-        successMessage='Correcto. === exige mismo tipo y valor; un input "5" no es estrictamente igual al número 5.'
-      />
     </section>
   );
 }

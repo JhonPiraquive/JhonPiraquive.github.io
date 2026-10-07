@@ -1,8 +1,6 @@
 import { LessonLayout } from "@/components/teaching/LessonLayout";
 import { meta } from "./lesson-meta";
 import { CasosRealesSection } from "./sections/CasosRealesSection";
-import { CierreSection } from "./sections/CierreSection";
-import { CompruebaTuComprensionSection } from "./sections/CompruebaTuComprensionSection";
 import { DelegacionEventosSection } from "./sections/DelegacionEventosSection";
 import { DemoCalculadoraSection } from "./sections/DemoCalculadoraSection";
 import { DigitosOperadoresSection } from "./sections/DigitosOperadoresSection";
@@ -12,11 +10,8 @@ import { IgualLimpiarErroresSection } from "./sections/IgualLimpiarErroresSectio
 import { IntroProyectoSection } from "./sections/IntroProyectoSection";
 import { MaquetaHtmlSection } from "./sections/MaquetaHtmlSection";
 import { ObjetivosSection } from "./sections/ObjetivosSection";
-import { PracticaProfundaSection } from "./sections/PracticaProfundaSection";
 import { PrerrequisitosSection } from "./sections/PrerrequisitosSection";
-import { RetoIntegradorSection } from "./sections/RetoIntegradorSection";
 import { VariablesEstadoSection } from "./sections/VariablesEstadoSection";
-
 type Props = { locale: string };
 
 export default function CalculadoraLesson({ locale }: Props) {
@@ -40,10 +35,6 @@ export default function CalculadoraLesson({ locale }: Props) {
       <DigitosOperadoresSection />
       <IgualLimpiarErroresSection />
       <CasosRealesSection />
-      <PracticaProfundaSection />
-      <CompruebaTuComprensionSection />
-      <RetoIntegradorSection />
-      <CierreSection />
-    </LessonLayout>
+</LessonLayout>
   );
 }

@@ -3,7 +3,6 @@ import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function XmlhttprequestLegadoSection() {
@@ -254,12 +253,6 @@ boton.addEventListener("click", async () => {
   }
 });`}
       />
-      <PracticeExercise
-        prompt="Explica por qué fetch puede resolver con response.status === 404 sin entrar en .catch() si no lanzas error manualmente."
-        hints={["¿Qué rechaza fetch?", "¿Un 404 es una respuesta HTTP válida?"]}
-        expectedKeywords={["red", "ok", "comprobar", "404"]}
-        successMessage="Correcto. fetch solo rechaza en fallos de red; un 404 es una Response válida con ok === false. Hay que comprobar ok o status."
-      />
 
       <h4 className="mt-4 mb-2 font-semibold">{"CORS y origen"}</h4>
       <p className="my-4">
@@ -282,12 +275,6 @@ boton.addEventListener("click", async () => {
           "Abrir HTML como file:// o sin servidor estático puede romper peticiones. Usa npx serve, Live Server o similar. Para practicar, jsonplaceholder.typicode.com permite CORS."
         }
       </Callout>
-      <PracticeExercise
-        prompt="¿Qué es CORS y quién debe permitirlo: el navegador del usuario, tu JavaScript o el servidor de la API?"
-        hints={["¿Quién envía Access-Control-Allow-Origin?", "¿El navegador bloquea o el script?"]}
-        expectedKeywords={["servidor", "origen", "navegador"]}
-        successMessage="Correcto. CORS lo controla el navegador según cabeceras del servidor de la API; tu JS no puede saltárselo."
-      />
     </section>
   );
 }

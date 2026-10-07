@@ -1,6 +1,4 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ExtensionesOpcionalesSection() {
   return (
     <section>
@@ -39,15 +37,6 @@ export function ExtensionesOpcionalesSection() {
           restaurar al cargar.
         </li>
       </ol>
-      <PracticeExercise
-        prompt="Implementa botón #reiniciar que ponga los tres contadores en 0 y resetee los textos de la UI."
-        hints={[
-          "marcador.victorias = 0; empates y derrotas igual",
-          "textContent en #jugada-jugador, #jugada-cpu, #resultado, #marcador",
-        ]}
-        expectedKeywords={["reiniciar", "0", "textContent"]}
-        successMessage="Excelente. El estado y la vista vuelven al inicio sin recargar la página."
-      />
     </section>
   );
 }

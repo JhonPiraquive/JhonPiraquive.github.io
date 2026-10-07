@@ -2,7 +2,6 @@ import { LessonLayout } from "@/components/teaching/LessonLayout";
 import { meta } from "./lesson-meta";
 import { ArquitecturaSection } from "./sections/ArquitecturaSection";
 import { CasosRealesSection } from "./sections/CasosRealesSection";
-import { CierreSection } from "./sections/CierreSection";
 import { EstructuraHtmlSection } from "./sections/EstructuraHtmlSection";
 import { FiltrosSection } from "./sections/FiltrosSection";
 import { FormularioYEstadoSection } from "./sections/FormularioYEstadoSection";
@@ -13,9 +12,7 @@ import { PersistenciaOpcionalSection } from "./sections/PersistenciaOpcionalSect
 import { PrerrequisitosSection } from "./sections/PrerrequisitosSection";
 import { PuenteApiSection } from "./sections/PuenteApiSection";
 import { RenderYDelegacionSection } from "./sections/RenderYDelegacionSection";
-import { RetoSection } from "./sections/RetoSection";
 import { TodoListDemoSection } from "./sections/TodoListDemoSection";
-
 type Props = { locale: string };
 
 export default function TodoListLesson({ locale }: Props) {
@@ -40,8 +37,6 @@ export default function TodoListLesson({ locale }: Props) {
       <FiltrosSection />
       <PersistenciaOpcionalSection />
       <PuenteApiSection />
-      <RetoSection />
-      <CierreSection />
-    </LessonLayout>
+</LessonLayout>
   );
 }

@@ -2,7 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function JsonSection() {
@@ -104,18 +103,6 @@ console.log(obj.ok); // true`}
           { id: "blank1", answer: "obj", placeholder: "nombre de variable" },
           { id: "blank2", answer: "parse", placeholder: "método JSON" },
         ]}
-      />
-      <PracticeExercise
-        prompt="Ordena el flujo de persistir un carrito: (a) localStorage.setItem('carrito', texto), (b) const texto = JSON.stringify(carrito), (c) usuario modifica carrito, (d) al cargar JSON.parse(localStorage.getItem('carrito')). Indica el orden en uso normal."
-        hints={["Primero el usuario cambia datos", "Luego serializas", "Luego guardas", "Al cargar parseas"]}
-        expectedKeywords={["c", "b", "a", "d"]}
-        successMessage="Correcto. Orden habitual: (c) modifica → (b) stringify → (a) guarda → (d) al cargar parse."
-      />
-      <PracticeExercise
-        prompt="¿Por qué JSON.stringify({ fn: () => {} }) produce '{}' o omite fn?"
-        hints={["JSON es solo datos", "No admite funciones ejecutables"]}
-        expectedKeywords={["función", "serializ", "texto", "datos"]}
-        successMessage="Correcto. JSON solo transporta datos estructurados (texto, números, booleanos, null, arrays, objetos). Las funciones no son datos serializables."
       />
     </section>
   );

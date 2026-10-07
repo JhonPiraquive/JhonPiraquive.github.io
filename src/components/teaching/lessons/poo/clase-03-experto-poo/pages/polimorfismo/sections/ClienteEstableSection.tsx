@@ -1,7 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function ClienteEstableSection() {
   return (
     <section>
@@ -40,17 +38,6 @@ checkoutNequi.Pagar(50);`}
           "Un solo método de pago sin variación prevista no necesita IPasarelaPago todavía. Jerarquías donde las hijas no cumplen el mismo contrato tampoco — ahí el foreach «uniforme» es una trampa."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comprueba"}</h3>
-      <PracticeExercise
-        prompt="¿Por qué List<Producto> admite Libro y Gadget, pero List<Libro> no admite Gadget polimórficamente?"
-        hints={[
-          "List<Producto> es el tipo del contrato de catálogo",
-          "Libro y Gadget son sustituibles como Producto",
-          "List<Libro> fija el concreto",
-        ]}
-        expectedKeywords={["base", "derivada", "sustituibilidad"]}
-        successMessage="Correcto. Colecciona contra el contrato o la base, no contra un concreto."
-      />
-    </section>
+</section>
   );
 }

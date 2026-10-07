@@ -1,7 +1,5 @@
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function RelacionesDiagramaSection() {
   return (
     <section>
@@ -56,16 +54,6 @@ export function RelacionesDiagramaSection() {
         <li>{"*-- entre CarritoCompras y Producto — debería ser o--."}</li>
         <li>{"Omitir cardinalidad en Cliente–Pedido."}</li>
       </ul>
-      <PracticeExercise
-        prompt="¿AsesorVentas y Cliente en una sesión de mostrador: asociación, agregación o composición? Dos frases con ciclo de vida."
-        hints={[
-          "El cliente existe sin esa sesión",
-          "No hay todo–parte fuerte",
-          "Flecha simple --> suele bastar",
-        ]}
-        expectedKeywords={["asociación", "ciclo", "independiente"]}
-        successMessage="Correcto. Colaboración puntual sin composición."
-      />
     </section>
   );
 }

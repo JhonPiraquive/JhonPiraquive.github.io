@@ -1,7 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function PolimorfismoHerenciaSection() {
   return (
     <section>
@@ -105,16 +103,6 @@ foreach (var imp in new Impuesto[] { new Iva(), new ImpuestoCero() })
         <li>{"Olvidar abstract/virtual en la base."}</li>
         <li>{"Una derivada lanza excepción donde las demás cumplen — rompe LSP (lo verás en SOLID)."}</li>
       </ul>
-      <PracticeExercise
-        prompt="Antes de ejecutar: ¿qué imprime el foreach sobre Libro(10000) y Gadget(10000)? Luego verifica en consola."
-        hints={[
-          "Libro: 10% → 1000",
-          "Gadget: 5% → 500",
-          "La firma es la misma; el cuerpo no",
-        ]}
-        expectedKeywords={["1000", "500", "CalcularDescuento"]}
-        successMessage="Correcto. Misma llamada, respuestas distintas — polimorfismo con herencia."
-      />
     </section>
   );
 }

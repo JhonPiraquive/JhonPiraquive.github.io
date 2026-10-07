@@ -1,7 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 const TOTAL_PEDIDO_CODE = `using System;
 using System.Linq;
 
@@ -49,16 +47,6 @@ export function OverloadSection() {
         <li>{"Demasiadas variantes — a veces conviene un objeto opciones."}</li>
         <li>{"Overload no es override: no hay jerarquía ni dispatch en runtime por tipo de objeto."}</li>
       </ul>
-      <PracticeExercise
-        prompt="Antes de ejecutar: ¿qué Total usa CalculadoraPedido para Total(15m, 25m, 40m)?"
-        hints={[
-          "Tres decimales no encajan en (decimal, int)",
-          "params decimal[] agrupa los tres",
-          "La decisión es en compile time",
-        ]}
-        expectedKeywords={["params", "decimal", "80"]}
-        successMessage="Correcto. La variante params suma 15 + 25 + 40."
-      />
     </section>
   );
 }

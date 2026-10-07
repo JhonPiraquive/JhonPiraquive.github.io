@@ -1,13 +1,42 @@
+import { ClayCard } from "@/components/clay";
+import type { CSSProperties } from "react";
+
+const OBJETIVOS = [
+  "Modelar un dominio sencillo con clases, objetos y encapsulamiento en C#",
+  "Elegir herencia, composición o interfaces según la relación real entre conceptos",
+  "Aplicar polimorfismo y principios SOLID, y comunicar el diseño con diagramas UML",
+] as const;
+
+const CARD_STYLES: CSSProperties[] = [
+  {
+    background: "linear-gradient(145deg, rgba(0, 194, 255, 0.32), rgba(0, 194, 255, 0.14))",
+    borderLeft: "4px solid #00c2ff",
+  },
+  {
+    background: "linear-gradient(145deg, rgba(107, 78, 255, 0.32), rgba(107, 78, 255, 0.14))",
+    borderLeft: "4px solid #6b4eff",
+  },
+  {
+    background: "linear-gradient(145deg, rgba(10, 37, 64, 0.22), rgba(10, 37, 64, 0.1))",
+    borderLeft: "4px solid #0a2540",
+  },
+];
+
 export function ObjetivosAprendizajeSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Objetivos de aprendizaje"}</h2>
-      <ul className="my-4 list-disc space-y-2 pl-6">
-        <li>{"Modelar un dominio sencillo con clases, objetos y encapsulamiento en C#."}</li>
-        <li>{"Elegir herencia, composición o interfaces según la relación real entre conceptos."}</li>
-        <li>{"Aplicar polimorfismo y principios SOLID para mantener el diseño extensible."}</li>
-        <li>{"Leer y dibujar diagramas de clases UML que comuniquen el diseño."}</li>
-      </ul>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Objetivos de Aprendizaje"}</h2>
+      <div className="not-prose my-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+        {OBJETIVOS.map((text, index) => (
+          <ClayCard
+            key={text}
+            className="flex h-full flex-col"
+            style={CARD_STYLES[index % CARD_STYLES.length]}
+          >
+            <p className="text-base text-[var(--color-neutral-dark)]">{text}</p>
+          </ClayCard>
+        ))}
+      </div>
     </section>
   );
 }

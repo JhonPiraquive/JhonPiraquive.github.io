@@ -22,6 +22,10 @@ export type LessonEntry = {
 };
 
 const REGISTRY: Record<string, LessonEntry> = {
+  "pbpew/index": {
+    component: () => import("@/components/teaching/lessons/pbpew/index/PbpewLesson"),
+    meta: () => import("@/components/teaching/lessons/pbpew/index/lesson-meta").then((m) => m.meta),
+  },
   "pbpew/01-intro-js-y-dom": {
     component: () => import("@/components/teaching/lessons/pbpew/01-intro-js-y-dom/IntroJsYDomLesson"),
     meta: () => import("@/components/teaching/lessons/pbpew/01-intro-js-y-dom/lesson-meta").then((m) => m.meta),
@@ -1568,6 +1572,79 @@ const REGISTRY: Record<string, LessonEntry> = {
         "@/components/teaching/lessons/bases-de-datos/_aliases/clase-06-dcl-tcl-objetos-bd/practica-y-cierre/lesson-meta"
       ).then((m) => m.meta),
   },
+  "analisis-diseno-sistemas/index": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/index/AnalisisDisenoSistemasLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/index/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-01-sistemas-informacion": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/Clase01SistemasInformacionHubLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-01-sistemas-informacion/que-es-un-sistema": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/pages/que-es-un-sistema/QueEsUnSistemaPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/pages/que-es-un-sistema/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-01-sistemas-informacion/tipos-y-uso": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/pages/tipos-y-uso/TiposYUsoPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/pages/tipos-y-uso/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-01-sistemas-informacion/roles-y-calidad": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/pages/roles-y-calidad/RolesYCalidadPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/pages/roles-y-calidad/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-01-sistemas-informacion/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-01-sistemas-informacion/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-02-analisis-y-modelado": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/Clase02AnalisisYModeladoHubLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-02-analisis-y-modelado/uml-y-vocabulario": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/uml-y-vocabulario/UmlYVocabularioPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/uml-y-vocabulario/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-02-analisis-y-modelado/ciclo-de-vida": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/ciclo-de-vida/CicloDeVidaPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/ciclo-de-vida/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-02-analisis-y-modelado/modelos-y-objetos": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/modelos-y-objetos/ModelosYObjetosPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/modelos-y-objetos/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-02-analisis-y-modelado/levantamiento-de-requerimientos": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/levantamiento-de-requerimientos/LevantamientoDeRequerimientosPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/levantamiento-de-requerimientos/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-02-analisis-y-modelado/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-02-analisis-y-modelado/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-03-diseno-y-scrum": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/Clase03DisenoYScrumHubLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-03-diseno-y-scrum/caso-logistica": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/caso-logistica/CasoLogisticaPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/caso-logistica/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-03-diseno-y-scrum/casos-de-uso": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/casos-de-uso/CasosDeUsoPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/casos-de-uso/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-03-diseno-y-scrum/requerimientos-y-prototipos": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/requerimientos-y-prototipos/RequerimientosYPrototiposPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/requerimientos-y-prototipos/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-03-diseno-y-scrum/scrum": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/scrum/ScrumPageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/scrum/lesson-meta").then((m) => m.meta),
+  },
+  "analisis-diseno-sistemas/clase-03-diseno-y-scrum/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/analisis-diseno-sistemas/clase-03-diseno-y-scrum/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
+
 };
 
 export function getLessonKey(track: string, slug: string): string {

@@ -67,8 +67,7 @@ enDemo.Confirmar("PED-002");`}
           "En C# una clase puede implementar varias interfaces. Un mismo tipo puede ser «guardable» y «notificable» sin heredar de dos bases imposibles. Más adelante, con SOLID, verás ISP: contratos pequeños, no un IManagerDeTodo."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comprueba"}</h3>
-      <p className="my-4">
+<p className="my-4">
         {
           "Si ServicioPedidos hace new RepositorioConsola() por dentro, ¿sigue valiendo la interfaz? No: el acoplamiento volvió. El contrato sirve cuando quien usa el servicio elige la implementación afuera (Main o pruebas)."
         }

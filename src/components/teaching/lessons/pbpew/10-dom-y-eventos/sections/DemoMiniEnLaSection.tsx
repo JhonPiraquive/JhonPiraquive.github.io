@@ -1,6 +1,4 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-
 export function DemoMiniEnLaSection() {
   return (
     <section>
@@ -27,16 +25,6 @@ btn.addEventListener("click", () => {
   clics += 1;
   contador.textContent = \`Clics: \${clics}\`;
 });`}
-      />
-      <PracticeExercise
-        prompt="Implementa el contador de clics: botón #pulsar y span #contador que muestre Clics: N. Usa addEventListener y textContent (no innerHTML)."
-        hints={[
-          "let clics = 0 al inicio",
-          'btn.addEventListener("click", () => { clics += 1; ... })',
-          "contador.textContent = `Clics: ${clics}`",
-        ]}
-        expectedKeywords={["addEventListener", "textContent", "clics"]}
-        successMessage="Excelente. Has cerrado el ciclo selección → evento → mutación del DOM."
       />
     </section>
   );

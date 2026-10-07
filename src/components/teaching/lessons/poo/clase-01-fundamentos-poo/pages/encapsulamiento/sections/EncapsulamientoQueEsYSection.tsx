@@ -3,7 +3,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 import { StepReveal } from "@/components/teaching/StepReveal";
 
 const INVENTARIO_CODE = `using System;
@@ -178,12 +177,6 @@ export function EncapsulamientoQueEsYSection() {
       />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Campo privado + propiedad"}</h3>
       <CodeFiddle language="csharp" code={PRODUCTO_CANTIDAD_CODE} />
-      <PracticeExercise
-        prompt="¿Por qué el mostrador de Tienda Andes es buena analogía de encapsulamiento? ¿Qué operaciones ofreces y qué ocultas?"
-        hints={["No dejas que el cliente reescriba el inventario a mano", "¿Quién valida stock?"]}
-        expectedKeywords={["operaciones", "oculta", "valid", "stock"]}
-        successMessage="Ofreces Entrada/Salida (o venta); ocultas cómo se guarda el número y validas antes de cambiarlo."
-      />
     </section>
   );
 }
