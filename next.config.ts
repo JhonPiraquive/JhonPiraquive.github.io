@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: { unoptimized: true },
   outputFileTracingRoot: path.join(process.cwd()),
-  eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: false },
 };
 
