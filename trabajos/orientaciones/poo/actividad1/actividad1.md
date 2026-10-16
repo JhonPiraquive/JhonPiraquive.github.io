@@ -1,0 +1,7 @@
+Orientaciones de desarrollo
+En equipos de trabajo de máximo tres integrantes los estudiantes desarrollarán el taller práctico POO, en el cual podrán aplicar todos los conocimientos adquiridos a lo largo del curso, relacionados con el Paradigma Orientado a Objetos. Los estudiantes enviarán un documento final con todos los pasos completos que fueron desarrollados, siguiendo cada una de las orientaciones y partes descritas en el taller, incluyendo el diagrama UML adjunto en formato (.PNG) y el código fuente del entregable elaborado en lenguaje C# (.NET Framework) comprimido en formato .ZIP con el nombre de los integrantes. 
+
+Criterios de evaluación
+Funcionalidad del sistema acorde con lo solicitado en el enunciado: todas las funcionalidades básicas ingresar, visualizar y eliminar estudiantes están debidamente implementadas.
+Uso de conceptos de programación orientada a objeto: contener por lo menos las clases propuestas en el enunciado, contar con los atributos necesarios para dar solución al problema propuesto; hacer uso de los principios de encapsulación, relación apropiada entre clases.
+Presentación Diagrama de clases UML: el diagrama de clases debe contar con la totalidad de las clases propuestas así como sus propiedades y encapsulación propuesta (público – privado – protegido) métodos; el diagrama cuenta con sus respectivas relaciones según corresponda (Asociación – Agregación - Composición).
