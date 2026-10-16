@@ -18,3 +18,7 @@ __pycache__/
 *.key
 *.p12
 *.pfx
+
+# Trabajos de estudiantes: solo se versionan las orientaciones
+trabajos/*
+!trabajos/orientaciones/
