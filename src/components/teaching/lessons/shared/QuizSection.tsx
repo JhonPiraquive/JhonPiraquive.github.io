@@ -9,6 +9,7 @@ import { PBPEW_QUIZZES } from "@/lib/teaching-quizzes/pbpew";
 import { POO_QUIZZES } from "@/lib/teaching-quizzes/poo";
 import { POSW_QUIZZES } from "@/lib/teaching-quizzes/posw";
 import { SEA_QUIZZES } from "@/lib/teaching-quizzes/sea";
+import { TECNOLOGIAS_EMERGENTES_QUIZZES } from "@/lib/teaching-quizzes/tecnologias-emergentes";
 
 const QUIZ_MAP: Record<string, Record<string, typeof SEA_QUIZZES[string]>> = {
   sea: SEA_QUIZZES,
@@ -19,6 +20,7 @@ const QUIZ_MAP: Record<string, Record<string, typeof SEA_QUIZZES[string]>> = {
   "configuracion-sistemas-operativos": CONFIGURACION_SISTEMAS_OPERATIVOS_QUIZZES,
   "bases-de-datos": BASES_DE_DATOS_QUIZZES,
   "analisis-diseno-sistemas": ANALISIS_DISENO_SISTEMAS_QUIZZES,
+  "tecnologias-emergentes": TECNOLOGIAS_EMERGENTES_QUIZZES,
 };
 
 export function QuizSection({ slug, track = "sea" }: { slug: string; track?: string }) {

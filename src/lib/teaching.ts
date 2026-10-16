@@ -71,4 +71,12 @@ export const TRACKS = [
     descEs: "Tres clases: sistemas de información, análisis/UML y diseño con casos de uso y Scrum.",
     descEn: "Three classes: information systems, analysis/UML, and design with use cases and Scrum.",
   },
+  {
+    id: "tecnologias-emergentes",
+    icon: "🚀",
+    titleEs: "Tecnologías Emergentes",
+    titleEn: "Emerging Technologies",
+    descEs: "De cero a práctica real: JavaScript moderno, React con Vite, Material UI, React Router y APIs.",
+    descEn: "From zero to real practice: modern JavaScript, React with Vite, Material UI, React Router and APIs.",
+  },
 ] as const;
