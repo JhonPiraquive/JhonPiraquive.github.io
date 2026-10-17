@@ -76,7 +76,7 @@ export const TRACKS = [
     icon: "🚀",
     titleEs: "Tecnologías Emergentes",
     titleEn: "Emerging Technologies",
-    descEs: "De cero a práctica real: JavaScript moderno, React con Vite, Material UI, React Router y APIs.",
-    descEn: "From zero to real practice: modern JavaScript, React with Vite, Material UI, React Router and APIs.",
+    descEs: "Qué son las tecnologías emergentes y cómo evaluarlas, con práctica en JavaScript moderno, React, Material UI, React Router y APIs.",
+    descEn: "What emerging technologies are and how to evaluate them, practiced with modern JavaScript, React, Material UI, React Router and APIs.",
   },
 ] as const;

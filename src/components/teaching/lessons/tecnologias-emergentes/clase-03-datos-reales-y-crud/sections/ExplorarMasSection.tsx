@@ -1,9 +1,20 @@
 export function ExplorarMasSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Para seguir explorando por tu cuenta</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Autoevaluación final y recursos</h2>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Documentación de lo que usaste hoy</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Autoevaluación del módulo</h3>
+      <p className="my-4">Al terminar el módulo, el estudiante debería poder cumplir cada punto:</p>
+      <ul className="my-4 list-disc space-y-2 pl-6">
+        <li>Explicar qué ocurre desde que se hace clic en «Guardar» hasta que la base de datos tiene el registro.</li>
+        <li>Escribir una petición con fetch, revisar <code>ok</code> y manejar los errores con try/catch.</li>
+        <li>Construir un CRUD completo con estados de carga, vacío, error y éxito.</li>
+        <li>Validar en el cliente sabiendo que el servidor también debe validar.</li>
+        <li>Explicar qué hace <code>npm run build</code>, por qué las variables VITE_ son públicas y cómo publicar un sitio con rutas.</li>
+        <li>Evaluar una tecnología emergente con criterios, sin dejarse llevar solo por la moda, y ubicarla en su ciclo de adopción.</li>
+      </ul>
+
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Documentación de lo visto en la clase</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>
           <a href="https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noreferrer">MDN: Uso de Fetch</a>
@@ -25,17 +36,17 @@ export function ExplorarMasSection() {
         </li>
       </ul>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Un recurso con fecha: léelo sabiendo qué cambió</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Un recurso anterior: leerlo sabiendo qué cambió</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>
-          <a href="https://es.legacy.reactjs.org/docs/typechecking-with-proptypes.html" target="_blank" rel="noreferrer">React (documentación anterior): verificación de tipos con PropTypes</a>. Explica bien el concepto, pero recuerda que desde React 19 PropTypes ya no valida. Úsala para entender código antiguo.
+          <a href="https://es.legacy.reactjs.org/docs/typechecking-with-proptypes.html" target="_blank" rel="noreferrer">React (documentación anterior): verificación de tipos con PropTypes</a>. Explica bien el concepto, pero en las versiones actuales de React PropTypes ya no valida. Sirve para entender código antiguo.
         </li>
       </ul>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Videos de la asignatura y de la bibliografía</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li><a href="https://www.youtube.com/watch?v=6BY69bqGyIM" target="_blank" rel="noreferrer">Configuración de la base de datos: MongoDB</a> (video de la facultad).</li>
-        <li><a href="https://youtu.be/I-MhmB5B6Zk" target="_blank" rel="noreferrer">Fazt Code: Node.js y MongoDB, CRUD y despliegue desde cero</a>. Muestra el lado del servidor de lo que aquí consumes. Es un video antiguo: comprende la idea y revisa las versiones de cada librería antes de copiar el código.</li>
+        <li><a href="https://youtu.be/I-MhmB5B6Zk" target="_blank" rel="noreferrer">Fazt Code: Node.js y MongoDB, CRUD y despliegue desde cero</a>. Muestra el lado del servidor de lo que aquí se consume. Es un video antiguo: sirve para comprender la idea, y las versiones de cada librería deben revisarse antes de copiar el código.</li>
       </ul>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Para mirar el horizonte</h3>
@@ -46,16 +57,6 @@ export function ExplorarMasSection() {
         <li><a href="https://web.dev/learn/pwa" target="_blank" rel="noreferrer">web.dev: Aprende PWA</a> (en inglés)</li>
         <li><a href="https://developer.mozilla.org/es/docs/WebAssembly" target="_blank" rel="noreferrer">MDN: WebAssembly</a></li>
         <li><a href="https://developer.mozilla.org/es/docs/Web/API/WebXR_Device_API" target="_blank" rel="noreferrer">MDN: WebXR Device API</a></li>
-      </ul>
-
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Autoevaluación final</h3>
-      <ul className="my-4 list-disc space-y-2 pl-6">
-        <li>Puedo explicar qué pasa desde que hago clic en «Guardar» hasta que la base de datos tiene el registro.</li>
-        <li>Sé escribir una petición con fetch, revisar <code>ok</code> y manejar los errores con try/catch.</li>
-        <li>Construyo un CRUD completo con estados de carga, vacío, error y éxito.</li>
-        <li>Valido en el cliente sabiendo que el servidor también debe validar.</li>
-        <li>Sé qué hace <code>npm run build</code>, por qué las variables VITE_ son públicas y cómo publicar un sitio con rutas.</li>
-        <li>Puedo evaluar una tecnología nueva con criterios, sin dejarme llevar solo por la moda.</li>
       </ul>
     </section>
   );

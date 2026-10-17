@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 const MENU = `const menu = [
   { id: 1, nombre: "Capuchino", precio: 8500, agotado: false },
@@ -17,7 +16,7 @@ export function ArraysYSusMetodosSection() {
       <p className="my-4">
         Un arreglo (array) es una lista ordenada. Cada elemento tiene una posición que empieza en 0. En una aplicación
         real casi todos los datos llegan como listas: productos, usuarios, pedidos. Por eso dominar los métodos del
-        arreglo es lo que más vas a usar en React.
+        arreglo es lo que más se utiliza en React.
       </p>
       <CodeFiddle
         language="javascript"
@@ -32,16 +31,16 @@ console.log(colores.includes("verde"));  // true
 colores.push("negro");          // agrega al final (modifica el arreglo original)`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Los cinco métodos que más usarás</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Los cinco métodos más usados</h3>
       <p className="my-4">
-        Todos reciben una función (un callback) que se ejecuta una vez por cada elemento. Para las pruebas de esta
-        sección usaremos este menú de la cafetería:
+        Todos reciben una función (un callback) que se ejecuta una vez por cada elemento. Para los ejemplos de esta
+        sección se usa este menú de una cafetería:
       </p>
       <CodeFiddle language="javascript" title="Datos de ejemplo" code={MENU} />
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">map: transformar cada elemento</h3>
       <p className="my-4">
-        Devuelve un arreglo nuevo del mismo tamaño, donde cada elemento fue transformado. En React lo usarás para
+        Devuelve un arreglo nuevo del mismo tamaño, donde cada elemento fue transformado. En React sirve para
         convertir una lista de datos en una lista de tarjetas.
       </p>
       <CodeFiddle
@@ -75,7 +74,7 @@ const todosBaratos = menu.every((p) => p.precio < 20000);   // true: todos cumpl
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">reduce: convertir la lista en un solo valor</h3>
       <p className="my-4">
-        Recorre la lista llevando una «bolsa» (acumulador). En cada elemento actualizas la bolsa. Al final obtienes
+        Recorre la lista llevando una «bolsa» (acumulador). En cada elemento se actualiza la bolsa. Al final se obtiene
         un único resultado, como un total.
       </p>
       <CodeFiddle
@@ -90,17 +89,17 @@ const todosBaratos = menu.every((p) => p.precio < 20000);   // true: todos cumpl
         language="javascript"
         title="Encadenar métodos"
         code={`const etiquetas = menu
-  .filter((p) => !p.agotado)                       // 1. solo los disponibles
-  .map((p) => \`\${p.nombre} - $\${p.precio}\`);       // 2. los convierto en texto
+  .filter((p) => !p.agotado)                       // 1. se conservan solo los disponibles
+  .map((p) => \`\${p.nombre} - $\${p.precio}\`);       // 2. se convierten en texto
 // ["Capuchino - $8500", "Brownie - $6000", "Sándwich - $12000"]`}
       />
 
       <CompareTable
-        title="¿Qué método uso?"
-        headers={["Necesito…", "Método", "Devuelve"]}
+        title="Qué método corresponde a cada necesidad"
+        headers={["Necesidad", "Método", "Devuelve"]}
         rows={[
           ["Transformar cada elemento", "map", "Arreglo nuevo del mismo tamaño"],
-          ["Quedarme con algunos", "filter", "Arreglo nuevo, igual o más corto"],
+          ["Conservar algunos", "filter", "Arreglo nuevo, igual o más corto"],
           ["Encontrar un elemento", "find", "Un elemento o undefined"],
           ["Saber si existe alguno / si todos cumplen", "some / every", "true o false"],
           ["Sumar, contar o agrupar en un valor", "reduce", "Un único valor"],
@@ -113,16 +112,10 @@ const todosBaratos = menu.every((p) => p.precio < 20000);   // true: todos cumpl
           <code>push</code>, <code>pop</code>, <code>splice</code> y <code>sort</code> cambian el arreglo original.
           <code> map</code>, <code>filter</code>, <code>slice</code> y <code>toSorted</code> devuelven uno nuevo y dejan
           el original intacto. React necesita trabajar con copias nuevas para detectar cambios, así que en estas clases
-          preferirás los segundos. Lo verás con calma en la clase 2.
+          se prefieren los segundos. El tema se retoma en la clase 2.
         </p>
       </Callout>
 
-      <PracticeExercise
-        title="Practica con el menú"
-        prompt="Con el arreglo menu de arriba, escribe una expresión que devuelva los nombres de los productos que están disponibles y cuestan menos de 10000. Pista: combina dos métodos."
-        hints={["Primero filtra por las dos condiciones", "Después transforma con map para quedarte solo con el nombre", "menu.filter((p) => !p.agotado && p.precio < 10000).map((p) => p.nombre)"]}
-        expectedKeywords={["filter", "map"]}
-      />
     </section>
   );
 }

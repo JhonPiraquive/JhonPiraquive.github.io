@@ -7,15 +7,15 @@ export function PromesasSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Por qué existe la asincronía y qué es una promesa</h2>
       <p className="my-4">
-        Pedir datos a un servidor toma tiempo: desde unos milisegundos hasta varios segundos. Mientras esperas, tu página no
+        Pedir datos a un servidor toma tiempo: desde unos milisegundos hasta varios segundos. Mientras se espera, la página no
         puede quedarse congelada. JavaScript resuelve esto de una manera particular: hace una cosa a la vez, pero cuando
         una tarea es lenta (una petición, un temporizador) la deja «en espera» y sigue con lo demás. Cuando la tarea termina,
         vuelve a ella.
       </p>
       <p className="my-4">
-        Piensa en una cafetería. Pides tu café y te entregan un número con un aviso. No te quedas inmóvil en el mostrador:
-        te sientas, revisas el celular y, cuando el aviso suena, vas a recoger tu pedido. Mientras tanto el barista atiende
-        a otras personas. Ese aviso es lo que en JavaScript se llama una <strong>promesa</strong>.
+        Una cafetería sirve de analogía. El cliente pide un café y recibe un número con un aviso. No se queda inmóvil en el
+        mostrador: se sienta, revisa el celular y, cuando el aviso suena, recoge el pedido. Mientras tanto el barista
+        atiende a otras personas. Ese aviso es lo que en JavaScript se llama una <strong>promesa</strong>.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué es una promesa</h3>
@@ -56,14 +56,14 @@ esperar(1000)
 console.log("2. Esto se imprime antes de que pase el segundo");`}
       />
       <p className="my-4">
-        Fíjate en el orden: el mensaje 2 sale <em>antes</em> que el 3. JavaScript no esperó; dejó la promesa trabajando y
+        El orden importa: el mensaje 2 sale <em>antes</em> que el 3. JavaScript no esperó; dejó la promesa trabajando y
         siguió con la siguiente línea. Esa es la esencia de la asincronía.
       </p>
       <Callout title="Encadenar entra rápido en un laberinto" variant="callout-warning">
         <p className="mb-0">
           Con varias peticiones que dependen una de otra, los <code>.then</code> encadenados se vuelven difíciles de leer.
           Por eso se creó una sintaxis que se lee como código normal, de arriba abajo: <code>async</code>/<code>await</code>,
-          la siguiente sección. Debajo sigue siendo lo mismo; solo cambia cómo lo escribes.
+          la siguiente sección. Debajo sigue siendo lo mismo; solo cambia la forma de escribirlo.
         </p>
       </Callout>
     </section>

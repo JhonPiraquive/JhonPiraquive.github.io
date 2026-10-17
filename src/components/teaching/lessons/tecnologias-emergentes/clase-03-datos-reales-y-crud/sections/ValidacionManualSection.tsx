@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function ValidacionManualSection() {
   return (
@@ -9,8 +8,8 @@ export function ValidacionManualSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Validar lo que escribe el usuario</h2>
       <p className="my-4">
         Validar es comprobar que los datos cumplen las reglas antes de enviarlos: que el correo tenga forma de correo, que
-        la edad sea un número razonable, que los campos obligatorios no estén vacíos. Hacerlo en el formulario le ahorra
-        tiempo a la persona (se entera del error al instante, sin esperar a la API) y le ahorra trabajo al servidor.
+        la edad sea un número razonable, que los campos obligatorios no estén vacíos. Hacerlo en el formulario ahorra
+        tiempo a la persona (se entera del error al instante, sin esperar a la API) y ahorra trabajo al servidor.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Una función que devuelve los errores</h3>
@@ -27,11 +26,11 @@ export function validarDocente(datos) {
   const errores = {};
 
   if (datos.nombres.trim().length < 2) {
-    errores.nombres = "Escribe al menos 2 letras en el nombre.";
+    errores.nombres = "Escribir al menos 2 letras en el nombre.";
   }
 
   if (!REGEX_CORREO.test(datos.email)) {
-    errores.email = "Escribe un correo válido, por ejemplo ana@correo.com.";
+    errores.email = "Escribir un correo válido, por ejemplo ana@correo.com.";
   }
 
   if (!/^\\d{7,10}$/.test(datos.identificacion)) {
@@ -44,7 +43,7 @@ export function validarDocente(datos) {
   }
 
   if (datos.fechaNacimiento === "") {
-    errores.fechaNacimiento = "Selecciona la fecha de nacimiento.";
+    errores.fechaNacimiento = "Seleccionar la fecha de nacimiento.";
   } else if (new Date(datos.fechaNacimiento) > new Date()) {
     errores.fechaNacimiento = "La fecha no puede ser futura.";
   }
@@ -54,9 +53,9 @@ export function validarDocente(datos) {
       />
       <Callout title="Sobre las expresiones regulares" variant="callout-info">
         <p className="mb-0">
-          Las expresiones regulares (los patrones entre barras) describen la forma de un texto. No necesitas memorizarlas:
-          busca la que necesitas, pruébala en un sitio como regex101.com y comprueba que acepta lo que debe y rechaza lo
-          que no. Una validación de correo perfecta es imposible con una regex; basta con revisar que tenga la forma
+          Las expresiones regulares (los patrones entre barras) describen la forma de un texto. No es necesario memorizarlas:
+          se busca la que hace falta, se prueba en un sitio como regex101.com y se comprueba que acepta lo que debe y
+          rechaza lo que no. Una validación de correo perfecta es imposible con una regex; basta con revisar que tenga la forma
           básica y dejar que el servidor confirme.
         </p>
       </Callout>
@@ -118,9 +117,9 @@ export default function FormularioDocente({ alEnviar }) {
 }`}
       />
       <ul className="my-4 list-disc space-y-2 pl-6">
-        <li><code>noValidate</code> en el formulario desactiva los mensajes por defecto del navegador para mostrar los tuyos, que son más claros y consistentes.</li>
+        <li><code>noValidate</code> en el formulario desactiva los mensajes por defecto del navegador para mostrar los mensajes propios, que son más claros y consistentes.</li>
         <li><code>helperText=&#123;errores.nombres ?? &quot; &quot;&#125;</code> deja un espacio en blanco cuando no hay error, para que el formulario no «salte» cuando aparece un mensaje.</li>
-        <li>La validación ocurre al enviar. También puedes validar cada campo al salir de él con <code>onBlur</code>, lo que da respuesta más temprana sin molestar mientras la persona escribe.</li>
+        <li>La validación ocurre al enviar. También se puede validar cada campo al salir de él con <code>onBlur</code>, lo que da una respuesta más temprana sin molestar mientras la persona escribe.</li>
       </ul>
 
       <CompareTable
@@ -133,12 +132,6 @@ export default function FormularioDocente({ alEnviar }) {
         ]}
       />
 
-      <PracticeExercise
-        title="Escribe una regla"
-        prompt="Describe con palabras (o con código) cómo validarías que la edad de un docente sea un número entero entre 18 y 90. ¿Qué mensaje le mostrarías si no lo cumple?"
-        hints={["Recuerda que el valor llega como texto", "Convierte con Number y revisa Number.isInteger", "El mensaje debe decir qué hacer, no solo qué está mal"]}
-        expectedKeywords={["number", "entero", "18", "90", "isinteger"]}
-      />
     </section>
   );
 }

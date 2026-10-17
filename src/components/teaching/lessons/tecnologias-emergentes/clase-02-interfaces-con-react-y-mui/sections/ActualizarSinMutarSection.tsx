@@ -10,7 +10,7 @@ export function ActualizarSinMutarSection() {
       <p className="my-4">
         React decide si debe volver a dibujar comparando el valor nuevo del estado con el anterior. Con números y textos
         es sencillo. Con arreglos y objetos compara <strong>la referencia</strong>, es decir, si es exactamente el mismo
-        objeto en memoria. Si modificas el arreglo que ya existe, la referencia no cambia y React no se entera.
+        objeto en memoria. Si se modifica el arreglo que ya existe, la referencia no cambia y React no se entera.
       </p>
       <CodeFiddle
         language="jsx"
@@ -23,13 +23,13 @@ const agregarMal = () => {
 };`}
       />
       <p className="my-4">
-        La regla es: <strong>nunca modifiques el estado directamente; crea una copia nueva con el cambio aplicado</strong>{" "}
-        y entrégasela al setter. Con lo que ya aprendiste (spread, map y filter) tienes todo lo necesario.
+        La regla es: <strong>nunca se modifica el estado directamente; se crea una copia nueva con el cambio aplicado</strong>{" "}
+        y se entrega al setter. Con spread, map y filter, vistos en la clase 1, alcanza para todo.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Las cuatro operaciones</h3>
       <CompareTable
-        headers={["Quiero…", "No uses (muta)", "Usa (copia)"]}
+        headers={["Necesidad", "No usar (muta)", "Usar (copia)"]}
         rows={[
           ["Agregar al final", "push", "[...lista, nuevo]"],
           ["Quitar uno", "splice, delete", "lista.filter((x) => x.id !== id)"],
@@ -82,14 +82,14 @@ export default function ListaCursos() {
       <Callout title="Por qué React exige esto" variant="callout-info">
         <p className="mb-0">
           Comparar referencias es rapidísimo; revisar el contenido de una lista de miles de elementos no lo sería. A cambio,
-          te pide la disciplina de crear copias. Además, trabajar con copias hace que los cambios sean predecibles y fáciles
+          exige la disciplina de crear copias. Además, trabajar con copias hace que los cambios sean predecibles y fáciles
           de depurar.
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Elevar el estado: cuando dos componentes necesitan lo mismo</h3>
       <p className="my-4">
-        Imagina un formulario que agrega cursos y una tabla que los muestra. Los dos necesitan la misma lista. La solución
+        Un formulario agrega cursos y una tabla los muestra. Los dos necesitan la misma lista. La solución
         es guardar el estado en el <strong>padre más cercano que los contiene</strong> y pasarles a los hijos lo que
         necesitan: los datos y, para poder modificarlos, funciones por props.
       </p>
@@ -133,8 +133,8 @@ export default function PaginaCursos() {
       </p>
       <Callout title="Una regla para decidir dónde vive el estado" variant="callout-tip">
         <p className="mb-0">
-          Empieza guardando el estado en el componente que lo usa. Solo cuando otro componente lo necesite, súbelo al
-          padre común. No lo subas «por si acaso»: más estado arriba significa más componentes que se redibujan.
+          El estado se guarda primero en el componente que lo usa. Solo cuando otro componente lo necesita, se sube al
+          padre común. No conviene subirlo «por si acaso»: más estado arriba significa más componentes que se redibujan.
         </p>
       </Callout>
     </section>

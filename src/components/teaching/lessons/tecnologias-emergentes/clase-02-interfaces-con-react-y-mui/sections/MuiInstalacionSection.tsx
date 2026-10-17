@@ -9,11 +9,7 @@ export function MuiInstalacionSection() {
       <p className="my-4">
         Material UI (MUI) es una librería de componentes de React ya construidos y probados: botones, tablas, campos de
         texto, menús, diálogos. Siguen el sistema de diseño Material de Google, tienen buena accesibilidad y vienen con un
-        sistema de temas. En lugar de dibujar y estilizar un botón desde cero, importas el de MUI y lo configuras.
-      </p>
-      <p className="my-4">
-        Una nota sobre versiones: Material UI saltó de la versión 7 a la 9 para igualar la numeración de MUI X (su librería
-        de componentes avanzados). No existe una versión 8. En este módulo usamos la 9.
+        sistema de temas. En lugar de dibujar y estilizar un botón desde cero, se importa el de MUI y se configura.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Paso 1: instalar los paquetes</h3>
@@ -23,7 +19,7 @@ export function MuiInstalacionSection() {
         code={`# El núcleo: componentes + el motor de estilos que usa (Emotion)
 npm install @mui/material @emotion/react @emotion/styled
 
-# Iconos (opcional, pero los vas a querer)
+# Iconos (opcional, pero muy usados)
 npm install @mui/icons-material
 
 # Tipografía Roboto, que es la que usa Material
@@ -35,7 +31,7 @@ npm install @fontsource/roboto`}
           ["@mui/material", "Los componentes: Button, TextField, Table…"],
           ["@emotion/react y @emotion/styled", "El motor que genera el CSS de los componentes. MUI lo necesita para funcionar"],
           ["@mui/icons-material", "Más de dos mil iconos como componentes (EditIcon, DeleteIcon…)"],
-          ["@fontsource/roboto", "La fuente Roboto empaquetada con tu proyecto, sin pedirla a internet"],
+          ["@fontsource/roboto", "La fuente Roboto empaquetada con el proyecto, sin pedirla a internet"],
         ]}
       />
 
@@ -55,7 +51,7 @@ import "@fontsource/roboto/700.css";
 
 import App from "./App.jsx";
 
-const theme = createTheme();   // el tema por defecto; luego lo personalizas
+const theme = createTheme();   // el tema por defecto; después se personaliza
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -68,11 +64,11 @@ createRoot(document.getElementById("root")).render(
       />
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li><strong>ThemeProvider</strong> reparte el tema (colores, tipografía, espacios) a todos los componentes de MUI.</li>
-        <li><strong>CssBaseline</strong> normaliza los estilos del navegador: quita el margen del body y unifica tipografías. Pónlo una vez, dentro del ThemeProvider.</li>
-        <li>Si dejaste el archivo <code>index.css</code> de la plantilla de Vite, bórrale el contenido o quita su import, porque choca con los estilos de MUI.</li>
+        <li><strong>CssBaseline</strong> normaliza los estilos del navegador: quita el margen del body y unifica tipografías. Se coloca una sola vez, dentro del ThemeProvider.</li>
+        <li>Si el proyecto conserva el archivo <code>index.css</code> de la plantilla de Vite, se borra su contenido o se quita su import, porque choca con los estilos de MUI.</li>
       </ul>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Paso 3: tu primer componente</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Paso 3: el primer componente</h3>
       <CodeFiddle
         language="jsx"
         title="src/App.jsx"
@@ -95,17 +91,18 @@ export default function App() {
       />
       <Callout title="Dos formas de importar" variant="callout-tip">
         <p className="mb-0">
-          Puedes escribir <code>import {"{ Button } from '@mui/material'"}</code> (más corto, el que verás en la mayoría de
+          Se puede escribir <code>import {"{ Button } from '@mui/material'"}</code> (más corto, el que aparece en la mayoría de
           tutoriales) o <code>import Button from '@mui/material/Button'</code> (una ruta por componente). Las dos funcionan
-          en producción; la segunda suele arrancar más rápido en desarrollo cuando importas muchos componentes.
+          en producción; la segunda suele arrancar más rápido en desarrollo cuando se importan muchos componentes.
         </p>
       </Callout>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">¿Es MUI siempre la mejor opción?</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Elegir una librería de componentes: aplicar los criterios</h3>
       <p className="my-4">
-        No hay una librería de componentes «la mejor». Depende del proyecto. Usamos MUI porque es madura, tiene excelente
-        documentación en inglés, está muy extendida en sitios administrativos y se aprende rápido. Estas son otras opciones
-        reales que verás en el mercado:
+        No existe una librería de componentes «la mejor»; depende del proyecto. Elegir una es un ejercicio de los criterios de
+        evaluación de la clase 1. MUI se usa en este módulo porque es madura, tiene excelente documentación, un
+        mantenimiento constante, una comunidad enorme en sitios administrativos y se aprende rápido. Estas son otras
+        opciones reales del mercado:
       </p>
       <CompareTable
         headers={["Opción", "Característica principal", "Buena para…"]}
@@ -113,7 +110,7 @@ export default function App() {
           ["Material UI (MUI)", "Componentes completos, tema potente, muy madura", "Paneles administrativos y aplicaciones de negocio"],
           ["Ant Design", "Muchos componentes empresariales listos (tablas, formularios)", "Sistemas de gestión muy cargados de datos"],
           ["Mantine", "Moderna, buena experiencia de desarrollo, muchos hooks útiles", "Proyectos nuevos que buscan velocidad"],
-          ["shadcn/ui con Tailwind", "Copias el código de los componentes a tu proyecto y lo controlas", "Equipos que quieren control total del diseño"],
+          ["shadcn/ui con Tailwind", "El código de los componentes se copia al proyecto y queda bajo control del equipo", "Equipos que quieren control total del diseño"],
           ["Tailwind CSS solo", "Clases utilitarias, sin componentes hechos", "Diseños muy personalizados"],
         ]}
       />

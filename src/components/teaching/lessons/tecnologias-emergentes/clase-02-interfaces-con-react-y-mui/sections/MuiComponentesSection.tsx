@@ -5,11 +5,11 @@ import { CompareTable } from "@/components/teaching/CompareTable";
 export function MuiComponentesSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Los componentes de MUI que más vas a usar</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Los componentes de MUI de uso más frecuente</h2>
       <p className="my-4">
-        MUI tiene decenas de componentes. Para un sitio administrativo bastan unos pocos grupos. Aprende estos y podrás
-        armar casi cualquier pantalla. La documentación completa está en mui.com; cada componente muestra ejemplos que puedes
-        copiar.
+        MUI tiene decenas de componentes. Para un sitio administrativo bastan unos pocos grupos. Con ellos se puede
+        armar casi cualquier pantalla. La documentación completa está en mui.com; cada componente muestra ejemplos
+        copiables.
       </p>
       <CompareTable
         headers={["Grupo", "Componentes", "Para qué"]}
@@ -27,7 +27,7 @@ export function MuiComponentesSection() {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Organizar con Stack y Grid</h3>
       <p className="my-4">
         <strong>Stack</strong> apila elementos con un espacio uniforme entre ellos (en columna por defecto, o en fila con{" "}
-        <code>direction=&quot;row&quot;</code>). <strong>Grid</strong> reparte el ancho en 12 columnas. En la versión 9, cada
+        <code>direction=&quot;row&quot;</code>). <strong>Grid</strong> reparte el ancho en 12 columnas. En la versión actual, cada
         celda indica su tamaño con la propiedad <code>size</code>, y puede cambiar según el ancho de pantalla.
       </p>
       <CodeFiddle
@@ -46,19 +46,19 @@ import Paper from "@mui/material/Paper";
   </Grid>
 </Grid>`}
       />
-      <Callout title="Si ves Grid con item y xs…" variant="callout-warning">
+      <Callout title="Grid con item y xs en código antiguo" variant="callout-warning">
         <p className="mb-0">
           Los tutoriales y plantillas más antiguos escriben <code>{"<Grid item xs={12} md={6}>"}</code>. Es la versión
-          anterior del Grid. En Material UI 9 esa versión se eliminó: ya no existe la propiedad <code>item</code> y los
-          tamaños van en <code>size</code>. Si copias código viejo y no se ve como esperas, revisa esto primero. Tampoco
-          funciona <code>direction=&quot;column&quot;</code> en Grid: para columnas usa Stack.
+          anterior del Grid. En la versión actual de Material UI se eliminó: ya no existe la propiedad <code>item</code> y
+          los tamaños van en <code>size</code>. Si un código copiado no se ve como se espera, esta es la primera revisión.
+          Tampoco funciona <code>direction=&quot;column&quot;</code> en Grid: para columnas se usa Stack.
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Campos de formulario</h3>
       <p className="my-4">
-        <code>TextField</code> junta en uno la etiqueta, el campo y el mensaje de ayuda. Con <code>error</code> lo
-        pintas de rojo y con <code>helperText</code> explicas qué pasó. Con <code>select</code> se convierte en una
+        <code>TextField</code> junta en uno la etiqueta, el campo y el mensaje de ayuda. Con <code>error</code> se
+        pinta de rojo y con <code>helperText</code> se explica qué pasó. Con <code>select</code> se convierte en una
         lista desplegable.
       </p>
       <CodeFiddle
@@ -95,7 +95,7 @@ export default function FormularioDocente() {
         value={datos.email}
         onChange={manejarCambio}
         error={emailInvalido}
-        helperText={emailInvalido ? "Escribe un correo válido, por ejemplo ana@correo.com" : " "}
+        helperText={emailInvalido ? "Escribir un correo válido, por ejemplo ana@correo.com" : " "}
       />
       <TextField select label="Área" name="area" value={datos.area} onChange={manejarCambio}>
         <MenuItem value="sistemas">Sistemas</MenuItem>
@@ -108,7 +108,7 @@ export default function FormularioDocente() {
 }`}
       />
       <p className="my-4">
-        Observa que <code>Stack</code> acepta <code>component=&quot;form&quot;</code>: los componentes de MUI pueden «disfrazarse»
+        Cabe notar que <code>Stack</code> acepta <code>component=&quot;form&quot;</code>: los componentes de MUI pueden «disfrazarse»
         de otra etiqueta HTML con la propiedad <code>component</code>, sin perder sus estilos.
       </p>
 
@@ -164,7 +164,7 @@ export default function TablaCursos({ cursos, alEditar, alEliminar }) {
       <Callout title="Los botones de solo icono necesitan nombre" variant="callout-info">
         <p className="mb-0">
           Un <code>IconButton</code> no muestra texto, así que una persona que usa lector de pantalla no sabría qué hace.
-          Por eso lleva <code>aria-label</code> con una descripción clara. Lo retomamos en la página de accesibilidad.
+          Por eso lleva <code>aria-label</code> con una descripción clara. El tema se retoma en la página de accesibilidad.
         </p>
       </Callout>
 

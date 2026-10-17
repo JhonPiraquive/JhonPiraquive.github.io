@@ -36,12 +36,12 @@ export function RutasBasicasSection() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Paso 1: instalar</h3>
       <CodeFiddle language="bash" title="Terminal" code={`npm install react-router`} />
-      <Callout title="react-router y react-router-dom: no te confundas" variant="callout-warning">
+      <Callout title="react-router y react-router-dom: no confundirlos" variant="callout-warning">
         <p className="mb-0">
-          Durante años se instalaba <code>react-router-dom</code> y de ahí se importaba todo. A partir de la versión 7 el
-          paquete principal es <code>react-router</code>, y la versión 8 eliminó <code>react-router-dom</code>. Si sigues
-          un tutorial o una plantilla antigua verás <code>from &quot;react-router-dom&quot;</code>; el contenido de lo que
-          importas (Link, Routes, useNavigate…) es el mismo, solo cambia el origen. Con la versión actual escribe{" "}
+          Durante años se instalaba <code>react-router-dom</code> y de ahí se importaba todo. La librería fue unificando
+          sus paquetes hasta que <code>react-router</code> pasó a ser el único. En un tutorial o una plantilla antigua
+          aparece <code>from &quot;react-router-dom&quot;</code>; lo que se importa (Link, Routes, useNavigate…) es lo
+          mismo, solo cambia el origen. Con la versión actual se escribe{" "}
           <code>from &quot;react-router&quot;</code>.
         </p>
       </Callout>
@@ -64,7 +64,7 @@ createRoot(document.getElementById("root")).render(
 );`}
       />
       <p className="my-4">
-        <code>BrowserRouter</code> escucha la barra de direcciones y le avisa a React Router cuando cambia. Se pone una sola
+        <code>BrowserRouter</code> escucha la barra de direcciones y avisa a React Router cuando cambia. Se coloca una sola
         vez, rodeando toda la aplicación.
       </p>
 
@@ -95,10 +95,10 @@ export default function App() {
 }`}
       />
       <ul className="my-4 list-disc space-y-2 pl-6">
-        <li><strong>Routes</strong> mira la dirección actual y muestra solo la <strong>primera ruta que coincide</strong>.</li>
+        <li><strong>Routes</strong> revisa la dirección actual y muestra solo la <strong>primera ruta que coincide</strong>.</li>
         <li><strong>Route</strong> une un <code>path</code> (la dirección) con un <code>element</code> (el componente a mostrar).</li>
         <li><strong>path=&quot;*&quot;</strong> coincide con todo lo que no coincidió antes; sirve para el error 404.</li>
-        <li><strong>Link</strong> reemplaza a la etiqueta <code>&lt;a&gt;</code> para navegar sin recargar la página. Si usas <code>&lt;a href&gt;</code> para rutas internas, la página se recarga entera y se pierde el estado.</li>
+        <li><strong>Link</strong> reemplaza a la etiqueta <code>&lt;a&gt;</code> para navegar sin recargar la página. Con <code>&lt;a href&gt;</code> en rutas internas, la página se recarga entera y se pierde el estado.</li>
       </ul>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">NavLink: un enlace que sabe si está activo</h3>

@@ -1,5 +1,4 @@
 import { Callout } from "@/components/teaching/Callout";
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 
@@ -9,7 +8,7 @@ export function ObjetosYDesestructuracionSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Objetos y desestructuración</h2>
       <p className="my-4">
         Un objeto agrupa datos que pertenecen a la misma cosa. En vez de tener tres variables sueltas (nombre, precio,
-        agotado), creas un solo objeto <em>producto</em> con tres propiedades. Cada propiedad tiene una llave (el nombre)
+        agotado), se crea un solo objeto <em>producto</em> con tres propiedades. Cada propiedad tiene una llave (el nombre)
         y un valor.
       </p>
       <CodeFiddle
@@ -42,7 +41,7 @@ delete producto.etiquetas;`}
       <p className="my-4">
         JSON es un formato de texto para intercambiar datos entre programas. Se parece mucho a un objeto de JavaScript,
         pero es texto plano y es más estricto: las llaves siempre van entre comillas dobles y no admite funciones. Es el
-        idioma con el que tu página hablará con los servidores en la clase 3.
+        idioma con el que una página se comunica con los servidores, tema de la clase 3.
       </p>
       <CodeFiddle
         language="javascript"
@@ -59,7 +58,7 @@ console.log(typeof objeto);  // "object"`}
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Desestructuración de objetos</h3>
       <p className="my-4">
         Desestructurar es sacar varias propiedades de un objeto en una sola línea, creando una variable por cada una.
-        Evita escribir <code>producto.</code> una y otra vez. En React lo usarás en cada componente.
+        Evita escribir <code>producto.</code> una y otra vez. En React se usa en cada componente.
       </p>
       <CodeFiddle
         language="javascript"
@@ -83,7 +82,7 @@ const { agotado = false } = producto;
 const { proveedor: { ciudad } = {} } = { proveedor: { ciudad: "Manizales" } };`}
       />
       <p className="my-4">
-        El uso más importante: desestructurar <strong>en los parámetros</strong> de una función. Así dices desde la
+        El uso más importante es desestructurar <strong>en los parámetros</strong> de una función: así se declara desde la
         primera línea qué datos necesita.
       </p>
       <CodeFiddle
@@ -100,7 +99,7 @@ console.log(describir2({ nombre: "Té", precio: 5000 }));  // "Té: $5000"`}
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Desestructuración de arreglos</h3>
       <p className="my-4">
-        Con los arreglos importa la <strong>posición</strong>, no el nombre. Lo verás cuando uses{" "}
+        Con los arreglos importa la <strong>posición</strong>, no el nombre. Se aplica en{" "}
         <code>useState</code>, que devuelve un arreglo de dos elementos.
       </p>
       <CodeFiddle
@@ -116,7 +115,7 @@ let a = 1, b = 2;
       />
 
       <CompareTable
-        headers={["Quiero…", "Uso…", "Ejemplo"]}
+        headers={["Necesidad", "Herramienta", "Ejemplo"]}
         rows={[
           ["Sacar propiedades por nombre", "Desestructuración de objeto con llaves", "const { nombre } = producto"],
           ["Sacar elementos por posición", "Desestructuración de arreglo con corchetes", "const [a, b] = lista"],
@@ -125,25 +124,13 @@ let a = 1, b = 2;
         ]}
       />
 
-      <Callout title="Piénsalo así" variant="callout-info">
+      <Callout title="Qué conviene recordar" variant="callout-info">
         <p className="mb-0">
           La desestructuración no cambia el objeto original: solo crea variables nuevas con copias de los valores.
           Si una propiedad es a su vez un objeto o un arreglo, la variable apunta al mismo objeto, no a una copia.
         </p>
       </Callout>
 
-      <CodeChallenge
-        title="Completa la desestructuración"
-        template={`const estudiante = { nombre: "Laura", edad: 20, ciudad: "Manizales" };
-
-const { {{a}}, edad } = estudiante;
-const [{{b}}, segundo] = ["uno", "dos"];
-console.log(nombre, edad, primero);`}
-        blanks={[
-          { id: "a", answer: "nombre", placeholder: "propiedad" },
-          { id: "b", answer: "primero", placeholder: "variable" },
-        ]}
-      />
     </section>
   );
 }

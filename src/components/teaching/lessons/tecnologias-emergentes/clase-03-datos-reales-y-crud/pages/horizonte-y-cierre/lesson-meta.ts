@@ -10,6 +10,6 @@ export const meta: LessonMeta = {
   ...base,
   title: pageDef.title,
   showInTrackIndex: false,
-  seoTitle: "Hacia dónde sigue y cierre | Tecnologías emergentes",
+  seoTitle: "Panorama emergente y cierre | Tecnologías emergentes",
   seoDescription: pageDef.description,
 };

@@ -10,6 +10,6 @@ export const meta: LessonMeta = {
   ...base,
   title: pageDef.title,
   showInTrackIndex: false,
-  seoTitle: "Tecnologías emergentes y por qué JavaScript | Tecnologías emergentes",
+  seoTitle: "Qué son las tecnologías emergentes | Tecnologías emergentes",
   seoDescription: pageDef.description,
 };

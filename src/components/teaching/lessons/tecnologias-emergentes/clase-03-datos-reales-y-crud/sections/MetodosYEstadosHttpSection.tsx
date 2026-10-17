@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function MetodosYEstadosHttpSection() {
   return (
@@ -10,7 +9,7 @@ export function MetodosYEstadosHttpSection() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Los métodos: el verbo de cada petición</h3>
       <p className="my-4">
-        Toda petición HTTP lleva un método que indica qué quieres hacer. Se relacionan de forma directa con las cuatro
+        Toda petición HTTP lleva un método que indica qué acción se quiere realizar. Se relacionan de forma directa con las cuatro
         operaciones que hace cualquier sistema de gestión, conocidas como <strong>CRUD</strong>: Create (crear), Read
         (leer), Update (actualizar) y Delete (eliminar).
       </p>
@@ -25,7 +24,7 @@ export function MetodosYEstadosHttpSection() {
           ["Eliminar", "DELETE", "/materias/7", "No", "Borra la materia 7"],
         ]}
       />
-      <Callout title="Dos palabras que verás en la documentación" variant="callout-info">
+      <Callout title="Dos palabras frecuentes en la documentación" variant="callout-info">
         <p className="mb-0">
           <strong>Seguro</strong> significa que la petición no cambia nada en el servidor (GET lo es).{" "}
           <strong>Idempotente</strong> significa que repetirla muchas veces deja el mismo resultado que hacerla una vez (GET,
@@ -70,36 +69,30 @@ Content-Type: application/json
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Códigos de estado: cómo salió la petición</h3>
       <p className="my-4">
-        El servidor siempre responde con un número de tres cifras. La primera cifra te dice la familia, y con eso ya sabes
+        El servidor siempre responde con un número de tres cifras. La primera cifra indica la familia, y con eso ya se sabe
         mucho.
       </p>
       <CompareTable
-        headers={["Código", "Nombre", "Qué significa", "Qué haces en tu interfaz"]}
+        headers={["Código", "Nombre", "Qué significa", "Qué hace la interfaz"]}
         rows={[
           ["200", "OK", "Todo salió bien", "Mostrar los datos"],
           ["201", "Created", "Se creó el recurso", "Avisar «Guardado» y volver al listado"],
-          ["204", "No Content", "Salió bien y no hay nada que devolver (típico en DELETE)", "No intentes leer JSON de la respuesta"],
+          ["204", "No Content", "Salió bien y no hay nada que devolver (típico en DELETE)", "No intentar leer JSON de la respuesta"],
           ["400", "Bad Request", "La petición está mal formada o con datos inválidos", "Mostrar los errores en el formulario"],
-          ["401", "Unauthorized", "No has iniciado sesión", "Enviar a la pantalla de login"],
-          ["403", "Forbidden", "Iniciaste sesión pero no tienes permiso", "Avisar que no tiene acceso"],
+          ["401", "Unauthorized", "No se ha iniciado sesión", "Enviar a la pantalla de login"],
+          ["403", "Forbidden", "Hay sesión iniciada pero no hay permiso", "Avisar que no tiene acceso"],
           ["404", "Not Found", "Ese recurso no existe", "Mostrar «no encontrado»"],
-          ["409", "Conflict", "Choca con algo existente, como un código repetido", "Pedir que cambie el dato repetido"],
+          ["409", "Conflict", "Choca con algo existente, como un código repetido", "Pedir que se cambie el dato repetido"],
           ["500", "Internal Server Error", "El servidor falló", "Disculparse y ofrecer reintentar; no es culpa del usuario"],
         ]}
       />
       <Callout title="Cómo memorizarlo" variant="callout-tip">
         <p className="mb-0">
-          2xx: salió bien. 3xx: te redirigen a otro lado. 4xx: el error está del lado del cliente (tu petición). 5xx: el
+          2xx: salió bien. 3xx: redirección a otro lado. 4xx: el error está del lado del cliente (la petición). 5xx: el
           error está del lado del servidor.
         </p>
       </Callout>
 
-      <PracticeExercise
-        title="Piensa como cliente"
-        prompt="Haces DELETE /materias/99 y el servidor responde 404. ¿Qué significa y qué le mostrarías a la persona?"
-        hints={["Mira la familia del código: 4xx", "¿Existe la materia 99?"]}
-        expectedKeywords={["no existe", "no encontrad", "ya fue eliminad", "cliente"]}
-      />
     </section>
   );
 }

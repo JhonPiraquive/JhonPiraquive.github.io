@@ -6,16 +6,16 @@ import { Link } from "@/i18n/navigation";
 export function ValidarEnElServidorSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">El servidor también valida: nunca confíes en el navegador</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">El servidor también valida: el navegador no es de fiar</h2>
       <p className="my-4">
         Todo lo que corre en el navegador está en manos de quien lo usa. Cualquiera puede abrir las herramientas de
-        desarrollo, desactivar tu validación, modificar el JavaScript o enviar peticiones con curl sin pasar por tu
+        desarrollo, desactivar la validación, modificar el JavaScript o enviar peticiones con curl sin pasar por el
         formulario. Por eso hay una regla de oro:
       </p>
       <Callout title="Regla de oro" variant="callout-danger">
         <p className="mb-0">
           La validación del frontend es para <strong>ayudar a la persona</strong>. La validación del servidor es para{" "}
-          <strong>proteger el sistema</strong>. Necesitas las dos, y la segunda nunca es opcional.
+          <strong>proteger el sistema</strong>. Hacen falta las dos, y la segunda nunca es opcional.
         </p>
       </Callout>
       <CompareTable
@@ -31,7 +31,7 @@ export function ValidarEnElServidorSection() {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Mostrar en el formulario los errores que manda el servidor</h3>
       <p className="my-4">
         Hay reglas que solo el servidor puede comprobar, como «ese código ya existe». Una API bien hecha devuelve un código
-        4xx y un cuerpo que indica qué campo falló. Tu formulario debe ser capaz de mostrar ese mensaje junto al campo
+        4xx y un cuerpo que indica qué campo falló. El formulario debe ser capaz de mostrar ese mensaje junto al campo
         correspondiente.
       </p>
       <CodeFiddle
@@ -60,9 +60,9 @@ const guardar = async (datos) => {
     navigate("/materias");
   } catch (e) {
     if (e.estado === 400 && e.detalle?.errores) {
-      setErroresServidor(e.detalle.errores);   // se los pasas al formulario para pintarlos
+      setErroresServidor(e.detalle.errores);   // se pasan al formulario para pintarlos
     } else {
-      setError("No pudimos guardar. Inténtalo de nuevo.");
+      setError("No se pudo guardar. Intente de nuevo.");
     }
     setGuardando(false);
   }
@@ -74,17 +74,17 @@ const guardar = async (datos) => {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Seguridad en el frontend: lo esencial</h3>
       <CompareTable
-        headers={["Tema", "Qué debes saber", "Qué hacer"]}
+        headers={["Tema", "Qué debe saberse", "Qué hacer"]}
         rows={[
           [
             "Inyección de código (XSS)",
-            "React escapa por defecto lo que muestras dentro de las llaves, así que un texto con <script> se ve como texto",
-            "Evita dangerouslySetInnerHTML con contenido de usuarios. Si es imprescindible, límpialo antes con una librería de saneamiento",
+            "React escapa por defecto lo que se muestra dentro de las llaves, así que un texto con <script> se ve como texto",
+            "Evitar dangerouslySetInnerHTML con contenido de usuarios. Si es imprescindible, limpiarlo antes con una librería de saneamiento",
           ],
           [
             "Variables de entorno",
             "Todo lo que empieza con VITE_ se incluye en el código que descarga el navegador: es público",
-            "Nunca pongas claves secretas ni contraseñas en el frontend. Van en el servidor",
+            "Nunca se ponen claves secretas ni contraseñas en el frontend: van en el servidor",
           ],
           [
             "Permisos",
@@ -93,18 +93,18 @@ const guardar = async (datos) => {
           ],
           [
             "Credenciales y tokens",
-            "Si guardas un token en localStorage, cualquier script que se cuele en tu página puede leerlo",
-            "Prefiere cookies httpOnly emitidas por el servidor, y siempre usa HTTPS",
+            "Si un token se guarda en localStorage, cualquier script que se cuele en la página puede leerlo",
+            "Preferir cookies httpOnly emitidas por el servidor y usar siempre HTTPS",
           ],
           [
             "CORS",
             "Regula qué páginas pueden leer respuestas, pero no autentica a nadie",
-            "No lo uses como único control de acceso",
+            "No usarlo como único control de acceso",
           ],
         ]}
       />
       <p className="my-4">
-        Para profundizar en estas ideas tienes el módulo de seguridad de este sitio:{" "}
+        Para profundizar en estas ideas, este sitio incluye el módulo de seguridad:{" "}
         <Link href="/teaching/sea/ataques-web-sqli-y-mitigacion">ataques web e inyección SQL</Link> y{" "}
         <Link href="/teaching/sea/https-y-mitm">HTTPS y ataques de intermediario</Link>.
       </p>

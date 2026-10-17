@@ -6,12 +6,12 @@ export function RetoClase02Section() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Práctica guiada: un módulo de materias</h2>
       <p className="my-4">
-        En esta práctica armas un sitio administrativo pequeño con todo lo de la clase: Material UI, React Router, estado y
-        formularios. Todavía no hay servidor: los datos viven en el estado del navegador. En la clase 3 cambiarás esa parte
-        por una API real, y por eso conviene que la estructura quede limpia.
+        La práctica consiste en armar un sitio administrativo pequeño con todo lo visto en la clase: Material UI, React
+        Router, estado y formularios. Todavía no hay servidor: los datos viven en el estado del navegador. En la clase 3
+        esa parte se reemplaza por una API real, por lo que conviene mantener la estructura limpia.
       </p>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué debes construir</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Requisitos</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>Un marco con barra superior y menú lateral, con las opciones «Inicio» y «Materias».</li>
         <li>Una pantalla de inicio con un título de bienvenida y una tarjeta que diga cuántas materias hay registradas.</li>
@@ -25,30 +25,30 @@ export function RetoClase02Section() {
       <StepReveal
         title="Siete pasos"
         steps={[
-          { title: "Prepara el proyecto", content: "Crea un proyecto nuevo con Vite, instala @mui/material, @emotion/react, @emotion/styled, @mui/icons-material, @fontsource/roboto y react-router. Deja ThemeProvider y CssBaseline en main.jsx." },
-          { title: "Dibuja el marco", content: "Crea LayoutAdmin con AppBar, Drawer y un Outlet. Declara las rutas con un Route de layout y prueba que el menú cambia la pantalla sin recargar." },
-          { title: "Guarda las materias arriba", content: "Piensa qué componente es el padre común del listado y del formulario. Ahí vive el estado con la lista de materias. Si ambos son pantallas distintas, considera un contexto." },
-          { title: "Haz el listado", content: "Crea la tabla con TableContainer. Recorre las materias con map y no olvides la key. Agrega los dos IconButton con aria-label." },
-          { title: "Haz el formulario", content: "Un solo componente que recibe valores iniciales: vacíos para crear, los de la materia para editar. Usa useParams para saber si hay un id. Al guardar, usa navigate para volver al listado." },
-          { title: "Cubre los estados", content: "Qué muestra el listado cuando no hay materias. Qué muestra el formulario cuando el id no existe. Agrega el Dialog de confirmación y el Snackbar." },
-          { title: "Revisa la accesibilidad", content: "Recorre todo con la tecla Tab, ejecuta Lighthouse y corrige lo que reporte." },
+          { title: "Preparar el proyecto", content: "Se crea un proyecto nuevo con Vite y se instalan @mui/material, @emotion/react, @emotion/styled, @mui/icons-material, @fontsource/roboto y react-router. ThemeProvider y CssBaseline quedan en main.jsx." },
+          { title: "Dibujar el marco", content: "Se crea LayoutAdmin con AppBar, Drawer y un Outlet. Las rutas se declaran con un Route de layout y se comprueba que el menú cambia la pantalla sin recargar." },
+          { title: "Guardar las materias arriba", content: "Se identifica el componente que es padre común del listado y del formulario; ahí vive el estado con la lista de materias. Si ambos son pantallas distintas, conviene un contexto." },
+          { title: "Hacer el listado", content: "Se crea la tabla con TableContainer, se recorren las materias con map (sin olvidar la key) y se agregan los dos IconButton con aria-label." },
+          { title: "Hacer el formulario", content: "Un solo componente que recibe valores iniciales: vacíos para crear, los de la materia para editar. useParams indica si hay un id y, al guardar, navigate regresa al listado." },
+          { title: "Cubrir los estados", content: "Se define qué muestra el listado cuando no hay materias y qué muestra el formulario cuando el id no existe. Se agregan el Dialog de confirmación y el Snackbar." },
+          { title: "Revisar la accesibilidad", content: "Se recorre todo con la tecla Tab, se ejecuta Lighthouse y se corrige lo que reporte." },
         ]}
       />
 
-      <Callout title="Cómo saber que quedó bien" variant="callout-tip">
+      <Callout title="Cómo verificar el resultado" variant="callout-tip">
         <ul className="mb-0 list-disc space-y-1 pl-5">
-          <li>Puedes crear, editar y eliminar una materia sin recargar la página.</li>
-          <li>Si escribes una dirección inválida, ves tu pantalla de «no encontrada» dentro del marco.</li>
-          <li>Si recargas con F5 en <code>/materias/nueva</code>, la pantalla se mantiene (en desarrollo). Los datos, en cambio, se pierden porque aún viven en memoria; es normal y lo resuelve la clase 3.</li>
+          <li>Se puede crear, editar y eliminar una materia sin recargar la página.</li>
+          <li>Una dirección inválida muestra la pantalla de «no encontrada» dentro del marco.</li>
+          <li>Al recargar con F5 en <code>/materias/nueva</code>, la pantalla se mantiene (en desarrollo). Los datos, en cambio, se pierden porque aún viven en memoria; es normal y lo resuelve la clase 3.</li>
           <li>Ningún campo obligatorio vacío permite guardar, y los mensajes dicen cómo corregir.</li>
         </ul>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Para ir más lejos</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
-        <li>Guarda la lista en el navegador con el hook <code>useAlmacenLocal</code> de esta clase y comprueba que sobrevive a recargar.</li>
-        <li>Agrega un campo de búsqueda que filtre la tabla mientras escribes.</li>
-        <li>Agrega un botón para cambiar entre modo claro y oscuro.</li>
+        <li>Guardar la lista en el navegador con el hook <code>useAlmacenLocal</code> de esta clase y comprobar que sobrevive a recargar.</li>
+        <li>Agregar un campo de búsqueda que filtre la tabla mientras se escribe.</li>
+        <li>Agregar un botón para cambiar entre modo claro y oscuro.</li>
       </ul>
     </section>
   );

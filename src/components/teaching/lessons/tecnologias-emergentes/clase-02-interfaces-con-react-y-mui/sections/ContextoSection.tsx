@@ -8,8 +8,8 @@ export function ContextoSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Contexto: datos compartidos sin cadenas de props</h2>
       <p className="my-4">
-        Pasar datos por props funciona muy bien entre un padre y sus hijos. Pero imagina que el nombre del usuario
-        conectado lo necesita un botón que está seis niveles más abajo. Tendrías que pasar la prop por cinco componentes que
+        Pasar datos por props funciona muy bien entre un padre y sus hijos. Pero si el nombre del usuario
+        conectado lo necesita un botón seis niveles más abajo, la prop debe pasar por cinco componentes que
         no la usan, solo para que llegue. A eso se le llama <em>prop drilling</em> (taladrar props) y es molesto de mantener.
       </p>
       <p className="my-4">
@@ -64,7 +64,7 @@ export function useSesion() {
       <CodeFiddle
         language="jsx"
         title="Publicar y consumir"
-        code={`// main.jsx: envuelves la aplicación
+        code={`// main.jsx: se envuelve la aplicación
 <SesionProvider>
   <App />
 </SesionProvider>
@@ -81,10 +81,10 @@ export default function MenuUsuario() {
   );
 }`}
       />
-      <Callout title="Provider en React 19" variant="callout-info">
+      <Callout title="Provider: forma actual y forma antigua" variant="callout-info">
         <p className="mb-0">
-          Desde React 19 puedes renderizar el contexto directamente (<code>{"<SesionContext value={...}>"}</code>). En
-          proyectos anteriores o en plantillas verás <code>{"<SesionContext.Provider value={...}>"}</code>. Funcionan igual;
+          Las versiones actuales de React permiten renderizar el contexto directamente (<code>{"<SesionContext value={...}>"}</code>). En
+          proyectos anteriores y en plantillas aparece <code>{"<SesionContext.Provider value={...}>"}</code>. Funcionan igual;
           el segundo es la forma antigua.
         </p>
       </Callout>
@@ -98,9 +98,9 @@ export default function MenuUsuario() {
           ["Compartir un servicio (por ejemplo, el cliente de la API)", "Reemplazar las props entre un padre y su hijo directo"],
         ]}
       />
-      <Callout title="Y si mi aplicación crece mucho" variant="callout-tip">
+      <Callout title="Cuando la aplicación crece mucho" variant="callout-tip">
         <p className="mb-0">
-          Para estado global más grande existen librerías como Zustand o Redux Toolkit. No las necesitas para este módulo.
+          Para estado global más grande existen librerías como Zustand o Redux Toolkit. No son necesarias en este módulo.
           Un sitio administrativo mediano se resuelve con estado local, contexto para lo compartido y datos que vienen de
           la API.
         </p>

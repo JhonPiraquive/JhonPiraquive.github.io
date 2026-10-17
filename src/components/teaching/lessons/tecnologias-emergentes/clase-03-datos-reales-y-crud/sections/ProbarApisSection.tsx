@@ -7,20 +7,20 @@ export function ProbarApisSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Probar una API antes de usarla en React</h2>
       <p className="my-4">
-        Una regla que ahorra horas de frustración: <strong>antes de escribir código en React, comprueba que la API
-        funciona</strong>. Si algo falla, así sabes si el problema es de la API o de tu interfaz. Hay varias formas de
+        Una regla que ahorra horas de frustración: <strong>antes de escribir código en React, se comprueba que la API
+        funciona</strong>. Si algo falla, así se sabe si el problema es de la API o de la interfaz. Hay varias formas de
         probarla.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Opción 1: el navegador</h3>
       <p className="my-4">
-        Pega la dirección de un GET en la barra del navegador, por ejemplo <code>http://localhost:9000/api/students</code>.
-        Verás el JSON. Sirve solo para GET, pero es la comprobación más rápida de que el servidor está encendido.
+        Basta pegar la dirección de un GET en la barra del navegador, por ejemplo <code>http://localhost:9000/api/students</code>,
+        para ver el JSON. Sirve solo para GET, pero es la comprobación más rápida de que el servidor está encendido.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Opción 2: un cliente de API dentro de VS Code</h3>
       <p className="my-4">
-        Extensiones como Thunder Client o Postman te dejan armar peticiones con cualquier método, cabeceras y cuerpo, y
+        Extensiones como Thunder Client o Postman permiten armar peticiones con cualquier método, cabeceras y cuerpo, y
         ver la respuesta con su código de estado. Es lo que usa la mayoría de los equipos para explorar una API.
       </p>
       <CompareTable
@@ -28,7 +28,7 @@ export function ProbarApisSection() {
         rows={[
           ["Thunder Client", "Extensión liviana dentro de VS Code; muy cómoda para empezar"],
           ["Postman", "Aplicación completa, con colecciones y trabajo en equipo"],
-          ["Bruno", "Alternativa de código abierto que guarda las peticiones como archivos en tu proyecto"],
+          ["Bruno", "Alternativa de código abierto que guarda las peticiones como archivos en el proyecto"],
           ["curl", "Comando de la terminal, disponible en cualquier sistema"],
         ]}
       />
@@ -54,20 +54,20 @@ curl -X DELETE http://localhost:9000/api/students/ID_DEL_ESTUDIANTE`}
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Opción 3: la pestaña Red del navegador</h3>
       <p className="my-4">
-        Cuando tu aplicación ya hace peticiones, abre F12, entra a <strong>Red</strong> (Network) y filtra por{" "}
-        <strong>Fetch/XHR</strong>. Verás cada petición con su método, su código de estado, el cuerpo que enviaste y lo que
+        Cuando la aplicación ya hace peticiones, se abre F12, se entra a <strong>Red</strong> (Network) y se filtra por{" "}
+        <strong>Fetch/XHR</strong>. Allí aparece cada petición con su método, su código de estado, el cuerpo enviado y lo que
         respondió el servidor. Es la herramienta número uno para depurar:
       </p>
       <ul className="my-4 list-disc space-y-2 pl-6">
-        <li>Si la petición ni aparece, tu código no la está enviando.</li>
+        <li>Si la petición ni aparece, el código no la está enviando.</li>
         <li>Si aparece en rojo sin código, no hay conexión: ¿está encendida la API? ¿el puerto es el correcto?</li>
-        <li>Si aparece con 4xx o 5xx, abre la respuesta: casi siempre explica qué pasó.</li>
-        <li>En la pestaña Carga útil (Payload) compara lo que enviaste con lo que la API esperaba.</li>
+        <li>Si aparece con 4xx o 5xx, conviene abrir la respuesta: casi siempre explica qué pasó.</li>
+        <li>En la pestaña Carga útil (Payload) se compara lo enviado con lo que la API esperaba.</li>
       </ul>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Una API de práctica para trabajar por tu cuenta</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Una API de práctica para trabajar de forma autónoma</h3>
       <p className="my-4">
-        Si no tienes a mano la API de la asignatura, puedes crear una falsa en dos minutos con <code>json-server</code>.
+        Si no está disponible la API de la asignatura, se puede crear una falsa en dos minutos con <code>json-server</code>.
         Convierte un archivo JSON en una API completa con todas las operaciones CRUD y guarda los cambios en el archivo.
       </p>
       <CodeFiddle
@@ -92,24 +92,24 @@ curl -X DELETE http://localhost:9000/api/students/ID_DEL_ESTUDIANTE`}
 #   PUT    http://localhost:3001/materias/1
 #   DELETE http://localhost:3001/materias/1`}
       />
-      <Callout title="Por qué fijamos la versión 0.17.4" variant="callout-info">
+      <Callout title="Por qué se fija la rama estable de json-server" variant="callout-info">
         <p className="mb-0">
-          json-server tiene una versión 1 que sigue en beta, con diferencias en el comando y en el formato de los id. Para
-          practicar sin sorpresas usamos la 0.17.4, que es la estable. Si alguna vez la 1.x sale de beta, revisa su
-          documentación antes de cambiar.
+          La rama más nueva de json-server sigue en beta, con diferencias en el comando y en el formato de los id. Para
+          practicar sin sorpresas se instala la rama estable indicada en el comando. Es un caso concreto del criterio de
+          madurez: si la rama nueva deja de ser beta, se revisa su documentación antes de cambiar.
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">El error de CORS: qué es y por qué aparece</h3>
       <p className="my-4">
-        Es el error que más desconcierta al empezar. En la consola verás algo como «blocked by CORS policy». Ocurre porque el
+        Es el error que más desconcierta al empezar. En la consola aparece algo como «blocked by CORS policy». Ocurre porque el
         navegador protege a los usuarios: una página que viene de <code>localhost:5173</code> no puede leer respuestas de{" "}
         <code>localhost:9000</code> (otro origen) a menos que ese servidor lo permita explícitamente con una cabecera.
       </p>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>El error se corrige <strong>en el servidor</strong>, no en React: la API debe enviar la cabecera <code>Access-Control-Allow-Origin</code> (en Express se hace con el paquete <code>cors</code>).</li>
         <li>Si la petición funciona en curl o en Postman pero falla en el navegador, casi seguro es CORS: esas herramientas no aplican esta regla.</li>
-        <li>Una alternativa en desarrollo es que Vite reenvíe las peticiones con un proxy, de modo que el navegador crea que todo es del mismo origen (lo verás en la página de despliegue).</li>
+        <li>Una alternativa en desarrollo es que Vite reenvíe las peticiones con un proxy, de modo que el navegador crea que todo es del mismo origen (tema de la página de despliegue).</li>
       </ul>
     </section>
   );

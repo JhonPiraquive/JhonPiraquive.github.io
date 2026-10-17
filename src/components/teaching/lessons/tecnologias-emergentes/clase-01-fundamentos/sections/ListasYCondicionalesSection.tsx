@@ -7,9 +7,9 @@ export function ListasYCondicionalesSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Listas y condicionales en JSX</h2>
       <p className="my-4">
-        Con lo anterior ya puedes construir una tarjeta. Ahora vamos a hacer lo que hace útil a React: dibujar muchas
-        tarjetas a partir de una lista de datos, y decidir qué mostrar según los datos de cada una. Seguimos con el Café
-        del Parque.
+        Con lo anterior ya se puede construir una tarjeta. Lo que vuelve útil a React es dibujar muchas tarjetas a partir
+        de una lista de datos y decidir qué mostrar según los datos de cada una. El ejemplo continúa con el Café del
+        Parque.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Paso 1: los datos</h3>
@@ -44,7 +44,7 @@ export function ListasYCondicionalesSection() {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Paso 2: funciones de apoyo</h3>
       <p className="my-4">
         Todo lo que no es dibujar (como dar formato a un precio) va en un archivo aparte. Así el componente queda corto
-        y puedes reutilizar la función.
+        y la función se puede reutilizar.
       </p>
       <CodeFiddle
         language="javascript"
@@ -58,7 +58,7 @@ export function ListasYCondicionalesSection() {
       />
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Paso 3: la tarjeta con condicionales</h3>
-      <p className="my-4">Observa tres decisiones dentro del componente: precio normal o con descuento, etiqueta de agotado y cantidad de tamaños.</p>
+      <p className="my-4">El componente toma tres decisiones: precio normal o con descuento, etiqueta de agotado y cantidad de tamaños.</p>
       <CodeFiddle
         language="jsx"
         title="src/components/TarjetaProducto.jsx"
@@ -108,7 +108,7 @@ export default function TarjetaProducto({
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Tres formas de decidir qué mostrar</h3>
       <CompareTable
-        headers={["Quiero…", "Uso…", "Ejemplo"]}
+        headers={["Necesidad", "Herramienta", "Ejemplo"]}
         rows={[
           ["Elegir entre dos cosas", "Ternario ? :", "{agotado ? <Aviso /> : <Boton />}"],
           ["Mostrar algo solo si se cumple una condición", "Operador &&", "{agotado && <Aviso />}"],
@@ -148,8 +148,8 @@ export default function App() {
 }`}
       />
       <p className="my-4">
-        Hay una forma más corta de pasar todas las props: <code>{"<TarjetaProducto key={p.id} {...p} />"}</code>. Usa el
-        spread que viste antes. Funciona muy bien cuando los nombres de las propiedades coinciden con los de las props,
+        Hay una forma más corta de pasar todas las props: <code>{"<TarjetaProducto key={p.id} {...p} />"}</code>. Aprovecha el
+        spread visto antes. Funciona muy bien cuando los nombres de las propiedades coinciden con los de las props,
         como aquí.
       </p>
 
@@ -159,11 +159,11 @@ export default function App() {
         cuál para actualizar solo lo necesario. La <code>key</code> es esa identidad. Debe ser <strong>única entre
         hermanos</strong> y <strong>estable</strong>: el id del dato es ideal.
       </p>
-      <Callout title="Evita usar el índice como key" variant="callout-warning">
+      <Callout title="No usar el índice como key" variant="callout-warning">
         <p className="mb-0">
           Usar la posición (<code>index</code>) parece funcionar, pero si la lista se reordena o se borra un elemento,
-          React mezcla los datos de las tarjetas y puedes ver errores raros, como textos escritos en la fila equivocada. Úsalo
-          solo en listas que nunca cambian.
+          React mezcla los datos de las tarjetas y aparecen errores raros, como textos escritos en la fila equivocada. El
+          índice solo es seguro en listas que nunca cambian.
         </p>
       </Callout>
     </section>

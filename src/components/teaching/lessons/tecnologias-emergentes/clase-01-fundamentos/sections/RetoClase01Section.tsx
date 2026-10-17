@@ -6,12 +6,12 @@ export function RetoClase01Section() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Práctica guiada: el catálogo de una papelería</h2>
       <p className="my-4">
-        Es hora de aplicar todo en un proyecto nuevo. Ya viste el catálogo del Café del Parque; ahora lo repetirás con
-        otro tema para comprobar que entendiste la idea y no solo copiaste el código. Vas a construir el catálogo de
-        productos de una papelería.
+        La práctica aplica todo lo visto en un proyecto nuevo. El catálogo del Café del Parque sirvió de ejemplo; ahora
+        la misma idea se repite con otro tema para comprobar que se entendió el concepto y no solo se copió el código. El
+        proyecto consiste en construir el catálogo de productos de una papelería.
       </p>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Lo que debe hacer tu catálogo</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Requisitos del catálogo</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>Cada producto se muestra como una tarjeta con imagen, nombre, descripción y precio.</li>
         <li>La descripción va en color gris.</li>
@@ -25,29 +25,29 @@ export function RetoClase01Section() {
       <StepReveal
         title="Seis pasos, uno a la vez"
         steps={[
-          { title: "Crea el proyecto", content: "Con npm create vite@latest y la plantilla react. Instala, arranca con npm run dev y deja App.jsx limpio." },
-          { title: "Define los datos", content: "En src/data/productos.js crea un arreglo con al menos 8 productos. Incluye varios con descuento, uno agotado y dos con pocas unidades. Cada objeto necesita: id, nombre, descripcion, imagen, precio, precioDescuento, colores y stock." },
-          { title: "Crea la tarjeta", content: "Un componente TarjetaProducto en su propio archivo que reciba todo por props desestructuradas. Primero hazlo solo con imagen, nombre y precio normal." },
-          { title: "Agrega las reglas", content: "Suma la lógica del descuento con un ternario, y las etiquetas con &&. Para saber si quedan pocas unidades piensa en una comparación con stock. Recuerda la trampa del cero." },
-          { title: "Dibuja la lista", content: "En App.jsx recorre el arreglo con map y no olvides la key. Pasa por props lo que necesite cada tarjeta." },
-          { title: "Hazlo responsive", content: "Crea la grilla con CSS Grid y los dos media queries. Pruébalo con la vista de dispositivo del navegador." },
+          { title: "Crear el proyecto", content: "Con npm create vite@latest y la plantilla react. Se instala, se arranca con npm run dev y se deja App.jsx limpio." },
+          { title: "Definir los datos", content: "En src/data/productos.js se crea un arreglo con al menos 8 productos. Debe incluir varios con descuento, uno agotado y dos con pocas unidades. Cada objeto necesita: id, nombre, descripcion, imagen, precio, precioDescuento, colores y stock." },
+          { title: "Crear la tarjeta", content: "Un componente TarjetaProducto en su propio archivo que reciba todo por props desestructuradas. Primero se construye solo con imagen, nombre y precio normal." },
+          { title: "Agregar las reglas", content: "Se suma la lógica del descuento con un ternario y las etiquetas con &&. Para saber si quedan pocas unidades se necesita una comparación con stock, sin olvidar la trampa del cero." },
+          { title: "Dibujar la lista", content: "En App.jsx se recorre el arreglo con map, sin olvidar la key. Cada tarjeta recibe por props lo que necesita." },
+          { title: "Hacerlo responsive", content: "Se crea la grilla con CSS Grid y los dos media queries, y se prueba con la vista de dispositivo del navegador." },
         ]}
       />
 
-      <Callout title="Cómo saber que quedó bien" variant="callout-tip">
+      <Callout title="Cómo verificar el resultado" variant="callout-tip">
         <ul className="mb-0 list-disc space-y-1 pl-5">
-          <li>Si cambias un precio en el arreglo de datos, la tarjeta cambia sola sin tocar el componente.</li>
-          <li>Si agregas un producto nuevo al arreglo, aparece sin escribir más JSX.</li>
+          <li>Al cambiar un precio en el arreglo de datos, la tarjeta cambia sola sin tocar el componente.</li>
+          <li>Al agregar un producto nuevo al arreglo, aparece sin escribir más JSX.</li>
           <li>La consola del navegador no muestra errores ni advertencias.</li>
-          <li>Prettier deja el código ordenado cada vez que guardas.</li>
+          <li>Prettier deja el código ordenado cada vez que se guarda.</li>
         </ul>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Para ir más lejos</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
-        <li>Calcula el porcentaje de descuento a partir de los dos precios y muéstralo en la tarjeta (por ejemplo, «-12 %»).</li>
-        <li>Pon un título arriba que diga cuántos productos hay en total, usando la longitud del arreglo.</li>
-        <li>Separa la parte de los precios en su propio componente <code>Precio</code>.</li>
+        <li>Calcular el porcentaje de descuento a partir de los dos precios y mostrarlo en la tarjeta (por ejemplo, «-12 %»).</li>
+        <li>Agregar un título que indique cuántos productos hay en total, usando la longitud del arreglo.</li>
+        <li>Separar la parte de los precios en su propio componente <code>Precio</code>.</li>
       </ul>
     </section>
   );

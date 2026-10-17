@@ -35,7 +35,7 @@ export default function FormularioMateria({ valoresIniciales = VACIO, alEnviar, 
 
   const manejarEnvio = (e) => {
     e.preventDefault();
-    // Los campos de un formulario son texto: convertimos los créditos a número antes de enviar
+    // Los campos de un formulario son texto: se convierten los créditos a número antes de enviar
     alEnviar({ ...datos, creditos: Number(datos.creditos) });
   };
 
@@ -97,9 +97,9 @@ export default function CrearMateria() {
       setError(
         e.estado === 409
           ? "Ya existe una materia con ese código."
-          : "No pudimos guardar la materia. Inténtalo de nuevo.",
+          : "No se pudo guardar la materia. Intente de nuevo.",
       );
-      setGuardando(false);   // solo se reactiva si falló; si salió bien, cambiamos de pantalla
+      setGuardando(false);   // solo se reactiva si falló; si salió bien, se cambia de pantalla
     }
   };
 
@@ -114,7 +114,7 @@ export default function CrearMateria() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Editar: cargar el registro y enviar PUT</h3>
       <p className="my-4">
-        Aquí se combinan tres cosas que ya conoces: <code>useParams</code> para saber cuál registro, un efecto para pedirlo
+        Aquí se combinan tres piezas ya vistas: <code>useParams</code> para saber cuál registro, un efecto para pedirlo
         a la API, y el formulario con los valores iniciales. Lo único nuevo es esperar a que los datos lleguen antes de
         dibujar el formulario.
       </p>
@@ -164,14 +164,14 @@ export default function EditarMateria() {
       navigate("/materias", { state: { mensaje: "Cambios guardados" } });
     } catch (e) {
       console.error(e);
-      setErrorGuardar("No pudimos guardar los cambios. Inténtalo de nuevo.");
+      setErrorGuardar("No se pudieron guardar los cambios. Intente de nuevo.");
       setGuardando(false);
     }
   };
 
   if (estado === "cargando") return <LinearProgress aria-label="Cargando materia" />;
   if (estado === "no-existe") return <Alert severity="warning">Esta materia no existe o ya fue eliminada.</Alert>;
-  if (estado === "error") return <Alert severity="error">No pudimos cargar la materia.</Alert>;
+  if (estado === "error") return <Alert severity="error">No se pudo cargar la materia.</Alert>;
 
   return (
     <>
@@ -189,7 +189,7 @@ export default function EditarMateria() {
       <Callout title="Por qué no se dibuja el formulario hasta tener los datos" variant="callout-info">
         <p className="mb-0">
           El estado inicial de <code>useState(valoresIniciales)</code> solo se lee la primera vez que el componente aparece.
-          Si dibujaras el formulario antes de que llegue la materia, se quedaría para siempre con los valores vacíos. Por
+          Si el formulario se dibujara antes de que llegue la materia, se quedaría para siempre con los valores vacíos. Por
           eso la pantalla devuelve un indicador de carga hasta que el estado sea «listo».
         </p>
       </Callout>
@@ -202,7 +202,7 @@ export default function EditarMateria() {
           ["Petición para cargar", "Ninguna", "GET /materias/:id"],
           ["Petición para guardar", "POST /materias", "PUT /materias/:id"],
           ["Qué puede salir mal además", "Datos repetidos (409)", "El registro ya no existe (404)"],
-          ["Cómo sabe cuál registro", "No hace falta", "useParams lee el id de la URL"],
+          ["Cómo se identifica el registro", "No hace falta", "useParams lee el id de la URL"],
         ]}
       />
     </section>

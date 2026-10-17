@@ -2,7 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function EliminarYNavegarSection() {
   return (
@@ -21,7 +20,7 @@ export function EliminarYNavegarSection() {
   participant P as Pantalla
   participant A as API
   U->>P: Clic en el icono de eliminar
-  P->>U: Dialog: Seguro que quieres eliminar?
+  P->>U: Dialog: Seguro que desea eliminar?
   U->>P: Confirma
   P->>A: DELETE /materias/7
   A-->>P: 200 o 204
@@ -31,11 +30,11 @@ export function EliminarYNavegarSection() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">El listado completo con eliminar y avisos</h3>
       <p className="my-4">
-        Esta es la versión final del listado. Agrega tres estados nuevos al que ya conoces: la materia que se quiere eliminar,
-        si se está eliminando, y el mensaje para el usuario. La tabla (<code>TablaMaterias</code>) es la{" "}
+        Esta es la versión final del listado. Agrega tres estados nuevos al que ya se conoce: la materia que se quiere eliminar,
+        si se está eliminando y el mensaje para el usuario. La tabla (<code>TablaMaterias</code>) es la{" "}
         <code>TablaCursos</code> de la clase 2 con las columnas de materias; recibe <code>alEliminar</code> y llama a esa
         función con la materia completa. <code>ConfirmarEliminar</code> es el diálogo de la clase 2; solo cambia que ahora recibe{" "}
-        <code>materia</code> (en lugar de <code>curso</code>) y <code>eliminando</code>, que usas para deshabilitar sus botones
+        <code>materia</code> (en lugar de <code>curso</code>) y <code>eliminando</code>, que sirve para deshabilitar sus botones
         mientras la petición está en curso.
       </p>
       <CodeFiddle
@@ -93,7 +92,7 @@ export default function ListadoMaterias() {
       setAEliminar(null);
     } catch (error) {
       console.error(error);
-      setMensaje("No pudimos eliminar la materia. Inténtalo de nuevo.");
+      setMensaje("No se pudo eliminar la materia. Intente de nuevo.");
     } finally {
       setEliminando(false);
     }
@@ -109,10 +108,10 @@ export default function ListadoMaterias() {
       {estado === "cargando" && <LinearProgress aria-label="Cargando materias" />}
       {estado === "error" && (
         <Alert severity="error" action={<Button onClick={() => setIntento((n) => n + 1)}>Reintentar</Button>}>
-          No pudimos cargar las materias.
+          No se pudieron cargar las materias.
         </Alert>
       )}
-      {estado === "vacio" && <Typography>Aún no hay materias. Agrega la primera.</Typography>}
+      {estado === "vacio" && <Typography>Aún no hay materias. Agregue la primera.</Typography>}
       {estado === "listo" && <TablaMaterias materias={materias} alEliminar={setAEliminar} />}
 
       <ConfirmarEliminar
@@ -132,7 +131,7 @@ export default function ListadoMaterias() {
       <Callout title="Detalles que marcan la diferencia" variant="callout-tip">
         <ul className="mb-0 list-disc space-y-1 pl-5">
           <li>El estado local solo se actualiza <strong>después</strong> de que la API confirma. Si la petición falla, la fila sigue ahí y la persona ve el aviso.</li>
-          <li>Se usa <code>filter</code> para crear un arreglo nuevo, no <code>splice</code>: no mutamos el estado.</li>
+          <li>Se usa <code>filter</code> para crear un arreglo nuevo, no <code>splice</code>: no se muta el estado.</li>
           <li>Con <code>finally</code> se apaga el indicador «eliminando» tanto si salió bien como si falló.</li>
           <li>El mensaje de éxito de crear y editar llega por <code>useLocation().state</code>, que viaja con <code>navigate</code>. Si la persona recarga la página, el mensaje puede volver a aparecer.</li>
         </ul>
@@ -142,9 +141,9 @@ export default function ListadoMaterias() {
       <CompareTable
         headers={["Estrategia", "Cómo funciona", "Ventaja", "Inconveniente"]}
         rows={[
-          ["Actualizar el estado local", "Aplicas el cambio a mano en el arreglo (filter, map, spread)", "Inmediato y sin otra petición", "Si el servidor cambia algo extra, no lo ves"],
-          ["Volver a pedir la lista", "Después del DELETE o el POST, repites el GET", "Siempre refleja lo que dice el servidor", "Una petición más; la pantalla parpadea"],
-          ["Actualización optimista", "Cambias la pantalla de inmediato y deshaces si la API falla", "La interfaz se siente instantánea", "Más complejo; mejor con una librería como TanStack Query"],
+          ["Actualizar el estado local", "El cambio se aplica a mano en el arreglo (filter, map, spread)", "Inmediato y sin otra petición", "Si el servidor cambia algo extra, no se refleja"],
+          ["Volver a pedir la lista", "Después del DELETE o el POST, se repite el GET", "Siempre refleja lo que dice el servidor", "Una petición más; la pantalla parpadea"],
+          ["Actualización optimista", "La pantalla cambia de inmediato y se deshace si la API falla", "La interfaz se siente instantánea", "Más complejo; mejor con una librería como TanStack Query"],
         ]}
       />
 
@@ -160,25 +159,18 @@ export default function ListadoMaterias() {
         ]}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cuando algo no funciona: lista de revisión</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cuando algo no funciona: lista de verificación</h3>
       <ol className="my-4 list-decimal space-y-2 pl-6">
-        <li>¿Está encendida la API y estás usando el puerto correcto? Pruébala en el navegador o con curl.</li>
-        <li>Abre la pestaña Red: ¿la petición aparece? ¿Con qué método y código de estado?</li>
-        <li>Si es 4xx o 5xx, lee el cuerpo de la respuesta: casi siempre explica qué faltó.</li>
+        <li>¿Está encendida la API y se usa el puerto correcto? Se prueba en el navegador o con curl.</li>
+        <li>En la pestaña Red: ¿la petición aparece? ¿Con qué método y código de estado?</li>
+        <li>Si es 4xx o 5xx, se lee el cuerpo de la respuesta: casi siempre explica qué faltó.</li>
         <li>Si dice CORS, el arreglo está en el servidor, no en React.</li>
-        <li>Compara el nombre exacto del id (<code>id</code> o <code>_id</code>) y de cada campo del cuerpo con lo que espera la API.</li>
-        <li>Los números de un formulario llegan como texto: conviértelos con <code>Number</code>.</li>
-        <li>¿Tu efecto se ejecuta sin parar? Casi seguro actualiza un estado que también está en sus dependencias.</li>
+        <li>Se compara el nombre exacto del id (<code>id</code> o <code>_id</code>) y de cada campo del cuerpo con lo que espera la API.</li>
+        <li>Los números de un formulario llegan como texto y se convierten con <code>Number</code>.</li>
+        <li>¿El efecto se ejecuta sin parar? Casi seguro actualiza un estado que también está en sus dependencias.</li>
         <li>¿Falta <code>Content-Type: application/json</code> en un POST o PUT?</li>
       </ol>
 
-      <PracticeExercise
-        title="Explica el flujo"
-        prompt="Un compañero actualiza la lista local ANTES de enviar el DELETE a la API. La API falla con un error 500. ¿Qué verá la persona en la pantalla y por qué es un problema?"
-        hints={["¿Qué dice la pantalla y qué dice la base de datos?", "Piensa en lo que pasa al recargar la página"]}
-        expectedKeywords={["inconsisten", "desaparece", "recargar", "no se eliminó", "no se elimino", "confirm"]}
-        successMessage="Exacto: la pantalla mostraría algo que la base de datos no tiene. Al recargar, el registro reaparece."
-      />
     </section>
   );
 }

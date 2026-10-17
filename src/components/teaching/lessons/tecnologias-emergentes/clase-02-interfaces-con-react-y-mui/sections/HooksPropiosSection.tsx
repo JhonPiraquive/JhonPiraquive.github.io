@@ -8,14 +8,14 @@ export function HooksPropiosSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Hooks propios: reutilizar lógica</h2>
       <p className="my-4">
         Los componentes reutilizan <em>pantalla</em>. Los hooks propios reutilizan <em>lógica</em>. Si dos componentes
-        repiten la misma combinación de useState y useEffect, puedes sacarla a una función cuyo nombre empiece con{" "}
+        repiten la misma combinación de useState y useEffect, se puede extraer a una función cuyo nombre empiece con{" "}
         <code>use</code>. Esa función es un hook propio.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Ejemplo: guardar un valor en el navegador</h3>
       <p className="my-4">
-        El navegador tiene un pequeño almacén llamado <code>localStorage</code> donde puedes guardar texto y recuperarlo
-        aunque el usuario cierre la pestaña. Sin hook, tendrías que repetir el código de leer y guardar en cada componente.
+        El navegador tiene un pequeño almacén llamado <code>localStorage</code> donde se puede guardar texto y recuperarlo
+        aunque el usuario cierre la pestaña. Sin hook, habría que repetir el código de leer y guardar en cada componente.
         Con un hook propio queda en un solo lugar:
       </p>
       <CodeFiddle
@@ -71,7 +71,7 @@ export default function PreferenciaTema() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Otros hooks que conviene conocer</h3>
       <CompareTable
-        headers={["Hook", "Para qué sirve", "Cuándo lo necesitas"]}
+        headers={["Hook", "Para qué sirve", "Cuándo se necesita"]}
         rows={[
           ["useRef", "Guarda un valor que no provoca nuevos dibujos, o apunta a un elemento del DOM", "Poner el foco en un campo, medir un elemento"],
           ["useMemo", "Recuerda el resultado de un cálculo costoso", "Solo si mediste que el cálculo es lento (clase 3)"],
@@ -82,9 +82,10 @@ export default function PreferenciaTema() {
       />
       <Callout title="Una advertencia sobre la memorización" variant="callout-tip">
         <p className="mb-0">
-          useMemo y useCallback se enseñan mucho, pero la mayoría de las veces no hacen falta. Mide antes de usarlos. Además,
-          el React Compiler (versión 1.0 estable desde octubre de 2025) puede aplicar estas optimizaciones por ti sin que
-          escribas nada, así que su importancia irá disminuyendo.
+          useMemo y useCallback se enseñan mucho, pero la mayoría de las veces no hacen falta, por lo que conviene medir
+          antes de usarlos. Además, el compilador de React ya es estable y puede aplicar estas optimizaciones de forma
+          automática, de modo que su importancia irá disminuyendo. Es otro ejemplo de una tecnología emergente que
+          termina absorbiendo prácticas manuales.
         </p>
       </Callout>
     </section>

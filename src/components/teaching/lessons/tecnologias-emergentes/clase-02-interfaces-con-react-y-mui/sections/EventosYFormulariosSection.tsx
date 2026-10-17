@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function EventosYFormulariosSection() {
   return (
@@ -10,8 +9,8 @@ export function EventosYFormulariosSection() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Eventos: reaccionar a lo que hace el usuario</h3>
       <p className="my-4">
-        Un evento es algo que ocurre en la página: un clic, una tecla, un cambio en un campo. En React los escuchas con
-        atributos en camelCase (<code>onClick</code>, <code>onChange</code>, <code>onSubmit</code>) a los que les pasas una{" "}
+        Un evento es algo que ocurre en la página: un clic, una tecla, un cambio en un campo. En React se escuchan con
+        atributos en camelCase (<code>onClick</code>, <code>onChange</code>, <code>onSubmit</code>) a los que se les pasa una{" "}
         <strong>función</strong>.
       </p>
       <CodeFiddle
@@ -21,10 +20,10 @@ export function EventosYFormulariosSection() {
   console.log("Clic");
 }
 
-// Correcto: le entregas la función para que React la llame cuando haya clic
+// Correcto: se entrega la función para que React la llame cuando haya clic
 <button onClick={manejarClic}>Guardar</button>
 
-// Correcto cuando necesitas pasar un argumento: una flecha que llama a la función
+// Correcto cuando hay que pasar un argumento: una flecha que llama a la función
 <button onClick={() => eliminar(curso.id)}>Eliminar</button>
 
 // Incorrecto: se ejecuta apenas se dibuja el botón, no al hacer clic
@@ -33,13 +32,13 @@ export function EventosYFormulariosSection() {
       <Callout title="El error más común con eventos" variant="callout-danger">
         <p className="mb-0">
           Escribir <code>onClick={"{funcion()}"}</code> con paréntesis ejecuta la función al dibujar. Con paréntesis la
-          llamas; sin paréntesis se la entregas a React para que la llame después.
+          función se llama; sin paréntesis se entrega a React para que la llame después.
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">El objeto del evento</h3>
       <p className="my-4">
-        Cada manejador recibe un objeto con información del evento. Los dos datos que más usarás son{" "}
+        Cada manejador recibe un objeto con información del evento. Los dos datos más usados son{" "}
         <code>e.target.value</code> (lo que hay escrito en el campo) y <code>e.preventDefault()</code> (evitar el
         comportamiento por defecto del navegador, como recargar la página al enviar un formulario).
       </p>
@@ -47,7 +46,7 @@ export function EventosYFormulariosSection() {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Formularios controlados</h3>
       <p className="my-4">
         En un campo controlado, React es quien manda sobre lo que se ve: el valor del campo viene del estado, y cada vez
-        que el usuario escribe, el estado se actualiza. Así siempre sabes qué contiene el formulario.
+        que el usuario escribe, el estado se actualiza. Así siempre se sabe qué contiene el formulario.
       </p>
       <CodeFiddle
         language="jsx"
@@ -64,7 +63,7 @@ export default function CampoNombre() {
         value={nombre}                            // lo que se muestra viene del estado
         onChange={(e) => setNombre(e.target.value)}  // cada tecla actualiza el estado
       />
-      <p>Escribiste: {nombre}</p>
+      <p>Texto escrito: {nombre}</p>
     </label>
   );
 }`}
@@ -72,7 +71,7 @@ export default function CampoNombre() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Un formulario con varios campos</h3>
       <p className="my-4">
-        Tener un <code>useState</code> por cada campo se vuelve largo. Una opción más limpia es un solo objeto de estado y
+        Un <code>useState</code> por cada campo se vuelve largo. Una opción más limpia es un solo objeto de estado y
         un único manejador que usa el atributo <code>name</code> de cada campo para saber cuál actualizar.
       </p>
       <CodeFiddle
@@ -88,15 +87,15 @@ export default function FormularioCurso({ alGuardar }) {
   const manejarCambio = (e) => {
     const { name, value, type, checked } = e.target;
     setDatos((anterior) => ({
-      ...anterior,                                   // copio lo que había
-      [name]: type === "checkbox" ? checked : value,  // y cambio solo el campo que escribió el usuario
+      ...anterior,                                   // se copia lo que había
+      [name]: type === "checkbox" ? checked : value,  // y se cambia solo el campo que modificó el usuario
     }));
   };
 
   const manejarEnvio = (e) => {
     e.preventDefault();         // evita que la página se recargue
-    alGuardar(datos);           // le entrego los datos al componente padre
-    setDatos(VALORES_INICIALES); // limpio el formulario
+    alGuardar(datos);           // se entregan los datos al componente padre
+    setDatos(VALORES_INICIALES); // se limpia el formulario
   };
 
   return (
@@ -131,8 +130,8 @@ export default function FormularioCurso({ alGuardar }) {
 }`}
       />
       <p className="my-4">
-        Fíjate en dos detalles. Los checkboxes usan <code>checked</code> en lugar de <code>value</code>. Y los valores de
-        los campos siempre llegan como texto: si necesitas un número, conviértelo con{" "}
+        Dos detalles importan. Los checkboxes usan <code>checked</code> en lugar de <code>value</code>, y los valores de
+        los campos siempre llegan como texto: si se necesita un número, se convierte con{" "}
         <code>Number(valor)</code> antes de enviarlo.
       </p>
 
@@ -141,26 +140,21 @@ export default function FormularioCurso({ alGuardar }) {
         headers={["", "Controlado", "No controlado"]}
         rows={[
           ["Quién guarda el valor", "El estado de React", "El propio campo HTML"],
-          ["Cómo lo lees", "Directamente del estado", "Con una referencia o al enviar el formulario"],
+          ["Cómo se lee", "Directamente del estado", "Con una referencia o al enviar el formulario"],
           ["Validar mientras escribe", "Fácil", "Más difícil"],
           ["Cuándo conviene", "Formularios con validación o campos que dependen unos de otros", "Formularios muy simples o con muchos campos (librerías como React Hook Form lo usan por rendimiento)"],
         ]}
       />
-      <Callout title="Sobre las acciones de formulario de React 19" variant="callout-info">
+      <Callout title="Las acciones de formulario más recientes de React" variant="callout-info">
         <p className="mb-0">
-          React 19 trae una forma nueva de manejar formularios: pasar una función al atributo <code>action</code> y usar
-          hooks como <code>useActionState</code>. Es muy útil, sobre todo cuando hay un servidor de por medio. Para
-          aprender y para trabajar con una API externa, el patrón con <code>onSubmit</code> y estado controlado sigue
-          siendo el más claro y el que verás en casi todos los proyectos; por eso empezamos por ahí.
+          React incorporó una forma nueva de manejar formularios: pasar una función al atributo <code>action</code> y usar
+          hooks como <code>useActionState</code>. Es útil, sobre todo cuando hay un servidor de por medio. Es un caso
+          típico de tecnología que aún está madurando. Para aprender y para trabajar con una API externa, el patrón con
+          <code> onSubmit</code> y estado controlado sigue siendo el más claro y el más frecuente en proyectos reales;
+          por eso el módulo parte de él.
         </p>
       </Callout>
 
-      <PracticeExercise
-        title="Encuentra el error"
-        prompt="Un compañero escribió: <input value={nombre} />. El campo no deja escribir nada. ¿Qué le falta y por qué ocurre?"
-        hints={["El campo está controlado por el estado", "Si el estado no cambia, el valor mostrado tampoco cambia", "Falta el manejador onChange que llame al setter"]}
-        expectedKeywords={["onchange", "setnombre", "manejador", "estado"]}
-      />
     </section>
   );
 }

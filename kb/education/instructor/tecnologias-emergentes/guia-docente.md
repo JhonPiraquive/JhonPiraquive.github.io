@@ -6,17 +6,31 @@ Uso interno. No se publica en el portal (ADR 011). Ruta pública: `/es/teaching/
 
 | Clase | Nivel | Duración sugerida | Actividad que prepara |
 |-------|-------|-------------------|-----------------------|
-| 1. Del cero al primer componente | 0–35 | 2 a 3 h | Actividad 1 (clon de productos, Vite + React, responsive 4/3/2) |
+| 1. Del concepto al primer componente | 0–35 | 2 a 3 h | Actividad 1 (clon de productos, Vite + React, responsive 4/3/2) |
 | 2. Interfaces administrativas con React y MUI | 35–70 | 2 a 3 h | Actividad 2 (módulo docente: rutas, listado, formulario, acciones) |
 | 3. Datos reales, CRUD y calidad | 70–100 | 2 a 3 h | Actividad 3 (peticiones HTTP, CRUD, validaciones) |
 
+## Mapa del módulo (solo para el docente)
+
+El módulo enseña primero el concepto de tecnología emergente (definición, ciclo de sobreexpectación, curva de adopción, seis criterios de evaluación) y usa JavaScript y React como terreno de práctica. El mapa no se publica en las páginas del estudiante.
+
+| Clase | Qué aprende el estudiante | Qué puede mostrar al final |
+|-------|---------------------------|----------------------------|
+| 1 | Concepto y evaluación de tecnologías emergentes, terminal, npm, JavaScript moderno, JSX, props, listas | Catálogo de tarjetas responsive que cambia según los datos |
+| 2 | Estado, efectos, Material UI, UX, accesibilidad, React Router; aplicar criterios a una librería de interfaz | Sitio administrativo con menú, varias pantallas, tabla y formulario |
+| 3 | HTTP, async/await, fetch, CRUD, validación, rendimiento, despliegue; panorama de tecnologías emergentes | El mismo sitio leyendo y guardando en una API, más una ruta de aprendizaje justificada |
+
+## Estructura de cada clase
+
+Las páginas de contenido solo explican. Todo lo evaluable va en la última página de la clase, en este orden: práctica guiada, ejercicios con pista y validación, mini-quiz, autoevaluación y recursos.
+
 ## Cómo repartir cada clase (en vivo)
 
-**Clase 1**: p1 emergentes y criterio «nuevo vs mejor» (15 min, discusión) · p2 entorno y npm (25 min, todos instalan y ejecutan) · p3 y p4 JavaScript moderno (50 min, ejercicios en consola) · p5 proyecto Vite y tarjeta de producto (50 min, código en vivo) · práctica guiada: papelería (resto o tarea). El estudiante lee de la página lo que no alcance.
+**Clase 1**: p1 qué es una tecnología emergente, ciclo de adopción y criterios (25 min, discusión con ejemplos que traiga el grupo) · p2 entorno y npm (25 min, todos instalan y ejecutan) · p3 y p4 JavaScript moderno (50 min, ejercicios en consola) · p5 proyecto Vite y tarjeta de producto (50 min, código en vivo) · práctica guiada: papelería (resto o tarea). El estudiante lee de la página lo que no alcance.
 
 **Clase 2**: p1 estado y eventos (35 min) · p2 efectos (20 min; contexto queda de lectura) · p3 MUI (40 min, en vivo con el formulario y la tabla) · p4 UX (15 min, discusión con ejemplos) · p5 rutas (35 min, layout con Outlet) · práctica: módulo de materias.
 
-**Clase 3**: p1 HTTP (20 min; probar la API con Thunder Client o curl) · p2 async/await y fetch (35 min) · p3 CRUD (50 min, en vivo: listar, crear, editar, eliminar) · p4 validación (20 min; RHF + Zod como lectura) · p5 rendimiento y despliegue (20 min) · p6 horizonte y cierre (15 min).
+**Clase 3**: p1 HTTP (20 min; probar la API con Thunder Client o curl) · p2 async/await y fetch (35 min) · p3 CRUD (50 min, en vivo: listar, crear, editar, eliminar) · p4 validación (20 min; RHF + Zod como lectura) · p5 rendimiento y despliegue (20 min) · p6 panorama emergente y cierre (20 min, retomar los criterios de la clase 1).
 
 ## Puntos donde el material del curso está desfasado
 
@@ -28,7 +42,7 @@ Uso interno. No se publica en el portal (ADR 011). Ruta pública: `/es/teaching/
 | Videos Midudev (2021) y Bluuweb (2020) sobre MUI | MUI 9 | Sirven para el concepto; copiar código de mui.com |
 | API del proyecto con `_id` (Mongo) | json-server usa `id` | Revisar el nombre del id en la pestaña Red |
 
-## Versiones de referencia (verificadas el 16-oct-2026)
+## Versiones de referencia (verificadas el 16-oct-2026; no se publican en las páginas del estudiante)
 
 Node 22.22+ (mínimo de React Router 8; recomendada la LTS más reciente) · Vite 8.x (Rolldown; requiere Node 20.19+ o 22.12+) · React 19.3 · MUI 9.x (no existe la 8) · React Router 8.x · json-server 0.17.4 (la 1.x sigue en beta) · React Compiler 1.0 estable.
 

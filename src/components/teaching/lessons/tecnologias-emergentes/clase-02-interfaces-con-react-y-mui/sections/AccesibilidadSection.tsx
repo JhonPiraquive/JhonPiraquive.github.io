@@ -8,7 +8,7 @@ export function AccesibilidadSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Accesibilidad: una interfaz que todas las personas puedan usar</h2>
       <p className="my-4">
-        Accesibilidad significa que tu sitio pueda ser usado por personas con distintas capacidades: quien no ve la
+        Accesibilidad significa que un sitio pueda ser usado por personas con distintas capacidades: quien no ve la
         pantalla y usa un lector de voz, quien no puede usar el ratón y navega con el teclado, quien tiene baja visión o
         no distingue ciertos colores, o quien simplemente está en un lugar con mucho sol. No es un lujo ni un extra: mejora
         la experiencia de todos y en muchos lugares es un requisito legal.
@@ -41,18 +41,18 @@ export function AccesibilidadSection() {
       Extensión axe`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Hábitos que puedes aplicar desde hoy</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Hábitos aplicables desde el primer día</h3>
       <CompareTable
         headers={["Hábito", "Por qué", "Cómo"]}
         rows={[
-          ["Usa la etiqueta correcta", "Un lector de pantalla anuncia «botón» o «enlace» según la etiqueta", "<button> para acciones, <a> o Link para ir a otra página. No uses un <div onClick> como botón"],
-          ["Cada campo con su etiqueta", "Sin ella, la persona no sabe qué escribir", "En MUI, TextField con la propiedad label. Un placeholder no reemplaza a la etiqueta"],
+          ["Usar la etiqueta correcta", "Un lector de pantalla anuncia «botón» o «enlace» según la etiqueta", "<button> para acciones, <a> o Link para ir a otra página. No se usa un <div onClick> como botón"],
+          ["Etiqueta en cada campo", "Sin ella, la persona no sabe qué escribir", "En MUI, TextField con la propiedad label. El placeholder no reemplaza a la etiqueta"],
           ["Imágenes con alt", "Describe la imagen a quien no la ve", "alt=\"Capuchino con espuma\"; si es decorativa, alt vacío"],
           ["Botones de solo icono con nombre", "Un icono no se lee en voz alta", "aria-label=\"Eliminar docente\""],
-          ["Contraste suficiente", "Texto gris claro sobre blanco es ilegible para mucha gente", "Relación de 4.5 a 1 para texto normal; revísala en las herramientas de desarrollo"],
+          ["Contraste suficiente", "Texto gris claro sobre blanco es ilegible para mucha gente", "Relación de 4.5 a 1 para texto normal; se revisa en las herramientas de desarrollo"],
           ["No transmitir información solo con color", "Hay personas que no distinguen el rojo del verde", "Precio tachado además de gris; error con icono y texto, no solo borde rojo"],
-          ["Todo usable con teclado", "No todas las personas usan ratón", "Recorre tu pantalla con Tab y Enter; el foco debe verse siempre"],
-          ["Títulos en orden", "Se usan para saltar por la página", "Un h1 por página y luego h2, h3 sin saltarte niveles"],
+          ["Todo operable con teclado", "No todas las personas usan ratón", "Recorrer la pantalla con Tab y Enter; el foco debe verse siempre"],
+          ["Títulos en orden", "Se usan para saltar por la página", "Un h1 por página y luego h2, h3 sin saltar niveles"],
         ]}
       />
       <CodeFiddle
@@ -69,17 +69,17 @@ export function AccesibilidadSection() {
       <Callout title="MUI ayuda, pero no lo hace todo" variant="callout-info">
         <p className="mb-0">
           Los componentes de MUI ya vienen con muchos detalles de accesibilidad resueltos (foco, roles, manejo de teclado
-          en menús y diálogos). Lo que no pueden adivinar son tus textos: las etiquetas, las descripciones y el orden de la
-          página. Eso sigue siendo tu responsabilidad.
+          en menús y diálogos). Lo que no pueden adivinar son los textos: las etiquetas, las descripciones y el orden de la
+          página. Eso sigue siendo responsabilidad del desarrollador.
         </p>
       </Callout>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cómo comprobar tu trabajo</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cómo comprobar la accesibilidad</h3>
       <ol className="my-4 list-decimal space-y-2 pl-6">
-        <li>Deja el ratón a un lado y recorre toda la pantalla con la tecla Tab. ¿Llegas a todo? ¿Ves dónde estás?</li>
-        <li>En Chrome o Edge abre las herramientas de desarrollo y ejecuta Lighthouse, pestaña Accesibilidad.</li>
-        <li>Instala la extensión gratuita axe DevTools, que señala cada problema y explica cómo corregirlo.</li>
-        <li>Aleja la página al 200 % con el zoom: no debe romperse ni ocultar contenido.</li>
+        <li>Dejar el ratón a un lado y recorrer toda la pantalla con la tecla Tab: ¿se llega a todo? ¿se ve dónde está el foco?</li>
+        <li>En Chrome o Edge, ejecutar Lighthouse desde las herramientas de desarrollo y revisar la categoría de accesibilidad.</li>
+        <li>Instalar la extensión gratuita axe DevTools, que señala cada problema y explica cómo corregirlo.</li>
+        <li>Ampliar la página al 200 % con el zoom: no debe romperse ni ocultar contenido.</li>
       </ol>
     </section>
   );

@@ -1,6 +1,7 @@
 import { ClassPageLayout } from "@/components/teaching/ClassPageLayout";
 import { meta } from "./lesson-meta";
 import { RetoClase01Section } from "../../sections/RetoClase01Section";
+import { EjerciciosClase01Section } from "../../sections/EjerciciosClase01Section";
 import { MiniquizSection } from "../../sections/MiniquizSection";
 import { ExplorarMasSection } from "../../sections/ExplorarMasSection";
 
@@ -18,6 +19,7 @@ export default function PracticaYCierrePageLesson({ locale: _locale }: Props) {
       next={meta.next}
     >
       <RetoClase01Section />
+      <EjerciciosClase01Section />
       <MiniquizSection />
       <ExplorarMasSection />
     </ClassPageLayout>

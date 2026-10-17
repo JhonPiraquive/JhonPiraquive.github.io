@@ -7,7 +7,7 @@ export function CssResponsiveSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Estilos y diseño que se adapta a la pantalla</h2>
       <p className="my-4">
-        Un diseño responsive es el que se ve bien en un celular, en una tableta y en un computador sin que escribas tres
+        Un diseño responsive es el que se ve bien en un celular, en una tableta y en un computador sin escribir tres
         páginas distintas. Se logra con CSS: una grilla que cambia de cantidad de columnas según el ancho de la pantalla.
       </p>
 
@@ -18,10 +18,10 @@ export function CssResponsiveSection() {
         <code>fr</code> es «una fracción del espacio disponible». <code>gap</code> deja un espacio entre tarjetas.
       </p>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Mobile first: empieza por la pantalla pequeña</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Mobile first: empezar por la pantalla pequeña</h3>
       <p className="my-4">
         Se escribe primero el estilo para el celular y después se agregan reglas para pantallas más grandes con{" "}
-        <code>@media (min-width: …)</code>. Es más simple porque solo vas sumando cambios.
+        <code>@media (min-width: …)</code>. Es más simple porque solo se van sumando cambios.
       </p>
       <CompareTable
         headers={["Pantalla", "Ancho aproximado", "Columnas"]}
@@ -61,7 +61,7 @@ export function CssResponsiveSection() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Estilos de la tarjeta</h3>
       <p className="my-4">
-        Cada componente puede traer su propio archivo CSS. Usamos clases con un nombre claro; la convención{" "}
+        Cada componente puede traer su propio archivo CSS. Se usan clases con un nombre claro; la convención{" "}
         <code>bloque__elemento--variante</code> (llamada BEM) ayuda a saber a qué pieza pertenece cada clase y a
         evitar choques de nombres entre componentes.
       </p>
@@ -123,14 +123,14 @@ export function CssResponsiveSection() {
       />
       <Callout title="Cómo probar la adaptación" variant="callout-tip">
         <p className="mb-0">
-          En Chrome o Edge abre las herramientas (F12) y presiona Ctrl + Shift + M para activar la vista de dispositivo.
-          Arrastra el borde para cambiar el ancho y observa cómo pasas de 2 a 3 y a 4 columnas.
+          En Chrome o Edge, las herramientas (F12) y el atajo Ctrl + Shift + M activan la vista de dispositivo. Al arrastrar
+          el borde para cambiar el ancho se observa el paso de 2 a 3 y a 4 columnas.
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Una alternativa sin media queries</h3>
       <p className="my-4">
-        Si no te importa que el número de columnas sea exacto, CSS puede decidir solo cuántas caben según un ancho
+        Si el número exacto de columnas no importa, CSS puede decidir solo cuántas caben según un ancho
         mínimo por tarjeta:
       </p>
       <CodeFiddle
@@ -143,17 +143,17 @@ export function CssResponsiveSection() {
 }`}
       />
       <p className="my-4">
-        Cuando un diseño te pide una cantidad exacta de columnas por tamaño de pantalla, usa media queries. Cuando solo
-        quieres que «quepan las que quepan», usa la grilla automática.
+        Cuando un diseño exige una cantidad exacta de columnas por tamaño de pantalla, se usan media queries. Cuando solo
+        se necesita que «quepan las que quepan», se usa la grilla automática.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Buenas costumbres con CSS en React</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
-        <li>Usa unidades relativas (<code>rem</code>, <code>%</code>, <code>fr</code>) en lugar de píxeles fijos cuando sea posible.</li>
-        <li>Guarda colores y tamaños repetidos en variables CSS (<code>--color-gris</code>) para cambiarlos en un solo lugar.</li>
+        <li>Se prefieren las unidades relativas (<code>rem</code>, <code>%</code>, <code>fr</code>) en lugar de píxeles fijos, cuando sea posible.</li>
+        <li>Los colores y tamaños repetidos se guardan en variables CSS (<code>--color-gris</code>) para cambiarlos en un solo lugar.</li>
         <li>Un archivo CSS por componente, con el mismo nombre del componente.</li>
-        <li>Si dos componentes terminan usando el mismo nombre de clase, considera CSS Modules (<code>Tarjeta.module.css</code>): Vite lo soporta sin instalar nada.</li>
-        <li>Toda imagen necesita su texto alternativo (<code>alt</code>) para que lectores de pantalla puedan describirla.</li>
+        <li>Si dos componentes terminan usando el mismo nombre de clase, conviene usar CSS Modules (<code>Tarjeta.module.css</code>): Vite lo soporta sin instalar nada.</li>
+        <li>Toda imagen necesita su texto alternativo (<code>alt</code>) para que los lectores de pantalla puedan describirla.</li>
       </ul>
     </section>
   );

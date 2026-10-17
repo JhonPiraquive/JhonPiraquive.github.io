@@ -5,20 +5,20 @@ import { CompareTable } from "@/components/teaching/CompareTable";
 export function OperadoresModernosSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Operadores que vas a ver todo el tiempo en React</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Operadores frecuentes en React</h2>
       <p className="my-4">
-        Al leer código de React encontrarás símbolos como <code>?</code>, <code>&&</code>, <code>??</code> y{" "}
-        <code>?.</code>. No son difíciles; cada uno responde una pregunta distinta. Aprenderlos ahora te evita
-        confusiones cuando mostremos u ocultemos cosas en pantalla.
+        Al leer código de React aparecen símbolos como <code>?</code>, <code>&&</code>, <code>??</code> y{" "}
+        <code>?.</code>. No son difíciles: cada uno responde una pregunta distinta. Aprenderlos desde ahora evita
+        confusiones cuando se muestran u ocultan elementos en pantalla.
       </p>
       <CompareTable
         headers={["Operador", "Nombre", "Pregunta que responde", "Ejemplo"]}
         rows={[
-          ["condición ? a : b", "Ternario", "Si pasa esto, usa a; si no, usa b", "agotado ? \"Agotado\" : \"Disponible\""],
-          ["a && b", "Y lógico", "Si a es verdadero, entonces b", "tieneDescuento && <Etiqueta />"],
-          ["a || b", "O lógico", "Usa a; si es falso o vacío, usa b", "nombre || \"Sin nombre\""],
-          ["a ?? b", "Fusión nula", "Usa a; solo si es null o undefined, usa b", "descuento ?? 0"],
-          ["obj?.prop", "Encadenamiento opcional", "Entra a prop solo si obj existe", "producto?.imagen?.url"],
+          ["condición ? a : b", "Ternario", "Si se cumple la condición, se usa a; si no, se usa b", "agotado ? \"Agotado\" : \"Disponible\""],
+          ["a && b", "Y lógico", "Si a es verdadero, entonces se evalúa b", "tieneDescuento && <Etiqueta />"],
+          ["a || b", "O lógico", "Se usa a; si es falso o vacío, se usa b", "nombre || \"Sin nombre\""],
+          ["a ?? b", "Fusión nula", "Se usa a; solo si es null o undefined, se usa b", "descuento ?? 0"],
+          ["obj?.prop", "Encadenamiento opcional", "Se accede a prop solo si obj existe", "producto?.imagen?.url"],
         ]}
       />
 
@@ -47,10 +47,10 @@ console.log(descuentoGuardado || 10);  // 10  <- error: ignoró el 0
 console.log(descuentoGuardado ?? 10);  // 0   <- correcto: el 0 es un dato válido`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Encadenamiento opcional: no te caigas por un dato que falta</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Encadenamiento opcional: evitar errores por un dato que falta</h3>
       <p className="my-4">
-        Si intentas leer una propiedad de algo que no existe, JavaScript lanza un error y tu pantalla se rompe. Con{" "}
-        <code>?.</code> el programa se detiene con calma y devuelve <code>undefined</code>.
+        Si se intenta leer una propiedad de algo que no existe, JavaScript lanza un error y la pantalla se rompe. Con{" "}
+        <code>?.</code> la lectura se detiene sin error y devuelve <code>undefined</code>.
       </p>
       <CodeFiddle
         language="javascript"
@@ -64,9 +64,9 @@ console.log(producto.imagen?.url ?? "sin-imagen.png");  // "sin-imagen.png"`}
 
       <Callout title="La trampa del cero en React" variant="callout-warning">
         <p className="mb-0">
-          Más adelante usarás <code>{"{cantidad && <Etiqueta />}"}</code> para mostrar algo solo si hay cantidad. Si{" "}
+          Más adelante se usará <code>{"{cantidad && <Etiqueta />}"}</code> para mostrar algo solo si hay cantidad. Si{" "}
           <code>cantidad</code> vale <code>0</code>, el resultado del <code>&&</code> es el propio 0, y React escribe un
-          «0» en pantalla. Para evitarlo, compara de forma explícita: <code>{"{cantidad > 0 && <Etiqueta />}"}</code>.
+          «0» en pantalla. Para evitarlo, se compara de forma explícita: <code>{"{cantidad > 0 && <Etiqueta />}"}</code>.
         </p>
       </Callout>
     </section>

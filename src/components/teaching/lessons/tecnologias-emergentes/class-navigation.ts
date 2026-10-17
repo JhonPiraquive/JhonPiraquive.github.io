@@ -9,14 +9,14 @@ export type ClassNavConfig = {
 
 export const CLASE_01: ClassNavConfig = {
   classSlug: "clase-01-fundamentos",
-  classTitle: "Clase 1: Del cero al primer componente",
+  classTitle: "Clase 1: Del concepto al primer componente",
   hubOrder: 0,
   pages: [
     {
       slug: "tecnologias-emergentes-y-javascript",
-      title: "Tecnologías emergentes y por qué JavaScript",
-      description: "Qué es una tecnología emergente, cómo decidir si vale la pena y el mapa del módulo.",
-      readMinutes: 18,
+      title: "Qué son las tecnologías emergentes",
+      description: "Definición, ciclo de adopción, criterios para decidir si adoptar una tecnología y por qué se practica con JavaScript.",
+      readMinutes: 28,
     },
     {
       slug: "entorno-y-librerias",
@@ -27,7 +27,7 @@ export const CLASE_01: ClassNavConfig = {
     {
       slug: "variables-y-funciones",
       title: "Variables, tipos y funciones flecha",
-      description: "const y let, tipos, funciones flecha y operadores que verás en React.",
+      description: "const y let, tipos, funciones flecha y operadores frecuentes en React.",
       readMinutes: 20,
     },
     {
@@ -38,14 +38,14 @@ export const CLASE_01: ClassNavConfig = {
     },
     {
       slug: "primer-componente-react",
-      title: "Tu primer proyecto con Vite y React",
+      title: "El primer proyecto con Vite y React",
       description: "Crear el proyecto, JSX, props, listas, condicionales y diseño responsive.",
       readMinutes: 25,
     },
     {
       slug: "practica-y-cierre",
-      title: "Práctica guiada y cierre",
-      description: "Mini proyecto guiado, mini-quiz y recursos para explorar por tu cuenta.",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, ejercicios, mini-quiz, autoevaluación y recursos.",
       readMinutes: 20,
     },
   ],
@@ -89,7 +89,7 @@ export const CLASE_02: ClassNavConfig = {
     {
       slug: "practica-y-cierre",
       title: "Práctica guiada y cierre",
-      description: "Mini proyecto administrativo, mini-quiz y recursos para explorar por tu cuenta.",
+      description: "Práctica guiada, ejercicios, mini-quiz, autoevaluación y recursos.",
       readMinutes: 20,
     },
   ],
@@ -132,8 +132,8 @@ export const CLASE_03: ClassNavConfig = {
     },
     {
       slug: "horizonte-y-cierre",
-      title: "Hacia dónde sigue y cierre",
-      description: "Qué adoptar y cuándo: TanStack Query, TypeScript, PWA, WebAssembly, WebXR e IA.",
+      title: "Panorama emergente y cierre",
+      description: "Hacia dónde avanzan las tecnologías emergentes: qué adoptar y cuándo, ejercicios, mini-quiz y autoevaluación.",
       readMinutes: 22,
     },
   ],

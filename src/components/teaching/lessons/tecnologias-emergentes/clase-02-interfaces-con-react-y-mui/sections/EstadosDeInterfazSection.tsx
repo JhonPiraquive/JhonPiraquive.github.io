@@ -9,7 +9,7 @@ export function EstadosDeInterfazSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Los estados de una pantalla: cargando, vacío, error y éxito</h2>
       <p className="my-4">
         Cuando se diseña una pantalla se suele dibujar solo el caso feliz: la tabla llena de datos. Pero una pantalla real
-        pasa por varios momentos. Si no los diseñas, el usuario ve una pantalla en blanco o un error técnico y no sabe qué
+        pasa por varios momentos. Si no se diseñan, el usuario ve una pantalla en blanco o un error técnico y no sabe qué
         hacer. La mitad de la calidad de una interfaz está en cómo maneja estos momentos.
       </p>
       <MermaidDiagram
@@ -40,7 +40,7 @@ export function EstadosDeInterfazSection() {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cómo se programa</h3>
       <p className="my-4">
         La idea es guardar en el estado en qué momento está la pantalla y dibujar según eso. En lugar de varios booleanos
-        sueltos (<code>cargando</code>, <code>error</code>, <code>vacio</code>) que pueden contradecirse, usa{" "}
+        sueltos (<code>cargando</code>, <code>error</code>, <code>vacio</code>) que pueden contradecirse, conviene usar{" "}
         <strong>un solo estado de texto</strong> con valores permitidos.
       </p>
       <CodeFiddle
@@ -62,7 +62,7 @@ export default function ListadoCursos({ estado, cursos, alReintentar, alAgregar 
   if (estado === "error") {
     return (
       <Alert severity="error" action={<Button onClick={alReintentar}>Reintentar</Button>}>
-        No pudimos cargar los cursos. Revisa tu conexión e inténtalo de nuevo.
+        No se pudieron cargar los cursos. Verifique la conexión e intente de nuevo.
       </Alert>
     );
   }
@@ -79,11 +79,11 @@ export default function ListadoCursos({ estado, cursos, alReintentar, alAgregar 
   return <TablaCursos cursos={cursos} />;
 }`}
       />
-      <Callout title="Escribe buenos mensajes de error" variant="callout-tip">
+      <Callout title="Cómo redactar buenos mensajes de error" variant="callout-tip">
         <ul className="mb-0 list-disc space-y-1 pl-5">
-          <li>Di qué pasó con palabras simples: «No pudimos guardar el docente», no «Error 500».</li>
-          <li>Explica qué puede hacer la persona: «Revisa que el correo tenga @».</li>
-          <li>Nunca culpes al usuario. Evita «Ingresaste mal el dato».</li>
+          <li>Decir qué pasó con palabras simples: «No se pudo guardar el docente», no «Error 500».</li>
+          <li>Explicar qué puede hacer la persona: «Verifique que el correo tenga @».</li>
+          <li>No culpar al usuario: se evita «Ingresaste mal el dato».</li>
           <li>Los detalles técnicos van a la consola (<code>console.error</code>), no a la pantalla.</li>
         </ul>
       </Callout>

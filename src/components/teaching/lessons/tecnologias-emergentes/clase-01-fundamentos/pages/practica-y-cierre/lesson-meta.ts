@@ -10,6 +10,6 @@ export const meta: LessonMeta = {
   ...base,
   title: pageDef.title,
   showInTrackIndex: false,
-  seoTitle: "Práctica guiada y cierre | Tecnologías emergentes",
+  seoTitle: "Práctica y cierre | Tecnologías emergentes",
   seoDescription: pageDef.description,
 };

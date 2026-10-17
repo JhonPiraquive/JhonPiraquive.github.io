@@ -8,8 +8,8 @@ export function ClienteServidorSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Cliente, servidor y API</h2>
       <p className="my-4">
-        Hasta ahora tus datos vivían dentro del navegador y desaparecían al recargar. Una aplicación real guarda la
-        información en un lugar permanente y compartido: una base de datos en un servidor. Tu interfaz no puede hablar
+        Hasta ahora los datos vivían dentro del navegador y desaparecían al recargar. Una aplicación real guarda la
+        información en un lugar permanente y compartido: una base de datos en un servidor. La interfaz no puede hablar
         directamente con la base de datos (sería inseguro); habla con una pieza intermedia que sí puede: la API.
       </p>
 
@@ -17,11 +17,11 @@ export function ClienteServidorSection() {
       <CompareTable
         headers={["En el restaurante", "En la aplicación", "Quién es"]}
         rows={[
-          ["Tú, que pides la comida", "Cliente", "Tu aplicación de React en el navegador"],
+          ["El comensal, que pide la comida", "Cliente", "La aplicación de React en el navegador"],
           ["El mesero que lleva y trae", "HTTP", "El protocolo con el que se envían peticiones y respuestas"],
           ["La cocina que prepara", "Servidor / API", "Un programa (por ejemplo, Node con Express) que atiende las peticiones"],
           ["La despensa", "Base de datos", "Donde se guardan los datos de forma permanente (MongoDB, MySQL…)"],
-          ["El menú", "Documentación de la API", "Lista de lo que puedes pedir y cómo pedirlo"],
+          ["El menú", "Documentación de la API", "Lista de lo que se puede pedir y cómo pedirlo"],
         ]}
       />
       <MermaidDiagram
@@ -41,9 +41,9 @@ export function ClienteServidorSection() {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué es una API</h3>
       <p className="my-4">
         API significa Application Programming Interface (interfaz de programación de aplicaciones). Es un conjunto de reglas
-        que define <strong>qué puedes pedirle a un programa y cómo</strong>. Una API web es un servidor que expone
+        que define <strong>qué se le puede pedir a un programa y cómo</strong>. Una API web es un servidor que expone
         direcciones (URL); cada una hace una cosa: dar la lista de materias, crear una, borrar otra. Casi siempre
-        intercambia datos en formato JSON, que ya conoces.
+        intercambia datos en formato JSON, visto en la clase 1.
       </p>
       <Callout title="Qué significa REST" variant="callout-info">
         <p className="mb-0">
@@ -65,16 +65,16 @@ protocolo  host  puerto     ruta          parámetros de consulta
       />
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li><strong>Protocolo</strong>: http o https. En internet real siempre https (cifrado).</li>
-        <li><strong>Host</strong>: el equipo donde está el servidor. <code>localhost</code> es tu propio computador.</li>
-        <li><strong>Puerto</strong>: la «puerta» del programa. Tu página de Vite usa 5173; la API del proyecto usa 9000.</li>
-        <li><strong>Ruta</strong>: qué recurso quieres, y opcionalmente cuál (el id).</li>
+        <li><strong>Host</strong>: el equipo donde está el servidor. <code>localhost</code> es el propio computador.</li>
+        <li><strong>Puerto</strong>: la «puerta» del programa. La página de Vite usa 5173; la API del proyecto usa 9000.</li>
+        <li><strong>Ruta</strong>: qué recurso se quiere y, opcionalmente, cuál (el id).</li>
         <li><strong>Parámetros de consulta</strong>: filtros o ajustes adicionales, después del signo de interrogación.</li>
       </ul>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Los dos programas que debes tener corriendo</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Los dos programas que deben estar corriendo</h3>
       <p className="my-4">
-        Al trabajar con una API local necesitas dos terminales abiertas al tiempo. Si una se cierra, la aplicación deja de
-        funcionar y verás errores de conexión en la consola.
+        Al trabajar con una API local se necesitan dos terminales abiertas al tiempo. Si una se cierra, la aplicación deja de
+        funcionar y aparecen errores de conexión en la consola.
       </p>
       <MermaidDiagram
         title="Dos servidores locales, dos puertos"

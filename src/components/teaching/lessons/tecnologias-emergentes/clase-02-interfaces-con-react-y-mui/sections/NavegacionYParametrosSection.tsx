@@ -1,14 +1,13 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function NavegacionYParametrosSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Parámetros y navegación desde el código</h2>
       <p className="my-4">
-        Los enlaces sirven cuando la persona hace clic en uno. Pero a veces tienes que navegar por una decisión del
+        Los enlaces sirven cuando la persona hace clic en uno. Pero a veces hay que navegar por una decisión del
         programa, por ejemplo volver al listado cuando termina de guardar un formulario. Y a veces una misma pantalla
         necesita saber de qué registro se trata. Para eso están estos hooks.
       </p>
@@ -22,10 +21,10 @@ export function NavegacionYParametrosSection() {
         ]}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">useParams: de qué registro hablamos</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">useParams: identificar el registro</h3>
       <p className="my-4">
-        Cuando declaras <code>path=&quot;:cursoId/editar&quot;</code>, React Router guarda lo que haya en ese segmento. Con{" "}
-        <code>useParams</code> lo recuperas. Ten presente que siempre llega como <strong>texto</strong>.
+        Cuando se declara <code>path=&quot;:cursoId/editar&quot;</code>, React Router guarda lo que haya en ese segmento y{" "}
+        <code>useParams</code> lo recupera. Siempre llega como <strong>texto</strong>.
       </p>
       <CodeFiddle
         language="jsx"
@@ -35,12 +34,12 @@ export function NavegacionYParametrosSection() {
 export default function EditarCurso() {
   const { cursoId } = useParams();   // en /cursos/12/editar, cursoId vale "12"
 
-  // En la clase 3 usarás este id para pedirle a la API los datos de este curso
+  // En la clase 3 este id sirve para pedir a la API los datos del curso
   return <h2>Editando el curso {cursoId}</h2>;
 }`}
       />
       <p className="my-4">
-        Y para llegar a esa pantalla desde el listado, construyes el enlace con el id de cada fila:
+        Para llegar a esa pantalla desde el listado, el enlace se construye con el id de cada fila:
       </p>
       <CodeFiddle
         language="jsx"
@@ -63,7 +62,7 @@ export default function CrearCurso() {
   const navigate = useNavigate();
 
   const guardar = (datos) => {
-    // ...aquí guardarás el curso...
+    // ...aquí se guarda el curso...
     navigate("/cursos");   // ir al listado
   };
 
@@ -77,16 +76,16 @@ export default function CrearCurso() {
       />
       <Callout title="navigate frente a Link" variant="callout-tip">
         <p className="mb-0">
-          Si la persona decide ir a otro lado con un clic, usa <code>Link</code> o <code>NavLink</code>: son enlaces
-          reales, funcionan con clic derecho y con teclado. Usa <code>navigate</code> solo cuando el programa decide
-          moverla (por ejemplo, después de guardar).
+          Si la persona decide ir a otro lado con un clic, corresponde <code>Link</code> o <code>NavLink</code>: son
+          enlaces reales, funcionan con clic derecho y con teclado. <code>navigate</code> se reserva para cuando el
+          programa decide moverla (por ejemplo, después de guardar).
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Redirigir y proteger pantallas</h3>
       <p className="my-4">
-        El componente <code>Navigate</code> redirige al dibujarse. Con él puedes crear una ruta protegida: si no hay
-        sesión, envía al inicio de sesión.
+        El componente <code>Navigate</code> redirige al dibujarse. Con él se puede crear una ruta protegida: si no hay
+        sesión, se envía al inicio de sesión.
       </p>
       <CodeFiddle
         language="jsx"
@@ -111,8 +110,8 @@ export default function RutaProtegida() {
       <Callout title="Una advertencia de seguridad" variant="callout-danger">
         <p className="mb-0">
           Ocultar una pantalla en el navegador no protege los datos. Cualquiera puede abrir las herramientas de desarrollo
-          y saltarse tu código. La protección de verdad la hace el servidor, comprobando en cada petición que la persona
-          tiene permiso. Las rutas protegidas del frontend solo mejoran la experiencia.
+          y saltarse el código del frontend. La protección real la hace el servidor, comprobando en cada petición que la
+          persona tiene permiso. Las rutas protegidas del frontend solo mejoran la experiencia.
         </p>
       </Callout>
 
@@ -122,16 +121,9 @@ export default function RutaProtegida() {
         servidor: solo existe <code>index.html</code>. Si alguien recarga la página en esa dirección, el servidor busca un
         archivo que no hay y devuelve error 404. Al publicar, el servidor debe configurarse para devolver siempre{" "}
         <code>index.html</code> (lo hacen servicios como Netlify o Vercel con una regla). Durante el desarrollo, Vite ya lo
-        hace por ti. Lo retomamos en la clase 3.
+        hace de forma automática. El tema se retoma en la clase 3.
       </p>
 
-      <PracticeExercise
-        title="Diseña las rutas"
-        prompt="Un módulo de docentes necesita: listado, formulario para crear, formulario para editar un docente en particular y una página de error. Escribe las cuatro rutas (path) que declararías."
-        hints={["Piensa en /docentes como base", "La de editar necesita un segmento dinámico con dos puntos", "Una ruta con asterisco atrapa lo demás"]}
-        expectedKeywords={[":id", ":docenteid", "nuevo", "editar", "*"]}
-        successMessage="Muy bien: tienes las cuatro rutas de un módulo completo."
-      />
     </section>
   );
 }

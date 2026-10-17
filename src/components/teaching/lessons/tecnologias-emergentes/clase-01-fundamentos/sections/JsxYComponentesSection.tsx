@@ -2,7 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function JsxYComponentesSection() {
   return (
@@ -11,9 +10,9 @@ export function JsxYComponentesSection() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué es un componente</h3>
       <p className="my-4">
-        Un componente es una pieza de la pantalla que puedes reutilizar: un botón, una tarjeta, un menú, una página
-        completa. Piensa en piezas de Lego. Cada pieza es pequeña y tiene una función clara; combinándolas armas pantallas
-        grandes. Y si cambias una pieza, cambia en todos los lugares donde la usaste.
+        Un componente es una pieza reutilizable de la pantalla: un botón, una tarjeta, un menú, una página completa.
+        Funciona como las piezas de Lego: cada una es pequeña y tiene una función clara, y al combinarlas se arman
+        pantallas grandes. Si una pieza cambia, cambia en todos los lugares donde se usó.
       </p>
       <p className="my-4">
         En React un componente es simplemente <strong>una función que devuelve JSX</strong>, y su nombre empieza con
@@ -24,7 +23,7 @@ export function JsxYComponentesSection() {
       <p className="my-4">
         JSX es una forma de escribir algo que parece HTML dentro de JavaScript. No es HTML de verdad: Vite lo traduce a
         llamadas de JavaScript antes de que llegue al navegador. La ventaja es poder describir cómo se ve la pantalla
-        con la misma sintaxis que ya conoces.
+        con una sintaxis familiar.
       </p>
       <CodeFiddle
         language="jsx"
@@ -37,7 +36,7 @@ export function JsxYComponentesSection() {
 // ahí cabe cualquier expresión (variables, cálculos, llamadas a funciones).`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Las reglas de JSX que debes memorizar</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Las reglas de JSX</h3>
       <CompareTable
         headers={["Regla", "Incorrecto", "Correcto"]}
         rows={[
@@ -53,8 +52,8 @@ export function JsxYComponentesSection() {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Props: los datos que recibe un componente</h3>
       <p className="my-4">
         Un componente que siempre muestra lo mismo sirve de poco. Las <strong>props</strong> (de «propiedades») son los
-        datos que le pasas desde afuera, igual que los parámetros de una función. Se escriben como atributos al usar el
-        componente y se reciben como un objeto, que casi siempre desestructuras en el parámetro.
+        datos que se le pasan desde afuera, igual que los parámetros de una función. Se escriben como atributos al usar
+        el componente y se reciben como un objeto, que casi siempre se desestructura en el parámetro.
       </p>
       <CodeFiddle
         language="jsx"
@@ -89,7 +88,7 @@ export default function App() {
           <li>Las props son de solo lectura: un componente nunca debe cambiar las que recibe.</li>
           <li>Los datos fluyen en una dirección: del componente padre al hijo.</li>
           <li>Los valores que no son texto van entre llaves: <code>{"precio={8500}"}</code>, <code>{"agotado={true}"}</code>. El texto fijo va entre comillas.</li>
-          <li>En React 19 los valores por defecto se escriben como parámetros por defecto (<code>color = &quot;gray&quot;</code>); la propiedad <code>defaultProps</code> ya no funciona en componentes de función.</li>
+          <li>En las versiones actuales de React, los valores por defecto se escriben como parámetros por defecto (<code>color = &quot;gray&quot;</code>); la propiedad <code>defaultProps</code> ya no funciona en componentes de función.</li>
         </ul>
       </Callout>
 
@@ -108,23 +107,17 @@ export default function App() {
 
 // Uso:
 // <Caja titulo="Hoy">
-//   <p>Lo que escribas aquí llega como children.</p>
+//   <p>Lo que se escriba aquí llega como children.</p>
 // </Caja>`}
       />
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Una regla de organización</h3>
       <p className="my-4">
         Un componente por archivo, y el archivo se llama igual que el componente (<code>TarjetaProducto.jsx</code>).
-        Cuando un archivo crece o una parte de la pantalla se repite, sepárala en un componente nuevo. Es la costumbre
+        Cuando un archivo crece o una parte de la pantalla se repite, se separa en un componente nuevo. Es la costumbre
         que más ordena un proyecto.
       </p>
 
-      <PracticeExercise
-        title="Lee el código"
-        prompt="Mira esta línea: <Etiqueta texto='Nuevo' color={colorElegido} />. Explica qué valor recibe cada prop y por qué texto va entre comillas pero color va entre llaves."
-        hints={["Las comillas son para texto fijo", "Las llaves abren JavaScript: ahí va una variable o cualquier expresión"]}
-        expectedKeywords={["variable", "javascript", "expresión", "llaves"]}
-      />
     </section>
   );
 }

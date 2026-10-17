@@ -1,16 +1,15 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function FetchEnLaPracticaSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">fetch: hacer las peticiones</h2>
       <p className="my-4">
-        <code>fetch</code> es la función que el navegador trae incorporada para hacer peticiones HTTP. No necesitas instalar
+        <code>fetch</code> es la función que el navegador trae incorporada para hacer peticiones HTTP. No requiere instalar
         nada. Recibe la dirección y, opcionalmente, un objeto con el método, las cabeceras y el cuerpo. Devuelve una
-        promesa, así que lo usas con <code>await</code>.
+        promesa, así que se usa con <code>await</code>.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Un GET paso a paso</h3>
@@ -31,13 +30,13 @@ export function FetchEnLaPracticaSection() {
       <Callout title="La trampa más importante de fetch" variant="callout-danger">
         <p className="mb-0">
           <code>fetch</code> solo rechaza la promesa cuando falla la red (no hay conexión, el servidor está apagado). Si el
-          servidor responde 404 o 500, la promesa <strong>se cumple</strong> normalmente. Por eso siempre debes revisar{" "}
-          <code>respuesta.ok</code> (verdadero para códigos 200 a 299) y lanzar tú el error. Sin esa revisión, tu código
-          tratará un error del servidor como si fueran datos válidos.
+          servidor responde 404 o 500, la promesa <strong>se cumple</strong> normalmente. Por eso siempre se revisa{" "}
+          <code>respuesta.ok</code> (verdadero para códigos 200 a 299) y se lanza el error manualmente. Sin esa revisión, el
+          código trata un error del servidor como si fueran datos válidos.
         </p>
       </Callout>
       <p className="my-4">
-        Fíjate también que son <strong>dos esperas</strong>: una para recibir la respuesta y otra para leer su cuerpo con{" "}
+        También son <strong>dos esperas</strong>: una para recibir la respuesta y otra para leer su cuerpo con{" "}
         <code>.json()</code>, porque el cuerpo puede llegar por partes.
       </p>
 
@@ -73,15 +72,15 @@ async function actualizarMateria(id, materia) {
 async function eliminarMateria(id) {
   const respuesta = await fetch(\`\${RUTA}/\${id}\`, { method: "DELETE" });
   if (!respuesta.ok) throw new Error(\`No se pudo eliminar (\${respuesta.status})\`);
-  // Algunas APIs responden 204 sin cuerpo: no llames a respuesta.json() en ese caso
+  // Algunas APIs responden 204 sin cuerpo: no se llama a respuesta.json() en ese caso
 }`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">No repitas el mismo código: un archivo para la API</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Evitar repetir código: un archivo para la API</h3>
       <p className="my-4">
         Escribir fetch, la revisión de <code>ok</code> y las cabeceras en cada componente es repetitivo y propenso a errores.
         La buena práctica es concentrar todo en un archivo y que los componentes solo llamen funciones con nombres claros.
-        Además, si la dirección de la API cambia, la cambias en un solo lugar.
+        Además, si la dirección de la API cambia, se cambia en un solo lugar.
       </p>
       <CodeFiddle
         language="javascript"
@@ -136,8 +135,8 @@ await api.eliminar("materias", "7");`}
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cancelar una petición</h3>
       <p className="my-4">
         Si el usuario sale de la pantalla antes de que la respuesta llegue, no tiene sentido terminar el trabajo. Con{" "}
-        <code>AbortController</code> creas una señal que le pasas a fetch; al llamar a <code>abort()</code> la petición se
-        cancela y fetch lanza un error de tipo <code>AbortError</code>, que debes ignorar.
+        <code>AbortController</code> se crea una señal que se pasa a fetch; al llamar a <code>abort()</code> la petición se
+        cancela y fetch lanza un error de tipo <code>AbortError</code>, que se ignora.
       </p>
       <CodeFiddle
         language="javascript"
@@ -156,7 +155,7 @@ controlador.abort();   // cancela`}
 
       <CompareTable
         title="Resumen: errores de red frente a errores HTTP"
-        headers={["Qué ocurrió", "¿fetch rechaza la promesa?", "Cómo lo detectas"]}
+        headers={["Qué ocurrió", "¿fetch rechaza la promesa?", "Cómo se detecta"]}
         rows={[
           ["No hay internet o el servidor está apagado", "Sí (TypeError)", "catch"],
           ["El servidor responde 404, 400 o 500", "No", "if (!respuesta.ok)"],
@@ -165,13 +164,6 @@ controlador.abort();   // cancela`}
         ]}
       />
 
-      <PracticeExercise
-        title="Encuentra el fallo"
-        prompt="Este código muestra 'Guardado' aunque el servidor responda 500: const r = await fetch(url, opciones); const datos = await r.json(); mostrar('Guardado'). ¿Qué falta?"
-        hints={["fetch no rechaza por un 500", "Hay una propiedad de la respuesta que indica si el estado es exitoso"]}
-        expectedKeywords={["ok", "respuesta.ok", "r.ok", "status"]}
-        successMessage="Exacto: hay que comprobar r.ok y lanzar un error antes de mostrar el mensaje de éxito."
-      />
     </section>
   );
 }

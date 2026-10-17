@@ -1,5 +1,4 @@
 import { Callout } from "@/components/teaching/Callout";
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
@@ -8,7 +7,7 @@ export function EstadoUseStateSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Estado: la memoria de un componente</h2>
       <p className="my-4">
-        Hasta ahora tus componentes mostraban datos que llegaban de afuera y nunca cambiaban. Una aplicación de verdad
+        Hasta ahora los componentes mostraban datos que llegaban de afuera y nunca cambiaban. Una aplicación real
         reacciona: el usuario escribe, hace clic, abre un menú. Para eso el componente necesita <strong>memoria</strong>:
         recordar algo y, cuando ese algo cambia, volver a dibujarse. Esa memoria se llama <strong>estado</strong>.
       </p>
@@ -53,10 +52,11 @@ export default function Contador() {
       />
       <p className="my-4">
         <code>useState(0)</code> devuelve un arreglo con dos cosas: el valor actual y una función para cambiarlo. Como
-        viste con la desestructuración de arreglos, los nombras tú. La costumbre es <code>[algo, setAlgo]</code>.
+        se vio con la desestructuración de arreglos, los nombres los elige el desarrollador. La costumbre es
+        <code> [algo, setAlgo]</code>.
       </p>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué pasa cuando haces clic</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué ocurre al hacer clic</h3>
       <MermaidDiagram
         title="El ciclo de un cambio de estado"
         description="Secuencia: el usuario hace clic, se llama a setCantidad, React vuelve a ejecutar el componente y actualiza la pantalla."
@@ -73,7 +73,7 @@ export default function Contador() {
       />
       <Callout title="Una idea clave: cada dibujo es una foto" variant="callout-info">
         <p className="mb-0">
-          Cuando React ejecuta tu componente, el estado vale una cosa concreta durante esa ejecución, como una fotografía.
+          Cuando React ejecuta el componente, el estado vale una cosa concreta durante esa ejecución, como una fotografía.
           Llamar a <code>setCantidad(5)</code> no cambia la foto actual: pide una nueva. Por eso, justo después de llamar al
           setter, la variable sigue teniendo el valor viejo dentro de esa misma función.
         </p>
@@ -81,8 +81,8 @@ export default function Contador() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Actualizar según el valor anterior</h3>
       <p className="my-4">
-        Si el nuevo valor depende del anterior, pasa una función al setter. React le entrega el valor más reciente, lo que
-        evita errores cuando haces varios cambios seguidos.
+        Si el nuevo valor depende del anterior, se pasa una función al setter. React le entrega el valor más reciente, lo
+        que evita errores cuando se hacen varios cambios seguidos.
       </p>
       <CodeFiddle
         language="jsx"
@@ -112,27 +112,10 @@ const [filtro, setFiltro] = useState({ texto: "", activo: true });  // un objeto
         <p className="mb-0">
           Las funciones que empiezan con <code>use</code> (useState, useEffect…) se llaman hooks. Tienen dos reglas: se
           llaman solo en el nivel principal de un componente (nunca dentro de un if, un for o una función anidada) y solo
-          dentro de componentes o de otros hooks. Si las rompes, React se confunde sobre cuál estado es cuál.
+          dentro de componentes o de otros hooks. Si se rompen, React se confunde sobre cuál estado es cuál.
         </p>
       </Callout>
 
-      <CodeChallenge
-        title="Completa el interruptor"
-        template={`import { {{a}} } from "react";
-
-export default function Interruptor() {
-  const [encendido, setEncendido] = {{a}}(false);
-  return (
-    <button onClick={() => setEncendido({{b}}encendido)}>
-      {encendido ? "Encendido" : "Apagado"}
-    </button>
-  );
-}`}
-        blanks={[
-          { id: "a", answer: "useState", placeholder: "hook" },
-          { id: "b", answer: "!", placeholder: "símbolo" },
-        ]}
-      />
     </section>
   );
 }

@@ -8,28 +8,28 @@ export function ConfiguracionYDespliegueSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Configuración, build y despliegue</h2>
       <p className="my-4">
-        Hasta ahora todo corre en tu computador. Para que otras personas usen tu aplicación hay que prepararla y ponerla
-        en un servidor. El primer paso es dejar de escribir direcciones fijas dentro del código.
+        Hasta ahora todo corre en el computador del desarrollador. Para que otras personas usen la aplicación hay que
+        prepararla y ponerla en un servidor. El primer paso es dejar de escribir direcciones fijas dentro del código.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Variables de entorno</h3>
       <p className="my-4">
-        La dirección de la API en tu computador (<code>http://localhost:9000</code>) no es la misma que en producción. En
-        lugar de cambiar el código cada vez, la sacas a un archivo de configuración. Vite lee archivos llamados{" "}
+        La dirección de la API en el computador local (<code>http://localhost:9000</code>) no es la misma que en producción.
+        En lugar de cambiar el código cada vez, se saca a un archivo de configuración. Vite lee archivos llamados{" "}
         <code>.env</code> y expone al código las variables que empiezan por <code>VITE_</code>.
       </p>
       <CodeFiddle
         language="bash"
         title=".env.development  y  .env.production"
-        code={`# .env.development  (cuando ejecutas npm run dev)
+        code={`# .env.development  (al ejecutar npm run dev)
 VITE_API_URL=http://localhost:9000/api
 
-# .env.production   (cuando ejecutas npm run build)
+# .env.production   (al ejecutar npm run build)
 VITE_API_URL=https://api.mi-sitio.com/api`}
       />
       <CodeFiddle
         language="javascript"
-        title="Leerla en el código"
+        title="Leer la variable en el código"
         code={`const BASE_URL = import.meta.env.VITE_API_URL;
 
 fetch(\`\${BASE_URL}/materias\`);`}
@@ -37,16 +37,16 @@ fetch(\`\${BASE_URL}/materias\`);`}
       <Callout title="Todo lo que empieza con VITE_ es público" variant="callout-danger">
         <p className="mb-0">
           Las variables con prefijo <code>VITE_</code> se copian dentro del código que descarga el navegador. Cualquiera puede
-          verlas. <strong>Nunca</strong> pongas ahí contraseñas, claves privadas ni tokens secretos. Esos datos solo existen
-          en el servidor. Además, no subas a Git los archivos <code>.env</code> con información sensible: agrégalos a{" "}
+          verlas. <strong>Nunca</strong> se ponen ahí contraseñas, claves privadas ni tokens secretos: esos datos solo existen
+          en el servidor. Además, los archivos <code>.env</code> con información sensible no se suben a Git y se agregan a{" "}
           <code>.gitignore</code>.
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Un proxy para el desarrollo (y adiós a CORS en local)</h3>
       <p className="my-4">
-        En desarrollo, Vite puede recibir las peticiones a <code>/api</code> y reenviarlas a tu API. Para el navegador todo
-        proviene del mismo origen, así que no hay error de CORS y no necesitas configurar la API para permitirlo.
+        En desarrollo, Vite puede recibir las peticiones a <code>/api</code> y reenviarlas a la API local. Para el navegador todo
+        proviene del mismo origen, así que no hay error de CORS ni hace falta configurar la API para permitirlo.
       </p>
       <CodeFiddle
         language="javascript"
@@ -63,9 +63,9 @@ export default defineConfig({
   },
 });
 
-// Desde React, ahora puedes llamar a fetch("/api/materias") sin escribir el puerto.
-// El proxy solo existe en desarrollo: en producción debes tener el mismo arreglo (un servidor que
-// reenvíe /api) o permitir el origen de tu sitio en la API.`}
+// Desde React, ahora se puede llamar a fetch("/api/materias") sin escribir el puerto.
+// El proxy solo existe en desarrollo: en producción se necesita el mismo arreglo (un servidor que
+// reenvíe /api) o permitir el origen del sitio en la API.`}
       />
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Construir para producción</h3>
@@ -73,12 +73,12 @@ export default defineConfig({
         language="bash"
         title="Terminal"
         code={`npm run build      # genera la carpeta dist/ con archivos optimizados
-npm run preview    # sirve dist/ en tu equipo para probar el resultado final`}
+npm run preview    # sirve dist/ en el equipo local para probar el resultado final`}
       />
       <p className="my-4">
-        <code>npm run build</code> junta todo tu código y el de las librerías, elimina lo que no se usa, lo minimiza y lo
+        <code>npm run build</code> junta todo el código propio y el de las librerías, elimina lo que no se usa, lo minimiza y lo
         divide en archivos. El resultado es la carpeta <code>dist/</code>: solo archivos estáticos (HTML, CSS, JavaScript e
-        imágenes). Eso es lo que se publica. Siempre prueba con <code>npm run preview</code> antes de subir, porque a veces
+        imágenes). Eso es lo que se publica. Conviene probar siempre con <code>npm run preview</code> antes de subir, porque a veces
         algo que funciona en desarrollo falla en la versión construida.
       </p>
       <MermaidDiagram
@@ -95,8 +95,8 @@ npm run preview    # sirve dist/ en tu equipo para probar el resultado final`}
       <CompareTable
         headers={["Servicio", "Característica", "Nota para una SPA con React Router"]}
         rows={[
-          ["Netlify", "Muy simple: arrastras la carpeta dist o conectas tu repositorio", "Necesita una regla para que todas las rutas devuelvan index.html"],
-          ["Vercel", "Conectas tu repositorio y publica solo", "Detecta Vite; también conviene verificar las rutas"],
+          ["Netlify", "Muy simple: se arrastra la carpeta dist o se conecta el repositorio", "Necesita una regla para que todas las rutas devuelvan index.html"],
+          ["Vercel", "Se conecta el repositorio y publica solo", "Detecta Vite; también conviene verificar las rutas"],
           ["Cloudflare Pages", "Rápido, con plan gratuito generoso", "Tiene modo SPA para las rutas"],
           ["GitHub Pages", "Gratis y sencillo para sitios estáticos", "Requiere configurar base en Vite y un truco para las rutas (404.html) o usar HashRouter"],
         ]}
@@ -119,15 +119,15 @@ npm run preview    # sirve dist/ en tu equipo para probar el resultado final`}
 });`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Lista de revisión antes de entregar o publicar</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Lista de verificación antes de entregar o publicar</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li><code>npm run build</code> termina sin errores y <code>npm run lint</code> no reporta problemas graves.</li>
         <li>La consola del navegador no muestra errores ni advertencias.</li>
-        <li>Probaste el flujo completo: crear, editar, eliminar y listar, incluido el caso de que la API falle.</li>
+        <li>Se probó el flujo completo: crear, editar, eliminar y listar, incluido el caso de que la API falle.</li>
         <li>Las pantallas se ven bien en celular, tableta y computador.</li>
-        <li>No quedaron claves ni contraseñas en el código ni en archivos <code>.env</code> subidos.</li>
+        <li>No quedan claves ni contraseñas en el código ni en archivos <code>.env</code> subidos.</li>
         <li>El proyecto incluye un README con las instrucciones para instalarlo y ejecutarlo.</li>
-        <li>Si lo comprimes para entregar, la carpeta <code>node_modules</code> queda fuera.</li>
+        <li>Si se comprime para entregar, la carpeta <code>node_modules</code> queda fuera.</li>
       </ul>
     </section>
   );

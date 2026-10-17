@@ -11,7 +11,7 @@ export function SpreadYModulosSection() {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Spread: esparcir un arreglo u objeto</h3>
       <p className="my-4">
         Los tres puntos <code>...</code> «abren» un arreglo o un objeto y esparcen su contenido. Sirven para hacer
-        copias y para crear versiones modificadas sin tocar el original. Esa es exactamente la técnica que usará React
+        copias y para crear versiones modificadas sin tocar el original. Esa es exactamente la técnica que React emplea
         para actualizar datos.
       </p>
       <CodeFiddle
@@ -36,7 +36,7 @@ const unidos = { ...producto, ...{ stock: 5 } };   // une dos objetos`}
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Rest: recoger lo que sobra</h3>
       <p className="my-4">
-        Con los mismos tres puntos, pero al <em>recibir</em> datos, recoges «el resto» en un arreglo u objeto.
+        Con los mismos tres puntos, pero al <em>recibir</em> datos, se recoge «el resto» en un arreglo u objeto.
       </p>
       <CodeFiddle
         language="javascript"
@@ -50,13 +50,13 @@ console.log(resto);               // { precio: 5000, agotado: false }`}
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Módulos: cada archivo hace una cosa</h3>
       <p className="my-4">
-        Un proyecto real no cabe en un solo archivo. Con los módulos divides el código en archivos y compartes lo que
-        quieras con <code>export</code>. Otro archivo lo trae con <code>import</code>.
+        Un proyecto real no cabe en un solo archivo. Con los módulos el código se divide en archivos y se comparte lo
+        necesario con <code>export</code>. Otro archivo lo trae con <code>import</code>.
       </p>
       <CodeFiddle
         language="javascript"
         title="src/utils/precios.js"
-        code={`// export nombrado: puedes tener varios por archivo
+        code={`// export nombrado: puede haber varios por archivo
 export const formatearPrecio = (valor) =>
   valor.toLocaleString("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 });
 
@@ -98,20 +98,20 @@ console.log(formatearPrecio(aplicarDescuento(10000, 20)));  // "$ 8.000"`}
         </p>
       </Callout>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Novedades recientes de JavaScript: úsalas con criterio</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Novedades recientes de JavaScript: usarlas con criterio</h3>
       <p className="my-4">
-        El lenguaje se actualiza cada año. Algunas novedades ya están disponibles en los navegadores actuales y te ahorran
-        código. Antes de usarlas, revisa en la página de MDN la etiqueta de compatibilidad (Baseline) para saber si tus
-        usuarios las soportan.
+        El lenguaje se actualiza cada año. Algunas novedades ya están disponibles en los navegadores actuales y ahorran
+        código. Antes de usarlas, conviene revisar en la página de MDN la etiqueta de compatibilidad (Baseline) para
+        saber si los usuarios las soportan. Es un ejemplo cotidiano de evaluar una tecnología emergente con criterio.
       </p>
       <CompareTable
         headers={["Novedad", "Para qué sirve", "¿Conviene aprenderla ahora?"]}
         rows={[
-          ["Object.groupBy (ES2024)", "Agrupar una lista por una característica", "Sí, útil para reportes y tablas"],
-          ["toSorted, toSpliced, with (ES2023)", "Versiones de sort, splice y asignación que no modifican el original", "Sí, encajan con la forma de trabajar de React"],
-          ["Métodos de Set: union, intersection, difference (ES2025)", "Operaciones entre conjuntos", "Cuando lo necesites; no es prioritario"],
-          ["Promise.try (ES2025)", "Iniciar una promesa desde una función que puede fallar", "Más adelante, cuando domines las promesas"],
-          ["Ayudantes de iteradores (ES2025)", "map y filter para iteradores sin crear listas intermedias", "Es para casos avanzados de rendimiento"],
+          ["Object.groupBy", "Agrupar una lista por una característica", "Sí, útil para reportes y tablas"],
+          ["toSorted, toSpliced, with", "Versiones de sort, splice y asignación que no modifican el original", "Sí, encajan con la forma de trabajar de React"],
+          ["Métodos de Set: union, intersection, difference", "Operaciones entre conjuntos", "Cuando haga falta; no es prioritario"],
+          ["Promise.try", "Iniciar una promesa desde una función que puede fallar", "Más adelante, cuando domines las promesas"],
+          ["Ayudantes de iteradores", "map y filter para iteradores sin crear listas intermedias", "Es para casos avanzados de rendimiento"],
         ]}
       />
     </section>

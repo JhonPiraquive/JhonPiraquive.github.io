@@ -125,23 +125,23 @@ export default function LayoutAdmin() {
       />
       <Callout title="Detalles que conviene entender" variant="callout-info">
         <ul className="mb-0 list-disc space-y-1 pl-5">
-          <li><code>component=&#123;NavLink&#125;</code> hace que el botón de MUI se comporte como enlace de React Router, con lo que obtienes navegación sin recarga y la clase <code>active</code> automática.</li>
+          <li><code>component=&#123;NavLink&#125;</code> hace que el botón de MUI se comporte como enlace de React Router, con lo que se obtiene navegación sin recarga y la clase <code>active</code> automática.</li>
           <li><code>end</code> evita que el enlace «Inicio» se marque como activo en todas las rutas, porque «/» está al comienzo de todas.</li>
-          <li>El menú lateral permanente es ideal para escritorio. En celulares conviene un Drawer temporal que se abre con un botón; es un buen siguiente paso.</li>
+          <li>El menú lateral permanente es ideal para escritorio. En celulares conviene un Drawer temporal que se abre con un botón.</li>
         </ul>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">La otra forma de declarar rutas: como objetos</h3>
       <p className="my-4">
         Las plantillas administrativas suelen declarar las rutas como un arreglo de objetos, en lugar de componentes{" "}
-        <code>Route</code> anidados. Es exactamente la misma idea con otra sintaxis. La verás en el proyecto de la
-        asignatura (archivos como <code>routes/StudentsRoutes.js</code>), así que conviene que la reconozcas:
+        <code>Route</code> anidados. Es exactamente la misma idea con otra sintaxis. Aparece en el proyecto de la
+        asignatura (archivos como <code>routes/StudentsRoutes.js</code>), por lo que conviene reconocerla:
       </p>
       <CodeFiddle
         language="jsx"
         title="Rutas como objetos"
         code={`import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";   // en la versión 8; en la 6 y 7 también se importaba de react-router-dom
+import { RouterProvider } from "react-router/dom";   // en tutoriales antiguos se importaba de react-router-dom
 
 const router = createBrowserRouter([
   {
@@ -171,13 +171,13 @@ const router = createBrowserRouter([
           ["Se activa con", "<BrowserRouter>", "createBrowserRouter + <RouterProvider>"],
           ["Cómo se ven las rutas", "<Routes><Route …/></Routes>", "Arreglo de { path, element, children }"],
           ["Ventaja", "Se lee casi como el HTML de la pantalla", "Permite rutas separadas por módulo, que se unen en un arreglo; admite cargadores de datos"],
-          ["Cuándo la verás", "Tutoriales y proyectos pequeños", "Plantillas administrativas y proyectos grandes"],
+          ["Dónde aparece", "Tutoriales y proyectos pequeños", "Plantillas administrativas y proyectos grandes"],
         ]}
       />
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cargar las pantallas solo cuando se necesitan</h3>
       <p className="my-4">
-        Si tu sitio tiene cincuenta pantallas, no hace falta descargar el código de todas al abrir la primera.{" "}
+        Si un sitio tiene cincuenta pantallas, no hace falta descargar el código de todas al abrir la primera.{" "}
         <code>React.lazy</code> junto con <code>Suspense</code> descarga cada pantalla únicamente cuando alguien entra a ella.
         Es lo que hace el componente <code>Loadable</code> de la plantilla.
       </p>

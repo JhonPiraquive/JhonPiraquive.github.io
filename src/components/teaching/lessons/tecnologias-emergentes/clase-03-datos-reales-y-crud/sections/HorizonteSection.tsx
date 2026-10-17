@@ -6,49 +6,53 @@ import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 export function HorizonteSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Hacia dónde sigue el ecosistema y cómo decidir qué aprender</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Hacia dónde avanzan las tecnologías emergentes</h2>
       <p className="my-4">
-        Ya recorriste el camino completo de una aplicación web: JavaScript, React, interfaz, rutas, API y despliegue. Este es
-        un buen momento para mirar alrededor. El ecosistema evoluciona rápido, y la habilidad que más te va a servir no es
-        memorizar herramientas, sino saber <strong>cuándo vale la pena adoptar una</strong>. Aplica los seis criterios de la
-        primera clase.
+        El recorrido por una aplicación web completa (JavaScript, React, interfaz, rutas, API y despliegue) ofrece una
+        base para mirar las tecnologías emergentes con más criterio. El ecosistema evoluciona rápido y la habilidad más
+        duradera no es memorizar herramientas, sino saber <strong>cuándo vale la pena adoptar una</strong>. Los seis
+        criterios de la primera clase siguen siendo la brújula.
       </p>
       <MermaidDiagram
-        title="¿Debo adoptar esta tecnología?"
-        description="Diagrama de decisión: resuelve un problema real, es estable, tiene comunidad y documentación, se prueba a pequeña escala y recién ahí se adopta; cualquier respuesta negativa lleva a esperar."
+        title="Decidir si adoptar una tecnología"
+        description="Diagrama de decisión: resuelve un problema real, es estable, tiene comunidad y documentación, se prueba a pequeña escala y recién entonces se adopta; cualquier respuesta negativa lleva a esperar."
         chart={`flowchart TD
-  A["Veo una tecnología nueva"] --> B{"¿Resuelve un problema<br/>que tengo hoy?"}
+  A["Aparece una tecnología nueva"] --> B{"¿Resuelve un problema<br/>real y actual?"}
   B -->|"No"| X["Guardar para después"]
-  B -->|"Sí"| C{"¿Versión estable<br/>y mantenida?"}
+  B -->|"Sí"| C{"¿Es estable<br/>y está mantenida?"}
   C -->|"No"| X
-  C -->|"Sí"| D{"¿Hay documentación<br/>y comunidad?"}
+  C -->|"Sí"| D{"¿Tiene documentación<br/>y comunidad?"}
   D -->|"No"| X
   D -->|"Sí"| E["Probar en un proyecto pequeño"]
   E --> F{"¿Mejoró algo real?"}
-  F -->|"Sí"| G["Adoptar y anotar por qué"]
+  F -->|"Sí"| G["Adoptar y anotar el motivo"]
   F -->|"No"| X`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">El panorama, con criterio (octubre de 2026)</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Tecnologías del ecosistema web, con criterio</h3>
+      <p className="my-4">
+        La tabla clasifica cada tecnología según su madurez y señala cuándo tiene sentido incorporarla. Es una fotografía
+        orientativa: la columna de madurez es la que más cambia con el tiempo.
+      </p>
       <CompareTable
-        headers={["Tecnología", "Qué es", "Estado", "Cuándo adoptarla"]}
+        headers={["Tecnología", "Qué es", "Madurez", "Cuándo adoptarla"]}
         rows={[
-          ["TypeScript", "JavaScript con tipos: detecta errores al escribir", "Estándar de la industria", "Ya. Es el siguiente paso natural después de este módulo (plantilla react-ts)"],
-          ["TanStack Query", "Librería para pedir, guardar en caché y sincronizar datos del servidor", "Estable (v5), muy extendida", "Cuando varias pantallas piden los mismos datos o necesitas caché, reintentos y actualización optimista"],
-          ["React Compiler", "Optimiza redibujos automáticamente al construir", "v1.0 estable desde octubre de 2025", "En proyectos nuevos, como opción; no la necesitas para aprender"],
-          ["Frameworks sobre React (Next.js, React Router modo framework)", "Añaden rutas, renderizado en servidor y más", "Maduros. La documentación de React los recomienda para aplicaciones nuevas en producción", "Cuando necesitas buen posicionamiento en buscadores o carga muy rápida. Un panel administrativo detrás de un login suele estar bien como SPA con Vite"],
-          ["PWA (aplicación web progresiva)", "Sitio instalable que funciona sin conexión", "Madura", "Cuando quieras que se instale como app y tenga uso sin red"],
-          ["WebAssembly (Wasm)", "Código de otros lenguajes (Rust, C++) corriendo en el navegador casi a velocidad nativa", "Madura en navegadores", "Para tareas muy pesadas: edición de imagen o video, juegos, cálculo científico. No para pantallas de formularios"],
-          ["WebXR", "Realidad aumentada y virtual en el navegador", "Emergente; el soporte varía según dispositivo y navegador", "Para experiencias inmersivas específicas; verifica la compatibilidad antes de comprometerte"],
-          ["IA en aplicaciones web", "Usar modelos de lenguaje o visión desde tu aplicación", "En evolución muy rápida", "Cuando aporte valor concreto. Llámalos desde tu servidor, nunca con la clave en el navegador"],
+          ["TypeScript", "JavaScript con tipos: detecta errores al escribir", "Estándar de la industria", "Desde ya. Es el siguiente paso natural después de este módulo"],
+          ["TanStack Query", "Librería para pedir, guardar en caché y sincronizar datos del servidor", "Estable y muy extendida", "Cuando varias pantallas piden los mismos datos o se necesita caché, reintentos y actualización optimista"],
+          ["Compilador de React", "Optimiza redibujos automáticamente al construir", "Estable, de adopción reciente", "En proyectos nuevos, como opción; no es necesario para aprender"],
+          ["Frameworks sobre React (Next.js, React Router en modo framework)", "Añaden rutas, renderizado en servidor y más", "Maduros; la documentación de React los recomienda para aplicaciones nuevas en producción", "Cuando importan el posicionamiento en buscadores o la carga muy rápida. Un panel administrativo detrás de un inicio de sesión suele estar bien como SPA con Vite"],
+          ["PWA (aplicación web progresiva)", "Sitio instalable que funciona sin conexión", "Madura", "Cuando el sitio debe instalarse como app y tener uso sin red"],
+          ["WebAssembly (Wasm)", "Código de otros lenguajes (Rust, C++) ejecutándose en el navegador casi a velocidad nativa", "Madura en navegadores", "Para tareas muy pesadas: edición de imagen o video, juegos, cálculo científico. No para pantallas de formularios"],
+          ["WebXR", "Realidad aumentada y virtual en el navegador", "Emergente; el soporte varía según dispositivo y navegador", "Para experiencias inmersivas específicas, verificando antes la compatibilidad"],
+          ["IA en aplicaciones web", "Modelos de lenguaje o visión consumidos desde una aplicación", "En evolución muy rápida", "Cuando aporte valor concreto. Se llaman desde el servidor, nunca con la clave en el navegador"],
         ]}
       />
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Un ejemplo: la misma lista con TanStack Query</h3>
       <p className="my-4">
-        Mira cuánto desaparece del listado cuando una librería se encarga de cargar, reintentar, cancelar y cachear. No lo
-        necesitas todavía; entender el código manual de la página del CRUD es lo que te permite apreciar (y depurar) lo que
-        la librería hace por ti.
+        Cuando una librería se encarga de cargar, reintentar, cancelar y cachear, buena parte del código manual
+        desaparece. Aún así, entender el código manual de la página del CRUD es lo que permite apreciar (y depurar) lo que
+        la librería hace por debajo. Adoptar una tecnología sin comprender lo que automatiza es el riesgo habitual.
       </p>
       <CodeFiddle
         language="jsx"
@@ -70,7 +74,7 @@ export default function ListadoMaterias() {
   });
 
   if (isPending) return <LinearProgress />;
-  if (isError) return <Alert severity="error" action={<Button onClick={refetch}>Reintentar</Button>}>No pudimos cargar.</Alert>;
+  if (isError) return <Alert severity="error" action={<Button onClick={refetch}>Reintentar</Button>}>No se pudo cargar.</Alert>;
 
   return <TablaMaterias materias={materias} alEliminar={(m) => eliminar.mutate(m.id)} />;
 }
@@ -80,26 +84,30 @@ export default function ListadoMaterias() {
 // <QueryClientProvider client={queryClient}><App /></QueryClientProvider>`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Una lección de la vida real: lo nuevo también falla</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Una lección real: lo nuevo también falla</h3>
       <Callout title="Las tecnologías nuevas traen riesgos nuevos" variant="callout-warning">
         <p className="mb-0">
-          En diciembre de 2025 se publicaron vulnerabilidades graves en los React Server Components, una de las novedades
-          más celebradas del ecosistema, incluida una que permitía ejecutar código de forma remota sin autenticación. Se
-          corrigieron en versiones de parche y quien mantenía sus dependencias al día quedó protegido. La enseñanza no es
-          evitar lo nuevo, sino adoptarlo con conciencia: lee los avisos de seguridad, actualiza las dependencias con
-          regularidad (<code>npm outdated</code>, <code>npm audit</code>) y no trates una novedad como «segura por ser
+          Hace poco se publicaron vulnerabilidades graves en los React Server Components, una de las novedades más
+          celebradas del ecosistema, incluida una que permitía ejecutar código de forma remota sin autenticación. Se
+          corrigieron en versiones de parche y quienes mantenían sus dependencias al día quedaron protegidos. La enseñanza
+          no es evitar lo nuevo, sino adoptarlo con conciencia: leer los avisos de seguridad, actualizar las dependencias
+          con regularidad (<code>npm outdated</code>, <code>npm audit</code>) y no tratar una novedad como «segura por ser
           reciente».
         </p>
       </Callout>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Las tecnologías de la presentación del módulo, vistas desde JavaScript</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Otras tecnologías emergentes vistas desde JavaScript</h3>
+      <p className="my-4">
+        Las tecnologías de la presentación del módulo no son ajenas a lo aprendido: casi todas se consumen o se controlan
+        mediante una interfaz web que habla con una API.
+      </p>
       <CompareTable
-        headers={["Tecnología emergente", "Cómo se conecta con lo que aprendiste"]}
+        headers={["Tecnología emergente", "Cómo se conecta con lo aprendido"]}
         rows={[
-          ["Internet de las cosas (IoT)", "Un panel como el de esta clase muestra datos de sensores que llegan por una API o por WebSockets. Tu CRUD sería el módulo de dispositivos"],
-          ["Inteligencia artificial", "Una pantalla con un formulario que envía un texto a tu servidor, que consulta un modelo y devuelve una respuesta que tú dibujas. Fetch y estados de carga y error son los mismos"],
+          ["Internet de las cosas (IoT)", "Un panel como el de esta clase muestra datos de sensores que llegan por una API o por WebSockets. El CRUD sería el módulo de dispositivos"],
+          ["Inteligencia artificial", "Una pantalla con un formulario envía un texto a un servidor, que consulta un modelo y devuelve una respuesta que la interfaz dibuja. Fetch y los estados de carga y error son los mismos"],
           ["Realidad aumentada y virtual", "WebXR y librerías como Three.js o A-Frame usan JavaScript y se integran con React"],
-          ["Blockchain", "Las aplicaciones descentralizadas tienen un frontend en React que habla con billeteras y contratos; el patrón de peticiones asíncronas es parecido"],
+          ["Blockchain", "Las aplicaciones descentralizadas tienen un frontend en React que se comunica con billeteras y contratos; el patrón de peticiones asíncronas es parecido"],
           ["Robótica y domótica", "Paneles web para controlar y monitorear equipos: botones, estados y peticiones a una API"],
         ]}
       />

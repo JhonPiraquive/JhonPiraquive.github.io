@@ -3,9 +3,33 @@ import { Link } from "@/i18n/navigation";
 export function ExplorarMasSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Para seguir explorando por tu cuenta</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Autoevaluación y recursos</h2>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Documentación oficial (siempre actualizada)</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Autoevaluación de la clase</h3>
+      <p className="my-4">Antes de pasar a la clase 2, el estudiante debería poder cumplir cada punto:</p>
+      <ul className="my-4 list-disc space-y-2 pl-6">
+        <li>Definir qué es una tecnología emergente y ubicar un ejemplo en el ciclo de sobreexpectación.</li>
+        <li>Aplicar los seis criterios para decidir si adoptar una tecnología.</li>
+        <li>Crear un proyecto con Vite, arrancarlo y detenerlo.</li>
+        <li>Explicar qué hace cada parte de package.json y para qué sirve node_modules.</li>
+        <li>Usar const por defecto y justificar cuándo hace falta let.</li>
+        <li>Escribir una función flecha con retorno implícito.</li>
+        <li>Desestructurar un objeto en los parámetros de una función.</li>
+        <li>Elegir entre map, filter y find según la necesidad.</li>
+        <li>Crear un componente que reciba props y mostrar una lista con key.</li>
+      </ul>
+
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Sobre tecnologías emergentes</h3>
+      <ul className="my-4 list-disc space-y-2 pl-6">
+        <li>
+          <a href="https://www.gartner.com/en/research/methodologies/gartner-hype-cycle" target="_blank" rel="noreferrer">Gartner: Hype Cycle</a>: descripción del modelo de sobreexpectación con ejemplos de tecnologías actuales.
+        </li>
+        <li>
+          <a href="https://web.dev/baseline" target="_blank" rel="noreferrer">web.dev: Baseline</a>: cómo saber si una novedad de la web ya es segura de usar en todos los navegadores.
+        </li>
+      </ul>
+
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Documentación oficial</h3>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>
           <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide" target="_blank" rel="noreferrer">MDN: Guía de JavaScript</a>: la referencia más confiable del lenguaje, en español.
@@ -25,7 +49,7 @@ export function ExplorarMasSection() {
       </ul>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Videos de la asignatura</h3>
-      <p className="my-4">Serie «Implementación y uso de librerías» de la facultad. Verlos te sirve como segunda explicación del mismo tema.</p>
+      <p className="my-4">Serie «Implementación y uso de librerías» de la facultad. Funcionan como segunda explicación de los mismos temas; son material anterior al módulo, por lo que algunas herramientas pueden diferir de las actuales.</p>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li><a href="https://www.youtube.com/watch?v=qRk7Bw-oRcM" target="_blank" rel="noreferrer">Implementación y uso de librerías, parte 1</a></li>
         <li><a href="https://www.youtube.com/watch?v=l0w4Yps1ZvM" target="_blank" rel="noreferrer">Implementación y uso de librerías, parte 2</a></li>
@@ -33,24 +57,12 @@ export function ExplorarMasSection() {
         <li><a href="https://www.youtube.com/watch?v=Uz1_zaVylMQ" target="_blank" rel="noreferrer">Implementación y uso de librerías, parte 4</a></li>
       </ul>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Si necesitas reforzar los fundamentos</h3>
-      <p className="my-4">En este mismo sitio tienes el módulo de programación básica con explicaciones paso a paso:</p>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Para reforzar los fundamentos</h3>
+      <p className="my-4">Este mismo sitio incluye el módulo de programación básica con explicaciones paso a paso:</p>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li><Link href="/teaching/pbpew/03-variables-y-tipos">Variables y tipos</Link></li>
         <li><Link href="/teaching/pbpew/06-funciones-y-callbacks">Funciones y callbacks</Link></li>
         <li><Link href="/teaching/pbpew/07-arrays-json-objetos">Arreglos, JSON y objetos</Link></li>
-      </ul>
-
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Autoevaluación</h3>
-      <p className="my-4">Antes de pasar a la clase 2, comprueba que puedes decir «sí» a todo esto:</p>
-      <ul className="my-4 list-disc space-y-2 pl-6">
-        <li>Sé crear un proyecto con Vite, arrancarlo y detenerlo.</li>
-        <li>Sé qué hace cada parte de package.json y para qué sirve node_modules.</li>
-        <li>Uso const por defecto y sé explicar cuándo necesito let.</li>
-        <li>Puedo escribir una función flecha con retorno implícito.</li>
-        <li>Sé desestructurar un objeto en los parámetros de una función.</li>
-        <li>Sé cuándo usar map, filter y find.</li>
-        <li>Puedo crear un componente que reciba props y mostrar una lista con key.</li>
       </ul>
     </section>
   );

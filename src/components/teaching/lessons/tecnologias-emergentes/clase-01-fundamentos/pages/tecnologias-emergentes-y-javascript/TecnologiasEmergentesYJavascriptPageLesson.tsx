@@ -1,8 +1,9 @@
 import { ClassPageLayout } from "@/components/teaching/ClassPageLayout";
 import { meta } from "./lesson-meta";
 import { QueSonEmergentesSection } from "../../sections/QueSonEmergentesSection";
-import { NuevoVsMejorSection } from "../../sections/NuevoVsMejorSection";
-import { MapaDelModuloSection } from "../../sections/MapaDelModuloSection";
+import { CicloDeAdopcionSection } from "../../sections/CicloDeAdopcionSection";
+import { CriteriosDeEvaluacionSection } from "../../sections/CriteriosDeEvaluacionSection";
+import { PorQueJavascriptSection } from "../../sections/PorQueJavascriptSection";
 
 type Props = { locale: string };
 
@@ -18,8 +19,9 @@ export default function TecnologiasEmergentesYJavascriptPageLesson({ locale: _lo
       next={meta.next}
     >
       <QueSonEmergentesSection />
-      <NuevoVsMejorSection />
-      <MapaDelModuloSection />
+      <CicloDeAdopcionSection />
+      <CriteriosDeEvaluacionSection />
+      <PorQueJavascriptSection />
     </ClassPageLayout>
   );
 }

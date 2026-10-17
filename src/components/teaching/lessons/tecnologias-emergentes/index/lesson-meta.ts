@@ -12,6 +12,6 @@ export const meta: LessonMeta = {
   next: nav.next,
   seoTitle: "Tecnologías emergentes: presentación, objetivos y resultados",
   seoDescription:
-    "Módulo de cero a práctica real: JavaScript moderno, React con Vite, Material UI, React Router y consumo de APIs.",
+    "Qué son las tecnologías emergentes, cómo evaluarlas y cómo practicarlas con JavaScript moderno, React, Material UI, React Router y APIs.",
   showInTrackIndex: true,
 };

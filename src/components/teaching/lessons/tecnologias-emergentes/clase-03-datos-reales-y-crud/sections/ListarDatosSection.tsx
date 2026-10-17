@@ -8,7 +8,7 @@ export function ListarDatosSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Leer: mostrar los datos de la API</h2>
       <p className="my-4">
-        Es el momento de juntar todo. El módulo de materias de la clase 2 guardaba los datos en el estado del navegador. Ahora
+        Este es el momento de integrar todo. El módulo de materias de la clase 2 guardaba los datos en el estado del navegador. Ahora
         la fuente de verdad es la API, y el estado de React es solo una copia temporal para dibujar. Los pasos de este CRUD
         son los mismos para cualquier módulo (estudiantes, docentes, productos): cambian los nombres, no la estructura.
       </p>
@@ -29,8 +29,8 @@ export function ListarDatosSection() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cargar al abrir la pantalla</h3>
       <p className="my-4">
-        Cargar datos al aparecer un componente es un efecto: se sincroniza la pantalla con algo externo. Combinamos lo que
-        sabes: useState para guardar los datos y el estado de la pantalla, useEffect para pedirlos y la API centralizada.
+        Cargar datos al aparecer un componente es un efecto: se sincroniza la pantalla con algo externo. Se combina lo
+        aprendido: useState para guardar los datos y el estado de la pantalla, useEffect para pedirlos y la API centralizada.
       </p>
       <CodeFiddle
         language="jsx"
@@ -53,7 +53,7 @@ export default function ListadoMaterias() {
   useEffect(() => {
     const controlador = new AbortController();
 
-    // useEffect no acepta una función async directa, así que la definimos adentro y la llamamos
+    // useEffect no acepta una función async directa, así que se define adentro y se llama
     async function cargar() {
       setEstado("cargando");
       try {
@@ -84,11 +84,11 @@ export default function ListadoMaterias() {
 
       {estado === "error" && (
         <Alert severity="error" action={<Button onClick={() => setIntento((n) => n + 1)}>Reintentar</Button>}>
-          No pudimos cargar las materias. Verifica que la API esté encendida e inténtalo de nuevo.
+          No se pudieron cargar las materias. Verifique que la API esté encendida e intente de nuevo.
         </Alert>
       )}
 
-      {estado === "vacio" && <Typography>Aún no hay materias. Agrega la primera.</Typography>}
+      {estado === "vacio" && <Typography>Aún no hay materias. Agregue la primera.</Typography>}
 
       {estado === "listo" && <TablaMaterias materias={materias} />}
     </Stack>
@@ -96,7 +96,7 @@ export default function ListadoMaterias() {
 }`}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué está pasando línea por línea</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué ocurre línea por línea</h3>
       <MermaidDiagram
         title="De abrir la pantalla a ver la tabla"
         description="Flujo: se dibuja la pantalla en estado cargando, el efecto pide los datos, si llegan se pasa a listo o vacío, si fallan se pasa a error, y reintentar vuelve a pedir."
@@ -118,18 +118,18 @@ export default function ListadoMaterias() {
           ["Cuatro estados en vez de varios booleanos", "No pueden contradecirse: la pantalla está en uno solo a la vez"],
         ]}
       />
-      <Callout title="¿Por qué veo dos peticiones en la pestaña Red?" variant="callout-info">
+      <Callout title="¿Por qué aparecen dos peticiones en la pestaña Red?" variant="callout-info">
         <p className="mb-0">
-          En desarrollo, StrictMode monta el componente, lo desmonta y lo monta otra vez para comprobar que tu limpieza
-          funciona. Por eso ves la primera petición cancelada y una segunda que sí completa. En producción es una sola. Si
-          en tu código no cancelas con AbortController, verás dos peticiones completas; funciona igual, solo es más
+          En desarrollo, StrictMode monta el componente, lo desmonta y lo monta otra vez para comprobar que la limpieza
+          funciona. Por eso la primera petición aparece cancelada y una segunda sí se completa. En producción es una sola.
+          Si el código no cancela con AbortController, se ven dos peticiones completas; funciona igual, solo es más
           trabajo para el servidor.
         </p>
       </Callout>
       <Callout title="Id de la base de datos: id o _id" variant="callout-warning">
         <p className="mb-0">
           json-server usa <code>id</code>. MongoDB usa <code>_id</code> (la API del proyecto de la asignatura devuelve{" "}
-          <code>row._id</code>). Revisa en la pestaña Red el nombre exacto del campo antes de usarlo en la key de la tabla, en
+          <code>row._id</code>). Conviene revisar en la pestaña Red el nombre exacto del campo antes de usarlo en la key de la tabla, en
           los enlaces de editar y en las peticiones de eliminar. Un id mal escrito produce <code>undefined</code> en la URL y
           un error 404 o 500.
         </p>

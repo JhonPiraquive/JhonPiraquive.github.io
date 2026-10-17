@@ -1,5 +1,4 @@
 import { Callout } from "@/components/teaching/Callout";
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { StepReveal } from "@/components/teaching/StepReveal";
@@ -38,12 +37,12 @@ const conFlecha = async () => {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">En qué orden se ejecuta</h3>
       <StepReveal
-        title="Sigue la ejecución paso a paso"
+        title="La ejecución paso a paso"
         steps={[
           { title: "Se llama a la función async", content: "Empieza a ejecutarse línea por línea, como cualquier función." },
           { title: "Aparece un await", content: "La función se pausa en esa línea y entrega el control: el resto del programa sigue funcionando." },
           { title: "La promesa se resuelve", content: "Si se cumplió, await devuelve su valor y la función continúa donde se quedó." },
-          { title: "Si se rechazó", content: "await lanza un error, igual que throw. Si lo rodeas con try/catch, lo capturas." },
+          { title: "Si se rechazó", content: "await lanza un error, igual que throw. Si se rodea con try/catch, se captura." },
           { title: "La función termina", content: "Su resultado se entrega envuelto en una promesa a quien la llamó." },
         ]}
       />
@@ -55,16 +54,16 @@ const conFlecha = async () => {
       </p>
       <CodeFiddle
         language="javascript"
-        title="El esqueleto que usarás siempre"
+        title="El esqueleto que se usa siempre"
         code={`async function cargarDatos() {
   try {
-    // 1. Intenta lo que puede fallar
+    // 1. Se intenta lo que puede fallar
     const resultado = await operacionLenta();
     return resultado;
   } catch (error) {
-    // 2. Si algo falla, llegas aquí con el error
+    // 2. Si algo falla, se llega aquí con el error
     console.error("No se pudo cargar:", error);
-    throw error;          // o devuelve un valor alternativo, según lo que necesites
+    throw error;          // o se devuelve un valor alternativo, según el caso
   } finally {
     // 3. Se ejecuta siempre, haya salido bien o mal (ideal para apagar un indicador de carga)
     console.log("Terminó el intento");
@@ -75,7 +74,7 @@ const conFlecha = async () => {
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Una tras otra o todas a la vez</h3>
       <p className="my-4">
         Si dos peticiones no dependen una de otra, no tiene sentido esperar a que termine la primera para empezar la
-        segunda. Puedes lanzarlas juntas con <code>Promise.all</code> y ganar tiempo.
+        segunda. Se pueden lanzar juntas con <code>Promise.all</code> para ganar tiempo.
       </p>
       <CodeFiddle
         language="javascript"
@@ -92,39 +91,23 @@ const [materias2, docentes2] = await Promise.all([
       />
       <Callout title="Si una falla, Promise.all falla" variant="callout-info">
         <p className="mb-0">
-          <code>Promise.all</code> se rechaza apenas una de las promesas falla. Si necesitas el resultado de cada una, aun si
-          alguna falló, usa <code>Promise.allSettled</code>.
+          <code>Promise.all</code> se rechaza apenas una de las promesas falla. Si hace falta el resultado de cada una, aun si
+          alguna falló, corresponde <code>Promise.allSettled</code>.
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Los errores más comunes</h3>
       <CompareTable
-        headers={["Error", "Qué pasa", "Cómo se corrige"]}
+        headers={["Error", "Qué ocurre", "Cómo se corrige"]}
         rows={[
-          ["Olvidar await", "Obtienes una promesa pendiente en lugar de los datos (verás Promise { <pending> })", "Escribe await antes de la llamada"],
-          ["Usar await fuera de una función async", "Error de sintaxis", "Marca la función como async (los módulos de Vite también permiten await en el nivel superior del archivo)"],
-          ["await dentro de forEach", "forEach no espera: las operaciones se lanzan sin control", "Usa un bucle for…of, o Promise.all con map"],
-          ["No usar try/catch", "Un error de red rompe la pantalla sin explicación", "Rodea con try/catch y muestra un mensaje"],
-          ["Pasar una función async directamente a useEffect", "useEffect espera una función de limpieza, no una promesa", "Define una función async adentro y llámala (lo verás en la página del CRUD)"],
+          ["Olvidar await", "Se obtiene una promesa pendiente en lugar de los datos (aparece Promise { <pending> })", "Escribir await antes de la llamada"],
+          ["Usar await fuera de una función async", "Error de sintaxis", "Marcar la función como async (los módulos de Vite también permiten await en el nivel superior del archivo)"],
+          ["await dentro de forEach", "forEach no espera: las operaciones se lanzan sin control", "Usar un bucle for…of, o Promise.all con map"],
+          ["No usar try/catch", "Un error de red rompe la pantalla sin explicación", "Rodear con try/catch y mostrar un mensaje"],
+          ["Pasar una función async directamente a useEffect", "useEffect espera una función de limpieza, no una promesa", "Definir una función async adentro y llamarla (se aplica en la página del CRUD)"],
         ]}
       />
 
-      <CodeChallenge
-        title="Completa la función"
-        template={`const cargar = {{a}} () => {
-  try {
-    const respuesta = {{b}} fetch("/api/materias");
-    return await respuesta.json();
-  } {{c}} (error) {
-    console.error(error);
-  }
-};`}
-        blanks={[
-          { id: "a", answer: "async", placeholder: "palabra" },
-          { id: "b", answer: "await", placeholder: "palabra" },
-          { id: "c", answer: "catch", placeholder: "palabra" },
-        ]}
-      />
     </section>
   );
 }

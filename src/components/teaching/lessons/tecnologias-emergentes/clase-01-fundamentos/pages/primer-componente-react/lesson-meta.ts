@@ -10,6 +10,6 @@ export const meta: LessonMeta = {
   ...base,
   title: pageDef.title,
   showInTrackIndex: false,
-  seoTitle: "Tu primer proyecto con Vite y React | Tecnologías emergentes",
+  seoTitle: "El primer proyecto con Vite y React | Tecnologías emergentes",
   seoDescription: pageDef.description,
 };

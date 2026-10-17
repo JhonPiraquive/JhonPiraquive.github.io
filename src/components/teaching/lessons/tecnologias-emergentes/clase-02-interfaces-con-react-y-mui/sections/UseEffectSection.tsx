@@ -2,7 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function UseEffectSection() {
   return (
@@ -10,7 +9,7 @@ export function UseEffectSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">useEffect: sincronizar con el mundo exterior</h2>
       <p className="my-4">
         Un componente de React tiene un trabajo principal: describir cómo se ve la pantalla según sus props y su estado.
-        Ese trabajo debe ser «puro»: mismos datos, misma pantalla, sin efectos secundarios. Pero a veces necesitas hacer
+        Ese trabajo debe ser «puro»: mismos datos, misma pantalla, sin efectos secundarios. Pero a veces es necesario hacer
         algo que ocurre <strong>fuera</strong> de React: cambiar el título de la pestaña, pedir datos a un servidor,
         iniciar un temporizador. Eso se llama un <strong>efecto</strong>, y <code>useEffect</code> es el lugar para
         ponerlo.
@@ -46,13 +45,13 @@ export default function Pedidos() {
       />
       <Callout title="Regla de las dependencias" variant="callout-warning">
         <p className="mb-0">
-          Todo valor de props o estado que uses dentro del efecto debe aparecer en el arreglo de dependencias. Si lo
-          omites, el efecto trabajará con valores viejos. El linter de la plantilla de Vite te avisa con una advertencia;
-          hazle caso.
+          Todo valor de props o estado que se use dentro del efecto debe aparecer en el arreglo de dependencias. Si se
+          omite, el efecto trabaja con valores viejos. El linter de la plantilla de Vite lo avisa con una advertencia que
+          conviene atender.
         </p>
       </Callout>
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Limpiar lo que dejaste abierto</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Limpiar lo que quedó abierto</h3>
       <p className="my-4">
         Algunos efectos dejan algo corriendo: un temporizador, una suscripción, una conexión. Si el componente desaparece,
         eso debe detenerse. Para eso el efecto puede devolver una función de limpieza, que React ejecuta antes de repetir el
@@ -84,9 +83,9 @@ export default function Reloj() {
   D --> E["Si el componente sigue, vuelve a ejecutar el efecto"]
   C -->|"No"| F["Espera"]`}
       />
-      <Callout title="¿Por qué mi efecto se ejecuta dos veces?" variant="callout-info">
+      <Callout title="¿Por qué un efecto se ejecuta dos veces?" variant="callout-info">
         <p className="mb-0">
-          En desarrollo, StrictMode ejecuta cada efecto, lo limpia y lo vuelve a ejecutar, solo para comprobar que tu
+          En desarrollo, StrictMode ejecuta cada efecto, lo limpia y lo vuelve a ejecutar, solo para comprobar que la
           limpieza funciona. En producción corre una sola vez. Si algo se rompe al duplicarse, normalmente falta la función
           de limpieza.
         </p>
@@ -94,15 +93,16 @@ export default function Reloj() {
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Cuándo NO usar useEffect</h3>
       <p className="my-4">
-        El error más frecuente entre quienes aprenden es llenar los componentes de efectos innecesarios. La documentación
-        oficial insiste en esto. Antes de escribir un efecto pregúntate si lo que quieres hacer cae en alguno de estos casos:
+        El error más frecuente entre quienes aprenden es llenar los componentes de efectos innecesarios, algo en lo que
+        la documentación oficial insiste. Antes de escribir un efecto conviene revisar si el caso encaja en alguna de
+        estas situaciones:
       </p>
       <CompareTable
-        headers={["Situación", "En lugar de useEffect…"]}
+        headers={["Situación", "Alternativa a useEffect"]}
         rows={[
-          ["Calcular un dato a partir de props o estado (por ejemplo, el total de una lista)", "Calcúlalo directamente al dibujar: const total = items.reduce(...)"],
-          ["Reaccionar a un clic o a enviar un formulario", "Hazlo dentro del manejador del evento (onClick, onSubmit)"],
-          ["Reiniciar el estado cuando cambia una prop", "Cambia la key del componente"],
+          ["Calcular un dato a partir de props o estado (por ejemplo, el total de una lista)", "Calcularlo directamente al dibujar: const total = items.reduce(...)"],
+          ["Reaccionar a un clic o a enviar un formulario", "Hacerlo dentro del manejador del evento (onClick, onSubmit)"],
+          ["Reiniciar el estado cuando cambia una prop", "Cambiar la key del componente"],
           ["Pedir datos a un servidor", "Es un uso válido de useEffect, pero con limpieza (clase 3). En proyectos grandes se usa una librería como TanStack Query"],
         ]}
       />
@@ -119,13 +119,6 @@ useEffect(() => {
 const total = items.reduce((suma, i) => suma + i.precio, 0);`}
       />
 
-      <PracticeExercise
-        title="¿Efecto o no?"
-        prompt="Quieres mostrar «Hay N cursos activos» a partir de la lista de cursos que ya tienes en el estado. ¿Usarías useEffect? Explica tu decisión."
-        hints={["¿Es algo que ocurre fuera de React?", "¿Se puede calcular con los datos que ya tienes al dibujar?"]}
-        expectedKeywords={["no", "derivado", "calcul", "filter", "directamente"]}
-        successMessage="Exacto: es un dato derivado. Se calcula al dibujar, sin efecto."
-      />
     </section>
   );
 }

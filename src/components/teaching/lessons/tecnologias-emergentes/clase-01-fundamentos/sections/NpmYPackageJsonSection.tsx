@@ -1,5 +1,4 @@
 import { Callout } from "@/components/teaching/Callout";
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 
@@ -9,15 +8,15 @@ export function NpmYPackageJsonSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Instalar y gestionar librerías con npm</h2>
       <p className="my-4">
         npm tiene dos caras: es un programa de la terminal y es un enorme catálogo en internet (npmjs.com) con más de
-        dos millones de paquetes. Cuando escribes un comando, npm busca el paquete en el catálogo, lo descarga y lo
-        deja listo en tu proyecto.
+        dos millones de paquetes. Cuando se escribe un comando, npm busca el paquete en el catálogo, lo descarga y lo
+        deja listo en el proyecto.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">El archivo package.json</h3>
       <p className="my-4">
         Cada proyecto de JavaScript tiene un archivo llamado <code>package.json</code>. Es la «ficha técnica» del
-        proyecto: dice cómo se llama, qué comandos tiene y de qué librerías depende. Si lo pierdes, pierdes el mapa del
-        proyecto. Así se ve el de un proyecto creado con Vite y React:
+        proyecto: dice cómo se llama, qué comandos tiene y de qué librerías depende. Sin él, el proyecto pierde su mapa.
+        Así se ve el de un proyecto creado con Vite y React:
       </p>
       <CodeFiddle
         language="json"
@@ -33,8 +32,8 @@ export function NpmYPackageJsonSection() {
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "vite": "^8.0.0"
@@ -45,17 +44,17 @@ export function NpmYPackageJsonSection() {
         headers={["Parte", "Para qué sirve"]}
         rows={[
           ["scripts", "Atajos para comandos. Se ejecutan con npm run nombre. Por ejemplo, npm run dev inicia el servidor de desarrollo."],
-          ["dependencies", "Librerías que tu aplicación necesita para funcionar en producción (React, Material UI)."],
-          ["devDependencies", "Herramientas que solo usas mientras desarrollas (Vite, ESLint). No viajan al usuario final."],
-          ["type: module", "Indica que usas import/export modernos en lugar del antiguo require."],
+          ["dependencies", "Librerías que la aplicación necesita para funcionar en producción (React, Material UI)."],
+          ["devDependencies", "Herramientas que solo se usan durante el desarrollo (Vite, ESLint). No llegan al usuario final."],
+          ["type: module", "Indica que se usan import/export modernos en lugar del antiguo require."],
         ]}
       />
 
-      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Los comandos que vas a usar siempre</h3>
+      <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Los comandos de uso diario</h3>
       <CodeFiddle
         language="bash"
         title="Comandos esenciales de npm"
-        code={`# Instalar todo lo que pide el package.json (lo primero que haces al descargar un proyecto)
+        code={`# Instalar todo lo que pide el package.json (lo primero que se hace al descargar un proyecto)
 npm install
 
 # Agregar una librería de producción
@@ -70,7 +69,7 @@ npm uninstall nombre-del-paquete
 # Ejecutar un script del package.json
 npm run dev
 
-# Ver qué paquetes tienen versión más nueva
+# Ver qué paquetes tienen una versión más nueva
 npm outdated
 
 # Buscar vulnerabilidades conocidas
@@ -81,56 +80,43 @@ npm audit`}
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>
           <strong>node_modules</strong>: aquí npm descarga todas las librerías. Puede pesar cientos de megabytes y se
-          puede volver a generar con <code>npm install</code>. Nunca se entrega ni se sube a Git.
+          vuelve a generar con <code>npm install</code>. Nunca se entrega ni se sube a Git.
         </li>
         <li>
-          <strong>package-lock.json</strong>: guarda la versión exacta de cada paquete que se instaló. Garantiza que tu
-          compañero instale exactamente lo mismo que tú. Este sí se guarda y se comparte.
+          <strong>package-lock.json</strong>: guarda la versión exacta de cada paquete instalado. Garantiza que otra
+          persona instale exactamente lo mismo. Este archivo sí se guarda y se comparte.
         </li>
       </ul>
       <Callout title="Entregar un proyecto como .zip" variant="callout-warning">
         <p className="mb-0">
-          Cuando comprimas un proyecto para entregarlo, deja fuera la carpeta <code>node_modules</code>. Quien reciba el
+          Al comprimir un proyecto para entregarlo se deja fuera la carpeta <code>node_modules</code>. Quien reciba el
           .zip ejecuta <code>npm install</code> y la vuelve a crear. Incluirla vuelve el archivo enorme y no aporta nada.
         </p>
       </Callout>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Qué significan los números de versión</h3>
       <p className="my-4">
-        Las versiones tienen tres números: <code>MAYOR.MENOR.PARCHE</code>, por ejemplo <code>9.5.0</code>. Es lo que se
+        Las versiones tienen tres números: <code>MAYOR.MENOR.PARCHE</code>, por ejemplo <code>2.4.1</code>. Este esquema se
         llama versionado semántico:
       </p>
       <ul className="my-4 list-disc space-y-2 pl-6">
-        <li><strong>Parche</strong> (el último número): corrige errores sin cambiar cómo se usa.</li>
+        <li><strong>Parche</strong> (el último número): corrige errores sin cambiar la forma de usar el paquete.</li>
         <li><strong>Menor</strong> (el del medio): agrega funciones nuevas sin romper lo anterior.</li>
-        <li><strong>Mayor</strong> (el primero): puede romper cosas. Hay que leer la guía de migración antes de subir.</li>
+        <li><strong>Mayor</strong> (el primero): puede romper cosas. Antes de subir de versión mayor se lee la guía de migración.</li>
       </ul>
       <p className="my-4">
-        El símbolo <code>^</code> delante (por ejemplo <code>^19.3.0</code>) significa «acepta actualizaciones menores y de
-        parche, pero no cambies de versión mayor». Es la razón por la que dos proyectos instalados en fechas distintas
-        pueden tener versiones diferentes, y por la que existe el archivo de bloqueo.
+        El símbolo <code>^</code> delante de un número (por ejemplo <code>^2.4.1</code>) significa «acepta
+        actualizaciones menores y de parche, pero no cambies de versión mayor». Por esa razón dos proyectos instalados en
+        fechas distintas pueden tener versiones diferentes, y por eso existe el archivo de bloqueo.
       </p>
 
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Proyectos antiguos y proyectos nuevos</h3>
       <p className="my-4">
-        Vas a encontrar proyectos que se inician con <code>npm start</code> y otros con <code>npm run dev</code>. Los
-        primeros suelen haberse creado con Create React App, una herramienta que el equipo de React dio por obsoleta en
-        2025. Los segundos usan Vite. Para ti, lo importante es leer la sección <code>scripts</code> de package.json:
-        ahí está escrito qué comando inicia cada proyecto.
+        Existen proyectos que se inician con <code>npm start</code> y otros con <code>npm run dev</code>. Los primeros
+        suelen haberse creado con Create React App, una herramienta que el equipo de React dio por obsoleta. Los segundos
+        usan Vite. Lo importante es leer la sección <code>scripts</code> de package.json, donde está escrito qué comando
+        inicia cada proyecto.
       </p>
-
-      <CodeChallenge
-        title="Completa los comandos"
-        template={`# Descargaste un proyecto y quieres instalar sus librerías:
-npm {{a}}
-
-# Ahora quieres iniciarlo en modo desarrollo (script llamado dev):
-npm {{b}} dev`}
-        blanks={[
-          { id: "a", answer: "install", placeholder: "comando" },
-          { id: "b", answer: "run", placeholder: "comando" },
-        ]}
-      />
     </section>
   );
 }

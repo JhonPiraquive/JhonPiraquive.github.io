@@ -2,6 +2,7 @@ import { ClassPageLayout } from "@/components/teaching/ClassPageLayout";
 import { meta } from "./lesson-meta";
 import { HorizonteSection } from "../../sections/HorizonteSection";
 import { RutaDeAprendizajeSection } from "../../sections/RutaDeAprendizajeSection";
+import { EjerciciosClase03Section } from "../../sections/EjerciciosClase03Section";
 import { MiniquizSection } from "../../sections/MiniquizSection";
 import { ExplorarMasSection } from "../../sections/ExplorarMasSection";
 
@@ -20,6 +21,7 @@ export default function HorizonteYCierrePageLesson({ locale: _locale }: Props) {
     >
       <HorizonteSection />
       <RutaDeAprendizajeSection />
+      <EjerciciosClase03Section />
       <MiniquizSection />
       <ExplorarMasSection />
     </ClassPageLayout>
