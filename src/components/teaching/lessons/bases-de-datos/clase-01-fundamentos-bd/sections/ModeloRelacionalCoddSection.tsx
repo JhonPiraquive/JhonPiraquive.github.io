@@ -29,7 +29,7 @@ export function ModeloRelacionalCoddSection() {
 
       <p className="my-4">
         {
-          "Importante para el relato: Codd no inventó SQL. Inventó el modelo. SQL nacería después en el ecosistema System R (SEQUEL). Sin este cambio conceptual no existirían el lenguaje ni el ecosistema de tablas que usarás en el resto del módulo."
+          "Importante para el relato: Codd no inventó SQL. Inventó el modelo. SQL nacería después en el ecosistema System R (SEQUEL). Sin este cambio conceptual no existirían el lenguaje ni el ecosistema de tablas que se usa en el resto del módulo."
         }
       </p>
 
@@ -43,7 +43,7 @@ export function ModeloRelacionalCoddSection() {
 
       <Callout variant="callout-info" title="Independencia de datos, en una frase">
         {
-          "Si agregar un índice o cambiar de disco te obliga a reescribir la aplicación, no tienes independencia física. Si cada usuario necesita otra copia de las tablas para “su vista”, no tienes independencia lógica."
+          "Si agregar un índice o cambiar de disco obliga a reescribir la aplicación, falta independencia física. Si cada usuario necesita otra copia de las tablas para «su vista», falta independencia lógica."
         }
       </Callout>
     </section>

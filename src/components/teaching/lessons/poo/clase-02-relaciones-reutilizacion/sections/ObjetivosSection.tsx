@@ -2,7 +2,7 @@ export function ObjetivosSection() {
   return (
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Objetivos de aprendizaje"}</h2>
-      <p className="my-4 font-semibold">{"Al finalizar esta clase podrás:"}</p>
+      <p className="my-4 font-semibold">{"Al finalizar esta clase, el estudiante puede:"}</p>
       <ul className="my-4 list-disc pl-6">
         <li>
           {
@@ -25,7 +25,7 @@ export function ObjetivosSection() {
           }
         </li>
       </ul>
-      <p className="my-4 font-semibold">{"Entregable de esta clase"}</p>
+      <p className="my-4 font-semibold">{"Resultado de esta clase"}</p>
       <p className="my-4">
         {
           "Jerarquía de catálogo + Pedido que compone líneas, con diagrama coherente. Eso alimenta abstracción y polimorfismo en la Clase 3."

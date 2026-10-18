@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function ConfigurarDominioSection() {
   return (
@@ -54,12 +53,12 @@ export function ConfigurarDominioSection() {
       <ol className="my-4 list-decimal pl-6">
         <li>{"En el registrador, cambias los NS al proveedor DNS (Cloudflare, Route53, panel del hosting)."}</li>
         <li>{"Esperas propagación (TTL y caché global, típicamente minutos a 48 h)."}</li>
-        <li>{"En el panel DNS autoritativo creas registros."}</li>
+        <li>{"En el panel DNS autoritativo se crean los registros."}</li>
         <li>{"Verificas con dig y pruebas de navegador/correo."}</li>
       </ol>
       <p className="my-4">
         {
-          "En la página anterior repasaste cada tipo de registro (A, AAAA, CNAME, MX, TXT, NS, SOA, PTR, SRV, CAA y más). Aquí verás cómo delegar la zona y publicar esos registros en un panel DNS real."
+          "En la página anterior repasaste cada tipo de registro (A, AAAA, CNAME, MX, TXT, NS, SOA, PTR, SRV, CAA y más). Aquí se explica cómo delegar la zona y publicar esos registros en un panel DNS real."
         }
       </p>
       <CodeFiddle
@@ -191,14 +190,6 @@ dig ejemplo.co SOA +short`}
           "Una PyME instala 8 cámaras con app que exige IP fija del NVR. Con DHCP dinámico, el port forwarding deja de funcionar tras reinicio. Contratan IP fija con el ISP, reservan 192.168.1.100 en el router y actualizan el registro A de cctv.empresa.co a la nueva IP pública."
         }
       </Callout>
-      <div className="my-8">
-        <PracticeExercise
-          prompt="Escribe el registro CNAME para que blog.ejemplo.co apunte a sites.github.io. y un TXT de verificación google-site-verification=abc123."
-          hints={["CNAME termina en punto", "TXT entre comillas", "Host blog en la zona ejemplo.co"]}
-          expectedKeywords={["CNAME", "TXT", "blog.ejemplo.co"]}
-          successMessage="Correcto. CNAME blog.ejemplo.co. IN CNAME sites.github.io. y TXT con el valor de verificación."
-        />
-      </div>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores frecuentes"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Culpar al servidor sin revisar caché del navegador: recarga forzada o ventana privada antes de escalar."}</li>

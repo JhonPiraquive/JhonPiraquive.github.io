@@ -11,5 +11,5 @@ export const meta: LessonMeta = {
   title: pageDef.title,
   showInTrackIndex: false,
   seoTitle: "Cierre clase 2 | ADS",
-  seoDescription: "Cierre y miniquiz de análisis y modelado.",
+  seoDescription: "Práctica, miniquiz y autoevaluación de análisis y modelado.",
 };

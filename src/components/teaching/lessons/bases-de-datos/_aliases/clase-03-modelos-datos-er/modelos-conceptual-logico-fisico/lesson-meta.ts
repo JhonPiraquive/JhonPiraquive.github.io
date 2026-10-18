@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-02-diseno-modelos-er/modelos-conceptual-logico-fisico",
+  next: "clase-01-fundamentos-bd/modelos-conceptual-logico-fisico",
   showInTrackIndex: false,
 };

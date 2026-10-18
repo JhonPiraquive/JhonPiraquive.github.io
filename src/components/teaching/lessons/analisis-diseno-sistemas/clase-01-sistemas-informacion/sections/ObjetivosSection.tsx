@@ -3,8 +3,8 @@ export function ObjetivosSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Objetivos de aprendizaje</h2>
       <p className="my-4">
-        Al terminar esta clase, como estudiante de tecnología, podrás mirar una empresa y explicar qué problema
-        resuelve su sistema de información, sin programar todavía.
+        Al terminar esta clase, el estudiante puede mirar una empresa y explicar qué problema resuelve su sistema
+        de información, sin programar todavía.
       </p>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>Explicar qué es un sistema de información y señalar entrada, proceso y salida en un caso real.</li>

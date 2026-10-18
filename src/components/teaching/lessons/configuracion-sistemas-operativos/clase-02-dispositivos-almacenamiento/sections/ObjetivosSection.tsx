@@ -59,7 +59,7 @@ export function ObjetivosSection() {
       </p>
       <Callout title="Del componente al inventario">
         {
-          "Un técnico que no documenta discos, periféricos y licencias repite diagnósticos desde cero. Esta clase entrena el inventario que evita sorpresas en garantía, auditoría y renovación de equipos."
+          "Un técnico que no documenta discos, periféricos y licencias repite diagnósticos desde cero. Esta clase trabaja el inventario que evita sorpresas en garantía, auditoría y renovación de equipos."
         }
       </Callout>
     </section>

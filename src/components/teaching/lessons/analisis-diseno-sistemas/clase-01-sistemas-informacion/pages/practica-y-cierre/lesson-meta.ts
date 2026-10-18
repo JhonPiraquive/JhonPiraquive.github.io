@@ -11,5 +11,5 @@ export const meta: LessonMeta = {
   title: pageDef.title,
   showInTrackIndex: false,
   seoTitle: "Cierre clase 1 | ADS",
-  seoDescription: "Cierre y miniquiz de sistemas de información.",
+  seoDescription: "Práctica, miniquiz y autoevaluación de sistemas de información.",
 };

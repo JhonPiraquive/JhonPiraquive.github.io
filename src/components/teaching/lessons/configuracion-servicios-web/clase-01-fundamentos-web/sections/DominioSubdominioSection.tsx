@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function DominioSubdominioSection() {
   return (
@@ -171,7 +170,7 @@ export function DominioSubdominioSection() {
       </Callout>
       <Callout title="Documentar la jerarquía del dominio">
         {
-          "Al definir la presencia web de una empresa, documenta el FQDN completo (ej. www.innovatech.co), la finalidad de cada subdominio (web, correo, portal) y la estructura jerárquica: subdominio → SLD → TLD. Esta documentación es la base para configurar DNS y certificados TLS."
+          "Al definir la presencia web de una empresa, se documenta el FQDN completo (ej. www.innovatech.co), la finalidad de cada subdominio (web, correo, portal) y la estructura jerárquica: subdominio → SLD → TLD. Esta documentación es la base para configurar DNS y certificados TLS."
         }
       </Callout>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Señales de buen y mal uso"}</h3>
@@ -315,14 +314,6 @@ staging.ejemplo.co. 300  IN  CNAME  servidor-dev.hosting.com.`}
         </li>
       </ul>
 
-      <div className="my-8">
-        <PracticeExercise
-          prompt="¿Por qué una startup en Colombia podría elegir .co en lugar de .com? Menciona al menos dos razones."
-          hints={["Confianza local", "Disponibilidad de nombre", "SEO regional", "NIC Colombia"]}
-          expectedKeywords={["confianza", "local", "disponibilidad"]}
-          successMessage="Bien. El ccTLD .co refuerza presencia local, puede mejorar disponibilidad de nombre y SEO regional."
-        />
-      </div>
     </section>
   );
 }

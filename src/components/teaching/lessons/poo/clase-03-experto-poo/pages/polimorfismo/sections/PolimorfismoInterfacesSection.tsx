@@ -1,6 +1,5 @@
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function PolimorfismoInterfacesSection() {
   return (
@@ -66,28 +65,18 @@ public class Checkout
 foreach (var c in checkouts)
     c.Pagar(100);`}
       />
-      <StepReveal
-        title="Qué pasa en runtime"
-        steps={[
+      <CompareTable title="Qué pasa en runtime" headers={["Paso", "Qué ocurre"]} rows={[
           { title: "Referencia al contrato", content: "Checkout guarda IPasarelaPago inyectada." },
           { title: "Llamada uniforme", content: "checkout.Pagar(100) — misma línea para todos." },
           { title: "Delegación", content: "Pagar llama _pasarela.Cobrar(100)." },
           { title: "Dispatch", content: "El runtime elige Tarjeta, Transferencia o Efectivo según la instancia real." },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Error que anula el beneficio"}</h3>
       <p className="my-4">
         {
           "Meter if (_pasarela is PasarelaTarjeta) dentro de Checkout devuelve el switch que IPasarelaPago debía eliminar. El polimorfismo pide confiar en el contrato."
         }
       </p>
-      <CodeChallenge
-        title="Completa el checkout"
-        template="public void Pagar(decimal monto) => {{b1}}.Cobrar(monto);"
-        blanks={[
-          { id: "b1", answer: "_pasarela", placeholder: "Campo readonly del contrato inyectado" },
-        ]}
-      />
     </section>
   );
 }

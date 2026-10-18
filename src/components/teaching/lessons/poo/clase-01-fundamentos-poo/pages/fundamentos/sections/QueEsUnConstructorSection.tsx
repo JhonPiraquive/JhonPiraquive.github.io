@@ -46,7 +46,7 @@ export function QueEsUnConstructorSection() {
   New["new Pedido(id)"] --> Ctor["Constructor valida + inicializa"]
   Ctor --> Ready["Objeto listo\nEstado = Creado"]`}
       />
-      <Callout title="Anti-patrón que verás en proyectos reales">
+      <Callout title="Anti-patrón frecuente en proyectos reales">
         {
           "Constructor vacío + una lluvia de setters desde otro lado. El pedido queda sin Id o con Estado raro. Mejor: exigir lo esencial al crear y cambiar el estado solo con métodos de dominio (Pagar, Cancelar)."
         }

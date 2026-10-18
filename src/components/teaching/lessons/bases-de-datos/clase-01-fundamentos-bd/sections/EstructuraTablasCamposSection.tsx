@@ -1,4 +1,4 @@
-import { StepReveal } from "@/components/teaching/StepReveal";
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
@@ -64,9 +64,7 @@ export function EstructuraTablasCamposSection() {
         </tbody>
       </table>
 
-      <StepReveal
-        title="De la tabla al valor"
-        steps={[
+      <CompareTable title="De la tabla al valor" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "Tabla",
             content: "Programas — contenedor de filas del mismo tipo de hecho.",
@@ -83,8 +81,7 @@ export function EstructuraTablasCamposSection() {
             title: "Valor",
             content: "El texto largo con tildes va entre comillas simples en SQL.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Reglas de escritura"}</h3>
       <ol className="my-4 list-decimal pl-6">

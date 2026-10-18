@@ -74,7 +74,7 @@ foreach (var p in catalogo)
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Impuestos: mismo mecanismo, otro subdominio"}</h3>
       <p className="my-4">
         {
-          "Al facturar, List<Impuesto> con Iva, ImpuestoCero e ImpuestoFijo se comporta igual: una llamada Calcular(base), distintos montos. Úsalo en el reto si quieres practicar abstractas además del catálogo."
+          "Al facturar, List<Impuesto> con Iva, ImpuestoCero e ImpuestoFijo se comporta igual: una llamada Calcular(base), distintos montos. Sirve para practicar clases abstractas además del catálogo."
         }
       </p>
       <CodeFiddle
@@ -101,7 +101,7 @@ foreach (var imp in new Impuesto[] { new Iva(), new ImpuestoCero() })
       <ul className="my-4 list-disc pl-6">
         <li>{"new en lugar de override — oculta sin dispatch polimórfico."}</li>
         <li>{"Olvidar abstract/virtual en la base."}</li>
-        <li>{"Una derivada lanza excepción donde las demás cumplen — rompe LSP (lo verás en SOLID)."}</li>
+        <li>{"Una derivada lanza excepción donde las demás cumplen — rompe LSP (se trata en SOLID)."}</li>
       </ul>
     </section>
   );

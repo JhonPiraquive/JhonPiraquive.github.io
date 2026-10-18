@@ -1,6 +1,5 @@
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function NavegadoresWebSection() {
   return (
@@ -198,18 +197,6 @@ export function NavegadoresWebSection() {
           "Configuración relevante: cookies (sesión, preferencias), caché (acelera recargas pero oculta cambios recientes), privacidad (terceros, rastreadores), DevTools (Red, Consola, Almacenamiento)."
         }
       </p>
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>
-      <PracticeExercise
-        prompt="Enumera al menos cuatro factores que pueden ralentizar la carga de un sitio en el navegador (motor, extensiones, caché, red, tamaño de assets). ¿Cómo los aislarías uno a uno?"
-        hints={[
-          "Ventana privada sin extensiones",
-          "Pestaña Red en DevTools",
-          "Recarga forzada Ctrl+Shift+R",
-          "Probar otro navegador",
-        ]}
-        expectedKeywords={["caché", "extensiones", "red", "DevTools"]}
-        successMessage="Correcto. Aislar variables (sin extensiones, sin caché, otro navegador) evita culpar al servidor sin evidencia."
-      />
     </section>
   );
 }

@@ -1,5 +1,5 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function CasoIntegradoTiendaSection() {
   return (
@@ -51,9 +51,7 @@ export function CasoIntegradoTiendaSection() {
   Pedido *-- "1..*" LineaPedido : compone
   CarritoCompras o-- Producto : agrega`}
       />
-      <StepReveal
-        title="Leer el diagrama como compañero nuevo"
-        steps={[
+      <CompareTable title="Cómo se lee el diagrama al llegar al equipo" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "Catálogo",
             content: "Producto <|-- Libro/Gadget — «es un»; override en DescripcionEtiqueta.",
@@ -70,8 +68,7 @@ export function CasoIntegradoTiendaSection() {
             title: "Cliente",
             content: "Flecha realiza con 0..* — un cliente, varios pedidos o ninguno.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Diagrama pequeño, código alineado"}</h3>
       <p className="my-4">
         {

@@ -13,25 +13,25 @@ export function RetoIntegradorSection() {
         }
       </p>
       <ol className="my-4 list-decimal pl-6">
-        <li>{"Dibuja la estructura de dominio (TLD, SLD, subdominios necesarios)."}</li>
-        <li>{"Indica qué nameservers delegarías (ej. Cloudflare) y por qué."}</li>
-        <li>{"Escribe los registros A, CNAME (si aplica), MX y TXT (SPF) mínimos."}</li>
-        <li>{"Explica el flujo DNS cuando un cliente en México abre https://api.creativosvalle.co."}</li>
+        <li>{"Dibujar la estructura de dominio (TLD, SLD, subdominios necesarios)."}</li>
+        <li>{"Indicar qué nameservers se delegarían (por ejemplo Cloudflare) y por qué."}</li>
+        <li>{"Escribir los registros A, CNAME (si aplica), MX y TXT (SPF) mínimos."}</li>
+        <li>{"Explicar el flujo DNS cuando un cliente en México abre https://api.creativosvalle.co."}</li>
         <li>
           {
             "El practicante ve 192.168.1.20 en ipconfig y propone usarla en el registro A. Corrige el error y di qué IP necesita realmente."
           }
         </li>
-        <li>{"Lista dos comprobaciones con DevTools o dig antes de dar por cerrada la migración."}</li>
+        <li>{"Listar dos comprobaciones con DevTools o dig antes de dar por cerrada la migración."}</li>
       </ol>
       <p className="my-4">
-        <strong>{"Criterio de éxito:"}</strong>
+        <strong>{"Una buena respuesta incluye:"}</strong>
         {
           " jerarquía DNS clara, registros válidos sin CNAME en apex conflictivo, distinción IP privada/pública, flujo raíz→TLD→NS→A documentado, mención de propagación y TTL."
         }
       </p>
       <PracticeExercise
-        prompt="Completa el reto de creativosvalle.co: estructura de dominio, NS delegados, registros A/CNAME/MX/TXT mínimos, flujo DNS para api.creativosvalle.co y corrección del error 192.168.1.20."
+        prompt="Resolver el reto de creativosvalle.co: estructura de dominio, NS delegados, registros A/CNAME/MX/TXT mínimos, flujo DNS para api.creativosvalle.co y corrección del error 192.168.1.20."
         hints={[
           "TLD .co, SLD creativosvalle",
           "Subdominios www, api, staging",

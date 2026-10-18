@@ -4,7 +4,7 @@ export function CierreSection() {
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Cierre de la lección"}</h2>
       <p className="my-4">
         {
-          "Has recorrido la arquitectura del computador desde el gabinete hasta el firmware de arranque: la base sobre la que se instalarán sistemas operativos y aplicaciones en las clases siguientes."
+          "La clase recorre la arquitectura del computador desde el gabinete hasta el firmware de arranque: la base sobre la que se instalarán sistemas operativos y aplicaciones en las clases siguientes."
         }
       </p>
       <p className="my-4 font-semibold">{"Ideas clave para retener:"}</p>
@@ -17,7 +17,7 @@ export function CierreSection() {
       </ul>
       <p className="my-4">
         <strong>{"Siguiente paso:"}</strong>{" "}
-        {"lección clase-02-dispositivos-almacenamiento — HDD, SSD, periféricos e inventario de hardware."}
+        {"Clase 2, dispositivos y almacenamiento: HDD, SSD, periféricos e inventario de hardware."}
       </p>
     </section>
   );

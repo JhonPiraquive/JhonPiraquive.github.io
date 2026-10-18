@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-04-experto-bd/tcl-transacciones-acid",
+  next: "clase-03-consultas-y-administracion/tcl-transacciones-acid",
   showInTrackIndex: false,
 };

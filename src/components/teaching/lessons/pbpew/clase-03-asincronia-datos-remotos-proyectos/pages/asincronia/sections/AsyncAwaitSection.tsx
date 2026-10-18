@@ -1,0 +1,92 @@
+import { Callout } from "@/components/teaching/Callout";
+import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { CompareTable } from "@/components/teaching/CompareTable";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
+export function AsyncAwaitSection() {
+  return (
+    <section>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"async / await"}</h2>
+      <p className="my-4">
+        <strong>{"`async function`"}</strong>
+        {
+          " — una función marcada `async` siempre devuelve una promesa. Si se hace `return 42`, el llamador recibe una promesa resuelta con `42`."
+        }
+      </p>
+      <p className="my-4">
+        <strong>{"`await`"}</strong>
+        {
+          " — solo dentro de funciones `async`. Pausa la ejecución de esa función hasta que la promesa a la derecha se settle; mientras tanto, el hilo principal sigue libre. El código parece sincrónico pero no bloquea la UI."
+        }
+      </p>
+      <p className="my-4">
+        <strong>{"`try/catch` con `await`:"}</strong>
+        {
+          " errores de promesas rechazadas se capturan igual que excepciones sincrónicas — lectura más clara que `.catch` anidado para flujos lineales."
+        }
+      </p>
+      <CompareTable
+        headers={["Criterio", "Cadena .then", "async/await"]}
+        rows={[
+          ["Estilo", "Funcional, encadenado", "Imperativo, parecido a sync"],
+          ["Errores", ".catch al final", "try/catch local"],
+          ["Cuándo usar", "Transformaciones cortas", "Flujos lineales largos"],
+        ]}
+      />
+      <MermaidDiagram
+        chart={`flowchart TD
+  A["async function cargar()"] --> B["await fetch(url)"]
+  B --> C{"¿ok?"}
+  C -->|sí| D["await res.json()"]
+  C -->|no| E["throw / catch"]
+  D --> F["usar data"]
+  E --> G["console.error"]`}
+      />
+      <CodeFiddle
+        language="javascript"
+        code={`async function cargar() {
+  try {
+    const res = await fetch("/api/datos.json");
+    const data = await res.json();
+    console.log(data);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+cargar();`}
+      />
+      <CodeFiddle
+        language="javascript"
+        code={`function esperar(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function tresPasos() {
+  console.log("paso 1");
+  await esperar(300);
+  console.log("paso 2");
+  await esperar(300);
+  console.log("paso 3");
+}
+
+tresPasos();`}
+      />
+      <Callout title="Error frecuente — await fuera de async">
+        {
+          'const data = await fetch("/api") en el cuerpo global del script da SyntaxError en un script clásico. Se envuelve en async function obtener() { ... } y se llama obtener(). await solo pausa esa función async; no bloquea todo el navegador.'
+        }
+      </Callout>
+      <CodeFiddle
+        language="javascript"
+        code={`// ❌ SyntaxError en script clásico
+// const data = await fetch("/api");
+
+// ✅
+async function obtener() {
+  const data = await fetch("/api");
+  return data;
+}`}
+      />
+    </section>
+  );
+}

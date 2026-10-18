@@ -3,8 +3,7 @@ export function ObjetivosSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Objetivos de aprendizaje</h2>
       <p className="my-4">
-        Esta clase arma el vocabulario y el proceso de análisis que usarás en cualquier proyecto de software
-        de una tecnología.
+        Esta clase arma el vocabulario y el proceso de análisis que se usan en cualquier proyecto de software.
       </p>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>Definir UML y usar con precisión clase, objeto, actor, requerimiento y caso de uso.</li>

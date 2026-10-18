@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-03-sql-ddl-dml/ddl-estructura",
+  next: "clase-02-del-diseno-al-esquema/ddl-estructura",
   showInTrackIndex: false,
 };

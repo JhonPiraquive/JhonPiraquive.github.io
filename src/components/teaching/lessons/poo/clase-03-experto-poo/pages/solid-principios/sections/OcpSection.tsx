@@ -1,6 +1,6 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const CONTRATO_IENVIO = `public interface IEnvio
 {
@@ -46,15 +46,12 @@ export function OcpSection() {
   IEnvio <|.. EnvioExpress
   IEnvio <|.. EnvioNormal`}
       />
-      <StepReveal
-        title="EnvioGratis sin editar CalculadoraEnvioPedido"
-        steps={[
+      <CompareTable title="EnvioGratis sin editar CalculadoraEnvioPedido" headers={["Paso", "Qué ocurre"]} rows={[
           { title: "Cliente usa IEnvio", content: "CalculadoraEnvioPedido solo delega en _estrategia." },
           { title: "Express y Normal existen", content: "Main elige cuál inyectar." },
           { title: "Llega EnvioGratis", content: "Nueva clase : IEnvio con regla promo." },
           { title: "Calculadora intacta", content: "Solo cambia la línea de composición en Main." },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"No confundir con «nunca editar nada»"}</h3>
       <p className="my-4">
         {

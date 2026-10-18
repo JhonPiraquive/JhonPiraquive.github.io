@@ -43,8 +43,8 @@ export const CLASE_01: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Miniquiz de la clase",
-      description: "Comprueba los fundamentos de POO con el miniquiz de Clase 1.",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, miniquiz y autoevaluación de fundamentos de POO.",
       readMinutes: 15,
     },
   ],
@@ -90,8 +90,8 @@ export const CLASE_02: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Miniquiz de la clase",
-      description: "Comprueba herencia, relaciones y UML con el miniquiz de Clase 2.",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, miniquiz y autoevaluación de herencia, relaciones y UML.",
       readMinutes: 15,
     },
   ],
@@ -136,8 +136,8 @@ export const CLASE_03: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Miniquiz de la clase",
-      description: "Comprueba abstracción, polimorfismo y SOLID con el miniquiz de Clase 3.",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, miniquiz y autoevaluación de abstracción, polimorfismo y SOLID.",
       readMinutes: 15,
     },
   ],

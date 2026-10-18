@@ -1,4 +1,4 @@
-import { StepReveal } from "@/components/teaching/StepReveal";
+import { CompareTable } from "@/components/teaching/CompareTable";
 
 const ACTAS = [
   {
@@ -9,7 +9,7 @@ const ACTAS = [
   {
     title: "Acta 2 — Viabilidad",
     content:
-      "¿Se puede hacer desde lo técnico, lo económico y lo legal? Identifica qué podría hacer fracasar el proyecto. Entregable: 1 o 2 páginas de ese análisis. Conviene sumar la viabilidad operativa: si las personas podrán usarlo.",
+      "¿Se puede hacer desde lo técnico, lo económico y lo legal? Señala qué podría hacer fracasar el proyecto. Entregable: 1 o 2 páginas de ese análisis. Conviene sumar la viabilidad operativa: si las personas podrán usarlo.",
   },
   {
     title: "Acta 3 — Riesgos",
@@ -37,7 +37,7 @@ export function ActasPlanificacionSection() {
         mejoras, salga más barato que construir uno nuevo. También se revisan recursos, equipo, cronograma,
         presupuesto y seguridad.
       </p>
-      <StepReveal title="Cinco actas y su entregable" steps={ACTAS} />
+      <CompareTable title="Cinco actas y su entregable" headers={["Acta", "Contenido y entregable"]} rows={ACTAS.map((x) => [x.title, x.content])} />
       <p className="my-4">
         En Logística SAS, el acta de ámbito diría: el sistema cubre órdenes de servicio, clientes, proveedores,
         insumos y reportes del área de servicios. Queda fuera, por ahora, la contabilidad y la nómina. El acta

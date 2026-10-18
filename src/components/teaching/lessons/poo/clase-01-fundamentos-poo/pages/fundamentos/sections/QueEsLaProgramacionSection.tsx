@@ -90,7 +90,7 @@ export function QueEsLaProgramacionSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Míralo en C#"}</h3>
       <p className="my-4">
         {
-          "Abajo, Producto nace con nombre y precio válidos. AplicarDescuento es la única forma de bajar el precio: si pasas un porcentaje absurdo, el objeto rechaza el cambio."
+          "Abajo, Producto nace con nombre y precio válidos. AplicarDescuento es la única forma de bajar el precio: si se pasa un porcentaje absurdo, el objeto rechaza el cambio."
         }
       </p>
       <CodeFiddle language="csharp" title="Producto en Tienda Andes" code={PRODUCTO_CODE} />

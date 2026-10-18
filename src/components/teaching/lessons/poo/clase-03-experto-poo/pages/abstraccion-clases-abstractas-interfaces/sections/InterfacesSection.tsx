@@ -1,4 +1,3 @@
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 
 export function InterfacesSection() {
@@ -64,7 +63,7 @@ enDemo.Confirmar("PED-002");`}
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Varios roles: una clase, varias interfaces"}</h3>
       <p className="my-4">
         {
-          "En C# una clase puede implementar varias interfaces. Un mismo tipo puede ser «guardable» y «notificable» sin heredar de dos bases imposibles. Más adelante, con SOLID, verás ISP: contratos pequeños, no un IManagerDeTodo."
+          "En C# una clase puede implementar varias interfaces. Un mismo tipo puede ser «guardable» y «notificable» sin heredar de dos bases imposibles. Más adelante, con SOLID, se trabaja ISP: contratos pequeños, no un IManagerDeTodo."
         }
       </p>
 <p className="my-4">
@@ -72,13 +71,6 @@ enDemo.Confirmar("PED-002");`}
           "Si ServicioPedidos hace new RepositorioConsola() por dentro, ¿sigue valiendo la interfaz? No: el acoplamiento volvió. El contrato sirve cuando quien usa el servicio elige la implementación afuera (Main o pruebas)."
         }
       </p>
-      <CodeChallenge
-        title="Implementa el repositorio"
-        template={`public class RepositorioConsola : {{b1}}\n{\n    public void Guardar(string pedidoId) => Console.WriteLine($"Pedido {pedidoId} registrado");\n}`}
-        blanks={[
-          { id: "b1", answer: "IRepositorioPedidos", placeholder: "Contrato que declara Guardar" },
-        ]}
-      />
     </section>
   );
 }

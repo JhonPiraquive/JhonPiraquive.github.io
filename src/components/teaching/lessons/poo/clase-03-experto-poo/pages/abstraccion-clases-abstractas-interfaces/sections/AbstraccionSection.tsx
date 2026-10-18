@@ -1,8 +1,7 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { Callout } from "@/components/teaching/Callout";
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function AbstraccionSection() {
   return (
@@ -56,15 +55,12 @@ public class Caja
     public void Cobrar(decimal monto) => _pago.Pagar(monto);
 }`}
       />
-      <StepReveal
-        title="Registrar Nequi sin tocar Caja"
-        steps={[
+      <CompareTable title="Registrar Nequi sin tocar Caja" headers={["Paso", "Qué ocurre"]} rows={[
           { title: "Hoy", content: "`new Caja(new PagoTarjeta())` — `Caja` solo ve `IPago`." },
           { title: "Mañana", content: "Creas `PagoNequi : IPago`; `Caja` no se edita." },
           { title: "Misma llamada", content: "`caja.Cobrar(100)` delega en la implementación inyectada." },
           { title: "Comportamiento distinto", content: "Cada `IPago` imprime su mensaje; el cliente permanece igual." },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <MermaidDiagram
         title="Caja depende del contrato, no del banco"
         chart={`classDiagram
@@ -82,7 +78,7 @@ public class Caja
       />
       <Callout title="Malentendido frecuente" variant="callout-warning">
         {
-          "Abstracción no es «meter interfaces por si acaso». Si solo hay efectivo y no hay segunda implementación a la vista, IPago puede esperar. Abstrae cuando hay variación real y quieres que Caja (u otro cliente) no cambie cada trimestre."
+          "Abstracción no es «meter interfaces por si acaso». Si solo hay efectivo y no hay segunda implementación a la vista, IPago puede esperar. Abstrae cuando hay variación real y se quiere que Caja (u otro cliente) no cambie cada trimestre."
         }
       </Callout>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Comprueba en una frase"}</h3>
@@ -91,13 +87,6 @@ public class Caja
           "¿Qué tipo debe recibir el constructor de Caja para que Nequi sea solo una clase nueva? Si respondiste el contrato de pago, vas bien."
         }
       </p>
-      <CodeChallenge
-        title="Completa la inyección"
-        template="public Caja({{b1}} pago) => _pago = pago ?? throw new ArgumentNullException(nameof(pago));"
-        blanks={[
-          { id: "b1", answer: "IPago", placeholder: "Tipo del contrato que recibe el constructor" },
-        ]}
-      />
     </section>
   );
 }

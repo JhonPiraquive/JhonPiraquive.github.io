@@ -68,7 +68,7 @@ public class NotificacionSms : NotificacionPedido
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"abstract frente a virtual"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"abstract: la base no tiene cuerpo; la derivada debe implementar."}</li>
-        <li>{"virtual: la base ofrece comportamiento por defecto que puedes sobrescribir."}</li>
+        <li>{"virtual: la base ofrece comportamiento por defecto que se puede sobrescribir."}</li>
         <li>{"new NotificacionPedido(\"x\") no compila — la abstracta es molde, no producto."}</li>
       </ul>
       <MermaidDiagram

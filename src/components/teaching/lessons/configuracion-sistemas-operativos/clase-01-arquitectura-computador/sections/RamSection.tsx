@@ -39,7 +39,7 @@ export function RamSection() {
       <CompareTable
         headers={["Generación", "Pin / notch", "Velocidad ejemplo", "Notas"]}
         rows={[
-          ["DDR4", "288 pines", "3200 MT/s", "Amplia adopción hasta ~2022"],
+          ["DDR4", "288 pines", "3200 MT/s", "Muy extendida, hoy en reemplazo"],
           ["DDR5", "288 pines (notch distinto)", "4800–6400+ MT/s", "Mayor ancho de banda, PMIC en módulo"],
           ["SRAM", "Integrada en CPU", "Más rápida que DRAM", "No se compra como módulo de sistema"],
         ]}
@@ -57,7 +57,7 @@ export function RamSection() {
         <li>{"Un solo módulo en placa dual-channel: pierde ~30–50 % ancho de banda de memoria."}</li>
         <li>{"Forzar XMP/EXPO sin refrigeración adecuada: inestabilidad o pantallazos azules."}</li>
         <li>{"Mezclar DDR4 y DDR5 «si encajan»: el notch evita insertar — son incompatibles."}</li>
-        <li>{"Comprar 4 GB en 2026 para Windows 11 + navegador: experiencia frustrante garantizada."}</li>
+        <li>{"Comprar 4 GB hoy para un sistema de escritorio actual con navegador: experiencia frustrante garantizada."}</li>
       </ul>
     </section>
   );

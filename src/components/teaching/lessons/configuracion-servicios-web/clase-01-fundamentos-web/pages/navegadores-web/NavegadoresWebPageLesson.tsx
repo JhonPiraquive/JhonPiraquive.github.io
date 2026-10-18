@@ -1,6 +1,5 @@
 import { ClassPageLayout } from "@/components/teaching/ClassPageLayout";
 import { meta } from "./lesson-meta";
-import { ObjetivosSection } from "../../sections/ObjetivosSection";
 import { NavegadoresWebSection } from "../../sections/NavegadoresWebSection";
 
 type Props = { locale: string };
@@ -16,7 +15,6 @@ export default function NavegadoresWebPageLesson({ locale }: Props) {
       prev={meta.prev}
       next={meta.next}
     >
-      <ObjetivosSection />
       <NavegadoresWebSection />
     </ClassPageLayout>
   );

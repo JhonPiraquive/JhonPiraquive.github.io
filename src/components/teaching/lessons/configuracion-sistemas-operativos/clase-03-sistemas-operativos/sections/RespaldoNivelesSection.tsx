@@ -1,5 +1,4 @@
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function RespaldoNivelesSection() {
   return (
@@ -26,8 +25,7 @@ export function RespaldoNivelesSection() {
       />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Cómo funciona la regla 3-2-1"}</h3>
-      <StepReveal
-        steps={[
+      <CompareTable headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "3 copias",
             content: "Datos de producción + al menos dos respaldos independientes.",
@@ -40,8 +38,7 @@ export function RespaldoNivelesSection() {
             title: "1 copia fuera del sitio",
             content: "Nivel 3 o 4 para sobrevivir robo o incendio en la oficina.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve / Por qué importa"}</h3>
       <p className="my-4">

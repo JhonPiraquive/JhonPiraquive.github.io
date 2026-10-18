@@ -42,8 +42,8 @@ pwd
 ls -la
 
 # Crear carpeta y entrar
-mkdir informe-2026
-cd informe-2026
+mkdir informe-anual
+cd informe-anual
 
 # Crear y editar archivo
 nano resumen.txt
@@ -52,10 +52,10 @@ nano resumen.txt
 cd ..
 
 # Eliminar archivo (¡irreversible!)
-rm informe-2026/resumen.txt
+rm informe-anual/resumen.txt
 
 # Eliminar carpeta vacía
-rmdir informe-2026
+rmdir informe-anual
 
 # Comando que requiere privilegios
 sudo systemctl restart nginx

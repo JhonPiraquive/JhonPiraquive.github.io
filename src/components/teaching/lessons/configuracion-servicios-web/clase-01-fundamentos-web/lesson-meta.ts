@@ -6,12 +6,12 @@ const nav = getNavForSlug(CLASE_01.classSlug);
 export const meta: LessonMeta = {
   track: "configuracion-servicios-web",
   slug: CLASE_01.classSlug,
-  title: "Fundamentos web: navegadores, IP, dominios y DNS",
+  title: "Clase 1: Fundamentos web, DNS y publicación",
   order: nav.order,
   prev: nav.prev,
   next: nav.next,
-  seoTitle: "Fundamentos web: navegadores, IP y DNS | Servicios web",
+  seoTitle: "Fundamentos web, DNS y publicación | Servicios web",
   seoDescription:
-    "Clase 1 del curso CSW: navegadores, IPv4/IPv6, dominios y DNS. Índice de páginas con lectura guiada (~15–20 min por página).",
+    "Clase 1 del curso CSW: navegadores, IPv4 e IPv6, dominios, DNS y publicación de un sitio. Índice de páginas con lectura guiada.",
   classTitle: CLASE_01.classTitle,
 };

@@ -10,7 +10,7 @@ export const meta: LessonMeta = {
   ...base,
   title: pageDef.title,
   showInTrackIndex: false,
-  seoTitle: "Práctica: fundamentos BD, motores y cierre",
+  seoTitle: "Práctica y cierre: fundamentos y modelado",
   seoDescription:
-    "Práctica guiada, reto Andes Tech, cierre y miniquiz: BD vs SGBD, motores/GUI/CLI y estructura tabla-campo-valor.",
+    "Práctica guiada, reto Andes Tech, miniquiz y autoevaluación: BD y SGBD, motores, estructura de tablas, familias y modelado ER.",
 };

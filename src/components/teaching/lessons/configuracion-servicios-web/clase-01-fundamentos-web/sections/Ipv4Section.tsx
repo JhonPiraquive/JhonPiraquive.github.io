@@ -1,6 +1,5 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function Ipv4Section() {
   return (
@@ -228,13 +227,6 @@ printf '%08d\\n' $(echo "obase=2;192" | bc)
         </li>
       </ul>
 
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>
-      <PracticeExercise
-        prompt="Un compañero dice: «Mi IP es 192.168.0.15, así que ya puedo poner esa IP en el registro A del dominio». ¿Qué le explicas sobre IP privada vs pública?"
-        hints={["RFC 1918", "NAT", "IP pública del servidor o balanceador"]}
-        expectedKeywords={["privada", "pública", "Internet", "NAT"]}
-        successMessage="Correcto. 192.168.x.x es de red local; el registro A público necesita la IP enrutable desde Internet."
-      />
     </section>
   );
 }

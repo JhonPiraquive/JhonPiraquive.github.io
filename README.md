@@ -32,11 +32,11 @@ Sitio personal y portal de enseñanza universitaria desplegado en [GitHub Pages]
 
 | Track | Slug | Contenido |
 |-------|------|-----------|
-| Programación básica para entornos web | `pbpew` | 12 lecciones + 4 proyectos (JS, DOM, async, fetch) |
+| Programación básica para entornos web | `pbpew` | 3 clases: 12 temas + 4 proyectos (JS, DOM, async, fetch) |
 | Programación Orientada a Objetos | `poo` | 10 lecciones (C#, SOLID, diagramas UML) |
-| Seguridad en Aplicaciones | `sea` | 12 lecciones (CIA, ISO 27001, JWT, SQLi, criptografía) |
-| Programación Orientada a Sitios Web | `posw` | 22 lecciones (HTTP, REST, APIs, React, Angular) |
-| Configuración de Servicios Web | `configuracion-servicios-web` | 4 clases (DNS, hosting, correo, SSH, Docker, VMs) |
+| Seguridad en Aplicaciones | `sea` | 3 clases, 12 temas (CIA, ISO 27001, JWT, SQLi, criptografía) |
+| Programación Orientada a Sitios Web | `posw` | 3 clases, 22 temas (HTTP, REST, APIs, React, Angular) |
+| Configuración de Servicios Web | `configuracion-servicios-web` | 3 clases (DNS, hosting, HTTPS, correo, SSH, Docker, VMs) |
 | Tecnologías Emergentes | `tecnologias-emergentes` | 3 clases de 0 a 100 (concepto y evaluación de tecnologías emergentes; práctica con JavaScript moderno, React, MUI, React Router, APIs y CRUD) |
 
 Rutas: `/es/teaching/{track}/{slug}/` y `/en/teaching/{track}/{slug}/`

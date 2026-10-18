@@ -9,19 +9,19 @@ export function RetoIntegradorSection() {
       <p className="my-4 font-semibold">{"Contexto: consultora TI en Lima con 8 PCs y 1 servidor Ubuntu"}</p>
       <p className="my-4">
         {
-          "Debes documentar la instalación de Ubuntu Server en el host de archivos, crear usuarios por área (ventas, soporte), configurar permisos en /srv/compartido y proponer respaldo en 4 niveles."
+          "Se requiere documentar la instalación de Ubuntu Server en el host de archivos, crear usuarios por área (ventas, soporte), configurar permisos en /srv/compartido y proponer respaldo en 4 niveles."
         }
       </p>
       <ol className="my-4 list-decimal pl-6">
-        <li>{"Lista requisitos mínimos de RAM y disco para el servidor."}</li>
-        <li>{"Describe particiones GPT recomendadas (/boot/efi, /, /srv)."}</li>
-        <li>{"Escribe comandos useradd/passwd/usermod para usuario soporte en grupo sudo."}</li>
-        <li>{"Define chmod para carpeta compartida: lectura todos, escritura solo grupo soporte."}</li>
-        <li>{"Diseña niveles 1–4 de respaldo con medios concretos."}</li>
+        <li>{"Requisitos mínimos de RAM y disco para el servidor."}</li>
+        <li>{"Particiones GPT recomendadas (/boot/efi, /, /srv)."}</li>
+        <li>{"Comandos useradd, passwd y usermod para el usuario soporte dentro del grupo sudo."}</li>
+        <li>{"Permisos chmod de la carpeta compartida: lectura para todos, escritura solo para el grupo soporte."}</li>
+        <li>{"Niveles 1 a 4 de respaldo, con medios concretos."}</li>
       </ol>
       <div className="my-8">
         <PracticeExercise
-          prompt="Reto integrador: completa el plan de servidor Ubuntu (particiones, usuarios, chmod /srv/compartido y estrategia 3-2-1)."
+          prompt="Reto integrador: completar el plan de servidor Ubuntu (particiones, usuarios, chmod /srv/compartido y estrategia 3-2-1)."
           hints={[
             "8 GB RAM, 100 GB+ disco",
             "EFI 512 MB, / 40 GB, /srv resto",

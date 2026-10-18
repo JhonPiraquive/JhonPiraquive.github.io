@@ -70,9 +70,9 @@ export function DiscoOpticoSection() {
         </table>
       </div>
 
-      <Callout title="Tendencia 2020+">
+      <Callout title="Tendencia actual">
         {
-          "La mayoría de portátiles y torres nuevas omiten bahía óptica. La alternativa habitual es USB bootable o ISO montada en red (PXE). Conserva una unidad externa USB en el banco de herramientas del técnico."
+          "La mayoría de portátiles y torres nuevas omiten bahía óptica. La alternativa habitual es USB bootable o ISO montada en red (PXE). Conviene tener una unidad externa USB en el banco de herramientas del técnico."
         }
       </Callout>
 

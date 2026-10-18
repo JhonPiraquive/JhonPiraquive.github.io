@@ -3,7 +3,7 @@ import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 export function CompruebaTuComprensionSection() {
   return (
     <section>
-      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Comprueba tu comprensión"}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">{"Ejercicios con pista"}</h2>
       <div className="my-8">
         <PracticeExercise
           prompt="¿Qué hace el planificador de procesos del SO y qué señal indica que está saturado?"
@@ -14,7 +14,7 @@ export function CompruebaTuComprensionSection() {
       </div>
       <div className="my-8">
         <PracticeExercise
-          prompt="Diferencia ruta absoluta y relativa en Linux con un ejemplo cada una desde /home/tec."
+          prompt="Diferenciar ruta absoluta y relativa en Linux, con un ejemplo de cada una desde /home/tec."
           hints={["Empieza en /", "pwd actual", ".."]}
           expectedKeywords={["/", "home", "relativa", "absoluta"]}
           successMessage="Bien: absoluta /home/tec/docs/informe.pdf; relativa docs/informe.pdf desde /home/tec."

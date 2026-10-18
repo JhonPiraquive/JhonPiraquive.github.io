@@ -6,7 +6,7 @@ export const meta: LessonMeta = {
   title: "Programación básica para entornos web",
   order: 0,
   prev: null,
-  next: "01-intro-js-y-dom",
+  next: "clase-01-fundamentos-lenguaje",
   seoTitle: "PBPEW: objetivos y resultados de aprendizaje",
   seoDescription:
     "Objetivos de Aprendizaje y Resultados de aprendizaje del módulo Programación básica para entornos web (JavaScript).",

@@ -1,0 +1,69 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
+import { CodeFiddle } from "@/components/teaching/CodeFiddle";
+import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
+
+export function HelloPhpSection() {
+  return (
+    <section>
+      <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">
+        {"Primer proyecto PHP en htdocs"}
+      </h2>
+      <CodeFiddle
+        language="php"
+        title="Ejemplo en htdocs"
+        code={`<?php
+// /opt/lampp/htdocs/hola/index.php
+$nombre = $_GET['nombre'] ?? 'Mundo';
+echo "<h1>Hola, {$nombre}!</h1>";
+echo "<p>Servidor: " . $_SERVER['SERVER_SOFTWARE'] . "</p>";
+?>`}
+      />
+      <p className="my-4">
+        {"URL de prueba: "}
+        <code>{"http://localhost/hola/?nombre=Angular"}</code>
+      </p>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">
+        {"Flujo request/response en XAMPP"}
+      </h3>
+      <ol className="my-4 list-decimal pl-6">
+        <li>{"Navegador solicita GET /hola/?nombre=Angular."}</li>
+        <li>{"Apache recibe la petición y delega a PHP."}</li>
+        <li>{"PHP lee $_GET, genera HTML."}</li>
+        <li>{"Apache devuelve la respuesta al cliente."}</li>
+      </ol>
+      <MermaidDiagram
+        title="Request/response en XAMPP"
+        description="Secuencia navegador Apache PHP HTML"
+        chart={`sequenceDiagram
+  participant N as Navegador
+  participant A as Apache
+  participant P as PHP
+  N->>A: GET /hola/?nombre=Angular
+  A->>P: Ejecutar index.php
+  P->>P: Leer GET y generar HTML
+  P-->>A: HTML
+  A-->>N: Respuesta HTTP
+`}
+      />
+      <CompareTable title="Petición PHP en XAMPP" headers={["Paso", "Qué ocurre"]} rows={[
+          {
+            title: "1. Request HTTP",
+            content:
+              "El navegador envía GET /hola/?nombre=Angular al puerto 80.",
+          },
+          {
+            title: "2. Apache + PHP",
+            content: "Apache ejecuta index.php y PHP procesa $_GET.",
+          },
+          {
+            title: "3. Respuesta HTML",
+            content: "Se genera HTML dinámico con el nombre recibido.",
+          },
+          {
+            title: "4. Renderizado",
+            content: "El navegador muestra Hola, Angular!",
+          },
+        ].map((s) => [s.title, s.content])} />
+    </section>
+  );
+}

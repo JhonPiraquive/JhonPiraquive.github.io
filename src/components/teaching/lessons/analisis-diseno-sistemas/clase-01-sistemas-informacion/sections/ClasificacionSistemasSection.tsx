@@ -5,8 +5,8 @@ export function ClasificacionSistemasSection() {
     <section>
       <h2 className="mb-4 text-2xl font-bold text-[var(--color-primary)]">Dos formas de clasificar</h2>
       <p className="my-4">
-        Hay dos preguntas distintas. No las mezcles. La primera mira cómo se relaciona el sistema con lo que
-        está fuera. La segunda, que verás en la siguiente sección, mira para qué lo usa la empresa.
+        Hay dos preguntas distintas, y conviene no mezclarlas. La primera mira cómo se relaciona el sistema con lo
+        que está fuera. La segunda, que se desarrolla en la siguiente sección, mira para qué lo usa la empresa.
       </p>
       <h3 className="mb-2 mt-6 text-xl font-semibold text-[var(--color-primary)]">Según el entorno</h3>
       <table className="my-4 w-full border-collapse text-sm">

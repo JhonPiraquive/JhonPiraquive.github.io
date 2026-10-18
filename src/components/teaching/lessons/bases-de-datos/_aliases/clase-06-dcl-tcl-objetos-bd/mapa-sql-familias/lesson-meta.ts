@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-04-experto-bd/mapa-sql-familias",
+  next: "clase-03-consultas-y-administracion/mapa-sql-familias",
   showInTrackIndex: false,
 };

@@ -1,0 +1,11 @@
+import type { LessonMeta } from "@/lib/teaching-lessons-registry";
+
+export const meta: LessonMeta = {
+  track: "bases-de-datos",
+  slug: "clase-02-diseno-modelos-er/familias-relacional-nosql-grafos",
+  title: "Redirección legacy",
+  order: 901,
+  prev: null,
+  next: "clase-01-fundamentos-bd/familias-relacional-nosql-grafos",
+  showInTrackIndex: false,
+};

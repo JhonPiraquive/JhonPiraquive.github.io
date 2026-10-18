@@ -1,5 +1,4 @@
 import { ClayCard } from "@/components/clay/ClayCard";
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 const PROMOCION_CODE = `using System;
@@ -56,23 +55,6 @@ export function InvariantesReglasQueElSection() {
   Input[Datos de entrada] --> Validate{Invariantes OK?}
   Validate -->|No| Error[Excepcion clara]
   Validate -->|Si| Create[Objeto valido]`}
-      />
-      <CodeChallenge
-        title="Completa la validación del constructor"
-        template={`public Promocion(string nombre, DateTime inicio, DateTime fin)
-{
-    if (string.IsNullOrWhiteSpace(nombre))
-        throw new ArgumentException("Nombre requerido");
-    {{blank1}}
-        throw new ArgumentException(
-            $"Fin ({fin:yyyy-MM-dd}) debe ser posterior a Inicio ({inicio:yyyy-MM-dd})");
-    Nombre = nombre;
-    Inicio = inicio;
-    Fin = fin;
-}`}
-        blanks={[
-          { id: "blank1", answer: "if (fin <= inicio)", placeholder: "condición de invariante" },
-        ]}
       />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"DTO vs objeto de dominio"}</h3>
       <p className="my-4">

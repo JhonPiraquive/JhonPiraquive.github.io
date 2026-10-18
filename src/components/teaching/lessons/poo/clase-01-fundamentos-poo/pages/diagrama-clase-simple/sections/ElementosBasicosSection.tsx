@@ -1,7 +1,7 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const PRODUCTO_CODE = `public class Producto
 {
@@ -35,7 +35,7 @@ export function ElementosBasicosSection() {
       </p>
       <p className="my-4">
         {
-          "Antes de las flechas (herencia, composición), necesitas leer una sola caja. UML (Unified Modeling Language) es el lenguaje visual estándar; aquí usamos Mermaid classDiagram: una caja = una clase."
+          "Antes de las flechas (herencia, composición), hace falta leer una sola caja. UML (Unified Modeling Language) es el lenguaje visual estándar; aquí usamos Mermaid classDiagram: una caja = una clase."
         }
       </p>
       <p className="my-4">
@@ -45,7 +45,7 @@ export function ElementosBasicosSection() {
       </p>
       <Callout title="En el aula" variant="callout-tip">
         {
-          "Pide a dos estudiantes: uno dibuja la caja; el otro escribe la clase C#. Luego cruzan: ¿coinciden nombres y visibilidad?"
+          "En parejas, un estudiante dibuja la caja y el otro escribe la clase C#; luego se cruzan los resultados: ¿coinciden nombres y visibilidad?"
         }
       </Callout>
       <MermaidDiagram
@@ -64,9 +64,7 @@ export function ElementosBasicosSection() {
         }
       </p>
       <CodeFiddle language="csharp" code={PRODUCTO_CODE} />
-      <StepReveal
-        title="Cómo leer la caja"
-        steps={[
+      <CompareTable title="Cómo leer la caja" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "Nombre",
             content: "Producto: el tipo del dominio.",
@@ -83,11 +81,10 @@ export function ElementosBasicosSection() {
             title: "Mapeo a C#",
             content: "Cada miembro del diagrama tiene equivalente en la clase.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <p className="my-4">
         {
-          "Dibuja solo lo del dominio. No satures la caja con logs, detalles de EF Core o nombres de tablas. Un diagrama por módulo o caso de uso — no el mapa del universo."
+          "Se dibuja solo lo del dominio. No satures la caja con logs, detalles de EF Core o nombres de tablas. Un diagrama por módulo o caso de uso — no el mapa del universo."
         }
       </p>
     </section>

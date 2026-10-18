@@ -42,8 +42,8 @@ REM Listar archivos
 dir
 
 REM Crear carpeta y entrar
-mkdir Informe2026
-cd Informe2026
+mkdir InformeAnual
+cd InformeAnual
 
 REM Crear archivo vacío y abrir con Notepad
 type nul > resumen.txt
@@ -53,10 +53,10 @@ REM Volver atrás
 cd ..
 
 REM Eliminar archivo
-del Informe2026\\resumen.txt
+del InformeAnual\\resumen.txt
 
 REM Eliminar carpeta vacía
-rmdir Informe2026
+rmdir InformeAnual
 
 REM Salir
 exit`}
@@ -73,8 +73,8 @@ Get-Location
 Get-ChildItem
 
 # Crear y entrar
-New-Item -ItemType Directory -Name Informe2026
-Set-Location Informe2026
+New-Item -ItemType Directory -Name InformeAnual
+Set-Location InformeAnual
 
 # Editar (abre Notepad)
 notepad resumen.txt
@@ -83,8 +83,8 @@ notepad resumen.txt
 Set-Location ..
 
 # Eliminar archivo y carpeta
-Remove-Item .\\Informe2026\\resumen.txt
-Remove-Item .\\Informe2026
+Remove-Item .\\InformeAnual\\resumen.txt
+Remove-Item .\\InformeAnual
 
 exit`}
       />

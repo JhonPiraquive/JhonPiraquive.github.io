@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-03-sql-ddl-dml/practica-y-cierre",
+  next: "clase-03-consultas-y-administracion/practica-y-cierre",
   showInTrackIndex: false,
 };

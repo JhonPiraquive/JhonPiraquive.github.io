@@ -3,6 +3,7 @@ import { meta } from "./lesson-meta";
 import { CompruebaTuComprensionSection } from "../../sections/CompruebaTuComprensionSection";
 import { RetoIntegradorSection } from "../../sections/RetoIntegradorSection";
 import { CierreSection } from "../../sections/CierreSection";
+import { AutoevaluacionSection } from "../../sections/AutoevaluacionSection";
 import { MiniquizFinalSection } from "../../sections/MiniquizFinalSection";
 
 type Props = { locale: string };
@@ -22,6 +23,7 @@ export default function PracticaYCierrePageLesson(_props: Props) {
       <RetoIntegradorSection />
       <CierreSection />
       <MiniquizFinalSection />
+      <AutoevaluacionSection />
     </ClassPageLayout>
   );
 }

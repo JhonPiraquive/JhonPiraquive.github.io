@@ -60,7 +60,7 @@ export function SrpSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"PedidoService hace de todo"}</h3>
       <p className="my-4">
         {
-          "SRP (Single Responsibility Principle — responsabilidad única) no dice «un método por clase». Dice: si cambia la plantilla del email, no deberías recompilar la validación del total. En Tienda Andes, mezclar crear pedido y notificar en un solo servicio concentra motivos de cambio."
+          "SRP (Single Responsibility Principle — responsabilidad única) no dice «un método por clase». Dice: si cambia la plantilla del email, no debería recompilarse la validación del total. En Tienda Andes, mezclar crear pedido y notificar en un solo servicio concentra motivos de cambio."
         }
       </p>
       <CodeFiddle language="csharp" code={PEDIDO_SERVICE_ANTIEJEMPLO} />

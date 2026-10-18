@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-04-experto-bd/redundancia-y-dependencia-funcional",
+  next: "clase-02-del-diseno-al-esquema/redundancia-y-dependencia-funcional",
   showInTrackIndex: false,
 };

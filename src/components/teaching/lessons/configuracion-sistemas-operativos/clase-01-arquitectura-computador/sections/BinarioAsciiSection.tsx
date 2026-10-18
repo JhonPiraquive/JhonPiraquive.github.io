@@ -1,5 +1,4 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function BinarioAsciiSection() {
   return (
@@ -69,13 +68,6 @@ printf '\\x41\\n'
           "La palabra «Hi» ocupa 2 bytes en ASCII: H=72, i=105. En UTF-8, caracteres acentuados o emojis usan más bytes — importante al calcular tamaño de archivos de texto."
         }
       </p>
-
-      <PracticeExercise
-        prompt="Convierte el decimal 25 a binario y escribe el código ASCII decimal de la letra «J»."
-        hints={["16+8+1 = 25", "J está después de A (65)", "A=65, B=66, …"]}
-        expectedKeywords={["11001", "74"]}
-        successMessage="Correcto: 25 = 11001; J = ASCII 74."
-      />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Malas prácticas en el mundo real"}</h3>
       <ul className="my-4 list-disc pl-6">

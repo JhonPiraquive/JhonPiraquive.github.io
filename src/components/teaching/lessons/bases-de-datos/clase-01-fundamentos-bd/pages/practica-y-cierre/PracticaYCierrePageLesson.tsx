@@ -4,10 +4,11 @@ import { PracticaGuiadaSection } from "../../sections/PracticaGuiadaSection";
 import { RetoIntegradorSection } from "../../sections/RetoIntegradorSection";
 import { CierreSection } from "../../sections/CierreSection";
 import { MiniquizFinalSection } from "../../sections/MiniquizFinalSection";
+import { AutoevaluacionSection } from "../../sections/AutoevaluacionSection";
 
 type Props = { locale: string };
 
-export default function PracticaYCierrePageLesson({ locale }: Props) {
+export default function PracticaYCierrePageLesson({ locale: _locale }: Props) {
   return (
     <ClassPageLayout
       title={meta.title}
@@ -20,8 +21,9 @@ export default function PracticaYCierrePageLesson({ locale }: Props) {
     >
       <PracticaGuiadaSection />
       <RetoIntegradorSection />
-      <CierreSection />
       <MiniquizFinalSection />
+      <AutoevaluacionSection />
+      <CierreSection />
     </ClassPageLayout>
   );
 }

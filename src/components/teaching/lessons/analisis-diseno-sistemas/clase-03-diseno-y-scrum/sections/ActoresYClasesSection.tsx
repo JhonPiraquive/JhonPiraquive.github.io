@@ -15,8 +15,7 @@ export function ActoresYClasesSection() {
       </ul>
       <p className="my-4">
         Una clase es la plantilla de objetos que comparten estructura y comportamiento. Del mismo relato salen
-        estas tres. Fíjate en que Cliente y Empleado repiten datos de Persona: eso es una pista de herencia, no
-        un error de lectura.
+        estas tres. Cliente y Empleado repiten datos de Persona: eso es una pista de herencia, no un error de lectura.
       </p>
       <table className="my-4 w-full border-collapse text-sm">
         <thead>

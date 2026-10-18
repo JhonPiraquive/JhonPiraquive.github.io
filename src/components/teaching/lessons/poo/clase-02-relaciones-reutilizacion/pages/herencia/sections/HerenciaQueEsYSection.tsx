@@ -1,8 +1,7 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { Callout } from "@/components/teaching/Callout";
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function HerenciaQueEsYSection() {
   return (
@@ -13,19 +12,19 @@ export function HerenciaQueEsYSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"El problema: tres productos, mucho código repetido"}</h3>
       <p className="my-4">
         {
-          "Tu compañero creó LibroTienda, GadgetTienda y ArtesaniaTienda con el mismo SKU, precio y validaciones copiadas. Si mañana cambias cómo se valida el precio, tocas tres archivos. Necesitas un solo lugar para lo común y clases concretas para lo específico."
+          "Un compañero del equipo creó LibroTienda, GadgetTienda y ArtesaniaTienda con el mismo SKU, precio y validaciones copiadas. Si mañana cambias cómo se valida el precio, tocas tres archivos. Necesitas un solo lugar para lo común y clases concretas para lo específico."
         }
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"La idea: «es un» (herencia)"}</h3>
       <p className="my-4">
         {
-          "Herencia es un mecanismo de Programación Orientada a Objetos (POO) donde una clase derivada recibe estado y comportamiento de una clase base. Un Libro es un Producto; un Gadget es un Producto. En C# lo escribes con dos puntos:"
+          "Herencia es un mecanismo de Programación Orientada a Objetos (POO) donde una clase derivada recibe estado y comportamiento de una clase base. Un Libro es un Producto; un Gadget es un Producto. En C# se escribe con dos puntos:"
         }
       </p>
       <CodeFiddle language="csharp" code={`class Libro : Producto { }`} />
       <p className="my-4">
         {
-          "No confundas esto con «tiene un»: un Pedido tiene líneas de pedido, pero no es una línea. Eso lo verás en la lección de asociación y composición."
+          "No debe confundirse con «tiene un»: un Pedido tiene líneas de pedido, pero no es una línea. Eso se verá en la lección de asociación y composición."
         }
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Constructor y base(...)"}</h3>
@@ -40,18 +39,15 @@ export function HerenciaQueEsYSection() {
         <li>{"override en la derivada: nueva implementación con la misma firma."}</li>
         <li>{"Sin virtual, override falla; new solo oculta y no da polimorfismo real."}</li>
       </ul>
-      <StepReveal
-        title="Qué pasa al hacer new Libro(...)"
-        steps={[
+      <CompareTable title="Qué pasa al hacer new Libro(...)" headers={["Paso", "Qué ocurre"]} rows={[
           { title: "Cliente", content: 'Se ejecuta new Libro("SKU-01", 29.99m, "978-…").' },
           { title: "Constructor de Libro", content: "Entra Libro y delega en base(sku, precio)." },
           { title: "Constructor de Producto", content: "Producto valida SKU y precio y los asigna." },
           {
             title: "Objeto listo",
-            content: "La instancia es Libro; puedes declararla como Producto o como Libro.",
+            content: "La instancia es Libro; puede declararse como Producto o como Libro.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código: Producto, Libro y Gadget"}</h3>
       <CodeFiddle
         language="csharp"
@@ -105,7 +101,7 @@ public class Gadget : Producto
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Polimorfismo: una lista, muchos tipos"}</h3>
       <p className="my-4">
         {
-          "Polimorfismo significa tratar objetos distintos con la misma interfaz de uso: declaras Producto pero el objeto real puede ser Libro o Gadget."
+          "Polimorfismo significa tratar objetos distintos con la misma interfaz de uso: se declara Producto pero el objeto real puede ser Libro o Gadget."
         }
       </p>
       <CodeFiddle
@@ -116,9 +112,7 @@ Producto p2 = new Gadget("G-99", 120m, "AndesTech");
 Console.WriteLine(p1.DescripcionEtiqueta()); // override de Libro
 Console.WriteLine(p2.DescripcionEtiqueta()); // override de Gadget`}
       />
-      <StepReveal
-        title="Por qué imprime la etiqueta del libro"
-        steps={[
+      <CompareTable title="Por qué imprime la etiqueta del libro" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "Referencia",
             content: "Producto p = new Libro(...); — la variable es de tipo base.",
@@ -128,8 +122,7 @@ Console.WriteLine(p2.DescripcionEtiqueta()); // override de Gadget`}
             title: "Dispatch en runtime",
             content: "p.DescripcionEtiqueta() ejecuta Libro.DescripcionEtiqueta (override).",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Cuando no hace falta override"}</h3>
       <p className="my-4">
         {
@@ -186,16 +179,6 @@ foreach (var item in vitrina)
           "Olvidar base(sku, precio) en el constructor de la derivada. También intentar override sin virtual en Producto — el compilador lo rechaza."
         }
       </Callout>
-      <CodeChallenge
-        title="Completa la vitrina"
-        template={`var vitrina = new List<Producto> { new Libro("A", 10m, "978-x"), new {{b1}}(), new {{b2}}() };
-foreach (var item in vitrina) Console.WriteLine(item.{{b3}}());`}
-        blanks={[
-          { id: "b1", answer: "Gadget", placeholder: "Otra derivada de Producto" },
-          { id: "b2", answer: "Producto", placeholder: "Instancia de la base" },
-          { id: "b3", answer: "DescripcionEtiqueta", placeholder: "Método virtual en Producto" },
-        ]}
-      />
     </section>
   );
 }

@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-04-experto-bd/desnormalizacion-y-bi",
+  next: "clase-02-del-diseno-al-esquema/desnormalizacion-y-bi",
   showInTrackIndex: false,
 };

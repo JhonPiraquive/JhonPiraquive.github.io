@@ -1,7 +1,6 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
-import { StepReveal } from "@/components/teaching/StepReveal";
 import { Callout } from "@/components/teaching/Callout";
 
 export function DnsSection() {
@@ -126,9 +125,7 @@ export function DnsSection() {
         </tbody>
       </table>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Visual — flujo DNS"}</h3>
-      <StepReveal
-        title="Resolución DNS paso a paso"
-        steps={[
+      <CompareTable title="Resolución DNS paso a paso" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "1. URL en el navegador",
             content: "El usuario escribe https://www.tienda.ejemplo.co/productos.",
@@ -154,8 +151,7 @@ export function DnsSection() {
             title: "6. Conexión HTTP",
             content: "El navegador abre TCP/TLS a esa IP y envía GET /productos.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <MermaidDiagram
         chart={`sequenceDiagram
   participant U as Usuario
@@ -241,13 +237,6 @@ Accept: text/html`}
         </li>
       </ul>
 
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Práctica guiada"}</h3>
-      <PracticeExercise
-        prompt="Ordena los pasos del flujo DNS: (a) consulta TLD .co, (b) navegador abre TCP a la IP, (c) resolver pregunta a raíz, (d) usuario escribe URL, (e) respuesta A devuelta, (f) consulta NS de empresa.co."
-        hints={["Empieza por el usuario", "Termina con TCP", "Raíz antes que TLD"]}
-        expectedKeywords={["d", "c", "a", "f", "e", "b"]}
-        successMessage="Correcto: d → c → a → f → e → b. Delegación jerárquica antes de la conexión TCP."
-      />
     </section>
   );
 }

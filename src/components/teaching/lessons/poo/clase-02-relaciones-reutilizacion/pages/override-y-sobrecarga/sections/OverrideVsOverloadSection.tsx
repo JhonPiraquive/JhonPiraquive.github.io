@@ -69,7 +69,7 @@ export function OverrideVsOverloadSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Por qué new engaña"}</h3>
       <p className="my-4">
         {
-          "Si usas new en lugar de override, el método «nuevo» solo se ve cuando la variable es de tipo GadgetOculto. Con Producto en la vitrina polimórfica, el cliente sigue leyendo la etiqueta genérica."
+          "Si se usa new en lugar de override, el método «nuevo» solo se ve cuando la variable es de tipo GadgetOculto. Con Producto en la vitrina polimórfica, el cliente sigue leyendo la etiqueta genérica."
         }
       </p>
       <CodeFiddle language="csharp" code={NEW_VS_OVERRIDE_CODE} />

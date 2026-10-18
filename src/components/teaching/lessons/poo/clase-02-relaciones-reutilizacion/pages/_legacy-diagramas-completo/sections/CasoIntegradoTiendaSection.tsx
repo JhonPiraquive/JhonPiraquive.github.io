@@ -1,5 +1,5 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function CasoIntegradoTiendaSection() {
   return (
@@ -41,9 +41,7 @@ export function CasoIntegradoTiendaSection() {
   Pedido *-- "1..*" LineaPedido : compone
   LineaPedido --> Producto : referencia`}
       />
-      <StepReveal
-        title="Caso tienda: de UML a C#"
-        steps={[
+      <CompareTable title="Caso tienda: de UML a C#" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "Caja Pedido con métodos",
             content: "Total() y AgregarLinea definen comportamiento del agregado raíz.",
@@ -60,8 +58,7 @@ export function CasoIntegradoTiendaSection() {
             title: "Validar cardinalidad",
             content: "Cliente 1 realiza 0..* Pedidos — un cliente puede tener varios pedidos o ninguno.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Caso real: refactor de checkout"}</h3>
       <p className="my-4">
         {

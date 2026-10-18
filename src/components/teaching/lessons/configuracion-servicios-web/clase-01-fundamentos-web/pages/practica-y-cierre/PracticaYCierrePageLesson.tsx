@@ -1,13 +1,14 @@
 import { ClassPageLayout } from "@/components/teaching/ClassPageLayout";
 import { meta } from "./lesson-meta";
-import { CompruebaTuComprensionSection } from "../../sections/CompruebaTuComprensionSection";
+import { PracticaGuiadaSection } from "../../sections/PracticaGuiadaSection";
 import { RetoIntegradorSection } from "../../sections/RetoIntegradorSection";
-import { CierreSection } from "../../sections/CierreSection";
 import { MiniquizFinalSection } from "../../sections/MiniquizFinalSection";
+import { AutoevaluacionSection } from "../../sections/AutoevaluacionSection";
+import { CierreSection } from "../../sections/CierreSection";
 
 type Props = { locale: string };
 
-export default function PracticaYCierrePageLesson({ locale }: Props) {
+export default function PracticaYCierrePageLesson({ locale: _locale }: Props) {
   return (
     <ClassPageLayout
       title={meta.title}
@@ -18,10 +19,11 @@ export default function PracticaYCierrePageLesson({ locale }: Props) {
       prev={meta.prev}
       next={meta.next}
     >
-      <CompruebaTuComprensionSection />
+      <PracticaGuiadaSection />
       <RetoIntegradorSection />
-      <CierreSection />
       <MiniquizFinalSection />
+      <AutoevaluacionSection />
+      <CierreSection />
     </ClassPageLayout>
   );
 }

@@ -1,7 +1,6 @@
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const ETIQUETAS_CODE = `using System;
 using System.Collections.Generic;
@@ -64,16 +63,14 @@ export function OverrideSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Reglas en C#"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"La base marca el método como virtual o abstract."}</li>
-        <li>{"La derivada usa override, no new, si quieres polimorfismo."}</li>
+        <li>{"La derivada usa override, no new, para lograr polimorfismo."}</li>
         <li>{"Con Producto p = new Libro(...), p.DescripcionEtiqueta() llama a Libro en runtime."}</li>
       </ul>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código"}</h3>
       <CodeFiddle language="csharp" code={ETIQUETAS_CODE} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Imprimir sin preguntar el tipo"}</h3>
       <CodeFiddle language="csharp" code={LISTA_ETIQUETAS_CODE} />
-      <StepReveal
-        title="Qué hace el foreach"
-        steps={[
+      <CompareTable title="Qué hace el foreach" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "Lista de tipo base",
             content: "List<Producto> acepta Libro y Artesania por polimorfismo.",
@@ -88,10 +85,9 @@ export function OverrideSection() {
           },
           {
             title: "Sin if por tipo",
-            content: "No necesitas if (item is Libro) para imprimir.",
+            content: "No hace falta if (item is Libro) para imprimir.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <MermaidDiagram
         chart={`classDiagram
   Producto <|-- Libro
@@ -112,21 +108,6 @@ export function OverrideSection() {
         <li>{"new void DescripcionEtiqueta() creyendo que polimorfiza — con referencia Producto gana la base."}</li>
         <li>{"Override que lanza excepción donde la base no — rompe expectativas (preview LSP)."}</li>
       </ul>
-      <CodeChallenge
-        title="Completa el override"
-        template={`public class Artesania : Producto
-{
-    public {{b1}} string DescripcionEtiqueta()
-        => $"Artesanía de {Artesano} — {Sku}";
-}`}
-        blanks={[
-          {
-            id: "b1",
-            answer: "override",
-            placeholder: "Palabra clave para redefinir un virtual",
-          },
-        ]}
-      />
     </section>
   );
 }

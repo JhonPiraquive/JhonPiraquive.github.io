@@ -1,6 +1,6 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function HojaVidaPcSection() {
   return (
@@ -69,9 +69,7 @@ export function HojaVidaPcSection() {
         </table>
       </div>
 
-      <StepReveal
-        title="Crear hoja de vida en 5 pasos"
-        steps={[
+      <CompareTable title="Crear hoja de vida en 5 pasos" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "1. Identificar",
             content: "Fotografiar etiqueta de servicio y pegar código de barras de activo fijo.",
@@ -92,8 +90,7 @@ export function HojaVidaPcSection() {
             title: "5. Actualizar",
             content: "Tras cada cambio de disco, RAM o reinstalación de SO, nueva versión fechada.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo: plantilla JSON de inventario"}</h3>
       <CodeFiddle

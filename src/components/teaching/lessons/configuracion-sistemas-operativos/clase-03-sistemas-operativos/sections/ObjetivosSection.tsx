@@ -29,7 +29,7 @@ export function ObjetivosSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Introducción"}</h3>
       <p className="my-4">
         {
-          "El sistema operativo es el intermediario entre el hardware que estudiaste en las clases anteriores y las aplicaciones que usa el usuario final. En soporte TI de una PYME en Bogotá o un laboratorio SENA en Medellín, saber instalar, configurar la consola y respaldar datos evita pérdidas costosas y tiempos de inactividad."
+          "El sistema operativo es el intermediario entre el hardware de las clases anteriores y las aplicaciones que usa el usuario final. En soporte TI de una PYME en Bogotá o un laboratorio SENA en Medellín, saber instalar, configurar la consola y respaldar datos evita pérdidas costosas y tiempos de inactividad."
         }
       </p>
       <Callout title="SO = capa de abstracción y control">

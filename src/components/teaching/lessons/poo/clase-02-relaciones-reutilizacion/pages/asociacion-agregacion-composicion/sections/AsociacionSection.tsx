@@ -1,4 +1,3 @@
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
 
@@ -70,7 +69,7 @@ export function AsociacionSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Cuando el contexto importa: clase de enlace"}</h3>
       <p className="my-4">
         {
-          "Si necesitas guardar quién atendió a quién y cuándo, una clase puente (SesionMostrador) une asesor y cliente sin herencia ni «Pedido es un Cliente»."
+          "Si hace falta guardar quién atendió a quién y cuándo, una clase puente (SesionMostrador) une asesor y cliente sin herencia ni «Pedido es un Cliente»."
         }
       </p>
       <CodeFiddle language="csharp" code={SESION_MOSTRADOR_CODE} />
@@ -97,14 +96,6 @@ export function AsociacionSection() {
         <li>{"Heredar para relacionar (class Pedido : Cliente)."}</li>
         <li>{"Pasar ocho parámetros sueltos cuando una SesionMostrador basta."}</li>
       </ul>
-      <CodeChallenge
-        title="Completa la asociación"
-        template={`public void Recomendar({{b1}} cliente, Producto producto)
-{
-    Console.WriteLine($"{Nombre} sugiere a {cliente.Nombre}: {producto.Sku}");
-}`}
-        blanks={[{ id: "b1", answer: "Cliente", placeholder: "Tipo del parámetro cliente" }]}
-      />
     </section>
   );
 }

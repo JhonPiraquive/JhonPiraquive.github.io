@@ -2,7 +2,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function TiposRegistrosDnsSection() {
   return (
@@ -170,7 +169,7 @@ www.ejemplo.co.   3600  IN  AAAA  2001:db8:85a3::8a2e:370:7334`}
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"CNAME — alias canónico"}</h3>
       <p className="my-4">
         {
-          "CNAME dice «este nombre es un alias de otro». El resolver sigue la cadena hasta obtener un A o AAAA final. Útil cuando el destino cambia de IP sin que tú actualices cada subdominio (el proveedor actualiza su A)."
+          "CNAME dice «este nombre es un alias de otro». El resolver sigue la cadena hasta obtener un A o AAAA final. Útil cuando el destino cambia de IP sin actualizar cada subdominio (el proveedor actualiza su A)."
         }
       </p>
       <CodeFiddle
@@ -183,7 +182,7 @@ cdn.ejemplo.co.    300   IN  CNAME  d123.cloudfront.net.`}
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"MX y TXT — correo y autenticación"}</h3>
       <p className="my-4">
         {
-          "MX indica dónde entregar el correo entrante para el dominio. El número menor es mayor prioridad (10 antes que 20). TXT almacena SPF (quién puede enviar en tu nombre), DKIM (firma criptográfica) y códigos de verificación de Google, Microsoft, etc."
+          "MX indica dónde entregar el correo entrante para el dominio. El número menor es mayor prioridad (10 antes que 20). TXT almacena SPF (quién puede enviar en nombre del dominio), DKIM (firma criptográfica) y códigos de verificación de Google, Microsoft, etc."
         }
       </p>
       <CodeFiddle
@@ -197,7 +196,7 @@ google._domainkey.ejemplo.co.  IN  TXT  "v=DKIM1; k=rsa; p=MIGfMA0G..."`}
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"NS y SOA — delegación y autoridad"}</h3>
       <p className="my-4">
         {
-          "NS delega la zona a los nameservers que tienen la «verdad» de tus registros. SOA define el servidor primario, email del administrador, serial de la zona (incrementa en cada cambio) y timers de refresco. En paneles como Cloudflare rara vez editas SOA manualmente."
+          "NS delega la zona a los nameservers que tienen la «verdad» de los registros. SOA define el servidor primario, email del administrador, serial de la zona (incrementa en cada cambio) y timers de refresco. En paneles como Cloudflare rara vez editas SOA manualmente."
         }
       </p>
       <CodeFiddle
@@ -320,18 +319,6 @@ dig _sip._tcp.ejemplo.co SRV +short`}
         </li>
       </ul>
 
-      <div className="my-8">
-        <PracticeExercise
-          prompt="Una startup en Medellín publica su API en api.startup.co con IP 190.85.10.20, su blog en blog.startup.co vía GitHub Pages (CNAME a startup.github.io) y correo con Google. ¿Qué registros necesitas como mínimo? Escribe tipo, nombre y valor para A, CNAME y MX."
-          hints={[
-            "api necesita A con la IPv4",
-            "blog es CNAME, no A",
-            "MX apunta a los servidores de Google con prioridad",
-          ]}
-          expectedKeywords={["A", "api", "CNAME", "blog", "MX"]}
-          successMessage="Correcto. A para api.startup.co, CNAME blog → startup.github.io., MX hacia aspmx.l.google.com. (o similar). En la siguiente página verás cómo publicarlos en el panel DNS."
-        />
-      </div>
     </section>
   );
 }

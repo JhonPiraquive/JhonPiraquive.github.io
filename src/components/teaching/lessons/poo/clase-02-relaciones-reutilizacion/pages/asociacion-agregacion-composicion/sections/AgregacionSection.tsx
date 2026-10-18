@@ -1,6 +1,6 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const CARRITO_PRODUCTO_CODE = `using System;
 using System.Collections.Generic;
@@ -56,9 +56,7 @@ export function AgregacionSection() {
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código"}</h3>
       <CodeFiddle language="csharp" code={CARRITO_PRODUCTO_CODE} />
-      <StepReveal
-        title="Agregar y quitar del carrito"
-        steps={[
+      <CompareTable title="Agregar y quitar del carrito" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "Crear Producto",
             content: 'var te = new Producto("TE-ANDES", 12m); — existe fuera del carrito.',
@@ -69,8 +67,7 @@ export function AgregacionSection() {
             title: "Producto sigue vivo",
             content: "Si la variable te sigue en Main, te.Precio sigue siendo válido.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <MermaidDiagram
         chart={`classDiagram
   CarritoCompras o-- Producto : agrega

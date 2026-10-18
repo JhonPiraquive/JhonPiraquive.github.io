@@ -12,7 +12,7 @@ export function AbstractaVsInterfazSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Dos preguntas antes de elegir"}</h3>
       <p className="my-4">
         {
-          "¿Varias clases comparten estado o pasos idénticos (validar SKU, calcular descuento base)? Piensa en clase abstracta Producto. ¿Solo necesitas intercambiar un comportamiento en el borde (pago, persistencia)? Piensa en interfaz IPago o IRepositorioPedidos."
+          "¿Varias clases comparten estado o pasos idénticos (validar SKU, calcular descuento base)? Conviene una clase abstracta Producto. ¿Solo hace falta intercambiar un comportamiento en el borde (pago, persistencia)? Conviene una interfaz IPago o IRepositorioPedidos."
         }
       </p>
       <CompareTable

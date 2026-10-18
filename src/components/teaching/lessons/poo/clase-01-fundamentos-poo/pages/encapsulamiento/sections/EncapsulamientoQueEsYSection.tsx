@@ -3,7 +3,6 @@ import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const INVENTARIO_CODE = `using System;
 
@@ -108,7 +107,7 @@ export function EncapsulamientoQueEsYSection() {
         rows={[
           ["public", "Cualquier código con referencia al tipo"],
           ["private", "Solo la misma clase"],
-          ["protected", "La clase y sus derivadas (lo verás en herencia)"],
+          ["protected", "La clase y sus derivadas (se desarrolla en herencia)"],
           ["internal", "Dentro del mismo proyecto (ensamblado)"],
         ]}
       />
@@ -140,9 +139,7 @@ export function EncapsulamientoQueEsYSection() {
         }
       </Callout>
       <CodeFiddle language="csharp" title="Modificadores de acceso" code={EJEMPLO_ACCESO_CODE} />
-      <StepReveal
-        title="Qué ocurre al llamar Salida(30)"
-        steps={[
+      <CompareTable title="Qué ocurre al llamar Salida(30)" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "El cliente pide Salida(30)",
             content: "No toca Cantidad directo; usa el método público.",
@@ -159,8 +156,7 @@ export function EncapsulamientoQueEsYSection() {
             title: "Actualizar Cantidad",
             content: "Solo la clase asigna gracias a private set.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <MermaidDiagram
         chart={`flowchart LR
   subgraph cliente [Codigo cliente]

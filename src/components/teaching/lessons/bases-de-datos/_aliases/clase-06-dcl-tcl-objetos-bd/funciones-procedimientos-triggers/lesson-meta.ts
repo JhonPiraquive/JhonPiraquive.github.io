@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-04-experto-bd/funciones-procedimientos-triggers",
+  next: "clase-03-consultas-y-administracion/funciones-procedimientos-triggers",
   showInTrackIndex: false,
 };

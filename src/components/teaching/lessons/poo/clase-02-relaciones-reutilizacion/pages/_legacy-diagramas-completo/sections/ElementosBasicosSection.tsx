@@ -1,6 +1,6 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const PRODUCTO_CODE = `public class Producto
 {
@@ -51,9 +51,7 @@ export function ElementosBasicosSection() {
       />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Correspondencia diagrama ↔ C# (mínimo)"}</h3>
       <CodeFiddle language="csharp" code={PRODUCTO_CODE} />
-      <StepReveal
-        title="Leer un diagrama de clase"
-        steps={[
+      <CompareTable title="Leer un diagrama de clase" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "Nombre de la clase",
             content: "La caja superior identifica el tipo del dominio (`Producto`).",
@@ -70,8 +68,7 @@ export function ElementosBasicosSection() {
             title: "Mapeo a C#",
             content: "Cada miembro del diagrama tiene equivalente en la clase C#.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Errores comunes"}</h3>
       <ul className="my-4 list-disc pl-6">
         <li>{"Saturar la caja con detalles de implementación irrelevantes."}</li>

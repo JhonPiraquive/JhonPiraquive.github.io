@@ -54,7 +54,7 @@ export function ChasisCarcasasSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo"}</h3>
       <p className="my-4">
         {
-          "Una PYME en Bogotá necesita 8 PCs de oficina: elige Mini Tower con fuente 80 Plus Bronze, filtro de polvo frontal y espacio para un SSD — sin GPU dedicada. Un estudio de edición de video elige Mid Tower con buen flujo de aire para CPU de 65 W+ y GPU de dos slots."
+          "Una PYME en Bogotá necesita 8 PCs de oficina: conviene un Mini Tower con fuente 80 Plus Bronze, filtro de polvo frontal y espacio para un SSD — sin GPU dedicada. Un estudio de edición de video elige Mid Tower con buen flujo de aire para CPU de 65 W+ y GPU de dos slots."
         }
       </p>
 

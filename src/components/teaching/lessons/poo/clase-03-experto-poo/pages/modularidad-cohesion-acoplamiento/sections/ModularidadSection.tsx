@@ -1,5 +1,5 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const DOMINIO_INFRA_CODE = `using System.Collections.Generic;
 
@@ -43,15 +43,12 @@ export function ModularidadSection() {
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"C#: cambiar persistencia en una línea de Main"}</h3>
       <CodeFiddle language="csharp" code={DOMINIO_INFRA_CODE} />
-      <StepReveal
-        title="De memoria a SQL sin tocar ServicioPedidos"
-        steps={[
+      <CompareTable title="De memoria a SQL sin tocar ServicioPedidos" headers={["Paso", "Qué ocurre"]} rows={[
           { title: "Dominio", content: "ServicioPedidos solo conoce IRepositorioPedidos." },
           { title: "Desarrollo", content: "Main usa RepositorioPedidosMemoria." },
           { title: "Producción", content: "Main usa RepositorioPedidosSql." },
           { title: "Servicio intacto", content: "Modularidad + DIP: el cambio queda en el borde." },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Error típico"}</h3>
       <p className="my-4">
         {

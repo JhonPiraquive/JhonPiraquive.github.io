@@ -1,7 +1,6 @@
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { Callout } from "@/components/teaching/Callout";
-import { PracticeExercise } from "@/components/teaching/PracticeExercise";
 
 export function DnsHerramientasSection() {
   return (
@@ -20,7 +19,7 @@ export function DnsHerramientasSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Para qué sirve / Por qué importa"}</h3>
       <p className="my-4">
         {
-          "Antes de culpar al hosting o al correo, debes confirmar que DNS resuelve correctamente. `dig` contra el resolver del sistema y contra el servidor autoritativo pueden dar respuestas distintas si hay caché o propagación pendiente. Documentar una zona primaria evita perder registros al migrar de proveedor."
+          "Antes de culpar al hosting o al correo, hay que confirmar que DNS resuelve correctamente. `dig` contra el resolver del sistema y contra el servidor autoritativo pueden dar respuestas distintas si hay caché o propagación pendiente. Documentar una zona primaria evita perder registros al migrar de proveedor."
         }
       </p>
 
@@ -44,7 +43,7 @@ export function DnsHerramientasSection() {
       />
       <p className="my-4">
         {
-          "Cuando ejecutas `dig www.ejemplo.co` sin `@servidor`, consultas al resolver recursivo de tu sistema. Cuando ejecutas `dig @ns1.proveedor.com www.ejemplo.co A`, consultas directamente al autoritativo — útil para verificar cambios antes de que se propaguen."
+          "Cuando se ejecuta `dig www.ejemplo.co` sin `@servidor`, se consulta al resolver recursivo del sistema. Cuando se ejecuta `dig @ns1.proveedor.com www.ejemplo.co A`, se consulta directamente al autoritativo — útil para verificar cambios antes de que se propaguen."
         }
       </p>
 
@@ -96,7 +95,7 @@ nslookup -type=TXT innovatech.co`}
       />
       <Callout title="Diferencia práctica">
         {
-          "`dig @127.0.0.1` consulta un DNS local en tu máquina; el navegador usa el resolver del sistema. Si `dig @servidor-local` responde bien pero el navegador falla con DNS_PROBE, el problema está en la resolución del cliente, no en la zona primaria."
+          "`dig @127.0.0.1` consulta un DNS local en la máquina propia; el navegador usa el resolver del sistema. Si `dig @servidor-local` responde bien pero el navegador falla con DNS_PROBE, el problema está en la resolución del cliente, no en la zona primaria."
         }
       </Callout>
 
@@ -147,12 +146,6 @@ nslookup -type=TXT innovatech.co`}
       </ul>
 
 
-      <PracticeExercise
-        prompt="¿Por qué `dig @ns1.proveedor.com` puede devolver una IP distinta a `dig www.ejemplo.co` sin @? Menciona caché y TTL."
-        hints={["Uno es autoritativo, otro recursivo", "El recursivo cachea respuestas"]}
-        expectedKeywords={["caché", "TTL", "recursivo", "autoritativo"]}
-        successMessage="Correcto. El recursivo puede devolver una respuesta cacheada hasta que expire el TTL; el autoritativo muestra el valor actual de la zona."
-      />
     </section>
   );
 }

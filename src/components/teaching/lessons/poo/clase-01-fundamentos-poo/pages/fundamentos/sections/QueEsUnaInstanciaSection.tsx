@@ -1,6 +1,6 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const INSTANCIAS_CODE = `var cafe = new Producto("Café de Nariño", 12_000m);
 var panela = new Producto("Panela orgánica", 8_500m);
@@ -27,13 +27,13 @@ export function QueEsUnaInstanciaSection() {
       </h2>
       <p className="my-4">
         {
-          "“Instancia” es solo la palabra técnica para “este objeto creado a partir de la clase”. Cuando escribes new Producto(...), estás instanciando: nace un objeto con su propio estado."
+          "“Instancia” es solo la palabra técnica para “este objeto creado a partir de la clase”. Al escribir new Producto(...), se instancia: nace un objeto con su propio estado."
         }
       </p>
       <CodeFiddle language="csharp" code={INSTANCIAS_CODE} />
       <p className="my-4">
         {
-          "En el catálogo de Tienda Andes puedes tener decenas de productos. Todos salen del mismo molde Producto, pero cada uno es independiente: el café a 12 000 y la panela a 8 500 no se pisan entre sí."
+          "En el catálogo de Tienda Andes puede haber decenas de productos. Todos salen del mismo molde Producto, pero cada uno es independiente: el café a 12 000 y la panela a 8 500 no se pisan entre sí."
         }
       </p>
       <CodeFiddle language="csharp" title="Varias instancias en una lista" code={CATALOGO_CODE} />
@@ -42,9 +42,7 @@ export function QueEsUnaInstanciaSection() {
   Clase[Clase Producto] -->|new| cafe["Instancia cafe"]
   Clase -->|new| panela["Instancia panela"]`}
       />
-      <StepReveal
-        title="Qué pasa cuando escribes new en C#"
-        steps={[
+      <CompareTable title="Qué pasa al escribir new en C#" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "1. Ya existe la clase",
             content:
@@ -63,10 +61,9 @@ export function QueEsUnaInstanciaSection() {
           {
             title: "4. La variable apunta a la instancia",
             content:
-              "var cafe referencia ese objeto concreto. A partir de ahí llamas métodos sobre cafe.",
+              "var cafe referencia ese objeto concreto. A partir de ahí se llaman métodos sobre cafe.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <p className="my-4">
         {
           "No crees instancias “por deporte”. Si no hay estado propio ni identidad que cuidar, a veces basta un método estático helper. Si hay datos que cambian y reglas, sí: instancia."

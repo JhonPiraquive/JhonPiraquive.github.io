@@ -37,7 +37,7 @@ export function CierreSection() {
         </li>
         <li>
           {
-            "Siguiente clase: clase-03-sistemas-operativos — tipos de SO, instalación, consola, usuarios y respaldo."
+            "Siguiente clase, sistemas operativos: tipos de SO, instalación, consola, usuarios y respaldo."
           }
         </li>
       </ul>

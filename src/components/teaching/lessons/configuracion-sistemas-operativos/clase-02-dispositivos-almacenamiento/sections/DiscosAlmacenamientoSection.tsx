@@ -1,7 +1,6 @@
 import { Callout } from "@/components/teaching/Callout";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 export function DiscosAlmacenamientoSection() {
   return (
@@ -85,9 +84,7 @@ export function DiscosAlmacenamientoSection() {
         ]}
       />
 
-      <StepReveal
-        title="Flujo de lectura en almacenamiento"
-        steps={[
+      <CompareTable title="Flujo de lectura en almacenamiento" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "1. Petición del SO",
             content: "El sistema operativo pide un bloque de datos (archivo, página de swap, registro de BD).",
@@ -108,8 +105,7 @@ export function DiscosAlmacenamientoSection() {
             title: "5. Entrega a la app",
             content: "Los bytes llegan al proceso que los solicitó (navegador, editor, base de datos).",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
 
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Ejemplo técnico: consultar discos en Windows"}</h3>
       <CodeFiddle

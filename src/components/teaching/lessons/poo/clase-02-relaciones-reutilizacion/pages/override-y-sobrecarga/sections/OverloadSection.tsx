@@ -29,7 +29,7 @@ export function OverloadSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Total del pedido de muchas formas"}</h3>
       <p className="my-4">
         {
-          "En caja a veces sumas una línea (precio × cantidad), otras aplicas descuento del 10 %, otras sumas varios subtotales ya calculados. Sobrecarga (overload) permite varios métodos Total con el mismo nombre y parámetros distintos en la misma clase. No usa herencia: el compilador elige la firma al compilar."
+          "En caja a veces se suma una línea (precio × cantidad), otras se aplica un descuento del 10 %, otras se suman varios subtotales ya calculados. Sobrecarga (overload) permite varios métodos Total con el mismo nombre y parámetros distintos en la misma clase. No usa herencia: el compilador elige la firma al compilar."
         }
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código"}</h3>

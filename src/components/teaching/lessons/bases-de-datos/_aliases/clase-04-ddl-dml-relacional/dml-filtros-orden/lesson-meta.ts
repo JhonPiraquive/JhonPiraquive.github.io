@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-03-sql-ddl-dml/dml-filtros-orden",
+  next: "clase-03-consultas-y-administracion/dml-filtros-orden",
   showInTrackIndex: false,
 };

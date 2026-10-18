@@ -1,5 +1,5 @@
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
+import { CompareTable } from "@/components/teaching/CompareTable";
 
 const FASES = [
   {
@@ -59,7 +59,7 @@ export function FasesDelCicloSection() {
   E --> F[Integracion y ejecucion]
   F --> G[Operacion y mantenimiento]`}
       />
-      <StepReveal title="Qué se hace en cada fase" steps={FASES} />
+      <CompareTable title="Qué se hace en cada fase" headers={["Fase", "Qué se hace"]} rows={FASES.map((x) => [x.title, x.content])} />
     </section>
   );
 }

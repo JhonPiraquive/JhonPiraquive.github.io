@@ -6,6 +6,6 @@ export const meta: LessonMeta = {
   title: "Redirección legacy",
   order: 901,
   prev: null,
-  next: "clase-04-experto-bd/formas-normales-1-2-3",
+  next: "clase-02-del-diseno-al-esquema/formas-normales-1-2-3",
   showInTrackIndex: false,
 };

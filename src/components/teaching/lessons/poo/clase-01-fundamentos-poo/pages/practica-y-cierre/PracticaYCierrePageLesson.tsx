@@ -1,5 +1,7 @@
 import { ClassPageLayout } from "@/components/teaching/ClassPageLayout";
 import { meta } from "./lesson-meta";
+import { PracticaGuiadaSection } from "../../sections/PracticaGuiadaSection";
+import { AutoevaluacionSection } from "../../sections/AutoevaluacionSection";
 import { MiniquizFinalSection } from "../../sections/MiniquizFinalSection";
 
 type Props = { locale: string };
@@ -15,7 +17,9 @@ export default function PracticaYCierrePageLesson({ locale: _locale }: Props) {
       prev={meta.prev}
       next={meta.next}
     >
+      <PracticaGuiadaSection />
       <MiniquizFinalSection />
+      <AutoevaluacionSection />
     </ClassPageLayout>
   );
 }

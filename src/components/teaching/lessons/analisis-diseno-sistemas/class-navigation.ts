@@ -32,8 +32,8 @@ export const CLASE_01: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Cierre y miniquiz",
-      description: "Síntesis de la clase y miniquiz de sistemas de información.",
+      title: "Práctica y cierre",
+      description: "Síntesis, ejercicios, miniquiz y autoevaluación de sistemas de información.",
       readMinutes: 12,
     },
   ],
@@ -70,8 +70,8 @@ export const CLASE_02: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Cierre y miniquiz",
-      description: "Síntesis de análisis y modelado, más miniquiz.",
+      title: "Práctica y cierre",
+      description: "Síntesis, ejercicios, miniquiz y autoevaluación de análisis y modelado.",
       readMinutes: 12,
     },
   ],
@@ -108,8 +108,8 @@ export const CLASE_03: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Cierre y miniquiz",
-      description: "Síntesis del módulo y miniquiz de diseño y Scrum.",
+      title: "Práctica y cierre",
+      description: "Síntesis del módulo, ejercicios, miniquiz y autoevaluación de diseño y Scrum.",
       readMinutes: 12,
     },
   ],

@@ -1,6 +1,6 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const PEDIDO_LINEA_CODE = `using System;
 using System.Collections.Generic;
@@ -61,14 +61,12 @@ export function ComposicionSection() {
       </p>
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Código"}</h3>
       <CodeFiddle language="csharp" code={PEDIDO_LINEA_CODE} />
-      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Lista pública = pierdes el control"}</h3>
+      <h3 className="mt-6 mb-2 text-xl font-semibold">{"Lista pública = se pierde el control"}</h3>
       <CodeFiddle language="csharp" code={ANTIPATRON_LISTA_CODE} />
       <p className="my-4">
         {"Código externo podría insertar líneas inválidas o vaciar la lista sin reglas de negocio."}
       </p>
-      <StepReveal
-        title="AgregarLinea por dentro"
-        steps={[
+      <CompareTable title="AgregarLinea por dentro" headers={["Paso", "Qué ocurre"]} rows={[
           { title: "Cliente", content: 'pedido.AgregarLinea("TE-ANDES", 2, 12m);' },
           {
             title: "Pedido crea",
@@ -76,8 +74,7 @@ export function ComposicionSection() {
           },
           { title: "Validación", content: "El constructor de LineaPedido valida cantidad y precio." },
           { title: "Total", content: "pedido.Total() sin exponer la lista mutable." },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"No confundir con el catálogo"}</h3>
       <p className="my-4">
         {

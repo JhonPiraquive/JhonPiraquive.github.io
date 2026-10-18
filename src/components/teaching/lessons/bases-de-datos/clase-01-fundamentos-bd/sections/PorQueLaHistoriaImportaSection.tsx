@@ -1,5 +1,5 @@
+import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
-import { StepReveal } from "@/components/teaching/StepReveal";
 
 const TIMELINE_CHART = `timeline
   title Historia de las Bases de Datos
@@ -54,9 +54,7 @@ export function PorQueLaHistoriaImportaSection() {
         chart={TIMELINE_CHART}
       />
 
-      <StepReveal
-        title="Qué problema resolvió cada etapa"
-        steps={[
+      <CompareTable title="Qué problema resolvió cada etapa" headers={["Paso", "Qué ocurre"]} rows={[
           {
             title: "1. Archivos planos (50s–60s)",
             content:
@@ -92,8 +90,7 @@ export function PorQueLaHistoriaImportaSection() {
             content:
               "NewSQL, cloud managed, HTAP, vectoriales y multi-modelo. Elegir garantías según el problema, no según la moda.",
           },
-        ]}
-      />
+        ].map((s) => [s.title, s.content])} />
     </section>
   );
 }

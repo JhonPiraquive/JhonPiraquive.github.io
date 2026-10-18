@@ -9,7 +9,7 @@ export function LicenciasSoftwareSection() {
       <h3 className="mt-6 mb-2 text-xl font-semibold">{"Qué es"}</h3>
       <p className="my-4">
         {
-          "Una licencia de software es el contrato legal que define cómo puedes usar, copiar, modificar y redistribuir un programa. No confundir con la compra del DVD o la descarga: pagas por derechos de uso según términos del fabricante o de la licencia libre."
+          "Una licencia de software es el contrato legal que define cómo se puede usar, copiar, modificar y redistribuir un programa. No confundir con la compra del DVD o la descarga: se pagan derechos de uso según términos del fabricante o de la licencia libre."
         }
       </p>
 

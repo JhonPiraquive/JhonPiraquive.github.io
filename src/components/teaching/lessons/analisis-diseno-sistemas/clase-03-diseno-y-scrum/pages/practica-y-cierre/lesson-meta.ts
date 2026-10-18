@@ -11,5 +11,5 @@ export const meta: LessonMeta = {
   title: pageDef.title,
   showInTrackIndex: false,
   seoTitle: "Cierre clase 3 | ADS",
-  seoDescription: "Cierre y miniquiz de diseño, casos de uso y Scrum.",
+  seoDescription: "Práctica, miniquiz y autoevaluación de diseño, casos de uso y Scrum.",
 };

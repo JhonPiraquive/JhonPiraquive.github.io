@@ -9,7 +9,7 @@ export type ClassNavConfig = {
 
 export const CLASE_01: ClassNavConfig = {
   classSlug: "clase-01-fundamentos-web",
-  classTitle: "Clase 1: Fundamentos web",
+  classTitle: "Clase 1: Fundamentos web, DNS y publicación",
   hubOrder: 2,
   pages: [
     {
@@ -37,25 +37,25 @@ export const CLASE_01: ClassNavConfig = {
       readMinutes: 18,
     },
     {
-      slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Comprueba tu comprensión, reto integrador y miniquiz.",
-      readMinutes: 20,
-    },
-  ],
-};
-
-export const CLASE_02: ClassNavConfig = {
-  classSlug: "clase-02-hosting-correo-https",
-  classTitle: "Clase 2: Hosting, correo y HTTPS",
-  hubOrder: 8,
-  pages: [
-    {
       slug: "hosting-y-publicacion",
       title: "Hosting y publicación de sitios",
       description: "Tipos de hosting, despliegue, logs Nginx y permisos.",
       readMinutes: 20,
     },
+    {
+      slug: "practica-y-cierre",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, reto integrador, miniquiz y autoevaluación de navegadores, IP, DNS y publicación.",
+      readMinutes: 25,
+    },
+  ],
+};
+
+export const CLASE_02: ClassNavConfig = {
+  classSlug: "clase-02-https-correo-nube",
+  classTitle: "Clase 2: HTTPS, correo y servicios en la nube",
+  hubOrder: 10,
+  pages: [
     {
       slug: "https-y-tls",
       title: "HTTP, HTTPS y TLS",
@@ -69,20 +69,6 @@ export const CLASE_02: ClassNavConfig = {
       readMinutes: 18,
     },
     {
-      slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Ejercicios de comprensión, reto integrador y miniquiz.",
-      readMinutes: 20,
-    },
-  ],
-};
-
-export const CLASE_03: ClassNavConfig = {
-  classSlug: "clase-03-administracion-remota",
-  classTitle: "Clase 3: Administración remota",
-  hubOrder: 13,
-  pages: [
-    {
       slug: "computacion-en-nube",
       title: "Computación en la nube",
       description: "IaaS/PaaS/SaaS y modelo cliente-servidor remoto.",
@@ -95,25 +81,25 @@ export const CLASE_03: ClassNavConfig = {
       readMinutes: 20,
     },
     {
+      slug: "practica-y-cierre",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, reto integrador, miniquiz y autoevaluación de HTTPS, correo, nube y transferencia de archivos.",
+      readMinutes: 25,
+    },
+  ],
+};
+
+export const CLASE_03: ClassNavConfig = {
+  classSlug: "clase-03-administracion-contenedores-diagnostico",
+  classTitle: "Clase 3: Administración remota, contenedores y diagnóstico",
+  hubOrder: 17,
+  pages: [
+    {
       slug: "ssh-y-admin-remota",
       title: "SSH y administración remota",
       description: "SFTP, claves SSH, herramientas gráficas, paneles y casos LATAM.",
       readMinutes: 20,
     },
-    {
-      slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Reto integrador, comprueba tu comprensión y cierre de clase.",
-      readMinutes: 18,
-    },
-  ],
-};
-
-export const CLASE_04: ClassNavConfig = {
-  classSlug: "clase-04-virtualizacion-diagnostico",
-  classTitle: "Clase 4: Virtualización y diagnóstico",
-  hubOrder: 18,
-  pages: [
     {
       slug: "contenedores-docker",
       title: "Contenedores Docker",
@@ -140,14 +126,14 @@ export const CLASE_04: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Reto integrador, comprueba tu comprensión, cierre y miniquiz final.",
-      readMinutes: 20,
+      title: "Práctica y cierre",
+      description: "Práctica guiada, reto integrador, miniquiz y autoevaluación de administración remota, contenedores y diagnóstico.",
+      readMinutes: 25,
     },
   ],
 };
 
-export const ALL_CLASSES = [CLASE_01, CLASE_02, CLASE_03, CLASE_04] as const;
+export const ALL_CLASSES = [CLASE_01, CLASE_02, CLASE_03] as const;
 
 export function buildPageSlug(classSlug: string, pageSlug: string): string {
   return `${classSlug}/${pageSlug}`;
@@ -221,4 +207,11 @@ type LessonMeta = {
   pageNumber?: number;
   totalPages?: number;
   classTitle?: string;
+};
+
+/** Slugs de clases anteriores → página equivalente vigente (alias de URLs antiguas). */
+export const LEGACY_CLASS_REDIRECTS: Record<string, string> = {
+  "clase-02-hosting-correo-https": buildPageSlug(CLASE_01.classSlug, "hosting-y-publicacion"),
+  "clase-03-administracion-remota": buildPageSlug(CLASE_02.classSlug, "computacion-en-nube"),
+  "clase-04-virtualizacion-diagnostico": CLASE_03.classSlug,
 };

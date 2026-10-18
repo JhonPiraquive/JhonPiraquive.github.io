@@ -71,7 +71,7 @@ export const CLASE_02: ClassNavConfig = {
     {
       slug: "practica-y-cierre",
       title: "Práctica, reto y cierre",
-      description: "Comprueba tu comprensión, reto integrador y miniquiz.",
+      description: "Ejercicios, reto integrador, miniquiz y autoevaluación de dispositivos y almacenamiento.",
       readMinutes: 20,
     },
   ],

@@ -7,7 +7,7 @@ export const meta: LessonMeta = {
   order: 1,
   prev: null,
   next: "clase-01-fundamentos-web",
-  seoTitle: "Curso Configuración de Servicios Web: 4 clases de 2 horas",
+  seoTitle: "Configuración de Servicios Web: objetivos y resultados de aprendizaje",
   seoDescription:
-    "Introducción al curso de DNS, hosting, correo, HTTPS, SSH, Docker y virtualización. Calendario y prerrequisitos.",
+    "Objetivos y resultados de aprendizaje del módulo de DNS, hosting, correo, HTTPS, SSH, Docker y virtualización.",
 };

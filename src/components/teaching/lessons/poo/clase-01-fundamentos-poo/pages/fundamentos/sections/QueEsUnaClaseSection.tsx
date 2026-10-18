@@ -1,5 +1,4 @@
 import { ClayCard } from "@/components/clay/ClayCard";
-import { CodeChallenge } from "@/components/teaching/CodeChallenge";
 import { CodeFiddle } from "@/components/teaching/CodeFiddle";
 import { CompareTable } from "@/components/teaching/CompareTable";
 import { MermaidDiagram } from "@/components/teaching/MermaidDiagram";
@@ -85,15 +84,6 @@ export function QueEsUnaClaseSection() {
           "Una clase útil suele tener una responsabilidad clara (por ejemplo, “ser un producto del catálogo”). Si metes UI, base de datos e impresión de facturas en el mismo tipo, nace una “clase Dios”: difícil de probar y de cambiar."
         }
       </p>
-      <CodeChallenge
-        title="Completa — instanciar y tipar"
-        template={`var cafe = {{blank1}} Producto("Café de Nariño", 12000m);
-public {{blank2}} Precio { get; }`}
-        blanks={[
-          { id: "blank1", answer: "new", placeholder: "keyword de creación" },
-          { id: "blank2", answer: "decimal", placeholder: "tipo del precio" },
-        ]}
-      />
     </section>
   );
 }

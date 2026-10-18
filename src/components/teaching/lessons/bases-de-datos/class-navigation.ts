@@ -7,10 +7,10 @@ export type ClassNavConfig = {
   pages: ClassPageLink[];
 };
 
-/** Clase 1 — Fundamentos: historia condensada + BD/SGBD + motores + abecedario. */
+/** Clase 1 — Fundamentos y modelado de datos (nivel 0–30). */
 export const CLASE_01: ClassNavConfig = {
   classSlug: "clase-01-fundamentos-bd",
-  classTitle: "Clase 1: Fundamentos de bases de datos",
+  classTitle: "Clase 1: Fundamentos y modelado de datos",
   hubOrder: 2,
   pages: [
     {
@@ -42,20 +42,11 @@ export const CLASE_01: ClassNavConfig = {
       readMinutes: 18,
     },
     {
-      slug: "practica-y-cierre",
-      title: "Práctica, reto Andes Tech y cierre",
-      description: "Ejercicios, reto integrador, cierre y miniquiz de fundamentos.",
-      readMinutes: 25,
+      slug: "familias-relacional-nosql-grafos",
+      title: "Familias: relacional, NoSQL y grafos",
+      description: "Contexto de diseño por forma de pregunta",
+      readMinutes: 12,
     },
-  ],
-};
-
-/** Clase 2 — Diseño: C/L/F, ER, PK/FK, ER→SQL (ex clase 03). */
-export const CLASE_02: ClassNavConfig = {
-  classSlug: "clase-02-diseno-modelos-er",
-  classTitle: "Clase 2: Diseño de datos y diagramas ER",
-  hubOrder: 8,
-  pages: [
     {
       slug: "modelos-conceptual-logico-fisico",
       title: "Modelos: conceptual, lógico y físico",
@@ -69,10 +60,38 @@ export const CLASE_02: ClassNavConfig = {
       readMinutes: 15,
     },
     {
-      slug: "familias-relacional-nosql-grafos",
-      title: "Familias: relacional, NoSQL y grafos",
-      description: "Contexto de diseño por forma de pregunta",
-      readMinutes: 12,
+      slug: "practica-y-cierre",
+      title: "Práctica y cierre",
+      description:
+        "Práctica guiada, reto integrador, miniquiz y autoevaluación de fundamentos y modelado.",
+      readMinutes: 30,
+    },
+  ],
+};
+
+/** Clase 2 — Del diseño al esquema en SQL (nivel 30–65). */
+export const CLASE_02: ClassNavConfig = {
+  classSlug: "clase-02-del-diseno-al-esquema",
+  classTitle: "Clase 2: Del diseño al esquema en SQL",
+  hubOrder: 10,
+  pages: [
+    {
+      slug: "redundancia-y-dependencia-funcional",
+      title: "Del Excel sucio a las reglas del esquema",
+      description: "Anomalías de inserción/actualización/borrado y DF (A → B)",
+      readMinutes: 15,
+    },
+    {
+      slug: "formas-normales-1-2-3",
+      title: "Formas normales 1FN, 2FN y 3FN",
+      description: "Checklist ejecutable 1FN→2FN→3FN + mención BCNF",
+      readMinutes: 22,
+    },
+    {
+      slug: "desnormalizacion-y-bi",
+      title: "Desnormalización consciente y esquemas BI",
+      description: "Cuándo desnormalizar; estrella vs copo de nieve",
+      readMinutes: 20,
     },
     {
       slug: "transformacion-tipos-llaves",
@@ -80,21 +99,6 @@ export const CLASE_02: ClassNavConfig = {
       description: "ER → tablas, tipos, PK/FK, padres primero",
       readMinutes: 20,
     },
-    {
-      slug: "practica-y-cierre",
-      title: "Práctica y cierre",
-      description: "Ejercicios, reto, cierre y miniquiz — diseño listo para implementar",
-      readMinutes: 25,
-    },
-  ],
-};
-
-/** Clase 3 — SQL operativo (ex clase 04). */
-export const CLASE_03: ClassNavConfig = {
-  classSlug: "clase-03-sql-ddl-dml",
-  classTitle: "Clase 3: SQL — DDL, DML y JOINs",
-  hubOrder: 14,
-  pages: [
     {
       slug: "ddl-estructura",
       title: "DDL: crear y modificar el esquema",
@@ -113,6 +117,22 @@ export const CLASE_03: ClassNavConfig = {
       description: "INSERT, SELECT y reglas de nombres/comillas",
       readMinutes: 15,
     },
+    {
+      slug: "practica-y-cierre",
+      title: "Práctica y cierre",
+      description:
+        "Práctica guiada, reto integrador, miniquiz y autoevaluación del diseño al esquema en SQL.",
+      readMinutes: 30,
+    },
+  ],
+};
+
+/** Clase 3 — Consultas y administración (nivel 65–100). */
+export const CLASE_03: ClassNavConfig = {
+  classSlug: "clase-03-consultas-y-administracion",
+  classTitle: "Clase 3: Consultas y administración",
+  hubOrder: 18,
+  pages: [
     {
       slug: "dml-filtros-orden",
       title: "WHERE, DISTINCT, ORDER BY y LIMIT",
@@ -136,39 +156,6 @@ export const CLASE_03: ClassNavConfig = {
       title: "Consultas entre tablas: JOINs",
       description: "INNER, LEFT y RIGHT JOIN con el caso de la Clase 2",
       readMinutes: 22,
-    },
-    {
-      slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Ejercicios, reto, cierre y miniquiz",
-      readMinutes: 25,
-    },
-  ],
-};
-
-/** Clase 4 — Experto: normalización + DCL/TCL/objetos (ex 05+06). */
-export const CLASE_04: ClassNavConfig = {
-  classSlug: "clase-04-experto-bd",
-  classTitle: "Clase 4: Experto — normalización, permisos y objetos",
-  hubOrder: 24,
-  pages: [
-    {
-      slug: "redundancia-y-dependencia-funcional",
-      title: "Del Excel sucio a las reglas del esquema",
-      description: "Anomalías de inserción/actualización/borrado y DF (A → B)",
-      readMinutes: 15,
-    },
-    {
-      slug: "formas-normales-1-2-3",
-      title: "Formas normales 1FN, 2FN y 3FN",
-      description: "Checklist ejecutable 1FN→2FN→3FN + mención BCNF",
-      readMinutes: 22,
-    },
-    {
-      slug: "desnormalizacion-y-bi",
-      title: "Desnormalización consciente y esquemas BI",
-      description: "Cuándo desnormalizar; estrella vs copo de nieve",
-      readMinutes: 20,
     },
     {
       slug: "mapa-sql-familias",
@@ -202,14 +189,15 @@ export const CLASE_04: ClassNavConfig = {
     },
     {
       slug: "practica-y-cierre",
-      title: "Práctica, reto y cierre",
-      description: "Lab normalización + DCL/TCL, retos, cierre y miniquiz",
-      readMinutes: 28,
+      title: "Práctica y cierre",
+      description:
+        "Práctica guiada, reto integrador, miniquiz y autoevaluación de consultas y administración.",
+      readMinutes: 35,
     },
   ],
 };
 
-export const ALL_CLASSES = [CLASE_01, CLASE_02, CLASE_03, CLASE_04] as const;
+export const ALL_CLASSES = [CLASE_01, CLASE_02, CLASE_03] as const;
 
 export function buildPageSlug(classSlug: string, pageSlug: string): string {
   return `${classSlug}/${pageSlug}`;
@@ -228,10 +216,13 @@ export function getClassLastPageSlug(config: ClassNavConfig): string {
 export const LEGACY_CLASS_REDIRECTS: Record<string, string> = {
   "clase-01-historia-bases-de-datos": getClassFirstPageSlug(CLASE_01),
   "clase-02-fundamentos-motores-estructura": buildPageSlug(CLASE_01.classSlug, "que-es-y-tipos"),
-  "clase-03-modelos-datos-er": getClassFirstPageSlug(CLASE_02),
-  "clase-04-ddl-dml-relacional": getClassFirstPageSlug(CLASE_03),
-  "clase-05-normalizacion-esquemas": getClassFirstPageSlug(CLASE_04),
-  "clase-06-dcl-tcl-objetos-bd": buildPageSlug(CLASE_04.classSlug, "mapa-sql-familias"),
+  "clase-03-modelos-datos-er": buildPageSlug(CLASE_01.classSlug, "modelos-conceptual-logico-fisico"),
+  "clase-04-ddl-dml-relacional": buildPageSlug(CLASE_02.classSlug, "ddl-estructura"),
+  "clase-05-normalizacion-esquemas": getClassFirstPageSlug(CLASE_02),
+  "clase-06-dcl-tcl-objetos-bd": buildPageSlug(CLASE_03.classSlug, "mapa-sql-familias"),
+  "clase-02-diseno-modelos-er": buildPageSlug(CLASE_01.classSlug, "modelos-conceptual-logico-fisico"),
+  "clase-03-sql-ddl-dml": buildPageSlug(CLASE_02.classSlug, "ddl-estructura"),
+  "clase-04-experto-bd": getClassFirstPageSlug(CLASE_02),
 };
 
 /**
