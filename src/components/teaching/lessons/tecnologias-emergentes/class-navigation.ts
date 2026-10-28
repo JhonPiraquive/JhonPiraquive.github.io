@@ -8,16 +8,142 @@ export type ClassNavConfig = {
 };
 
 export const CLASE_01: ClassNavConfig = {
-  classSlug: "clase-01-fundamentos",
-  classTitle: "Clase 1: Del concepto al primer componente",
+  classSlug: "clase-01-identificar-tecnologias-emergentes",
+  classTitle: "Clase 1: Identificar una tecnología emergente",
   hubOrder: 0,
   pages: [
     {
-      slug: "tecnologias-emergentes-y-javascript",
-      title: "Qué son las tecnologías emergentes",
-      description: "Definición, ciclo de adopción, criterios para decidir si adoptar una tecnología y por qué se practica con JavaScript.",
+      slug: "que-es-una-tecnologia-emergente",
+      title: "Qué es una tecnología emergente",
+      description: "Definición, cinco atributos, diferencia con una moda y ejemplos de tecnologías que fueron emergentes.",
+      readMinutes: 20,
+    },
+    {
+      slug: "como-evoluciona",
+      title: "Cómo evoluciona una tecnología",
+      description: "Curva S, ciclo de sobreexpectación, difusión de innovaciones, el abismo y niveles de madurez tecnológica.",
+      readMinutes: 25,
+    },
+    {
+      slug: "como-identificarlas",
+      title: "Cómo identificar una tecnología emergente",
+      description: "Señales, fuentes de vigilancia, radar tecnológico y una ficha para analizar una tecnología.",
+      readMinutes: 22,
+    },
+    {
+      slug: "panorama-actual",
+      title: "Tecnologías emergentes hoy",
+      description: "Inteligencia artificial, computación espacial, IoT, robótica, energía, biotecnología y tecnologías de la web.",
+      readMinutes: 22,
+    },
+    {
+      slug: "tecnologias-del-futuro",
+      title: "Posibles tecnologías emergentes del futuro",
+      description: "Horizontes de innovación, candidatas para los próximos años y los límites de predecir el futuro.",
+      readMinutes: 20,
+    },
+    {
+      slug: "practica-y-cierre",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, ejercicios, mini-quiz, autoevaluación y recursos.",
+      readMinutes: 25,
+    },
+  ],
+};
+
+export const CLASE_02: ClassNavConfig = {
+  classSlug: "clase-02-inteligencia-artificial-moderna",
+  classTitle: "Clase 2: La inteligencia artificial moderna, de modelos a agentes",
+  hubOrder: 0,
+  pages: [
+    {
+      slug: "modelos-de-lenguaje",
+      title: "Qué es un modelo de lenguaje",
+      description: "De la IA al modelo de lenguaje, tokens, entrenamiento e inferencia, tipos de modelos y sus límites.",
+      readMinutes: 25,
+    },
+    {
+      slug: "prompts-contexto-y-sesiones",
+      title: "Prompts, contexto y sesiones",
+      description: "Roles de los mensajes, ventana de contexto, sesiones sin memoria, compactación, memoria persistente y RAG.",
+      readMinutes: 25,
+    },
+    {
+      slug: "herramientas-y-agentes",
+      title: "Herramientas, agentes y harness",
+      description: "Uso de herramientas, el ciclo de un agente, qué es un harness, subagentes y niveles de autonomía.",
+      readMinutes: 25,
+    },
+    {
+      slug: "extender-un-agente",
+      title: "Extender un agente: instrucciones, comandos, skills, MCP, hooks y plugins",
+      description: "Archivos de instrucciones, comandos, skills, el protocolo MCP, hooks, plugins y cuándo usar cada uno.",
       readMinutes: 28,
     },
+    {
+      slug: "riesgos-y-uso-responsable",
+      title: "Riesgos y uso responsable de la IA",
+      description: "Permisos, inyección de instrucciones, secretos, verificación de lo generado, ética y regulación.",
+      readMinutes: 22,
+    },
+    {
+      slug: "practica-y-cierre",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, ejercicios, mini-quiz, autoevaluación y recursos.",
+      readMinutes: 25,
+    },
+  ],
+};
+
+export const CLASE_03: ClassNavConfig = {
+  classSlug: "clase-03-decidir-y-adoptar",
+  classTitle: "Clase 3: Decidir si adoptar una tecnología y cómo hacerlo",
+  hubOrder: 0,
+  pages: [
+    {
+      slug: "criterios-de-decision",
+      title: "Criterios para decidir",
+      description: "Criterios técnicos, de negocio y de personas, matriz de decisión ponderada y por qué lo nuevo no siempre es lo mejor.",
+      readMinutes: 25,
+    },
+    {
+      slug: "de-la-idea-a-la-adopcion",
+      title: "De la idea a la adopción",
+      description: "Prueba de concepto, piloto, métricas de éxito y los anillos de un radar tecnológico.",
+      readMinutes: 22,
+    },
+    {
+      slug: "registrar-y-gestionar-la-decision",
+      title: "Registrar y gestionar la decisión",
+      description: "Registro de decisión (ADR), riesgos, reversibilidad, plan de salida y gestión del cambio.",
+      readMinutes: 22,
+    },
+    {
+      slug: "casos-de-decision",
+      title: "Casos de decisión",
+      description: "Un equipo que evalúa un agente de programación y un panel administrativo que elige su pila web.",
+      readMinutes: 25,
+    },
+    {
+      slug: "aprender-y-mantenerse-al-dia",
+      title: "Aprender una tecnología nueva y mantenerse al día",
+      description: "Un método para aprender cualquier tecnología, aprender con IA sin dejar de aprender y vigilancia personal.",
+      readMinutes: 20,
+    },
+    {
+      slug: "practica-y-cierre",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, ejercicios, mini-quiz, autoevaluación y recursos.",
+      readMinutes: 25,
+    },
+  ],
+};
+
+export const APOYO_01: ClassNavConfig = {
+  classSlug: "apoyo-react-01-javascript-y-componentes",
+  classTitle: "Guía de apoyo React, parte 1: JavaScript moderno y primer componente",
+  hubOrder: 0,
+  pages: [
     {
       slug: "entorno-y-librerias",
       title: "Entorno de trabajo y librerías",
@@ -51,9 +177,9 @@ export const CLASE_01: ClassNavConfig = {
   ],
 };
 
-export const CLASE_02: ClassNavConfig = {
-  classSlug: "clase-02-interfaces-con-react-y-mui",
-  classTitle: "Clase 2: Interfaces administrativas con React y MUI",
+export const APOYO_02: ClassNavConfig = {
+  classSlug: "apoyo-react-02-interfaces-mui-router",
+  classTitle: "Guía de apoyo React, parte 2: interfaces con MUI y React Router",
   hubOrder: 0,
   pages: [
     {
@@ -95,9 +221,9 @@ export const CLASE_02: ClassNavConfig = {
   ],
 };
 
-export const CLASE_03: ClassNavConfig = {
-  classSlug: "clase-03-datos-reales-y-crud",
-  classTitle: "Clase 3: Datos reales, CRUD y calidad",
+export const APOYO_03: ClassNavConfig = {
+  classSlug: "apoyo-react-03-datos-y-crud",
+  classTitle: "Guía de apoyo React, parte 3: datos reales, CRUD y calidad",
   hubOrder: 0,
   pages: [
     {
@@ -131,15 +257,18 @@ export const CLASE_03: ClassNavConfig = {
       readMinutes: 22,
     },
     {
-      slug: "horizonte-y-cierre",
-      title: "Panorama emergente y cierre",
-      description: "Hacia dónde avanzan las tecnologías emergentes: qué adoptar y cuándo, ejercicios, mini-quiz y autoevaluación.",
+      slug: "practica-y-cierre",
+      title: "Práctica y cierre",
+      description: "Práctica guiada, ejercicios, mini-quiz, autoevaluación y recursos.",
       readMinutes: 22,
     },
   ],
 };
 
-export const ALL_CLASSES = [CLASE_01, CLASE_02, CLASE_03] as const;
+/** Clases del módulo seguidas de la guía de apoyo React (misma cadena de navegación). */
+export const MAIN_CLASSES = [CLASE_01, CLASE_02, CLASE_03] as const;
+export const APOYO_REACT = [APOYO_01, APOYO_02, APOYO_03] as const;
+export const ALL_CLASSES = [...MAIN_CLASSES, ...APOYO_REACT] as const;
 
 export function buildPageSlug(classSlug: string, pageSlug: string): string {
   return `${classSlug}/${pageSlug}`;

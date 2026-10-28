@@ -10,7 +10,7 @@
 | Configuración de Sistemas Operativos | configuracion-sistemas-operativos | 3 hubs + 15 páginas + index | index |
 | Bases de Datos | bases-de-datos | index + 3 hubs + 26 páginas (3 clases) | index |
 | Análisis y Diseño de Sistemas de Información | analisis-diseno-sistemas | index + 3 hubs + 14 páginas | index |
-| Tecnologías Emergentes | tecnologias-emergentes | index + 3 hubs + 18 páginas | index |
+| Tecnologías Emergentes | tecnologias-emergentes | index + 3 hubs + 18 páginas + guía de apoyo React (3 hubs + 17 páginas) + 21 alias de URLs anteriores | index |
 
 ## Topic experts
 - pbpew → topic-expert-javascript

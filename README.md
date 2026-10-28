@@ -37,7 +37,7 @@ Sitio personal y portal de enseñanza universitaria desplegado en [GitHub Pages]
 | Seguridad en Aplicaciones | `sea` | 3 clases, 12 temas (CIA, ISO 27001, JWT, SQLi, criptografía) |
 | Programación Orientada a Sitios Web | `posw` | 3 clases, 22 temas (HTTP, REST, APIs, React, Angular) |
 | Configuración de Servicios Web | `configuracion-servicios-web` | 3 clases (DNS, hosting, HTTPS, correo, SSH, Docker, VMs) |
-| Tecnologías Emergentes | `tecnologias-emergentes` | 3 clases de 0 a 100 (concepto y evaluación de tecnologías emergentes; práctica con JavaScript moderno, React, MUI, React Router, APIs y CRUD) |
+| Tecnologías Emergentes | `tecnologias-emergentes` | 3 clases de 0 a 100 (identificar tecnologías emergentes; IA moderna: modelos, sesiones, agentes, harness, skills, MCP, hooks, plugins; decidir y adoptar) + guía de apoyo React en 3 partes para las actividades |
 
 Rutas: `/es/teaching/{track}/{slug}/` y `/en/teaching/{track}/{slug}/`
 

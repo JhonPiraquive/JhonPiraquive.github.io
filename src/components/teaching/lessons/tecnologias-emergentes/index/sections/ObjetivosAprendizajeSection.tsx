@@ -5,32 +5,25 @@ export function ObjetivosAprendizajeSection() {
       <p className="my-4">Al terminar el módulo, el estudiante será capaz de:</p>
       <ul className="my-4 list-disc space-y-2 pl-6">
         <li>
-          Explicar qué es una tecnología emergente, reconocer en qué etapa de su ciclo de vida se encuentra y decidir
-          con criterios si conviene adoptarla, sin dejarse llevar solo por la novedad.
+          Explicar qué es una tecnología emergente, distinguirla de una moda y ubicarla en su ciclo de vida con la curva S,
+          el ciclo de sobreexpectación, la difusión de innovaciones y los niveles de madurez.
         </li>
         <li>
-          Instalar y manejar librerías con npm, y entender por qué una librería ahorra trabajo y también genera
-          responsabilidades.
+          Identificar tecnologías emergentes actuales y futuras a partir de señales y fuentes de vigilancia confiables, y
+          analizarlas con una ficha basada en evidencia.
         </li>
         <li>
-          Escribir JavaScript moderno con soltura: variables, funciones flecha, objetos, arreglos, desestructuración y
-          peticiones asíncronas con async/await.
+          Explicar cómo funciona la inteligencia artificial moderna: modelos de lenguaje, tokens, contexto, sesiones,
+          agentes, harness, comandos, skills, servidores MCP, hooks y plugins.
+        </li>
+        <li>Usar herramientas de IA de forma segura y responsable, verificando lo que generan.</li>
+        <li>
+          Decidir con criterios si adoptar una tecnología, usando una matriz ponderada, pruebas de concepto, pilotos,
+          métricas, análisis de riesgos y registros de decisión.
         </li>
         <li>
-          Construir interfaces con React: componentes, props, estado, efectos y listas, a partir de un proyecto creado
-          con Vite.
-        </li>
-        <li>
-          Diseñar una experiencia de usuario clara en un sitio administrativo, con Material UI y navegación entre
-          pantallas mediante React Router.
-        </li>
-        <li>
-          Conectar la interfaz con una API para crear, leer, actualizar y eliminar datos, validando lo que escribe el
-          usuario y mostrando siempre el estado de la operación.
-        </li>
-        <li>
-          Relacionar lo aprendido con otras tecnologías emergentes (inteligencia artificial, WebAssembly, PWA, WebXR) y
-          proponer una ruta de aprendizaje para incorporarlas.
+          Construir con React y JavaScript moderno las interfaces y conexiones con APIs que piden las actividades,
+          apoyándose en la guía técnica del módulo.
         </li>
       </ul>
     </section>

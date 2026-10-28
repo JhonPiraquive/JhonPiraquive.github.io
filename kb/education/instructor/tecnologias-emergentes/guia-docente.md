@@ -2,55 +2,60 @@
 
 Uso interno. No se publica en el portal (ADR 011). Ruta pública: `/es/teaching/tecnologias-emergentes`.
 
+## Enfoque (reorganización del 28-oct-2026)
+
+El módulo se centra en tecnologías emergentes: identificarlas, entender la IA moderna como caso principal y decidir si adoptarlas y cómo. React deja de ser el eje y pasa a una **guía de apoyo** en tres partes que acompaña a las actividades (todas siguen siendo proyectos Vite + React). Las URL anteriores (`clase-01-fundamentos/*`, `clase-02-interfaces-con-react-y-mui/*`, `clase-03-datos-reales-y-crud/*`) redirigen con alias (`_aliases/legacy-aliases.ts`).
+
 ## Escala 0 a 100 y tiempos
 
-| Clase | Nivel | Duración sugerida | Actividad que prepara |
-|-------|-------|-------------------|-----------------------|
-| 1. Del concepto al primer componente | 0–35 | 2 a 3 h | Actividad 1 (clon de productos, Vite + React, responsive 4/3/2) |
-| 2. Interfaces administrativas con React y MUI | 35–70 | 2 a 3 h | Actividad 2 (módulo docente: rutas, listado, formulario, acciones) |
-| 3. Datos reales, CRUD y calidad | 70–100 | 2 a 3 h | Actividad 3 (peticiones HTTP, CRUD, validaciones) |
-
-## Mapa del módulo (solo para el docente)
-
-El módulo enseña primero el concepto de tecnología emergente (definición, ciclo de sobreexpectación, curva de adopción, seis criterios de evaluación) y usa JavaScript y React como terreno de práctica. El mapa no se publica en las páginas del estudiante.
+| Clase | Nivel | Duración | Apoyo técnico para la actividad |
+|-------|-------|----------|---------------------------------|
+| 1. Identificar una tecnología emergente | 0–35 | 2 a 3 h | Guía React parte 1 → Actividad 1 (clon de productos) |
+| 2. IA moderna, de modelos a agentes | 35–70 | 2 a 3 h | Guía React parte 2 → Actividad 2 (módulo docente) |
+| 3. Decidir si adoptar y cómo hacerlo | 70–100 | 2 a 3 h | Guía React parte 3 → Actividad 3 (CRUD HTTP) |
 
 | Clase | Qué aprende el estudiante | Qué puede mostrar al final |
 |-------|---------------------------|----------------------------|
-| 1 | Concepto y evaluación de tecnologías emergentes, terminal, npm, JavaScript moderno, JSX, props, listas | Catálogo de tarjetas responsive que cambia según los datos |
-| 2 | Estado, efectos, Material UI, UX, accesibilidad, React Router; aplicar criterios a una librería de interfaz | Sitio administrativo con menú, varias pantallas, tabla y formulario |
-| 3 | HTTP, async/await, fetch, CRUD, validación, rendimiento, despliegue; panorama de tecnologías emergentes | El mismo sitio leyendo y guardando en una API, más una ruta de aprendizaje justificada |
-
-## Estructura de cada clase
-
-Las páginas de contenido solo explican. Todo lo evaluable va en la última página de la clase, en este orden: práctica guiada, ejercicios con pista y validación, mini-quiz, autoevaluación y recursos.
+| 1 | Definición, 5 atributos (Rotolo, Hicks y Martin), moda vs tendencia, curva S, hype cycle, difusión y abismo, TRL, señales, vigilancia, radar, panorama actual y candidatas futuras (3 horizontes) | Ficha de identificación de una tecnología con evidencia y fuentes |
+| 2 | LLM, tokens, entrenamiento/inferencia, tipos y límites; roles, sesiones sin memoria, ventana de contexto, compactación, memoria persistente, RAG; tool use, ciclo del agente, harness, subagentes, autonomía; AGENTS.md, comandos, skills, MCP, hooks, plugins; seguridad, verificación, ética y regulación | Un agente configurado para un proyecto (instrucciones, skill, hook) y explicado pieza por pieza |
+| 3 | Criterios técnicos/negocio/personas, matriz ponderada con eliminatorios, nuevo ≠ mejor, PoC, piloto, métricas, radar del equipo, ADR, riesgos, reversibilidad, gestión del cambio, casos, método para aprender, IA como tutora, vigilancia personal | Informe de decisión completo (ficha + matriz + PoC + riesgos + ADR) |
 
 ## Cómo repartir cada clase (en vivo)
 
-**Clase 1**: p1 qué es una tecnología emergente, ciclo de adopción y criterios (25 min, discusión con ejemplos que traiga el grupo) · p2 entorno y npm (25 min, todos instalan y ejecutan) · p3 y p4 JavaScript moderno (50 min, ejercicios en consola) · p5 proyecto Vite y tarjeta de producto (50 min, código en vivo) · práctica guiada: papelería (resto o tarea). El estudiante lee de la página lo que no alcance.
+**Clase 1**: p1 definición y atributos (25 min, ejemplos que traiga el grupo) · p2 modelos de evolución (35 min; ubicar entre todos 3 tecnologías en el ciclo) · p3 señales y radar (25 min; ejecutar en vivo el script de descargas npm) · p4 panorama (20 min) · p5 futuro (15 min, debate sobre los casos fallidos) · práctica: ficha de drones agrícolas en grupo; la ficha libre queda de tarea.
 
-**Clase 2**: p1 estado y eventos (35 min) · p2 efectos (20 min; contexto queda de lectura) · p3 MUI (40 min, en vivo con el formulario y la tabla) · p4 UX (15 min, discusión con ejemplos) · p5 rutas (35 min, layout con Outlet) · práctica: módulo de materias.
+**Clase 2**: p1 modelos (30 min; correr la simulación de temperatura) · p2 sesiones y contexto (30 min; la simulación de sesión es clave para desmontar la idea de que «el modelo recuerda») · p3 agentes y harness (35 min; correr el agente en consola) · p4 extensiones (35 min; si es posible, demostrar en vivo con un agente real: AGENTS.md, una skill, un hook) · p5 riesgos (20 min) · práctica guiada en clase o como tarea.
 
-**Clase 3**: p1 HTTP (20 min; probar la API con Thunder Client o curl) · p2 async/await y fetch (35 min) · p3 CRUD (50 min, en vivo: listar, crear, editar, eliminar) · p4 validación (20 min; RHF + Zod como lectura) · p5 rendimiento y despliegue (20 min) · p6 panorama emergente y cierre (20 min, retomar los criterios de la clase 1).
+**Clase 3**: p1 criterios y matriz (35 min; cambiar pesos en vivo para mostrar sensibilidad) · p2 PoC y piloto (25 min) · p3 ADR y riesgos (25 min) · p4 casos (30 min, discusión) · p5 aprender (15 min) · práctica: informe de decisión (tarea final).
 
-## Puntos donde el material del curso está desfasado
+## Decisiones de contenido
 
-| Material del curso | Hoy (octubre de 2026) | Qué decir |
-|--------------------|-----------------------|-----------|
-| Plantilla con `react-router-dom` (v6) y `npm start` (Create React App) | `react-router` 8, Vite | Mismo concepto; cambia el import y el comando |
-| `<Grid item xs={..}>` | MUI 9: `<Grid size={{...}}>` (GridLegacy eliminado) | Si el código copiado no se ve bien, revisar Grid |
+- La IA se trata como caso de estudio de tecnología emergente y con conceptos neutrales al proveedor (modelo, harness, sesión, MCP, skills, hooks, plugins). Claude Code aparece como ejemplo concreto de harness porque su documentación cubre todas las piezas; se mencionan Codex, Gemini CLI, Copilot y Cursor.
+- El código de llamada a un modelo usa el SDK oficial de Anthropic con `model: process.env.MODELO_IA` para no fijar nombres de modelo en el contenido del estudiante.
+- Los ejemplos de prompts del sistema usan segunda persona («Eres…») porque así se redactan los prompts reales; es texto citado, no voz del material.
+
+## Verificado en fuentes (28-oct-2026; no se publica en páginas del estudiante)
+
+- MCP: arquitectura host/cliente/servidor, primitivas tools/resources/prompts, elicitation; sampling marcado como obsoleto en la versión de protocolo 2026-07-28; transportes stdio y Streamable HTTP (modelcontextprotocol.io/docs/learn/architecture).
+- Agentic AI Foundation (Linux Foundation, dic-2025) aloja MCP, goose y AGENTS.md; Anthropic donó Agent Skills a la AAIF el 22-oct-2026.
+- Plugins de Claude Code: manifiesto `.claude-plugin/plugin.json`; componentes skills, agents, hooks, MCP servers; marketplaces (code.claude.com/docs/en/plugins).
+- WEF Top 10 Emerging Technologies 2026 (23-jun-2026): everything-to-grid, extracción directa de litio, enfriamiento radiativo pasivo, destrucción de PFAS, fermentación de precisión, exosomas, vacunas ARNm personalizadas, simulación cuántica para fármacos, modelos del mundo, criptografía basada en retículos.
+- Gartner Hype Cycle for Emerging Technologies 2026 (23-jul-2026): 30 tecnologías, informe de pago; no se cita su contenido.
+- CONPES 4144 (14-feb-2025): Política Nacional de IA de Colombia, 6 objetivos, horizonte 2030.
+
+## Versiones de referencia de la guía React (verificadas el 16-oct-2026)
+
+Node 22.22+ · Vite 8.x · React 19.3 · MUI 9.x · React Router 8.x · json-server 0.17.4 (1.x en beta) · React Compiler 1.0.
+
+| Material del curso | Hoy | Qué decir |
+|--------------------|-----|-----------|
+| `react-router-dom` (v6) y `npm start` (CRA) | `react-router` 8, Vite | Mismo concepto; cambia el import y el comando |
+| `<Grid item xs={..}>` | MUI 9: `<Grid size={{...}}>` | Si el código copiado no se ve bien, revisar Grid |
 | `PropTypes` / `defaultProps` | React 19 los ignora | Parámetros por defecto, JSDoc o TypeScript |
 | Videos Midudev (2021) y Bluuweb (2020) sobre MUI | MUI 9 | Sirven para el concepto; copiar código de mui.com |
 | API del proyecto con `_id` (Mongo) | json-server usa `id` | Revisar el nombre del id en la pestaña Red |
 
-## Versiones de referencia (verificadas el 16-oct-2026; no se publican en las páginas del estudiante)
-
-Node 22.22+ (mínimo de React Router 8; recomendada la LTS más reciente) · Vite 8.x (Rolldown; requiere Node 20.19+ o 22.12+) · React 19.3 · MUI 9.x (no existe la 8) · React Router 8.x · json-server 0.17.4 (la 1.x sigue en beta) · React Compiler 1.0 estable.
-
-## Fuentes
-
-react.dev (blog, upgrade guide de React 19, «You might not need an effect») · vite.dev (guide, blog Vite 8) · mui.com (upgrade a v9, installation, grid, dark mode) · reactrouter.com (declarativo, upgrading v7→v8) · MDN (Fetch) · nodejs.org (calendario de releases).
-
 ## Pendiente
 
-- El PDF indicado en el encargo (`uahbWnJVV1C4WFiT52maw54rhxJfFMBv0vgt6kwJb2xoJ46XF3.pdf`) no se encontró en `~/Descargas`; si aporta contenido, revisarlo y ajustar.
-- Los videos de la facultad (YouTube) se incluyeron como recursos por título; no se pudo ver su contenido.
+- Los resultados de aprendizaje oficiales de la asignatura siguen centrados en JavaScript/React/Vite; se publican textuales. Si la asignatura los actualiza hacia el nuevo enfoque, reemplazarlos en `index/sections/ResultadosAprendizajeSection.tsx`.
+- Entorno local: `node_modules` tiene Next 15.5.19 aunque `package.json` pide ^16.3.0 (lock en 16.4.2); conviene `npm install`. El build falla de forma intermitente con `Cannot read properties of null (reading 'hash')` si queda un `.next` previo; `rm -rf .next` lo resuelve.

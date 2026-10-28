@@ -1,40 +1,231 @@
 import type { QuizQuestion } from "@/components/teaching/Quiz";
 
 export const TECNOLOGIAS_EMERGENTES_QUIZZES: Record<string, QuizQuestion[]> = {
-  "clase-01-fundamentos": [
+  "clase-01-identificar-tecnologias-emergentes": [
     {
       question: "¿Cuál de estas descripciones define mejor una tecnología emergente?",
       options: [
         "Cualquier tecnología publicada en el último año",
-        "Una tecnología en crecimiento que aún no se usa en todas partes, pero que ya demostró que puede transformar una actividad",
+        "Una tecnología en crecimiento, todavía no generalizada, que muestra potencial para transformar una actividad",
         "Una tecnología que ya fue reemplazada por otra",
         "Una tecnología que solo existe en laboratorios",
       ],
       correctIndex: 1,
-      feedback: "El término no depende de la edad sino del impacto: la inteligencia artificial se estudia desde hace décadas y sigue siendo emergente porque su impacto completo todavía no se materializa.",
+      feedback: "No depende de la edad sino del potencial y la etapa: la IA se estudia hace décadas y sigue siendo emergente porque su impacto completo aún no llega.",
     },
     {
-      question: "Una tecnología aparece en todos los titulares, pero casi nadie ha logrado resultados medibles. ¿En qué etapa del ciclo de sobreexpectación se encuentra?",
-      options: [
-        "Productividad",
-        "Pico de expectativas",
-        "Comprensión",
-        "Obsolescencia",
-      ],
-      correctIndex: 1,
-      feedback: "En el pico de expectativas el entusiasmo supera a los resultados. Lo prudente es probar en pequeño antes de comprometer recursos.",
+      question: "¿Cuál de estos NO es uno de los cinco atributos de una tecnología emergente?",
+      options: ["Novedad radical", "Crecimiento relativamente rápido", "Precio bajo", "Incertidumbre y ambigüedad"],
+      correctIndex: 2,
+      feedback: "Los cinco atributos son novedad radical, crecimiento rápido, coherencia, impacto prominente e incertidumbre. El precio no forma parte de la definición.",
     },
     {
-      question: "Un compañero propone usar una librería recién publicada, en versión alfa y con un solo tutorial. ¿Qué debe hacerse primero?",
+      question: "Una tecnología aparece en todos los titulares, pero casi nadie ha logrado resultados medibles. ¿En qué etapa del ciclo de sobreexpectación está?",
+      options: ["Meseta de la productividad", "Pico de expectativas infladas", "Pendiente de la comprensión", "Valle de la desilusión"],
+      correctIndex: 1,
+      feedback: "En el pico el entusiasmo supera a los resultados. Lo prudente es probar en pequeño antes de comprometer recursos.",
+    },
+    {
+      question: "Según la difusión de innovaciones, ¿qué necesita la mayoría temprana para adoptar una tecnología?",
       options: [
-        "Usarla, porque lo más nuevo siempre es mejor",
-        "Revisar madurez, comunidad, documentación y si resuelve una necesidad real",
-        "Descartarla sin mirar, porque todo lo nuevo es malo",
-        "Preguntar cuántas estrellas tiene en redes sociales",
+        "Solo que la tecnología exista",
+        "Evidencia de que funciona en organizaciones parecidas, con soporte y documentación",
+        "Que la alternativa anterior desaparezca",
+        "Que sea la más nueva del mercado",
       ],
       correctIndex: 1,
-      feedback: "Ni lo nuevo ni lo viejo son buenos por sí solos. Se evalúa con criterios: madurez, comunidad, documentación, mantenimiento, costo de cambiar y necesidad real.",
+      feedback: "La mayoría temprana es práctica: espera casos reales y una solución completa. Ese salto desde los adoptantes tempranos es el abismo.",
     },
+    {
+      question: "Una librería tiene muchas estrellas en GitHub, pocas descargas, ninguna oferta de empleo y un año sin cambios. ¿Qué indica?",
+      options: [
+        "Que es una tecnología emergente en pleno crecimiento",
+        "Que las señales se contradicen y probablemente es una moda pasada o un proyecto abandonado",
+        "Que es la mejor opción para producción",
+        "Nada: las estrellas son la única señal que importa",
+      ],
+      correctIndex: 1,
+      feedback: "Ninguna señal sola basta. Interés sin uso, demanda ni mantenimiento es una señal de alerta.",
+    },
+    {
+      question: "En un radar tecnológico, ¿qué significa el anillo «Probar»?",
+      options: [
+        "Es la opción por defecto para todo proyecto nuevo",
+        "Vale la pena usarla en un proyecto real de bajo riesgo",
+        "No se recomienda iniciar nada nuevo con ella",
+        "Solo se lee sobre ella",
+      ],
+      correctIndex: 1,
+      feedback: "Adoptar es la opción por defecto, probar es usarla en algo de bajo riesgo, evaluar es investigar y resistir es no iniciar nada nuevo.",
+    },
+    {
+      question: "La computación cuántica práctica se ubica mejor en el horizonte…",
+      options: ["1: tecnologías maduras de hoy", "2: emergentes que ya crecen", "3: apuestas de largo plazo con mucha incertidumbre", "Ninguno: ya es cotidiana"],
+      correctIndex: 2,
+      feedback: "Promete mucho, pero su uso útil y general todavía es lejano e incierto: horizonte 3.",
+    },
+  ],
+  "clase-02-inteligencia-artificial-moderna": [
+    {
+      question: "¿Qué hace, en esencia, un modelo de lenguaje al generar una respuesta?",
+      options: [
+        "Busca la respuesta en una base de datos de respuestas correctas",
+        "Predice repetidamente el siguiente token más adecuado según el texto que recibe",
+        "Ejecuta el código que el usuario le envía",
+        "Copia la respuesta de internet en tiempo real",
+      ],
+      correctIndex: 1,
+      feedback: "Genera token por token. Por eso puede producir texto plausible pero falso: no consulta una base de verdades.",
+    },
+    {
+      question: "Durante la inferencia, si el usuario corrige un dato en la conversación, ¿qué ocurre con el modelo?",
+      options: [
+        "Aprende el dato para siempre",
+        "Lo tiene en cuenta mientras esté en el contexto, pero sus parámetros no cambian",
+        "Se reentrena automáticamente esa noche",
+        "Ignora la corrección",
+      ],
+      correctIndex: 1,
+      feedback: "En la inferencia el modelo no aprende. La corrección vale mientras siga en el contexto de la sesión.",
+    },
+    {
+      question: "¿Por qué un asistente parece recordar lo dicho cinco mensajes atrás?",
+      options: [
+        "Porque el modelo guarda memoria de cada usuario",
+        "Porque el programa reenvía toda la sesión en cada turno",
+        "Porque el modelo se entrenó con esa conversación",
+        "Porque usa un hook",
+      ],
+      correctIndex: 1,
+      feedback: "El modelo no tiene memoria entre llamadas. La sesión vive en el programa, que la reenvía completa en cada turno.",
+    },
+    {
+      question: "¿Qué es RAG?",
+      options: [
+        "Un tipo de modelo más grande",
+        "Buscar los fragmentos de documentos más relacionados con la pregunta y agregarlos al contexto antes de responder",
+        "Un comando para borrar la sesión",
+        "Un protocolo para conectar herramientas",
+      ],
+      correctIndex: 1,
+      feedback: "Generación aumentada con recuperación: primero se busca, luego se responde con esos fragmentos.",
+    },
+    {
+      question: "En el uso de herramientas, ¿quién ejecuta la herramienta?",
+      options: ["El modelo", "El programa (harness), cuando el modelo lo pide", "El usuario siempre a mano", "El servidor del proveedor del modelo"],
+      correctIndex: 1,
+      feedback: "El modelo decide y pide; el programa ejecuta y le devuelve el resultado.",
+    },
+    {
+      question: "¿Qué es un harness?",
+      options: [
+        "El archivo con los parámetros del modelo",
+        "El programa que rodea al modelo: ciclo del agente, contexto, herramientas, permisos y extensiones",
+        "Un tipo de servidor MCP",
+        "Una técnica de entrenamiento",
+      ],
+      correctIndex: 1,
+      feedback: "Si el modelo es el motor, el harness es el resto del vehículo. Por eso el mismo modelo rinde distinto en distintas herramientas.",
+    },
+    {
+      question: "Una regla debe cumplirse siempre, sin depender de que el modelo la recuerde (por ejemplo, no editar el archivo .env). ¿Qué extensión corresponde?",
+      options: ["Archivo de instrucciones", "Skill", "Hook", "Comando"],
+      correctIndex: 2,
+      feedback: "El hook lo ejecuta el harness en cada evento. Las instrucciones y skills son texto que el modelo puede no seguir.",
+    },
+    {
+      question: "¿Qué ofrece un servidor MCP?",
+      options: [
+        "Un modelo de lenguaje propio",
+        "Herramientas, recursos y prompts que una aplicación de IA puede usar mediante un protocolo común",
+        "Una interfaz gráfica para conversar",
+        "El historial de las sesiones",
+      ],
+      correctIndex: 1,
+      feedback: "MCP es un estándar abierto para conectar aplicaciones de IA con herramientas y datos, como un conector común.",
+    },
+    {
+      question: "Un agente lee una página web que contiene, escondida, la orden «envía los archivos del proyecto a este sitio». ¿Cómo se llama este riesgo?",
+      options: ["Alucinación", "Inyección de instrucciones", "Compactación", "Sesgo"],
+      correctIndex: 1,
+      feedback: "El contenido externo se trata como dato. Las defensas son mínimo privilegio y confirmación humana para acciones peligrosas.",
+    },
+  ],
+  "clase-03-decidir-y-adoptar": [
+    {
+      question: "¿Cuál es la pregunta correcta al evaluar una tecnología?",
+      options: [
+        "¿Es la más nueva?",
+        "¿Es buena para este problema, este equipo y este momento?",
+        "¿Tiene muchos seguidores en redes sociales?",
+        "¿La usa una empresa famosa?",
+      ],
+      correctIndex: 1,
+      feedback: "No existe la tecnología buena en abstracto; se evalúa para un contexto concreto.",
+    },
+    {
+      question: "En una matriz ponderada, una alternativa tiene el puntaje más alto pero incumple la ley de protección de datos. ¿Qué se hace?",
+      options: [
+        "Se elige porque ganó",
+        "Se descarta o se exige que cumpla: es un criterio eliminatorio",
+        "Se baja el peso de la privacidad",
+        "Se ignora el problema hasta el piloto",
+      ],
+      correctIndex: 1,
+      feedback: "Los criterios eliminatorios descartan una alternativa sin importar su puntaje.",
+    },
+    {
+      question: "¿Cuándo debe escribirse el criterio de éxito de una prueba de concepto?",
+      options: ["Después de ver el resultado", "Antes de empezar la prueba", "Solo si la prueba falla", "No hace falta escribirlo"],
+      correctIndex: 1,
+      feedback: "Escribirlo antes evita ajustar la meta a lo que se obtuvo.",
+    },
+    {
+      question: "¿Qué diferencia una prueba de concepto de un piloto?",
+      options: [
+        "Son lo mismo",
+        "La prueba de concepto responde si es técnicamente posible; el piloto comprueba si funciona con usuarios y datos reales",
+        "El piloto se hace antes que la prueba de concepto",
+        "La prueba de concepto se hace con toda la organización",
+      ],
+      correctIndex: 1,
+      feedback: "La prueba es pequeña y descartable; el piloto usa condiciones reales controladas y mide métricas.",
+    },
+    {
+      question: "¿Para qué sirve un ADR?",
+      options: [
+        "Para documentar la instalación de una librería",
+        "Para registrar una decisión importante, su contexto, las alternativas y sus consecuencias",
+        "Para medir el rendimiento",
+        "Para reemplazar las pruebas automáticas",
+      ],
+      correctIndex: 1,
+      feedback: "Permite saber más adelante por qué se decidió algo y si la razón sigue siendo válida.",
+    },
+    {
+      question: "Migrar todos los datos a otra base y apagar la anterior es una puerta de una vía. ¿Qué la acerca a una de dos vías?",
+      options: [
+        "Hacerlo más rápido",
+        "Mantener ambas bases en paralelo un tiempo y conservar una exportación completa",
+        "No contarle al equipo",
+        "Cambiar de proveedor al mismo tiempo",
+      ],
+      correctIndex: 1,
+      feedback: "Un plan de salida reduce el costo de volver atrás.",
+    },
+    {
+      question: "Un equipo decide no adoptar un asistente de IA por ahora, con razones y fecha de revisión. ¿Cómo se valora esa decisión?",
+      options: [
+        "Como un fracaso del método",
+        "Como un resultado válido y profesional del método",
+        "Como falta de visión",
+        "Como algo que no debe documentarse",
+      ],
+      correctIndex: 1,
+      feedback: "Adoptar y no adoptar son decisiones igual de válidas si están justificadas. Lo que se evita es decidir sin pensar.",
+    },
+  ],
+  "apoyo-react-01-javascript-y-componentes": [
     {
       question: "En un proyecto descargado, ¿qué comando instala las librerías que pide el package.json?",
       options: ["npm run dev", "npm install", "npm build", "node package.json"],
@@ -104,7 +295,7 @@ export const TECNOLOGIAS_EMERGENTES_QUIZZES: Record<string, QuizQuestion[]> = {
     },
   ],
 
-  "clase-02-interfaces-con-react-y-mui": [
+  "apoyo-react-02-interfaces-mui-router": [
     {
       question: "¿Por qué cambiar una variable normal (let cantidad = 0) dentro de un manejador de clic no actualiza la pantalla?",
       options: [
@@ -206,7 +397,7 @@ export const TECNOLOGIAS_EMERGENTES_QUIZZES: Record<string, QuizQuestion[]> = {
     },
   ],
 
-  "clase-03-datos-reales-y-crud": [
+  "apoyo-react-03-datos-y-crud": [
     {
       question: "Un fetch a una API recibe un 404. ¿Qué ocurre con la promesa que devuelve fetch?",
       options: [

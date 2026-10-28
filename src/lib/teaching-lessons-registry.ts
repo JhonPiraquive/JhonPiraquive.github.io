@@ -2270,91 +2270,254 @@ const REGISTRY: Record<string, LessonEntry> = {
     component: () => import("@/components/teaching/lessons/tecnologias-emergentes/index/TecnologiasEmergentesLesson"),
     meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/index/lesson-meta").then((m) => m.meta),
   },
+  "tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/Clase01IdentificarHubLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/que-es-una-tecnologia-emergente": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/que-es-una-tecnologia-emergente/QueEsUnaTecnologiaEmergentePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/que-es-una-tecnologia-emergente/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/como-evoluciona": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/como-evoluciona/ComoEvolucionaPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/como-evoluciona/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/como-identificarlas": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/como-identificarlas/ComoIdentificarlasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/como-identificarlas/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/panorama-actual": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/panorama-actual/PanoramaActualPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/panorama-actual/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/tecnologias-del-futuro": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/tecnologias-del-futuro/TecnologiasDelFuturoPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/tecnologias-del-futuro/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-identificar-tecnologias-emergentes/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-02-inteligencia-artificial-moderna": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/Clase02InteligenciaArtificialHubLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/modelos-de-lenguaje": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/modelos-de-lenguaje/ModelosDeLenguajePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/modelos-de-lenguaje/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/prompts-contexto-y-sesiones": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/prompts-contexto-y-sesiones/PromptsContextoYSesionesPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/prompts-contexto-y-sesiones/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/herramientas-y-agentes": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/herramientas-y-agentes/HerramientasYAgentesPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/herramientas-y-agentes/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/extender-un-agente": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/extender-un-agente/ExtenderUnAgentePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/extender-un-agente/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/riesgos-y-uso-responsable": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/riesgos-y-uso-responsable/RiesgosYUsoResponsablePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/riesgos-y-uso-responsable/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-inteligencia-artificial-moderna/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-03-decidir-y-adoptar": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/Clase03DecidirYAdoptarHubLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-03-decidir-y-adoptar/criterios-de-decision": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/criterios-de-decision/CriteriosDeDecisionPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/criterios-de-decision/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-03-decidir-y-adoptar/de-la-idea-a-la-adopcion": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/de-la-idea-a-la-adopcion/DeLaIdeaALaAdopcionPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/de-la-idea-a-la-adopcion/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-03-decidir-y-adoptar/registrar-y-gestionar-la-decision": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/registrar-y-gestionar-la-decision/RegistrarYGestionarLaDecisionPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/registrar-y-gestionar-la-decision/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-03-decidir-y-adoptar/casos-de-decision": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/casos-de-decision/CasosDeDecisionPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/casos-de-decision/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-03-decidir-y-adoptar/aprender-y-mantenerse-al-dia": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/aprender-y-mantenerse-al-dia/AprenderYMantenerseAlDiaPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/aprender-y-mantenerse-al-dia/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/clase-03-decidir-y-adoptar/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-decidir-y-adoptar/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-01-javascript-y-componentes": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/ApoyoReact01HubLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/entorno-y-librerias": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/entorno-y-librerias/EntornoYLibreriasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/entorno-y-librerias/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/variables-y-funciones": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/variables-y-funciones/VariablesYFuncionesPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/variables-y-funciones/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/objetos-arrays-y-modulos": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/objetos-arrays-y-modulos/ObjetosArraysYModulosPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/objetos-arrays-y-modulos/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/primer-componente-react": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/primer-componente-react/PrimerComponenteReactPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/primer-componente-react/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-01-javascript-y-componentes/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-02-interfaces-mui-router": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/ApoyoReact02HubLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/estado-y-eventos": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/estado-y-eventos/EstadoYEventosPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/estado-y-eventos/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/efectos-y-hooks-propios": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/efectos-y-hooks-propios/EfectosYHooksPropiosPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/efectos-y-hooks-propios/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/material-ui": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/material-ui/MaterialUiPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/material-ui/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/ux-ui-administrativo": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/ux-ui-administrativo/UxUiAdministrativoPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/ux-ui-administrativo/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/react-router": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/react-router/ReactRouterPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/react-router/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-02-interfaces-mui-router/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-03-datos-y-crud": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/ApoyoReact03HubLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-03-datos-y-crud/http-y-apis": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/http-y-apis/HttpYApisPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/http-y-apis/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-03-datos-y-crud/async-await-y-fetch": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/async-await-y-fetch/AsyncAwaitYFetchPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/async-await-y-fetch/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-03-datos-y-crud/crud-con-react": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/crud-con-react/CrudConReactPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/crud-con-react/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-03-datos-y-crud/formularios-y-validacion": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/formularios-y-validacion/FormulariosYValidacionPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/formularios-y-validacion/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-03-datos-y-crud/rendimiento-y-despliegue": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/rendimiento-y-despliegue/RendimientoYDesplieguePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/rendimiento-y-despliegue/lesson-meta").then((m) => m.meta),
+  },
+  "tecnologias-emergentes/apoyo-react-03-datos-y-crud/practica-y-cierre": {
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/practica-y-cierre/PracticaYCierrePageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/apoyo-react-03-datos-y-crud/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+  },
   "tecnologias-emergentes/clase-01-fundamentos": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/Clase01FundamentosHubLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-01-fundamentos/tecnologias-emergentes-y-javascript": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/tecnologias-emergentes-y-javascript/TecnologiasEmergentesYJavascriptPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/tecnologias-emergentes-y-javascript/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/tecnologias-emergentes-y-javascript/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/tecnologias-emergentes-y-javascript/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-01-fundamentos/entorno-y-librerias": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/entorno-y-librerias/EntornoYLibreriasPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/entorno-y-librerias/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/entorno-y-librerias/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/entorno-y-librerias/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-01-fundamentos/variables-y-funciones": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/variables-y-funciones/VariablesYFuncionesPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/variables-y-funciones/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/variables-y-funciones/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/variables-y-funciones/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-01-fundamentos/objetos-arrays-y-modulos": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/objetos-arrays-y-modulos/ObjetosArraysYModulosPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/objetos-arrays-y-modulos/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/objetos-arrays-y-modulos/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/objetos-arrays-y-modulos/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-01-fundamentos/primer-componente-react": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/primer-componente-react/PrimerComponenteReactPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/primer-componente-react/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/primer-componente-react/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/primer-componente-react/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-01-fundamentos/practica-y-cierre": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/practica-y-cierre/PracticaYCierrePageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-01-fundamentos/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/practica-y-cierre/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-01-fundamentos/practica-y-cierre/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-02-interfaces-con-react-y-mui": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/Clase02InterfacesConReactYMuiHubLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/estado-y-eventos": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/estado-y-eventos/EstadoYEventosPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/estado-y-eventos/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/estado-y-eventos/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/estado-y-eventos/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/efectos-y-hooks-propios": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/efectos-y-hooks-propios/EfectosYHooksPropiosPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/efectos-y-hooks-propios/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/efectos-y-hooks-propios/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/efectos-y-hooks-propios/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/material-ui": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/material-ui/MaterialUiPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/material-ui/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/material-ui/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/material-ui/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/ux-ui-administrativo": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/ux-ui-administrativo/UxUiAdministrativoPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/ux-ui-administrativo/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/ux-ui-administrativo/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/ux-ui-administrativo/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/react-router": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/react-router/ReactRouterPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/react-router/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/react-router/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/react-router/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/practica-y-cierre": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/practica-y-cierre/PracticaYCierrePageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-02-interfaces-con-react-y-mui/pages/practica-y-cierre/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/practica-y-cierre/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-02-interfaces-con-react-y-mui/practica-y-cierre/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-03-datos-reales-y-crud": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/Clase03DatosRealesYCrudHubLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-03-datos-reales-y-crud/http-y-apis": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/http-y-apis/HttpYApisPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/http-y-apis/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/http-y-apis/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/http-y-apis/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-03-datos-reales-y-crud/async-await-y-fetch": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/async-await-y-fetch/AsyncAwaitYFetchPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/async-await-y-fetch/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/async-await-y-fetch/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/async-await-y-fetch/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-03-datos-reales-y-crud/crud-con-react": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/crud-con-react/CrudConReactPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/crud-con-react/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/crud-con-react/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/crud-con-react/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-03-datos-reales-y-crud/formularios-y-validacion": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/formularios-y-validacion/FormulariosYValidacionPageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/formularios-y-validacion/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/formularios-y-validacion/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/formularios-y-validacion/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-03-datos-reales-y-crud/rendimiento-y-despliegue": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/rendimiento-y-despliegue/RendimientoYDesplieguePageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/rendimiento-y-despliegue/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/rendimiento-y-despliegue/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/rendimiento-y-despliegue/lesson-meta").then((m) => m.meta),
   },
   "tecnologias-emergentes/clase-03-datos-reales-y-crud/horizonte-y-cierre": {
-    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/horizonte-y-cierre/HorizonteYCierrePageLesson"),
-    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/clase-03-datos-reales-y-crud/pages/horizonte-y-cierre/lesson-meta").then((m) => m.meta),
+    component: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/horizonte-y-cierre/AliasPageLesson"),
+    meta: () => import("@/components/teaching/lessons/tecnologias-emergentes/_aliases/clase-03-datos-reales-y-crud/horizonte-y-cierre/lesson-meta").then((m) => m.meta),
   },
-
 };
 
 export function getLessonKey(track: string, slug: string): string {

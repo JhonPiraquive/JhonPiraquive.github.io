@@ -10,8 +10,8 @@ export const meta: LessonMeta = {
   order: nav.order,
   prev: nav.prev,
   next: nav.next,
-  seoTitle: "Tecnologías emergentes: presentación, objetivos y resultados",
+  seoTitle: "Tecnologías emergentes: identificar, comprender la IA y decidir",
   seoDescription:
-    "Qué son las tecnologías emergentes, cómo evaluarlas y cómo practicarlas con JavaScript moderno, React, Material UI, React Router y APIs.",
+    "Cómo identificar tecnologías emergentes, cómo funciona la inteligencia artificial moderna (modelos, agentes, MCP, skills, hooks) y cómo decidir si adoptarlas, con una guía de apoyo en React.",
   showInTrackIndex: true,
 };
