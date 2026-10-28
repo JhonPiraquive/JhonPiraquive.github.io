@@ -27,7 +27,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <BrandSidebar content={portfolio} locale={locale} />
-      <main className="ml-0 min-h-screen lg:ml-64">{children}</main>
+      <main className="ml-0 min-h-screen pt-14 lg:ml-64 lg:pt-0">{children}</main>
       <ScrollToTopButton />
     </NextIntlClientProvider>
   );

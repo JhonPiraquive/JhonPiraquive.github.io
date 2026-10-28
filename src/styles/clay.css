@@ -187,3 +187,14 @@
 .cert-preview {
   border: 1px solid rgba(10, 37, 64, 0.08);
 }
+
+/* Evita que la barra superior móvil tape los destinos de los enlaces #ancla */
+html {
+  scroll-padding-top: 4rem;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 0;
+  }
+}
